@@ -4,7 +4,7 @@ title: "About Anubhav Gain"
 ---
 
 <div>
-  <img src="/assets/1681272981620.jpeg" class="sm:w-1/2 mx-auto" alt="Anubhav Gain waving">
+  <img src="/assets/1681272981620.jpeg" class="sm:w-1/2 mx-auto" alt="Anubhav Gain">
 </div>
 
 ## About Anubhav Gain
