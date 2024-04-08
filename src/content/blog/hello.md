@@ -7,7 +7,7 @@ slug: welcome-to-my-blog
 featured: true
 draft: false
 tags:
-  - docs
+  - aboutme
 description: welcome blog!
 ---
 
