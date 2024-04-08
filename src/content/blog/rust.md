@@ -7,7 +7,7 @@ slug: rust-installation
 featured: true
 draft: false
 tags:
-  - docs
+  - rust
 description: installation of rust in windows/linux/mac.
 ---
 
