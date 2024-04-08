@@ -8,6 +8,7 @@ featured: true
 draft: false
 tags:
   - ebpf
+  - rust
 description: This utility alerts you instantly whenever changes occur in your files, ensuring you're always in the loop.
 ---
 
