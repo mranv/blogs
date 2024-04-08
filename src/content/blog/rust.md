@@ -11,8 +11,6 @@ tags:
 description: installation of rust in windows/linux/mac.
 ---
 
-<!-- ![Anubhav Gain](/assets/blog-images/rust.png) -->
-
   <img src="/assets/blog-images/rust.png" class="sm:w-1/2 mx-auto" alt="Anubhav Gain">
 
 # Installing Rust on Your System

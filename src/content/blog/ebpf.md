@@ -1,9 +1,9 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-12-01T01:42:00+05:30
-modDatetime: 2023-12-01T01:42:00+05:30
-title: A Journey into eBPF
-slug: a-journey-into-ebpf
+pubDatetime: 2023-12-01T23:37:00+05:30
+modDatetime: 2023-12-01T23:37:00+05:30
+title: Journey into eBPF
+slug: journey-into-ebpf
 featured: true
 draft: false
 tags:

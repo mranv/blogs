@@ -2,8 +2,8 @@
 author: Anubhav Gain
 pubDatetime: 2023-12-03T18:29:00+05:30
 modDatetime: 2023-12-03T18:29:00+05:30
-title: A Powerful ChatGPT Desktop Application
-slug: a-powerful-ChatGPT-desktop-application
+title: Powerful ChatGPT Desktop Application
+slug: powerful-ChatGPT-desktop-application
 featured: true
 draft: false
 tags:
