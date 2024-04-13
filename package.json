@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "blogs",
   "version": "4.2.0",
   "scripts": {
     "dev": "astro dev",
@@ -58,5 +58,20 @@
     "*.{js,jsx,ts,tsx,md,mdx,json,astro}": [
       "prettier --write --plugin=prettier-plugin-astro"
     ]
-  }
+  },
+  "description": "Congratulations! You've stumbled upon the repository where my profound thoughts and questionable humor collide in a spectacular display of digital chaos. Here, you'll find a treasure trove of blog posts that will either leave you in stitches or scratching your head in confusion. Either way, buckle up for a wild ride!",
+  "main": ".eslintrc.js",
+  "author": "Anubhav Gain",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mranv/blogs.git"
+  },
+  "keywords": [
+    "mranv"
+  ],
+  "bugs": {
+    "url": "https://github.com/mranv/blogs/issues"
+  },
+  "homepage": "https://github.com/mranv/blogs#readme"
 }
