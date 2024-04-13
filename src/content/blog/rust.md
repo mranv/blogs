@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-04-09T01:42:00+05:30
-modDatetime: 2024-04-09T01:42:00+05:30
+pubDatetime: 2023-12-01T01:42:00+05:30
+modDatetime: 2023-12-01T01:42:00+05:30
 title: 🦀 rusty install
 slug: rust-installation
 featured: true
