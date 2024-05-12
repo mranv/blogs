@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://mranv.pages.dev/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/about/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/search/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/from-neovim-to-lunarvim/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/vsftp-on-ubuntu/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/windows-control/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/getting-started-with-windows-server-2019/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/elgato-on-archlinux/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/windows-server-2019-scripting-and-sharing/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/windows-server-2019-active-directory-installation/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/theseus-os/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/active-directory-setup-windows-server-2019/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/installing-docker-windows-server-2019/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/sysunixlog/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/simple-linux-os/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/powerful-ChatGPT-desktop-application/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/file-monitoring-using-ebpf/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/journey-into-ebpf/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/welcome-to-my-blog/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/rust-installation/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/2/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/aboutme/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/active-directory/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/auto-reboot/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/docker/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/ebpf/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/elgato/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/ftp/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/gpt/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/ide/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/iis/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/installation/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/linux/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/log/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/lunarvim/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/neovim/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/powershell/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/rust/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/scripting/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/sharing/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/ubuntu/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/user-accounts/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/vsftp/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/windows/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/windows-admin-center/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/windows-server-2019/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/windows-updates/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/3/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/linux/2/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/rust/2/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/tags/windows-server-2019/2/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/4/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/5/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://mranv.pages.dev/posts/6/</loc>
+  <lastmod>2024-05-12T20:43:24+00:00</lastmod>
+  <priority>0.26</priority>
+</url>
+
+
+</urlset>
