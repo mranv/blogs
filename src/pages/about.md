@@ -1,13 +1,11 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About Anubhav Gain"
+title: "Who is Anubhav Gain ?"
 ---
 
 <div>
   <img src="/assets/1681272981620.jpeg" class="sm:w-1/2 mx-auto" alt="Anubhav Gain">
 </div>
-
-## About Anubhav Gain
 
 I'm a cybersecurity professional based in Vadodara, Gujarat, India, with a strong educational background and practical experience in various domains of cybersecurity.
 
@@ -24,23 +22,55 @@ Here are some of my key skills:
 - Cyber Forensics
 - Responsive Web Design
 
-## Experience
+## Professional Experience
 
-### TechAnv Consulting
+### DevSecOps Engineer at Atcults Pvt. Ltd.
 
-As the owner of TechAnv Consulting, Anubhav specializes in providing top-notch IT consulting services, helping businesses optimize their technology infrastructure for growth, efficiency, and innovation.
+As a DevSecOps Engineer at Atcults Pvt. Ltd., I specialize in integrating automated security testing, threat monitoring, and vulnerability remediation within the CI/CD pipeline. With over 3 years of experience scripting in Python and PowerShell, I ensure secure application development through security-as-code practices. My goal is to enable rapid delivery of high-quality, resilient software while upholding robust security protocols.
 
-### Lucid Growth
+### Owner of TechAnv Consulting
 
-During Anubhav's tenure at Lucid Growth as a Security Engineer, he implemented stringent security protocols, conducted risk assessments, and responded to security incidents, enhancing digital infrastructure resilience.
+As the owner of TechAnv Consulting, I provide top-notch IT consulting services to businesses aiming to optimize their technology infrastructure. With extensive industry knowledge and expertise, my team and I help organizations harness the power of technology for growth, efficiency, and innovation.
 
-### Parul University
+### Security Engineer at Lucid Growth
 
-As an IT Specialist at Parul University, Anubhav deployed fortified AWS architectures, engineered Windows environments, and troubleshooted network issues to ensure robust security measures.
+During my tenure as a Security Engineer at Lucid Growth, I fortified the company's digital infrastructure against potential threats. My responsibilities included implementing stringent security protocols, conducting risk assessments, and promptly addressing security breaches. I collaborated closely with cross-functional teams to enforce robust security policies.
 
-### JPMorgan Chase & Co.
+### IT Specialist at Parul University
 
-During his time at JPMorgan Chase & Co. as a Data Analyst specializing in Fraud Detection, Anubhav analyzed financial datasets and utilized statistical methods and machine learning algorithms to detect fraudulent transactions, contributing to enhanced payment service security.
+As an IT Specialist at Parul University, I deployed fortified AWS architectures, engineered Windows environments, and troubleshooted network issues to ensure robust security measures. My role involved incident response, utilizing Palo Alto Networks, SQL, and network address translation (NAT) techniques.
+
+### Data Analyst (Internship) at JPMorgan Chase & Co.
+
+During my internship at JPMorgan Chase & Co. as a Data Analyst specializing in Fraud Detection, I analyzed financial datasets to detect fraudulent transactions. My contributions enhanced payment service security through advanced data analysis, statistical methods, and machine learning algorithms.
+
+### Social Engineering Investigation (Internship) at ANZ
+
+At ANZ, I conducted a social engineering investigation within the realm of digital forensics. My role was crucial in uncovering and understanding the tactics employed by social engineers, contributing to combating threats in organizations and digital systems.
+
+### Designing Phishing Email Simulation (Internship) at Mastercard
+
+At Mastercard, I designed a phishing email simulation to enhance cybersecurity awareness. This involved outlining effective simulation strategies and interpreting results to improve employee vigilance against phishing attempts.
+
+### APT Breach Analysis (Internship) at Datacom
+
+At Datacom, I analyzed the repercussions of an Advanced Persistent Threat (APT) breach on an organization's information security. My assessment aimed to enhance organizational security measures against sophisticated cyber threats.
+
+### Responding to Malware Attacks (Internship) at Telstra
+
+At Telstra, I provided practical guidance on responding to malware attacks, including incident response, impact mitigation, and postmortem analysis. My expertise contributed to improving security measures against malware threats.
+
+### Integrated Information Defense (Internship) at PwC
+
+At PwC, I contributed to Integrated Information Defense, a comprehensive approach to safeguarding sensitive information within organizations. This proactive strategy aimed to protect against cyber threats, data breaches, and unauthorized access.
+
+### Responding to Zero-Day Vulnerability & Bypassing Ransomware (Internship) at AIG
+
+At AIG, I specialized in responding to zero-day vulnerabilities and devising strategies to bypass ransomware attacks. My expertise contributed to enhancing security measures against emerging cyber threats.
+
+### Practical Guidance on ICO Dawn Raid & Handling Data Leak Damages Claims (Internship) at Clifford Chance
+
+At Clifford Chance, I provided practical guidance on ICO dawn raids and handling data leak damages claims. My legal expertise aimed to prepare organizations for challenges like data breaches and potential damages claims.
 
 ## Certifications
 
