@@ -5,7 +5,7 @@ export const SITE: Site = {
   author: "Anubhav Gain",
   desc: "Anubhav Gain is an experienced DevSecOps Engineer and Cyber Security expert with expertise in Security Information and Event Management (SIEM), Linux, Information Security, Cybersecurity, Threat & Vulnerability Management, Cloud Security, Rust Programming, and Network Security. This blog documents his journey in the cyber security field.",
   title: "Anubhav Gain - DevSecOps Engineer & Cyber Security Expert",
-  ogImage: "assets/forrest-gump-quote.webp",
+  ogImage: "https://mranv.pages.dev/assets/forrest-gump-quote.webp",
   lightAndDarkMode: true,
   postPerPage: 3,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
