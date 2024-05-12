@@ -3,12 +3,34 @@ import type { Site, SocialObjects } from "./types";
 export const SITE: Site = {
   website: "https://mranv.pages.dev/",
   author: "Anubhav Gain",
-  desc: "A minimal, responsive and SEO-friendly blog for my cyber security journey. Built with Astro, React, TypeScript, Tailwind CSS and MDX.",
-  title: "Anubhav Gain",
-  ogImage: "og.png",
+  desc: "Anubhav Gain is an experienced DevSecOps Engineer and Cyber Security expert with expertise in Security Information and Event Management (SIEM), Linux, Information Security, Cybersecurity, Threat & Vulnerability Management, Cloud Security, Rust Programming, and Network Security. This blog documents his journey in the cyber security field.",
+  title: "Anubhav Gain - DevSecOps Engineer & Cyber Security Expert",
+  ogImage: "assets/forrest-gump-quote.webp",
   lightAndDarkMode: true,
   postPerPage: 3,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
+
+  // SEO Metadata
+  seo: {
+    title: "Anubhav Gain - DevSecOps Engineer & Cyber Security Expert",
+    description:
+      "Anubhav Gain is an experienced DevSecOps Engineer and Cyber Security expert with expertise in Security Information and Event Management (SIEM), Linux, Information Security, Cybersecurity, Threat & Vulnerability Management, Cloud Security, Rust Programming, and Network Security. This blog documents his journey in the cyber security field.",
+    keywords:
+      "Anubhav Gain, DevSecOps Engineer, Cyber Security Engineer, Security Information and Event Management (SIEM), Linux, Information Security, Cybersecurity, Threat & Vulnerability Management, Cloud Security, Rust Programming, Network Security, blog, cyber security",
+    author: "Anubhav Gain",
+    ogTitle: "Anubhav Gain - DevSecOps Engineer & Cyber Security Expert",
+    ogDescription:
+      "Anubhav Gain is an experienced DevSecOps Engineer and Cyber Security expert with expertise in Security Information and Event Management (SIEM), Linux, Information Security, Cybersecurity, Threat & Vulnerability Management, Cloud Security, Rust Programming, and Network Security. This blog documents his journey in the cyber security field.",
+    ogImage: "https://mranv.pages.dev/assets/forrest-gump-quote.webp",
+    ogUrl: "https://mranv.pages.dev/",
+    twitterTitle: "Anubhav Gain - DevSecOps Engineer & Cyber Security Expert",
+    twitterDescription:
+      "Anubhav Gain is an experienced DevSecOps Engineer and Cyber Security expert with expertise in Security Information and Event Management (SIEM), Linux, Information Security, Cybersecurity, Threat & Vulnerability Management, Cloud Security, Rust Programming, and Network Security. This blog documents his journey in the cyber security field.",
+    twitterImage: "https://mranv.pages.dev/assets/forrest-gump-quote.webp",
+    twitterUrl: "https://twitter.com/anubhavgain",
+    twitterSite: "@anubhavgain",
+    twitterCreator: "@anubhavgain",
+  },
 };
 
 export const LOCALE = {
@@ -17,7 +39,7 @@ export const LOCALE = {
 } as const;
 
 export const LOGO_IMAGE = {
-  enable: false,
+  enable: true,
   svg: true,
   width: 216,
   height: 46,
@@ -27,12 +49,12 @@ export const SOCIALS: SocialObjects = [
   {
     name: "Github",
     href: "https://github.com/mranv",
-    linkTitle: ` ${SITE.title} on Github`,
+    linkTitle: `${SITE.title} on Github`,
     active: true,
   },
   {
     name: "Facebook",
-    href: "https://www.facebook.com/mr.anv.1",
+    href: "https://www.facebook.com/mranv.1",
     linkTitle: `${SITE.title} on Facebook`,
     active: true,
   },
@@ -56,92 +78,9 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "Twitter",
-    href: "https://x.com/AnubhavGain",
+    href: "https://twitter.com/AnubhavGain",
     linkTitle: `${SITE.title} on Twitter`,
     active: false,
   },
-  {
-    name: "Twitch",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on Twitch`,
-    active: false,
-  },
-  {
-    name: "YouTube",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on YouTube`,
-    active: false,
-  },
-  {
-    name: "WhatsApp",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on WhatsApp`,
-    active: false,
-  },
-  {
-    name: "Snapchat",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on Snapchat`,
-    active: false,
-  },
-  {
-    name: "Pinterest",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on Pinterest`,
-    active: false,
-  },
-  {
-    name: "TikTok",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on TikTok`,
-    active: false,
-  },
-  {
-    name: "CodePen",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on CodePen`,
-    active: false,
-  },
-  {
-    name: "Discord",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on Discord`,
-    active: false,
-  },
-  {
-    name: "GitLab",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on GitLab`,
-    active: false,
-  },
-  {
-    name: "Reddit",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on Reddit`,
-    active: false,
-  },
-  {
-    name: "Skype",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on Skype`,
-    active: false,
-  },
-  {
-    name: "Steam",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on Steam`,
-    active: false,
-  },
-  {
-    name: "Telegram",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on Telegram`,
-    active: false,
-  },
-  {
-    name: "Mastodon",
-    href: "https://github.com/mranv",
-    linkTitle: `${SITE.title} on Mastodon`,
-    active: false,
-  },
+  // Other social media links...
 ];
