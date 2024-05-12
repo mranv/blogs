@@ -9,28 +9,6 @@ export const SITE: Site = {
   lightAndDarkMode: true,
   postPerPage: 3,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
-
-  // SEO Metadata
-  seo: {
-    title: "Anubhav Gain - DevSecOps Engineer & Cyber Security Expert",
-    description:
-      "Anubhav Gain is an experienced DevSecOps Engineer and Cyber Security expert with expertise in Security Information and Event Management (SIEM), Linux, Information Security, Cybersecurity, Threat & Vulnerability Management, Cloud Security, Rust Programming, and Network Security. This blog documents his journey in the cyber security field.",
-    keywords:
-      "Anubhav Gain, DevSecOps Engineer, Cyber Security Engineer, Security Information and Event Management (SIEM), Linux, Information Security, Cybersecurity, Threat & Vulnerability Management, Cloud Security, Rust Programming, Network Security, blog, cyber security",
-    author: "Anubhav Gain",
-    ogTitle: "Anubhav Gain - DevSecOps Engineer & Cyber Security Expert",
-    ogDescription:
-      "Anubhav Gain is an experienced DevSecOps Engineer and Cyber Security expert with expertise in Security Information and Event Management (SIEM), Linux, Information Security, Cybersecurity, Threat & Vulnerability Management, Cloud Security, Rust Programming, and Network Security. This blog documents his journey in the cyber security field.",
-    ogImage: "https://mranv.pages.dev/assets/forrest-gump-quote.webp",
-    ogUrl: "https://mranv.pages.dev/",
-    twitterTitle: "Anubhav Gain - DevSecOps Engineer & Cyber Security Expert",
-    twitterDescription:
-      "Anubhav Gain is an experienced DevSecOps Engineer and Cyber Security expert with expertise in Security Information and Event Management (SIEM), Linux, Information Security, Cybersecurity, Threat & Vulnerability Management, Cloud Security, Rust Programming, and Network Security. This blog documents his journey in the cyber security field.",
-    twitterImage: "https://mranv.pages.dev/assets/forrest-gump-quote.webp",
-    twitterUrl: "https://twitter.com/anubhavgain",
-    twitterSite: "@anubhavgain",
-    twitterCreator: "@anubhavgain",
-  },
 };
 
 export const LOCALE = {
