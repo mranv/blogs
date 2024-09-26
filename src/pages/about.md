@@ -4,7 +4,7 @@ title: "Who is Anubhav Gain ?"
 ---
 
 <div>
-  <img src="/assets/1681272981620.jpeg" class="sm:w-1/2 mx-auto" alt="Anubhav Gain">
+  <img src="/assets/mranv.png" class="sm:w-1/2 mx-auto" alt="Anubhav Gain">
 </div>
 
 I'm a cybersecurity professional based in Vadodara, Gujarat, India, with a strong educational background and practical experience in various domains of cybersecurity.
