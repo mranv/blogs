@@ -48,6 +48,36 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         Duties.
       </p>
       <br />
+
+      <video
+        id="myVideo"
+        src="public/assets/sample-video.mp4"
+        autoplay
+        muted
+        loop
+        style="display: block; margin: 0 auto; width: 100%; height: auto;"
+      >
+      </video>
+
+      <button
+        id="unmuteBtn"
+        style="display: block; margin: 10px auto; padding: 10px; cursor: pointer;"
+      >
+        Unmute
+      </button>
+
+      <script>
+        const video = document.getElementById("myVideo");
+        const unmuteBtn = document.getElementById("unmuteBtn");
+
+        // Unmute the video when the button is clicked
+        unmuteBtn.addEventListener("click", function () {
+          video.muted = false;
+          video.play();
+          unmuteBtn.style.display = "none"; // Hide the button after unmuting
+        });
+      </script>
+
       <p>
         Read the blog posts to see through my eyes what I've learned about the
         latest technologies.
