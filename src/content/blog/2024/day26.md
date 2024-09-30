@@ -25,7 +25,7 @@ support for standard formats (Cobertura, JaCoCo, gcov, JUnit, etc.),
 test parallelization, and GitHub Checks API.
 We will also delve into increasing the integration test coverage with help of WireMock and Testcontainers.
 
-![Jenkins and GitHub Checks](.//Images/day26-1.png)
+![Jenkins and GitHub Checks](/Images/day26-1.png)
 
 ## Resources
 
@@ -38,7 +38,7 @@ In 2015-2018, I talked about how to use the Jenkins Pipeline and custom librarie
 Coverage plugins were rather weak, and one needed some scripts and hacks to make it work, and to DIY for distributed testing. In 2021 the situation has changed significantly thanks to the Coverage and Checks API plugins.
 Distributed integration testing also became easier thanks to better coverage collectors and integrations with API mocking tools. So, good time to be alive… and use Jenkins!
 
-![Jenkins and GitHub Checks](.//Images/day26-2.png)
+![Jenkins and GitHub Checks](/Images/day26-2.png)
 
 We will talk about how modern Jenkins allows you to improve and analyze code coverage.
 We will talk about unit and integration testing with WireMock,  
@@ -48,7 +48,7 @@ parallelization for heavy integration tests and API mocking, and integration wit
 How can you analyze code coverage in Jenkins and when do you need to create your own libraries?
 And what’s the fuzz about Testcontainers and WireMock for integration testing?
 
-![Jenkins and GitHub Checks](.//Images/day26-3.png)
+![Jenkins and GitHub Checks](/Images/day26-3.png)
 
 ## References
 
