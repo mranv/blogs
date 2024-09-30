@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 24 - DevSecOps - Defined, Explained & Explored
 
-[![Watch the video](thumbnails/day24.png)](https://www.youtube.com/watch?v=glbuwrdSwCs)
+[![Watch the video](/thumbnails/day24.png)](https://www.youtube.com/watch?v=glbuwrdSwCs)
 
 A session describing the DevOps pipeline, with an emphasis on Agile methodology, and how it interlocks with various stages of a product development process. The process starts with understanding customer requirements through Agile practices, followed by creating a product catalog which is used as input for DevSecOps.
 

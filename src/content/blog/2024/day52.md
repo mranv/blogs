@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 52 - Creating a custom Dev Container for your GitHub Codespace to start with Terraform on Azure
 
-[![Watch the video](thumbnails/day52.png)](https://www.youtube.com/watch?v=fTsaj7kqOvs)
+[![Watch the video](/thumbnails/day52.png)](https://www.youtube.com/watch?v=fTsaj7kqOvs)
 
 # ONE SENTENCE SUMMARY:
 

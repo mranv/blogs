@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 78 - Scaling Terraform Deployments with GitHub Actions: Essential Configurations
 
-[![Watch the video](thumbnails/day78.png)](https://www.youtube.com/watch?v=pU8vSCvZIHg)
+[![Watch the video](/thumbnails/day78.png)](https://www.youtube.com/watch?v=pU8vSCvZIHg)
 
 In this explanation, the speaker is discussing their GitHub repository setup, branch policies, repository secrets, and actions associated with pull requests (PRs). Here's a breakdown of the main points:
 

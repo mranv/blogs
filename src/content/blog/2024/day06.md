@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 6 - Kubernetes RBAC with Ansible
 
-[![Watch the video](thumbnails/day6.png)](https://www.youtube.com/watch?v=7m-79KI3xhY)
+[![Watch the video](/thumbnails/day6.png)](https://www.youtube.com/watch?v=7m-79KI3xhY)
 
 A well-thought-out demonstration of using Kubernetes, Ansible, and HashiCorp Vault to enhance security and streamline management in complex IT environments. Here's a summary of the components and their roles:
 

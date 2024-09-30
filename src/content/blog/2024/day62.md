@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 62 - Shifting Left for DevSecOps Using Modern Edge Platforms
 
-[![Watch the video](thumbnails/day62.png)](https://www.youtube.com/watch?v=kShQcv_KLOg)
+[![Watch the video](/thumbnails/day62.png)](https://www.youtube.com/watch?v=kShQcv_KLOg)
 
 In this discussion, the participants are discussing a CI/CD workflow with a focus on security (Secure DevOps). The idea is to shift left the security practices from testing and production to the early stages of development. This approach helps mitigate issues that can arise during deployment and operations.
 

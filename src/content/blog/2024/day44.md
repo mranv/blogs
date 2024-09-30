@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 44 - Exploring Firecracker
 
-[![Watch the video](thumbnails/day44.png)](https://www.youtube.com/watch?v=EPMbCUPK7aQ)
+[![Watch the video](/thumbnails/day44.png)](https://www.youtube.com/watch?v=EPMbCUPK7aQ)
 
 In summary, we discussed the pros and cons of containers and Virtual Machines (VMs), as well as an alternative solution called Firecracker that aims to combine the advantages of both while minimizing their respective disadvantages.
 

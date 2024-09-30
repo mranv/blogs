@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 28 - Talos Linux on vSphere
 
-[![Watch the video](thumbnails/day28.png)](https://www.youtube.com/watch?v=9y7m0PgW2UM)
+[![Watch the video](/thumbnails/day28.png)](https://www.youtube.com/watch?v=9y7m0PgW2UM)
 
 Summary:
 

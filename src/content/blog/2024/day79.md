@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 79 - DevEdOps
 
-[![Watch the video](thumbnails/day79.png)](https://www.youtube.com/watch?v=5-Pa2odaGeg)
+[![Watch the video](/thumbnails/day79.png)](https://www.youtube.com/watch?v=5-Pa2odaGeg)
 
 ## DevEdOps
 

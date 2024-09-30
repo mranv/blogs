@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 70 Simplified Cloud Adoption with Microsoft's Terraforms Azure Landing Zone Module
 
-[![Watch the video](thumbnails/day70.png)](https://www.youtube.com/watch?v=r1j8CrwS36Q)
+[![Watch the video](/thumbnails/day70.png)](https://www.youtube.com/watch?v=r1j8CrwS36Q)
 
 The speaker is providing guidance on implementing a landing zone in Azure using the Cloud Adoption Framework (CAF) Landing Zone with Terraform. Here are the key points:
 

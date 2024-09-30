@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 5 - Cross functional empathy
 
-[![Watch the video](thumbnails/day5.png)](https://www.youtube.com/watch?v=2aJ4hA6TiZE)
+[![Watch the video](/thumbnails/day5.png)](https://www.youtube.com/watch?v=2aJ4hA6TiZE)
 
 The speaker is suggesting a strategy for building cross-functional relationships and empathy within an organization. Here's a summary of the key points:
 

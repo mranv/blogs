@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 82 - Dev Containers in VS Code
 
-[![Watch the video](thumbnails/day82.png)](https://www.youtube.com/watch?v=LH5qMhpko8k)
+[![Watch the video](/thumbnails/day82.png)](https://www.youtube.com/watch?v=LH5qMhpko8k)
 
 Discussing the features and benefits of using Visual Studio Code (VSCode) with Dev Containers. Here's a summary of the key points from your text:
 

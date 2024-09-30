@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 12 - Know your data: The Stats behind the Alerts
 
-[![Watch the video](thumbnails/day12.png)](https://www.youtube.com/watch?v=y9rOAzuV-F8)
+[![Watch the video](/thumbnails/day12.png)](https://www.youtube.com/watch?v=y9rOAzuV-F8)
 
 In this text, the speaker is discussing different types of statistical curves and their applications, particularly in analyzing lead times, recovery times, alerts, and other performance metrics. They emphasize that while normal curves are commonly used, they may not be suitable for all types of data, such as irregularly occurring events like latencies or response times. For these, an exponential curve is recommended.
 

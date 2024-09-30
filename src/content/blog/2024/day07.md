@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 7 - Isn't Test Automation A Silver Bullet
 
-[![Watch the video](thumbnails/day7.png)](https://www.youtube.com/watch?v=-d5r575MTGE)
+[![Watch the video](/thumbnails/day7.png)](https://www.youtube.com/watch?v=-d5r575MTGE)
 
 To summarize the challenges faced in Test Automation and proposals to address these issues:
 

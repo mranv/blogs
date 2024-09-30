@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 87 - Hands-on Performance Testing with k6
 
-[![Watch the video](thumbnails/day87.png)](https://www.youtube.com/watch?v=Jg4GRzRHX9M)
+[![Watch the video](/thumbnails/day87.png)](https://www.youtube.com/watch?v=Jg4GRzRHX9M)
 
 The session covers (k6) which collects both built-in and custom metrics. The built-in metrics include:
 

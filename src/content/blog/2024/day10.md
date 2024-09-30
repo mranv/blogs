@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 10 - Is Kubernetes Too Complicated?
 
-[![Watch the video](thumbnails/day10.png)](https://www.youtube.com/watch?v=00znexeYqtI)
+[![Watch the video](/thumbnails/day10.png)](https://www.youtube.com/watch?v=00znexeYqtI)
 
 This session provides a comprehensive explanation about Kubernetes, its components, benefits, challenges, and ways to learn it. Here is a summary:
 

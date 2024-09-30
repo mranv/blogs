@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 39 - Is TLS in Kubernetes really that hard to understand?
 
-[![Watch the video](thumbnails/day39.png)](https://www.youtube.com/watch?v=aJfcP5fambs)
+[![Watch the video](/thumbnails/day39.png)](https://www.youtube.com/watch?v=aJfcP5fambs)
 
 In summary, during this presentation, we discussed how Transport Layer Security (TLS) is used in a Kubernetes cluster to ensure secure connections between various components. Here's a quick recap:
 

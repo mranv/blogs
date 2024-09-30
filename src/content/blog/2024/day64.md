@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 64 - Let’s Do DevOps: Writing a New Terraform /Tofu AzureRm Data Source — All Steps!
 
-[![Watch the video](thumbnails/day64.png)](https://www.youtube.com/watch?v=AtqivV8iBdE)
+[![Watch the video](/thumbnails/day64.png)](https://www.youtube.com/watch?v=AtqivV8iBdE)
 
 This session goes into explaining the process of creating a Terraform data source using Go, and testing it with unit tests in Visual Studio Code. You also mentioned using an environment file (EnV) to store secrets for authentication when running the tests. Here's a summary:
 

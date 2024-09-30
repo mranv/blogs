@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 84 - Hacking Kubernetes For Beginners
 
-[![Watch the video](thumbnails/day84.png)](https://www.youtube.com/watch?v=ZUHUEZKl0vc)
+[![Watch the video](/thumbnails/day84.png)](https://www.youtube.com/watch?v=ZUHUEZKl0vc)
 
 In this scenario, we discussed various methods a potential attacker could use to compromise a Kubernetes cluster. Here's a summary of the attacks discussed and possible mitigation strategies:
 

@@ -14,12 +14,12 @@ description: Add your description here.
 
 # Day 77 - Connect to Microsoft APIs in Azure DevOps Pipelines using Workload Identity Federation
 
-[![Watch the video](thumbnails/day77.png)](https://www.youtube.com/watch?v=-KCgEC58PHQ)
+[![Watch the video](/thumbnails/day77.png)](https://www.youtube.com/watch?v=-KCgEC58PHQ)
 
 This note accompanies my contribution for 2024 edition of 90DaysOfDevOps, which consists of:
 
 - A video: [90DaysOfDevOps YouTube Channel](https://youtu.be/-KCgEC58PHQ)
-- A presentation deck for reference: [day77-Connect-to-Microsoft-APIs-in-Azure-DevOps-Pipelines-using-Workload-Identity-Federation.pdf](./Presentations/day77-Connect-to-Microsoft-APIs-in-Azure-DevOps-Pipelines-using-Workload-Identity-Federation.pdf)
+- A presentation deck for reference: [day77-Connect-to-Microsoft-APIs-in-Azure-DevOps-Pipelines-using-Workload-Identity-Federation.pdf](.//Presentations/day77-Connect-to-Microsoft-APIs-in-Azure-DevOps-Pipelines-using-Workload-Identity-Federation.pdf)
 - This markdown file and a summary below, and a blog post where I have more details.
 
 ## What is Workload Identity Federation?

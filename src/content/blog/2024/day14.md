@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 14 - An introduction to API Security in Kubernetes
 
-[![Watch the video](thumbnails/day14.png)](https://www.youtube.com/watch?v=gJ4Gb4qMLbA)
+[![Watch the video](/thumbnails/day14.png)](https://www.youtube.com/watch?v=gJ4Gb4qMLbA)
 
 In this explanation, the speaker discusses the implementation of a firewall (Web Application Firewall or WAF) as an additional layer of security for an application. The WAF is deployed in front of the existing application through an Ingress configuration. This setup prevents unauthorized access and blocks potential attacks such as SQL injection attempts.
 

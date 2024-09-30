@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 9 - Why should developers care about container security?
 
-[![Watch the video](thumbnails/day9.png)](https://www.youtube.com/watch?v=z0Si8aE_W4Y)
+[![Watch the video](/thumbnails/day9.png)](https://www.youtube.com/watch?v=z0Si8aE_W4Y)
 
 The text you provided discusses best practices for securing Kubernetes clusters. Here are some key points:
 
@@ -54,7 +54,7 @@ For about 30 years, I've been an enterprise software developer, architect, and c
 
 I am also a Docker Captain, and am certified in Kubernetes (CKA, CKAD, CKS), and have been a Docker user since 2013.
 
-![Eric Smalling](Images/day09-1.jpg)
+![Eric Smalling](/Images/day09-1.jpg)
 
 ## Description?
 

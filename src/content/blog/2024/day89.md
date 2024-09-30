@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 89 - Seeding Infrastructures: Merging Terraform with Generative AI for Effortless DevOps Gardens
 
-[![Watch the video](thumbnails/day89.png)](https://www.youtube.com/watch?v=EpkYCmKtL6w)
+[![Watch the video](/thumbnails/day89.png)](https://www.youtube.com/watch?v=EpkYCmKtL6w)
 
 Thank you for sharing your insights and case study! It seems that you have successfully implemented a generative AI-powered seating engine in a project aimed at building a rapidly growing website with scalable digital infrastructure. The benefits you mentioned, such as reduced downtime, cost savings, time savings, and enhanced user experience, are indeed valuable outcomes of automation using AI.
 

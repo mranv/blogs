@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 22 - Test in Production with Kubernetes and Telepresence
 
-[![Watch the video](thumbnails/day22.png)](https://www.youtube.com/watch?v=-et6kHmK5MQ)
+[![Watch the video](/thumbnails/day22.png)](https://www.youtube.com/watch?v=-et6kHmK5MQ)
 
 To summarize, Telepresence is an open-source tool that allows developers to test their code changes in a Kubernetes environment without committing, building Docker images, or deploying. It works by redirecting incoming requests from a service in a remote Kubernetes cluster to the local machine where you're testing. This is achieved through global interception mode (for all requests) and personal interception mode (for specific request headers).
 

@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 43 - Let's go sidecarless in Ambient Mesh
 
-[![Watch the video](thumbnails/day43.png)](https://www.youtube.com/watch?v=T1zJ9tmBkrk)
+[![Watch the video](/thumbnails/day43.png)](https://www.youtube.com/watch?v=T1zJ9tmBkrk)
 
 # ONE SENTENCE SUMMARY:
 

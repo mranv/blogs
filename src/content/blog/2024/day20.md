@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 20 - Navigating the Vast DevOps Terrain: Strategies for Learning and Staying Current
 
-[![Watch the video](thumbnails/day20.png)](https://www.youtube.com/watch?v=ZSOYXerjgsw)
+[![Watch the video](/thumbnails/day20.png)](https://www.youtube.com/watch?v=ZSOYXerjgsw)
 
 # ONE SENTENCE SUMMARY:
 

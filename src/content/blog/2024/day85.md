@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 85 - Reuse, Don't Repeat - Creating an Infrastructure as Code Module Library
 
-[![Watch the video](thumbnails/day85.png)](https://www.youtube.com/watch?v=eQLpncE7eLs)
+[![Watch the video](/thumbnails/day85.png)](https://www.youtube.com/watch?v=eQLpncE7eLs)
 
 To start practicing with creating modules, here is a simple roadmap that includes good documentation, evangelizing, and distribution:
 

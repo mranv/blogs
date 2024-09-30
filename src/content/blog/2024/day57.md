@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 57 - A practical guide to Test-Driven Development of infrastructure code
 
-[![Watch the video](thumbnails/day57.png)](https://www.youtube.com/watch?v=VoeQWkboSUQ)
+[![Watch the video](/thumbnails/day57.png)](https://www.youtube.com/watch?v=VoeQWkboSUQ)
 
 A session describing a CI/CD pipeline in GitHub Actions that uses various tools such as Terraform, Bicep, Azure Policies (PS Rule), Snyk, and Pester to validate the security, compliance, and functionality of infrastructure code before deploying it to the actual environment. Here's a summary of the steps you mentioned:
 

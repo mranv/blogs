@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 90 - Fighting fire with fire: Why we cannot always prevent technical issues with more tech
 
-[![Watch the video](thumbnails/day90.png)](https://www.youtube.com/watch?v=PJsBQGKkn60)
+[![Watch the video](/thumbnails/day90.png)](https://www.youtube.com/watch?v=PJsBQGKkn60)
 
 To summarize, the goal is to create effective documentation that empowers your team to respond effectively to various situations. You've identified two main types of documentation: developer documentation (internal team, focusing on tool usage and source code) and user documentation (external users, focusing on product usage).
 

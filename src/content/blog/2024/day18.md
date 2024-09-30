@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 18 - Platform Engineering Is Not About Tech
 
-[![Watch the video](thumbnails/day18.png)](https://www.youtube.com/watch?v=1wKi6FH8eg0)
+[![Watch the video](/thumbnails/day18.png)](https://www.youtube.com/watch?v=1wKi6FH8eg0)
 
 This discussion focuses on the challenges and strategies involved in developing and implementing a successful platform within an organization. Here's a summary of the key points:
 

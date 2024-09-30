@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 50 - State of Cloud Native 2024
 
-[![Watch the video](thumbnails/day50.png)](https://www.youtube.com/watch?v=63qRo4GzJwE)
+[![Watch the video](/thumbnails/day50.png)](https://www.youtube.com/watch?v=63qRo4GzJwE)
 
 In summary, the state of cloud native in 2024 will witness significant advancements across several key areas:
 

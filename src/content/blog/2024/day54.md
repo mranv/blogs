@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 54 - Mastering AWS OpenSearch: Terraform Provisioning and Cost Efficiency Series
 
-[![Watch the video](thumbnails/day54.png)](https://www.youtube.com/watch?v=GYrCbUqHPi4)
+[![Watch the video](/thumbnails/day54.png)](https://www.youtube.com/watch?v=GYrCbUqHPi4)
 
 # ONE SENTENCE SUMMARY:
 

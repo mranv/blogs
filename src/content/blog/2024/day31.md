@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 31 - GitOps on AKS
 
-[![Watch the video](thumbnails/day31.png)](https://www.youtube.com/watch?v=RZ3gy0mnGoY)
+[![Watch the video](/thumbnails/day31.png)](https://www.youtube.com/watch?v=RZ3gy0mnGoY)
 
 A discussion around a GitOps repository, specifically "Theos Calypso," which provides examples for multicluster management using GetUp (a GitOps tool) and Flux (another popular GitOps tool). The examples provided in the repository demonstrate how to use various GitOps providers such as Flux, Argo, and others to reconcile configuration into a Kubernetes cluster.
 

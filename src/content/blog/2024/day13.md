@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 13 - Architecting for Versatility
 
-[![Watch the video](thumbnails/day13.png)](https://www.youtube.com/watch?v=MpGKEBmWZFQ)
+[![Watch the video](/thumbnails/day13.png)](https://www.youtube.com/watch?v=MpGKEBmWZFQ)
 
 A discussion about the benefits and drawbacks of using a single cloud provider versus a multi-cloud or hybrid environment. Here's a summary of the points made:
 

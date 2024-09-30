@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 33 - GitOps made simple with ArgoCD and GitHub Actions
 
-[![Watch the video](thumbnails/day33.png)](https://www.youtube.com/watch?v=dKU3hC_RtDk)
+[![Watch the video](/thumbnails/day33.png)](https://www.youtube.com/watch?v=dKU3hC_RtDk)
 
 So you've set up a GitHub action workflow to build, tag, and push Docker images to Docker Hub based on changes in the `main.go` file, and then use Argo CD to manage the application deployment. This flow helps bridge the gap between developers and platform engineers by using GitOps principles.
 

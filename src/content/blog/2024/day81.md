@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 81 - Leveraging Kubernetes to build a better Cloud Native Development Experience
 
-[![Watch the video](thumbnails/day81.png)](https://www.youtube.com/watch?v=p6AgYNL9awM)
+[![Watch the video](/thumbnails/day81.png)](https://www.youtube.com/watch?v=p6AgYNL9awM)
 
 The user is explaining how they are using Octopus Deploy (OCT) to deploy and preview their application in a containerized environment. They have made changes to their server-side code, specifically modifying the 'movies' collection in the database to include a 'watching' status. These changes will be reflected in the preview environment once it is refreshed.
 

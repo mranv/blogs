@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 80 - Unlocking K8s Troubleshooting Best Practices with Botkube
 
-[![Watch the video](thumbnails/day80.png)](https://www.youtube.com/watch?v=wcMOn-FEsW0)
+[![Watch the video](/thumbnails/day80.png)](https://www.youtube.com/watch?v=wcMOn-FEsW0)
 
 Discussing a solution called BotCube, which is designed to streamline incident response and troubleshooting processes within Kubernetes clusters. Here's a summary of the benefits:
 

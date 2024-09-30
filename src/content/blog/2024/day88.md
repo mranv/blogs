@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 88 - What Developers Want from Internal Developer Portals
 
-[![Watch the video](thumbnails/day88.png)](https://www.youtube.com/watch?v=Qo9D8U8ZmS0)
+[![Watch the video](/thumbnails/day88.png)](https://www.youtube.com/watch?v=Qo9D8U8ZmS0)
 
 A session on Cortex, an IDP (Identity and Developer Portal) solution that offers a unique plugin system for customization, along with its adoption strategies. Here's a summary:
 

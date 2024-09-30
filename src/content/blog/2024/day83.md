@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 83 - Saving Cloud Costs Using Existing Prometheus Metrics
 
-[![Watch the video](thumbnails/day83.png)](https://www.youtube.com/watch?v=qLOmthfEWdw)
+[![Watch the video](/thumbnails/day83.png)](https://www.youtube.com/watch?v=qLOmthfEWdw)
 
 Explaining how to use KR, a tool for providing resource optimization recommendations in a Kubernetes cluster. Here's a summary of the steps and key points:
 

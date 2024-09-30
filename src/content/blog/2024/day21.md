@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 21 - Azure ARM now got Bicep
 
-[![Watch the video](thumbnails/day21.png)](https://www.youtube.com/watch?v=QMF973vpxyg)
+[![Watch the video](/thumbnails/day21.png)](https://www.youtube.com/watch?v=QMF973vpxyg)
 
 A session explaining the concept of Azure Bicep, a declarative language for creating Azure Resource Manager (ARM) templates. Here's a summary of the key points:
 

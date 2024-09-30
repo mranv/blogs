@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 68 - Service Mesh for Kubernetes 101: The Secret Sauce to Effortless Microservices Management
 
-[![Watch the video](thumbnails/day68.png)](https://www.youtube.com/watch?v=IyFDGhqpMTs)
+[![Watch the video](/thumbnails/day68.png)](https://www.youtube.com/watch?v=IyFDGhqpMTs)
 
 In a service mesh, there are two main components: the data plane and the control plane.
 

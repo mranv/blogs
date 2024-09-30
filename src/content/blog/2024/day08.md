@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 8 - Culinary Coding: Crafting Infrastructure Recipes with OpenTofu
 
-[![Watch the video](thumbnails/day8.png)](https://www.youtube.com/watch?v=jjkY2xzdTN4)
+[![Watch the video](/thumbnails/day8.png)](https://www.youtube.com/watch?v=jjkY2xzdTN4)
 
 In this video, the speaker demonstrates how to use Open Tofu, an open-source tool designed to manage Terraform infrastructure. Here's a summary of the steps taken:
 

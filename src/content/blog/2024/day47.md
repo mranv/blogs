@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 47 - Azure logic app, low / no code
 
-[![Watch the video](thumbnails/day47.png)](https://www.youtube.com/watch?v=pEB4Kp6JHfI)
+[![Watch the video](/thumbnails/day47.png)](https://www.youtube.com/watch?v=pEB4Kp6JHfI)
 
 It seems like you have successfully created an end-to-end workflow using Azure Logic Apps that processes a grocery receipt image, identifies food items, fetches recipes for those foods, and sends an email with the list of recipes.
 

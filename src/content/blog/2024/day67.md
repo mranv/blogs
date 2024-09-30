@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 67 - Art of DevOps: Harmonizing Code, Culture, and Continuous Delivery
 
-[![Watch the video](thumbnails/day67.png)](https://www.youtube.com/watch?v=NTysb2SgfUU)
+[![Watch the video](/thumbnails/day67.png)](https://www.youtube.com/watch?v=NTysb2SgfUU)
 
 A discussion of various trends and technologies in DevOps, MLOps, GitOps, and data engineering. Here is a summary of some of the points you mentioned:
 
