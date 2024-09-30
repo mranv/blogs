@@ -30,7 +30,7 @@ tags:
 description: This is a simple, lightweight GUI-based Linux distribution designed to run on QEMU.
 ---
 
-<img src="\assets\blog-images\simplelinuxgui.png" class="sm:w-1/2 mx-auto" alt="Anubhav Gain">
+<img src="/assets/blog-images/simplelinuxgui.png" class="sm:w-1/2 mx-auto" alt="Anubhav Gain">
 
 # Custom Linux Kernel and BusyBox Setup
 
