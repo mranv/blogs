@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 71 - Chatbots are going to destroy infrastructures and your cloud bills
 
-[![Watch the video](thumbnails/day71.png)](https://www.youtube.com/watch?v=arpyvrktyzY)
+[![Watch the video](/thumbnails/day71.png)](https://www.youtube.com/watch?v=arpyvrktyzY)
 
 The user is explaining that their chatbot application takes a long time to respond because it has many dependencies, and the current infrastructure uses ECS container service in the Parisian region. They suggest separating the chat functionality from the API, as the chat is CPU-bound while the API calls are more CPU-bound. They also recommend monitoring costs closely to avoid unnecessary expenses, especially with regards to large language models (LLMs). They advise putting the chat in its own container or using Lambda functions for better scalability and cost control. They mention that separating components into microservices can help manage dependencies and optimize performance. Lastly, they suggest using tools like Sentry to identify slow queries and optimize accordingly. The user concludes by stating that these changes would improve the application's stability and efficiency and could potentially save costs over time.
 Here are some key takeaways regarding identity and purpose:

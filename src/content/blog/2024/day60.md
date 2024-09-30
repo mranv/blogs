@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 60 - Migrating a monolith to Cloud-Native and the stumbling blocks that you don’t know about
 
-[![Watch the video](thumbnails/day60.png)](https://www.youtube.com/watch?v=Bhr-lxHvWB0)
+[![Watch the video](/thumbnails/day60.png)](https://www.youtube.com/watch?v=Bhr-lxHvWB0)
 
 In transitioning to the cloud native space, there are concerns about cost savings and financial management. Traditionally, capital expenditures (CapEx) allow for depreciation write-offs, which is beneficial for companies, especially at larger scales. However, with cloud services often paid through a credit card, it becomes challenging to depreciate Operational Expenditures (OpEx). This can lead to problems for CFOs as they require predictability and projectability in their financial planning.
 

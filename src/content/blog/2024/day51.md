@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 51 - DevOps on Windows
 
-[![Watch the video](thumbnails/day51.png)](https://www.youtube.com/watch?v=_mKToogk3lo)
+[![Watch the video](/thumbnails/day51.png)](https://www.youtube.com/watch?v=_mKToogk3lo)
 
 In this explanation, you're discussing various tools and environments available for developers using Visual Studio Code (VS Code) on Windows. Here's a summary of the key points:
 

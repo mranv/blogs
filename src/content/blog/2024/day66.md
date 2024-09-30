@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 66 - A Developer's Journey to the DevOps: The Synergy of Two Worlds
 
-[![Watch the video](thumbnails/day66.png)](https://www.youtube.com/watch?v=Q_LApaLzkSU)
+[![Watch the video](/thumbnails/day66.png)](https://www.youtube.com/watch?v=Q_LApaLzkSU)
 
 The speaker is discussing the concept of a T-shaped developer, which refers to someone who has broad knowledge and skills across multiple areas (represented by the horizontal bar of the "T") but also deep expertise in one specific area (represented by the vertical bar). This model allows developers to work effectively with others from different teams, learn new things, and mentor junior developers.
 

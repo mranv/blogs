@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 35 - Azure for DevSecOps Operators
 
-[![Watch the video](thumbnails/day35.png)](https://www.youtube.com/watch?v=5s1w09vGjyY)
+[![Watch the video](/thumbnails/day35.png)](https://www.youtube.com/watch?v=5s1w09vGjyY)
 
 Here is a summary of the steps to create an AKS cluster using Bicep:
 

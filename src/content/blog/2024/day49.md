@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 49 - From Confusion To Clarity: Gherkin & Specflow Ensures Clear Requirements and Bug-Free Apps
 
-[![Watch the video](thumbnails/day49.png)](https://www.youtube.com/watch?v=aJHLnATd_MA)
+[![Watch the video](/thumbnails/day49.png)](https://www.youtube.com/watch?v=aJHLnATd_MA)
 
 You have created a custom web application test using a WebApplicationFactory and SpecFlow, along with an in-memory repository. To ensure that duplicate jokes are not added to the database, you wrote a test scenario that checks if a joke already exists before creating it again.
 

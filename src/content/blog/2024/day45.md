@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 45 - Microsoft DevOps Solutions or how to integrate the best of Azure DevOps and GitHub
 
-[![Watch the video](thumbnails/day45.png)](https://www.youtube.com/watch?v=NqGUVOSRe6g)
+[![Watch the video](/thumbnails/day45.png)](https://www.youtube.com/watch?v=NqGUVOSRe6g)
 
 In summary, this video demonstrates how to integrate GitHub Actions with an existing Azure DevOps pipeline. The process involves creating a GitHub action that triggers when changes are pushed to the main branch or any other specified branch. This action calls an Azure DevOps pipeline version 1 action from the marketplace, providing necessary information such as project URL, organization name, project name, and personal access token with enough permissions to run build pipelines.
 

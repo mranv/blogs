@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 55 - Bringing Together IaC and CM with Terraform Provider for Ansible
 
-[![Watch the video](thumbnails/day55.png)](https://www.youtube.com/watch?v=dKrYUikDgzU)
+[![Watch the video](/thumbnails/day55.png)](https://www.youtube.com/watch?v=dKrYUikDgzU)
 
 In this explanation, a workflow that uses Terraform and Ansible to dynamically provision infrastructure and configure web servers. Here's a simplified breakdown of the process:
 

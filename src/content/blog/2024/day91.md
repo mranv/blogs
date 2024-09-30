@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day91 - Team Topologies and Platform Engineering
 
-[![Watch the video](thumbnails/day.png)](https://www.youtube.com/watch?v=XgXeuRBzGLc)
+[![Watch the video](/thumbnails/day.png)](https://www.youtube.com/watch?v=XgXeuRBzGLc)
 
 The text discusses four types of teams in an organization and their interaction with platform engineering, focusing on Team Topologies.
 

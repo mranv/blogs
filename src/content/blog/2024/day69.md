@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 69 - Enhancing Kubernetes security, visibility, and networking control logic at the Linux kernel
 
-[![Watch the video](thumbnails/day69.png)](https://www.youtube.com/watch?v=mEc0WoPoHdU)
+[![Watch the video](/thumbnails/day69.png)](https://www.youtube.com/watch?v=mEc0WoPoHdU)
 
 Summary of a presentation about using the Istio service mesh and Tetragon, a kernel-level security tool, in a Kubernetes environment. The main focus is on investigating an incident where the Death Star, a hypothetical system, has been compromised due to a vulnerability in its exhaust port.
 

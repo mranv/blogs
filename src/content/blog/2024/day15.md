@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 15 - Using code dependency analysis to decide what to test
 
-[![Watch the video](thumbnails/day15.png)](https://www.youtube.com/watch?v=e9kDdUxQwi4)
+[![Watch the video](/thumbnails/day15.png)](https://www.youtube.com/watch?v=e9kDdUxQwi4)
 
 By [Patrick Kusebauch](https://github.com/patrickkusebauch)
 
@@ -56,7 +56,7 @@ changes to one component will affect other components.
 
 Imagine you have a project with the following structure of components:
 
-![Project Structure](Images/day15-01.png)
+![Project Structure](/Images/day15-01.png)
 
 The `Supportive` component depends on the `Analyser` and `OutputFormatter` components. The `Analyser` in turn depends on
 3 other components - `Ast`, `Layer` and `References`. Lastly `References` depend on the `Ast` component.

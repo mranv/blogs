@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 74 - Workload Identity Federation with Azure DevOps and Terraform
 
-[![Watch the video](thumbnails/day74.png)](https://www.youtube.com/watch?v=14Y4ccfHshY)
+[![Watch the video](/thumbnails/day74.png)](https://www.youtube.com/watch?v=14Y4ccfHshY)
 
 demonstrated the use of Workload Identity Federation (WhFF) in Azure DevOps to orchestrate Terraform deployments using service connections. Here's a summary of the steps you provided:
 

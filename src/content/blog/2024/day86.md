@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 86 - Tools To Make Your Terminal DevOps and Kubernetes Friendly
 
-[![Watch the video](thumbnails/day86.png)](https://www.youtube.com/watch?v=QL7h9J5Eqd8)
+[![Watch the video](/thumbnails/day86.png)](https://www.youtube.com/watch?v=QL7h9J5Eqd8)
 
 various tools that can help developers manage Kubernetes effectively. Here is a summary of the tools mentioned:
 

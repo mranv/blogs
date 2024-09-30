@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 1 - 2024 - Community Edition - Introduction
 
-[![Watch the video](thumbnails/day1.png)](https://www.youtube.com/watch?v=W7txKrH06gc)
+[![Watch the video](/thumbnails/day1.png)](https://www.youtube.com/watch?v=W7txKrH06gc)
 
 In summary, the speaker is discussing a project they worked on for 90 days, focusing on DevOps and infrastructure as code. They highlight tools like Terraform, Ansible, Jenkins, Argo CD, GitHub Actions, and observability tools like Grafana, Elk Stack, Prometheus, etc. The project also covered data storage, protection, and cybersecurity threats such as ransomware. It consisted of 13 topics covered in blog posts totaling 110,000 words and has received over 20,000 stars on GitHub.
 

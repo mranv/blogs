@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 27 - From Automated to Automatic - Event-Driven Infrastructure Management with Ansible
 
-[![Watch the video](thumbnails/day27.png)](https://www.youtube.com/watch?v=BljdQTewSic)
+[![Watch the video](/thumbnails/day27.png)](https://www.youtube.com/watch?v=BljdQTewSic)
 
 **Daniel Bodky**
 

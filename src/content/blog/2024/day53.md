@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 53 - Gickup - Keep your repositories safe
 
-[![Watch the video](thumbnails/day53.png)](https://www.youtube.com/watch?v=hKB3XY7oMgo)
+[![Watch the video](/thumbnails/day53.png)](https://www.youtube.com/watch?v=hKB3XY7oMgo)
 
 # ONE SENTENCE SUMMARY:
 

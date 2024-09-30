@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 73 - Introducing the Terraform Test Framework
 
-[![Watch the video](thumbnails/day73.png)](https://www.youtube.com/watch?v=ksYiVW6fEeA)
+[![Watch the video](/thumbnails/day73.png)](https://www.youtube.com/watch?v=ksYiVW6fEeA)
 
 In this explanation, you have described a Terraform test setup for deploying an infrastructure and checking its availability. Here's a summary of the steps you have outlined:
 

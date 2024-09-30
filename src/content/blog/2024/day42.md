@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 42 - The North Star: Risk-driven security
 
-[![Watch the video](thumbnails/day42.png)](https://www.youtube.com/watch?v=XlF19vL0S9c)
+[![Watch the video](/thumbnails/day42.png)](https://www.youtube.com/watch?v=XlF19vL0S9c)
 
 In summary, the speaker is discussing the importance of threat modeling in software development. Here are the key points:
 

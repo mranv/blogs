@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 75 - Distracted Development
 
-[![Watch the video](thumbnails/day75.png)](https://www.youtube.com/watch?v=6uQtmh6MEYA)
+[![Watch the video](/thumbnails/day75.png)](https://www.youtube.com/watch?v=6uQtmh6MEYA)
 
 In summary, the Stanford University study found that multitasking reduces productivity and negatively impacts attention span, memory retention, and task switching. The constant bombardment of electronic information also affects cognitive abilities. To combat this, strategies like time blocking, prioritizing tasks, setting designated check-in times for emails, turning off non-essential notifications, and creating focus periods can help improve productivity. Additionally, taking planned short breaks using techniques like the Pomodoro Technique can enhance focus and overall output. A focused approach to tasks in all facets of life enhances the quality of outcomes, nurtures creativity, and promotes a more peaceful state of mind. Distractions can be mitigated by creating a dedicated workspace, using productivity apps, conducting time audits, and finding strategies that work best for individual needs. Companies like Microsoft and Google have implemented initiatives to encourage focus and reduce distractions, leading to increased productivity and job satisfaction. The ultimate goal is to improve both the amount of work done and the enjoyment of doing it by focusing more intentionally.
 **IDENTITY and PURPOSE**

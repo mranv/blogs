@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 59 - Continuous Delivery pipelines for cloud infrastructure
 
-[![Watch the video](thumbnails/day59.png)](https://www.youtube.com/watch?v=L8hqM3Y5pTo)
+[![Watch the video](/thumbnails/day59.png)](https://www.youtube.com/watch?v=L8hqM3Y5pTo)
 
 The three principles of Continuous Delivery for Infrastructure Code are:
 

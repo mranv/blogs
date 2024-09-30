@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 4 - Manage Kubernetes Add-Ons for Multiple Clusters Using Cluster Run-Time State
 
-[![Watch the video](thumbnails/day4.png)](https://www.youtube.com/watch?v=9OJSRbyEGVI)
+[![Watch the video](/thumbnails/day4.png)](https://www.youtube.com/watch?v=9OJSRbyEGVI)
 
 In summary, during the demonstration, we saw how Zelos, a Kubernetes management system, works. Here are the key points:
 

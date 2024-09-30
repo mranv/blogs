@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 23 - SQL Server 2022 on Linux Containers and Kubernetes from Zero to a Hero!
 
-[![Watch the video](thumbnails/day23.png)](https://www.youtube.com/watch?v=BgttLzkzNBs)
+[![Watch the video](/thumbnails/day23.png)](https://www.youtube.com/watch?v=BgttLzkzNBs)
 
 To get the IP address of a Docker container, you can use the `docker inspect` command followed by the container ID or name. Here's an example:
 

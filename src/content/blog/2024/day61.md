@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 61 - Demystifying Modernisation: True Potential of Cloud Technology
 
-[![Watch the video](thumbnails/day61.png)](https://www.youtube.com/watch?v=3069RWgZt6c)
+[![Watch the video](/thumbnails/day61.png)](https://www.youtube.com/watch?v=3069RWgZt6c)
 
 In summary, the speaker discussed six strategies (Retire, Retain, Rehost, Replatform, Repurchase, and Re-Architect/Refactor) for modernizing applications within the context of moving them to the cloud. Here's a brief overview of each strategy:
 

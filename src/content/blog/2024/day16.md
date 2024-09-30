@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 16 - Smarter, Better, Faster, Stronger - Testing at Scale
 
-[![Watch the video](thumbnails/day16.png)](https://www.youtube.com/watch?v=3YhLr5sxxcU)
+[![Watch the video](/thumbnails/day16.png)](https://www.youtube.com/watch?v=3YhLr5sxxcU)
 
 |             |                                                                        |
 | ----------- | ---------------------------------------------------------------------- | --- |

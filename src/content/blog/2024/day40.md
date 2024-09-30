@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 40 - Infrastructure as Code - A look at Azure Bicep and Terraform
 
-[![Watch the video](thumbnails/day40.png)](https://www.youtube.com/watch?v=we1s37_Ki2Y)
+[![Watch the video](/thumbnails/day40.png)](https://www.youtube.com/watch?v=we1s37_Ki2Y)
 
 In this text, the speaker discusses best practices for using Infrastructure as Code (IAC) with a focus on Terraform and Azure Bicep. Here are the key points:
 

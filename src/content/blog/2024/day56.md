@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 56 - Automated database deployment within the DevOps process
 
-[![Watch the video](thumbnails/day56.png)](https://www.youtube.com/watch?v=LOEaKrcZH_8)
+[![Watch the video](/thumbnails/day56.png)](https://www.youtube.com/watch?v=LOEaKrcZH_8)
 
 To baseline local tests or integration tests within your pipelines, you can use Docker containers to create an initial database state. Here's how it works:
 

@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 63 - Diving into Container Network Namespaces
 
-[![Watch the video](thumbnails/day63.png)](https://www.youtube.com/watch?v=Z22YVIwwpf4)
+[![Watch the video](/thumbnails/day63.png)](https://www.youtube.com/watch?v=Z22YVIwwpf4)
 
 In summary, the user created two network namespaces named orange and purple. They added a static route in the orange namespace that directs any unknown destination traffic to the super bridge (192.168.52.0) which allows the outbound traffic to reach the external world.
 

@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 76 - All you need to know about AWS CDK
 
-[![Watch the video](thumbnails/day76.png)](https://www.youtube.com/watch?v=M4KUksIOZdU)
+[![Watch the video](/thumbnails/day76.png)](https://www.youtube.com/watch?v=M4KUksIOZdU)
 
 In summary, AWS Cloud Development Kit (CDK) is a tool that allows developers to define their cloud infrastructure using programming languages of their choice (such as Python, JavaScript, Java, Go, TypeScript, etc.), instead of the traditional JSON or YAML templates used in Amazon Web Services (AWS) CloudFormation.
 

@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 2 - The Digital Factory
 
-[![Watch the video](thumbnails/day2.png)](https://www.youtube.com/watch?v=xeX4HGLeJQw)
+[![Watch the video](/thumbnails/day2.png)](https://www.youtube.com/watch?v=xeX4HGLeJQw)
 
 ## Video
 
@@ -26,7 +26,7 @@ I'm [Romano Roth](https://www.linkedin.com/in/romanoroth/), Chief of DevOps and 
 
 When the DevOps movement began to gain momentum, I was naturally drawn to it. Today, I’m one of the organizers of the monthly [DevOps Meetup in Zürich](https://www.meetup.com/de-DE/DevOps-Meetup-Zurich/) and president of [DevOps Days Zürich](https://www.devopsdays.ch/), an annual conference part of the global DevOps movement. DevOps isn't just a professional interest; it's my passion. That’s why I’ve my own [YouTube channel](https://www.youtube.com/c/RomanoRoth), where I've curated over 100 videos centered on DevOps, architecture, and leadership.
 
-![Romano Roth](Images/day02-1.jpg)
+![Romano Roth](/Images/day02-1.jpg)
 
 ## What is DevOps?
 
@@ -34,7 +34,7 @@ DevOps is a mindset, a culture, and a set of technical practices. It provides co
 
 In short: **Bringing People, Process, and Technology together to continuously deliver value!**
 
-![What is DevOps](Images/day02-2.png)
+![What is DevOps](/Images/day02-2.png)
 
 ## What are the challenges with DevOps
 
@@ -44,7 +44,7 @@ In short: **Bringing People, Process, and Technology together to continuously de
 
 **Scaling DevOps**: What works for a small team or a single project might not work for an entire organization. Scaling DevOps practices while maintaining speed and reliability is a significant challenge.
 
-![What are the challenges with DevOps](Images/day02-3.jpg)
+![What are the challenges with DevOps](/Images/day02-3.jpg)
 
 ## How can we scale DevOps?
 
@@ -72,7 +72,7 @@ Platform Engineering and DevOps are not the same, but they are closely related a
 
 **Platform engineering** uses **DevOps** practices, which enables product teams to do DevOps.
 
-![What is Is Platform Engineering?](Images/day02-4.png)
+![What is Is Platform Engineering?](/Images/day02-4.png)
 
 ## What is a Digital Factory?
 
@@ -82,7 +82,7 @@ At the top of a company, you find the board of directors and the executive board
 
 The teams constantly monitor the drones. **Telemetry and business data are collected**, like how many drones we have sold and customer satisfaction. These metrics are fed back to the portfolio level, where this information informs the board's future decisions.
 
-![What is is a Digital Factory?](Images/day02-5.jpg)
+![What is is a Digital Factory?](/Images/day02-5.jpg)
 
 ## How can we implement Digital Factory?
 
@@ -95,4 +95,4 @@ To build a digital factory, you need a holistic approach.
 - **Agile Programme Delivery:** Adopt a multi-team organization to optimize workflows and performance. Continuous discovery, coupled with transparent reporting, drives growth.
 - **Product Management for Maximized Value:** Connect the strategy with the execution. Align product initiatives with the company goals. Continuously refine management practices and leverage feedback for prioritization.
 
-![How can we implement Digital Factory?](Images/day02-6.jpg)
+![How can we implement Digital Factory?](/Images/day02-6.jpg)

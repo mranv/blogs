@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 41 - My journey to reimagining DevOps: Ushering in the Second Wave
 
-[![Watch the video](thumbnails/day41.png)](https://www.youtube.com/watch?v=jQENXdESfWM)
+[![Watch the video](/thumbnails/day41.png)](https://www.youtube.com/watch?v=jQENXdESfWM)
 
 the speaker is discussing the challenges in collaboration within a DevOps context, and proposing a solution called "System Initiative." The main issues highlighted are:
 

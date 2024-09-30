@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 29 - A Practical introduction to OpenTelemetry tracing
 
-[![Watch the video](thumbnails/day29.png)](https://www.youtube.com/watch?v=MqsIpGEbt4w)
+[![Watch the video](/thumbnails/day29.png)](https://www.youtube.com/watch?v=MqsIpGEbt4w)
 
 The speaker is discussing an architecture using Jagger, a complete observability suite that includes OpenTelemetry Collector. They are using Docker to run this setup. The application consists of three services: catalog (Spring Boot app), pricing, and stock. They use the Otel header in their requests for identification purposes.
 

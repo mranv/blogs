@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 65 - Azure pertinent DevOps for non-coders
 
-[![Watch the video](thumbnails/day65.png)](https://www.youtube.com/watch?v=odgxmohX6S8)
+[![Watch the video](/thumbnails/day65.png)](https://www.youtube.com/watch?v=odgxmohX6S8)
 
 The presentation discusses several DevOps practices, their implications, and how they can be leveraged by non-coders. Here's a summary:
 

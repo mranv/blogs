@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 38 - Open Standards: Empowering Cloud-Native Innovation
 
-[![Watch the video](thumbnails/day38.png)](https://www.youtube.com/watch?v=xlqnmUOeREY)
+[![Watch the video](/thumbnails/day38.png)](https://www.youtube.com/watch?v=xlqnmUOeREY)
 
 You have provided a comprehensive overview of the role of Open Standards in the Cloud Native Computing Foundation (CNCF) ecosystem. Here is a summary of the key points:
 

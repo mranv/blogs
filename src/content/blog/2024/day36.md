@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 36 - Policy-as-Code Super-Powers! Rethinking Modern IaC With Service Mesh And CNI
 
-[![Watch the video](thumbnails/day36.png)](https://www.youtube.com/watch?v=d-2DKoIp4RI)
+[![Watch the video](/thumbnails/day36.png)](https://www.youtube.com/watch?v=d-2DKoIp4RI)
 
 The question is about how to limit repetition when writing Infrastructure as Code (IAC) projects by using code templates, libraries, and central repositories. The idea is to define methods or components that are common across multiple projects, import them into new projects as libraries, and call the intended components as needed. This way, if there's an update to a policy or resource, it can be updated in the central repository and all consuming projects will automatically benefit from the change. The use of automation tools like GitOps and systems like Palumi helps streamline daily IAC operations, make decisions around provisioning Cloud native infrastructure, support applications on top of that, and scale those applications as needed. It's recommended to try out the steps in a project or choose other tools for similar results, and encouragement is given to follow the team on their social media platforms.
 Here are my key takeaways from your content:

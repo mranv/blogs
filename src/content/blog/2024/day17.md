@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 17 - From Chaos to Resilience: Decoding the Secrets of Production Readiness
 
-[![Watch the video](thumbnails/day17.png)](https://www.youtube.com/watch?v=zIg_N-EIOQY)
+[![Watch the video](/thumbnails/day17.png)](https://www.youtube.com/watch?v=zIg_N-EIOQY)
 
 A detailed explanation about Service Meshes, specifically focusing on Linkerd, in the context of Kubernetes clusters and microservices. Here's a brief summary of your points:
 

@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 34 - How to Implement Automated Deployment Pipelines for Your DevOps Projects
 
-[![Watch the video](thumbnails/day34.png)](https://www.youtube.com/watch?v=XLES6Q5hr9c)
+[![Watch the video](/thumbnails/day34.png)](https://www.youtube.com/watch?v=XLES6Q5hr9c)
 
 An excellent overview of the modern software development pipeline, including topics such as build automation, continuous integration (CI), continuous deployment (CD), configuration management, automated testing, version control, small and frequent deployments, automated rollbacks, monitoring and feedback, security concerns, and containerization.
 

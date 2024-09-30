@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 48 - From Puddings to Platforms: Bringing Ideas to life with ChatGPT
 
-[![Watch the video](thumbnails/day48.png)](https://www.youtube.com/watch?v=RQT9c_Cl_-4)
+[![Watch the video](/thumbnails/day48.png)](https://www.youtube.com/watch?v=RQT9c_Cl_-4)
 
 It sounds like you have built a location-based platform using Google Capture API, Firebase Authentication, Stripe for subscription management, and a custom backend. The platform allows users to submit new locations, which an admin can approve or deny. If approved, the location becomes live on the website and is searchable by other users. Users can also claim a location if it hasn't been claimed yet.
 

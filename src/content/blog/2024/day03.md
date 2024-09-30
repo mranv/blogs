@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 3 - High-performing engineering teams and the Holy Grail
 
-[![Watch the video](thumbnails/day3.png)](https://www.youtube.com/watch?v=MhqXN269S04)
+[![Watch the video](/thumbnails/day3.png)](https://www.youtube.com/watch?v=MhqXN269S04)
 
 The speaker discussed the importance of Throughput in software development, particularly in the context of Continuous Delivery. Throughput is a measurement of the number of changes (commits) developers are making to the codebase within a 24-hour period. It reflects the speed at which work is moving through the CI system and can indicate how frequently updates are being made available to customers.
 

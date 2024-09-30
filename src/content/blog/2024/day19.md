@@ -12,9 +12,9 @@ tags:
 description: Add your description here.
 ---
 
-# Day 19 - Building Efficient and Secure Docker Images with Multi-Stage Builds
+# Day 19 - Building Efficient and Secure Docker /Images with Multi-Stage Builds
 
-[![Watch the video](thumbnails/day19.png)](https://www.youtube.com/watch?v=fjWh3BH4LbU)
+[![Watch the video](/thumbnails/day19.png)](https://www.youtube.com/watch?v=fjWh3BH4LbU)
 
 An explanation of how multi-stage Docker builds work and providing a demo using a Go application. In a single-stage build, the final image contains all the application files and dependencies, whereas in a multi-stage build, separate stages are used for building and running the application. This results in a smaller final image because you only include the necessary elements from different images without carrying the entire operating system or unnecessary files.
 
@@ -35,7 +35,7 @@ In the third stage, you used the Debian image and marked it as the "Second" imag
 **Stage 4: Final Image**
 In the final stage, you combined elements from different images (Base, Cuan 2, and Debian) by copying files and running commands to create a new image. This image includes the "Hello" file from Stage 2 and the "Conference" file from Stage 3.
 
-**Optimizing Images with Multi-Stage Docker Files**
+**Optimizing /Images with Multi-Stage Docker Files**
 You then introduced multi-stage Docker files, which allow you to separate build stages and optimize image size. You showed how a simple Docker file builds an executable and copies the entire application, whereas a multi-stage Docker file creates an executable in one stage and uses it in another stage, resulting in a much smaller image.
 
 **Demo**

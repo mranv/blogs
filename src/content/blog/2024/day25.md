@@ -14,7 +14,7 @@ description: Add your description here.
 
 # Day 25 - Kube-Nation: Exploring the Land of Kubernetes
 
-[![Watch the video](thumbnails/day25.png)](https://www.youtube.com/watch?v=j3_917pmK_c)
+[![Watch the video](/thumbnails/day25.png)](https://www.youtube.com/watch?v=j3_917pmK_c)
 
 In the analogy given, a country is compared to a Kubernetes cluster. Here's how the components of a country correspond to the components of a Kubernetes cluster:
 
