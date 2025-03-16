@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Add nvm bin directory to PATH
+export PATH="$PATH:/Users/mranv/.nvm/versions/node/v20.19.0/bin"
 npx lint-staged
