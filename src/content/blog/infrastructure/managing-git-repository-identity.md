@@ -65,7 +65,7 @@ The following script allows you to safely update Git commit history to use new i
 #!/bin/bash
 
 # Script to update Git commit history with new identity
-# Ignores commits that already match the -icpl or @infopercept.com pattern
+# Ignores commits that already match the -icpl or @example.com pattern
 
 # Check if git repository exists
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
@@ -74,14 +74,14 @@ if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 fi
 
 # New identity credentials
-NEW_USERNAME="anubhavg-icpl"
-NEW_EMAIL="anubhavg@infopercept.com"
+NEW_USERNAME="username"
+NEW_EMAIL="email@example.com"
 
 echo "This will update all commit authors to:"
 echo "Username: $NEW_USERNAME"
 echo "Email: $NEW_EMAIL"
 echo
-echo "Commits already containing '-icpl' or '@infopercept.com' will be preserved."
+echo "Commits already containing '-icpl' or '@example.com' will be preserved."
 echo "Warning: This operation will rewrite git history!"
 echo "Make sure you have pushed all your changes and coordinated with your team."
 read -p "Do you want to continue? (y/N) " -n 1 -r
@@ -101,13 +101,13 @@ echo "Created backup branch: $BACKUP_BRANCH"
 echo "Updating git history..."
 git filter-branch --env-filter '
     # Check if current author/committer already matches the pattern
-    if ! (echo "$GIT_COMMITTER_NAME" | grep -q "\-icpl$") && ! (echo "$GIT_COMMITTER_EMAIL" | grep -q "@infopercept\.com$"); then
-        export GIT_COMMITTER_NAME="anubhavg-icpl"
-        export GIT_COMMITTER_EMAIL="anubhavg@infopercept.com"
+    if ! (echo "$GIT_COMMITTER_NAME" | grep -q "\-icpl$") && ! (echo "$GIT_COMMITTER_EMAIL" | grep -q "@example\.com$"); then
+        export GIT_COMMITTER_NAME="username"
+        export GIT_COMMITTER_EMAIL="email@example.com"
     fi
-    if ! (echo "$GIT_AUTHOR_NAME" | grep -q "\-icpl$") && ! (echo "$GIT_AUTHOR_EMAIL" | grep -q "@infopercept\.com$"); then
-        export GIT_AUTHOR_NAME="anubhavg-icpl"
-        export GIT_AUTHOR_EMAIL="anubhavg@infopercept.com"
+    if ! (echo "$GIT_AUTHOR_NAME" | grep -q "\-icpl$") && ! (echo "$GIT_AUTHOR_EMAIL" | grep -q "@example\.com$"); then
+        export GIT_AUTHOR_NAME="username"
+        export GIT_AUTHOR_EMAIL="email@example.com"
     fi
 ' --tag-name-filter cat -- --branches --tags
 
@@ -165,13 +165,13 @@ A timestamped backup branch is created, providing a safe rollback point if neede
 ```bash
 git filter-branch --env-filter '
     # Check if current author/committer already matches the pattern
-    if ! (echo "$GIT_COMMITTER_NAME" | grep -q "\-icpl$") && ! (echo "$GIT_COMMITTER_EMAIL" | grep -q "@infopercept\.com$"); then
-        export GIT_COMMITTER_NAME="anubhavg-icpl"
-        export GIT_COMMITTER_EMAIL="anubhavg@infopercept.com"
+    if ! (echo "$GIT_COMMITTER_NAME" | grep -q "\-icpl$") && ! (echo "$GIT_COMMITTER_EMAIL" | grep -q "@example\.com$"); then
+        export GIT_COMMITTER_NAME="username"
+        export GIT_COMMITTER_EMAIL="email@example.com"
     fi
-    if ! (echo "$GIT_AUTHOR_NAME" | grep -q "\-icpl$") && ! (echo "$GIT_AUTHOR_EMAIL" | grep -q "@infopercept\.com$"); then
-        export GIT_AUTHOR_NAME="anubhavg-icpl"
-        export GIT_AUTHOR_EMAIL="anubhavg@infopercept.com"
+    if ! (echo "$GIT_AUTHOR_NAME" | grep -q "\-icpl$") && ! (echo "$GIT_AUTHOR_EMAIL" | grep -q "@example\.com$"); then
+        export GIT_AUTHOR_NAME="username"
+        export GIT_AUTHOR_EMAIL="email@example.com"
     fi
 ' --tag-name-filter cat -- --branches --tags
 ```
@@ -220,7 +220,7 @@ Modify these lines to match your organization's naming pattern:
 
 ```bash
 # Check if current author/committer already matches the pattern
-if ! (echo "$GIT_COMMITTER_NAME" | grep -q "\-icpl$") && ! (echo "$GIT_COMMITTER_EMAIL" | grep -q "@infopercept\.com$"); then
+if ! (echo "$GIT_COMMITTER_NAME" | grep -q "\-icpl$") && ! (echo "$GIT_COMMITTER_EMAIL" | grep -q "@example\.com$"); then
 ```
 
 ### Targeted Branch Updates
