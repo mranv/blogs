@@ -217,5 +217,88 @@ const layoutProps = {
     document.getElementById("back-to-top")?.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+
+    // Initialize Mermaid diagrams
+    const initializeMermaid = async () => {
+      const mermaidCodeBlocks = document.querySelectorAll(
+        "pre > code.language-mermaid"
+      );
+
+      if (mermaidCodeBlocks.length > 0) {
+        // Dynamically import Mermaid only when needed
+        const { default: mermaid } = await import("mermaid");
+
+        // Configure Mermaid
+        mermaid.initialize({
+          startOnLoad: false,
+          theme:
+            document.documentElement.getAttribute("data-theme") === "dark"
+              ? "dark"
+              : "default",
+          themeVariables: {
+            darkMode:
+              document.documentElement.getAttribute("data-theme") === "dark",
+          },
+        });
+
+        // Process each Mermaid code block
+        mermaidCodeBlocks.forEach(async (codeBlock, index) => {
+          const pre = codeBlock.parentElement;
+          if (!pre) return;
+
+          // Get the Mermaid code
+          const mermaidCode = codeBlock.textContent || "";
+
+          // Create a div for the rendered diagram
+          const mermaidDiv = document.createElement("div");
+          mermaidDiv.className = "mermaid-rendered";
+          mermaidDiv.id = `mermaid-${index}`;
+
+          try {
+            // Render the diagram
+            const { svg } = await mermaid.render(
+              `mermaid-diagram-${index}`,
+              mermaidCode
+            );
+            mermaidDiv.innerHTML = svg;
+
+            // Replace the code block with the rendered diagram
+            pre.parentElement?.replaceChild(mermaidDiv, pre);
+          } catch (error) {
+            console.error("Failed to render Mermaid diagram:", error);
+            // Keep the original code block if rendering fails
+          }
+        });
+      }
+    };
+
+    // Defer Mermaid initialization
+    if ("requestIdleCallback" in window) {
+      (window as any).requestIdleCallback(initializeMermaid);
+    } else {
+      setTimeout(initializeMermaid, 200);
+    }
+
+    // Listen for theme changes to update Mermaid diagrams
+    const observer = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "data-theme"
+        ) {
+          // Re-initialize Mermaid with new theme
+          const mermaidRendered =
+            document.querySelectorAll(".mermaid-rendered");
+          if (mermaidRendered.length > 0) {
+            window.location.reload(); // Simple reload for theme change
+          }
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
   });
 </script>

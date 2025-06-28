@@ -197,6 +197,33 @@
     font-weight: 400;
   }
 
+  /* Mermaid diagram styles */
+  .prose .mermaid-rendered {
+    @apply my-8 flex justify-center;
+  }
+
+  .prose .mermaid-rendered svg {
+    @apply max-w-full h-auto;
+  }
+
+  /* Mermaid pre-render code blocks */
+  .prose pre:has(> code.language-mermaid) {
+    @apply relative;
+  }
+
+  /* PlantUML and other diagram styles */
+  .prose .plantuml,
+  .prose .graphviz,
+  .prose .ditaa {
+    @apply my-8 flex justify-center;
+  }
+
+  .prose .plantuml svg,
+  .prose .graphviz svg,
+  .prose .ditaa svg {
+    @apply max-w-full h-auto;
+  }
+
   /* Enhanced focus states */
   .prose a:focus,
   .prose button:focus {
