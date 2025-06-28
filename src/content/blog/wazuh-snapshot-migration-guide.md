@@ -62,6 +62,7 @@ graph TD
 The first stage involves gathering logs from various sources:
 
 **Agent Log Collection**:
+
 ```xml
 <!-- ossec.conf on agent -->
 <localfile>
@@ -81,6 +82,7 @@ The first stage involves gathering logs from various sources:
 ```
 
 **Log Forwarding and Aggregation**:
+
 ```xml
 <!-- Manager configuration -->
 <global>
@@ -101,6 +103,7 @@ The first stage involves gathering logs from various sources:
 Wazuh uses multiple decoder types to handle different log formats:
 
 #### JSON Decoder Configuration
+
 ```xml
 <decoder name="json">
   <program_name>^json_decoder$</program_name>
@@ -116,6 +119,7 @@ Wazuh uses multiple decoder types to handle different log formats:
 ```
 
 #### Dynamic Fields Decoder
+
 ```xml
 <decoder name="dynamic-fields">
   <program_name>^dynamic$</program_name>
@@ -131,6 +135,7 @@ Wazuh uses multiple decoder types to handle different log formats:
 ```
 
 #### Sibling Decoders for Related Events
+
 ```xml
 <decoder name="login-attempt">
   <program_name>^ssh$</program_name>
@@ -193,6 +198,7 @@ Wazuh rules are defined in XML format with specific matching criteria:
 ### Rule Types and Hierarchy
 
 #### Default Rules
+
 ```xml
 <!-- System default rules -->
 <rule id="1001" level="1">
@@ -210,6 +216,7 @@ Wazuh rules are defined in XML format with specific matching criteria:
 ```
 
 #### Custom Rules with Advanced Logic
+
 ```xml
 <rule id="100100" level="12">
   <if_sid>5700</if_sid>
@@ -224,6 +231,7 @@ Wazuh rules are defined in XML format with specific matching criteria:
 ```
 
 #### Classification Rules for Event Correlation
+
 ```xml
 <rule id="100200" level="15">
   <if_matched_sid>100100</if_matched_sid>
@@ -246,19 +254,19 @@ A comprehensive ruleset configuration combines decoders and rules:
       <program_name>^json_app$</program_name>
       <plugin_decoder>JSON_Decoder</plugin_decoder>
     </decoder>
-    
+
     <decoder name="dynamic-fields">
       <program_name>^app$</program_name>
       <regex>^(\S+)\s+(\S+)\s+(.+)$</regex>
       <order>timestamp,level,message</order>
     </decoder>
-    
+
     <decoder name="sibling-auth">
       <program_name>^auth$</program_name>
       <regex>^(\w+)\s+(\S+)\s+(\S+)$</regex>
       <order>action,user,result</order>
     </decoder>
-    
+
     <decoder name="custom-app">
       <program_name>^myapp$</program_name>
       <regex>^Event:\s+(\w+)\s+User:\s+(\S+)\s+IP:\s+(\S+)$</regex>
@@ -272,13 +280,13 @@ A comprehensive ruleset configuration combines decoders and rules:
     <rule id="1000" level="0">
       <description>Generic rule for application events.</description>
     </rule>
-    
+
     <rule id="1001" level="3">
       <if_sid>1000</if_sid>
       <program_name>^myapp$</program_name>
       <description>MyApp events.</description>
     </rule>
-    
+
     <!-- Custom Rules -->
     <rule id="100001" level="7">
       <if_sid>1001</if_sid>
@@ -286,7 +294,7 @@ A comprehensive ruleset configuration combines decoders and rules:
       <description>Application login failure.</description>
       <group>authentication_failed,</group>
     </rule>
-    
+
     <rule id="100002" level="10">
       <if_matched_sid>100001</if_matched_sid>
       <same_field>client_ip</same_field>
@@ -295,7 +303,7 @@ A comprehensive ruleset configuration combines decoders and rules:
       <description>Multiple login failures from same IP.</description>
       <group>brute_force,authentication_attack,</group>
     </rule>
-    
+
     <!-- Classification Rules -->
     <rule id="100003" level="12">
       <if_matched_sid>100002</if_matched_sid>
@@ -452,7 +460,7 @@ class WindowsMonitor:
             user=username,
             password=password
         )
-    
+
     def get_system_info(self):
         """Get comprehensive system information"""
         try:
@@ -467,7 +475,7 @@ class WindowsMonitor:
                     "free_memory": int(os.FreePhysicalMemory) * 1024,
                     "last_boot": os.LastBootUpTime
                 })
-            
+
             # CPU Information
             cpu_info = []
             for cpu in self.connection.Win32_Processor():
@@ -477,7 +485,7 @@ class WindowsMonitor:
                     "logical_processors": cpu.NumberOfLogicalProcessors,
                     "load_percentage": cpu.LoadPercentage
                 })
-            
+
             # Disk Information
             disk_info = []
             for disk in self.connection.Win32_LogicalDisk():
@@ -489,17 +497,17 @@ class WindowsMonitor:
                         "free_space": int(disk.FreeSpace),
                         "used_percentage": round((1 - int(disk.FreeSpace) / int(disk.Size)) * 100, 2)
                     })
-            
+
             return {
                 "timestamp": datetime.now().isoformat(),
                 "operating_system": os_info,
                 "processors": cpu_info,
                 "disks": disk_info
             }
-        
+
         except Exception as e:
             return {"error": str(e)}
-    
+
     def get_running_processes(self):
         """Get list of running processes"""
         processes = []
@@ -518,17 +526,17 @@ class WindowsMonitor:
             }
         except Exception as e:
             return {"error": str(e)}
-    
+
     def get_security_events(self, hours=24):
         """Get Windows Security Event Log entries"""
         events = []
         try:
             query = f"""
-            SELECT * FROM Win32_NTLogEvent 
-            WHERE Logfile = 'Security' 
+            SELECT * FROM Win32_NTLogEvent
+            WHERE Logfile = 'Security'
             AND TimeGenerated > '{(datetime.now() - timedelta(hours=hours)).strftime("%Y%m%d%H%M%S")}.000000+000'
             """
-            
+
             for event in self.connection.query(query):
                 events.append({
                     "event_id": event.EventCode,
@@ -538,7 +546,7 @@ class WindowsMonitor:
                     "user": event.User,
                     "computer_name": event.ComputerName
                 })
-                
+
             return {
                 "timestamp": datetime.now().isoformat(),
                 "events": events
@@ -549,11 +557,11 @@ class WindowsMonitor:
 # Usage example
 if __name__ == "__main__":
     monitor = WindowsMonitor("192.168.1.27", "Administrator", "Password123")
-    
+
     # Get system information
     system_info = monitor.get_system_info()
     print(json.dumps(system_info, indent=2))
-    
+
     # Get running processes
     processes = monitor.get_running_processes()
     print(json.dumps(processes, indent=2))
@@ -572,7 +580,7 @@ import (
     "fmt"
     "log"
     "time"
-    
+
     "github.com/oiweiwei/go-msrpc/msrpc/dcom/wmi"
     "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 )
@@ -603,23 +611,23 @@ func main() {
         Domain:   "WORKGROUP",
         Server:   "192.168.1.27",
     }
-    
+
     ctx := context.Background()
-    
+
     // Connect to WMI
     conn, err := wmi.NewConnection(ctx, config)
     if err != nil {
         log.Fatal(err)
     }
     defer conn.Close()
-    
+
     // Query running processes
     processQuery := "SELECT ProcessId, Name, ExecutablePath FROM Win32_Process"
     processResult, err := conn.Query(ctx, processQuery)
     if err != nil {
         log.Fatal(err)
     }
-    
+
     var processes []Process
     for processResult.Next() {
         var p Process
@@ -628,26 +636,26 @@ func main() {
         }
         processes = append(processes, p)
     }
-    
+
     // Query system information
     systemQuery := "SELECT Caption, Version, TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem"
     systemResult, err := conn.Query(ctx, systemQuery)
     if err != nil {
         log.Fatal(err)
     }
-    
+
     var system SystemInfo
     if systemResult.Next() {
         systemResult.Scan(&system.Caption, &system.Version, &system.TotalMemory, &system.FreeMemory)
     }
-    
+
     // Create metrics object
     metrics := WindowsMetrics{
         Timestamp: time.Now(),
         Processes: processes,
         System:    system,
     }
-    
+
     // Output as JSON
     output, _ := json.MarshalIndent(metrics, "", "  ")
     fmt.Println(string(output))
@@ -891,14 +899,14 @@ Advanced Windows Management Instrumentation Query Language examples:
 SELECT * FROM Win32_ProcessStartTrace
 
 -- Query processes with high CPU usage
-SELECT ProcessId, Name, PercentProcessorTime 
-FROM Win32_PerfRawData_PerfProc_Process 
-WHERE Name <> '_Total' 
+SELECT ProcessId, Name, PercentProcessorTime
+FROM Win32_PerfRawData_PerfProc_Process
+WHERE Name <> '_Total'
 AND Name <> 'Idle'
 
 -- Check for specific security events
-SELECT * FROM Win32_NTLogEvent 
-WHERE Logfile = 'Security' 
+SELECT * FROM Win32_NTLogEvent
+WHERE Logfile = 'Security'
 AND EventCode IN (4624, 4625, 4648, 4720, 4722, 4724, 4725, 4726, 4728, 4732, 4756)
 AND TimeGenerated > '20250128000000.000000+000'
 
@@ -906,28 +914,28 @@ AND TimeGenerated > '20250128000000.000000+000'
 SELECT * FROM Win32_VolumeChangeEvent
 
 -- Query installed software
-SELECT Name, Version, InstallDate 
-FROM Win32_Product 
+SELECT Name, Version, InstallDate
+FROM Win32_Product
 WHERE Name LIKE '%Microsoft%'
 
 -- Check network connections
-SELECT LocalAddress, LocalPort, RemoteAddress, RemotePort, State 
+SELECT LocalAddress, LocalPort, RemoteAddress, RemotePort, State
 FROM Win32_PerfRawData_Tcpip_NetworkInterface
 
 -- Monitor service status changes
 SELECT * FROM Win32_ServiceControlEvent
 
 -- Query system performance
-SELECT Name, Frequency, LoadPercentage, NumberOfCores, NumberOfLogicalProcessors 
+SELECT Name, Frequency, LoadPercentage, NumberOfCores, NumberOfLogicalProcessors
 FROM Win32_Processor
 
 -- Check disk performance
-SELECT Name, DiskReadBytesPerSec, DiskWriteBytesPerSec, CurrentDiskQueueLength 
-FROM Win32_PerfRawData_PerfDisk_PhysicalDisk 
+SELECT Name, DiskReadBytesPerSec, DiskWriteBytesPerSec, CurrentDiskQueueLength
+FROM Win32_PerfRawData_PerfDisk_PhysicalDisk
 WHERE Name <> '_Total'
 
 -- Monitor memory usage
-SELECT TotalVisibleMemorySize, FreePhysicalMemory, TotalVirtualMemorySize, FreeVirtualMemory 
+SELECT TotalVisibleMemorySize, FreePhysicalMemory, TotalVirtualMemorySize, FreeVirtualMemory
 FROM Win32_OperatingSystem
 ```
 
@@ -954,7 +962,7 @@ class WazuhWindowsMonitor:
         self.password = password
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
-        
+
         # Setup logging
         logging.basicConfig(
             level=logging.INFO,
@@ -965,7 +973,7 @@ class WazuhWindowsMonitor:
             ]
         )
         self.logger = logging.getLogger(__name__)
-        
+
         try:
             self.connection = wmi.WMI(
                 computer=host,
@@ -984,28 +992,28 @@ class WazuhWindowsMonitor:
             "host": self.host,
             "wazuh_integration": True
         }
-        
+
         try:
             # System Information
             metrics["system"] = self._get_system_info()
-            
+
             # Process Information
             metrics["processes"] = self._get_process_info()
-            
+
             # Service Status
             metrics["services"] = self._get_service_status()
-            
+
             # Security Events
             metrics["security_events"] = self._get_security_events()
-            
+
             # Performance Metrics
             metrics["performance"] = self._get_performance_metrics()
-            
+
             # Network Information
             metrics["network"] = self._get_network_info()
-            
+
             return metrics
-            
+
         except Exception as e:
             self.logger.error(f"Error collecting metrics: {e}")
             return {"error": str(e), "timestamp": datetime.now().isoformat()}
@@ -1015,7 +1023,7 @@ class WazuhWindowsMonitor:
         try:
             os_info = self.connection.Win32_OperatingSystem()[0]
             computer_info = self.connection.Win32_ComputerSystem()[0]
-            
+
             return {
                 "os_name": os_info.Caption,
                 "os_version": os_info.Version,
@@ -1054,7 +1062,7 @@ class WazuhWindowsMonitor:
                 "Spooler", "BITS", "Themes", "Dhcp", "Dnscache",
                 "EventLog", "PlugPlay", "RpcSs", "Schedule", "W32Time"
             ]
-            
+
             for service in self.connection.Win32_Service():
                 if service.Name in critical_services:
                     services.append({
@@ -1074,15 +1082,15 @@ class WazuhWindowsMonitor:
         try:
             events = []
             cutoff_time = (datetime.now() - timedelta(hours=hours)).strftime("%Y%m%d%H%M%S")
-            
+
             query = f"""
-            SELECT EventCode, TimeGenerated, SourceName, Message, User 
-            FROM Win32_NTLogEvent 
-            WHERE Logfile = 'Security' 
-            AND EventCode IN (4624, 4625, 4648, 4720, 4722) 
+            SELECT EventCode, TimeGenerated, SourceName, Message, User
+            FROM Win32_NTLogEvent
+            WHERE Logfile = 'Security'
+            AND EventCode IN (4624, 4625, 4648, 4720, 4722)
             AND TimeGenerated > '{cutoff_time}.000000+000'
             """
-            
+
             for event in self.connection.query(query):
                 events.append({
                     "event_id": event.EventCode,
@@ -1091,7 +1099,7 @@ class WazuhWindowsMonitor:
                     "user": event.User,
                     "message": event.Message[:200] if event.Message else None
                 })
-            
+
             return events[:20]  # Limit to last 20 events
         except Exception as e:
             self.logger.error(f"Error getting security events: {e}")
@@ -1102,10 +1110,10 @@ class WazuhWindowsMonitor:
         try:
             # CPU Information
             cpu_info = self.connection.Win32_Processor()[0]
-            
+
             # Memory Information
             os_info = self.connection.Win32_OperatingSystem()[0]
-            
+
             # Disk Information
             disks = []
             for disk in self.connection.Win32_LogicalDisk():
@@ -1116,7 +1124,7 @@ class WazuhWindowsMonitor:
                         "free_space": int(disk.FreeSpace),
                         "used_percent": round((1 - int(disk.FreeSpace) / int(disk.Size)) * 100, 2)
                     })
-            
+
             return {
                 "cpu_cores": cpu_info.NumberOfCores,
                 "cpu_logical_processors": cpu_info.NumberOfLogicalProcessors,
@@ -1160,23 +1168,23 @@ class WazuhWindowsMonitor:
             "windows": metrics,
             "@timestamp": datetime.now().isoformat()
         }
-        
+
         # Write to Wazuh log format
         log_file = self.output_dir / f"windows_wmi_{datetime.now().strftime('%Y%m%d')}.json"
         with open(log_file, 'a') as f:
             f.write(json.dumps(log_entry) + '\n')
-        
+
         return log_entry
 
     def run_monitoring(self, interval=300):
         """Run continuous monitoring"""
         self.logger.info(f"Starting monitoring for {self.host} with {interval}s interval")
-        
+
         while True:
             try:
                 metrics = self.collect_metrics()
                 log_entry = self.generate_wazuh_log(metrics)
-                
+
                 # Print summary
                 if "system" in metrics:
                     self.logger.info(
@@ -1184,9 +1192,9 @@ class WazuhWindowsMonitor:
                         f"Processes: {len(metrics['processes'])} "
                         f"Security Events: {len(metrics['security_events'])}"
                     )
-                
+
                 time.sleep(interval)
-                
+
             except KeyboardInterrupt:
                 self.logger.info("Monitoring stopped by user")
                 break
@@ -1202,16 +1210,16 @@ def main():
     parser.add_argument('--interval', type=int, default=300, help='Monitoring interval in seconds')
     parser.add_argument('--output-dir', default='/var/ossec/logs/wmi', help='Output directory')
     parser.add_argument('--one-shot', action='store_true', help='Run once and exit')
-    
+
     args = parser.parse_args()
-    
+
     monitor = WazuhWindowsMonitor(
         host=args.host,
         username=args.username,
         password=args.password,
         output_dir=args.output_dir
     )
-    
+
     if args.one_shot:
         metrics = monitor.collect_metrics()
         log_entry = monitor.generate_wazuh_log(metrics)

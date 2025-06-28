@@ -78,15 +78,15 @@ Complete Setup for Alert Correlation and Advanced Visualization
 
 ### Required Ports
 
-| Service | Port | Protocol | Description |
-|---------|------|----------|-------------|
-| Wazuh Manager | 1514 | TCP/UDP | Agent communication |
-| Wazuh Manager | 1515 | TCP | Agent enrollment |
-| Wazuh API | 55000 | TCP | RESTful API |
-| OpenSearch | 9200 | TCP | REST API |
-| OpenSearch | 9300 | TCP | Transport (cluster) |
-| OpenSearch Dashboards | 5601 | TCP | Web interface |
-| Filebeat | - | - | Outbound to OpenSearch |
+| Service               | Port  | Protocol | Description            |
+| --------------------- | ----- | -------- | ---------------------- |
+| Wazuh Manager         | 1514  | TCP/UDP  | Agent communication    |
+| Wazuh Manager         | 1515  | TCP      | Agent enrollment       |
+| Wazuh API             | 55000 | TCP      | RESTful API            |
+| OpenSearch            | 9200  | TCP      | REST API               |
+| OpenSearch            | 9300  | TCP      | Transport (cluster)    |
+| OpenSearch Dashboards | 5601  | TCP      | Web interface          |
+| Filebeat              | -     | -        | Outbound to OpenSearch |
 
 ## Installation Steps
 
@@ -351,12 +351,14 @@ python3 dashboard_manager.py \
 ### Custom Visualizations
 
 1. **Security Overview Dashboard**
+
    - Alert trends over time
    - Top attack sources
    - MITRE ATT&CK mapping
    - Agent status overview
 
 2. **Correlation Analysis Dashboard**
+
    - Multi-stage attack timelines
    - User behavior analytics
    - Network traffic patterns
@@ -587,6 +589,7 @@ This comprehensive setup provides:
 - Performance optimization
 
 For additional support, refer to:
+
 - [Wazuh Documentation](https://documentation.wazuh.com)
 - [OpenSearch Documentation](https://opensearch.org/docs)
 - [Elastic Filebeat Documentation](https://www.elastic.co/guide/en/beats/filebeat/current/index.html)

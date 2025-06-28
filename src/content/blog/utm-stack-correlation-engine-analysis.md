@@ -37,12 +37,14 @@ UTMStack's proprietary correlation engine was built from scratch to analyze data
 The correlation engine supports two primary processing modes:
 
 **Cache-Based Processing**
+
 - **Purpose**: High-speed analysis for time-sensitive rules (≤1 hour timeframe)
 - **Storage**: In-memory cache for rapid access
 - **Iteration**: Multi-stage rule evaluation with state persistence
 - **Performance**: Optimized for real-time threat detection
 
 **Search-Based Processing**
+
 - **Purpose**: Complex analysis requiring historical data (>1 hour timeframe)
 - **Storage**: Direct OpenSearch/Elasticsearch queries
 - **Flexibility**: Complex JSON queries with advanced filtering
@@ -66,15 +68,15 @@ UTMStack correlation rules are written in YAML format with three main components
 **Rule Metadata Structure**
 
 ```yaml
-name: "Rule Name"                    # Alert identifier
-severity: "High|Medium|Low"          # Risk classification
-description: "Attack description"    # Detailed explanation
-solution: "Remediation steps"        # Response guidance
-category: "Attack category"          # MITRE ATT&CK alignment
-tactic: "Attack tactic"             # Threat actor methodology
-reference: ["URL1", "URL2"]         # Additional resources
-dataTypes: ["log_type"]             # Applicable log sources
-frequency: 30                       # Check interval (seconds)
+name: "Rule Name" # Alert identifier
+severity: "High|Medium|Low" # Risk classification
+description: "Attack description" # Detailed explanation
+solution: "Remediation steps" # Response guidance
+category: "Attack category" # MITRE ATT&CK alignment
+tactic: "Attack tactic" # Threat actor methodology
+reference: ["URL1", "URL2"] # Additional resources
+dataTypes: ["log_type"] # Applicable log sources
+frequency: 30 # Check interval (seconds)
 ```
 
 **Processing Logic Blocks**
@@ -83,13 +85,13 @@ Cache-Based Rules:
 
 ```yaml
 cache:
-  - allOf:                          # AND logic - all conditions must match
+  - allOf: # AND logic - all conditions must match
       - field: "log.field.path"
         operator: "=="
         value: "expected_value"
-    minCount: 5                     # Minimum event threshold
-    timeLapse: 300                  # Time window (seconds)
-    save:                           # Field preservation for next iteration
+    minCount: 5 # Minimum event threshold
+    timeLapse: 300 # Time window (seconds)
+    save: # Field preservation for next iteration
       - field: "source.ip"
         alias: "SourceIP"
 ```
@@ -117,21 +119,22 @@ search:
 
 The correlation engine supports multiple comparison operators with specific security use cases:
 
-| Operator | Type | Security Use Case |
-|----------|------|-------------------|
-| == | Exact match | Specific value detection |
-| != | Not equal | Anomaly detection |
-| < > <= >= | Numeric comparison | Threshold analysis |
-| contain | Substring search | Pattern matching |
-| not contain | Exclusion | Whitelist filtering |
-| regexp | Regular expression | Complex pattern detection |
-| in | List membership | Multiple value matching |
-| not in | List exclusion | Blacklist implementation |
-| exist | Field presence | Schema validation |
-| not exist | Field absence | Missing data detection |
-| in cidr | IP range matching | Network analysis |
+| Operator    | Type               | Security Use Case         |
+| ----------- | ------------------ | ------------------------- |
+| ==          | Exact match        | Specific value detection  |
+| !=          | Not equal          | Anomaly detection         |
+| < > <= >=   | Numeric comparison | Threshold analysis        |
+| contain     | Substring search   | Pattern matching          |
+| not contain | Exclusion          | Whitelist filtering       |
+| regexp      | Regular expression | Complex pattern detection |
+| in          | List membership    | Multiple value matching   |
+| not in      | List exclusion     | Blacklist implementation  |
+| exist       | Field presence     | Schema validation         |
+| not exist   | Field absence      | Missing data detection    |
+| in cidr     | IP range matching  | Network analysis          |
 
 **Security-Critical Operators:**
+
 - **in cidr**: Network-based threat detection (lateral movement, reconnaissance)
 - **regexp**: Advanced pattern matching for obfuscated attacks
 - **contains**: Payload analysis and signature detection
@@ -146,20 +149,20 @@ sequenceDiagram
     participant Cache as Memory Cache
     participant Search as OpenSearch
     participant Alert as Alert System
-    
+
     Log->>Engine: Raw Event
     Engine->>Engine: DataType Filter
     Engine->>Cache: Check Previous State
     Cache-->>Engine: Previous Iteration Data
     Engine->>Engine: Evaluate Conditions
-    
+
     alt Cache-Based Rule
         Engine->>Cache: Store Current State
     else Search-Based Rule
         Engine->>Search: Historical Query
         Search-->>Engine: Query Results
     end
-    
+
     Engine->>Engine: Check Thresholds
     Engine->>Alert: Generate Alert
 ```
@@ -183,16 +186,19 @@ graph TD
 ### 2. Real-time Correlation Process
 
 **Phase 1: Event Classification**
+
 - DataType filtering based on rule applicability
 - Field extraction and normalization
 - Timestamp validation and parsing
 
 **Phase 2: Rule Evaluation**
+
 - Cache lookup for existing correlation state
 - Multi-condition evaluation (allOf/oneOf logic)
 - Threshold counting and time window validation
 
 **Phase 3: Alert Generation**
+
 - Alias resolution for alert fields
 - GeoIP enrichment for network indicators
 - Severity assignment and categorization
@@ -225,12 +231,12 @@ graph TB
     C --> E[Domains]
     C --> F[File Hashes]
     C --> G[URLs]
-    
+
     D --> H[Threat Intel Feeds]
     E --> H
     F --> H
     G --> H
-    
+
     H --> I{Match Found?}
     I -->|Yes| J[Generate Alert]
     I -->|No| K[Continue Processing]
@@ -239,6 +245,7 @@ graph TB
 ### 2. Automated Threat Detection Rules
 
 The system includes built-in rules for:
+
 - **IP-based Threats**: Blacklisted IP correlation
 - **Domain Intelligence**: Malicious domain detection
 - **Hash-based Detection**: Known malware signatures
@@ -252,19 +259,19 @@ The system includes built-in rules for:
 graph TD
     A[Attack Surface] --> B[External Interfaces]
     A --> C[Internal Components]
-    
+
     B --> D[Log Collection APIs]
     B --> E[Management Console]
     B --> F[Alert Delivery]
-    
+
     C --> G[Correlation Engine]
     C --> H[Data Storage]
     C --> I[Processing Pipeline]
-    
+
     D --> J[Input Validation]
     E --> K[Authentication]
     F --> L[Encryption]
-    
+
     G --> M[Rule Injection Prevention]
     H --> N[Access Control]
     I --> O[Resource Limits]
@@ -275,6 +282,7 @@ graph TD
 All data in transit between agents and UTMStack servers is encrypted using TLS. UTMStack services are isolated by containers and microservices with strong authentication. Connections to the UTMStack server are authenticated with a +24 characters unique key.
 
 **Key Security Features:**
+
 - **Transport Security**: End-to-end TLS encryption
 - **Authentication**: 24+ character unique connection keys
 - **Isolation**: Containerized microservice architecture
@@ -284,16 +292,19 @@ All data in transit between agents and UTMStack servers is encrypted using TLS. 
 ### 3. Threat Detection Capabilities
 
 **Advanced Persistent Threat (APT) Detection:**
+
 - Multi-stage attack correlation
 - Long-term behavioral analysis
 - Attribution through TTPs mapping
 
 **Insider Threat Detection:**
+
 - Privilege escalation monitoring
 - Abnormal access pattern recognition
 - Data exfiltration indicators
 
 **Infrastructure Security:**
+
 - Network reconnaissance detection
 - Lateral movement identification
 - Command and control communication
@@ -308,13 +319,13 @@ graph TB
     B --> C[Engine Node 1]
     B --> D[Engine Node 2]
     B --> E[Engine Node N]
-    
+
     C --> F[Shared Cache Layer]
     D --> F
     E --> F
-    
+
     F --> G[Redis Cluster]
-    
+
     C --> H[OpenSearch Cluster]
     D --> H
     E --> H
@@ -323,11 +334,13 @@ graph TB
 ### 2. Scalability Considerations
 
 **Horizontal Scaling:**
+
 - Distributed cache architecture
 - Multi-node rule processing
 - Load-balanced log ingestion
 
 **Performance Optimization:**
+
 - In-memory correlation cache
 - Optimized rule evaluation order
 - Efficient field indexing
@@ -351,21 +364,25 @@ graph LR
 ### 2. Rule Categories and Use Cases
 
 **Authentication & Access Control:**
+
 - Failed login attempts correlation
 - Privilege escalation detection
 - Account compromise indicators
 
 **Network Security:**
+
 - Port scanning identification
 - DDoS attack detection
 - Malicious traffic analysis
 
 **Endpoint Security:**
+
 - Malware execution correlation
 - Process injection detection
 - Registry modification tracking
 
 **Data Protection:**
+
 - Data exfiltration patterns
 - Unauthorized access attempts
 - Sensitive file monitoring
@@ -381,7 +398,7 @@ graph LR
     B --> D[SOAR Platform]
     B --> E[Ticketing System]
     B --> F[Threat Intel Platform]
-    
+
     C --> G[Splunk/QRadar]
     D --> H[Phantom/XSOAR]
     E --> I[ServiceNow/Jira]
@@ -391,11 +408,13 @@ graph LR
 ### 2. API Security and Authentication
 
 **Authentication Methods:**
+
 - API key-based authentication
 - JWT token validation
 - Role-based access control
 
 **Data Protection:**
+
 - Request/response encryption
 - Rate limiting and throttling
 - Input sanitization and validation
@@ -419,17 +438,17 @@ graph TD
     A[Security Events] --> B[Correlation Engine]
     B --> C[Compliance Mapping]
     C --> D{Compliance Framework}
-    
+
     D --> E[HIPAA Controls]
     D --> F[PCI-DSS Requirements]
     D --> G[GDPR Articles]
     D --> H[SOC 2 Criteria]
-    
+
     E --> I[Evidence Repository]
     F --> I
     G --> I
     H --> I
-    
+
     I --> J[Compliance Reports]
     I --> K[Audit Documentation]
 ```
@@ -441,6 +460,7 @@ graph TD
 The threat detection engine is composed of rule-based correlation systems, scanners, and AI-powered machine learning algorithms that enable the system to learn from its environment.
 
 **AI-Powered Capabilities:**
+
 - **Behavioral Analytics**: Anomaly detection using baseline learning
 - **Threat Hunting**: Automated IOC discovery and correlation
 - **False Positive Reduction**: ML-based alert filtering
@@ -465,7 +485,7 @@ cache:
     save:
       - field: "source.ip"
         alias: "AttackerIP"
-        
+
   # Stage 2: Lateral Movement
   - allOf:
       - field: "event.category"
@@ -479,7 +499,7 @@ cache:
     save:
       - field: "destination.ip"
         alias: "TargetSystems"
-        
+
   # Stage 3: Data Exfiltration
   - allOf:
       - field: "network.bytes"
@@ -497,6 +517,7 @@ cache:
 ### 1. Deployment Strategy
 
 **Security-by-Design Principles:**
+
 - Minimal attack surface configuration
 - Defense-in-depth architecture
 - Continuous security validation
@@ -505,12 +526,14 @@ cache:
 ### 2. Monitoring and Maintenance
 
 **Performance Monitoring:**
+
 - Rule processing metrics
 - Cache hit ratios
 - Alert generation rates
 - System resource utilization
 
 **Security Monitoring:**
+
 - Failed authentication attempts
 - Unusual system behavior
 - Configuration changes
@@ -524,7 +547,7 @@ sequenceDiagram
     participant IR as IR Platform
     participant Analyst as Security Analyst
     participant Tools as Security Tools
-    
+
     Alert->>IR: High Severity Alert
     IR->>Analyst: Notification
     Analyst->>IR: Acknowledge
@@ -574,14 +597,14 @@ graph TB
     B --> C{Connection Pool}
     C --> D[REST High Level Client]
     C --> E[REST Low Level Client]
-    
+
     D --> F[Index Operations]
     D --> G[Search Operations]
     D --> H[Bulk Operations]
-    
+
     E --> I[Direct HTTP Calls]
     E --> J[Custom Endpoints]
-    
+
     F --> K[OpenSearch Cluster]
     G --> K
     H --> K
@@ -598,13 +621,13 @@ sequenceDiagram
     participant Pool as Connection Pool
     participant Client as REST Client
     participant OS as OpenSearch Cluster
-    
+
     App->>Conn: Initialize Connection
     Conn->>Pool: Create Connection Pool
     Pool->>Client: Initialize REST Clients
     Client->>OS: Establish Connection
     OS-->>Client: Connection Confirmed
-    
+
     App->>Conn: Index Security Event
     Conn->>Pool: Get Available Connection
     Pool->>Client: Execute Index Request
@@ -623,23 +646,23 @@ graph LR
     A --> D[Search Operations]
     A --> E[Bulk Operations]
     A --> F[Cluster Operations]
-    
+
     B --> B1[Connection Pooling]
     B --> B2[Load Balancing]
     B --> B3[Failover Handling]
-    
+
     C --> C1[Create Index]
     C --> C2[Update Mappings]
     C --> C3[Delete Index]
-    
+
     D --> D1[Query DSL]
     D --> D2[Aggregations]
     D --> D3[Scroll API]
-    
+
     E --> E1[Bulk Index]
     E --> E2[Bulk Update]
     E --> E3[Bulk Delete]
-    
+
     F --> F1[Health Checks]
     F --> F2[Node Stats]
     F --> F3[Cluster Settings]
@@ -651,17 +674,17 @@ graph LR
 graph TD
     A[Security Events] --> B[OpenSearch Connector]
     B --> C{Event Type}
-    
+
     C --> D[Alerts]
     C --> E[Raw Logs]
     C --> F[Correlation Results]
     C --> G[Threat Intel]
-    
+
     D --> H[alerts-* indices]
     E --> I[logs-* indices]
     F --> J[correlation-* indices]
     G --> K[threat-* indices]
-    
+
     H --> L[Time-based Rotation]
     I --> L
     J --> L
@@ -676,16 +699,16 @@ flowchart LR
     B --> C[Normalization]
     C --> D[Enrichment]
     D --> E[OpenSearch Connector]
-    
+
     E --> F{Indexing Strategy}
     F --> G[Real-time Index]
     F --> H[Batch Index]
     F --> I[Archive Index]
-    
+
     G --> J[Hot Storage]
     H --> K[Warm Storage]
     I --> L[Cold Storage]
-    
+
     J --> M[Search & Analytics]
     K --> M
     L --> M
@@ -699,34 +722,34 @@ public class UTMStackOpenSearchConnector {
     private final RestHighLevelClient client;
     private final ConnectionPool pool;
     private final RetryPolicy retryPolicy;
-    
+
     public UTMStackOpenSearchConnector(OpenSearchConfig config) {
         this.pool = new ConnectionPool(config.getMaxConnections());
         this.client = buildClient(config);
         this.retryPolicy = new ExponentialBackoffRetry(3, 1000);
     }
-    
+
     // Index security event with automatic retry
     public IndexResponse indexSecurityEvent(SecurityEvent event) {
         return retryPolicy.execute(() -> {
             IndexRequest request = new IndexRequest("security-events")
                 .id(event.getId())
                 .source(event.toJson(), XContentType.JSON);
-            
+
             return client.index(request, RequestOptions.DEFAULT);
         });
     }
-    
+
     // Bulk index for high-throughput scenarios
     public BulkResponse bulkIndexEvents(List<SecurityEvent> events) {
         BulkRequest bulkRequest = new BulkRequest();
-        
+
         events.forEach(event -> {
             bulkRequest.add(new IndexRequest("security-events")
                 .id(event.getId())
                 .source(event.toJson(), XContentType.JSON));
         });
-        
+
         return client.bulk(bulkRequest, RequestOptions.DEFAULT);
     }
 }
@@ -740,19 +763,19 @@ graph TB
     A --> C[Bulk Operations]
     A --> D[Async Processing]
     A --> E[Query Optimization]
-    
+
     B --> B1[Thread-safe Pools]
     B --> B2[Connection Reuse]
     B --> B3[Keep-alive Settings]
-    
+
     C --> C1[Configurable Batch Size]
     C --> C2[Automatic Flushing]
     C --> C3[Error Handling]
-    
+
     D --> D1[Non-blocking I/O]
     D --> D2[Future-based API]
     D --> D3[Callback Support]
-    
+
     E --> E1[Query Caching]
     E --> E2[Field Selection]
     E --> E3[Aggregation Pipeline]
@@ -766,16 +789,16 @@ sequenceDiagram
     participant Auth as Authentication Layer
     participant TLS as TLS Handler
     participant OS as OpenSearch
-    
+
     Connector->>Auth: Initialize with Credentials
     Auth->>Auth: Load Certificates
     Auth->>TLS: Setup TLS Context
-    
+
     Connector->>TLS: Secure Connection Request
     TLS->>OS: TLS Handshake
     OS-->>TLS: Certificate Validation
     TLS-->>Connector: Secure Channel Established
-    
+
     Connector->>Auth: Generate Auth Headers
     Auth-->>Connector: Bearer Token / Basic Auth
     Connector->>OS: Authenticated Request

@@ -49,11 +49,12 @@ const personSchema = {
   url: Astro.site,
   image: socialImageURL,
   sameAs: [
-    SITE.socialLinks.find(link => link.name === "Github")?.href,
-    SITE.socialLinks.find(link => link.name === "LinkedIn")?.href,
-    SITE.socialLinks
-      .find(link => link.name === "Mail")
-      ?.href?.replace("mailto:", ""),
+    SOCIALS.find(link => link.name === "Github")?.href,
+    SOCIALS.find(link => link.name === "LinkedIn")?.href,
+    SOCIALS.find(link => link.name === "Mail")?.href?.replace("mailto:", ""),
+    SOCIALS.find(link => link.name === "Facebook")?.href,
+    SOCIALS.find(link => link.name === "Instagram")?.href,
+    SOCIALS.find(link => link.name === "Twitter")?.href,
   ].filter(Boolean),
   jobTitle: "DevSecOps Engineer",
   worksFor: {
@@ -224,19 +225,17 @@ const allSchemas = [
 <meta property="twitter:image" content={socialImageURL} />
 <meta property="twitter:image:alt" content={`${title} by ${authorName}`} />
 {
-  SITE.socialLinks.find(link => link.name === "Twitter") && (
+  SOCIALS.find(link => link.name === "Twitter") && (
     <>
       <meta
         property="twitter:site"
-        content={SITE.socialLinks
-          .find(link => link.name === "Twitter")
+        content={SOCIALS.find(link => link.name === "Twitter")
           ?.href.split("/")
           .pop()}
       />
       <meta
         property="twitter:creator"
-        content={SITE.socialLinks
-          .find(link => link.name === "Twitter")
+        content={SOCIALS.find(link => link.name === "Twitter")
           ?.href.split("/")
           .pop()}
       />

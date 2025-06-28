@@ -45,7 +45,7 @@ graph TB
         CO[Command Output]
         FIM[File Integrity Monitoring]
     end
-    
+
     subgraph "Wazuh Agent"
         LC[Log Collector]
         PP[Preprocessor]
@@ -53,11 +53,11 @@ graph TB
         EN[Encryption Module]
         TR[Transmission Module]
     end
-    
+
     subgraph "Network"
         TLS[TLS Channel]
     end
-    
+
     subgraph "Wazuh Manager"
         NL[Network Listener]
         DC[Decompression]
@@ -66,14 +66,14 @@ graph TB
         AL[Alerting]
         IX[Indexer Integration]
     end
-    
+
     LF --> LC
     SL --> LC
     JD --> LC
     WE --> LC
     CO --> LC
     FIM --> LC
-    
+
     LC --> PP
     PP --> CP
     CP --> EN
@@ -96,13 +96,14 @@ graph TB
 The agent continuously monitors log files, syslog streams, and journald outputs using dedicated modules. Each module handles its source type through tailored configuration parameters:
 
 **File Monitoring Module:**
+
 ```xml
 <ossec_config>
   <localfile>
     <log_format>syslog</log_format>
     <location>/var/log/auth.log</location>
   </localfile>
-  
+
   <localfile>
     <log_format>apache</log_format>
     <location>/var/log/apache2/access.log</location>
@@ -111,6 +112,7 @@ The agent continuously monitors log files, syslog streams, and journald outputs 
 ```
 
 **Syslog Module:**
+
 ```xml
 <ossec_config>
   <remote>
@@ -140,13 +142,13 @@ typedef struct {
 int preprocess_log(log_entry_t *entry) {
     // Extract timestamp
     parse_timestamp(entry->raw_log, &entry->timestamp);
-    
+
     // Extract hostname
     extract_hostname(entry->raw_log, entry->hostname);
-    
+
     // Parse structured fields
     parse_fields(entry->raw_log, entry->parsed_fields);
-    
+
     // Validate and sanitize
     return validate_log_entry(entry);
 }
@@ -169,19 +171,19 @@ typedef struct {
 } compression_buffer_t;
 
 // Compression function using zlib
-int compress_log_data(const char *input, size_t input_size, 
+int compress_log_data(const char *input, size_t input_size,
                       char *output, size_t *output_size) {
-    
+
     uLongf compressed_size = *output_size;
     int result = compress2((Bytef *)output, &compressed_size,
                           (const Bytef *)input, input_size,
                           Z_DEFAULT_COMPRESSION);
-    
+
     if (result == Z_OK) {
         *output_size = compressed_size;
         return 0; // Success
     }
-    
+
     return -1; // Error
 }
 
@@ -189,10 +191,10 @@ int compress_log_data(const char *input, size_t input_size,
 void send_compressed_log(const char* log_message) {
     char compressed_data[MAX_COMPRESSED_SIZE];
     size_t compressed_size = sizeof(compressed_data);
-    
-    if (compress_log_data(log_message, strlen(log_message), 
+
+    if (compress_log_data(log_message, strlen(log_message),
                          compressed_data, &compressed_size) == 0) {
-        
+
         // Add compression header
         compression_header_t header = {
             .magic = COMPRESSION_MAGIC,
@@ -200,7 +202,7 @@ void send_compressed_log(const char* log_message) {
             .original_size = strlen(log_message),
             .compressed_size = compressed_size
         };
-        
+
         // Send header + compressed data
         send_secure_data(&header, sizeof(header));
         send_secure_data(compressed_data, compressed_size);
@@ -237,27 +239,27 @@ typedef struct {
 // Establish secure connection to manager
 secure_connection_t* establish_secure_connection(const char *server_address, int port) {
     secure_connection_t *conn = malloc(sizeof(secure_connection_t));
-    
+
     // Initialize SSL context
     conn->ctx = SSL_CTX_new(TLSv1_2_client_method());
-    
+
     // Load certificates
     SSL_CTX_use_certificate_file(conn->ctx, conn->client_cert, SSL_FILETYPE_PEM);
     SSL_CTX_use_PrivateKey_file(conn->ctx, conn->client_key, SSL_FILETYPE_PEM);
-    
+
     // Create socket and connect
     conn->socket_fd = create_socket_connection(server_address, port);
-    
+
     // Create SSL connection
     conn->ssl = SSL_new(conn->ctx);
     SSL_set_fd(conn->ssl, conn->socket_fd);
-    
+
     if (SSL_connect(conn->ssl) != 1) {
         // Handle connection error
         cleanup_connection(conn);
         return NULL;
     }
-    
+
     return conn;
 }
 
@@ -282,17 +284,17 @@ typedef struct {
 int send_with_failover(multi_socket_manager_t *manager, const void *data, size_t size) {
     secure_connection_t *connections[] = {
         manager->primary,
-        manager->secondary, 
+        manager->secondary,
         manager->backup
     };
-    
+
     for (int i = 0; i < 3; i++) {
         if (connections[i] && send_encrypted_log(connections[i], data, size) > 0) {
             manager->active_connection = i;
             return 1; // Success
         }
     }
-    
+
     return 0; // All connections failed
 }
 ```
@@ -315,15 +317,15 @@ typedef struct {
 
 void* connection_handler(void *arg) {
     connection_context_t *ctx = (connection_context_t *)arg;
-    
+
     char buffer[MAX_BUFFER_SIZE];
     int bytes_received;
-    
+
     while ((bytes_received = SSL_read(ctx->ssl, buffer, sizeof(buffer))) > 0) {
         // Process received data
         process_agent_data(ctx->agent_id, buffer, bytes_received);
     }
-    
+
     cleanup_connection(ctx);
     return NULL;
 }
@@ -331,21 +333,21 @@ void* connection_handler(void *arg) {
 // Main listener function
 void start_network_listener(network_listener_t *listener) {
     int server_socket = create_server_socket(listener->port);
-    
+
     while (1) {
         int client_socket = accept(server_socket, NULL, NULL);
-        
+
         // Create SSL connection
         SSL *ssl = SSL_new(listener->ssl_ctx);
         SSL_set_fd(ssl, client_socket);
-        
+
         if (SSL_accept(ssl) == 1) {
             // Authenticate agent
             char agent_id[MAX_AGENT_ID];
             if (authenticate_agent(ssl, agent_id)) {
                 // Create connection context
                 connection_context_t *ctx = create_connection_context(ssl, agent_id);
-                
+
                 // Spawn handler thread
                 pthread_create(&ctx->thread, NULL, connection_handler, ctx);
             }
@@ -360,18 +362,18 @@ If logs were compressed, the manager uses complementary decompression routines:
 
 ```c
 // Decompression function using zlib
-int decompress_log_data(const char *input, size_t input_size, 
+int decompress_log_data(const char *input, size_t input_size,
                        char *output, size_t *output_size) {
-    
+
     uLongf decompressed_size = *output_size;
     int result = uncompress((Bytef *)output, &decompressed_size,
                            (const Bytef *)input, input_size);
-    
+
     if (result == Z_OK) {
         *output_size = decompressed_size;
         return 0; // Success
     }
-    
+
     return -1; // Error
 }
 
@@ -379,21 +381,21 @@ int decompress_log_data(const char *input, size_t input_size,
 void process_agent_data(const char *agent_id, const char *data, size_t size) {
     // Check if data is compressed
     compression_header_t *header = (compression_header_t *)data;
-    
+
     if (header->magic == COMPRESSION_MAGIC) {
         // Decompress data
         char *decompressed_data = malloc(header->original_size);
         size_t decompressed_size = header->original_size;
-        
+
         if (decompress_log_data(data + sizeof(compression_header_t),
                                header->compressed_size,
                                decompressed_data,
                                &decompressed_size) == 0) {
-            
+
             // Parse decompressed log
             parse_and_analyze_log(agent_id, decompressed_data, decompressed_size);
         }
-        
+
         free(decompressed_data);
     } else {
         // Process uncompressed data
@@ -425,43 +427,43 @@ typedef struct {
 alert_t* analyze_log_entry(rules_engine_t *engine, log_entry_t *log) {
     for (int i = 0; i < engine->rule_count; i++) {
         analysis_rule_t *rule = &engine->rules[i];
-        
+
         if (regexec(&rule->compiled_regex, log->raw_log, 0, NULL, 0) == 0) {
             // Rule matched - create alert
             alert_t *alert = create_alert(rule, log);
-            
+
             // Enrich alert with additional context
             enrich_alert(alert, log);
-            
+
             return alert;
         }
     }
-    
+
     return NULL; // No rules matched
 }
 
 // Main log processing function
 void parse_and_analyze_log(const char *agent_id, const char *log_data, size_t size) {
     log_entry_t *log = parse_log_entry(log_data, size);
-    
+
     if (log) {
         // Add agent context
         strcpy(log->agent_id, agent_id);
-        
+
         // Analyze against rules
         alert_t *alert = analyze_log_entry(&global_rules_engine, log);
-        
+
         if (alert) {
             // Forward alert to output modules
             forward_alert(alert);
-            
+
             // Store in database/indexer
             store_alert(alert);
         }
-        
+
         // Always store raw log for forensics
         store_raw_log(log);
-        
+
         free_log_entry(log);
     }
 }
@@ -478,7 +480,7 @@ sequenceDiagram
     participant RulesEngine
     participant Alerting
     participant Indexer
-    
+
     Agent->>Manager: Send compressed log
     Manager->>Manager: Decompress & parse
     Manager->>RulesEngine: Analyze log
@@ -502,22 +504,22 @@ typedef struct correlation_context {
 alert_t* correlate_events(correlation_context_t *ctx, log_entry_t *new_log) {
     // Check for related events in time window
     event_list_t *related_events = find_related_events(ctx->event_cache, new_log);
-    
+
     if (related_events->count > 0) {
         // Apply correlation rules
         for (int i = 0; i < ctx->rule_count; i++) {
             correlation_rule_t *rule = &ctx->rules[i];
-            
+
             if (evaluate_correlation_rule(rule, related_events, new_log)) {
                 // Create correlation alert
                 return create_correlation_alert(rule, related_events, new_log);
             }
         }
     }
-    
+
     // Cache this event for future correlation
     cache_event(ctx->event_cache, new_log);
-    
+
     return NULL;
 }
 ```
@@ -544,24 +546,24 @@ typedef struct {
 void* log_worker_thread(void *arg) {
     log_processor_t *processor = (log_processor_t *)arg;
     log_entry_t *log;
-    
+
     while (1) {
         // Non-blocking dequeue
         if (dequeue(processor->input_queue, &log)) {
             // Process log entry
             alert_t *alert = analyze_log_entry(processor->rules_engine, log);
-            
+
             if (alert) {
                 forward_alert(alert);
             }
-            
+
             free_log_entry(log);
         } else {
             // No work available, yield CPU
             sched_yield();
         }
     }
-    
+
     return NULL;
 }
 ```
@@ -688,7 +690,7 @@ echo "=== Agent Performance ==="
 echo "Events per second: $(wazuh-logtest -q | grep 'Events processed' | tail -1)"
 echo "Queue utilization: $(cat /var/ossec/var/run/ossec-agent.stats | grep queue)"
 
-# Manager metrics  
+# Manager metrics
 echo "=== Manager Performance ==="
 echo "Alerts per second: $(cat /var/ossec/logs/alerts/alerts.log | tail -100 | wc -l)"
 echo "Analysis queue: $(cat /var/ossec/var/run/ossec-analysisd.stats | grep queue)"

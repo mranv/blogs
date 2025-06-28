@@ -84,10 +84,10 @@ Integrate NATS messaging capabilities directly into the Wazuh manager codebase t
 int handle_agent_connection(agent *ag, char *msg) {
     int result = 0;
     agent_status_t previous_status = ag->status;
-    
+
     // Existing Wazuh logic
     result = process_agent_message(ag, msg);
-    
+
     // NEW: NATS integration
     if (nats_config.enabled && ag->status != previous_status) {
         agent_status_event_t event = {
@@ -99,10 +99,10 @@ int handle_agent_connection(agent *ag, char *msg) {
             .timestamp = time(NULL),
             .manager_node = Config.node_name
         };
-        
+
         nats_publish_agent_status(&event);
     }
-    
+
     return result;
 }
 ```
@@ -111,17 +111,17 @@ int handle_agent_connection(agent *ag, char *msg) {
 
 ```c
 // Modified function: wdb_update_agent_keepalive()
-int wdb_update_agent_keepalive(int agent_id, agent_cs_t status, 
+int wdb_update_agent_keepalive(int agent_id, agent_cs_t status,
                               const char *sync_status, int *sock) {
     int result = 0;
     agent_cs_t previous_status = AGENT_CS_UNKNOWN;
-    
+
     // Get previous status before update
     previous_status = wdb_get_agent_status(agent_id);
-    
+
     // Existing Wazuh database update logic
     result = wdb_execute_agent_keepalive_update(agent_id, status, sync_status, sock);
-    
+
     // NEW: NATS integration for database-level status changes
     if (nats_config.enabled && result == 0 && previous_status != status) {
         db_status_event_t event = {
@@ -132,10 +132,10 @@ int wdb_update_agent_keepalive(int agent_id, agent_cs_t status,
             .timestamp = time(NULL),
             .source = "wazuh-db"
         };
-        
+
         nats_publish_db_status(&event);
     }
-    
+
     return result;
 }
 ```
@@ -199,39 +199,39 @@ static pthread_mutex_t nats_mutex = PTHREAD_MUTEX_INITIALIZER;
 int nats_init(const nats_config_t *config) {
     natsStatus status = NATS_OK;
     natsOptions *opts = NULL;
-    
+
     if (!config || !config->enabled) {
         return 0; // NATS disabled
     }
-    
+
     memcpy(&nats_config, config, sizeof(nats_config_t));
-    
+
     // Create NATS options
     status = natsOptions_Create(&opts);
     if (status != NATS_OK) {
         merror("Failed to create NATS options: %s", natsStatus_GetText(status));
         return -1;
     }
-    
+
     // Configure TLS if specified
     if (nats_config.tls_cert && nats_config.tls_key) {
         status = natsOptions_SetSecure(opts, true);
         if (status == NATS_OK) {
-            status = natsOptions_LoadCertificatesChain(opts, 
+            status = natsOptions_LoadCertificatesChain(opts,
                 nats_config.tls_cert, nats_config.tls_key);
         }
     }
-    
+
     // Configure credentials if specified
     if (nats_config.credentials_file) {
-        status = natsOptions_SetUserCredentialsFromFiles(opts, 
+        status = natsOptions_SetUserCredentialsFromFiles(opts,
             nats_config.credentials_file, NULL);
     }
-    
+
     // Set reconnection parameters
     natsOptions_SetMaxReconnect(opts, nats_config.max_reconnects);
     natsOptions_SetReconnectWait(opts, nats_config.reconnect_delay * 1000);
-    
+
     // Connect to NATS
     status = natsConnection_Connect(&nats_conn, opts);
     if (status != NATS_OK) {
@@ -239,7 +239,7 @@ int nats_init(const nats_config_t *config) {
         natsOptions_Destroy(opts);
         return -1;
     }
-    
+
     natsOptions_Destroy(opts);
     minfo("NATS integration initialized successfully");
     return 0;
@@ -249,9 +249,9 @@ int nats_publish_agent_status(const agent_status_event_t *event) {
     if (!nats_conn || !event) {
         return -1;
     }
-    
+
     pthread_mutex_lock(&nats_mutex);
-    
+
     // Create JSON message
     cJSON *json = cJSON_CreateObject();
     cJSON *agent_id = cJSON_CreateString(event->agent_id);
@@ -261,7 +261,7 @@ int nats_publish_agent_status(const agent_status_event_t *event) {
     cJSON *ip_addr = cJSON_CreateString(event->ip_address);
     cJSON *timestamp = cJSON_CreateNumber(event->timestamp);
     cJSON *manager = cJSON_CreateString(event->manager_node);
-    
+
     cJSON_AddItemToObject(json, "agent_id", agent_id);
     cJSON_AddItemToObject(json, "agent_name", agent_name);
     cJSON_AddItemToObject(json, "previous_status", prev_status);
@@ -269,28 +269,28 @@ int nats_publish_agent_status(const agent_status_event_t *event) {
     cJSON_AddItemToObject(json, "ip_address", ip_addr);
     cJSON_AddItemToObject(json, "timestamp", timestamp);
     cJSON_AddItemToObject(json, "manager_node", manager);
-    
+
     char *json_string = cJSON_Print(json);
-    
+
     // Create subject
     char subject[512];
-    snprintf(subject, sizeof(subject), "%s.agent.%s.status", 
+    snprintf(subject, sizeof(subject), "%s.agent.%s.status",
              nats_config.subject_prefix, event->agent_id);
-    
+
     // Publish message
-    natsStatus status = natsConnection_Publish(nats_conn, subject, 
+    natsStatus status = natsConnection_Publish(nats_conn, subject,
                                              json_string, strlen(json_string));
-    
+
     // Cleanup
     free(json_string);
     cJSON_Delete(json);
     pthread_mutex_unlock(&nats_mutex);
-    
+
     if (status != NATS_OK) {
         merror("Failed to publish NATS message: %s", natsStatus_GetText(status));
         return -1;
     }
-    
+
     return 0;
 }
 ```
@@ -305,17 +305,17 @@ int nats_publish_agent_status(const agent_status_event_t *event) {
 
 int Read_NATS(XML_NODE node, void *configp, __attribute__((unused)) void *mailp) {
     nats_config_t *nats_config = (nats_config_t *)configp;
-    
+
     // Initialize defaults
     nats_config->enabled = false;
     nats_config->max_reconnects = 10;
     nats_config->reconnect_delay = 2;
     nats_config->encrypt_messages = false;
-    
+
     if (!node) {
         return 0;
     }
-    
+
     for (int i = 0; node[i]; i++) {
         if (!node[i]->element) {
             merror(XML_ELEMNULL);
@@ -324,7 +324,7 @@ int Read_NATS(XML_NODE node, void *configp, __attribute__((unused)) void *mailp)
             merror(XML_VALUENULL, node[i]->element);
             return OS_INVALID;
         }
-        
+
         if (strcmp(node[i]->element, "enabled") == 0) {
             nats_config->enabled = (strcmp(node[i]->content, "yes") == 0);
         } else if (strcmp(node[i]->element, "server_url") == 0) {
@@ -348,7 +348,7 @@ int Read_NATS(XML_NODE node, void *configp, __attribute__((unused)) void *mailp)
             return OS_INVALID;
         }
     }
-    
+
     return 0;
 }
 ```
@@ -358,6 +358,7 @@ int Read_NATS(XML_NODE node, void *configp, __attribute__((unused)) void *mailp)
 ### Phase 1: Core Integration Setup (4-5 hours)
 
 1. **Build System Integration**
+
    - Modify src/Makefile to include NATS client library
    - Add NATS library dependencies to configure scripts
    - Update CMake/autotools configuration
@@ -370,6 +371,7 @@ int Read_NATS(XML_NODE node, void *configp, __attribute__((unused)) void *mailp)
 ### Phase 2: Core Daemon Modifications (5-6 hours)
 
 1. **remoted Daemon Changes**
+
    - Modify agent connection handling functions
    - Add NATS publishing calls at key decision points
    - Implement connection state change detection
@@ -382,6 +384,7 @@ int Read_NATS(XML_NODE node, void *configp, __attribute__((unused)) void *mailp)
 ### Phase 3: Configuration & Security (3-4 hours)
 
 1. **Configuration Parser**
+
    - Extend ossec.conf XML parser for NATS section
    - Add configuration validation
    - Implement secure credential handling
@@ -394,6 +397,7 @@ int Read_NATS(XML_NODE node, void *configp, __attribute__((unused)) void *mailp)
 ### Phase 4: Testing & Integration (2-3 hours)
 
 1. **Unit Testing**
+
    - Create tests for NATS integration functions
    - Test configuration parsing
    - Validate message formatting
@@ -436,7 +440,7 @@ wazuh-db: $(DB_OBJS) $(NATS_OBJS)
 ```xml
 <ossec_config>
   <!-- Existing Wazuh configuration -->
-  
+
   <!-- NEW: NATS Integration -->
   <nats>
     <enabled>yes</enabled>
@@ -539,17 +543,20 @@ Subject: `wazuh.security.alerts.high`
 ## Deliverables
 
 1. **Modified Source Code**
+
    - Updated remoted daemon with NATS integration
    - Modified wazuh-db with status publishing
    - New NATS integration module
    - Updated build configuration
 
 2. **Configuration Files**
+
    - Extended ossec.conf schema
    - Example configuration files
    - Security credential templates
 
 3. **Documentation**
+
    - Integration guide for developers
    - Configuration reference
    - Troubleshooting guide

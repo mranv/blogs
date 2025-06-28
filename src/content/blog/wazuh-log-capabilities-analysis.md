@@ -82,13 +82,13 @@ Core Linux log sources and configuration:
     <log_format>audit</log_format>
     <location>/var/log/audit/audit.log</location>
   </localfile>
-  
+
   <!-- System authentication logs -->
   <localfile>
     <log_format>syslog</log_format>
     <location>/var/log/auth.log</location>
   </localfile>
-  
+
   <!-- Wildcard pattern matching -->
   <localfile>
     <location>/var/log/*.log</location>
@@ -117,13 +117,13 @@ Event channel configuration examples:
     <log_format>eventchannel</log_format>
     <query>Event[System/EventID = 4624 and (EventData/Data[@Name='LogonType'] = 2 or EventData/Data[@Name='LogonType'] = 10)]</query>
   </localfile>
-  
+
   <!-- Sysmon integration -->
   <localfile>
     <location>Microsoft-Windows-Sysmon/Operational</location>
     <log_format>eventchannel</log_format>
   </localfile>
-  
+
   <!-- PowerShell operational logs -->
   <localfile>
     <location>Microsoft-Windows-PowerShell/Operational</location>
@@ -149,8 +149,8 @@ ULS integration configuration:
   <location>macos</location>
   <log_format>macos</log_format>
   <query type="trace,log,activity" level="info">
-    (process == "sudo") or 
-    (process == "sshd") or 
+    (process == "sudo") or
+    (process == "sshd") or
     (process == "securityd" and eventMessage contains "Session" and subsystem == "com.apple.securityd")
   </query>
 </localfile>

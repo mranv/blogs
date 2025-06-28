@@ -37,11 +37,13 @@ Wazuh 4.3+ officially supports OpenSearch as its primary indexer, moving away fr
 ### System Requirements
 
 1. **Wazuh Components**:
+
    - Wazuh Manager 4.3+
    - Wazuh Dashboard 4.3+
    - Wazuh Indexer (OpenSearch) 2.x
 
 2. **Current Environment**:
+
    - Running Elasticsearch cluster (6.x, 7.x, or Open Distro)
    - Sufficient storage for data migration
    - Backup of all configurations
@@ -185,13 +187,13 @@ cd /backup/wazuh-indices
 # Export all Wazuh indices
 for index in $(curl -s localhost:9200/_cat/indices | grep wazuh | awk '{print $3}'); do
     echo "Exporting $index..."
-    
+
     # Export mappings
     elasticdump \
         --input=http://localhost:9200/$index \
         --output=$index-mapping.json \
         --type=mapping
-    
+
     # Export data
     elasticdump \
         --input=http://localhost:9200/$index \
@@ -237,14 +239,14 @@ elasticdump \
 for mapping_file in *-mapping.json; do
     index_name=${mapping_file%-mapping.json}
     echo "Importing $index_name..."
-    
+
     # Import mapping
     elasticdump \
         --input=$mapping_file \
         --output=https://admin:admin@localhost:9200/$index_name \
         --type=mapping \
         --headers='Content-Type: application/json'
-    
+
     # Import data
     elasticdump \
         --input=${index_name}-data.json \
@@ -322,20 +324,20 @@ indexer:
   username: "wazuh_api"
   password: "${WAZUH_API_PASSWORD}"
   verify_ssl: false
-  
+
 logging:
   level: "info"
   path: "/var/ossec/logs/api.log"
-  
+
 auth:
   max_login_attempts: 5
   block_time: 300
   max_request_per_minute: 300
-  
+
 cache:
   enabled: true
   time: 0.75
-  
+
 upload:
   limits:
     eps:
@@ -573,16 +575,16 @@ Create `/etc/opensearch/wazuh-template.json`:
         },
         "agent": {
           "properties": {
-            "id": {"type": "keyword"},
-            "name": {"type": "keyword"},
-            "ip": {"type": "ip"}
+            "id": { "type": "keyword" },
+            "name": { "type": "keyword" },
+            "ip": { "type": "ip" }
           }
         },
         "rule": {
           "properties": {
-            "level": {"type": "integer"},
-            "id": {"type": "keyword"},
-            "description": {"type": "text"}
+            "level": { "type": "integer" },
+            "id": { "type": "keyword" },
+            "description": { "type": "text" }
           }
         }
       }
@@ -787,17 +789,17 @@ Create a monitoring dashboard in OpenSearch Dashboards:
         "title": "Wazuh Migration Monitoring",
         "panels": [
           {
-            "gridData": {"x": 0, "y": 0, "w": 24, "h": 15},
+            "gridData": { "x": 0, "y": 0, "w": 24, "h": 15 },
             "type": "visualization",
             "id": "cluster-health-gauge"
           },
           {
-            "gridData": {"x": 24, "y": 0, "w": 24, "h": 15},
+            "gridData": { "x": 24, "y": 0, "w": 24, "h": 15 },
             "type": "visualization",
             "id": "index-size-timeline"
           },
           {
-            "gridData": {"x": 0, "y": 15, "w": 48, "h": 20},
+            "gridData": { "x": 0, "y": 15, "w": 48, "h": 20 },
             "type": "visualization",
             "id": "alerts-per-hour"
           }
@@ -943,17 +945,17 @@ curl -X PUT "https://localhost:9200/_cluster/settings" \
 ```yaml
 # Metricbeat configuration for monitoring
 metricbeat.modules:
-- module: elasticsearch
-  metricsets:
-    - node
-    - node_stats
-    - cluster_stats
-    - index
-  period: 10s
-  hosts: ["https://localhost:9200"]
-  username: "monitoring"
-  password: "${MONITORING_PASSWORD}"
-  ssl.verification_mode: "none"
+  - module: elasticsearch
+    metricsets:
+      - node
+      - node_stats
+      - cluster_stats
+      - index
+    period: 10s
+    hosts: ["https://localhost:9200"]
+    username: "monitoring"
+    password: "${MONITORING_PASSWORD}"
+    ssl.verification_mode: "none"
 ```
 
 ## Conclusion

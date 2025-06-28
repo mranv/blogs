@@ -130,17 +130,33 @@ plugins.security.ssl.transport.enforce_hostname_verification: false
 plugins.security.ssl.transport.resolve_hostname: false
 
 plugins.security.authcz.admin_dn:
-- "CN=admin,OU=Wazuh,O=Wazuh,L=California,C=US"
+  - "CN=admin,OU=Wazuh,O=Wazuh,L=California,C=US"
 plugins.security.check_snapshot_restore_write_privileges: true
 plugins.security.enable_snapshot_restore_privilege: true
 plugins.security.nodes_dn:
-- "CN=node-1,OU=Wazuh,O=Wazuh,L=California,C=US"
+  - "CN=node-1,OU=Wazuh,O=Wazuh,L=California,C=US"
 plugins.security.restapi.roles_enabled:
-- "all_access"
-- "security_rest_api_access"
+  - "all_access"
+  - "security_rest_api_access"
 
 plugins.security.system_indices.enabled: true
-plugins.security.system_indices.indices: [".plugins-ml-model", ".plugins-ml-task", ".opendistro-alerting-config", ".opendistro-alerting-alert*", ".opendistro-anomaly-results*", ".opendistro-anomaly-detector*", ".opendistro-anomaly-checkpoints", ".opendistro-anomaly-detection-state", ".opendistro-reports-*", ".opensearch-notifications-*", ".opensearch-notebooks", ".opensearch-observability", ".opendistro-asynchronous-search-response*", ".replication-metadata-store"]
+plugins.security.system_indices.indices:
+  [
+    ".plugins-ml-model",
+    ".plugins-ml-task",
+    ".opendistro-alerting-config",
+    ".opendistro-alerting-alert*",
+    ".opendistro-anomaly-results*",
+    ".opendistro-anomaly-detector*",
+    ".opendistro-anomaly-checkpoints",
+    ".opendistro-anomaly-detection-state",
+    ".opendistro-reports-*",
+    ".opensearch-notifications-*",
+    ".opensearch-notebooks",
+    ".opensearch-observability",
+    ".opendistro-asynchronous-search-response*",
+    ".replication-metadata-store",
+  ]
 
 # Allow security index initialization
 plugins.security.allow_default_init_securityindex: true
@@ -183,15 +199,16 @@ server.port: 443
 opensearch.hosts: https://localhost:9200
 opensearch.ssl.verificationMode: certificate
 opensearch.username: "admin"
-opensearch.password: "your_admin_password"  # Replace with your actual password
-opensearch.requestHeadersAllowlist: ["securitytenant","Authorization"]
+opensearch.password: "your_admin_password" # Replace with your actual password
+opensearch.requestHeadersAllowlist: ["securitytenant", "Authorization"]
 opensearch_security.multitenancy.enabled: true
 opensearch_security.multitenancy.tenants.preferred: ["Global", "Private"]
 opensearch_security.readonly_mode.roles: ["kibana_read_only"]
 server.ssl.enabled: true
 server.ssl.key: "/etc/opensearch-dashboards/certs/dashboard-key.pem"
 server.ssl.certificate: "/etc/opensearch-dashboards/certs/dashboard.pem"
-opensearch.ssl.certificateAuthorities: ["/etc/opensearch-dashboards/certs/root-ca.pem"]
+opensearch.ssl.certificateAuthorities:
+  ["/etc/opensearch-dashboards/certs/root-ca.pem"]
 uiSettings.overrides.defaultRoute: /app/home
 
 # Initially use basic auth to verify connection
@@ -372,12 +389,14 @@ vulnerabilities.pattern: "invinsense-states-vulnerabilities-*"
 After following these steps, you should have a working single-node OpenSearch setup migrated from your Wazuh installation. This migration preserves all your data while giving you access to OpenSearch's advanced features and flexibility.
 
 Remember to:
+
 - Test all functionality thoroughly before decommissioning the old Wazuh indexer
 - Keep backups of your data and configurations
 - Monitor logs for any issues during the first few days
 - Update any external integrations to point to the new OpenSearch endpoints
 
 For production environments, consider:
+
 - Setting up regular snapshots for backup
 - Implementing proper security policies
 - Monitoring cluster health and performance

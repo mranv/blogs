@@ -42,16 +42,16 @@
   * {
     box-sizing: border-box;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   /* Font-display swap for all web fonts */
   @font-face {
     font-display: swap;
   }
-  
+
   body {
     @apply flex min-h-[100svh] flex-col bg-skin-fill text-skin-base font-sans
     selection:bg-skin-accent selection:bg-opacity-20 selection:text-skin-base;
@@ -62,11 +62,23 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
-    background-image: radial-gradient(circle at 20% 80%, rgba(var(--color-gradient-start), 0.03) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 20%, rgba(var(--color-gradient-end), 0.03) 0%, transparent 50%);
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1,
+      "ss01" 1;
+    background-image: radial-gradient(
+        circle at 20% 80%,
+        rgba(var(--color-gradient-start), 0.03) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(var(--color-gradient-end), 0.03) 0%,
+        transparent 50%
+      );
   }
-  
+
   @media (min-width: 640px) {
     body {
       font-size: 17px;
@@ -76,7 +88,7 @@
   footer {
     @apply mx-auto max-w-4xl px-6 sm:px-8;
   }
-  
+
   main {
     @apply flex-1;
   }
@@ -84,7 +96,7 @@
     @apply outline-2 outline-offset-2 outline-skin-accent
     focus-visible:no-underline focus-visible:outline-dashed transition-all duration-200;
   }
-  
+
   a:hover {
     @apply transition-all duration-200;
   }
@@ -128,21 +140,26 @@
     font-size: 1.0625rem;
     line-height: 1.85;
     max-width: none;
-    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 1, "ss01" 1;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1,
+      "onum" 1,
+      "ss01" 1;
     text-rendering: optimizeLegibility;
     hyphens: none;
     word-spacing: 0.05em;
   }
-  
+
   /* Custom letter spacing for headings */
   .prose h1 {
     letter-spacing: -0.03em;
   }
-  
+
   .prose h2 {
     letter-spacing: -0.02em;
   }
-  
+
   .prose h3 {
     letter-spacing: -0.01em;
   }
@@ -204,23 +221,30 @@
   /* Enhanced code blocks */
   .prose pre {
     @apply !bg-skin-card !bg-opacity-90 !rounded-xl !p-6 !my-8 !overflow-x-auto;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
     position: relative;
   }
-  
+
   .prose pre::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, rgba(var(--color-gradient-start), 0.5), rgba(var(--color-gradient-end), 0.5));
+    background: linear-gradient(
+      90deg,
+      rgba(var(--color-gradient-start), 0.5),
+      rgba(var(--color-gradient-end), 0.5)
+    );
   }
 
   .prose pre code {
     @apply !bg-transparent !p-0 !text-base !leading-relaxed;
-    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-family: "JetBrains Mono", "Fira Code", "SF Mono", Monaco,
+      "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
     font-weight: 400;
   }
 
@@ -236,19 +260,19 @@
     width: auto !important;
     min-width: min-content;
   }
-  
+
   /* Ensure proper sizing for different diagram types */
   .prose .mermaid-rendered[id*="mermaid"] {
     @apply w-full;
   }
-  
+
   /* Mobile responsiveness for Mermaid diagrams */
   @media (max-width: 768px) {
     .prose .mermaid-rendered {
       @apply overflow-x-auto;
       -webkit-overflow-scrolling: touch;
     }
-    
+
     .prose .mermaid-rendered svg {
       min-width: 600px;
     }
@@ -260,13 +284,13 @@
     @apply relative;
     display: none;
   }
-  
+
   /* Show a loading state for Mermaid diagrams */
   .prose .mermaid-loading {
     @apply my-8 flex justify-center items-center p-8 border border-gray-300 dark:border-gray-700 rounded-md;
     min-height: 200px;
   }
-  
+
   .prose .mermaid-loading::after {
     content: "Loading diagram...";
     @apply text-gray-500 dark:text-gray-400;
@@ -291,12 +315,11 @@
     @apply !outline-2 !outline-offset-2 !outline-skin-accent !rounded-md;
     box-shadow: 0 0 0 4px rgba(var(--color-accent), 0.1);
   }
-  
+
   /* Card hover effects */
   .card-hover {
     @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
-  
 
   /* Improved list spacing */
   .prose li {
@@ -312,37 +335,41 @@
   .display-none {
     @apply hidden;
   }
-  
+
   .focus-outline {
     @apply outline-2 outline-offset-2 outline-skin-accent focus-visible:no-underline focus-visible:outline-dashed transition-all duration-200;
   }
-  
+
   .btn-primary {
     @apply bg-skin-accent text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:brightness-110 focus:outline-none focus:outline-2 focus:outline-offset-2 focus:outline-skin-accent;
   }
-  
+
   .btn-secondary {
     @apply bg-skin-card border border-skin-line text-skin-base px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-skin-card-muted focus:outline-none focus:outline-2 focus:outline-offset-2 focus:outline-skin-accent;
   }
-  
+
   .card {
     @apply bg-skin-card border border-skin-line rounded-xl p-6 shadow-sm transition-all duration-200 hover:shadow-md;
   }
-  
+
   .badge {
     @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-skin-accent bg-opacity-10 text-skin-accent;
   }
-  
+
   .section-padding {
     @apply py-16 sm:py-20;
   }
-  
+
   .container {
     @apply max-w-7xl mx-auto px-6 sm:px-8;
   }
-  
+
   .gradient-text {
-    background: linear-gradient(135deg, rgb(var(--color-gradient-start)), rgb(var(--color-gradient-end)));
+    background: linear-gradient(
+      135deg,
+      rgb(var(--color-gradient-start)),
+      rgb(var(--color-gradient-end))
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

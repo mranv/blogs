@@ -39,14 +39,17 @@ WebAssembly is a binary instruction format for a stack-based virtual machine. It
 ## Official Resources & Documentation
 
 ### WebAssembly Official Site
+
 - Documentation, use cases, community resources, tools, SDKs
 - [webassembly.org](https://webassembly.org)
 
 ### WebAssembly on web.dev
+
 - Explainers and best practices for using WebAssembly on the web
 - [Learn more about WebAssembly](https://web.dev/webassembly/)
 
 ### Learning WebAssembly by Example
+
 - Hands-on tutorials and code samples in various languages
 - Step-by-step guides to core Wasm principles
 - [Wasm by Example](https://wasmbyexample.dev/)
@@ -54,7 +57,9 @@ WebAssembly is a binary instruction format for a stack-based virtual machine. It
 ## Additional Resource Hubs
 
 ### Awesome WebAssembly
+
 Extensive GitHub repository listing:
+
 - Books, articles, tutorials
 - Tools, utilities
 - WebAssembly-ready languages
@@ -64,6 +69,7 @@ Extensive GitHub repository listing:
 **Repository**: [Awesome WebAssembly on GitHub](https://github.com/mbasso/awesome-wasm)
 
 ### Tsoding Daily (YouTube Channel)
+
 - 500+ technical videos focused on WASM, JavaScript, and more
 - Live-coding sessions, low-level development demos
 - [Tsoding Daily - YouTube](https://www.youtube.com/c/TsodingDaily)
@@ -79,10 +85,12 @@ Extensive GitHub repository listing:
 ### Key Learning Resources
 
 1. **YouTube Channel**: Tsoding Daily
+
    - 500+ technical videos
    - WASM and JS tutorials
 
 2. **Live Coding Sessions**: [Twitch.tv/tsoding](https://twitch.tv/tsoding)
+
    - Real-time coding
    - Interactive Q&A
 
@@ -100,18 +108,22 @@ Extensive GitHub repository listing:
 ### Implementation Roadmap
 
 #### Week 1–2: Individual Learning
+
 - Review Tsoding's WASM fundamentals playlist
 - Clone and examine the snake-c-wasm repository
 
 #### Week 3: Collaborative Exploration
+
 - Team participation in a scheduled Twitch stream
 - Post-stream debrief and knowledge-sharing session
 
 #### Week 4–6: Applied Learning
+
 - Develop prototypes incorporating Tsoding's WASM techniques
 - Code review and optimization workshops
 
 #### Week 7–8: Strategic Integration
+
 - Evaluate prototypes for production viability
 - Formulate integration plans for existing projects
 
@@ -138,25 +150,35 @@ These resources illustrate how to integrate the FFmpeg library compiled to WebAs
 ### Implementation Example
 
 ```javascript
-import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
+import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
 const ffmpeg = createFFmpeg({
   log: true,
-  corePath: 'https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js',
+  corePath: "https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js",
 });
 
 async function convertVideo() {
   if (!ffmpeg.isLoaded()) {
     await ffmpeg.load();
   }
-  
-  ffmpeg.FS('writeFile', 'input.webm', await fetchFile(videoFile));
-  
-  await ffmpeg.run('-i', 'input.webm', '-t', '2.5', '-ss', '2.0', '-f', 'gif', 'output.gif');
-  
-  const data = ffmpeg.FS('readFile', 'output.gif');
-  
-  return new Blob([data.buffer], { type: 'image/gif' });
+
+  ffmpeg.FS("writeFile", "input.webm", await fetchFile(videoFile));
+
+  await ffmpeg.run(
+    "-i",
+    "input.webm",
+    "-t",
+    "2.5",
+    "-ss",
+    "2.0",
+    "-f",
+    "gif",
+    "output.gif"
+  );
+
+  const data = ffmpeg.FS("readFile", "output.gif");
+
+  return new Blob([data.buffer], { type: "image/gif" });
 }
 ```
 
@@ -206,7 +228,7 @@ npm run asbuild
 #### Using in JavaScript
 
 ```javascript
-import { add, fibonacci } from './build/release.js';
+import { add, fibonacci } from "./build/release.js";
 
 console.log(add(5, 3)); // 8
 console.log(fibonacci(10)); // 55
@@ -221,6 +243,7 @@ A hands-on approach to benchmarking WASM vs. JavaScript can reveal real-world pe
 **Video**: [WebAssembly - Tutorial and Performance testing - (AssemblyScript to WASM) by Daniel Bark](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 **Covers**:
+
 - Setup of AssemblyScript to WASM compilation
 - Basic function calls (Add, Factorial, Array operations)
 - Overhead of passing large payloads between JS and WASM
@@ -245,12 +268,12 @@ function fibonacciJS(n) {
 }
 
 // WebAssembly implementation (compiled from AssemblyScript)
-import { fibonacci as fibonacciWASM } from './wasm/fibonacci.js';
+import { fibonacci as fibonacciWASM } from "./wasm/fibonacci.js";
 
 // Compare performance
 const n = 40;
-benchmark('JavaScript Fibonacci', () => fibonacciJS(n), 1);
-benchmark('WebAssembly Fibonacci', () => fibonacciWASM(n), 1);
+benchmark("JavaScript Fibonacci", () => fibonacciJS(n), 1);
+benchmark("WebAssembly Fibonacci", () => fibonacciWASM(n), 1);
 ```
 
 ### Performance Considerations
@@ -284,18 +307,18 @@ module.exports = {
     rules: [
       {
         test: /\.wasm$/,
-        type: 'webassembly/async',
+        type: "webassembly/async",
       },
     ],
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      chunks: "all",
       cacheGroups: {
         wasm: {
           test: /\.wasm$/,
-          name: 'wasm',
-          chunks: 'all',
+          name: "wasm",
+          chunks: "all",
           enforce: true,
         },
       },
@@ -310,12 +333,12 @@ module.exports = {
 
 ```javascript
 async function loadWASM() {
-  const wasmModule = await import('./heavy-computation.wasm');
+  const wasmModule = await import("./heavy-computation.wasm");
   return wasmModule;
 }
 
 // Use when needed
-button.addEventListener('click', async () => {
+button.addEventListener("click", async () => {
   const wasm = await loadWASM();
   const result = wasm.performHeavyComputation(data);
 });
@@ -328,10 +351,10 @@ let useWASM = false;
 
 async function initializeComputation() {
   try {
-    await import('./computation.wasm');
+    await import("./computation.wasm");
     useWASM = true;
   } catch (error) {
-    console.log('WASM not supported, falling back to JS');
+    console.log("WASM not supported, falling back to JS");
     useWASM = false;
   }
 }
@@ -350,8 +373,10 @@ function compute(data) {
 #### Content Security Policy
 
 ```html
-<meta http-equiv="Content-Security-Policy" 
-      content="script-src 'self' 'wasm-unsafe-eval';">
+<meta
+  http-equiv="Content-Security-Policy"
+  content="script-src 'self' 'wasm-unsafe-eval';"
+/>
 ```
 
 #### WASM Module Validation
@@ -360,13 +385,18 @@ function compute(data) {
 async function loadSecureWASM(url) {
   const response = await fetch(url);
   const bytes = await response.arrayBuffer();
-  
+
   // Validate WASM magic number
   const view = new Uint8Array(bytes);
-  if (view[0] !== 0x00 || view[1] !== 0x61 || view[2] !== 0x73 || view[3] !== 0x6d) {
-    throw new Error('Invalid WASM file');
+  if (
+    view[0] !== 0x00 ||
+    view[1] !== 0x61 ||
+    view[2] !== 0x73 ||
+    view[3] !== 0x6d
+  ) {
+    throw new Error("Invalid WASM file");
   }
-  
+
   return WebAssembly.instantiate(bytes);
 }
 ```
@@ -377,9 +407,9 @@ async function loadSecureWASM(url) {
 
 ```javascript
 // Managing WASM memory
-const memory = new WebAssembly.Memory({ 
-  initial: 256, 
-  maximum: 512 
+const memory = new WebAssembly.Memory({
+  initial: 256,
+  maximum: 512,
 });
 
 // Accessing memory from JavaScript
@@ -393,13 +423,13 @@ memory.grow(1); // Grow by 1 page (64KB)
 
 ```javascript
 // Check for SharedArrayBuffer support
-if (typeof SharedArrayBuffer !== 'undefined') {
+if (typeof SharedArrayBuffer !== "undefined") {
   const sharedMemory = new WebAssembly.Memory({
     initial: 1,
     maximum: 10,
-    shared: true
+    shared: true,
   });
-  
+
   // Use with web workers for parallel processing
 }
 ```
@@ -408,19 +438,19 @@ if (typeof SharedArrayBuffer !== 'undefined') {
 
 ```javascript
 // Using WASI for system-level operations
-import { WASI } from '@wasmer/wasi';
+import { WASI } from "@wasmer/wasi";
 
 const wasi = new WASI({
-  args: ['program'],
+  args: ["program"],
   env: {},
   preopens: {
-    '/sandbox': '/some/real/path'
-  }
+    "/sandbox": "/some/real/path",
+  },
 });
 
-const wasmBytes = await fetch('program.wasm').then(res => res.arrayBuffer());
+const wasmBytes = await fetch("program.wasm").then(res => res.arrayBuffer());
 const wasmModule = await WebAssembly.instantiate(wasmBytes, {
-  wasi_snapshot_preview1: wasi.wasiImport
+  wasi_snapshot_preview1: wasi.wasiImport,
 });
 
 wasi.start(wasmModule.instance);
@@ -445,9 +475,9 @@ npx asc assembly/index.ts --sourceMap --debug
 
 ```javascript
 // Profile WASM performance
-console.profile('WASM Operation');
+console.profile("WASM Operation");
 wasmFunction();
-console.profileEnd('WASM Operation');
+console.profileEnd("WASM Operation");
 ```
 
 ## Testing Strategies
@@ -457,16 +487,16 @@ console.profileEnd('WASM Operation');
 ```javascript
 // Jest configuration for WASM
 module.exports = {
-  testEnvironment: 'node',
+  testEnvironment: "node",
   transform: {
-    '^.+\\.wasm$': 'jest-transform-wasm'
-  }
+    "^.+\\.wasm$": "jest-transform-wasm",
+  },
 };
 
 // Test file
-import { add } from './math.wasm';
+import { add } from "./math.wasm";
 
-test('WASM add function', () => {
+test("WASM add function", () => {
   expect(add(2, 3)).toBe(5);
 });
 ```
@@ -475,14 +505,14 @@ test('WASM add function', () => {
 
 ```javascript
 // Testing WASM with React Testing Library
-import { render, fireEvent } from '@testing-library/react';
-import WASMComponent from './WASMComponent';
+import { render, fireEvent } from "@testing-library/react";
+import WASMComponent from "./WASMComponent";
 
-test('WASM component integration', async () => {
+test("WASM component integration", async () => {
   const { getByText } = render(<WASMComponent />);
-  
-  fireEvent.click(getByText('Compute'));
-  
+
+  fireEvent.click(getByText("Compute"));
+
   await waitFor(() => {
     expect(getByText(/Result:/)).toBeInTheDocument();
   });
@@ -502,13 +532,13 @@ class WASMManager {
   constructor() {
     this.instances = new Set();
   }
-  
+
   async createInstance(wasmBytes) {
     const instance = await WebAssembly.instantiate(wasmBytes);
     this.instances.add(instance);
     return instance;
   }
-  
+
   cleanup() {
     this.instances.clear();
   }
@@ -532,11 +562,11 @@ try {
   const result = await WebAssembly.instantiate(wasmBytes);
 } catch (error) {
   if (error instanceof WebAssembly.CompileError) {
-    console.error('WASM compilation failed:', error);
+    console.error("WASM compilation failed:", error);
   } else if (error instanceof WebAssembly.LinkError) {
-    console.error('WASM linking failed:', error);
+    console.error("WASM linking failed:", error);
   } else {
-    console.error('Unknown WASM error:', error);
+    console.error("Unknown WASM error:", error);
   }
 }
 ```
@@ -557,5 +587,5 @@ The future of web development increasingly involves WebAssembly for performance-
 
 ---
 
-*Compiled & Curated by Anubhav Gain*  
-*Date: 2025-02-07*
+_Compiled & Curated by Anubhav Gain_  
+_Date: 2025-02-07_

@@ -37,6 +37,7 @@ Migrating from Wazuh indexer to OpenSearch requires careful planning and executi
 The migration from Wazuh indexer to OpenSearch involves several components:
 
 **Components to Migrate:**
+
 - Index data (alerts, archives, monitoring data)
 - Index templates and mappings
 - Security configurations and users
@@ -44,18 +45,19 @@ The migration from Wazuh indexer to OpenSearch involves several components:
 - Backup repositories and snapshots
 
 **Migration Paths:**
+
 1. **In-place upgrade**: Replace Wazuh indexer with OpenSearch on same nodes
 2. **Side-by-side migration**: Deploy new OpenSearch cluster and migrate data
 3. **Hybrid approach**: Gradual replacement with data synchronization
 
 ### Compatibility Matrix
 
-| Wazuh Version | Compatible OpenSearch Version | Migration Method |
-|---------------|------------------------------|------------------|
-| 4.3.x         | 2.3.0+                      | Direct replacement |
-| 4.4.x         | 2.8.0+                      | Direct replacement |
-| 4.5.x         | 2.11.0+                     | Direct replacement |
-| 4.6.x+        | 2.15.0+                     | Direct replacement |
+| Wazuh Version | Compatible OpenSearch Version | Migration Method   |
+| ------------- | ----------------------------- | ------------------ |
+| 4.3.x         | 2.3.0+                        | Direct replacement |
+| 4.4.x         | 2.8.0+                        | Direct replacement |
+| 4.5.x         | 2.11.0+                       | Direct replacement |
+| 4.6.x+        | 2.15.0+                       | Direct replacement |
 
 ## Pre-Migration Planning
 
@@ -277,7 +279,7 @@ INDICES=$(curl -s -k -u admin:admin "https://localhost:9200/_cat/indices?h=index
 
 for index in $INDICES; do
   echo "Migrating index: $index"
-  
+
   # Create index on new cluster
   curl -X POST "localhost:9201/_reindex" -H 'Content-Type: application/json' -d"
   {
@@ -293,7 +295,7 @@ for index in $INDICES; do
       \"index\": \"$index\"
     }
   }"
-  
+
   # Wait for reindex to complete
   sleep 10
 done
@@ -329,7 +331,7 @@ CLUSTER_IP="10.0.1.10"
 
 for node in "${NODES[@]}"; do
   echo "Migrating node: $node"
-  
+
   # Step 1: Disable shard allocation
   curl -k -u admin:admin -X PUT "https://$CLUSTER_IP:9200/_cluster/settings" \
     -H 'Content-Type: application/json' -d'
@@ -338,10 +340,10 @@ for node in "${NODES[@]}"; do
       "cluster.routing.allocation.enable": "primaries"
     }
   }'
-  
+
   # Step 2: Stop node services on target node
   ssh $node "sudo systemctl stop wazuh-indexer"
-  
+
   # Step 3: Install OpenSearch on target node
   ssh $node "
     curl -o- https://artifacts.opensearch.org/publickeys/opensearch.pgp | sudo apt-key add -
@@ -349,23 +351,23 @@ for node in "${NODES[@]}"; do
     sudo apt-get update
     sudo apt-get install opensearch=2.15.0
   "
-  
+
   # Step 4: Configure OpenSearch
   scp cluster-opensearch.yml $node:/tmp/
   ssh $node "sudo mv /tmp/cluster-opensearch.yml /etc/opensearch/opensearch.yml"
-  
+
   # Step 5: Migrate data directory
   ssh $node "
     sudo cp -r /var/lib/wazuh-indexer /var/lib/opensearch
     sudo chown -R opensearch:opensearch /var/lib/opensearch
   "
-  
+
   # Step 6: Start OpenSearch
   ssh $node "sudo systemctl enable opensearch && sudo systemctl start opensearch"
-  
+
   # Step 7: Wait for node to join cluster
   sleep 60
-  
+
   # Step 8: Re-enable shard allocation
   curl -k -u admin:admin -X PUT "https://$CLUSTER_IP:9200/_cluster/settings" \
     -H 'Content-Type: application/json' -d'
@@ -374,7 +376,7 @@ for node in "${NODES[@]}"; do
       "cluster.routing.allocation.enable": "all"
     }
   }'
-  
+
   # Step 9: Wait for cluster to stabilize
   while true; do
     status=$(curl -s -k -u admin:admin "https://$CLUSTER_IP:9200/_cluster/health" | jq -r '.status')
@@ -527,10 +529,10 @@ filter {
       add_field => { "rule_id" => "%{[rule][id]}" }
     }
   }
-  
+
   # Add migration metadata
   mutate {
-    add_field => { 
+    add_field => {
       "migration_timestamp" => "%{@timestamp}"
       "migration_source" => "wazuh-indexer"
     }
@@ -546,7 +548,7 @@ output {
     ssl => true
     ssl_certificate_verification => false
   }
-  
+
   stdout {
     codec => dots
   }
@@ -603,7 +605,8 @@ server.host: "0.0.0.0"
 server.port: 443
 opensearch.hosts: ["https://localhost:9200"]
 opensearch.ssl.verificationMode: certificate
-opensearch.ssl.certificateAuthorities: ["/etc/wazuh-dashboard/certs/root-ca.pem"]
+opensearch.ssl.certificateAuthorities:
+  ["/etc/wazuh-dashboard/certs/root-ca.pem"]
 opensearch.ssl.certificate: "/etc/wazuh-dashboard/certs/wazuh-dashboard.pem"
 opensearch.ssl.key: "/etc/wazuh-dashboard/certs/wazuh-dashboard-key.pem"
 
@@ -793,6 +796,7 @@ curl -k -u admin:admin -X PUT "https://localhost:9200/_plugins/_security/api/int
 Successfully migrating from Wazuh indexer to OpenSearch requires careful planning, proper execution, and thorough validation. This guide provides the necessary tools and procedures for different migration scenarios.
 
 Key success factors:
+
 - Comprehensive backup strategy
 - Thorough testing in development
 - Minimal downtime planning

@@ -163,25 +163,30 @@ The XDR platform is built using a microservices architecture with Docker contain
 ### Security Event Processing
 
 1. **Collection**: Security logs and events are collected by the XDR Manager
+
    - From network devices, servers, endpoints, and security tools
    - Over various protocols (Syslog, TCP, UDP, etc.)
 
 2. **Processing**: XDR Manager processes the incoming data
+
    - Normalizes data format
    - Enriches data with additional context
    - Applies initial correlation rules
 
 3. **Indexing**: Processed data is forwarded to OpenSearch
+
    - Structured for efficient searching
    - Indexed with relevant metadata
    - Made available for real-time queries
 
 4. **Analysis**: Multiple analysis pipelines process the data
+
    - Rule-based detection identifies known patterns
    - Anomaly detection identifies unusual behavior
    - Threat intelligence correlation adds context
 
 5. **Visualization**: Results presented in OpenSearch Dashboards
+
    - Security dashboards show current threats
    - Historical trends and patterns displayed
    - Drill-down capability for incident investigation
@@ -206,39 +211,39 @@ graph TB
         User[Users/Analysts]
         API[API Clients]
     end
-    
+
     subgraph "Edge Layer"
         Caddy[Caddy Proxy<br/>TLS/HTTPS]
     end
-    
+
     subgraph "Core Services"
         XDR[XDR Manager]
         OS[OpenSearch]
         OSD[OpenSearch<br/>Dashboards]
     end
-    
+
     subgraph "API Services"
         EDREX[EDREX API]
         XDR1[XDR One API]
         SCHED[XDR Scheduler]
     end
-    
+
     subgraph "Data Layer"
         SDB[SurrealDB]
         NATS[NATS Server]
     end
-    
+
     subgraph "Support Services"
         CERT[Certificate<br/>Preparation]
         MIG[DB Migration]
     end
-    
+
     User --> Caddy
     API --> Caddy
     Caddy --> OSD
     Caddy --> EDREX
     Caddy --> XDR1
-    
+
     XDR --> OS
     XDR --> NATS
     EDREX --> SDB
@@ -246,7 +251,7 @@ graph TB
     XDR1 --> SDB
     SCHED --> SDB
     SCHED --> NATS
-    
+
     CERT --> Caddy
     CERT --> XDR
     CERT --> OS
@@ -265,29 +270,35 @@ graph TB
 ### Deployment Steps
 
 1. **Clone the Repository**
+
    ```bash
    git clone https://github.com/your-org/xdr-platform.git
    cd xdr-platform
    ```
 
 2. **Configure Environment**
+
    - Update domain names and credentials in the configuration files
    - Ensure proper permissions on certificate directories
+
    ```bash
    mkdir -p config/xdr_indexer_ssl_certs
    chmod 755 config/xdr_indexer_ssl_certs
    ```
 
 3. **Generate or Import Certificates**
+
    - Place your certificates in the appropriate directories, or
    - Configure Caddy to automatically obtain certificates
 
 4. **Start the Platform**
+
    ```bash
    docker-compose up -d
    ```
 
 5. **Verify Deployment**
+
    - Check container status: `docker-compose ps`
    - Verify OpenSearch is running: `curl -k https://localhost:9200`
    - Access OpenSearch Dashboards: `https://your-domain.com`
@@ -411,21 +422,25 @@ volumes:
 ### Common Issues and Solutions
 
 1. **Container fails to start**
+
    - Check logs: `docker logs <container_name>`
    - Verify volume permissions
    - Ensure no port conflicts
 
 2. **OpenSearch not accessible**
+
    - Check if the container is running: `docker-compose ps opensearch`
    - Verify memory limits: OpenSearch requires adequate memory allocation
    - Check OpenSearch logs: `docker logs opensearch`
 
 3. **Certificate issues**
+
    - Verify certificate files exist in the correct locations
    - Check certificate permissions
    - Ensure certificate chain is complete
 
 4. **API access problems**
+
    - Verify API credentials
    - Check network connectivity
    - Ensure proper port forwarding

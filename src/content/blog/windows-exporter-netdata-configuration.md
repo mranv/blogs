@@ -115,12 +115,16 @@ Restart-Service windows_exporter
 The configuration monitors several log files with specific patterns:
 
 ### Standard Log Format
+
 For logs like ArStatusUpdate, IvsAgent, IvsSync, and IvsTray:
+
 - **Pattern**: `(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} [+-]\d{2}:\d{2}) \[(?P<severity>\w+)\] (?P<message>.*)`
 - **Example**: `2024-01-15 10:30:45.123 +00:00 [INFO] Service started successfully`
 
 ### Installation Log Format
+
 For osquery-install and wazuh-install logs:
+
 - **Pattern**: `=== (?P<message>.*) (?P<timestamp>\d{2}/\d{2}/\d{4}  \d{2}:\d{2}:\d{2})  (?P<extra>.*) ===`
 - **Example**: `=== Installation started 01/15/2024  10:30:45  Additional info ===`
 
