@@ -1,36 +1,81 @@
-// Optimized theme toggle script
+// Production-ready theme toggle script
 (() => {
-  let e =
+  // State management
+  let currentTheme =
     localStorage.getItem("theme") ||
     (window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light");
-  function t() {
-    localStorage.setItem("theme", e),
-      document.documentElement.setAttribute("data-theme", e);
-    const t = document.querySelector("#theme-btn");
-    t && t.setAttribute("aria-label", e);
+
+  // Apply theme to DOM
+  function applyTheme() {
+    localStorage.setItem("theme", currentTheme);
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
+    const themeBtn = document.querySelector("#theme-btn");
+    if (themeBtn) {
+      themeBtn.setAttribute("aria-label", currentTheme);
+    }
+
+    // Update theme-color meta tag
     requestAnimationFrame(() => {
-      const t = getComputedStyle(document.body).backgroundColor;
-      document
-        .querySelector('meta[name="theme-color"]')
-        ?.setAttribute("content", t);
+      const bgColor = getComputedStyle(document.body).backgroundColor;
+      const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+      if (themeColorMeta) {
+        themeColorMeta.setAttribute("content", bgColor);
+      }
     });
   }
-  t(),
-    window.addEventListener("load", () => {
-      function n() {
-        document.querySelector("#theme-btn")?.addEventListener("click", () => {
-          e = "light" === e ? "dark" : "light";
-          t();
-        });
-      }
-      n(), document.addEventListener("astro:after-swap", n);
-    }),
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", ({ matches: m }) => {
-        e = m ? "dark" : "light";
-        t();
-      });
+
+  // Toggle theme
+  function toggleTheme() {
+    currentTheme = currentTheme === "light" ? "dark" : "light";
+    applyTheme();
+  }
+
+  // Initialize theme button
+  function initThemeButton() {
+    const themeBtn = document.querySelector("#theme-btn");
+    if (!themeBtn) return;
+
+    // Remove any existing listeners
+    const newBtn = themeBtn.cloneNode(true);
+    themeBtn.parentNode.replaceChild(newBtn, themeBtn);
+
+    // Add single click listener
+    newBtn.addEventListener("click", toggleTheme);
+  }
+
+  // Apply theme immediately
+  applyTheme();
+
+  // Initialize when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initThemeButton);
+  } else {
+    initThemeButton();
+  }
+
+  // Handle Astro view transitions
+  document.addEventListener("astro:after-swap", () => {
+    applyTheme();
+    initThemeButton();
+  });
+
+  // Listen for system theme changes
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+  // Modern browsers
+  if (mediaQuery.addEventListener) {
+    mediaQuery.addEventListener("change", e => {
+      currentTheme = e.matches ? "dark" : "light";
+      applyTheme();
+    });
+  } else {
+    // Fallback for older browsers
+    mediaQuery.addListener(e => {
+      currentTheme = e.matches ? "dark" : "light";
+      applyTheme();
+    });
+  }
 })();
