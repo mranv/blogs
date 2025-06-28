@@ -266,6 +266,14 @@ const layoutProps = {
           const pre = codeBlock.parentElement;
           if (!pre) return;
 
+          // Create a loading placeholder
+          const loadingDiv = document.createElement("div");
+          loadingDiv.className = "mermaid-loading";
+          loadingDiv.id = `mermaid-loading-${index}`;
+
+          // Insert loading placeholder after the hidden pre block
+          pre.parentElement?.insertBefore(loadingDiv, pre.nextSibling);
+
           // Get the Mermaid code
           const mermaidCode = codeBlock.textContent || "";
 
@@ -282,11 +290,18 @@ const layoutProps = {
             );
             mermaidDiv.innerHTML = svg;
 
-            // Replace the code block with the rendered diagram
-            pre.parentElement?.replaceChild(mermaidDiv, pre);
+            // Store the Mermaid code for theme changes
+            mermaidDiagrams.set(mermaidDiv.id, mermaidCode);
+
+            // Replace the loading placeholder with the rendered diagram
+            loadingDiv.parentElement?.replaceChild(mermaidDiv, loadingDiv);
+            // Remove the original pre block
+            pre.remove();
           } catch (error) {
             console.error("Failed to render Mermaid diagram:", error);
-            // Keep the original code block if rendering fails
+            // Show the original code block if rendering fails
+            pre.style.display = "block";
+            loadingDiv.remove();
           }
         });
       }
@@ -299,21 +314,76 @@ const layoutProps = {
       setTimeout(initializeMermaid, 200);
     }
 
+    // Store original Mermaid code for theme changes
+    const mermaidDiagrams = new Map();
+
     // Listen for theme changes to update Mermaid diagrams
-    const observer = new MutationObserver(mutations => {
-      mutations.forEach(mutation => {
+    const observer = new MutationObserver(async mutations => {
+      for (const mutation of mutations) {
         if (
           mutation.type === "attributes" &&
           mutation.attributeName === "data-theme"
         ) {
-          // Re-initialize Mermaid with new theme
           const mermaidRendered =
             document.querySelectorAll(".mermaid-rendered");
-          if (mermaidRendered.length > 0) {
-            window.location.reload(); // Simple reload for theme change
+          if (mermaidRendered.length > 0 && mermaidDiagrams.size > 0) {
+            // Re-initialize Mermaid with new theme
+            const { default: mermaid } = await import("mermaid");
+
+            mermaid.initialize({
+              startOnLoad: false,
+              theme:
+                document.documentElement.getAttribute("data-theme") === "dark"
+                  ? "dark"
+                  : "default",
+              themeVariables: {
+                darkMode:
+                  document.documentElement.getAttribute("data-theme") ===
+                  "dark",
+              },
+              flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: "basis",
+              },
+              sequence: {
+                useMaxWidth: true,
+                diagramMarginX: 50,
+                diagramMarginY: 10,
+                actorMargin: 50,
+                width: 150,
+                height: 65,
+                boxMargin: 10,
+                boxTextMargin: 5,
+                noteMargin: 10,
+                messageMargin: 35,
+              },
+              gantt: {
+                useMaxWidth: true,
+              },
+            });
+
+            // Re-render all diagrams
+            for (const [id, code] of mermaidDiagrams) {
+              try {
+                const element = document.getElementById(id);
+                if (element) {
+                  const { svg } = await mermaid.render(
+                    `${id}-refresh-${Date.now()}`,
+                    code
+                  );
+                  element.innerHTML = svg;
+                }
+              } catch (error) {
+                console.error(
+                  `Failed to re-render Mermaid diagram ${id}:`,
+                  error
+                );
+              }
+            }
           }
         }
-      });
+      }
     });
 
     observer.observe(document.documentElement, {
