@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About Anubhav Gain - Cybersecurity Expert & Security Engineer"
+title: "Cybersecurity Expert & Security Engineer"
 description: "Anubhav Gain is a distinguished cybersecurity professional and Security Engineer at Infopercept Consulting, specializing in XDR/OXDR platforms, DevSecOps, and enterprise security solutions."
 keywords: "cybersecurity expert, security engineer, XDR platform, OXDR, DevSecOps, enterprise security, threat detection, cybersecurity consulting, Infopercept, TechAnv"
 ---
