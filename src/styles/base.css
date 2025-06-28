@@ -199,11 +199,32 @@
 
   /* Mermaid diagram styles */
   .prose .mermaid-rendered {
-    @apply my-8 flex justify-center;
+    @apply my-8 flex justify-center overflow-x-auto overflow-y-hidden;
+    max-width: 100%;
   }
 
   .prose .mermaid-rendered svg {
-    @apply max-w-full h-auto;
+    @apply h-auto;
+    max-width: none !important;
+    width: auto !important;
+    min-width: min-content;
+  }
+  
+  /* Ensure proper sizing for different diagram types */
+  .prose .mermaid-rendered[id*="mermaid"] {
+    @apply w-full;
+  }
+  
+  /* Mobile responsiveness for Mermaid diagrams */
+  @media (max-width: 768px) {
+    .prose .mermaid-rendered {
+      @apply overflow-x-auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .prose .mermaid-rendered svg {
+      min-width: 600px;
+    }
   }
 
   /* Mermaid pre-render code blocks */
