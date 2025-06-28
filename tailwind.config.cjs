@@ -37,6 +37,7 @@ module.exports = {
       outlineColor: {
         skin: {
           fill: withOpacity("--color-accent"),
+          accent: withOpacity("--color-accent"),
         },
       },
       borderColor: {
@@ -54,7 +55,8 @@ module.exports = {
         transparent: "transparent",
       },
       fontFamily: {
-        mono: ["IBM Plex Mono", "monospace"],
+        sans: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        mono: ["JetBrains Mono", "SF Mono", "Monaco", "Cascadia Code", "Roboto Mono", "Consolas", "Courier New", "monospace"],
       },
 
       typography: {
