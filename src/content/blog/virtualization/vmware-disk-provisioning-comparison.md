@@ -3,7 +3,7 @@ author: Anubhav Gain
 pubDatetime: 2024-04-24T16:00:00Z
 modDatetime: 2024-04-24T16:00:00Z
 title: Comparing VMware Disk Provisioning Types - Which One Should You Choose?
-slug: vmware-disk-provisioning-comparison
+slug: vmware-disk-provisioning-types-comparison
 featured: true
 draft: false
 tags:

@@ -3,7 +3,7 @@ author: Anubhav Gain
 pubDatetime: 2024-05-01T10:00:00Z
 modDatetime: 2024-05-01T10:00:00Z
 title: Comprehensive Elasticsearch/OpenSearch Cluster Health Troubleshooting Guide
-slug: elasticsearch-opensearch-cluster-troubleshooting
+slug: elasticsearch-opensearch-cluster-troubleshooting-tool
 featured: true
 draft: false
 tags:
