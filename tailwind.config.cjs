@@ -60,8 +60,10 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        sans: ["IBM Plex Sans", "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        serif: ["Source Serif 4", "Georgia", "Cambria", "Times New Roman", "Times", "serif"],
         mono: ["JetBrains Mono", "SF Mono", "Monaco", "Cascadia Code", "Roboto Mono", "Consolas", "Courier New", "monospace"],
+        reading: ["Source Serif 4", "Georgia", "Cambria", "Times New Roman", "Times", "serif"],
       },
 
       typography: {
