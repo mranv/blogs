@@ -66,11 +66,11 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
-        serif: ["Charter", "Source Serif Pro", "Georgia", "Cambria", "Times New Roman", "Times", "serif"],
-        mono: ["JetBrains Mono", "SF Mono", "Monaco", "Cascadia Code", "Roboto Mono", "Consolas", "Courier New", "monospace"],
-        reading: ["Charter", "Source Serif Pro", "Georgia", "Cambria", "Times New Roman", "Times", "serif"],
-        corporate: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Arial", "sans-serif"],
+        serif: ["Charter", "Iowan Old Style", "Georgia", "Source Serif Pro", "Palatino", "Book Antiqua", "Cambria", "Times New Roman", "Times", "serif"],
+        mono: ["JetBrains Mono", "SF Mono", "Monaco", "Cascadia Code", "Roboto Mono", "Source Code Pro", "Fira Code", "Consolas", "Courier New", "monospace"],
+        reading: ["Charter", "Iowan Old Style", "Georgia", "Source Serif Pro", "Palatino", "Book Antiqua", "serif"],
+        corporate: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "sans-serif"],
       },
 
       typography: {

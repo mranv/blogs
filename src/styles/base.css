@@ -55,14 +55,22 @@
   body {
     @apply flex min-h-[100svh] flex-col bg-skin-fill text-skin-base font-sans
     selection:bg-skin-accent selection:bg-opacity-20 selection:text-skin-base;
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.75;
     font-weight: 400;
+    letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
     background-image: radial-gradient(circle at 20% 80%, rgba(var(--color-gradient-start), 0.03) 0%, transparent 50%),
                       radial-gradient(circle at 80% 20%, rgba(var(--color-gradient-end), 0.03) 0%, transparent 50%);
+  }
+  
+  @media (min-width: 640px) {
+    body {
+      font-size: 17px;
+    }
   }
   section,
   footer {
@@ -89,14 +97,20 @@
     sm:scale-110;
   }
   .prose {
-    @apply prose-headings:!mb-6 prose-headings:!mt-10 prose-headings:!text-skin-base prose-headings:!font-semibold prose-headings:!leading-tight prose-headings:!font-sans
-    prose-h1:!text-4xl prose-h1:!font-bold prose-h1:!tracking-tight prose-h1:!mb-8 prose-h1:!font-sans
-    prose-h2:!text-3xl prose-h2:!font-semibold prose-h2:!mt-12 prose-h2:!mb-6 prose-h2:!font-sans
-    prose-h3:!text-2xl prose-h3:!font-medium prose-h3:!mt-8 prose-h3:!mb-4 prose-h3:!font-sans
-    prose-h4:!text-xl prose-h4:!font-medium prose-h4:!mt-6 prose-h4:!mb-3 prose-h4:!font-sans
-    prose-p:!text-skin-base prose-p:!leading-relaxed prose-p:!mb-6 prose-p:!text-lg prose-p:!font-reading
+    @apply prose-headings:!text-skin-base prose-headings:!font-corporate prose-headings:!leading-snug
+    prose-h1:!text-4xl prose-h1:!font-bold prose-h1:!tracking-tight prose-h1:!mb-8 prose-h1:!mt-2 prose-h1:!letter-spacing-[-0.03em]
+    prose-h2:!text-3xl prose-h2:!font-semibold prose-h2:!mt-14 prose-h2:!mb-6 prose-h2:!tracking-tight prose-h2:!letter-spacing-[-0.02em]
+    prose-h3:!text-2xl prose-h3:!font-medium prose-h3:!mt-10 prose-h3:!mb-5 prose-h3:!tracking-tight prose-h3:!letter-spacing-[-0.01em]
+    prose-h4:!text-xl prose-h4:!font-medium prose-h4:!mt-8 prose-h4:!mb-4 prose-h4:!tracking-tight
+    prose-p:!text-skin-base prose-p:!leading-relaxed prose-p:!mb-7 prose-p:!text-[1.0625rem] prose-p:!font-reading prose-p:!tracking-wide
     prose-a:!text-skin-accent prose-a:!decoration-solid prose-a:!underline-offset-4 prose-a:!decoration-2 prose-a:!transition-all prose-a:!duration-200
     prose-a:hover:!brightness-110
+    prose-li:!text-[1.0625rem] prose-li:!leading-relaxed prose-li:!font-reading prose-li:!mb-3
+    prose-strong:!font-semibold prose-strong:!text-skin-base
+    prose-em:!font-reading prose-em:!italic
+    prose-blockquote:!border-l-4 prose-blockquote:!border-skin-accent prose-blockquote:!pl-6 prose-blockquote:!py-3 prose-blockquote:!my-8 prose-blockquote:!bg-skin-card prose-blockquote:!rounded-r-lg
+    prose-blockquote:!font-reading prose-blockquote:!italic prose-blockquote:!text-[1.125rem]
+    prose-code:!text-[0.875rem] prose-code:!font-mono prose-code:!font-medium
     prose-blockquote:!border-l-skin-accent prose-blockquote:!border-l-4 prose-blockquote:!bg-skin-card prose-blockquote:!bg-opacity-50 prose-blockquote:!font-reading prose-blockquote:!italic
     prose-blockquote:!border-opacity-60 prose-blockquote:!pl-6 prose-blockquote:!py-4 prose-blockquote:!my-6 prose-blockquote:!rounded-r-lg
     prose-figcaption:!text-skin-base prose-figcaption:!opacity-75 prose-figcaption:!text-sm prose-figcaption:!text-center prose-figcaption:!mt-2 prose-figcaption:!font-sans
@@ -111,13 +125,13 @@
     prose-td:!border prose-td:!border-skin-line prose-td:!py-3 prose-td:!px-4
     prose-img:!my-8 prose-img:!mx-auto prose-img:!rounded-xl prose-img:!shadow-lg
     prose-hr:!border-skin-line prose-hr:!border-opacity-30 prose-hr:!my-12 prose-hr:!border-2;
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 1.0625rem;
+    line-height: 1.85;
     max-width: none;
-    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 1;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 1, "ss01" 1;
     text-rendering: optimizeLegibility;
-    hyphens: auto;
-    hyphenate-limit-chars: 6 3 3;
+    hyphens: none;
+    word-spacing: 0.05em;
   }
   .prose a {
     @apply break-words hover:!text-skin-accent;
