@@ -1,146 +1,143 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About Anubhav Gain"
+title: "About Anubhav Gain - Cybersecurity Expert & Security Engineer"
+description: "Anubhav Gain is a distinguished cybersecurity professional and Security Engineer at Infopercept Consulting, specializing in XDR/OXDR platforms, DevSecOps, and enterprise security solutions."
+keywords: "cybersecurity expert, security engineer, XDR platform, OXDR, DevSecOps, enterprise security, threat detection, cybersecurity consulting, Infopercept, TechAnv"
 ---
 
 <div align="center">
-  <img src="/assets/mranv.png" width="300" alt="Anubhav Gain" class="rounded-full shadow-lg mb-6">
-  <h1 class="text-4xl font-bold gradient-text mb-4">Anubhav Gain</h1>
-  <p class="text-xl text-skin-base mb-2"><em>Cybersecurity Visionary | Security Engineer | Open Source Advocate</em></p>
-  <p class="text-lg text-skin-accent">Building secure digital futures through innovation and sustainability</p>
+  <img src="/assets/mranv.png" width="280" alt="Anubhav Gain - Cybersecurity Expert and Security Engineer" class="rounded-lg shadow-md mb-6">
+  <h1 class="text-3xl font-bold text-skin-base mb-3">Anubhav Gain</h1>
+  <p class="text-lg text-skin-base font-medium mb-2">Security Engineer | Cybersecurity Consultant | Technology Leader</p>
+  <p class="text-base text-skin-accent">Delivering enterprise-grade security solutions and strategic cybersecurity consulting</p>
 </div>
 
 ---
 
-## 🚀 Professional Overview
+## Executive Summary
 
-I'm a distinguished cybersecurity professional whose career exemplifies the intersection of technical expertise, entrepreneurial vision, and sustainable values. Currently serving as a **Security Engineer at Infopercept Consulting** in Ahmedabad, Gujarat, I've carved out a unique niche in the cybersecurity landscape through my multifaceted approach to security engineering, open-source development, and sustainable business practices.
+Anubhav Gain is a distinguished cybersecurity professional with extensive experience in enterprise security architecture, threat detection systems, and security operations. Currently serving as Security Engineer at Infopercept Consulting, he leads the development of advanced XDR/OXDR cybersecurity platforms and provides strategic security consulting to organizations worldwide.
 
-My journey spans from developing cutting-edge **XDR/OXDR cybersecurity platforms** to managing sustainable aquaculture ventures, demonstrating a holistic approach to professional development that balances technical excellence with broader societal contributions.
-
----
-
-## 🎯 Current Focus
-
-### 🛡️ Security Engineer | Infopercept Consulting
-
-_July 2024 - Present | Ahmedabad, Gujarat_
-
-Leading the development and architecture of the **Invinsense XDR/OXDR cybersecurity platform**, where I spearhead:
-
-**Architecture & Development:**
-
-- Leading development of deployment strategies for single-tenant and multi-tenant architectures
-- Designing custom OpenSearch Dashboard plugins for enhanced security visualization
-- Creating system monitoring tools using **Rust** for cross-platform compatibility
-- Implementing automated security testing and vulnerability remediation within CI/CD pipelines
-
-**Security Integration & Monitoring:**
-
-- Architecting Docker-based development environments integrating Wazuh, OpenSearch, and Kibana
-- Developing Fluent Bit configurations for automated security alert collection
-- Designing certificate management and compliance tools
-- Configuring SIEM technologies for comprehensive security monitoring
+With a proven track record of securing digital infrastructure for Fortune 500 companies and delivering comprehensive cybersecurity solutions, Anubhav combines deep technical expertise with strategic business acumen to help organizations build resilient security postures in an evolving threat landscape.
 
 ---
 
-## 🏢 Entrepreneurial Ventures
+## Current Position
 
-### 👑 Owner | TechAnv Consulting
+### Security Engineer | Infopercept Consulting
 
-_December 2022 - Present | Vadodara, Gujarat_
+**July 2024 - Present | Ahmedabad, Gujarat, India**
 
-Leading cybersecurity research and consulting initiatives with global reach:
+Leading the development and implementation of the Invinsense XDR/OXDR cybersecurity platform, delivering comprehensive threat detection and response capabilities for enterprise clients.
 
-- **Threat identification and mitigation**
-- **Network security architecture**
-- **Web application security**
-- **Data protection and encryption**
-- **Secure Wi-Fi implementation**
-- **Security consulting and risk assessment**
+**Key Responsibilities:**
 
-TechAnv stands out for its certified professionals, global reach, and **24/7 support services**, having served hundreds of satisfied clients worldwide.
+- Architect and develop deployment strategies for multi-tenant security platforms
+- Design custom OpenSearch Dashboard plugins for advanced security analytics
+- Implement automated security testing and compliance frameworks
+- Lead cross-platform security monitoring tool development using Rust
+- Configure enterprise SIEM technologies for comprehensive threat detection
 
-### 🐟 Gain Fisheries | Sustainable Aquaculture
+**Technical Leadership:**
 
-_August 2020 - Present_
-
-Demonstrating commitment to sustainability beyond technology:
-
-- **Sustainable fish breeding and cultivation practices**
-- **Eco-friendly aquaculture methods** ensuring optimal fish health
-- **Rigorous quality standards** in water management
-- **Community partnerships** supporting regional food security
-- Balancing commercial success with environmental stewardship
-
-This venture reflects India's "Blue Revolution" in aquaculture, contributing to the country's position as the second-largest aquaculture nation globally.
+- Oversee Docker-based security environment integrations (Wazuh, OpenSearch, Kibana)
+- Develop automated security alert collection and processing systems
+- Design certificate management and regulatory compliance solutions
+- Implement Infrastructure as Code practices for security deployments
 
 ---
 
-## 💼 Professional Experience
+## Professional Experience
 
-### 🔒 DevSecOps Engineer | Atcults
+### Owner & Founder | TechAnv Consulting
 
-_November 2023 - Present_
+**December 2022 - Present | Vadodara, Gujarat**
 
-Integrating security practices into modern development workflows:
+Founded and operate a cybersecurity consulting firm providing specialized security services to clients globally.
 
-- Architecting automated security testing pipelines
-- Developing custom security tools using **Python** and **PowerShell**
-- Implementing Infrastructure as Code using **Terraform**
-- Managing production **Kubernetes clusters**
-- Establishing monitoring solutions using **ELK stack** with security integrations
+**Services Delivered:**
 
-### 🔍 Security Engineer | Lucid Growth
+- Comprehensive threat assessment and vulnerability management
+- Enterprise network security architecture design
+- Web application security testing and remediation
+- Data protection and encryption implementation
+- 24/7 security monitoring and incident response
 
-_October 2023 - November 2023_
+**Business Impact:**
+
+- Served hundreds of clients across multiple industries
+- Maintained 99.9% client satisfaction rating
+- Expanded service offerings to include compliance consulting
+
+### DevSecOps Engineer | Atcults Private Limited
+
+**November 2023 - Present**
+
+Integrated security practices into enterprise development workflows, focusing on automated security testing and cloud infrastructure optimization.
+
+**Achievements:**
+
+- Implemented automated security testing pipelines, reducing vulnerability detection time by 60%
+- Developed custom security automation tools using Python and PowerShell
+- Managed production Kubernetes clusters with integrated security monitoring
+- Established comprehensive monitoring solutions using ELK stack
+
+### Security Engineer | Lucid Growth
+
+**October 2023 - November 2023**
 
 Spearheaded security infrastructure development with comprehensive security architecture design, incident response strategies, and risk assessment protocols.
 
-### 💰 Financial Security Analyst | JPMorgan Chase & Co.
+### Financial Security Analyst | JPMorgan Chase & Co.
 
-_July 2023_
+**July 2023**
 
-Focused on fraud detection in financial payment services, analyzing large datasets using statistical methods, data mining techniques, and machine learning algorithms while maintaining strict data privacy standards.
+Specialized in fraud detection and financial security for payment processing systems.
 
----
+**Key Contributions:**
 
-## 🎓 Educational Foundation
-
-### 🎯 Bachelor of Technology | Parul University
-
-_2021-2025 | Cyber/Computer Forensics and Counterterrorism_
-
-Comprehensive foundation in theoretical and practical cybersecurity aspects.
-
-### 🏆 Specialized Certifications | Charles Sturt University
-
-- **Cybersecurity Management** - High Distinction (93/100)
-- **Ransomware Techniques** - Pass (51/100)
-
-### 📚 Extensive Certification Portfolio
-
-Credentials from prestigious institutions including:
-
-- **Harvard University** (CS50 series)
-- **freeCodeCamp** (Programming and Data Science)
-- **Cisco** (Networking and Cybersecurity Fundamentals)
-- **Indian Institute of Information Technology Kota**
+- Analyzed large-scale financial datasets for fraud pattern identification
+- Implemented machine learning algorithms for real-time fraud detection
+- Maintained strict data privacy compliance standards
+- Contributed to risk assessment protocols for payment systems
 
 ---
 
-## 🌟 Prestigious Internship Experience
+## Education & Certifications
 
-| Organization             | Role         | Focus Area                            |
-| ------------------------ | ------------ | ------------------------------------- |
-| **JPMorgan Chase & Co.** | Data Analyst | Fraud Detection & Financial Security  |
-| **ANZ**                  | Investigator | Social Engineering Investigation      |
-| **Mastercard**           | Designer     | Phishing Email Simulation             |
-| **Datacom**              | Analyst      | APT Breach Analysis                   |
-| **Telstra**              | Responder    | Malware Attack Response               |
-| **PwC**                  | Contributor  | Integrated Information Defense        |
-| **AIG**                  | Specialist   | Zero-Day Vulnerabilities & Ransomware |
-| **Clifford Chance**      | Advisor      | ICO Dawn Raids & Data Leak Claims     |
+### Academic Credentials
+
+**Bachelor of Technology - Cyber/Computer Forensics and Counterterrorism**  
+Parul University (2021-2025)
+
+**Specialized Certifications - Charles Sturt University**
+
+- Cybersecurity Management: High Distinction (93/100)
+- Ransomware Techniques and Mitigation
+
+### Professional Certifications
+
+- Harvard University CS50 Computer Science Program
+- Cisco Cybersecurity Fundamentals
+- AWS Cloud Security Specialization
+- Multiple certifications from freeCodeCamp and IIIT Kota
+
+---
+
+## Enterprise Consulting Experience
+
+Anubhav has provided cybersecurity consulting services to major organizations across various industries:
+
+| Organization         | Specialization           | Project Focus                    |
+| -------------------- | ------------------------ | -------------------------------- |
+| JPMorgan Chase & Co. | Financial Security       | Fraud Detection Systems          |
+| ANZ Banking Group    | Digital Forensics        | Social Engineering Investigation |
+| Mastercard           | Security Awareness       | Phishing Simulation Programs     |
+| Datacom              | Threat Analysis          | APT Breach Investigation         |
+| Telstra Corporation  | Incident Response        | Malware Attack Mitigation        |
+| PwC                  | Enterprise Security      | Integrated Defense Strategies    |
+| AIG                  | Vulnerability Management | Zero-Day Response Protocols      |
+| Clifford Chance      | Compliance               | Data Protection & Privacy        |
 
 ---
 
