@@ -3,7 +3,7 @@ author: Anubhav Gain
 pubDatetime: 2024-04-24T18:30:00Z
 modDatetime: 2024-04-24T18:30:00Z
 title: OpenSearch/Wazuh Indexer Setup and Management Guide
-slug: opensearch-wazuh-indexer-management
+slug: opensearch-wazuh-indexer-management-guide
 featured: true
 draft: false
 tags:

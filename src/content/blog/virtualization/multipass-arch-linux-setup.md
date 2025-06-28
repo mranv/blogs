@@ -3,7 +3,7 @@ author: Anubhav Gain
 pubDatetime: 2024-04-30T10:00:00Z
 modDatetime: 2024-04-30T10:00:00Z
 title: Setting Up Multipass on Arch Linux - Complete Guide
-slug: multipass-arch-linux-setup
+slug: multipass-arch-linux-setup-guide
 featured: false
 draft: false
 tags:
