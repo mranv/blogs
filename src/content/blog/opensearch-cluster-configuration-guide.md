@@ -40,7 +40,8 @@ http.port: 9200
 transport.port: 9300
 
 # Discovery settings
-discovery.seed_hosts: ["172.17.14.79:9300", "172.17.14.89:9300", "172.17.14.39:9300"]
+discovery.seed_hosts:
+  ["172.17.14.79:9300", "172.17.14.89:9300", "172.17.14.39:9300"]
 cluster.initial_master_nodes: ["os1"]
 
 # Repo for Migration
@@ -64,17 +65,18 @@ Data nodes handle the actual storage and search operations. Here's the configura
 ```yaml
 # Basic cluster configuration
 cluster.name: opensearch-cluster
-node.name: os2  # Change to os3 for the third node
+node.name: os2 # Change to os3 for the third node
 node.roles: [data, ingest]
 network.host: 0.0.0.0
 http.port: 9200
 transport.port: 9300
 
 # Discovery settings
-discovery.seed_hosts: ["172.17.14.79:9300", "172.17.14.89:9300", "172.17.14.39:9300"]
+discovery.seed_hosts:
+  ["172.17.14.79:9300", "172.17.14.89:9300", "172.17.14.39:9300"]
 cluster.initial_master_nodes: ["os1"]
 
-# Repo for opensearch migration 
+# Repo for opensearch migration
 path.repo: /var/lib/opensearch/migration
 
 # Memory and path settings
@@ -136,7 +138,8 @@ plugins.security.authcz.admin_dn:
 plugins.security.audit.type: internal_opensearch
 plugins.security.enable_snapshot_restore_privilege: true
 plugins.security.check_snapshot_restore_write_privileges: true
-plugins.security.restapi.roles_enabled: ["all_access", "security_rest_api_access"]
+plugins.security.restapi.roles_enabled:
+  ["all_access", "security_rest_api_access"]
 ```
 
 ## System Indices Configuration
@@ -146,21 +149,22 @@ System indices are special indices used by OpenSearch plugins and features. Prop
 ```yaml
 # System indices configuration
 plugins.security.system_indices.enabled: true
-plugins.security.system_indices.indices: [
-  ".plugins-ml-*",
-  ".opendistro-alerting-*",
-  ".opendistro-anomaly-*",
-  ".opendistro-reports-*",
-  ".opensearch-notifications-*",
-  ".opensearch-notebooks",
-  ".opensearch-observability",
-  ".ql-datasources",
-  ".opendistro-asynchronous-search-*",
-  ".replication-metadata-store",
-  ".opensearch-knn-models",
-  ".geospatial-ip2geo-data*",
-  ".plugins-flow-framework-*"
-]
+plugins.security.system_indices.indices:
+  [
+    ".plugins-ml-*",
+    ".opendistro-alerting-*",
+    ".opendistro-anomaly-*",
+    ".opendistro-reports-*",
+    ".opensearch-notifications-*",
+    ".opensearch-notebooks",
+    ".opensearch-observability",
+    ".ql-datasources",
+    ".opendistro-asynchronous-search-*",
+    ".replication-metadata-store",
+    ".opensearch-knn-models",
+    ".geospatial-ip2geo-data*",
+    ".plugins-flow-framework-*",
+  ]
 ```
 
 ## Performance Optimization
@@ -206,42 +210,42 @@ graph TB
         subgraph "Master Node"
             M[os1<br/>Master + Data<br/>172.17.14.79:9300]
         end
-        
+
         subgraph "Data Nodes"
             D1[os2<br/>Data + Ingest<br/>172.17.14.89:9300]
             D2[os3<br/>Data + Ingest<br/>172.17.14.39:9300]
         end
     end
-    
+
     subgraph "Client Access"
         HTTP[HTTP API<br/>Port 9200]
         TLS[TLS Encryption]
     end
-    
+
     subgraph "Storage"
         DATA[Data Storage<br/>/var/lib/opensearch]
         LOGS[Log Storage<br/>/var/log/opensearch]
         BACKUP[Backup Repository<br/>/var/lib/opensearch/migration]
     end
-    
+
     M -.-> D1
     M -.-> D2
     D1 -.-> D2
-    
+
     HTTP --> M
     HTTP --> D1
     HTTP --> D2
-    
+
     TLS --> HTTP
-    
+
     M --> DATA
     D1 --> DATA
     D2 --> DATA
-    
+
     M --> LOGS
     D1 --> LOGS
     D2 --> LOGS
-    
+
     M --> BACKUP
     D1 --> BACKUP
     D2 --> BACKUP

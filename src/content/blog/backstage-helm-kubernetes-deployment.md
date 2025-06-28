@@ -32,36 +32,36 @@ graph TB
         IDP[Identity Provider<br/>OAuth/SAML]
         EXT[External APIs<br/>K8s, AWS, etc.]
     end
-    
+
     subgraph "Kubernetes Cluster"
         subgraph "Ingress Layer"
             ING[Ingress Controller<br/>NGINX/Traefik]
             CERT[Cert Manager<br/>TLS Certificates]
         end
-        
+
         subgraph "Application Layer"
             BS[Backstage<br/>Frontend & Backend]
             TECH[TechDocs<br/>Service]
             SEARCH[Search<br/>Service]
         end
-        
+
         subgraph "Data Layer"
             PG[PostgreSQL<br/>Database]
             REDIS[Redis<br/>Cache]
             S3[Object Storage<br/>TechDocs]
         end
-        
+
         subgraph "Monitoring"
             PROM[Prometheus]
             GRAF[Grafana]
             LOG[Logging<br/>Stack]
         end
     end
-    
+
     subgraph "Developer Workstation"
         DEV[Developer]
     end
-    
+
     DEV --> ING
     ING --> BS
     BS --> PG
@@ -73,7 +73,7 @@ graph TB
     BS --> TECH
     BS --> SEARCH
     PROM --> BS
-    
+
     style BS fill:#e3f2fd
     style PG fill:#fff9c4
     style ING fill:#e8f5e9
@@ -92,7 +92,7 @@ sequenceDiagram
     participant Backstage
     participant Database
     participant External
-    
+
     Admin->>Helm: helm repo add backstage
     Admin->>Helm: helm install backstage
     Helm->>K8s: Create Namespace
@@ -119,33 +119,33 @@ graph TB
             NP[Network Policies]
             TLS[TLS Encryption]
         end
-        
+
         subgraph "Authentication"
             OAUTH[OAuth 2.0]
             SAML[SAML 2.0]
             MFA[Multi-Factor Auth]
         end
-        
+
         subgraph "Authorization"
             RBAC[RBAC Policies]
             PERM[Permission Model]
             API[API Security]
         end
-        
+
         subgraph "Data Security"
             ENC[Encryption at Rest]
             VAULT[Secret Management]
             AUDIT[Audit Logging]
         end
     end
-    
+
     subgraph "Backstage Components"
         FE[Frontend]
         BE[Backend]
         DB[Database]
         PLUGINS[Plugins]
     end
-    
+
     TLS --> FE
     OAUTH --> BE
     RBAC --> BE
@@ -153,7 +153,7 @@ graph TB
     VAULT --> BE
     NP --> BE
     AUDIT --> BE
-    
+
     style TLS fill:#ffebee
     style OAUTH fill:#e3f2fd
     style ENC fill:#e8f5e9
@@ -172,20 +172,20 @@ graph LR
             MEM1[Memory: 1Gi-2Gi]
             DISK1[Disk: 10Gi]
         end
-        
+
         subgraph "PostgreSQL Pod"
             CPU2[CPU: 500m-2000m]
             MEM2[Memory: 2Gi-4Gi]
             DISK2[Disk: 20Gi-100Gi]
         end
-        
+
         subgraph "Redis Pod"
             CPU3[CPU: 100m-500m]
             MEM3[Memory: 512Mi-1Gi]
             DISK3[Disk: 1Gi-5Gi]
         end
     end
-    
+
     style CPU1 fill:#e3f2fd
     style MEM1 fill:#e8f5e9
     style DISK2 fill:#fff9c4
@@ -242,17 +242,17 @@ Create a comprehensive `values-production.yaml` file:
 global:
   # Set your cluster domain
   clusterDomain: cluster.local
-  
+
 backstage:
   # Number of Backstage replicas for HA
   replicas: 2
-  
+
   image:
     registry: ghcr.io
     repository: backstage/backstage
     tag: latest
     pullPolicy: IfNotPresent
-  
+
   # Resource limits and requests
   resources:
     requests:
@@ -261,11 +261,11 @@ backstage:
     limits:
       memory: "2Gi"
       cpu: "1000m"
-  
+
   # Container configuration
   containerPorts:
     backend: 7007
-  
+
   # Extra environment variables
   extraEnvVars:
     - name: NODE_ENV
@@ -276,20 +276,20 @@ backstage:
       value: "https://backstage.example.com"
     - name: APP_CONFIG_backend_cors_origin
       value: "https://backstage.example.com"
-    
+
   # Extra environment variables from secrets
   extraEnvVarsSecrets:
     - backstage-oauth
-  
+
   # App configuration
   appConfig:
     app:
       title: "My Company Backstage"
       baseUrl: https://backstage.example.com
-      
+
     organization:
       name: "My Company"
-      
+
     backend:
       baseUrl: https://backstage.example.com
       listen:
@@ -312,12 +312,12 @@ backstage:
       cache:
         store: redis
         connection: redis://backstage-redis:6379
-        
+
     integrations:
       github:
         - host: github.com
           token: ${GITHUB_TOKEN}
-          
+
     auth:
       environment: production
       providers:
@@ -325,7 +325,7 @@ backstage:
           production:
             clientId: ${AUTH_GITHUB_CLIENT_ID}
             clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
-            
+
     catalog:
       import:
         entityFilename: catalog-info.yaml
@@ -335,17 +335,17 @@ backstage:
       locations:
         - type: url
           target: https://github.com/myorg/software-catalog/blob/main/catalog-info.yaml
-          
+
     techdocs:
-      builder: 'external'
+      builder: "external"
       generator:
-        runIn: 'docker'
+        runIn: "docker"
       publisher:
-        type: 'awsS3'
+        type: "awsS3"
         awsS3:
           bucketName: my-techdocs-bucket
           region: us-east-1
-          
+
     search:
       elasticsearch:
         nodes:
@@ -363,7 +363,7 @@ backstage:
   podDisruptionBudget:
     enabled: true
     minAvailable: 1
-    
+
   # Autoscaling configuration
   autoscaling:
     enabled: true
@@ -375,20 +375,20 @@ backstage:
 # PostgreSQL configuration
 postgresql:
   enabled: true
-  
+
   auth:
     database: backstage
     existingSecret: backstage-postgresql
     secretKeys:
       adminPasswordKey: postgres-password
       userPasswordKey: postgres-password
-      
+
   primary:
     persistence:
       enabled: true
       size: 20Gi
       storageClass: fast-ssd
-      
+
     resources:
       requests:
         cpu: 500m
@@ -396,17 +396,17 @@ postgresql:
       limits:
         cpu: 2000m
         memory: 4Gi
-        
+
     configuration: |
       shared_buffers = 256MB
       max_connections = 200
       effective_cache_size = 1GB
-      
+
     pgHbaConfiguration: |
       local all all trust
       host all all 0.0.0.0/0 md5
       host all all ::1/128 md5
-      
+
   metrics:
     enabled: true
     serviceMonitor:
@@ -415,19 +415,19 @@ postgresql:
 # Redis configuration
 redis:
   enabled: true
-  
+
   architecture: replication
-  
+
   auth:
     enabled: true
     existingSecret: backstage-redis
     existingSecretPasswordKey: redis-password
-    
+
   master:
     persistence:
       enabled: true
       size: 5Gi
-      
+
     resources:
       requests:
         cpu: 100m
@@ -435,13 +435,13 @@ redis:
       limits:
         cpu: 500m
         memory: 1Gi
-        
+
   replica:
     replicaCount: 2
     persistence:
       enabled: true
       size: 5Gi
-      
+
   metrics:
     enabled: true
     serviceMonitor:
@@ -451,7 +451,7 @@ redis:
 ingress:
   enabled: true
   className: nginx
-  
+
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
@@ -459,13 +459,13 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-body-size: "10m"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
-    
+
   hosts:
     - host: backstage.example.com
       paths:
         - path: /
           pathType: Prefix
-          
+
   tls:
     - secretName: backstage-tls
       hosts:
@@ -524,6 +524,7 @@ kubectl get secret -n backstage backstage-admin -o jsonpath="{.data.password}" |
 ### Authentication and Authorization
 
 1. **OAuth/OIDC Integration**:
+
 ```yaml
 auth:
   providers:
@@ -532,11 +533,12 @@ auth:
         metadataUrl: https://your-idp.com/.well-known/openid-configuration
         clientId: ${AUTH_OIDC_CLIENT_ID}
         clientSecret: ${AUTH_OIDC_CLIENT_SECRET}
-        scope: 'openid profile email groups'
+        scope: "openid profile email groups"
         prompt: auto
 ```
 
 2. **RBAC Configuration**:
+
 ```yaml
 permission:
   enabled: true
@@ -551,6 +553,7 @@ permission:
 ```
 
 3. **API Token Security**:
+
 ```bash
 # Generate secure API tokens
 kubectl create secret generic backstage-api-tokens \
@@ -561,6 +564,7 @@ kubectl create secret generic backstage-api-tokens \
 ### Network Security
 
 1. **Network Policies**:
+
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -587,9 +591,9 @@ spec:
         - namespaceSelector: {}
       ports:
         - protocol: TCP
-          port: 5432  # PostgreSQL
+          port: 5432 # PostgreSQL
         - protocol: TCP
-          port: 6379  # Redis
+          port: 6379 # Redis
     - to:
         - namespaceSelector: {}
           podSelector:
@@ -598,7 +602,7 @@ spec:
       ports:
         - protocol: UDP
           port: 53
-    - to:  # Allow HTTPS egress
+    - to: # Allow HTTPS egress
         - ipBlock:
             cidr: 0.0.0.0/0
       ports:
@@ -607,6 +611,7 @@ spec:
 ```
 
 2. **TLS Configuration**:
+
 ```yaml
 # Configure TLS for all internal communications
 backstage:
@@ -621,6 +626,7 @@ backstage:
 ### Secrets Management
 
 1. **External Secrets Operator**:
+
 ```yaml
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
@@ -646,6 +652,7 @@ spec:
 ```
 
 2. **Sealed Secrets**:
+
 ```bash
 # Install Sealed Secrets controller
 kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.18.0/controller.yaml
@@ -660,6 +667,7 @@ echo -n "mypassword" | kubectl create secret generic backstage-db \
 ### Container Security
 
 1. **Security Context**:
+
 ```yaml
 backstage:
   podSecurityContext:
@@ -668,7 +676,7 @@ backstage:
     fsGroup: 1000
     seccompProfile:
       type: RuntimeDefault
-    
+
   containerSecurityContext:
     allowPrivilegeEscalation: false
     readOnlyRootFilesystem: true
@@ -680,6 +688,7 @@ backstage:
 ```
 
 2. **Pod Security Standards**:
+
 ```yaml
 apiVersion: v1
 kind: Namespace
@@ -760,6 +769,7 @@ kubectl logs -n cert-manager deployment/cert-manager
 ### Regular Maintenance Tasks
 
 1. **Database Maintenance**:
+
 ```bash
 # Backup database
 kubectl exec -n backstage backstage-postgresql-0 -- \
@@ -771,6 +781,7 @@ kubectl exec -n backstage backstage-postgresql-0 -- \
 ```
 
 2. **Log Rotation**:
+
 ```yaml
 # Configure log rotation in values.yaml
 backstage:
@@ -782,6 +793,7 @@ backstage:
 ```
 
 3. **Monitoring Setup**:
+
 ```yaml
 # ServiceMonitor for Prometheus
 apiVersion: monitoring.coreos.com/v1
@@ -802,6 +814,7 @@ spec:
 ### Upgrade Process
 
 1. **Pre-upgrade Checklist**:
+
 ```bash
 # Backup current installation
 helm get values backstage -n backstage > backstage-values-backup.yaml
@@ -815,6 +828,7 @@ helm show readme backstage/backstage --version <new-version>
 ```
 
 2. **Perform Upgrade**:
+
 ```bash
 # Update Helm repository
 helm repo update
@@ -833,6 +847,7 @@ helm upgrade backstage backstage/backstage \
 ```
 
 3. **Post-upgrade Validation**:
+
 ```bash
 # Check pod status
 kubectl get pods -n backstage
@@ -849,6 +864,7 @@ kubectl logs -n backstage -l app.kubernetes.io/name=backstage --tail=100
 ### Development Workflow
 
 1. **GitOps Integration**:
+
 ```yaml
 # argocd-application.yaml
 apiVersion: argoproj.io/v1alpha1
@@ -872,6 +888,7 @@ spec:
 ```
 
 2. **Multi-Environment Setup**:
+
 ```bash
 # Directory structure
 backstage-config/
@@ -893,6 +910,7 @@ backstage-config/
 ### Plugin Management
 
 1. **Custom Plugin Deployment**:
+
 ```dockerfile
 # Dockerfile for custom Backstage image
 FROM node:16-bullseye-slim as build
@@ -925,19 +943,20 @@ CMD ["node", "packages/backend"]
 ```
 
 2. **Plugin Configuration**:
+
 ```yaml
 # values.yaml plugin configuration
 backstage:
   appConfig:
     app:
       plugins:
-        - id: '@backstage/plugin-kubernetes'
+        - id: "@backstage/plugin-kubernetes"
           config:
             clusters:
               - name: production
                 url: https://k8s-prod.example.com
                 authProvider: serviceAccount
-        - id: '@backstage/plugin-sonarqube'
+        - id: "@backstage/plugin-sonarqube"
           config:
             baseUrl: https://sonarqube.example.com
             apiKey: ${SONARQUBE_API_KEY}
@@ -946,6 +965,7 @@ backstage:
 ### Monitoring and Observability
 
 1. **Grafana Dashboard**:
+
 ```json
 {
   "dashboard": {
@@ -981,6 +1001,7 @@ backstage:
 ```
 
 2. **Alert Rules**:
+
 ```yaml
 # prometheus-rules.yaml
 apiVersion: monitoring.coreos.com/v1
@@ -998,14 +1019,14 @@ spec:
           annotations:
             summary: "Backstage is down"
             description: "Backstage has been down for more than 5 minutes"
-        
+
         - alert: BackstageHighErrorRate
           expr: rate(http_request_duration_seconds_count{job="backstage",status=~"5.."}[5m]) > 0.05
           for: 10m
           annotations:
             summary: "High error rate in Backstage"
             description: "Error rate is above 5% for 10 minutes"
-        
+
         - alert: BackstageHighMemoryUsage
           expr: container_memory_usage_bytes{pod=~"backstage-.*"} / container_spec_memory_limit_bytes > 0.9
           for: 10m
@@ -1026,6 +1047,7 @@ spec:
 Deploying Backstage on Kubernetes with Helm provides a scalable, secure, and maintainable developer portal solution. By following this guide and implementing the security best practices, you can create a production-ready Backstage deployment that serves as a central hub for your engineering organization.
 
 Remember to:
+
 - Regularly update Backstage and its dependencies
 - Monitor performance and security metrics
 - Backup your data regularly

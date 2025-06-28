@@ -138,13 +138,13 @@ Test your email security configuration with:
 
 ## Troubleshooting Common Security Issues
 
-| Issue | Possible Cause | Solution |
-|-------|----------------|----------|
-| DKIM Failure | Missing/incorrect DKIM record | Use SMTP relay with proper DKIM support |
-| Emails in Spam | Authentication alignment fails | Check SPF includes, verify DMARC policy |
-| "Unverified Sender" | Header/envelope address mismatch | Use proper SMTP relay, verify alignment |
-| Delivery Failures | Rate limiting by Gmail | Use dedicated SMTP provider instead |
-| Profile Picture Missing | Email reputation issues | Use direct Google Account method (see below) |
+| Issue                   | Possible Cause                   | Solution                                     |
+| ----------------------- | -------------------------------- | -------------------------------------------- |
+| DKIM Failure            | Missing/incorrect DKIM record    | Use SMTP relay with proper DKIM support      |
+| Emails in Spam          | Authentication alignment fails   | Check SPF includes, verify DMARC policy      |
+| "Unverified Sender"     | Header/envelope address mismatch | Use proper SMTP relay, verify alignment      |
+| Delivery Failures       | Rate limiting by Gmail           | Use dedicated SMTP provider instead          |
+| Profile Picture Missing | Email reputation issues          | Use direct Google Account method (see below) |
 
 ## Advanced: Profile Picture Support
 
@@ -169,4 +169,4 @@ Use the direct Google Account method for profile picture support:
 
 While Gmail SMTP integration is simple, it has significant security limitations. For production use, SMTP relay services provide better authentication alignment and deliverability. Always prioritize security and authentication when implementing custom email solutions.
 
-*Last updated: March 21, 2025*
+_Last updated: March 21, 2025_

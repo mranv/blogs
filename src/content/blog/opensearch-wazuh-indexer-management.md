@@ -463,6 +463,7 @@ curl -k -u admin:password -X PUT "https://localhost:9200/_template/wazuh" -H 'Co
 **Issue**: OpenSearch consumes too much memory.
 
 **Solution**:
+
 ```bash
 # Adjust JVM heap settings
 sudo nano /etc/opensearch/jvm.options
@@ -480,6 +481,7 @@ curl -k -u admin:password -X POST "https://localhost:9200/_cache/clear?fielddata
 **Issue**: Running out of disk space.
 
 **Solution**:
+
 ```bash
 # Check index sizes
 curl -k -u admin:password "https://localhost:9200/_cat/indices?v&s=store.size:desc"
@@ -503,6 +505,7 @@ curl -k -u admin:password -X PUT "https://localhost:9200/_template/wazuh-alerts"
 **Issue**: Cannot authenticate with admin credentials.
 
 **Solution**:
+
 ```bash
 # Reset admin password
 sudo /usr/share/opensearch/plugins/opensearch-security/tools/securityadmin.sh \

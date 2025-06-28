@@ -32,25 +32,25 @@ graph TB
         CERT[Certificate Monitoring<br/>TLS 1.2/1.3]
         SVC[Service Monitoring<br/>HTTP/HTTPS/TCP/SSH]
     end
-    
+
     subgraph "Container Layer"
         CH[Container Health<br/>HEALTHCHECK]
         LE[Lifecycle Events<br/>podman events]
         RM[Resource Metrics<br/>CPU/Memory/Disk/Network]
     end
-    
+
     subgraph "Infrastructure Layer"
         NP[Network Performance<br/>Latency/Loss/Throughput]
         HM[Host Metrics<br/>System Resources]
         SC[Security & Compliance<br/>Scanning/Policies]
     end
-    
+
     subgraph "Aggregation Layer"
         LOG[Logs & Auditing<br/>Centralized Logging]
         PM[Pod Monitoring<br/>Aggregated Health]
         DASH[Dashboard<br/>Visualization]
     end
-    
+
     DNS --> DASH
     CERT --> DASH
     SVC --> DASH
@@ -62,7 +62,7 @@ graph TB
     SC --> LOG
     LOG --> DASH
     PM --> DASH
-    
+
     style DNS fill:#e3f2fd
     style CERT fill:#fff9c4
     style CH fill:#e8f5e9
@@ -77,6 +77,7 @@ graph TB
 **Purpose**: Ensure domain name resolution is correct and up to date.
 
 **Implementation**:
+
 ```bash
 #!/bin/bash
 # DNS monitoring script
@@ -96,16 +97,17 @@ done
 ```
 
 **Integration with Monitoring Stack**:
+
 ```yaml
 # Prometheus configuration for DNS monitoring
-- job_name: 'dns_monitoring'
+- job_name: "dns_monitoring"
   metrics_path: /probe
   params:
     module: [dns]
   static_configs:
     - targets:
-      - app.example.com
-      - api.example.com
+        - app.example.com
+        - api.example.com
   relabel_configs:
     - source_labels: [__address__]
       target_label: __param_target
@@ -120,30 +122,31 @@ done
 **Purpose**: Validate SSL/TLS certificate security and ensure supported protocols.
 
 **Implementation**:
+
 ```bash
 #!/bin/bash
 # Certificate monitoring script
 check_certificate() {
     local host=$1
     local port=${2:-443}
-    
+
     # Check certificate expiry
     expiry=$(echo | openssl s_client -servername $host -connect $host:$port 2>/dev/null | \
              openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
-    
+
     # Check TLS version
     tls_version=$(echo | openssl s_client -servername $host -connect $host:$port 2>/dev/null | \
                   grep "Protocol" | awk '{print $3}')
-    
+
     echo "Host: $host"
     echo "Expiry: $expiry"
     echo "TLS Version: $tls_version"
-    
+
     # Check if certificate expires within 30 days
     expiry_epoch=$(date -d "$expiry" +%s)
     current_epoch=$(date +%s)
     days_left=$(( ($expiry_epoch - $current_epoch) / 86400 ))
-    
+
     if [ $days_left -lt 30 ]; then
         echo "WARNING: Certificate expires in $days_left days"
     fi
@@ -155,6 +158,7 @@ check_certificate "api.example.com" 8443
 ```
 
 **Automated Certificate Checking with Prometheus**:
+
 ```yaml
 # Blackbox exporter configuration
 modules:
@@ -175,6 +179,7 @@ modules:
 **Purpose**: Monitor availability and responsiveness of network services.
 
 **Implementation**:
+
 ```bash
 #!/bin/bash
 # Service monitoring script
@@ -183,7 +188,7 @@ modules:
 check_http() {
     local url=$1
     local expected_code=${2:-200}
-    
+
     response=$(curl -s -o /dev/null -w "%{http_code}" $url)
     if [ "$response" == "$expected_code" ]; then
         echo "OK: $url returned $response"
@@ -196,7 +201,7 @@ check_http() {
 check_tcp() {
     local host=$1
     local port=$2
-    
+
     nc -z -v -w5 $host $port &>/dev/null
     if [ $? -eq 0 ]; then
         echo "OK: $host:$port is reachable"
@@ -209,7 +214,7 @@ check_tcp() {
 check_ssh() {
     local host=$1
     local port=${2:-22}
-    
+
     timeout 5 ssh -o BatchMode=yes -o ConnectTimeout=5 $host exit 2>/dev/null
     if [ $? -eq 0 ]; then
         echo "OK: SSH to $host:$port successful"
@@ -233,6 +238,7 @@ check_tcp "app.example.com" 443
 **Purpose**: Verify containers are running as expected and detect anomalies.
 
 **Implementation in Containerfile**:
+
 ```dockerfile
 FROM alpine:latest
 
@@ -250,6 +256,7 @@ CMD ["/app/server"]
 ```
 
 **Monitoring with Podman**:
+
 ```bash
 #!/bin/bash
 # Container health monitoring script
@@ -257,7 +264,7 @@ CMD ["/app/server"]
 # Check container health status
 check_container_health() {
     local container=$1
-    
+
     health_status=$(podman inspect $container --format='{{.State.Health.Status}}')
     case $health_status in
         "healthy")
@@ -283,9 +290,9 @@ monitor_events() {
         container=$(echo $line | jq -r '.Actor.Attributes.name')
         status=$(echo $line | jq -r '.Actor.Attributes.health_status')
         timestamp=$(echo $line | jq -r '.time')
-        
+
         echo "[$timestamp] Container: $container, Health: $status"
-        
+
         # Alert on unhealthy containers
         if [ "$status" == "unhealthy" ]; then
             send_alert "Container $container is unhealthy"
@@ -304,6 +311,7 @@ done
 **Purpose**: Track container resource usage to prevent overconsumption and optimize performance.
 
 **Implementation**:
+
 ```bash
 #!/bin/bash
 # Resource monitoring script
@@ -313,28 +321,28 @@ monitor_container_resources() {
     local container=$1
     local threshold_cpu=80
     local threshold_memory=90
-    
+
     # Get container stats
     stats=$(podman stats --no-stream --format json $container)
-    
+
     # Parse metrics
     cpu_percent=$(echo $stats | jq -r '.[0].CPU' | sed 's/%//')
     memory_percent=$(echo $stats | jq -r '.[0].MemPerc' | sed 's/%//')
     memory_usage=$(echo $stats | jq -r '.[0].MemUsage')
     net_io=$(echo $stats | jq -r '.[0].NetIO')
     block_io=$(echo $stats | jq -r '.[0].BlockIO')
-    
+
     echo "Container: $container"
     echo "  CPU: ${cpu_percent}%"
     echo "  Memory: ${memory_percent}% ($memory_usage)"
     echo "  Network I/O: $net_io"
     echo "  Block I/O: $block_io"
-    
+
     # Alert on high usage
     if (( $(echo "$cpu_percent > $threshold_cpu" | bc -l) )); then
         echo "WARNING: CPU usage above threshold"
     fi
-    
+
     if (( $(echo "$memory_percent > $threshold_memory" | bc -l) )); then
         echo "WARNING: Memory usage above threshold"
     fi
@@ -344,11 +352,11 @@ monitor_container_resources() {
 check_storage() {
     # Container storage
     podman system df
-    
+
     # Image storage
     echo "Image Storage:"
     podman image ls --format "table {{.Repository}}:{{.Tag}}\t{{.Size}}"
-    
+
     # Volume storage
     echo "Volume Storage:"
     podman volume ls --format "table {{.Name}}\t{{.Driver}}\t{{.Scope}}"
@@ -363,14 +371,15 @@ check_storage
 ```
 
 **Prometheus Integration**:
+
 ```yaml
 # cAdvisor alternative for Podman
-- job_name: 'podman'
+- job_name: "podman"
   static_configs:
-    - targets: ['localhost:9090']
+    - targets: ["localhost:9090"]
   metric_relabel_configs:
     - source_labels: [__name__]
-      regex: 'container_.*'
+      regex: "container_.*"
       action: keep
 ```
 
@@ -379,37 +388,39 @@ check_storage
 **Purpose**: Collect and analyze logs for troubleshooting and compliance.
 
 **Implementation with Centralized Logging**:
+
 ```yaml
 # Fluentd configuration for container logs
 <source>
-  @type forward
-  port 24224
-  bind 0.0.0.0
+@type forward
+port 24224
+bind 0.0.0.0
 </source>
 
 <filter docker.**>
-  @type parser
-  key_name log
-  format json
-  reserve_data true
+@type parser
+key_name log
+format json
+reserve_data true
 </filter>
 
 <match docker.**>
-  @type elasticsearch
-  host elasticsearch
-  port 9200
-  logstash_format true
-  logstash_prefix container
-  <buffer>
-    @type file
-    path /var/log/fluentd-buffers/containers.buffer
-    flush_mode interval
-    flush_interval 10s
-  </buffer>
+@type elasticsearch
+host elasticsearch
+port 9200
+logstash_format true
+logstash_prefix container
+<buffer>
+@type file
+path /var/log/fluentd-buffers/containers.buffer
+flush_mode interval
+flush_interval 10s
+</buffer>
 </match>
 ```
 
 **Container Logging Configuration**:
+
 ```bash
 # Configure container logging
 podman run -d \
@@ -434,7 +445,7 @@ EOF
 -w /etc/containers -p wa -k container_config
 -w /usr/bin/podman -p x -k container_exec
 EOF
-    
+
     # Reload audit rules
     augenrules --load
 }
@@ -445,6 +456,7 @@ EOF
 **Purpose**: Ensure reliable and fast network connectivity.
 
 **Implementation**:
+
 ```bash
 #!/bin/bash
 # Network performance monitoring
@@ -453,21 +465,21 @@ EOF
 check_container_network() {
     local container=$1
     local target=$2
-    
+
     # Get container PID
     pid=$(podman inspect -f '{{.State.Pid}}' $container)
-    
+
     # Enter container network namespace
     nsenter -t $pid -n ping -c 10 -i 0.2 $target > /tmp/ping_results.txt
-    
+
     # Parse results
     packet_loss=$(grep "packet loss" /tmp/ping_results.txt | awk -F',' '{print $3}' | awk '{print $1}')
     avg_latency=$(grep "rtt min/avg/max" /tmp/ping_results.txt | awk -F'/' '{print $5}')
-    
+
     echo "Container: $container -> $target"
     echo "  Packet Loss: $packet_loss"
     echo "  Average Latency: ${avg_latency}ms"
-    
+
     # Throughput test using iperf3
     if command -v iperf3 &> /dev/null; then
         nsenter -t $pid -n iperf3 -c $target -t 10 -J > /tmp/iperf_results.json
@@ -481,7 +493,7 @@ check_container_network() {
 monitor_cni() {
     # Check bridge networks
     podman network ls --format "table {{.Name}}\t{{.Driver}}\t{{.Subnets}}"
-    
+
     # Inspect network details
     for network in $(podman network ls -q); do
         echo "Network: $network"
@@ -495,6 +507,7 @@ monitor_cni() {
 **Purpose**: Maintain a secure environment with trustworthy images and certificates.
 
 **Implementation**:
+
 ```bash
 #!/bin/bash
 # Security and compliance monitoring
@@ -502,17 +515,17 @@ monitor_cni() {
 # Vulnerability scanning with Trivy
 scan_container_image() {
     local image=$1
-    
+
     echo "Scanning image: $image"
     trivy image --severity HIGH,CRITICAL --format json $image > /tmp/scan_results.json
-    
+
     # Parse results
     high_vulns=$(jq '[.Results[].Vulnerabilities[] | select(.Severity=="HIGH")] | length' /tmp/scan_results.json)
     critical_vulns=$(jq '[.Results[].Vulnerabilities[] | select(.Severity=="CRITICAL")] | length' /tmp/scan_results.json)
-    
+
     echo "  Critical vulnerabilities: $critical_vulns"
     echo "  High vulnerabilities: $high_vulns"
-    
+
     if [ $critical_vulns -gt 0 ]; then
         echo "ERROR: Critical vulnerabilities found!"
         jq '.Results[].Vulnerabilities[] | select(.Severity=="CRITICAL") | {id: .VulnerabilityID, package: .PkgName, severity: .Severity}' /tmp/scan_results.json
@@ -522,15 +535,15 @@ scan_container_image() {
 # Policy compliance checks
 check_security_policies() {
     echo "Checking security policies..."
-    
+
     # Check for running containers as root
     echo "Containers running as root:"
     podman ps --format json | jq -r '.[] | select(.User == "root") | .Names'
-    
+
     # Check for containers with privileged access
     echo "Privileged containers:"
     podman ps --format json | jq -r '.[] | select(.IsPrivileged == true) | .Names'
-    
+
     # Check image signatures
     echo "Unsigned images:"
     for image in $(podman image ls -q); do
@@ -538,7 +551,7 @@ check_security_policies() {
             echo "  - $image"
         fi
     done
-    
+
     # Certificate expiry monitoring
     echo "Certificate expiry check:"
     find /etc/containers/certs.d -name "*.crt" -type f | while read cert; do
@@ -546,7 +559,7 @@ check_security_policies() {
         expiry_epoch=$(date -d "$expiry" +%s)
         current_epoch=$(date +%s)
         days_left=$(( ($expiry_epoch - $current_epoch) / 86400 ))
-        
+
         if [ $days_left -lt 30 ]; then
             echo "  WARNING: $cert expires in $days_left days"
         fi
@@ -566,6 +579,7 @@ check_security_policies
 **Purpose**: Monitor overall health and resource consumption of pod groups.
 
 **Implementation**:
+
 ```bash
 #!/bin/bash
 # Pod-level monitoring
@@ -573,31 +587,31 @@ check_security_policies
 # Monitor pod health
 monitor_pod() {
     local pod=$1
-    
+
     echo "Pod: $pod"
-    
+
     # Get pod status
     pod_status=$(podman pod inspect $pod --format json | jq -r '.[0].State')
     echo "  Status: $pod_status"
-    
+
     # Get containers in pod
     containers=$(podman pod inspect $pod --format json | jq -r '.[0].Containers[].Name')
-    
+
     # Aggregate resource usage
     total_cpu=0
     total_memory=0
     unhealthy_count=0
-    
+
     for container in $containers; do
         # Get container stats
         stats=$(podman stats --no-stream --format json $container 2>/dev/null)
         if [ $? -eq 0 ]; then
             cpu=$(echo $stats | jq -r '.[0].CPU' | sed 's/%//')
             memory=$(echo $stats | jq -r '.[0].MemPerc' | sed 's/%//')
-            
+
             total_cpu=$(echo "$total_cpu + $cpu" | bc)
             total_memory=$(echo "$total_memory + $memory" | bc)
-            
+
             # Check health
             health=$(podman inspect $container --format='{{.State.Health.Status}}' 2>/dev/null)
             if [ "$health" == "unhealthy" ]; then
@@ -605,11 +619,11 @@ monitor_pod() {
             fi
         fi
     done
-    
+
     echo "  Total CPU Usage: ${total_cpu}%"
     echo "  Total Memory Usage: ${total_memory}%"
     echo "  Unhealthy Containers: $unhealthy_count"
-    
+
     # Generate Kubernetes-compatible YAML for documentation
     podman generate kube $pod > /tmp/${pod}_kube.yaml
     echo "  Kubernetes YAML generated: /tmp/${pod}_kube.yaml"
@@ -618,19 +632,19 @@ monitor_pod() {
 # Create pod with monitoring
 create_monitored_pod() {
     local pod_name=$1
-    
+
     # Create pod
     podman pod create --name $pod_name \
         --label monitoring=enabled \
         --label environment=production
-    
+
     # Add containers to pod
     podman run -d --pod $pod_name \
         --name ${pod_name}-app \
         --health-cmd="curl -f http://localhost:8080/health || exit 1" \
         --health-interval=30s \
         myapp:latest
-    
+
     podman run -d --pod $pod_name \
         --name ${pod_name}-sidecar \
         --health-cmd="nc -z localhost 9090 || exit 1" \
@@ -649,6 +663,7 @@ done
 **Purpose**: Correlate container performance with host resource usage.
 
 **Implementation**:
+
 ```bash
 #!/bin/bash
 # Host metrics monitoring
@@ -656,23 +671,23 @@ done
 # Comprehensive host monitoring
 monitor_host_metrics() {
     echo "=== Host System Metrics ==="
-    
+
     # CPU metrics
     echo "CPU Usage:"
     top -bn1 | grep "Cpu(s)" | awk '{print "  User: " $2 "%, System: " $4 "%, Idle: " $8 "%"}'
-    
+
     # Memory metrics
     echo "Memory Usage:"
     free -h | awk '/^Mem:/ {print "  Total: " $2 ", Used: " $3 ", Free: " $4 ", Available: " $7}'
-    
+
     # Disk metrics
     echo "Disk Usage:"
     df -h | grep -E "^/dev/" | awk '{print "  " $1 ": " $5 " used (" $3 "/" $2 ")"}'
-    
+
     # Container storage specific
     echo "Container Storage:"
     podman system df
-    
+
     # Network metrics
     echo "Network Usage:"
     for interface in $(ip -o link show | awk -F': ' '{print $2}' | grep -v lo); do
@@ -682,7 +697,7 @@ monitor_host_metrics() {
         tx_mb=$(echo "scale=2; $tx_bytes / 1024 / 1024" | bc)
         echo "  $interface: RX: ${rx_mb}MB, TX: ${tx_mb}MB"
     done
-    
+
     # Load average
     echo "Load Average:"
     uptime | awk -F'load average:' '{print "  " $2}'
@@ -693,21 +708,21 @@ correlate_metrics() {
     # Get total container resource usage
     container_cpu=$(podman stats --no-stream --format "{{.CPU}}" | sed 's/%//g' | awk '{sum+=$1} END {print sum}')
     container_memory=$(podman stats --no-stream --format "{{.MemPerc}}" | sed 's/%//g' | awk '{sum+=$1} END {print sum}')
-    
+
     # Get host usage
     host_cpu=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8}' | sed 's/%,//')
     host_memory=$(free | awk '/^Mem:/ {print ($3/$2) * 100}')
-    
+
     echo "=== Resource Correlation ==="
     echo "Container CPU Usage: ${container_cpu}%"
     echo "Host CPU Usage: ${host_cpu}%"
     echo "Container Memory Usage: ${container_memory}%"
     echo "Host Memory Usage: ${host_memory}%"
-    
+
     # Calculate overhead
     cpu_overhead=$(echo "scale=2; $host_cpu - $container_cpu" | bc)
     memory_overhead=$(echo "scale=2; $host_memory - $container_memory" | bc)
-    
+
     echo "System Overhead:"
     echo "  CPU: ${cpu_overhead}%"
     echo "  Memory: ${memory_overhead}%"
@@ -735,7 +750,7 @@ correlate_metrics
 
 ```yaml
 # docker-compose.yml for monitoring stack
-version: '3.8'
+version: "3.8"
 
 services:
   prometheus:
@@ -746,8 +761,8 @@ services:
     ports:
       - "9090:9090"
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
 
   grafana:
     image: grafana/grafana:latest
@@ -776,7 +791,7 @@ services:
     ports:
       - "9115:9115"
     command:
-      - '--config.file=/config/blackbox.yml'
+      - "--config.file=/config/blackbox.yml"
 
   loki:
     image: grafana/loki:latest
@@ -813,21 +828,21 @@ global:
 alerting:
   alertmanagers:
     - static_configs:
-        - targets: ['alertmanager:9093']
+        - targets: ["alertmanager:9093"]
 
 rule_files:
   - "alerts/*.yml"
 
 scrape_configs:
   # DNS monitoring
-  - job_name: 'blackbox_dns'
+  - job_name: "blackbox_dns"
     metrics_path: /probe
     params:
       module: [dns]
     static_configs:
       - targets:
-        - app.example.com
-        - api.example.com
+          - app.example.com
+          - api.example.com
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -837,14 +852,14 @@ scrape_configs:
         replacement: blackbox-exporter:9115
 
   # Certificate monitoring
-  - job_name: 'blackbox_https'
+  - job_name: "blackbox_https"
     metrics_path: /probe
     params:
       module: [https_2xx]
     static_configs:
       - targets:
-        - https://app.example.com
-        - https://api.example.com
+          - https://app.example.com
+          - https://api.example.com
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -854,14 +869,14 @@ scrape_configs:
         replacement: blackbox-exporter:9115
 
   # Node exporter
-  - job_name: 'node'
+  - job_name: "node"
     static_configs:
-      - targets: ['node-exporter:9100']
+      - targets: ["node-exporter:9100"]
 
   # Container metrics (using cAdvisor alternative)
-  - job_name: 'containers'
+  - job_name: "containers"
     static_configs:
-      - targets: ['podman-exporter:9882']
+      - targets: ["podman-exporter:9882"]
 ```
 
 ### Alert Rules
@@ -920,30 +935,35 @@ groups:
 ## Implementation Best Practices
 
 ### 1. Automation
+
 - Use configuration management tools (Ansible, Puppet)
 - Implement Infrastructure as Code (IaC)
 - Automate alert response where possible
 - Schedule regular health checks
 
 ### 2. Scalability
+
 - Design monitoring to scale with infrastructure
 - Use service discovery for dynamic environments
 - Implement proper data retention policies
 - Consider federation for large deployments
 
 ### 3. Security
+
 - Encrypt monitoring data in transit
 - Implement access controls
 - Audit monitoring system access
 - Secure sensitive configuration data
 
 ### 4. Performance
+
 - Optimize metric collection intervals
 - Use appropriate storage backends
 - Implement metric aggregation
 - Monitor the monitoring system itself
 
 ### 5. Documentation
+
 - Document all custom metrics
 - Maintain runbooks for alerts
 - Keep architecture diagrams updated
@@ -954,6 +974,7 @@ groups:
 ### Common Issues and Solutions
 
 #### High Resource Usage by Monitoring
+
 ```bash
 # Check Prometheus memory usage
 curl -s http://localhost:9090/api/v1/query?query=prometheus_tsdb_symbol_table_size_bytes | jq .
@@ -967,6 +988,7 @@ storage:
 ```
 
 #### Missing Metrics
+
 ```bash
 # Verify exporters are running
 podman ps | grep exporter
@@ -979,6 +1001,7 @@ curl http://localhost:9882/metrics | grep container_
 ```
 
 #### Alert Fatigue
+
 - Review and tune alert thresholds
 - Implement alert grouping
 - Use inhibition rules

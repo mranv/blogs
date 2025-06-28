@@ -29,7 +29,7 @@ image:
   registry: docker.io
   repository: provectuslabs/kafka-ui
   pullPolicy: IfNotPresent
-  tag: "v0.7.1"  # Pinned to a specific version for security
+  tag: "v0.7.1" # Pinned to a specific version for security
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: "kafka-ui"
@@ -54,7 +54,7 @@ yamlApplicationConfig:
         metrics:
           enabled: false
   auth:
-    type: basic  # Enabled for production security
+    type: basic # Enabled for production security
     basicAuth:
       username: "${ADMIN_USERNAME}"
       password: "${ADMIN_PASSWORD}"
@@ -67,7 +67,7 @@ yamlApplicationConfig:
       context-path: /
     port: 8080
 
-# Use environment variables for sensitive data 
+# Use environment variables for sensitive data
 # Fixed structure for secrets (direct format instead of nested map)
 envs:
   secret:
@@ -97,7 +97,7 @@ networkPolicy:
     customRules: []
 
 # Enhanced security annotations
-podAnnotations: 
+podAnnotations:
   seccomp.security.alpha.kubernetes.io/pod: runtime/default
 
 # Add labels to identify this application
@@ -116,7 +116,7 @@ podSecurityContext:
 securityContext:
   capabilities:
     drop:
-    - ALL
+      - ALL
   readOnlyRootFilesystem: true
   runAsNonRoot: true
   runAsUser: 1000
@@ -185,22 +185,26 @@ readinessProbe:
 ## Key Security Features
 
 ### 1. Authentication & Authorization
+
 - **Basic Authentication**: Enabled for UI access
 - **SASL/SCRAM**: Secure authentication for Kafka cluster
 - **Environment Variables**: Credentials stored as environment variables, not hardcoded
 
 ### 2. Network Security
+
 - **Network Policies**: Restrict egress to only Kafka cluster
 - **Namespace Isolation**: Traffic limited to specific namespaces
 - **ClusterIP Service**: Internal-only access by default
 
 ### 3. Pod Security
+
 - **Non-root User**: Runs as UID 1000
 - **Read-only Root Filesystem**: Prevents runtime modifications
 - **Dropped Capabilities**: All Linux capabilities dropped
 - **Seccomp Profile**: Runtime/default security profile
 
 ### 4. Resource Management
+
 - **Resource Limits**: Prevents resource exhaustion
 - **Health Probes**: Ensures pod health and availability
 - **Auto-scaling**: Disabled by default for predictable resource usage
@@ -261,21 +265,25 @@ ingress:
 ## Security Best Practices
 
 ### 1. Secrets Management
+
 - Use Kubernetes secrets or external secret managers
 - Rotate credentials regularly
 - Implement RBAC for secret access
 
 ### 2. Network Isolation
+
 - Deploy in a dedicated namespace
 - Use network policies to restrict traffic
 - Consider service mesh for additional security
 
 ### 3. Monitoring & Auditing
+
 - Enable audit logging
 - Monitor access patterns
 - Set up alerts for suspicious activities
 
 ### 4. Updates & Patches
+
 - Regularly update Kafka UI image
 - Monitor security advisories
 - Test updates in staging environment
@@ -285,11 +293,13 @@ ingress:
 ### Common Issues
 
 1. **Connection to Kafka Failed**
+
    - Verify network policy allows traffic
    - Check SASL credentials
    - Ensure Kafka service is accessible
 
 2. **Authentication Issues**
+
    - Verify environment variables are set
    - Check secret mounting
    - Review pod logs for errors

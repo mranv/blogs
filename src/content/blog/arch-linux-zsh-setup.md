@@ -23,6 +23,7 @@ This guide provides a complete automated script for setting up ZSH (Z Shell) on 
 ## Features
 
 The script includes:
+
 - Oh My Zsh installation with optimized configuration
 - Essential ZSH plugins for productivity
 - Security-focused tools and aliases
@@ -280,12 +281,12 @@ if [[ $install_rust =~ ^[Yy]$ ]]; then
   echo "Installing Rust..."
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   source $HOME/.cargo/env
-  
+
   # Install some useful Rust security tools
   cargo install cargo-audit
   cargo install cargo-crev
   cargo install cargo-outdated
-  
+
   # Add Rust security aliases
   cat >> ~/.zshrc << 'EOL'
 

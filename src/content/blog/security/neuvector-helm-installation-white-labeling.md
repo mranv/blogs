@@ -25,6 +25,7 @@ This comprehensive guide covers the installation of NeuVector, a full lifecycle 
 ## Overview
 
 NeuVector provides:
+
 - **Runtime Security**: Zero-trust container network protection
 - **Vulnerability Management**: Continuous scanning and compliance
 - **Admission Control**: Kubernetes-native policy enforcement
@@ -37,17 +38,20 @@ NeuVector provides:
 ### System Requirements
 
 1. **Kubernetes Cluster**:
+
    - Version 1.19+ (1.24+ recommended)
    - RBAC enabled
    - CNI plugin supporting NetworkPolicy (Calico, Cilium, etc.)
 
 2. **Hardware Requirements**:
+
    - Controller: 1 CPU, 1GB RAM minimum
    - Enforcer: 1 CPU, 1GB RAM per node
    - Scanner: 1 CPU, 1GB RAM minimum
    - Manager (UI): 1 CPU, 1GB RAM minimum
 
 3. **Storage**:
+
    - 10GB persistent volume for database
    - 5GB for scanner registry cache
 
@@ -99,14 +103,14 @@ controller:
     limits:
       cpu: "2"
       memory: "4Gi"
-  
+
   # Persistent storage for policies
   pvc:
     enabled: true
     storageClass: "fast-ssd"
     accessMode: "ReadWriteOnce"
     size: "10Gi"
-  
+
   # Federation configuration
   federation:
     mastersvc:
@@ -129,11 +133,11 @@ enforcer:
     limits:
       cpu: "1"
       memory: "1Gi"
-  
+
   # Runtime protection settings
   runtimeProtection: true
   admissionControl: true
-  
+
 manager:
   replicas: 2
   resources:
@@ -143,7 +147,7 @@ manager:
     limits:
       cpu: "500m"
       memory: "1Gi"
-  
+
   # Ingress configuration
   ingress:
     enabled: true
@@ -156,7 +160,7 @@ manager:
     tls:
       enabled: true
       secretName: neuvector-tls
-  
+
   # Session management
   env:
     - name: MANAGER_SESSION_TIMEOUT
@@ -171,7 +175,7 @@ scanner:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
-  
+
   resources:
     requests:
       cpu: "500m"
@@ -179,7 +183,7 @@ scanner:
     limits:
       cpu: "2"
       memory: "4Gi"
-  
+
   # Scanner storage
   pvc:
     enabled: true
@@ -199,7 +203,7 @@ crdwebhook:
 
 # Global settings
 tag: "5.3.0"
-imagePullSecrets: 
+imagePullSecrets:
   - name: neuvector-registry
 
 # Service account
@@ -270,6 +274,7 @@ EOF
 ### Understanding White-labeling
 
 NeuVector supports complete white-labeling for:
+
 - Managed Security Service Providers (MSSPs)
 - OEM partnerships
 - Enterprise custom branding
@@ -297,7 +302,7 @@ data:
       --text-color: #202124;
       --border-color: #dadce0;
     }
-    
+
     /* Logo customization */
     .logo-container {
       background-image: url('/custom/logo.png');
@@ -305,38 +310,38 @@ data:
       width: 200px;
       height: 60px;
     }
-    
+
     /* Hide NeuVector branding */
     .nv-branding {
       display: none !important;
     }
-    
+
     /* Custom header */
     .header-bar {
       background-color: var(--primary-color);
     }
-    
+
     /* Custom buttons */
     .btn-primary {
       background-color: var(--primary-color);
       border-color: var(--primary-color);
     }
-    
+
     .btn-primary:hover {
       background-color: #1557b0;
       border-color: #1557b0;
     }
-    
+
     /* Custom navigation */
     .nav-sidebar {
       background-color: var(--background-color);
     }
-    
+
     .nav-link.active {
       background-color: var(--secondary-color);
       color: white;
     }
-    
+
   custom.js: |
     // Custom JavaScript for white-labeling
     (function() {
@@ -380,7 +385,7 @@ data:
         apiEndpoint: 'https://api.yourcompany.com/v1'
       };
     })();
-    
+
   config.json: |
     {
       "branding": {
@@ -426,13 +431,13 @@ manager:
     - name: custom-assets
       persistentVolumeClaim:
         claimName: neuvector-assets
-  
+
   volumeMounts:
     - name: custom-branding
       mountPath: /usr/local/apache2/htdocs/custom
     - name: custom-assets
       mountPath: /usr/local/apache2/htdocs/assets
-  
+
   env:
     - name: CUSTOM_BRANDING_ENABLED
       value: "true"
@@ -450,123 +455,138 @@ Create custom login template:
 
 ```html
 <!-- custom-login.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Enterprise Container Security - Login</title>
-    <link rel="stylesheet" href="/custom/custom.css">
+    <link rel="stylesheet" href="/custom/custom.css" />
     <style>
-        .login-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            width: 400px;
-        }
-        
-        .company-logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .login-form input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        
-        .login-button {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .login-button:hover {
-            background-color: #1557b0;
-        }
-        
-        .additional-options {
-            margin-top: 20px;
-            text-align: center;
-        }
-        
-        .sso-buttons {
-            margin-top: 20px;
-        }
-        
-        .sso-button {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+      .login-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .login-box {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        width: 400px;
+      }
+
+      .company-logo {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .login-form input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .login-button {
+        width: 100%;
+        padding: 12px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .login-button:hover {
+        background-color: #1557b0;
+      }
+
+      .additional-options {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .sso-buttons {
+        margin-top: 20px;
+      }
+
+      .sso-button {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ddd;
+        background: white;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="login-container">
-        <div class="login-box">
-            <div class="company-logo">
-                <img src="/custom/logo.png" alt="Company Logo" height="60">
-            </div>
-            
-            <h2 style="text-align: center; margin-bottom: 30px;">Enterprise Container Security</h2>
-            
-            <form class="login-form" action="/login" method="POST">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" class="login-button">Sign In</button>
-            </form>
-            
-            <div class="sso-buttons">
-                <button class="sso-button" onclick="ssoLogin('saml')">
-                    <img src="/assets/saml-icon.png" height="20" style="margin-right: 10px;">
-                    Sign in with SAML
-                </button>
-                <button class="sso-button" onclick="ssoLogin('oidc')">
-                    <img src="/assets/oidc-icon.png" height="20" style="margin-right: 10px;">
-                    Sign in with OIDC
-                </button>
-            </div>
-            
-            <div class="additional-options">
-                <a href="/forgot-password">Forgot password?</a> | 
-                <a href="https://support.yourcompany.com">Get Support</a>
-            </div>
+      <div class="login-box">
+        <div class="company-logo">
+          <img src="/custom/logo.png" alt="Company Logo" height="60" />
         </div>
+
+        <h2 style="text-align: center; margin-bottom: 30px;">
+          Enterprise Container Security
+        </h2>
+
+        <form class="login-form" action="/login" method="POST">
+          <input type="text" name="username" placeholder="Username" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" class="login-button">Sign In</button>
+        </form>
+
+        <div class="sso-buttons">
+          <button class="sso-button" onclick="ssoLogin('saml')">
+            <img
+              src="/assets/saml-icon.png"
+              height="20"
+              style="margin-right: 10px;"
+            />
+            Sign in with SAML
+          </button>
+          <button class="sso-button" onclick="ssoLogin('oidc')">
+            <img
+              src="/assets/oidc-icon.png"
+              height="20"
+              style="margin-right: 10px;"
+            />
+            Sign in with OIDC
+          </button>
+        </div>
+
+        <div class="additional-options">
+          <a href="/forgot-password">Forgot password?</a> |
+          <a href="https://support.yourcompany.com">Get Support</a>
+        </div>
+      </div>
     </div>
-    
+
     <script src="/custom/custom.js"></script>
     <script>
-        function ssoLogin(type) {
-            window.location.href = `/auth/${type}/login`;
-        }
+      function ssoLogin(type) {
+        window.location.href = `/auth/${type}/login`;
+      }
     </script>
-</body>
+  </body>
 </html>
 ```
 
@@ -597,7 +617,7 @@ def get_info():
     response = requests.get(f'{NEUVECTOR_API}/v1/system/summary',
                           verify=False,
                           headers=request.headers)
-    
+
     if response.status_code == 200:
         data = response.json()
         # Customize response
@@ -620,7 +640,7 @@ def get_info():
             }
         }
         return jsonify(custom_data)
-    
+
     return jsonify({'error': 'Failed to get system info'}), 500
 
 @app.route(f'/api/{API_VERSION}/branding', methods=['GET'])
@@ -646,7 +666,7 @@ def get_branding():
 def proxy(path):
     """Proxy requests to NeuVector API"""
     url = f'{NEUVECTOR_API}/{path}'
-    
+
     response = requests.request(
         method=request.method,
         url=url,
@@ -655,7 +675,7 @@ def proxy(path):
         verify=False,
         allow_redirects=False
     )
-    
+
     # Return proxied response
     return response.content, response.status_code, response.headers.items()
 
@@ -683,22 +703,22 @@ spec:
         app: neuvector-whitelabel
     spec:
       containers:
-      - name: api-wrapper
-        image: your-registry/neuvector-whitelabel:latest
-        ports:
-        - containerPort: 8080
-        env:
-        - name: NEUVECTOR_API
-          value: "https://neuvector-svc-controller:10443"
-        - name: COMPANY_NAME
-          value: "Your Company"
-        volumeMounts:
-        - name: branding-config
-          mountPath: /app/config
+        - name: api-wrapper
+          image: your-registry/neuvector-whitelabel:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NEUVECTOR_API
+              value: "https://neuvector-svc-controller:10443"
+            - name: COMPANY_NAME
+              value: "Your Company"
+          volumeMounts:
+            - name: branding-config
+              mountPath: /app/config
       volumes:
-      - name: branding-config
-        configMap:
-          name: neuvector-branding
+        - name: branding-config
+          configMap:
+            name: neuvector-branding
 ---
 apiVersion: v1
 kind: Service
@@ -709,8 +729,8 @@ spec:
   selector:
     app: neuvector-whitelabel
   ports:
-  - port: 443
-    targetPort: 8080
+    - port: 443
+      targetPort: 8080
   type: ClusterIP
 ```
 
@@ -726,7 +746,7 @@ controller:
       type: LoadBalancer
     managedsvc:
       type: LoadBalancer
-  
+
   env:
     - name: MULTI_TENANT_MODE
       value: "true"
@@ -782,37 +802,37 @@ scanner:
       url: registry.example.com
       username: scanner
       password: "${SCANNER_PASSWORD}"
-      
+
     # Public registry with filters
     - name: docker-hub
       url: docker.io
       filters:
         - "library/*"
         - "official/*"
-      
+
   # Vulnerability database updates
   vulnerabilityDatabase:
-    updateInterval: 3600  # 1 hour
+    updateInterval: 3600 # 1 hour
     sources:
       - nvd
       - redhat
       - ubuntu
       - alpine
       - debian
-      
+
   # Custom vulnerability feeds
   customFeeds:
     - name: internal-vulns
       url: https://security.example.com/vulns/feed
       apiKey: "${VULN_FEED_API_KEY}"
-      
+
   # Scan settings
   scanConfig:
     layerScan: true
     baseImageScan: true
     maxScanJobs: 10
     scanTimeout: 600
-    
+
   # License scanning
   licenseScan:
     enabled: true
@@ -862,7 +882,7 @@ data:
             script: |
               kubectl get pods -o json | \
                 jq '.items[] | select(.metadata.labels.security != "verified")'
-    
+
     reporting:
       format: 
         - json
@@ -940,7 +960,7 @@ data:
     global:
       scrape_interval: 30s
       evaluation_interval: 30s
-    
+
     scrape_configs:
       - job_name: 'neuvector-controller'
         kubernetes_sd_configs:
@@ -1091,7 +1111,7 @@ controller:
       value: "10"
     - name: SCAN_SCHEDULER_INTERVAL
       value: "5"
-    
+
   resources:
     requests:
       cpu: "1"
@@ -1099,7 +1119,7 @@ controller:
     limits:
       cpu: "4"
       memory: "8Gi"
-      
+
   jvmOptions: |
     -Xms2g
     -Xmx6g
@@ -1111,14 +1131,14 @@ controller:
 enforcer:
   env:
     - name: ENF_NETPOLICY_PULL_INTERVAL
-      value: "10"  # seconds
+      value: "10" # seconds
     - name: ENF_MEMORY_LIMIT_PERCENTAGE
       value: "75"
-      
+
   # eBPF optimization (if supported)
   ebpf:
     enabled: true
-    mode: "enhanced"  # basic, enhanced, or custom
+    mode: "enhanced" # basic, enhanced, or custom
 ```
 
 ## Troubleshooting
@@ -1191,13 +1211,13 @@ controller:
     - name: CTRL_DEBUG
       value: "true"
     - name: CTRL_DEBUG_LEVEL
-      value: "debug"  # info, warning, error, debug
-    
+      value: "debug" # info, warning, error, debug
+
 enforcer:
   env:
     - name: ENF_DEBUG
       value: "true"
-      
+
 manager:
   env:
     - name: MANAGER_DEBUG
@@ -1212,7 +1232,7 @@ manager:
 # Security hardening configuration
 securityContext:
   controller:
-    runAsNonRoot: false  # Required for network monitoring
+    runAsNonRoot: false # Required for network monitoring
     readOnlyRootFilesystem: true
     allowPrivilegeEscalation: false
     seccompProfile:
@@ -1224,17 +1244,17 @@ securityContext:
         - NET_ADMIN
         - SYS_ADMIN
         - NET_RAW
-        
+
   manager:
     runAsNonRoot: true
     runAsUser: 1000
     readOnlyRootFilesystem: true
     allowPrivilegeEscalation: false
-    
+
   scanner:
     runAsNonRoot: true
     runAsUser: 1000
-    readOnlyRootFilesystem: false  # Needs write for cache
+    readOnlyRootFilesystem: false # Needs write for cache
     allowPrivilegeEscalation: false
 ```
 
@@ -1254,7 +1274,7 @@ controller:
                 values:
                   - neuvector-controller-pod
           topologyKey: kubernetes.io/hostname
-          
+
 manager:
   replicas: 2
   affinity:
@@ -1278,7 +1298,7 @@ manager:
 verticalPodAutoscaler:
   enabled: true
   updateMode: "Auto"
-  
+
 horizontalPodAutoscaler:
   scanner:
     enabled: true

@@ -108,7 +108,7 @@ detect_os() {
 # Function to install wget
 install_wget() {
   log "Installing wget..."
-  
+
   case $OS in
     "rocky" | "almalinux" | "rhel" | "centos")
       dnf install -y wget || error_exit "Failed to install wget on $OS"
@@ -120,27 +120,27 @@ install_wget() {
       error_exit "Unsupported OS: $OS"
       ;;
   esac
-  
+
   log "wget installed successfully"
 }
 
 # Function to handle dependencies for BlueChI
 install_dependencies() {
   log "Installing dependencies..."
-  
+
   # Dependencies for BlueChI
   DEPENDENCIES=(
-    "dbus" 
-    "systemd" 
-    "python3" 
-    "dbus-broker" 
-    "device-mapper" 
-    "device-mapper-libs" 
-    "libfdisk" 
-    "util-linux" 
+    "dbus"
+    "systemd"
+    "python3"
+    "dbus-broker"
+    "device-mapper"
+    "device-mapper-libs"
+    "libfdisk"
+    "util-linux"
     "systemd-pam"
   )
-  
+
   case $OS in
     "rocky" | "almalinux" | "rhel" | "centos")
       for dep in "${DEPENDENCIES[@]}"; do
@@ -158,7 +158,7 @@ install_dependencies() {
       error_exit "Unsupported OS: $OS"
       ;;
   esac
-  
+
   log "Dependencies installation completed"
 }
 
@@ -166,15 +166,15 @@ install_dependencies() {
 secure_download() {
   local url=$1
   local output_file=$2
-  
+
   # Use wget with proper SSL/TLS security
   wget --https-only --secure-protocol=TLSv1_2 "$url" -O "$output_file" || return 1
-  
+
   # Verify file exists and is not empty
   if [ ! -s "$output_file" ]; then
     return 1
   fi
-  
+
   return 0
 }
 
@@ -185,53 +185,53 @@ download_and_install() {
   local temp_dir=$(mktemp -d)
   TEMP_DIRS+=("$temp_dir")
   local output_file="$temp_dir/$filename"
-  
+
   log "Downloading $filename..."
   if ! secure_download "$url" "$output_file"; then
     error_exit "Failed to download $filename securely"
   fi
-  
+
   log "Installing $filename..."
   if ! rpm -Uvh --nodeps "$output_file"; then
     warn "Failed to install $filename with standard options, trying with --force"
     rpm -Uvh --nodeps --force "$output_file" || error_exit "Failed to install $filename even with --force"
   fi
-  
+
   log "$filename installed successfully"
 }
 
 # Function to check if all required commands are available
 check_requirements() {
   log "Checking if required commands are available..."
-  
+
   local missing_commands=()
-  
+
   # Commands to check
   local commands=("rpm")
-  
+
   for cmd in "${commands[@]}"; do
     if ! command -v "$cmd" &> /dev/null; then
       missing_commands+=("$cmd")
     fi
   done
-  
+
   if [ ${#missing_commands[@]} -gt 0 ]; then
     error_exit "Required commands not found: ${missing_commands[*]}"
   fi
-  
+
   log "All required commands are available"
 }
 
 # Function to verify service status
 verify_services() {
   log "Verifying BlueChI services..."
-  
+
   if systemctl is-active --quiet bluechi-controller; then
     log "BlueChI controller service is active"
   else
     warn "BlueChI controller service is not active"
   fi
-  
+
   if systemctl is-active --quiet bluechi-agent; then
     log "BlueChI agent service is active"
   else
@@ -242,21 +242,21 @@ verify_services() {
 # Main function
 main() {
   log "Starting BlueChI installation script"
-  
+
   check_root
   detect_os
   check_requirements
-  
+
   # Check if wget is already installed, if not install it
   if ! command -v wget &> /dev/null; then
     install_wget
   else
     log "wget is already installed"
   fi
-  
+
   # Install dependencies
   install_dependencies
-  
+
   # BlueChI package URLs
   PACKAGES=(
     "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-agent-0.10.2-1.el9.x86_64.rpm"
@@ -266,46 +266,46 @@ main() {
     "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-selinux-0.10.2-1.el9.noarch.rpm"
     "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/p/python3-bluechi-0.10.2-1.el9.noarch.rpm"
   )
-  
+
   # Install each package
   for package in "${PACKAGES[@]}"; do
     download_and_install "$package"
   done
-  
+
   log "BlueChI packages installed successfully"
-  
+
   # Configure BlueChI for all-in-one setup
   log "Configuring BlueChI..."
-  
+
   # Create configuration directories
   mkdir -p /etc/bluechi/controller.conf.d
   mkdir -p /etc/bluechi/agent.conf.d
-  
+
   # Create controller configuration
   cat > /etc/bluechi/controller.conf.d/1.conf << EOF
 [bluechi-controller]
 ControllerPort=2020
 AllowedNodeNames=$(hostname)
 EOF
-  
+
   # Create agent configuration for local connection
   cat > /etc/bluechi/agent.conf.d/1.conf << EOF
 [bluechi-agent]
 ControllerAddress=unix:path=/run/bluechi/bluechi.sock
 NodeName=$(hostname)
 EOF
-  
+
   # Enable and start BlueChI services
   log "Enabling and starting BlueChI services..."
   systemctl enable --now bluechi-controller bluechi-agent || warn "Failed to enable and start BlueChI services"
-  
+
   # Verify services
   verify_services
-  
+
   # Display summary
   log "BlueChI installation and configuration completed"
   log "Installation log available at: $LOG_FILE"
-  
+
   echo ""
   echo "========================================"
   echo "BlueChI Installation Complete!"
@@ -408,7 +408,7 @@ detect_os() {
 # Function to install wget
 install_wget() {
   log "Installing wget..."
-  
+
   case $OS in
     "rocky" | "almalinux" | "rhel" | "centos")
       dnf install -y wget || error_exit "Failed to install wget on $OS"
@@ -420,26 +420,26 @@ install_wget() {
       error_exit "Unsupported OS: $OS"
       ;;
   esac
-  
+
   log "wget installed successfully"
 }
 
 # Function to handle dependencies for BlueChI
 install_dependencies() {
   log "Installing dependencies..."
-  
+
   DEPENDENCIES=(
-    "dbus" 
-    "systemd" 
-    "python3" 
-    "dbus-broker" 
-    "device-mapper" 
-    "device-mapper-libs" 
-    "libfdisk" 
-    "util-linux" 
+    "dbus"
+    "systemd"
+    "python3"
+    "dbus-broker"
+    "device-mapper"
+    "device-mapper-libs"
+    "libfdisk"
+    "util-linux"
     "systemd-pam"
   )
-  
+
   case $OS in
     "rocky" | "almalinux" | "rhel" | "centos")
       for dep in "${DEPENDENCIES[@]}"; do
@@ -457,7 +457,7 @@ install_dependencies() {
       error_exit "Unsupported OS: $OS"
       ;;
   esac
-  
+
   log "Dependencies installation completed"
 }
 
@@ -465,15 +465,15 @@ install_dependencies() {
 secure_download() {
   local url=$1
   local output_file=$2
-  
+
   # Use wget with proper SSL/TLS security
   wget --https-only --secure-protocol=TLSv1_2 "$url" -O "$output_file" || return 1
-  
+
   # Verify file exists and is not empty
   if [ ! -s "$output_file" ]; then
     return 1
   fi
-  
+
   return 0
 }
 
@@ -484,55 +484,55 @@ download_and_install() {
   local temp_dir=$(mktemp -d)
   TEMP_DIRS+=("$temp_dir")
   local output_file="$temp_dir/$filename"
-  
+
   log "Downloading $filename..."
   if ! secure_download "$url" "$output_file"; then
     error_exit "Failed to download $filename securely"
   fi
-  
+
   log "Installing $filename..."
   if ! rpm -Uvh --nodeps "$output_file"; then
     warn "Failed to install $filename with standard options, trying with --force"
     rpm -Uvh --nodeps --force "$output_file" || error_exit "Failed to install $filename even with --force"
   fi
-  
+
   log "$filename installed successfully"
 }
 
 # Function to check if all required commands are available
 check_requirements() {
   log "Checking if required commands are available..."
-  
+
   local missing_commands=()
   local commands=("rpm" "hostname" "systemctl")
-  
+
   for cmd in "${commands[@]}"; do
     if ! command -v "$cmd" &> /dev/null; then
       missing_commands+=("$cmd")
     fi
   done
-  
+
   if [ ${#missing_commands[@]} -gt 0 ]; then
     error_exit "Required commands not found: ${missing_commands[*]}"
   fi
-  
+
   log "All required commands are available"
 }
 
 # Function to ensure config directories exist
 ensure_config_dirs() {
   log "Ensuring configuration directories exist..."
-  
+
   mkdir -p /etc/bluechi/controller.conf.d
   mkdir -p /etc/bluechi/agent.conf.d
-  
+
   log "Configuration directories created"
 }
 
 # Function to configure controller
 configure_controller() {
   log "Configuring BlueChI controller..."
-  
+
   # Create configuration
   cat > /etc/bluechi/controller.conf.d/1.conf << EOF
 [bluechi-controller]
@@ -543,7 +543,7 @@ LogTarget=journald
 EOF
 
   log "Controller configuration written to /etc/bluechi/controller.conf.d/1.conf"
-  
+
   # Configure local agent to use Unix Domain Socket
   cat > /etc/bluechi/agent.conf.d/1.conf << EOF
 [bluechi-agent]
@@ -559,7 +559,7 @@ EOF
 # Function to configure agent
 configure_agent() {
   log "Configuring BlueChI agent..."
-  
+
   # Create configuration
   cat > /etc/bluechi/agent.conf.d/1.conf << EOF
 [bluechi-agent]
@@ -577,7 +577,7 @@ EOF
 # Function to verify service status
 verify_services() {
   log "Verifying BlueChI services..."
-  
+
   if [ "$INSTALL_MODE" = "controller" ]; then
     if systemctl is-active --quiet bluechi-controller; then
       log "BlueChI controller service is active"
@@ -585,7 +585,7 @@ verify_services() {
       warn "BlueChI controller service is not active"
     fi
   fi
-  
+
   if systemctl is-active --quiet bluechi-agent; then
     log "BlueChI agent service is active"
   else
@@ -596,7 +596,7 @@ verify_services() {
 # Function to open firewall port for controller
 configure_firewall() {
   log "Configuring firewall for BlueChI..."
-  
+
   if command -v firewall-cmd &> /dev/null; then
     log "Using firewalld..."
     if systemctl is-active --quiet firewalld; then
@@ -615,7 +615,7 @@ configure_firewall() {
 # Function to install controller
 install_controller() {
   log "Installing BlueChI controller components..."
-  
+
   # Controller packages
   PACKAGES=(
     "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-agent-${BLUECHI_VERSION}-1.el9.x86_64.rpm"
@@ -624,58 +624,58 @@ install_controller() {
     "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-selinux-${BLUECHI_VERSION}-1.el9.noarch.rpm"
     "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/p/python3-bluechi-${BLUECHI_VERSION}-1.el9.noarch.rpm"
   )
-  
+
   # Install each package
   for package in "${PACKAGES[@]}"; do
     download_and_install "$package"
   done
-  
+
   # If online component was requested, install it
   if [[ "$*" == *"--with-online"* ]]; then
     download_and_install "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-is-online-${BLUECHI_VERSION}-1.el9.x86_64.rpm"
   fi
-  
+
   ensure_config_dirs
   configure_controller
-  
+
   if [[ "$*" == *"--configure-firewall"* ]]; then
     configure_firewall
   fi
-  
+
   log "BlueChI controller installation completed"
 }
 
 # Function to install agent
 install_agent() {
   log "Installing BlueChI agent components..."
-  
+
   # Agent packages
   PACKAGES=(
     "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-agent-${BLUECHI_VERSION}-1.el9.x86_64.rpm"
     "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-selinux-${BLUECHI_VERSION}-1.el9.noarch.rpm"
     "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/p/python3-bluechi-${BLUECHI_VERSION}-1.el9.noarch.rpm"
   )
-  
+
   # Install each package
   for package in "${PACKAGES[@]}"; do
     download_and_install "$package"
   done
-  
+
   # If online component was requested, install it
   if [[ "$*" == *"--with-online"* ]]; then
     download_and_install "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-is-online-${BLUECHI_VERSION}-1.el9.x86_64.rpm"
   fi
-  
+
   ensure_config_dirs
   configure_agent
-  
+
   log "BlueChI agent installation completed"
 }
 
 # Function to start services
 start_services() {
   log "Starting BlueChI services..."
-  
+
   if [ "$INSTALL_MODE" = "controller" ]; then
     log "Starting controller and agent services..."
     systemctl enable --now bluechi-controller bluechi-agent || warn "Failed to enable and start BlueChI services"
@@ -683,7 +683,7 @@ start_services() {
     log "Starting agent service..."
     systemctl enable --now bluechi-agent || warn "Failed to enable and start BlueChI agent service"
   fi
-  
+
   verify_services
 }
 
@@ -774,25 +774,25 @@ parse_args() {
         ;;
     esac
   done
-  
+
   # Validate required arguments
   if [ -z "$INSTALL_MODE" ]; then
     error_exit "Installation mode (--mode) must be specified"
   fi
-  
+
   if [ "$INSTALL_MODE" != "controller" ] && [ "$INSTALL_MODE" != "agent" ]; then
     error_exit "Installation mode must be either 'controller' or 'agent'"
   fi
-  
+
   if [ "$INSTALL_MODE" = "controller" ] && [ -z "$ALLOWED_NODES" ]; then
     error_exit "Allowed nodes (--allowed-nodes) must be specified for controller mode"
   fi
-  
+
   if [ "$INSTALL_MODE" = "agent" ]; then
     if [ -z "$CONTROLLER_IP" ]; then
       error_exit "Controller IP (--controller-ip) must be specified for agent mode"
     fi
-    
+
     if [ -z "$NODE_NAME" ]; then
       error_exit "Node name (--node-name) must be specified for agent mode"
     fi
@@ -802,38 +802,38 @@ parse_args() {
 # Main function
 main() {
   log "Starting BlueChI installation script in $INSTALL_MODE mode"
-  
+
   check_root
   detect_os
   check_requirements
-  
+
   # Check if wget is already installed, if not install it
   if ! command -v wget &> /dev/null; then
     install_wget
   else
     log "wget is already installed"
   fi
-  
+
   # Install dependencies
   install_dependencies
-  
+
   # Install either controller or agent based on mode
   if [ "$INSTALL_MODE" = "controller" ]; then
     install_controller "$@"
   else
     install_agent "$@"
   fi
-  
+
   # Start services
   start_services
-  
+
   # Display summary
   echo ""
   echo "========================================"
   echo "BlueChI Installation Complete!"
   echo "========================================"
   echo ""
-  
+
   if [ "$INSTALL_MODE" = "controller" ]; then
     echo "Controller installation summary:"
     echo "  - Listening on port: $CONTROLLER_PORT"
@@ -849,7 +849,7 @@ main() {
     echo ""
     echo "Check logs: journalctl -u bluechi-agent -f"
   fi
-  
+
   echo ""
   echo "Service status:"
   if [ "$INSTALL_MODE" = "controller" ]; then
@@ -925,17 +925,17 @@ info() {
 # Check prerequisites
 check_prerequisites() {
     log "Checking prerequisites..."
-    
+
     # Check if running as root
     if [[ $EUID -ne 0 ]]; then
         error "This script must be run as root"
     fi
-    
+
     # Check OS
     if [[ ! -f /etc/os-release ]]; then
         error "Cannot detect OS version"
     fi
-    
+
     # Check required tools
     local required_tools=("systemctl" "firewall-cmd" "sestatus" "python3")
     for tool in "${required_tools[@]}"; do
@@ -943,7 +943,7 @@ check_prerequisites() {
             warn "$tool is not installed"
         fi
     done
-    
+
     log "Prerequisites check completed"
 }
 
@@ -952,29 +952,29 @@ install_bluechi_secure() {
     local mode=$1
     local controller_ip=${2:-}
     local node_name=${3:-$(hostname)}
-    
+
     log "Installing BlueChI in $mode mode with enhanced security..."
-    
+
     # Create dedicated user for BlueChI
     if ! id -u bluechi &>/dev/null; then
         useradd -r -s /sbin/nologin -d /var/lib/bluechi -m bluechi
         log "Created bluechi user"
     fi
-    
+
     # Install packages
     local packages=(
         "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-agent-0.10.2-1.el9.x86_64.rpm"
         "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-selinux-0.10.2-1.el9.noarch.rpm"
         "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/p/python3-bluechi-0.10.2-1.el9.noarch.rpm"
     )
-    
+
     if [[ "$mode" == "controller" ]]; then
         packages+=(
             "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-controller-0.10.2-1.el9.x86_64.rpm"
             "https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/b/bluechi-ctl-0.10.2-1.el9.x86_64.rpm"
         )
     fi
-    
+
     for package in "${packages[@]}"; do
         local pkg_name=$(basename "$package")
         log "Downloading $pkg_name..."
@@ -982,16 +982,16 @@ install_bluechi_secure() {
         rpm -Uvh "/tmp/$pkg_name" || warn "Package $pkg_name might already be installed"
         rm -f "/tmp/$pkg_name"
     done
-    
+
     # Secure configuration
     setup_secure_config "$mode" "$controller_ip" "$node_name"
-    
+
     # SELinux configuration
     setup_selinux
-    
+
     # Firewall configuration
     setup_firewall "$mode"
-    
+
     log "BlueChI secure installation completed"
 }
 
@@ -1000,14 +1000,14 @@ setup_secure_config() {
     local mode=$1
     local controller_ip=$2
     local node_name=$3
-    
+
     log "Setting up secure configuration..."
-    
+
     # Create config directories with proper permissions
     mkdir -p "$CONFIG_DIR"/{controller.conf.d,agent.conf.d}
     chown -R bluechi:bluechi "$CONFIG_DIR"
     chmod 750 "$CONFIG_DIR"
-    
+
     if [[ "$mode" == "controller" ]]; then
         # Controller configuration with security settings
         cat > "$CONFIG_DIR/controller.conf.d/security.conf" << EOF
@@ -1025,7 +1025,7 @@ CertificateFile=/etc/bluechi/certs/controller.crt
 KeyFile=/etc/bluechi/certs/controller.key
 CAFile=/etc/bluechi/certs/ca.crt
 EOF
-        
+
         # Local agent config
         cat > "$CONFIG_DIR/agent.conf.d/local.conf" << EOF
 [bluechi-agent]
@@ -1052,7 +1052,7 @@ KeyFile=/etc/bluechi/certs/agent.key
 CAFile=/etc/bluechi/certs/ca.crt
 EOF
     fi
-    
+
     # Set proper permissions
     chmod 640 "$CONFIG_DIR"/*/*.conf
     chown -R root:bluechi "$CONFIG_DIR"
@@ -1061,7 +1061,7 @@ EOF
 # Setup monitoring
 setup_monitoring() {
     log "Setting up monitoring..."
-    
+
     # Create monitoring scripts
     cat > "$MONITORING_DIR/bluechi-monitor.py" << 'EOF'
 #!/usr/bin/env python3
@@ -1079,27 +1079,27 @@ class BlueChiMonitor:
             'services': {},
             'errors': []
         }
-    
+
     def collect_metrics(self):
         # Collect node metrics
         try:
-            result = subprocess.run(['bluechictl', 'list-nodes'], 
+            result = subprocess.run(['bluechictl', 'list-nodes'],
                                   capture_output=True, text=True)
             if result.returncode == 0:
                 self.parse_nodes(result.stdout)
         except Exception as e:
             self.metrics['errors'].append(f"Failed to collect nodes: {e}")
-        
+
         # Collect service metrics for each node
         for node in self.metrics['nodes']:
             try:
-                result = subprocess.run(['bluechictl', 'list-units', node], 
+                result = subprocess.run(['bluechictl', 'list-units', node],
                                       capture_output=True, text=True)
                 if result.returncode == 0:
                     self.parse_services(node, result.stdout)
             except Exception as e:
                 self.metrics['errors'].append(f"Failed to collect services for {node}: {e}")
-    
+
     def parse_nodes(self, output):
         lines = output.strip().split('\n')[1:]  # Skip header
         for line in lines:
@@ -1113,11 +1113,11 @@ class BlueChiMonitor:
                     'last_seen': last_seen,
                     'timestamp': datetime.now().isoformat()
                 }
-    
+
     def parse_services(self, node, output):
         if node not in self.metrics['services']:
             self.metrics['services'][node] = {}
-        
+
         lines = output.strip().split('\n')[1:]  # Skip header
         for line in lines:
             parts = line.split(None, 3)
@@ -1128,44 +1128,44 @@ class BlueChiMonitor:
                     'state': state,
                     'timestamp': datetime.now().isoformat()
                 }
-    
+
     def export_prometheus(self):
         # Export metrics in Prometheus format
         output = []
-        
+
         # Node metrics
         for node, data in self.metrics['nodes'].items():
             state_value = 1 if data['state'] == 'online' else 0
             output.append(f'bluechi_node_online{{node="{node}"}} {state_value}')
-        
+
         # Service metrics
         for node, services in self.metrics['services'].items():
             running = sum(1 for s in services.values() if s['state'] == 'running')
             failed = sum(1 for s in services.values() if s['state'] == 'failed')
             output.append(f'bluechi_services_running{{node="{node}"}} {running}')
             output.append(f'bluechi_services_failed{{node="{node}"}} {failed}')
-        
+
         # Error count
         output.append(f'bluechi_monitor_errors {len(self.metrics["errors"])}')
-        
+
         return '\n'.join(output)
-    
+
     def serve_metrics(self, port=9101):
         # Simple HTTP server for Prometheus scraping
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         server_socket.bind(('0.0.0.0', port))
         server_socket.listen(5)
-        
+
         print(f"Serving metrics on port {port}")
-        
+
         while True:
             client_socket, addr = server_socket.accept()
-            
+
             # Collect fresh metrics
             self.collect_metrics()
             metrics = self.export_prometheus()
-            
+
             # Send HTTP response
             response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n{metrics}"
             client_socket.send(response.encode())
@@ -1175,9 +1175,9 @@ if __name__ == '__main__':
     monitor = BlueChiMonitor()
     monitor.serve_metrics()
 EOF
-    
+
     chmod +x "$MONITORING_DIR/bluechi-monitor.py"
-    
+
     # Create systemd service for monitoring
     cat > /etc/systemd/system/bluechi-monitor.service << EOF
 [Unit]
@@ -1194,7 +1194,7 @@ Group=bluechi
 [Install]
 WantedBy=multi-user.target
 EOF
-    
+
     # Create alert rules
     cat > "$MONITORING_DIR/alerts.yaml" << EOF
 groups:
@@ -1208,7 +1208,7 @@ groups:
         annotations:
           summary: "BlueChI node {{ \$labels.node }} is down"
           description: "Node {{ \$labels.node }} has been offline for more than 5 minutes"
-      
+
       - alert: BlueChiServicesFailed
         expr: bluechi_services_failed > 0
         for: 10m
@@ -1217,7 +1217,7 @@ groups:
         annotations:
           summary: "Failed services on node {{ \$labels.node }}"
           description: "{{ \$value }} services are in failed state on {{ \$labels.node }}"
-      
+
       - alert: BlueChiMonitorErrors
         expr: bluechi_monitor_errors > 0
         for: 5m
@@ -1227,10 +1227,10 @@ groups:
           summary: "BlueChI monitoring errors detected"
           description: "The monitoring system has encountered {{ \$value }} errors"
 EOF
-    
+
     systemctl daemon-reload
     systemctl enable bluechi-monitor.service
-    
+
     log "Monitoring setup completed"
 }
 
@@ -1239,18 +1239,18 @@ setup_ha() {
     local role=$1  # master or backup
     local vip=$2
     local interface=$3
-    
+
     log "Setting up High Availability as $role..."
-    
+
     # Install keepalived
     dnf install -y keepalived || yum install -y keepalived
-    
+
     # Configure keepalived
     local priority=100
     if [[ "$role" == "backup" ]]; then
         priority=90
     fi
-    
+
     cat > /etc/keepalived/keepalived.conf << EOF
 global_defs {
     notification_email {
@@ -1290,7 +1290,7 @@ vrrp_instance BLUECHI_VIP {
     notify_fault "/usr/local/bin/bluechi_ha_notify.sh fault"
 }
 EOF
-    
+
     # Create health check script
     cat > /usr/local/bin/check_bluechi_health.sh << 'EOF'
 #!/bin/bash
@@ -1305,9 +1305,9 @@ fi
 
 exit 1
 EOF
-    
+
     chmod +x /usr/local/bin/check_bluechi_health.sh
-    
+
     # Create notification script
     cat > /usr/local/bin/bluechi_ha_notify.sh << 'EOF'
 #!/bin/bash
@@ -1333,19 +1333,19 @@ case $STATE in
         ;;
 esac
 EOF
-    
+
     chmod +x /usr/local/bin/bluechi_ha_notify.sh
-    
+
     # Enable and start keepalived
     systemctl enable --now keepalived
-    
+
     log "High Availability setup completed"
 }
 
 # Setup backup and recovery
 setup_backup() {
     log "Setting up backup and recovery..."
-    
+
     # Create backup script
     cat > /usr/local/bin/bluechi_backup.sh << 'EOF'
 #!/bin/bash
@@ -1380,9 +1380,9 @@ echo "Backup completed: $BACKUP_FILE"
 # Upload to remote storage (optional)
 # aws s3 cp "$BACKUP_FILE" s3://backup-bucket/bluechi/
 EOF
-    
+
     chmod +x /usr/local/bin/bluechi_backup.sh
-    
+
     # Create recovery script
     cat > /usr/local/bin/bluechi_recover.sh << 'EOF'
 #!/bin/bash
@@ -1416,30 +1416,30 @@ systemctl start bluechi-controller bluechi-agent
 
 echo "Recovery completed from: $BACKUP_FILE"
 EOF
-    
+
     chmod +x /usr/local/bin/bluechi_recover.sh
-    
+
     # Schedule daily backups
     cat > /etc/cron.d/bluechi-backup << EOF
 0 2 * * * root /usr/local/bin/bluechi_backup.sh >> $LOG_DIR/backup.log 2>&1
 EOF
-    
+
     log "Backup and recovery setup completed"
 }
 
 # Setup SELinux
 setup_selinux() {
     log "Configuring SELinux..."
-    
+
     if command -v getenforce &> /dev/null; then
         if [[ $(getenforce) != "Disabled" ]]; then
             # Set proper SELinux contexts
             semanage fcontext -a -t systemd_unit_file_t "/etc/bluechi(/.*)?"
             restorecon -Rv /etc/bluechi
-            
+
             # Allow BlueChI to bind to port
             semanage port -a -t bluechi_port_t -p tcp 2020 2>/dev/null || true
-            
+
             log "SELinux configuration completed"
         else
             warn "SELinux is disabled"
@@ -1452,9 +1452,9 @@ setup_selinux() {
 # Setup firewall
 setup_firewall() {
     local mode=$1
-    
+
     log "Configuring firewall..."
-    
+
     if command -v firewall-cmd &> /dev/null; then
         if systemctl is-active --quiet firewalld; then
             if [[ "$mode" == "controller" ]]; then
@@ -1463,10 +1463,10 @@ setup_firewall() {
                 # Open monitoring port
                 firewall-cmd --permanent --add-port=9101/tcp
             fi
-            
+
             # Reload firewall
             firewall-cmd --reload
-            
+
             log "Firewall configuration completed"
         else
             warn "Firewalld is not running"
@@ -1479,7 +1479,7 @@ setup_firewall() {
 # Main deployment function
 deploy_production() {
     local deployment_type=$1
-    
+
     case "$deployment_type" in
         "controller-ha")
             log "Deploying BlueChI Controller with HA"
@@ -1489,7 +1489,7 @@ deploy_production() {
             setup_ha "master" "192.168.1.100" "eth0"
             setup_backup
             ;;
-        
+
         "controller")
             log "Deploying BlueChI Controller"
             check_prerequisites
@@ -1497,7 +1497,7 @@ deploy_production() {
             setup_monitoring
             setup_backup
             ;;
-        
+
         "agent")
             log "Deploying BlueChI Agent"
             check_prerequisites
@@ -1505,12 +1505,12 @@ deploy_production() {
             local node_name=$3
             install_bluechi_secure "agent" "$controller_ip" "$node_name"
             ;;
-        
+
         *)
             error "Unknown deployment type: $deployment_type"
             ;;
     esac
-    
+
     # Start services
     log "Starting BlueChI services..."
     if [[ "$deployment_type" == "controller-ha" ]] || [[ "$deployment_type" == "controller" ]]; then
@@ -1519,11 +1519,11 @@ deploy_production() {
     else
         systemctl enable --now bluechi-agent
     fi
-    
+
     # Final verification
     log "Verifying deployment..."
     sleep 5
-    
+
     if [[ "$deployment_type" == "controller-ha" ]] || [[ "$deployment_type" == "controller" ]]; then
         if bluechictl list-nodes &>/dev/null; then
             info "BlueChI Controller is operational"
@@ -1532,13 +1532,13 @@ deploy_production() {
             warn "BlueChI Controller verification failed"
         fi
     fi
-    
+
     if systemctl is-active --quiet bluechi-agent; then
         info "BlueChI Agent is running"
     else
         warn "BlueChI Agent is not running"
     fi
-    
+
     log "Production deployment completed successfully"
     info "Deployment log: $LOG_FILE"
     info "Configuration: $CONFIG_DIR"
@@ -1616,39 +1616,39 @@ readonly AUDIT_LOG="/var/log/bluechi/audit.log"
 # Create certificate infrastructure
 setup_pki() {
     log "Setting up PKI infrastructure..."
-    
+
     mkdir -p "$CERT_DIR"
     chmod 700 "$CERT_DIR"
-    
+
     # Generate CA
     openssl req -x509 -newkey rsa:4096 -days 3650 -nodes \
         -keyout "$CERT_DIR/ca.key" \
         -out "$CERT_DIR/ca.crt" \
         -subj "/C=US/ST=State/L=City/O=Organization/CN=BlueChI CA"
-    
+
     # Generate controller certificate
     openssl req -newkey rsa:4096 -nodes \
         -keyout "$CERT_DIR/controller.key" \
         -out "$CERT_DIR/controller.csr" \
         -subj "/C=US/ST=State/L=City/O=Organization/CN=bluechi-controller"
-    
+
     openssl x509 -req -in "$CERT_DIR/controller.csr" \
         -CA "$CERT_DIR/ca.crt" -CAkey "$CERT_DIR/ca.key" \
         -CAcreateserial -out "$CERT_DIR/controller.crt" \
         -days 365 -sha256
-    
+
     # Set permissions
     chmod 600 "$CERT_DIR"/*.key
     chmod 644 "$CERT_DIR"/*.crt
     chown -R root:bluechi "$CERT_DIR"
-    
+
     log "PKI infrastructure setup completed"
 }
 
 # Configure audit logging
 setup_audit() {
     log "Configuring audit logging..."
-    
+
     # Create audit rules
     cat > /etc/audit/rules.d/bluechi.rules << 'EOF'
 # BlueChI audit rules
@@ -1660,11 +1660,11 @@ setup_audit() {
 # Monitor D-Bus calls
 -a always,exit -F arch=b64 -S connect -F a0=1 -F path=/var/run/dbus/system_bus_socket -k bluechi_dbus
 EOF
-    
+
     # Reload audit rules
     augenrules --load
     systemctl restart auditd
-    
+
     # Create audit report script
     cat > /usr/local/bin/bluechi_audit_report.sh << 'EOF'
 #!/bin/bash
@@ -1692,16 +1692,16 @@ echo ""
 echo "Suspicious Activities:"
 ausearch -k bluechi_dbus -ts recent --raw | aureport --summary
 EOF
-    
+
     chmod +x /usr/local/bin/bluechi_audit_report.sh
-    
+
     log "Audit logging configuration completed"
 }
 
 # Harden system configuration
 harden_system() {
     log "Hardening system configuration..."
-    
+
     # Kernel parameters for security
     cat >> /etc/sysctl.d/99-bluechi-security.conf << 'EOF'
 # BlueChI Security Hardening
@@ -1718,12 +1718,12 @@ net.ipv4.conf.all.log_martians = 1
 kernel.randomize_va_space = 2
 kernel.yama.ptrace_scope = 1
 EOF
-    
+
     sysctl -p /etc/sysctl.d/99-bluechi-security.conf
-    
+
     # Restrict core dumps
     echo "* hard core 0" >> /etc/security/limits.conf
-    
+
     # Configure fail2ban for BlueChI
     if command -v fail2ban-client &> /dev/null; then
         cat > /etc/fail2ban/jail.d/bluechi.conf << 'EOF'
@@ -1735,7 +1735,7 @@ logpath = /var/log/bluechi/*.log
 maxretry = 5
 bantime = 3600
 EOF
-        
+
         cat > /etc/fail2ban/filter.d/bluechi.conf << 'EOF'
 [Definition]
 failregex = Authentication failed for .* from <HOST>
@@ -1743,21 +1743,21 @@ failregex = Authentication failed for .* from <HOST>
             Invalid certificate from <HOST>
 ignoreregex =
 EOF
-        
+
         systemctl restart fail2ban
     fi
-    
+
     log "System hardening completed"
 }
 
 # Main execution
 main() {
     log "Starting BlueChI security hardening..."
-    
+
     setup_pki
     setup_audit
     harden_system
-    
+
     log "Security hardening completed successfully"
 }
 
@@ -1886,18 +1886,21 @@ bluechictl status $(hostname) httpd.service
 ## Best Practices
 
 1. **Security First**
+
    - Always use TLS in production
    - Implement proper firewall rules
    - Enable SELinux where possible
    - Regular security audits
 
 2. **Monitoring**
+
    - Deploy monitoring from day one
    - Set up alerting for critical events
    - Regular health checks
    - Capacity planning
 
 3. **Backup and Recovery**
+
    - Automate daily backups
    - Test recovery procedures
    - Document recovery steps

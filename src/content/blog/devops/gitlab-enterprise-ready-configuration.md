@@ -41,21 +41,22 @@ GitLab Enterprise Edition provides critical features for enterprise deployments:
 
 ```yaml
 global:
-  edition: ee  # Change from 'ce' to 'ee'
-  
+  edition: ee # Change from 'ce' to 'ee'
+
   # Enterprise features configuration
   appConfig:
     seatLink:
-      enabled: true  # License compliance tracking
-    
+      enabled: true # License compliance tracking
+
     serviceDeskEmail:
-      enabled: true  # IT service desk integration
-    
+      enabled: true # IT service desk integration
+
     incomingEmail:
-      enabled: true  # Email-based issue creation
+      enabled: true # Email-based issue creation
 ```
 
 **Enterprise Edition Benefits**:
+
 - Advanced authentication (SAML, Kerberos, Smart Card)
 - Compliance management (audit events, compliance dashboard)
 - Advanced CI/CD features (multi-project pipelines, security scanning)
@@ -73,24 +74,24 @@ global:
     replaceInternalGitaly: true
     virtualStorages:
       - name: default
-        gitalyReplicas: 3  # Multiple Gitaly replicas
-        maxUnavailable: 1  # Tolerate 1 node failure
-    
+        gitalyReplicas: 3 # Multiple Gitaly replicas
+        maxUnavailable: 1 # Tolerate 1 node failure
+
     postgres:
       sslMode: require
-      
+
 # GitLab application replicas
 gitlab:
   webservice:
     minReplicas: 3
     maxReplicas: 10
     hpa:
-      targetAverageValue: 1  # CPU-based autoscaling
-    
+      targetAverageValue: 1 # CPU-based autoscaling
+
   sidekiq:
     minReplicas: 2
     maxReplicas: 5
-    
+
   gitlab-shell:
     minReplicas: 2
     maxReplicas: 5
@@ -121,7 +122,7 @@ global:
       clientCertificate: cert.pem
       clientKey: key.pem
       serverCA: ca.pem
-    
+
   redis:
     host: your-managed-redis.example.com
     port: 6379
@@ -140,7 +141,7 @@ global:
 # Disable internal PostgreSQL and Redis
 postgresql:
   install: false
-  
+
 redis:
   install: false
 ```
@@ -157,40 +158,40 @@ global:
       enabled: true
       CASecret: smartcard-ca-certs
       clientCertificateRequiredHost: smartcard.gitlab.example.com
-    
+
     # SAML/SSO configuration
     omniauth:
       enabled: true
-      allowSingleSignOn: ['saml']
+      allowSingleSignOn: ["saml"]
       autoSignInWithProvider: saml
-      syncProfileFromProvider: ['saml']
-      syncProfileAttributes: ['email']
+      syncProfileFromProvider: ["saml"]
+      syncProfileAttributes: ["email"]
       blockAutoCreatedUsers: false
       providers:
         - secret: gitlab-saml
           key: provider
-    
+
     # LDAP configuration
     ldap:
       enabled: true
       preventSignin: false
       servers:
         main:
-          label: 'Company LDAP'
-          host: 'ldap.company.com'
+          label: "Company LDAP"
+          host: "ldap.company.com"
           port: 636
-          uid: 'sAMAccountName'
-          bind_dn: 'CN=gitlab,OU=Service Accounts,DC=company,DC=com'
+          uid: "sAMAccountName"
+          bind_dn: "CN=gitlab,OU=Service Accounts,DC=company,DC=com"
           password:
             secret: gitlab-ldap-password
             key: password
-          encryption: 'simple_tls'
+          encryption: "simple_tls"
           verify_certificates: true
           smartcard_auth: true
           active_directory: true
-          base: 'DC=company,DC=com'
-          user_filter: '(memberOf=CN=GitLab Users,OU=Groups,DC=company,DC=com)'
-          
+          base: "DC=company,DC=com"
+          user_filter: "(memberOf=CN=GitLab Users,OU=Groups,DC=company,DC=com)"
+
     # Content Security Policy
     contentSecurityPolicy:
       enabled: true
@@ -214,7 +215,7 @@ global:
       connection:
         secret: gitlab-object-storage
         key: connection
-      
+
     artifacts:
       enabled: true
       proxy_download: true
@@ -222,7 +223,7 @@ global:
       connection:
         secret: gitlab-artifacts-storage
         key: connection
-    
+
     lfs:
       enabled: true
       proxy_download: true
@@ -230,7 +231,7 @@ global:
       connection:
         secret: gitlab-lfs-storage
         key: connection
-    
+
     uploads:
       enabled: true
       proxy_download: true
@@ -238,7 +239,7 @@ global:
       connection:
         secret: gitlab-uploads-storage
         key: connection
-    
+
     packages:
       enabled: true
       proxy_download: true
@@ -246,7 +247,6 @@ global:
       connection:
         secret: gitlab-packages-storage
         key: connection
-
 # Object storage connection secret example
 # kubectl create secret generic gitlab-object-storage --from-literal=connection="provider: AWS
 # region: us-east-1
@@ -271,21 +271,21 @@ gitlab:
         config:
           secret: gitlab-backup-storage
           key: config
-      
+
 # Backup storage configuration
 global:
   appConfig:
     backups:
       bucket: gitlab-backups
       tmpBucket: gitlab-tmp
-    
+
 # GitLab Geo for disaster recovery (EE feature)
 global:
   geo:
     enabled: true
     role: primary  # or 'secondary' for secondary sites
     nodeName: primary-site
-    
+
   psql:
     main:
       host: primary-postgresql.example.com
@@ -307,7 +307,7 @@ prometheus:
     enabled: true
   nodeExporter:
     enabled: true
-  
+
   serverFiles:
     alerting_rules.yml:
       groups:
@@ -324,12 +324,12 @@ prometheus:
 grafana:
   enabled: true
   adminPassword: your-secure-password
-  
+
 # Enable GitLab monitoring features
 global:
   monitoring:
     enabled: true
-    
+
 gitlab:
   gitlab-exporter:
     enabled: true
@@ -357,14 +357,14 @@ global:
       nginx.ingress.kubernetes.io/proxy-body-size: "0"
       nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
       nginx.ingress.kubernetes.io/proxy-connect-timeout: "900"
-      
+
 # Registry TLS
 registry:
   ingress:
     tls:
       enabled: true
       secretName: registry-tls
-      
+
 # Enforce HTTPS for all services
 global:
   hosts:
@@ -398,13 +398,13 @@ global:
         enabled: true
         port: 8443
         https: true
-    
+
     # JWT authentication for API access
     jwtAuthentication:
       enabled: true
       secret: gitlab-jwt-secret
       issuer: gitlab.company.com
-      
+
     # Enforce 2FA for all users
     twoFactorAuthentication:
       enabled: true
@@ -422,11 +422,11 @@ global:
     enabled: true
     role: primary
     nodeName: us-east-primary
-    
+
   psql:
     main:
       host: primary-db.us-east.example.com
-      
+
 # Secondary site configuration (separate deployment)
 global:
   geo:
@@ -435,7 +435,7 @@ global:
     nodeName: eu-west-secondary
     primaryUrl: https://gitlab-primary.company.com
     primaryApiUrl: https://gitlab-primary.company.com/api/v4
-    
+
   psql:
     main:
       host: secondary-db.eu-west.example.com
@@ -457,7 +457,7 @@ gitlab:
       limits:
         cpu: 8
         memory: 16Gi
-        
+
   sidekiq:
     resources:
       requests:
@@ -466,7 +466,7 @@ gitlab:
       limits:
         cpu: 4
         memory: 8Gi
-        
+
   gitaly:
     resources:
       requests:
@@ -489,16 +489,16 @@ gitlab:
       enabled: true
       rules:
         - to:
-          - namespaceSelector:
-              matchLabels:
-                name: gitlab
+            - namespaceSelector:
+                matchLabels:
+                  name: gitlab
     ingress:
       enabled: true
       rules:
         - from:
-          - namespaceSelector:
-              matchLabels:
-                name: ingress
+            - namespaceSelector:
+                matchLabels:
+                  name: ingress
 ```
 
 ### Audit Logging
@@ -510,7 +510,7 @@ global:
   appConfig:
     auditEvents:
       enabled: true
-      
+
     # Stream audit events to external system
     auditEventStreaming:
       enabled: true
@@ -533,7 +533,7 @@ global:
       enabled: true
       requests_per_period: 10
       period: 60
-      
+
     throttle:
       unauthenticated:
         enabled: true
@@ -560,7 +560,7 @@ global:
       runAsUser: 1000
       fsGroup: 1000
       runAsNonRoot: true
-      
+
 gitlab:
   webservice:
     containerSecurityContext:
@@ -575,16 +575,19 @@ gitlab:
 ## Migration Strategy
 
 1. **Assessment Phase**:
+
    - Audit current usage patterns
    - Identify required enterprise features
    - Plan resource requirements
 
 2. **Preparation Phase**:
+
    - Set up external databases and object storage
    - Configure authentication providers
    - Prepare monitoring infrastructure
 
 3. **Migration Phase**:
+
    - Backup existing data
    - Test migration in staging environment
    - Perform rolling upgrade to EE

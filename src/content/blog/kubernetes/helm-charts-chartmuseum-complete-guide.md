@@ -75,10 +75,10 @@ For production deployments, consider these additional settings:
 env:
   open:
     DISABLE_API: false
-    AUTH_ANONYMOUS_GET: true  # Allow anonymous chart downloads
+    AUTH_ANONYMOUS_GET: true # Allow anonymous chart downloads
     BASIC_AUTH_USER: admin
     BASIC_AUTH_PASS: secretpassword
-    DEPTH: 2  # Allow nested chart directories
+    DEPTH: 2 # Allow nested chart directories
 
 persistence:
   enabled: true
@@ -259,19 +259,19 @@ push_chart() {
     local repo_url=$2
     local max_attempts=3
     local attempt=1
-    
+
     while [ $attempt -le $max_attempts ]; do
         echo "Attempting to push $chart_file (attempt $attempt/$max_attempts)"
-        
+
         if curl --fail --data-binary "@${chart_file}" "${repo_url}/api/charts"; then
             echo "Successfully pushed $chart_file"
             return 0
         fi
-        
+
         attempt=$((attempt + 1))
         sleep 5
     done
-    
+
     echo "Failed to push $chart_file after $max_attempts attempts"
     return 1
 }
@@ -349,7 +349,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'charts/**'
+      - "charts/**"
 
 jobs:
   release:
@@ -459,12 +459,12 @@ publish-charts:
 ```groovy
 pipeline {
     agent any
-    
+
     environment {
         CHARTMUSEUM_URL = 'https://cm.yourdomain.com'
         CHARTMUSEUM_CREDS = credentials('chartmuseum-credentials')
     }
-    
+
     stages {
         stage('Setup') {
             steps {
@@ -474,7 +474,7 @@ pipeline {
                 '''
             }
         }
-        
+
         stage('Package Charts') {
             steps {
                 sh '''
@@ -487,14 +487,14 @@ pipeline {
                 '''
             }
         }
-        
+
         stage('Publish Charts') {
             steps {
                 sh '''
                     helm repo add myrepo ${CHARTMUSEUM_URL} \
                         --username ${CHARTMUSEUM_CREDS_USR} \
                         --password ${CHARTMUSEUM_CREDS_PSW}
-                    
+
                     for chart in *.tgz; do
                         helm cm-push "$chart" myrepo --force
                     done
@@ -502,7 +502,7 @@ pipeline {
             }
         }
     }
-    
+
     post {
         always {
             cleanWs()

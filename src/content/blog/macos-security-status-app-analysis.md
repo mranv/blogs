@@ -35,6 +35,7 @@ private func setupConnection() {
 ```
 
 **Identified vulnerabilities:**
+
 - No XPC connection encryption
 - Missing entitlement validation
 - No code signing verification
@@ -45,13 +46,13 @@ private func setupConnection() {
 private func setupConnection() {
     connection = NSXPCConnection(serviceName: Constants.serviceName)
     connection?.remoteObjectInterface = NSXPCInterface(with: ServiceHelperProtocol.self)
-    
+
     // Add encryption requirement
     connection?.requiresEncryption = true
-    
+
     // Validate entitlements
     connection?.auditToken = NSXPCConnection.currentProcess().auditToken
-    
+
     // Set up security validation
     connection?.invalidationHandler = { [weak self] in
         self?.handleInvalidation()
@@ -59,13 +60,13 @@ private func setupConnection() {
     connection?.interruptionHandler = { [weak self] in
         self?.handleInterruption()
     }
-    
+
     // Verify code signing
     guard verifyCodeSigning() else {
         os_log("Code signing verification failed", log: .securityStatus, type: .fault)
         return
     }
-    
+
     connection?.resume()
 }
 ```
@@ -73,6 +74,7 @@ private func setupConnection() {
 ### 2. Authentication and Authorization
 
 **Current security gaps:**
+
 - No user authentication for critical operations
 - Missing privilege separation
 - No authorization checks for system preferences access
@@ -84,7 +86,7 @@ func checkAuthorization() -> Bool {
     let authRef = AuthorizationCreate(nil, nil, [], nil)
     let rights = "system.preferences.security"
     let flags: AuthorizationFlags = [.extendRights, .interactionAllowed]
-    
+
     let status = AuthorizationCopyRights(authRef, rights, nil, flags, nil)
     return status == errAuthorizationSuccess
 }
@@ -93,6 +95,7 @@ func checkAuthorization() -> Bool {
 ### 3. Data Handling Security
 
 **Current vulnerabilities:**
+
 - Unencrypted status data in memory
 - No data validation for received MenuItemModel
 - Potential memory leaks in event monitoring
@@ -113,7 +116,7 @@ struct MenuItemModel: Identifiable, Equatable {
         }
         return true
     }
-    
+
     // Use secure data handling
     init?(from serviceData: [String: Any]) {
         guard Self.validate(serviceData) else {
@@ -146,19 +149,19 @@ Enhanced notification handling:
 ```swift
 private func checkForCriticalStatus() {
     let criticalItems = viewModel.menuItems.filter { $0.status == .critical }
-    
+
     // Add rate limiting
     guard !hasRecentNotification(within: .minutes(5)) else { return }
-    
+
     // Sanitize notification content
     let sanitizedContent = criticalItems
         .map { sanitize($0.description) }
         .joined(separator: "\n")
-    
+
     let content = UNMutableNotificationContent()
     content.title = "Security Issue Detected"
     content.body = sanitizedContent
-    
+
     // Add notification encryption for sensitive data
     if containsSensitiveData(content) {
         content.body = encryptNotificationContent(content.body)
@@ -184,16 +187,19 @@ extension MenuItemModel {
 ## Additional Recommendations
 
 ### Network Security
+
 - Implement certificate pinning for any network connections
 - Add integrity checks for security status updates
 - Implement secure error handling that doesn't leak sensitive information
 
 ### Audit and Monitoring
+
 - Add audit logging for security-critical operations
 - Implement proper key management for any encryption operations
 - Monitor for anomalous behavior patterns
 
 ### Code Security
+
 - Implement secure update mechanisms
 - Add runtime application self-protection (RASP) mechanisms
 - Use secure coding practices throughout the application
@@ -211,11 +217,12 @@ The application should implement:
 ## Network Requirements
 
 ### Required Ports
-| Port | Service | Purpose |
-|------|---------|---------|
+
+| Port    | Service             | Purpose                   |
+| ------- | ------------------- | ------------------------- |
 | TCP 135 | RPC Endpoint Mapper | Initial RPC communication |
-| Dynamic | WMI | System state query |
-| Dynamic | Task Scheduler | Remote task execution |
+| Dynamic | WMI                 | System state query        |
+| Dynamic | Task Scheduler      | Remote task execution     |
 
 ### Firewall Configuration
 
@@ -235,11 +242,13 @@ New-NetFirewallRule -Name "RemoteTask" -DisplayName "Remote Scheduled Tasks Mana
 ## Implementation Priority
 
 1. **Critical (Immediate)**:
+
    - Fix XPC connection security
    - Implement input validation
    - Add authentication mechanisms
 
 2. **High (Within 1 week)**:
+
    - Secure logging implementation
    - Memory protection
    - Notification security

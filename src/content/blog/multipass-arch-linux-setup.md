@@ -30,6 +30,7 @@ Multipass is a powerful tool for creating and managing Ubuntu virtual machines w
 ## Prerequisites
 
 Before starting, ensure you have:
+
 - Sudo privileges on your Arch Linux system
 - Base development tools installed
 - At least 4GB of available RAM
@@ -495,17 +496,20 @@ multipass shell $INSTANCE_NAME
 ## Best Practices
 
 1. **Resource Management**:
+
    - Always set appropriate CPU and memory limits
    - Monitor disk usage regularly
    - Use snapshots for important states
 
 2. **Security**:
+
    - Keep AppArmor enabled and configured
    - Use SSH keys instead of passwords
    - Regularly update both host and guest systems
    - Implement network segmentation when needed
 
 3. **Maintenance**:
+
    - Regular backups of important instances
    - Clean up unused instances and images
    - Monitor system logs for issues
@@ -522,6 +526,7 @@ multipass shell $INSTANCE_NAME
 Multipass provides an excellent solution for running Ubuntu virtual machines on Arch Linux with minimal overhead. By following this guide and implementing the security considerations, you'll have a robust virtualization environment suitable for development, testing, and production use cases.
 
 Remember to:
+
 - Keep your system and Multipass updated
 - Monitor resource usage
 - Implement proper security measures

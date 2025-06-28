@@ -90,28 +90,35 @@ flowchart TD
 ## Explanation
 
 ### Clients:
+
 - SMS applications (your API consumers) send SMS requests.
 - An admin interface allows operators to monitor the system.
 
 ### Edge Layer – Load Balancer:
+
 - A robust load balancer (e.g., HAProxy or NGINX in TCP mode) distributes incoming API requests evenly across multiple gateway nodes.
 
 ### SMS Gateway Cluster:
+
 - Multiple instances (nodes) of your SMS gateway software (Jasmin, Kannel, etc.) handle incoming requests and perform local rate-limiting, queuing, and basic message formatting.
 
 ### Messaging Middleware (Queue):
+
 - A message queue (RabbitMQ or Redis) buffers and distributes the SMS messages to be processed. This decouples request ingestion from delivery and aids in achieving high throughput.
 
 ### SMSC Connectivity:
+
 - Dedicated SMPP connectors on each node (or shared among nodes) establish and maintain connections to the carriers' SMSCs to send out messages using the SMPP protocol.
 
 ### Data & Monitoring:
+
 - A centralized database logs delivery reports (DLRs), message statuses, and other metrics.
 - Monitoring tools (e.g., Prometheus/Grafana) provide real-time insights and alerting on performance, failures, and throughput.
 
 ## Security Considerations
 
 ### Security Enhancements:
+
 1. **API Authentication** - Implement strong authentication for all API consumers
 2. **Message Encryption** - Encrypt sensitive content in transit and at rest
 3. **Network Segmentation** - Implement security zones with proper firewall rules
@@ -126,21 +133,25 @@ This architecture is designed for high availability and scalability. It allows y
 When implementing this architecture, consider the following:
 
 ### Hardware Requirements
+
 - Each gateway node should be provisioned with adequate CPU resources and memory
 - Network throughput should be optimized for high traffic volumes
 - Consider using specialized hardware for the load balancer in extremely high-volume scenarios
 
 ### Message Queue Configuration
+
 - Tune RabbitMQ or Redis for high throughput scenarios
 - Implement message persistence to prevent data loss during outages
 - Set up appropriate clustering for your message queue to ensure high availability
 
 ### SMPP Connection Management
+
 - Implement connection pooling for more efficient use of SMPP binds
 - Set up automatic reconnection logic with exponential backoff
 - Monitor and manage TPS (Transactions Per Second) limits per SMSC
 
 ### Monitoring and Alerting
+
 - Set up comprehensive dashboards to visualize system health
 - Implement alerts for critical metrics like queue depth, message processing times, and error rates
 - Use distributed tracing to identify bottlenecks in the message flow

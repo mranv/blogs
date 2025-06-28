@@ -153,7 +153,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'charts/**'
+      - "charts/**"
 
 jobs:
   release:

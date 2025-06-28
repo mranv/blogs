@@ -28,6 +28,7 @@ This guide provides a comprehensive Ignition configuration for hardening Fedora 
 Fedora CoreOS is an automatically updating, minimal operating system for running containerized workloads. While it provides excellent security defaults, additional hardening according to CIS (Center for Internet Security) benchmarks ensures compliance with industry security standards.
 
 This Ignition configuration implements:
+
 - Filesystem partitioning and mount options
 - Kernel security parameters
 - Network security settings
@@ -109,7 +110,7 @@ storage:
       contents:
         inline: |
           tmpfs /dev/shm tmpfs defaults,nodev,nosuid,noexec 0 0
-    
+
     # 1.6.1.2 Ensure the SELinux state is enforcing
     - path: /etc/selinux/config
       mode: 0644
@@ -118,7 +119,7 @@ storage:
         inline: |
           SELINUX=enforcing
           SELINUXTYPE=targeted
-    
+
     # 1.7.1.2 Ensure local login warning banner is configured properly
     - path: /etc/issue
       mode: 0644
@@ -126,7 +127,7 @@ storage:
       contents:
         inline: |
           Authorized uses only. All activity may be monitored and reported.
-    
+
     # 1.7.1.3 Ensure remote login warning banner is configured properly
     - path: /etc/issue.net
       mode: 0644
@@ -134,7 +135,7 @@ storage:
       contents:
         inline: |
           Authorized uses only. All activity may be monitored and reported.
-    
+
     # Kernel module blacklisting for security
     - path: /etc/modprobe.d/cis.conf
       mode: 0600
@@ -152,7 +153,7 @@ storage:
           install sctp /bin/true
           install rds /bin/true
           install tipc /bin/true
-    
+
     # Network security settings
     - path: /etc/sysctl.d/cis.conf
       mode: 0600
@@ -181,7 +182,7 @@ storage:
           net.ipv6.conf.default.accept_source_route = 0
           # Additional recommended settings
           kernel.randomize_va_space = 2
-    
+
     # 5.6 Ensure access to the su command is restricted
     - path: /etc/pam.d/su
       mode: 0644
@@ -193,7 +194,7 @@ storage:
           auth required pam_unix.so
           account required pam_unix.so
           session required pam_unix.so
-    
+
     # Password quality and aging settings
     - path: /etc/pam.d/system-auth
       mode: 0644
@@ -218,7 +219,7 @@ storage:
           session optional pam_permit.so
           session optional pam_sss.so
           -session optional pam_systemd.so
-    
+
     # CIS hardening script
     - path: /usr/local/bin/cis-hardener.sh
       mode: 0700
@@ -227,116 +228,116 @@ storage:
         inline: |
           #!/bin/bash
           # CIS Distribution Independent Linux Benchmark hardening script
-          
+
           echo "Running CIS hardening script..."
-          
+
           # 6.2.8 Ensure users' home directories permissions are 750 or more restrictive
           echo "Setting secure home directory permissions..."
           find /home -type d -exec chmod 750 {} \;
-          
+
           # 5.4.4 Ensure default user umask is 027 or more restrictive
           echo "Setting secure umask defaults..."
           sed -i '/^umask/c\# CIS 5.4.4 - Secure umask\numask 027' /etc/profile
           sed -i '/^UMASK/c\# CIS 5.4.4 - Secure umask\nUMASK 027' /etc/login.defs
-          
+
           # 5.4.1.4 Ensure inactive password lock is 30 days or less
           echo "Setting password aging controls..."
           useradd -D -f 30
           sed -i '/^PASS_MAX_DAYS/c\# CIS 5.4.1.1\nPASS_MAX_DAYS 90' /etc/login.defs
           sed -i '/^PASS_MIN_DAYS/c\# CIS 5.4.1.2\nPASS_MIN_DAYS 7' /etc/login.defs
           sed -i '/^PASS_WARN_AGE/c\# CIS 5.4.1.3\nPASS_WARN_AGE 7' /etc/login.defs
-          
+
           # Apply password settings to existing users
           for user in $(awk -F: '($3 >= 1000) && ($7 != "/sbin/nologin") {print $1}' /etc/passwd); do
             echo "Updating password aging for user: $user"
             chage --inactive 30 --maxdays 90 --mindays 7 --warndays 7 "$user"
           done
-          
+
           # 5.2 SSH Server Configuration
           echo "Hardening SSH configuration..."
-          
+
           # Ensure we have a backup of the original config
           if [ ! -f /etc/ssh/sshd_config.orig ]; then
             cp /etc/ssh/sshd_config /etc/ssh/sshd_config.orig
           fi
-          
+
           # Set hardened SSH configuration
           cat > /etc/ssh/sshd_config << 'EOF'
           # SSH configuration hardened according to CIS Distribution Independent Linux Benchmark
-          
+
           # 5.2.1 Permissions handled separately
           # 5.2.2 Ensure SSH Protocol is set to 2
           Protocol 2
-          
+
           # Basic SSH settings
           Port 22
           AddressFamily any
           ListenAddress 0.0.0.0
-          
+
           # 5.2.3 Ensure SSH LogLevel is set to INFO
           LogLevel INFO
-          
+
           # 5.2.4 Ensure SSH MaxAuthTries is set to 4 or less
           MaxAuthTries 4
-          
+
           # 5.2.5 Ensure SSH IgnoreRhosts is enabled
           IgnoreRhosts yes
-          
+
           # 5.2.6 Ensure SSH HostbasedAuthentication is disabled
           HostbasedAuthentication no
-          
+
           # 5.2.7 Ensure SSH root login is disabled
           PermitRootLogin no
-          
+
           # 5.2.8 Ensure SSH PermitEmptyPasswords is disabled
           PermitEmptyPasswords no
-          
+
           # 5.2.9 Ensure SSH PermitUserEnvironment is disabled
           PermitUserEnvironment no
-          
+
           # 5.2.10 Ensure only strong ciphers are used
           Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
-          
+
           # Ensure only strong MACs are used
           MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
-          
+
           # Ensure only strong key exchange algorithms are used
           KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha256
-          
+
           # 5.2.11 Ensure Idle Timeout Interval is configured
           ClientAliveInterval 300
           ClientAliveCountMax 0
-          
+
           # 5.2.12 Ensure SSH LoginGraceTime is set to one minute or less
           LoginGraceTime 60
-          
+
           # 5.2.15 Ensure SSH warning banner is configured
           Banner /etc/issue.net
-          
+
           # Additional security settings
           X11Forwarding no
           UsePAM yes
           PrintMotd no
-          
+
           # Allow specific users only - to be customized based on environment
           # AllowUsers core
-          
+
           # Subsystem for SFTP
           Subsystem sftp internal-sftp
           EOF
-          
+
           # Fix permissions on SSH config
           chmod 600 /etc/ssh/sshd_config
-          
+
           # 3.6 Firewall configuration with nftables (modern replacement for iptables)
           echo "Configuring firewall with nftables..."
-          
+
           # Create nftables config file
           cat > /etc/nftables.conf << 'EOF'
           #!/usr/sbin/nft -f
-          
+
           flush ruleset
-          
+
           table inet filter {
               # Base chain for incoming packets
               chain input {
@@ -401,15 +402,15 @@ storage:
               }
           }
           EOF
-          
+
           # Secure nftables config file
           chmod 600 /etc/nftables.conf
-          
+
           # Enable nftables service
           if [ -x "$(command -v systemctl)" ]; then
               systemctl enable nftables
           fi
-          
+
           echo "CIS hardening complete"
           exit 0
 
@@ -426,16 +427,16 @@ systemd:
         DefaultDependencies=no
         Conflicts=umount.target
         Before=local-fs.target umount.target
-        
+
         [Mount]
         What=tmpfs
         Where=/tmp
         Type=tmpfs
         Options=mode=1777,strictatime,nosuid,nodev,noexec
-        
+
         [Install]
         WantedBy=local-fs.target
-    
+
     # 1.1.7 Ensure separate partition exists for /var/tmp with security options
     - name: var-tmp.mount
       enabled: true
@@ -447,16 +448,16 @@ systemd:
         Conflicts=umount.target
         Before=local-fs.target umount.target
         After=swap.target
-        
+
         [Mount]
         What=tmpfs
         Where=/var/tmp
         Type=tmpfs
         Options=mode=1777,strictatime,nosuid,nodev,noexec
-        
+
         [Install]
         WantedBy=local-fs.target
-    
+
     # 1.1.6 Ensure separate partition exists for /var
     - name: var.mount
       enabled: true
@@ -466,16 +467,16 @@ systemd:
         DefaultDependencies=no
         Conflicts=umount.target
         Before=local-fs.target umount.target
-        
+
         [Mount]
         What=/dev/disk/by-label/VAR
         Where=/var
         Type=ext4
         Options=defaults
-        
+
         [Install]
         WantedBy=local-fs.target
-    
+
     # 1.1.11 Ensure separate partition exists for /var/log
     - name: var-log.mount
       enabled: true
@@ -486,16 +487,16 @@ systemd:
         Conflicts=umount.target
         Before=local-fs.target umount.target
         After=var.mount
-        
+
         [Mount]
         What=/dev/disk/by-label/LOG
         Where=/var/log
         Type=ext4
         Options=defaults
-        
+
         [Install]
         WantedBy=local-fs.target
-    
+
     # 1.1.12 Ensure separate partition exists for /var/log/audit
     - name: var-log-audit.mount
       enabled: true
@@ -506,16 +507,16 @@ systemd:
         Conflicts=umount.target
         Before=local-fs.target umount.target
         After=var-log.mount
-        
+
         [Mount]
         What=/dev/disk/by-label/AUDIT
         Where=/var/log/audit
         Type=ext4
         Options=defaults
-        
+
         [Install]
         WantedBy=local-fs.target
-    
+
     # 1.1.13 Ensure separate partition exists for /home
     # 1.1.14 Ensure nodev option set on /home partition
     - name: home.mount
@@ -526,16 +527,16 @@ systemd:
         DefaultDependencies=no
         Conflicts=umount.target
         Before=local-fs.target umount.target
-        
+
         [Mount]
         What=/dev/disk/by-label/HOME
         Where=/home
         Type=ext4
         Options=defaults,nodev
-        
+
         [Install]
         WantedBy=local-fs.target
-    
+
     # Run the hardener script at first boot
     - name: cis-hardener.service
       enabled: true
@@ -544,15 +545,15 @@ systemd:
         Description=CIS Hardening Service
         ConditionFirstBoot=yes
         After=network.target
-        
+
         [Service]
         Type=oneshot
         ExecStart=/usr/local/bin/cis-hardener.sh
         RemainAfterExit=yes
-        
+
         [Install]
         WantedBy=multi-user.target
-    
+
     # Enable and start firewall
     - name: nftables.service
       enabled: true
@@ -562,14 +563,14 @@ systemd:
         Documentation=man:nft(8)
         Wants=network-pre.target
         Before=network-pre.target
-        
+
         [Service]
         Type=oneshot
         ExecStart=/usr/sbin/nft -f /etc/nftables.conf
         ExecReload=/usr/sbin/nft -f /etc/nftables.conf
         ExecStop=/usr/sbin/nft flush ruleset
         RemainAfterExit=yes
-        
+
         [Install]
         WantedBy=multi-user.target
 
@@ -592,12 +593,14 @@ passwd:
 ### 1. Filesystem Partitioning (CIS Section 1.1)
 
 The configuration creates separate partitions for:
+
 - `/var` - Variable data (4GB)
 - `/var/log` - Log files (4GB)
 - `/var/log/audit` - Audit logs (4GB)
 - `/home` - User home directories (4GB)
 
 Mount options enforce:
+
 - `noexec` on `/tmp` and `/var/tmp` - Prevents execution from temporary directories
 - `nodev` on `/home` - Prevents device files in user directories
 - `nosuid` on temporary filesystems - Prevents setuid binaries
@@ -605,6 +608,7 @@ Mount options enforce:
 ### 2. Kernel Security Parameters (CIS Section 3.2)
 
 Network security hardening includes:
+
 - Disabled IP forwarding
 - Blocked ICMP redirects
 - Enabled martian packet logging
@@ -612,20 +616,24 @@ Network security hardening includes:
 - IPv6 security hardening
 
 Additional kernel parameters:
+
 - `kernel.randomize_va_space = 2` - Full ASLR randomization
 
 ### 3. Module Blacklisting (CIS Section 1.1.1)
 
 Disabled unnecessary filesystems:
+
 - cramfs, freevxfs, jffs2, hfs, hfsplus
 - squashfs, udf
 
 Disabled unnecessary network protocols:
+
 - dccp, sctp, rds, tipc
 
 ### 4. SSH Hardening (CIS Section 5.2)
 
 Comprehensive SSH security:
+
 - Protocol 2 only
 - Root login disabled
 - Empty passwords disabled
@@ -639,6 +647,7 @@ Comprehensive SSH security:
 ### 5. Password Policies (CIS Section 5.4)
 
 Strong password requirements:
+
 - Minimum length: 14 characters
 - Complexity: At least one digit, uppercase, lowercase, special character
 - History: Remember last 5 passwords
@@ -655,6 +664,7 @@ Strong password requirements:
 ### 7. Firewall Configuration (CIS Section 3.6)
 
 nftables rules implement:
+
 - Default deny policy
 - Stateful connection tracking
 - Minimal allowed services (SSH only inbound)
@@ -679,6 +689,7 @@ podman run --rm -v .:/data:z quay.io/coreos/butane:release \
 ### 2. Deploy with Ignition
 
 For bare metal:
+
 ```bash
 sudo coreos-installer install /dev/sda \
   --ignition-file coreos-hardened.ign
@@ -712,15 +723,17 @@ nft list ruleset
 ### 1. Partition Sizes
 
 Adjust partition sizes based on your needs:
+
 ```yaml
 partitions:
   - label: VAR
-    size_mib: 8192  # 8GB for larger deployments
+    size_mib: 8192 # 8GB for larger deployments
 ```
 
 ### 2. Network Access
 
 Modify firewall rules for your services:
+
 ```bash
 # Add HTTPS service
 tcp dport 443 ct state new accept
@@ -732,6 +745,7 @@ tcp dport 6443 ct state new accept
 ### 3. User Management
 
 Add regular users instead of using root:
+
 ```yaml
 passwd:
   users:
@@ -746,6 +760,7 @@ passwd:
 ### 4. Additional Services
 
 For container workloads, add:
+
 ```yaml
 # Allow container registry access
 tcp dport 5000 ct state new accept
@@ -759,6 +774,7 @@ ip saddr 10.0.0.0/8 accept
 ### 1. Audit Configuration
 
 Enable comprehensive auditing:
+
 ```yaml
 - path: /etc/audit/rules.d/cis.rules
   mode: 0640
@@ -773,6 +789,7 @@ Enable comprehensive auditing:
 ### 2. Log Monitoring
 
 Configure log forwarding:
+
 ```yaml
 - path: /etc/rsyslog.d/50-default.conf
   contents:
@@ -783,6 +800,7 @@ Configure log forwarding:
 ### 3. Compliance Scanning
 
 Use tools like OpenSCAP:
+
 ```bash
 # Install OpenSCAP
 rpm-ostree install openscap-scanner
@@ -797,6 +815,7 @@ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_cis \
 ### 1. Regular Updates
 
 CoreOS automatically updates, but monitor:
+
 ```bash
 # Check update status
 rpm-ostree status
@@ -808,6 +827,7 @@ rpm-ostree upgrade --preview
 ### 2. Security Reviews
 
 Regularly review:
+
 - User accounts and permissions
 - Firewall rules
 - SSH access logs
@@ -816,6 +836,7 @@ Regularly review:
 ### 3. Incident Response
 
 Prepare for security incidents:
+
 - Enable audit logging
 - Configure centralized log collection
 - Document emergency procedures

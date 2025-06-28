@@ -1,8 +1,9 @@
-
 ## About
+
 Congratulations! You've stumbled upon the repository where my profound thoughts and questionable humor collide in a spectacular display of digital chaos. Here, you'll find a treasure trove of blog posts that will either leave you in stitches or scratching your head in confusion. Either way, buckle up for a wild ride!
 
 ## Contents
+
 - **.husky**: Not just your average canine companion, but the guardian of this chaotic circus.
 - **.vscode**: Where VSCode settings reside, because even blogs need their own workspace.
 - **public**: Dive into the madness of my blog posts. Proceed with caution; side effects may include uncontrollable laughter.
@@ -23,6 +24,7 @@ Congratulations! You've stumbled upon the repository where my profound thoughts 
 - **tsconfig.json**: TypeScript configurations because we're too cool for plain JavaScript.
 
 ## Stay Connected
+
 - Visit my blog [mranv.pages.dev](https://mranv.pages.dev) for a rollercoaster of emotions and questionable life choices. Buckle up, it's going to be a bumpy ride!
 
 So grab some popcorn, settle into your favorite chair, and prepare to laugh, cry, and maybe question your life choices. Welcome to the madness!

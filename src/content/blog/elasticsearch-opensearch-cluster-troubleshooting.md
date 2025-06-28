@@ -183,9 +183,9 @@ curl -k -X PUT "https://<elasticsearch-host>:9200/_template/monitoring_template"
      -u <username>:<password> \
      -d '{
        "index_patterns": [
-         "wazuh-*", 
-         "filebeat-*", 
-         "otel-v1-*", 
+         "wazuh-*",
+         "filebeat-*",
+         "otel-v1-*",
          "logstash-*",
          "metricbeat-*",
          "winlogbeat-*"
@@ -575,18 +575,19 @@ chmod +x cluster_health_monitor.sh
 ```yaml
 # prometheus.yml excerpt
 scrape_configs:
-  - job_name: 'elasticsearch'
+  - job_name: "elasticsearch"
     static_configs:
-      - targets: ['elasticsearch:9200']
-    metrics_path: '/_prometheus/metrics'
+      - targets: ["elasticsearch:9200"]
+    metrics_path: "/_prometheus/metrics"
     basic_auth:
-      username: 'monitor_user'
-      password: 'secure-password'
+      username: "monitor_user"
+      password: "secure-password"
 ```
 
 ### Grafana Dashboard
 
 Key metrics to monitor:
+
 - Cluster health status
 - Node availability
 - Heap usage percentage
@@ -609,7 +610,7 @@ groups:
           severity: warning
         annotations:
           summary: "Elasticsearch cluster status is yellow"
-          
+
       - alert: ElasticsearchClusterRed
         expr: elasticsearch_cluster_health_status{color="red"} == 1
         for: 1m
@@ -617,7 +618,7 @@ groups:
           severity: critical
         annotations:
           summary: "Elasticsearch cluster status is red"
-          
+
       - alert: ElasticsearchHighHeapUsage
         expr: elasticsearch_jvm_memory_used_bytes{area="heap"} / elasticsearch_jvm_memory_max_bytes{area="heap"} > 0.85
         for: 5m
@@ -641,6 +642,7 @@ groups:
 Maintaining healthy Elasticsearch and OpenSearch clusters requires proactive monitoring, proper configuration, and systematic troubleshooting approaches. This guide provides the foundation for identifying and resolving common cluster health issues while maintaining security best practices.
 
 Remember to:
+
 - Always backup configurations before making changes
 - Test fixes in staging environments first
 - Monitor cluster health continuously

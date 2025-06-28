@@ -25,19 +25,19 @@ To align your **Rocky Linux 9.5 installation** with **CIS Benchmark recommendati
 
 ## 📌 Partitioning Plan (CIS Benchmark Aligned)
 
-| **Partition**       | **Size**  | **Filesystem** | **Mount Options**                   | **Purpose** |
-|---------------------|-----------|---------------|-------------------------------------|-------------|
-| `/boot`            | 1024 MiB | `ext4`        | `nodev, noexec, nosuid`            | Bootloader partition |
-| `/home`            | 100 GiB  | `xfs`         | `nodev`                            | User data storage |
-| `/var`             | 40 GiB   | `xfs`         | `nodev`                            | App & system logs |
-| `/var/log`         | 60 GiB   | `xfs`         | `nodev`                            | System logs |
-| `/var/log/audit`   | 15 GiB   | `xfs`         | `nodev`                            | Security audit logs |
-| `/var/tmp`         | 20 GiB   | `xfs`         | `nodev, noexec, nosuid`            | Temporary storage |
-| `/tmp`             | 20 GiB   | `xfs`         | `nodev, noexec, nosuid`            | Prevent script execution in `/tmp` |
-| `/srv`             | 30 GiB   | `xfs`         | `nodev`                            | Application data |
-| `/opt`             | 30 GiB   | `xfs`         | `nodev`                            | Third-party software |
-| `/swap`            | 16 GiB   | `swap`        | *N/A*                              | Virtual memory swap |
-| `/` (root)         | **88 GiB** | `xfs`         | Default                            | Main OS partition |
+| **Partition**    | **Size**   | **Filesystem** | **Mount Options**       | **Purpose**                        |
+| ---------------- | ---------- | -------------- | ----------------------- | ---------------------------------- |
+| `/boot`          | 1024 MiB   | `ext4`         | `nodev, noexec, nosuid` | Bootloader partition               |
+| `/home`          | 100 GiB    | `xfs`          | `nodev`                 | User data storage                  |
+| `/var`           | 40 GiB     | `xfs`          | `nodev`                 | App & system logs                  |
+| `/var/log`       | 60 GiB     | `xfs`          | `nodev`                 | System logs                        |
+| `/var/log/audit` | 15 GiB     | `xfs`          | `nodev`                 | Security audit logs                |
+| `/var/tmp`       | 20 GiB     | `xfs`          | `nodev, noexec, nosuid` | Temporary storage                  |
+| `/tmp`           | 20 GiB     | `xfs`          | `nodev, noexec, nosuid` | Prevent script execution in `/tmp` |
+| `/srv`           | 30 GiB     | `xfs`          | `nodev`                 | Application data                   |
+| `/opt`           | 30 GiB     | `xfs`          | `nodev`                 | Third-party software               |
+| `/swap`          | 16 GiB     | `swap`         | _N/A_                   | Virtual memory swap                |
+| `/` (root)       | **88 GiB** | `xfs`          | Default                 | Main OS partition                  |
 
 **Total Used**: 400 GiB ✅
 
@@ -45,11 +45,11 @@ To align your **Rocky Linux 9.5 installation** with **CIS Benchmark recommendati
 
 ## 🔧 Filesystem Choices
 
-| **Filesystem** | **Reason** |
-|---------------|-----------|
+| **Filesystem**                | **Reason**                                  |
+| ----------------------------- | ------------------------------------------- |
 | **XFS** (for most partitions) | Best for high-performance and large storage |
-| **EXT4** (for `/boot`) | Needed for compatibility with bootloaders |
-| **Swap** | Virtual memory |
+| **EXT4** (for `/boot`)        | Needed for compatibility with bootloaders   |
+| **Swap**                      | Virtual memory                              |
 
 ---
 
@@ -68,6 +68,7 @@ UUID=<opt-uuid>     /opt          xfs   defaults,nodev                0 2
 UUID=<root-uuid>    /             xfs   defaults                      0 1
 UUID=<swap-uuid>    swap          swap  defaults                      0 0
 ```
+
 > 📝 **Replace `<UUID>` with actual disk UUIDs using `blkid` command**
 
 ---
@@ -133,7 +134,7 @@ This partitioning scheme can be automated using Ansible for consistent deploymen
         - name: Set correct permissions
           file:
             path: "{{ item }}"
-            mode: '1777'
+            mode: "1777"
           with_items:
             - /tmp
             - /var/tmp

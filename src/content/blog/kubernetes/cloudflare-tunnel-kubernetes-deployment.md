@@ -119,7 +119,7 @@ data:
     credentials-file: /etc/cloudflared/creds/credentials.json
     metrics: 0.0.0.0:2000
     no-autoupdate: true
-    
+
     ingress:
       - hostname: gitlab.yourdomain.com
         service: http://gitlab-service:80
@@ -154,78 +154,78 @@ spec:
         runAsUser: 65532
         fsGroup: 65532
       containers:
-      - name: cloudflared
-        image: cloudflare/cloudflared:2024.1.5
-        command:
-        - cloudflared
-        - tunnel
-        - --no-autoupdate
-        - --metrics
-        - 0.0.0.0:2000
-        - run
-        args:
-        - --token
-        - $(TUNNEL_TOKEN)
-        env:
-        - name: TUNNEL_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: gitlab-cloudflared-token
-              key: token
-        - name: TUNNEL_LOGLEVEL
-          value: "info"
-        - name: TUNNEL_TRANSPORT_PROTOCOL
-          value: "quic"
-        resources:
-          requests:
-            cpu: 10m
-            memory: 64Mi
-          limits:
-            cpu: 100m
-            memory: 128Mi
-        livenessProbe:
-          httpGet:
-            path: /ready
-            port: 2000
-          initialDelaySeconds: 10
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 1
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 2000
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          timeoutSeconds: 1
-          successThreshold: 1
-          failureThreshold: 3
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop:
-              - ALL
-        volumeMounts:
-        - name: config
-          mountPath: /etc/cloudflared
-          readOnly: true
+        - name: cloudflared
+          image: cloudflare/cloudflared:2024.1.5
+          command:
+            - cloudflared
+            - tunnel
+            - --no-autoupdate
+            - --metrics
+            - 0.0.0.0:2000
+            - run
+          args:
+            - --token
+            - $(TUNNEL_TOKEN)
+          env:
+            - name: TUNNEL_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: gitlab-cloudflared-token
+                  key: token
+            - name: TUNNEL_LOGLEVEL
+              value: "info"
+            - name: TUNNEL_TRANSPORT_PROTOCOL
+              value: "quic"
+          resources:
+            requests:
+              cpu: 10m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          livenessProbe:
+            httpGet:
+              path: /ready
+              port: 2000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 2000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - name: config
+              mountPath: /etc/cloudflared
+              readOnly: true
       volumes:
-      - name: config
-        configMap:
-          name: cloudflared-config
+        - name: config
+          configMap:
+            name: cloudflared-config
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - gitlab-cloudflared
-              topologyKey: kubernetes.io/hostname
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - gitlab-cloudflared
+                topologyKey: kubernetes.io/hostname
 ---
 apiVersion: v1
 kind: Service
@@ -236,9 +236,9 @@ metadata:
     app: gitlab-cloudflared
 spec:
   ports:
-  - name: metrics
-    port: 2000
-    targetPort: 2000
+    - name: metrics
+      port: 2000
+      targetPort: 2000
   selector:
     app: gitlab-cloudflared
 ---
@@ -265,7 +265,7 @@ data:
   config.yaml: |
     tunnel: multi-service-tunnel
     credentials-file: /etc/cloudflared/creds/credentials.json
-    
+
     ingress:
       - hostname: gitlab.yourdomain.com
         service: http://gitlab-service:80
@@ -284,7 +284,7 @@ Configure advanced origin settings:
 data:
   config.yaml: |
     tunnel: gitlab-tunnel
-    
+
     ingress:
       - hostname: gitlab.yourdomain.com
         service: http://gitlab-service:80
@@ -316,20 +316,20 @@ kind: Deployment
 metadata:
   name: gitlab-cloudflared-deployment
 spec:
-  replicas: 3  # Increase replicas for load distribution
+  replicas: 3 # Increase replicas for load distribution
   template:
     spec:
       containers:
-      - name: cloudflared
-        env:
-        - name: TUNNEL_EDGE_IP_VERSION
-          value: "auto"  # Use both IPv4 and IPv6
-        - name: TUNNEL_PROTOCOL
-          value: "quic"  # Use QUIC for better performance
-        - name: TUNNEL_RETRIES
-          value: "5"
-        - name: TUNNEL_GRACE_PERIOD
-          value: "30s"
+        - name: cloudflared
+          env:
+            - name: TUNNEL_EDGE_IP_VERSION
+              value: "auto" # Use both IPv4 and IPv6
+            - name: TUNNEL_PROTOCOL
+              value: "quic" # Use QUIC for better performance
+            - name: TUNNEL_RETRIES
+              value: "5"
+            - name: TUNNEL_GRACE_PERIOD
+              value: "30s"
 ```
 
 ## Monitoring and Observability
@@ -349,9 +349,9 @@ spec:
     matchLabels:
       app: gitlab-cloudflared
   endpoints:
-  - port: metrics
-    interval: 30s
-    path: /metrics
+    - port: metrics
+      interval: 30s
+      path: /metrics
 ```
 
 ### 2. Key Metrics to Monitor
@@ -367,12 +367,12 @@ Configure structured logging for better observability:
 
 ```yaml
 env:
-- name: TUNNEL_LOGLEVEL
-  value: "info"
-- name: TUNNEL_LOGFILE
-  value: "/dev/stdout"
-- name: TUNNEL_LOG_FORMAT
-  value: "json"
+  - name: TUNNEL_LOGLEVEL
+    value: "info"
+  - name: TUNNEL_LOGFILE
+    value: "/dev/stdout"
+  - name: TUNNEL_LOG_FORMAT
+    value: "json"
 ```
 
 ## Security Best Practices
@@ -392,31 +392,31 @@ spec:
     matchLabels:
       app: gitlab-cloudflared
   policyTypes:
-  - Ingress
-  - Egress
+    - Ingress
+    - Egress
   ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          monitoring: prometheus
-    ports:
-    - protocol: TCP
-      port: 2000
+    - from:
+        - podSelector:
+            matchLabels:
+              monitoring: prometheus
+      ports:
+        - protocol: TCP
+          port: 2000
   egress:
-  - to:
-    - namespaceSelector: {}
-    ports:
-    - protocol: TCP
-      port: 443  # Cloudflare API
-    - protocol: UDP
-      port: 7844  # QUIC
-  - to:
-    - podSelector:
-        matchLabels:
-          app: gitlab
-    ports:
-    - protocol: TCP
-      port: 80
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - protocol: TCP
+          port: 443 # Cloudflare API
+        - protocol: UDP
+          port: 7844 # QUIC
+    - to:
+        - podSelector:
+            matchLabels:
+              app: gitlab
+      ports:
+        - protocol: TCP
+          port: 80
 ```
 
 ### 2. Pod Security Standards
@@ -474,16 +474,19 @@ kubectl exec -it deployment/gitlab-cloudflared-deployment -- curl -I http://gitl
 ### 2. Common Error Messages
 
 **"Unable to reach the origin service"**:
+
 - Verify service name and port
 - Check network policies
 - Ensure origin service is running
 
 **"Tunnel credentials file not found"**:
+
 - Verify secret is properly mounted
 - Check token format and encoding
 - Ensure proper RBAC permissions
 
 **"Failed to serve quic connection"**:
+
 - Check firewall rules for UDP port 7844
 - Try fallback to HTTP2: `TUNNEL_TRANSPORT_PROTOCOL=http2`
 
@@ -501,12 +504,12 @@ resources:
     memory: 512Mi
 
 env:
-- name: TUNNEL_COMPRESSION_LEVEL
-  value: "0"  # Disable compression for low-latency
-- name: TUNNEL_TCP_KEEPALIVE
-  value: "30"
-- name: TUNNEL_KEEP_ALIVE_CONNECTIONS
-  value: "100"
+  - name: TUNNEL_COMPRESSION_LEVEL
+    value: "0" # Disable compression for low-latency
+  - name: TUNNEL_TCP_KEEPALIVE
+    value: "30"
+  - name: TUNNEL_KEEP_ALIVE_CONNECTIONS
+    value: "100"
 ```
 
 ## Integration with CI/CD
@@ -586,18 +589,18 @@ spec:
   minReplicas: 2
   maxReplicas: 10
   metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 80
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
 ```
 
 ## Conclusion

@@ -27,6 +27,7 @@ This guide demonstrates how to deploy an AMTD (Advanced Moving Target Defense) d
 ## Architecture Overview
 
 The AMTD fetcher solution consists of:
+
 - **Python Script**: `fetch-amtd-data.py` that polls the Morphisec API
 - **NATS Integration**: Streams data to NATS subjects for real-time processing
 - **Kubernetes CronJob**: Runs the fetcher every 15 minutes
@@ -91,17 +92,17 @@ kind: CronJob
 metadata:
   name: amtd-fetcher
 spec:
-  schedule: "*/15 * * * *"                 # Run every 15 minutes
-  concurrencyPolicy: Allow                 # Allow overlapping runs
-  successfulJobsHistoryLimit: 3            # Keep last 3 successful runs
-  failedJobsHistoryLimit: 1                # Keep last failed run
-  startingDeadlineSeconds: 100             # Skip if missed by >100s
-  suspend: false                           # Ensure it's active
+  schedule: "*/15 * * * *" # Run every 15 minutes
+  concurrencyPolicy: Allow # Allow overlapping runs
+  successfulJobsHistoryLimit: 3 # Keep last 3 successful runs
+  failedJobsHistoryLimit: 1 # Keep last failed run
+  startingDeadlineSeconds: 100 # Skip if missed by >100s
+  suspend: false # Ensure it's active
   jobTemplate:
     spec:
       template:
         spec:
-          restartPolicy: OnFailure         # Retry on container crash
+          restartPolicy: OnFailure # Retry on container crash
           containers:
             - name: fetcher
               image: your-registry/amtd-fetcher:latest
@@ -116,7 +117,7 @@ spec:
                   value: "7c68f48e-d10c-4111-818f-8f20513b02a3"
                 - name: SECRET_KEY
                   value: "9b230bf1-2926-4972-887c-c05fdc49599f"
-                
+
                 # Data Output Configuration
                 - name: ENABLE_NATS
                   value: "true"
@@ -124,7 +125,7 @@ spec:
                   value: "false"
                 - name: ENABLE_FILE_STORAGE
                   value: "false"
-                
+
                 # NATS Configuration
                 - name: NATS_SERVERS
                   value: "tls://connect.ngs.global:4222"
@@ -132,7 +133,7 @@ spec:
                   value: "amtd"
                 - name: NATS_CREDS_PATH
                   value: "/app/nats-credentials/nats.creds"
-                
+
                 # OpenSearch Configuration (disabled)
                 - name: OPENSEARCH_HOST
                   value: ""
@@ -142,7 +143,7 @@ spec:
                   value: ""
                 - name: OPENSEARCH_PASSWORD
                   value: ""
-                
+
                 # AWS Configuration (for future use)
                 - name: AWS_REGION
                   value: ""
@@ -150,13 +151,13 @@ spec:
                   value: ""
                 - name: AWS_SECRET_ACCESS_KEY
                   value: ""
-                
+
                 # Timing Configuration
                 - name: REQUEST_TIMEOUT
-                  value: "3600"      # 1 hour timeout
+                  value: "3600" # 1 hour timeout
                 - name: REFRESH_INTERVAL
-                  value: "900"       # 15 minute refresh
-              
+                  value: "900" # 15 minute refresh
+
               volumeMounts:
                 - name: nats-creds
                   mountPath: /app/nats-credentials/nats.creds
@@ -164,7 +165,7 @@ spec:
                   readOnly: true
                 - name: data-dir
                   mountPath: /app/data
-          
+
           volumes:
             - name: nats-creds
               secret:
@@ -198,11 +199,13 @@ git push origin main
 ### 2.2 Configure Devtron Application
 
 1. **Navigate to Devtron UI**:
+
    - Go to Applications → Create New Application
    - Select your Git repository
    - Choose the appropriate environment
 
 2. **Select Base Deployment Template**:
+
    - Go to App Configuration → Base Deployment Template
    - Select "Job and Cronjob" template
    - You'll see `cronjobConfigs` and `jobConfigs` sections
@@ -266,11 +269,13 @@ kubectl logs -n your-namespace -l job-name=amtd-fetcher-xxxxx
 ### Common Issues and Solutions
 
 1. **NATS Connection Failures**:
+
    - Verify NATS credentials are correctly formatted
    - Check network connectivity to NATS server
    - Ensure TLS is properly configured
 
 2. **API Authentication Errors**:
+
    - Verify Morphisec API credentials
    - Check API endpoint URLs
    - Ensure network access to Morphisec cloud
@@ -283,22 +288,26 @@ kubectl logs -n your-namespace -l job-name=amtd-fetcher-xxxxx
 ### Health Monitoring
 
 The fetcher writes health check files to `/app/data/health/`:
+
 - `last_run.json`: Timestamp and status of last execution
 - `metrics.json`: Performance metrics and counters
 
 ## Security Best Practices
 
 1. **Credential Management**:
+
    - Never hardcode sensitive credentials
    - Use Kubernetes Secrets for all sensitive data
    - Rotate credentials regularly
 
 2. **Network Security**:
+
    - Use TLS for all external connections
    - Implement network policies if needed
    - Monitor outbound connections
 
 3. **Resource Limits**:
+
    - Set appropriate CPU and memory limits
    - Configure resource requests for scheduling
    - Monitor resource usage patterns
@@ -313,6 +322,7 @@ The fetcher writes health check files to `/app/data/health/`:
 ### Custom Fetch Intervals
 
 Modify the schedule using standard cron syntax:
+
 - Every hour: `"0 * * * *"`
 - Every 30 minutes: `"*/30 * * * *"`
 - Daily at 2 AM: `"0 2 * * *"`
@@ -336,6 +346,7 @@ env:
 ### Scaling Considerations
 
 For high-volume deployments:
+
 1. Use separate CronJobs for different data types
 2. Implement parallel processing within the fetcher
 3. Consider using Kubernetes Jobs with parallelism
@@ -346,6 +357,7 @@ For high-volume deployments:
 Deploying the AMTD fetcher as a Kubernetes CronJob with Devtron provides a robust, GitOps-driven solution for scheduled security data collection. The combination of Kubernetes native scheduling, Devtron's deployment management, and NATS streaming creates a scalable and maintainable architecture for security data pipelines.
 
 Key benefits of this approach:
+
 - **Automated Scheduling**: Reliable execution every 15 minutes
 - **GitOps Workflow**: Version-controlled configuration
 - **Secure Credential Management**: Kubernetes Secrets integration

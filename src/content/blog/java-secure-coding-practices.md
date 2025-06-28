@@ -25,6 +25,7 @@ Incorporating secure coding practices is essential to mitigate the OWASP Top 10 
 ### SQL Injection Prevention
 
 **Vulnerable Code:**
+
 ```java
 String userId = request.getParameter("userId");
 String query = "SELECT * FROM users WHERE user_id = '" + userId + "'";
@@ -33,6 +34,7 @@ ResultSet rs = stmt.executeQuery(query);
 ```
 
 **Secure Code:**
+
 ```java
 String userId = request.getParameter("userId");
 String query = "SELECT * FROM users WHERE user_id = ?";
@@ -46,6 +48,7 @@ ResultSet rs = pstmt.executeQuery();
 ### NoSQL Injection Prevention
 
 **Vulnerable Code (MongoDB):**
+
 ```java
 // Direct string concatenation
 String userQuery = "{ 'username': '" + username + "' }";
@@ -53,6 +56,7 @@ BasicDBObject query = BasicDBObject.parse(userQuery);
 ```
 
 **Secure Code:**
+
 ```java
 // Using proper query construction
 BasicDBObject query = new BasicDBObject();
@@ -62,12 +66,14 @@ query.put("username", username);
 ### LDAP Injection Prevention
 
 **Vulnerable Code:**
+
 ```java
 String filter = "(&(uid=" + username + ")(userPassword=" + password + "))";
 NamingEnumeration results = ctx.search("ou=users,dc=example,dc=com", filter, controls);
 ```
 
 **Secure Code:**
+
 ```java
 // Escape special characters
 private static String escapeLDAPSearchFilter(String filter) {
@@ -94,6 +100,7 @@ String filter = "(&(uid=" + escapedUsername + ")(userPassword=" + escapeLDAPSear
 ### Secure Password Storage
 
 **Vulnerable Code:**
+
 ```java
 // Password stored in plain text
 String storedPassword = getUserPassword(username);
@@ -103,6 +110,7 @@ if (inputPassword.equals(storedPassword)) {
 ```
 
 **Secure Code:**
+
 ```java
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -111,7 +119,7 @@ public class SecurePasswordUtil {
     public static String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt(12));
     }
-    
+
     public static boolean verifyPassword(String password, String hashedPassword) {
         return BCrypt.checkpw(password, hashedPassword);
     }
@@ -127,25 +135,27 @@ if (SecurePasswordUtil.verifyPassword(inputPassword, storedHashedPassword)) {
 ### Session Management
 
 **Vulnerable Code:**
+
 ```java
 // Weak session ID generation
 String sessionId = String.valueOf(System.currentTimeMillis());
 ```
 
 **Secure Code:**
+
 ```java
 import java.security.SecureRandom;
 import java.util.Base64;
 
 public class SecureSessionManager {
     private static final SecureRandom secureRandom = new SecureRandom();
-    
+
     public static String generateSessionId() {
         byte[] randomBytes = new byte[32];
         secureRandom.nextBytes(randomBytes);
         return Base64.getUrlEncoder().withoutPadding().encodeToString(randomBytes);
     }
-    
+
     public static void configureSecureSession(HttpServletResponse response) {
         // Set secure cookie attributes
         Cookie sessionCookie = new Cookie("JSESSIONID", generateSessionId());
@@ -164,6 +174,7 @@ public class SecureSessionManager {
 ### Data Encryption
 
 **Vulnerable Code:**
+
 ```java
 // Transmitting data over an unencrypted connection
 URL url = new URL("http://example.com/api");
@@ -171,6 +182,7 @@ HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 ```
 
 **Secure Code:**
+
 ```java
 // Transmitting data over an encrypted connection
 URL url = new URL("https://example.com/api");
@@ -183,6 +195,7 @@ conn.setSSLSocketFactory(createPinnedSSLSocketFactory());
 ### Data Masking and Encryption
 
 **Secure Implementation:**
+
 ```java
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -196,42 +209,42 @@ public class DataProtectionUtil {
     private static final String ALGORITHM = "AES/GCM/NoPadding";
     private static final int GCM_IV_LENGTH = 12;
     private static final int GCM_TAG_LENGTH = 16;
-    
+
     public static SecretKey generateKey() throws Exception {
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
         keyGenerator.init(256);
         return keyGenerator.generateKey();
     }
-    
+
     public static String encrypt(String plainText, SecretKey key) throws Exception {
         byte[] iv = new byte[GCM_IV_LENGTH];
         SecureRandom.getInstanceStrong().nextBytes(iv);
-        
+
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         GCMParameterSpec parameterSpec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv);
         cipher.init(Cipher.ENCRYPT_MODE, key, parameterSpec);
-        
+
         byte[] encryptedData = cipher.doFinal(plainText.getBytes());
         byte[] encryptedWithIv = new byte[iv.length + encryptedData.length];
         System.arraycopy(iv, 0, encryptedWithIv, 0, iv.length);
         System.arraycopy(encryptedData, 0, encryptedWithIv, iv.length, encryptedData.length);
-        
+
         return Base64.getEncoder().encodeToString(encryptedWithIv);
     }
-    
+
     public static String decrypt(String encryptedText, SecretKey key) throws Exception {
         byte[] decodedData = Base64.getDecoder().decode(encryptedText);
-        
+
         byte[] iv = new byte[GCM_IV_LENGTH];
         System.arraycopy(decodedData, 0, iv, 0, iv.length);
-        
+
         byte[] encrypted = new byte[decodedData.length - GCM_IV_LENGTH];
         System.arraycopy(decodedData, GCM_IV_LENGTH, encrypted, 0, encrypted.length);
-        
+
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         GCMParameterSpec parameterSpec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv);
         cipher.init(Cipher.DECRYPT_MODE, key, parameterSpec);
-        
+
         byte[] decryptedData = cipher.doFinal(encrypted);
         return new String(decryptedData);
     }
@@ -241,6 +254,7 @@ public class DataProtectionUtil {
 ## 4. XML External Entities (XXE)
 
 **Vulnerable Code:**
+
 ```java
 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 DocumentBuilder db = dbf.newDocumentBuilder();
@@ -248,24 +262,25 @@ Document doc = db.parse(new File("input.xml"));
 ```
 
 **Secure Code:**
+
 ```java
 import javax.xml.XMLConstants;
 
 public class SecureXMLParser {
     public static Document parseXML(File xmlFile) throws Exception {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        
+
         // Disable external entity processing
         dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
         dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
         dbf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
         dbf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
-        
+
         // Secure processing
         dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
         dbf.setXIncludeAware(false);
         dbf.setExpandEntityReferences(false);
-        
+
         DocumentBuilder db = dbf.newDocumentBuilder();
         return db.parse(xmlFile);
     }
@@ -277,26 +292,28 @@ public class SecureXMLParser {
 ### Error Handling
 
 **Vulnerable Code:**
+
 ```java
 // Default error page revealing stack trace
 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
 ```
 
 **Secure Code:**
+
 ```java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SecureErrorHandler {
     private static final Logger logger = LoggerFactory.getLogger(SecureErrorHandler.class);
-    
+
     public static void handleError(HttpServletResponse response, Exception e, String userMessage) {
         // Log detailed error for developers
         logger.error("Application error occurred", e);
-        
+
         // Return generic message to user
         try {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, 
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                 userMessage != null ? userMessage : "An unexpected error occurred.");
         } catch (IOException ioException) {
             logger.error("Failed to send error response", ioException);
@@ -308,36 +325,37 @@ public class SecureErrorHandler {
 ### Security Headers
 
 **Secure Implementation:**
+
 ```java
 @WebFilter("/*")
 public class SecurityHeadersFilter implements Filter {
-    
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        
+
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        
+
         // Prevent clickjacking
         httpResponse.setHeader("X-Frame-Options", "DENY");
-        
+
         // Prevent MIME type sniffing
         httpResponse.setHeader("X-Content-Type-Options", "nosniff");
-        
+
         // Enable XSS protection
         httpResponse.setHeader("X-XSS-Protection", "1; mode=block");
-        
+
         // Enforce HTTPS
-        httpResponse.setHeader("Strict-Transport-Security", 
+        httpResponse.setHeader("Strict-Transport-Security",
             "max-age=31536000; includeSubDomains; preload");
-        
+
         // Content Security Policy
-        httpResponse.setHeader("Content-Security-Policy", 
+        httpResponse.setHeader("Content-Security-Policy",
             "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'");
-        
+
         // Hide server information
         httpResponse.setHeader("Server", "");
-        
+
         chain.doFilter(request, response);
     }
 }
@@ -346,35 +364,37 @@ public class SecurityHeadersFilter implements Filter {
 ## 6. Cross-Site Scripting (XSS)
 
 **Vulnerable Code:**
+
 ```java
 out.println("<div>" + userInput + "</div>");
 ```
 
 **Secure Code:**
+
 ```java
 import org.apache.commons.text.StringEscapeUtils;
 import org.owasp.encoder.Encode;
 
 public class XSSPrevention {
-    
+
     // Using Apache Commons Text
     public static String escapeHtml(String input) {
         return StringEscapeUtils.escapeHtml4(input);
     }
-    
+
     // Using OWASP Java Encoder
     public static String encodeForHTML(String input) {
         return Encode.forHtml(input);
     }
-    
+
     public static String encodeForJavaScript(String input) {
         return Encode.forJavaScript(input);
     }
-    
+
     public static String encodeForCSS(String input) {
         return Encode.forCssString(input);
     }
-    
+
     public static String encodeForURL(String input) {
         return Encode.forUriComponent(input);
     }
@@ -389,20 +409,20 @@ out.println("<div>" + XSSPrevention.encodeForHTML(userInput) + "</div>");
 ```java
 @WebServlet("/secure-page")
 public class SecurePageServlet extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         // Set CSP header
-        response.setHeader("Content-Security-Policy", 
+        response.setHeader("Content-Security-Policy",
             "default-src 'self'; " +
             "script-src 'self' 'unsafe-inline' https://cdn.example.com; " +
             "style-src 'self' 'unsafe-inline'; " +
             "img-src 'self' data: https:; " +
             "font-src 'self' https://fonts.googleapis.com; " +
             "connect-src 'self' https://api.example.com");
-        
+
         // Process request...
     }
 }
@@ -411,12 +431,14 @@ public class SecurePageServlet extends HttpServlet {
 ## 7. Insecure Deserialization
 
 **Vulnerable Code:**
+
 ```java
 ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data.ser"));
 Object obj = ois.readObject();
 ```
 
 **Secure Code:**
+
 ```java
 import java.io.*;
 import java.util.Set;
@@ -424,31 +446,31 @@ import java.util.HashSet;
 
 public class SecureDeserialization {
     private static final Set<String> ALLOWED_CLASSES = new HashSet<>();
-    
+
     static {
         ALLOWED_CLASSES.add("com.example.SafeClass");
         ALLOWED_CLASSES.add("com.example.AnotherSafeClass");
         // Add other safe classes
     }
-    
+
     public static Object deserializeSecurely(InputStream input) throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(input) {
             @Override
-            protected Class<?> resolveClass(ObjectStreamClass desc) 
+            protected Class<?> resolveClass(ObjectStreamClass desc)
                     throws IOException, ClassNotFoundException {
                 String className = desc.getName();
-                
+
                 if (!ALLOWED_CLASSES.contains(className)) {
                     throw new InvalidClassException("Unauthorized deserialization attempt", className);
                 }
-                
+
                 return super.resolveClass(desc);
             }
         };
-        
+
         return ois.readObject();
     }
-    
+
     // Alternative: Using JSON instead of Java serialization
     public static <T> T deserializeFromJSON(String json, Class<T> clazz) {
         ObjectMapper mapper = new ObjectMapper();
@@ -467,6 +489,7 @@ public class SecureDeserialization {
 ### Dependency Management
 
 **Maven Security Plugin Configuration:**
+
 ```xml
 <plugin>
     <groupId>org.owasp</groupId>
@@ -489,6 +512,7 @@ public class SecureDeserialization {
 ```
 
 **Vulnerable Dependency Example:**
+
 ```xml
 <dependency>
     <groupId>org.springframework</groupId>
@@ -498,6 +522,7 @@ public class SecureDeserialization {
 ```
 
 **Secure Dependency:**
+
 ```xml
 <dependency>
     <groupId>org.springframework</groupId>
@@ -509,6 +534,7 @@ public class SecureDeserialization {
 ## 9. Insufficient Logging and Monitoring
 
 **Vulnerable Code:**
+
 ```java
 // No logging of authentication attempts
 public void authenticate(String username, String password) {
@@ -517,6 +543,7 @@ public void authenticate(String username, String password) {
 ```
 
 **Secure Code:**
+
 ```java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -525,26 +552,26 @@ import org.slf4j.MDC;
 public class SecureAuthenticationService {
     private static final Logger logger = LoggerFactory.getLogger(SecureAuthenticationService.class);
     private static final Logger securityLogger = LoggerFactory.getLogger("SECURITY");
-    
+
     public boolean authenticate(String username, String password) {
         MDC.put("username", username);
         MDC.put("remoteIP", getCurrentUserIP());
-        
+
         try {
             logger.info("Authentication attempt for user: {}", username);
-            
+
             // Authentication logic
             boolean isAuthenticated = performAuthentication(username, password);
-            
+
             if (isAuthenticated) {
                 securityLogger.info("Successful authentication for user: {}", username);
             } else {
                 securityLogger.warn("Failed authentication attempt for user: {}", username);
                 // Implement rate limiting/account lockout here
             }
-            
+
             return isAuthenticated;
-            
+
         } catch (Exception e) {
             securityLogger.error("Authentication error for user: {}", username, e);
             return false;
@@ -552,12 +579,12 @@ public class SecureAuthenticationService {
             MDC.clear();
         }
     }
-    
+
     private String getCurrentUserIP() {
         // Implementation to get current user's IP
         return "192.168.1.1"; // placeholder
     }
-    
+
     private boolean performAuthentication(String username, String password) {
         // Actual authentication logic
         return true; // placeholder
@@ -571,7 +598,7 @@ public class SecureAuthenticationService {
 @Component
 public class SecurityEventLogger {
     private static final Logger securityLogger = LoggerFactory.getLogger("SECURITY");
-    
+
     public void logSecurityEvent(String eventType, String details, String severity) {
         Map<String, Object> event = new HashMap<>();
         event.put("timestamp", Instant.now());
@@ -579,21 +606,21 @@ public class SecurityEventLogger {
         event.put("details", details);
         event.put("severity", severity);
         event.put("source", "application");
-        
+
         // Log as structured data
         securityLogger.info("Security Event: {}", new ObjectMapper().writeValueAsString(event));
     }
-    
+
     @EventListener
     public void handleAuthenticationFailure(AuthenticationFailureEvent event) {
-        logSecurityEvent("AUTHENTICATION_FAILURE", 
+        logSecurityEvent("AUTHENTICATION_FAILURE",
             "Failed login attempt for user: " + event.getUsername(),
             "HIGH");
     }
-    
+
     @EventListener
     public void handleUnauthorizedAccess(UnauthorizedAccessEvent event) {
-        logSecurityEvent("UNAUTHORIZED_ACCESS", 
+        logSecurityEvent("UNAUTHORIZED_ACCESS",
             "Unauthorized access attempt to: " + event.getResource(),
             "CRITICAL");
     }
@@ -603,12 +630,14 @@ public class SecurityEventLogger {
 ## 10. Unvalidated Redirects and Forwards
 
 **Vulnerable Code:**
+
 ```java
 String url = request.getParameter("url");
 response.sendRedirect(url);
 ```
 
 **Secure Code:**
+
 ```java
 import java.net.URL;
 import java.util.Set;
@@ -619,26 +648,26 @@ public class SecureRedirectHandler {
         "subdomain.example.com",
         "api.example.com"
     );
-    
+
     public static boolean isValidRedirectUrl(String url) {
         try {
             URL redirectUrl = new URL(url);
             String host = redirectUrl.getHost().toLowerCase();
-            
+
             // Check if it's a relative URL (safe)
             if (url.startsWith("/") && !url.startsWith("//")) {
                 return true;
             }
-            
+
             // Check if host is in allowed domains
-            return ALLOWED_DOMAINS.contains(host) || 
+            return ALLOWED_DOMAINS.contains(host) ||
                    ALLOWED_DOMAINS.stream().anyMatch(domain -> host.endsWith("." + domain));
-                   
+
         } catch (Exception e) {
             return false;
         }
     }
-    
+
     public static void safeRedirect(HttpServletResponse response, String url) throws IOException {
         if (isValidRedirectUrl(url)) {
             response.sendRedirect(url);
@@ -662,26 +691,26 @@ import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.SafeHtml;
 
 public class UserInput {
-    
+
     @NotNull
     @Size(min = 3, max = 50)
     @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "Username must contain only alphanumeric characters and underscores")
     private String username;
-    
+
     @NotNull
     @Email
     private String email;
-    
+
     @NotNull
     @Size(min = 8, max = 100)
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]", 
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]",
              message = "Password must contain uppercase, lowercase, digit and special character")
     private String password;
-    
+
     @SafeHtml
     @Size(max = 1000)
     private String description;
-    
+
     // Getters and setters...
 }
 ```
@@ -694,7 +723,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class SecureRandomGenerator {
     private static final SecureRandom secureRandom;
-    
+
     static {
         try {
             secureRandom = SecureRandom.getInstanceStrong();
@@ -702,13 +731,13 @@ public class SecureRandomGenerator {
             throw new RuntimeException("Strong SecureRandom not available", e);
         }
     }
-    
+
     public static String generateSecureToken(int length) {
         byte[] randomBytes = new byte[length];
         secureRandom.nextBytes(randomBytes);
         return Base64.getUrlEncoder().withoutPadding().encodeToString(randomBytes);
     }
-    
+
     public static int generateSecureInt(int bound) {
         return secureRandom.nextInt(bound);
     }
@@ -723,12 +752,12 @@ public class SecureRandomGenerator {
 @Test
 public void testSQLInjectionPrevention() {
     String maliciousInput = "'; DROP TABLE users; --";
-    
+
     // This should not cause SQL injection
     assertDoesNotThrow(() -> {
         userService.findUserById(maliciousInput);
     });
-    
+
     // Verify that no actual SQL injection occurred
     assertTrue(userService.getAllUsers().size() > 0);
 }
@@ -737,7 +766,7 @@ public void testSQLInjectionPrevention() {
 public void testXSSPrevention() {
     String xssPayload = "<script>alert('XSS')</script>";
     String encoded = XSSPrevention.encodeForHTML(xssPayload);
-    
+
     assertFalse(encoded.contains("<script>"));
     assertTrue(encoded.contains("&lt;script&gt;"));
 }
@@ -746,7 +775,7 @@ public void testXSSPrevention() {
 public void testPasswordHashing() {
     String password = "TestPassword123!";
     String hashedPassword = SecurePasswordUtil.hashPassword(password);
-    
+
     assertNotEquals(password, hashedPassword);
     assertTrue(SecurePasswordUtil.verifyPassword(password, hashedPassword));
     assertFalse(SecurePasswordUtil.verifyPassword("WrongPassword", hashedPassword));
