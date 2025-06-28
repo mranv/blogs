@@ -91,7 +91,7 @@
     prose-blockquote:!border-opacity-60 prose-blockquote:!pl-6 prose-blockquote:!py-4 prose-blockquote:!my-6 prose-blockquote:!rounded-r-lg
     prose-figcaption:!text-skin-base prose-figcaption:!opacity-75 prose-figcaption:!text-sm prose-figcaption:!text-center prose-figcaption:!mt-2 prose-figcaption:!font-sans
     prose-strong:!text-skin-base prose-strong:!font-semibold
-    prose-code:!rounded-md prose-code:!bg-skin-card prose-code:!bg-opacity-80 prose-code:!border prose-code:!border-skin-line prose-code:!font-mono
+    prose-code:!rounded-md prose-code:!bg-skin-card prose-code:!bg-opacity-80 prose-code:!font-mono
     prose-code:!px-2 prose-code:!py-1 prose-code:!text-skin-base prose-code:!text-sm prose-code:!font-medium
     prose-code:before:!content-none prose-code:after:!content-none
     prose-ol:!text-skin-base prose-ol:!leading-relaxed prose-ol:!text-lg prose-ol:!font-reading
@@ -99,7 +99,7 @@
     prose-table:!text-skin-base prose-table:!border-collapse prose-table:!w-full prose-table:!my-8 prose-table:!font-sans
     prose-th:!border prose-th:!border-skin-line prose-th:!bg-skin-card-muted prose-th:!py-3 prose-th:!px-4 prose-th:!font-semibold prose-th:!text-left
     prose-td:!border prose-td:!border-skin-line prose-td:!py-3 prose-td:!px-4
-    prose-img:!my-8 prose-img:!mx-auto prose-img:!rounded-xl prose-img:!border prose-img:!border-skin-line prose-img:!shadow-lg
+    prose-img:!my-8 prose-img:!mx-auto prose-img:!rounded-xl prose-img:!shadow-lg
     prose-hr:!border-skin-line prose-hr:!border-opacity-30 prose-hr:!my-12 prose-hr:!border-2;
     font-size: 1.1rem;
     line-height: 1.8;
@@ -166,7 +166,7 @@
 
   /* Enhanced code blocks */
   .prose pre {
-    @apply !bg-skin-card !bg-opacity-90 !rounded-xl !border !border-skin-line !p-6 !my-8 !overflow-x-auto;
+    @apply !bg-skin-card !bg-opacity-90 !rounded-xl !p-6 !my-8 !overflow-x-auto;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     position: relative;
   }

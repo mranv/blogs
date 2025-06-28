@@ -179,7 +179,7 @@ const layoutProps = {
 
       let copyButton = document.createElement("button");
       copyButton.className =
-        "copy-code absolute right-3 -top-3 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
+        "copy-code absolute right-3 top-3 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium border border-skin-line hover:bg-skin-card-muted transition-colors duration-200";
       copyButton.innerHTML = copyButtonLabel;
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);
