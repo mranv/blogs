@@ -34,10 +34,12 @@ This guide details how to monitor Windows machines without installing an agent b
 Before beginning the installation, ensure you have the following:
 
 **On Linux:**
+
 - A working WMIC client.
 - Perl installed along with required modules (see Icinga/Nagios Plugin section for details).
 
 **On Windows:**
+
 - WMI enabled (usually on by default).
 - A dedicated Windows user with minimal privileges but granted WMI access.
 - (Recommended) WinRM and Remote Desktop enabled on the Windows node.
@@ -51,7 +53,7 @@ The WMIC tool (WMI client for Linux) is needed to query Windows systems. You can
 1. **Download the Source Code:**
 
    Visit: http://edcint.co.nz/checkwmiplus/download/zenoss-wmi-source-v1-3-14/
-   
+
    Save the archive in a directory such as `/usr/local/src/`.
 
 2. **Extract and Build:**
@@ -69,18 +71,23 @@ The WMIC tool (WMI client for Linux) is needed to query Windows systems. You can
 3. **Troubleshooting Compilation Issues:**
 
    If you encounter an error like:
+
    ```
    Can't use 'defined(@array)' (Maybe you should just omit the defined()?) at ./pidl/pidl line 583.
    ```
+
    Edit the indicated line to comment out the use of defined(), then re-run make.
 
    You might also see a message such as:
+
    ```
    make: *** No rule to make target `wmi/wmiq.o', needed by `bin/wmiq'.  Stop.
    ```
+
    This can be safely ignored.
 
    If further errors occur, try adjusting compiler directives, for example:
+
    ```bash
    make "CPP=gcc -E -ffreestanding"
    ```
@@ -88,11 +95,13 @@ The WMIC tool (WMI client for Linux) is needed to query Windows systems. You can
 4. **Test the Installation:**
 
    Run a basic WMIC query:
+
    ```bash
    wmic -U [domain/]adminuser%password //host_or_IP "select TotalPhysicalMemory from Win32_ComputerSystem"
    ```
 
    Expected output:
+
    ```
    CLASS: Win32_ComputerSystem
    Name|TotalPhysicalMemory
@@ -104,7 +113,7 @@ The WMIC tool (WMI client for Linux) is needed to query Windows systems. You can
 If compiling is problematic, you may consider using available RPMs or DEBs. Examples include:
 
 - **RPM:** `wmi-1.3.14-4.el7.art.x86_64.rpm`
-- **DEB:** 
+- **DEB:**
   - Debian: [Inverse.ca Debian packages](https://inverse.ca/debian)
   - Ubuntu: [Inverse.ca Ubuntu packages](https://inverse.ca/ubuntu)
 
@@ -114,27 +123,29 @@ The plugin `check_wmi_plus` is written in Perl. It requires several Perl modules
 
 Here is an example of the modules and the desired versions:
 
-| Module Name | Installed Version | Desired Version |
-|-------------|------------------|-----------------|
-| Config::IniFiles | 2.79 | 2.58 |
-| Getopt::Long | 2.4 | 2.38 |
-| DateTime | 1.04 | 0.66 |
-| Number::Format | 1.73 | 1.73 |
-| Data::Dumper | 2.145 | 2.125 |
-| Scalar::Util | 1.27 | 1.22 |
-| Storable | 2.45 | 2.22 |
-| Perl Version | 5.016003 | 5.01 |
+| Module Name      | Installed Version | Desired Version |
+| ---------------- | ----------------- | --------------- |
+| Config::IniFiles | 2.79              | 2.58            |
+| Getopt::Long     | 2.4               | 2.38            |
+| DateTime         | 1.04              | 0.66            |
+| Number::Format   | 1.73              | 1.73            |
+| Data::Dumper     | 2.145             | 2.125           |
+| Scalar::Util     | 1.27              | 1.22            |
+| Storable         | 2.45              | 2.22            |
+| Perl Version     | 5.016003          | 5.01            |
 
 ### Installation Steps
 
 1. **Install Required Perl Modules:**
 
    For example, to install a module from CPAN:
+
    ```bash
    cpan install Number::Format
    ```
 
    If you require a specific version, provide the full module distribution filename:
+
    ```bash
    cpan SHLOMIF/Config-IniFiles-2.58.tar.gz
    ```

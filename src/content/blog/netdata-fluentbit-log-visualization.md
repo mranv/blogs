@@ -186,7 +186,7 @@ jobs:
     path: /var/log/custom_app/*.log
     custom_log_format:
       pattern: '(?P<address>[\da-f.:]+) - (?P<user>.*) \[(?P<time>.*)\] "(?P<method>[A-Z]+) (?P<url>.*) HTTP/[0-9.]+" (?P<code>[0-9]+) (?P<bytes_sent>[0-9]+) "(?P<referer>.*)" "(?P<user_agent>.*)"'
-      time_format: '%d/%b/%Y:%H:%M:%S %z'
+      time_format: "%d/%b/%Y:%H:%M:%S %z"
 ```
 
 ### Alerting Configuration

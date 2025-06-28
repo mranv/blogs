@@ -22,29 +22,29 @@ To align your Rocky Linux 9.5 installation with CIS Benchmark recommendations an
 
 ## 📌 Partitioning Plan (CIS Benchmark Aligned)
 
-| Partition | Size | Filesystem | Mount Options | Purpose |
-|-----------|------|------------|---------------|---------|
-| `/boot` | 1024 MiB | ext4 | `nodev, noexec, nosuid` | Bootloader partition |
-| `/home` | 100 GiB | xfs | `nodev` | User data storage |
-| `/var` | 40 GiB | xfs | `nodev` | App & system logs |
-| `/var/log` | 60 GiB | xfs | `nodev` | System logs |
-| `/var/log/audit` | 15 GiB | xfs | `nodev` | Security audit logs |
-| `/var/tmp` | 20 GiB | xfs | `nodev, noexec, nosuid` | Temporary storage |
-| `/tmp` | 20 GiB | xfs | `nodev, noexec, nosuid` | Prevent script execution in /tmp |
-| `/srv` | 30 GiB | xfs | `nodev` | Application data |
-| `/opt` | 30 GiB | xfs | `nodev` | Third-party software |
-| `/swap` | 16 GiB | swap | N/A | Virtual memory swap |
-| `/` (root) | 88 GiB | xfs | Default | Main OS partition |
+| Partition        | Size     | Filesystem | Mount Options           | Purpose                          |
+| ---------------- | -------- | ---------- | ----------------------- | -------------------------------- |
+| `/boot`          | 1024 MiB | ext4       | `nodev, noexec, nosuid` | Bootloader partition             |
+| `/home`          | 100 GiB  | xfs        | `nodev`                 | User data storage                |
+| `/var`           | 40 GiB   | xfs        | `nodev`                 | App & system logs                |
+| `/var/log`       | 60 GiB   | xfs        | `nodev`                 | System logs                      |
+| `/var/log/audit` | 15 GiB   | xfs        | `nodev`                 | Security audit logs              |
+| `/var/tmp`       | 20 GiB   | xfs        | `nodev, noexec, nosuid` | Temporary storage                |
+| `/tmp`           | 20 GiB   | xfs        | `nodev, noexec, nosuid` | Prevent script execution in /tmp |
+| `/srv`           | 30 GiB   | xfs        | `nodev`                 | Application data                 |
+| `/opt`           | 30 GiB   | xfs        | `nodev`                 | Third-party software             |
+| `/swap`          | 16 GiB   | swap       | N/A                     | Virtual memory swap              |
+| `/` (root)       | 88 GiB   | xfs        | Default                 | Main OS partition                |
 
 **Total Used: 400 GiB ✅**
 
 ## 🔧 Filesystem Choices
 
-| Filesystem | Reason |
-|------------|--------|
+| Filesystem                    | Reason                                      |
+| ----------------------------- | ------------------------------------------- |
 | **XFS** (for most partitions) | Best for high-performance and large storage |
-| **EXT4** (for /boot) | Needed for compatibility with bootloaders |
-| **Swap** | Virtual memory |
+| **EXT4** (for /boot)          | Needed for compatibility with bootloaders   |
+| **Swap**                      | Virtual memory                              |
 
 ## 📌 Security-Hardened /etc/fstab Configuration
 
@@ -67,24 +67,29 @@ UUID=<swap-uuid>    swap          swap  defaults                      0 0
 ## 🛠 Steps to Configure During Installation
 
 ### 1. Manual Partitioning
+
 - Choose **"Custom Partitioning"** in Rocky Linux installer
 - Create partitions according to the table above
 
 ### 2. Format the Partitions
+
 - Set `/boot` as **ext4**
 - Set all other partitions as **XFS**
 - Set swap as **swap**
 
 ### 3. Assign Mount Points
+
 - Configure mount points as per the partitioning table
 - Ensure proper hierarchy (e.g., `/var` before `/var/log`)
 
 ### 4. Apply Mount Options
+
 - Click on **"Modify Mount Options"**
 - Set `nodev`, `noexec`, `nosuid` as needed per the table
 - Confirm settings before proceeding
 
 ### 5. Verify Configuration
+
 - Confirm total usage is ~400 GiB
 - Review all mount points and options
 - Proceed with installation
@@ -93,11 +98,11 @@ UUID=<swap-uuid>    swap          swap  defaults                      0 0
 
 ### Mount Option Security
 
-| Mount Option | Security Benefit |
-|--------------|------------------|
-| `nodev` | Prevents device files from being interpreted as devices |
-| `noexec` | Prevents execution of binaries from the filesystem |
-| `nosuid` | Prevents set-user-ID and set-group-ID bits from taking effect |
+| Mount Option | Security Benefit                                              |
+| ------------ | ------------------------------------------------------------- |
+| `nodev`      | Prevents device files from being interpreted as devices       |
+| `noexec`     | Prevents execution of binaries from the filesystem            |
+| `nosuid`     | Prevents set-user-ID and set-group-ID bits from taking effect |
 
 ### Partition Separation Benefits
 
@@ -125,6 +130,7 @@ mount | grep -E "(tmp|var|home|opt|srv)"
 ```
 
 ### SELinux Configuration
+
 ```bash
 # Ensure SELinux is in enforcing mode
 sestatus
@@ -135,6 +141,7 @@ echo "SELINUX=enforcing" > /etc/selinux/config
 ```
 
 ### Audit Configuration
+
 ```bash
 # Verify auditd is enabled and running
 systemctl status auditd
@@ -147,6 +154,7 @@ ls -la /var/log/audit/
 ## 🔧 Maintenance and Monitoring
 
 ### Disk Space Monitoring
+
 ```bash
 # Monitor partition usage
 df -h
@@ -159,6 +167,7 @@ echo "*/15 * * * * root df -h | awk '\$5 > 85 {print \$0}' | mail -s 'Disk Usage
 ```
 
 ### Log Rotation Configuration
+
 ```bash
 # Configure logrotate for audit logs
 cat > /etc/logrotate.d/audit << EOF
@@ -180,6 +189,7 @@ EOF
 ## 📊 Partition Usage Monitoring
 
 ### Create Monitoring Script
+
 ```bash
 #!/bin/bash
 # /usr/local/bin/disk-monitor.sh
@@ -203,6 +213,7 @@ done
 ## 🚀 Performance Optimization
 
 ### XFS Optimizations
+
 ```bash
 # Mount options for better performance (add to /etc/fstab)
 # For databases or high I/O applications:
@@ -213,6 +224,7 @@ done
 ```
 
 ### I/O Scheduler Optimization
+
 ```bash
 # Set I/O scheduler for better performance
 echo mq-deadline > /sys/block/sda/queue/scheduler

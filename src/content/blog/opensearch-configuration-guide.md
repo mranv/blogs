@@ -116,9 +116,6 @@ http.port: 9200
 #
 #action.destructive_requires_name: true
 
-
-
-
 ######## Start OpenSearch Security Demo Configuration ########
 # WARNING: revise all the lines below before you go into production
 plugins.security.ssl.transport.pemcert_filepath: /etc/opensearch/certs/indexer.pem
@@ -133,16 +130,33 @@ plugins.security.ssl.http.pemtrustedcas_filepath: /etc/opensearch/certs/root-ca.
 plugins.security.allow_unsafe_democertificates: false
 plugins.security.allow_default_init_securityindex: true
 plugins.security.authcz.admin_dn:
-- CN=admin,OU=Wazuh,O=Wazuh,L=California,C=US
+  - CN=admin,OU=Wazuh,O=Wazuh,L=California,C=US
 plugins.security.enable_snapshot_restore_privilege: true
 plugins.security.check_snapshot_restore_write_privileges: true
-plugins.security.restapi.roles_enabled: ["all_access", "security_rest_api_access"]
+plugins.security.restapi.roles_enabled:
+  ["all_access", "security_rest_api_access"]
 plugins.security.system_indices.enabled: true
-plugins.security.system_indices.indices: [".plugins-ml-model", ".plugins-ml-task", ".opendistro-alerting-config", ".opendistro-alerting-alert*", ".opendistro-anomaly-results*", ".opendistro-anomaly-detector*", ".opendistro-anomaly-checkpoints", ".opendistro-anomaly-detection-state", ".opendistro-reports-*", ".opensearch-notifications-*", ".opensearch-notebooks", ".opensearch-observability", ".opendistro-asynchronous-search-response*", ".replication-metadata-store"]
+plugins.security.system_indices.indices:
+  [
+    ".plugins-ml-model",
+    ".plugins-ml-task",
+    ".opendistro-alerting-config",
+    ".opendistro-alerting-alert*",
+    ".opendistro-anomaly-results*",
+    ".opendistro-anomaly-detector*",
+    ".opendistro-anomaly-checkpoints",
+    ".opendistro-anomaly-detection-state",
+    ".opendistro-reports-*",
+    ".opensearch-notifications-*",
+    ".opensearch-notebooks",
+    ".opensearch-observability",
+    ".opendistro-asynchronous-search-response*",
+    ".replication-metadata-store",
+  ]
 ######## End OpenSearch Security Demo Configuration ########
 
 plugins.security.nodes_dn:
-- CN=node-1,OU=Wazuh,O=Wazuh,L=California,C=US
+  - CN=node-1,OU=Wazuh,O=Wazuh,L=California,C=US
 
 ### Option to allow Filebeat-oss 7.10.2 to work ###
 compatibility.override_main_response_version: true
@@ -159,7 +173,7 @@ compatibility.override_main_response_version: true
 cluster.name: production-opensearch
 
 # Prevent split brain
-cluster.initial_master_nodes: 
+cluster.initial_master_nodes:
   - master-node-1
   - master-node-2
   - master-node-3
@@ -172,7 +186,7 @@ cluster.routing.allocation.disk.watermark.flood_stage: 95%
 
 # ------------------------------------ Node ------------------------------------
 node.name: ${NODE_NAME}
-node.roles: [ data, ingest, master, ml, remote_cluster_client ]
+node.roles: [data, ingest, master, ml, remote_cluster_client]
 
 # Node attributes for shard allocation awareness
 node.attr.zone: ${ZONE}
@@ -420,7 +434,7 @@ config:
           challenge: true
         authentication_backend:
           type: intern
-      
+
       ldap:
         description: "Authenticate via LDAP"
         http_enabled: true
@@ -443,7 +457,7 @@ config:
             userbase: ou=people,dc=company,dc=com
             usersearch: (uid={0})
             username_attribute: uid
-    
+
     authz:
       roles_from_myldap:
         description: "Authorize via LDAP"
@@ -829,17 +843,19 @@ curl -XPUT "https://localhost:9200/_cluster/settings" \
 ### Common Issues and Solutions
 
 1. **High JVM Memory Usage**
+
    ```bash
    # Check heap usage
    curl -XGET "https://localhost:9200/_nodes/stats/jvm?pretty" \
      -u admin:password --insecure
-   
+
    # Force garbage collection (use with caution)
    curl -XPOST "https://localhost:9200/_nodes/_local/_hot_threads" \
      -u admin:password --insecure
    ```
 
 2. **Slow Queries**
+
    ```bash
    # Enable slow log
    curl -XPUT "https://localhost:9200/_all/_settings" \
@@ -859,11 +875,12 @@ curl -XPUT "https://localhost:9200/_cluster/settings" \
    ```
 
 3. **Shard Allocation Issues**
+
    ```bash
    # Check allocation explanation
    curl -XGET "https://localhost:9200/_cluster/allocation/explain?pretty" \
      -u admin:password --insecure
-   
+
    # Enable allocation
    curl -XPUT "https://localhost:9200/_cluster/settings" \
      -H 'Content-Type: application/json' \
@@ -879,18 +896,21 @@ curl -XPUT "https://localhost:9200/_cluster/settings" \
 ## Best Practices
 
 1. **Hardware Recommendations**
+
    - Use SSDs for data storage
    - Minimum 64GB RAM for production
    - Dedicate 50% of RAM to JVM heap (max 32GB)
    - Use multiple data paths for better I/O
 
 2. **Index Design**
+
    - Use time-based indices for logs
    - Implement proper mapping before indexing
    - Use index templates for consistent settings
    - Consider hot-warm-cold architecture
 
 3. **Security**
+
    - Always use TLS/SSL in production
    - Implement strong authentication
    - Regular security audits

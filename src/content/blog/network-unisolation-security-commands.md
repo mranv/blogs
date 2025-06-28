@@ -316,12 +316,12 @@ function Restore-SecurityRegistry {
             'EnableSecuritySignature' = 1
         }
     }
-    
+
     foreach ($regPath in $securitySettings.Keys) {
         if (-not (Test-Path $regPath)) {
             New-Item -Path $regPath -Force | Out-Null
         }
-        
+
         foreach ($setting in $securitySettings[$regPath].GetEnumerator()) {
             Set-ItemProperty -Path $regPath -Name $setting.Key -Value $setting.Value
             Write-Host "Set $regPath\$($setting.Key) = $($setting.Value)" -ForegroundColor Green
@@ -339,7 +339,7 @@ Restore-SecurityRegistry
 ```powershell
 function Test-PostUnisolationSecurity {
     Write-Host "=== POST-UNISOLATION SECURITY VALIDATION ===" -ForegroundColor Cyan
-    
+
     # Test firewall status
     $firewallStatus = netsh advfirewall show allprofiles state
     if ($firewallStatus -match "State\s+ON") {
@@ -347,14 +347,14 @@ function Test-PostUnisolationSecurity {
     } else {
         Write-Host "✗ Firewall is not properly enabled" -ForegroundColor Red
     }
-    
+
     # Test network connectivity
     $connectivityTests = @{
         'DNS Resolution' = { Resolve-DnsName google.com -ErrorAction SilentlyContinue }
         'HTTP Connectivity' = { Test-NetConnection -ComputerName google.com -Port 80 -InformationLevel Quiet }
         'HTTPS Connectivity' = { Test-NetConnection -ComputerName google.com -Port 443 -InformationLevel Quiet }
     }
-    
+
     foreach ($test in $connectivityTests.GetEnumerator()) {
         try {
             $result = & $test.Value
@@ -367,7 +367,7 @@ function Test-PostUnisolationSecurity {
             Write-Host "✗ $($test.Key): Error - $($_.Exception.Message)" -ForegroundColor Red
         }
     }
-    
+
     # Verify Group Policy application
     $gpResult = gpresult /r 2>&1
     if ($gpResult -match "successfully") {
@@ -375,7 +375,7 @@ function Test-PostUnisolationSecurity {
     } else {
         Write-Host "✗ Group Policy application issues detected" -ForegroundColor Red
     }
-    
+
     Write-Host "Security validation completed" -ForegroundColor Cyan
 }
 
@@ -410,18 +410,18 @@ echo Connectivity verification completed
 # Diagnose firewall problems
 function Diagnose-FirewallIssues {
     Write-Host "=== FIREWALL DIAGNOSTICS ===" -ForegroundColor Yellow
-    
+
     # Check firewall service
     $fwService = Get-Service -Name "MpsSvc" -ErrorAction SilentlyContinue
     if ($fwService) {
         Write-Host "Firewall Service Status: $($fwService.Status)" -ForegroundColor $(if ($fwService.Status -eq "Running") { "Green" } else { "Red" })
-        
+
         if ($fwService.Status -ne "Running") {
             Write-Host "Attempting to start firewall service..." -ForegroundColor Yellow
             Start-Service -Name "MpsSvc"
         }
     }
-    
+
     # Check firewall profiles
     $profiles = @("Domain", "Private", "Public")
     foreach ($profile in $profiles) {
@@ -461,7 +461,7 @@ netsh winsock reset
 # Group Policy troubleshooting
 function Repair-GroupPolicy {
     Write-Host "=== GROUP POLICY REPAIR ===" -ForegroundColor Yellow
-    
+
     try {
         # Check GP service
         $gpService = Get-Service -Name "gpsvc"
@@ -469,13 +469,13 @@ function Repair-GroupPolicy {
             Start-Service -Name "gpsvc"
             Write-Host "Started Group Policy Client service" -ForegroundColor Green
         }
-        
+
         # Clear GP cache and force refresh
         Remove-Item -Path "C:\Windows\System32\GroupPolicy\*" -Recurse -Force -ErrorAction SilentlyContinue
         gpupdate /force /wait:0
-        
+
         Write-Host "Group Policy repair completed" -ForegroundColor Green
-        
+
     } catch {
         Write-Host "Group Policy repair failed: $($_.Exception.Message)" -ForegroundColor Red
     }
@@ -567,7 +567,7 @@ function Enable-UnisolationAuditLogging {
         "System\Audit Policy\System\Security System Extension" = "Success,Failure"
         "System\Audit Policy\Logon-Logoff\Network Policy Server" = "Success,Failure"
     }
-    
+
     foreach ($setting in $auditSettings.GetEnumerator()) {
         auditpol /set /subcategory:"$($setting.Key)" /success:enable /failure:enable
         Write-Host "Enabled audit for: $($setting.Key)" -ForegroundColor Green
@@ -621,4 +621,4 @@ Proper implementation of these procedures ensures that systems can be safely ret
 
 ---
 
-*This guide serves as a comprehensive reference for security professionals and system administrators responsible for network isolation and restoration procedures in Windows environments.*
+_This guide serves as a comprehensive reference for security professionals and system administrators responsible for network isolation and restoration procedures in Windows environments._

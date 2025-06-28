@@ -178,11 +178,13 @@ echo "If you don't see the changes immediately, please restart your terminal."
 ## What This Script Installs
 
 ### 1. Homebrew
+
 - macOS package manager
 - Enables installation of modern CLI tools
 - Automatically added to PATH
 
 ### 2. Oh My Zsh Framework
+
 - Popular ZSH configuration framework
 - Provides themes and plugin management
 - Uses the clean "robbyrussell" theme
@@ -190,16 +192,19 @@ echo "If you don't see the changes immediately, please restart your terminal."
 ### 3. Essential ZSH Plugins
 
 #### zsh-autosuggestions
+
 - Suggests commands as you type based on history
 - Accept suggestions with `Ctrl+Space`
 - Configurable highlighting and strategy
 
 #### zsh-syntax-highlighting
+
 - Real-time syntax highlighting for commands
 - Helps identify typos and invalid commands
 - Color-coded command validation
 
 #### zsh-completions
+
 - Additional completion definitions
 - Enhanced tab completion for many tools
 - Better parameter and option completion
@@ -207,6 +212,7 @@ echo "If you don't see the changes immediately, please restart your terminal."
 ### 4. Modern CLI Tools
 
 #### exa (Enhanced ls)
+
 ```bash
 # Standard usage
 ls → exa
@@ -215,18 +221,21 @@ la → exa -la
 ```
 
 #### bat (Enhanced cat)
+
 ```bash
 # Syntax highlighting and line numbers
 cat file.txt → bat file.txt
 ```
 
 #### fd (Enhanced find)
+
 ```bash
 # Faster, more intuitive file searching
 find . -name "*.txt" → fd "*.txt"
 ```
 
 #### ripgrep (Enhanced grep)
+
 ```bash
 # Faster, smarter text searching
 grep -r "pattern" . → rg "pattern"
@@ -235,24 +244,28 @@ grep -r "pattern" . → rg "pattern"
 ## Key Configuration Features
 
 ### 1. History Management
+
 - **10,000 command history** with deduplication
 - **Shared history** across all terminal sessions
 - **Ignore duplicates** and commands starting with space
 - **History verification** for recalled commands
 
 ### 2. Intelligent Completion
+
 - **Case-insensitive** completion
 - **Menu selection** for multiple matches
 - **Enhanced formatting** with colors and descriptions
 - **Smart matching** with error tolerance
 
 ### 3. Performance Optimizations
+
 - **Fast paste handling** to prevent slowdowns
 - **Efficient plugin loading**
 - **Optimized completion system**
 - **Reduced startup time**
 
 ### 4. macOS-Specific Features
+
 - **Show/hide hidden files** commands
 - **DS_Store cleanup** utility
 - **Homebrew PATH** integration
@@ -268,12 +281,14 @@ grep -r "pattern" . → rg "pattern"
 ## Post-Installation Tips
 
 ### Customize Your Theme
+
 ```bash
 # Edit ~/.zshrc and change ZSH_THEME
 ZSH_THEME="agnoster"  # or any other theme
 ```
 
 ### Add Custom Aliases
+
 ```bash
 # Add to ~/.zshrc
 alias dev="cd ~/Development"
@@ -282,6 +297,7 @@ alias tree="exa --tree"
 ```
 
 ### Install Additional Plugins
+
 ```bash
 # Clone into the custom plugins directory
 git clone https://github.com/plugin-name ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/plugin-name
@@ -293,7 +309,9 @@ plugins=(git macos zsh-autosuggestions zsh-syntax-highlighting plugin-name)
 ## Troubleshooting
 
 ### Command Not Found
+
 If you get "command not found" errors after installation:
+
 ```bash
 # Reload your shell configuration
 source ~/.zshrc
@@ -301,13 +319,17 @@ source ~/.zshrc
 ```
 
 ### Slow Terminal Startup
+
 If your terminal starts slowly:
+
 - Comment out unused plugins in ~/.zshrc
 - Check for conflicting configurations
 - Consider using a lighter theme
 
 ### Plugin Issues
+
 If plugins don't work correctly:
+
 ```bash
 # Reinstall Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

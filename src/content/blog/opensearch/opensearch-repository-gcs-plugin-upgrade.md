@@ -25,6 +25,7 @@ This comprehensive guide covers the upgrade process for the OpenSearch repositor
 ## Overview
 
 The repository-gcs plugin allows OpenSearch to:
+
 - Store snapshots in Google Cloud Storage
 - Implement backup and disaster recovery strategies
 - Archive historical data cost-effectively
@@ -43,13 +44,13 @@ The repository-gcs plugin allows OpenSearch to:
 
 ### Version Compatibility Matrix
 
-| OpenSearch Version | Plugin Version | GCS Client Version | Notes |
-|-------------------|----------------|--------------------|---------|
-| 1.0.x - 1.2.x | 1.0.0 | 1.117.0 | Legacy support |
-| 1.3.x | 1.3.0 | 1.117.0 | Stable |
-| 2.0.x - 2.4.x | 2.0.0 | 2.3.0 | Breaking changes |
-| 2.5.x - 2.9.x | 2.5.0 | 2.3.0 | Current stable |
-| 2.10.x+ | 2.10.0 | 2.8.0 | Latest features |
+| OpenSearch Version | Plugin Version | GCS Client Version | Notes            |
+| ------------------ | -------------- | ------------------ | ---------------- |
+| 1.0.x - 1.2.x      | 1.0.0          | 1.117.0            | Legacy support   |
+| 1.3.x              | 1.3.0          | 1.117.0            | Stable           |
+| 2.0.x - 2.4.x      | 2.0.0          | 2.3.0              | Breaking changes |
+| 2.5.x - 2.9.x      | 2.5.0          | 2.3.0              | Current stable   |
+| 2.10.x+            | 2.10.0         | 2.8.0              | Latest features  |
 
 ## Pre-Upgrade Assessment
 
@@ -218,19 +219,19 @@ gcs:
       # Authentication method (service account recommended)
       credentials:
         file: "/etc/opensearch/gcs-credentials.json"
-      
+
       # Connection settings
       connect_timeout: "30s"
       read_timeout: "60s"
-      
+
       # Retry settings
       max_retries: 3
       retry_interval: "1s"
-      
+
       # Performance settings
       chunk_size: "100mb"
       compress: true
-      
+
     # Additional client for different project
     backup:
       project_id: "backup-project-123"
@@ -244,11 +245,11 @@ repositories:
     # Concurrent operations
     max_restore_bytes_per_sec: "100mb"
     max_snapshot_bytes_per_sec: "40mb"
-    
+
     # Chunk settings
     chunk_size: "1gb"
     compress: true
-    
+
     # Cache settings
     cache:
       enabled: true
@@ -442,7 +443,7 @@ class IncrementalMigration:
         self.target = target_url
         self.auth = auth
         self.bucket = "opensearch-snapshots"
-        
+
     def setup_repositories(self):
         """Setup GCS repositories on both clusters"""
         repo_config = {
@@ -455,48 +456,48 @@ class IncrementalMigration:
                 "compress": True
             }
         }
-        
+
         # Setup on source
         requests.put(
             f"{self.source}/_snapshot/gcs-incremental",
             auth=self.auth,
             json=repo_config
         )
-        
+
         # Setup on target
         requests.put(
             f"{self.target}/_snapshot/gcs-incremental",
             auth=self.auth,
             json=repo_config
         )
-    
+
     def get_indices_by_age(self, days_old):
         """Get indices older than specified days"""
         response = requests.get(
             f"{self.source}/_cat/indices?format=json",
             auth=self.auth
         )
-        
+
         indices = []
         cutoff_date = datetime.now() - timedelta(days=days_old)
-        
+
         for index in response.json():
             # Parse index date from name (assuming pattern like logs-2024.01.15)
             try:
                 date_str = index['index'].split('-')[-1]
                 index_date = datetime.strptime(date_str, '%Y.%m.%d')
-                
+
                 if index_date < cutoff_date:
                     indices.append(index['index'])
             except:
                 continue
-                
+
         return indices
-    
+
     def migrate_indices_batch(self, indices, batch_name):
         """Migrate a batch of indices"""
         snapshot_name = f"batch-{batch_name}-{int(time.time())}"
-        
+
         # Create snapshot
         print(f"Creating snapshot {snapshot_name} for {len(indices)} indices...")
         response = requests.put(
@@ -511,10 +512,10 @@ class IncrementalMigration:
                 }
             }
         )
-        
+
         # Wait for completion
         self.wait_for_snapshot(snapshot_name)
-        
+
         # Restore on target
         print(f"Restoring snapshot {snapshot_name}...")
         response = requests.post(
@@ -528,9 +529,9 @@ class IncrementalMigration:
                 }
             }
         )
-        
+
         return snapshot_name
-    
+
     def wait_for_snapshot(self, snapshot_name):
         """Wait for snapshot to complete"""
         while True:
@@ -538,10 +539,10 @@ class IncrementalMigration:
                 f"{self.source}/_snapshot/gcs-incremental/{snapshot_name}",
                 auth=self.auth
             )
-            
+
             snapshot = response.json()['snapshots'][0]
             state = snapshot['state']
-            
+
             if state == 'SUCCESS':
                 print(f"Snapshot {snapshot_name} completed successfully")
                 break
@@ -550,11 +551,11 @@ class IncrementalMigration:
             else:
                 print(f"Snapshot {snapshot_name} state: {state}")
                 time.sleep(30)
-    
+
     def run_incremental_migration(self):
         """Run the incremental migration process"""
         self.setup_repositories()
-        
+
         # Migrate in batches by age
         age_ranges = [
             (365, "very-old"),    # > 1 year
@@ -564,13 +565,13 @@ class IncrementalMigration:
             (7, "current"),       # 1 week - 1 month
             (0, "latest")         # < 1 week
         ]
-        
+
         for days, batch_name in age_ranges:
             indices = self.get_indices_by_age(days)
             if indices:
                 print(f"\nMigrating {batch_name} indices ({len(indices)} total)...")
                 self.migrate_indices_batch(indices[:50], batch_name)  # Batch of 50
-                
+
                 # Verify migration
                 self.verify_indices(indices[:50])
 
@@ -581,12 +582,12 @@ class IncrementalMigration:
                 f"{self.source}/{index}/_count",
                 auth=self.auth
             ).json()['count']
-            
+
             target_count = requests.get(
                 f"{self.target}/{index}/_count",
                 auth=self.auth
             ).json()['count']
-            
+
             if source_count != target_count:
                 print(f"WARNING: Count mismatch for {index}: {source_count} vs {target_count}")
             else:
@@ -615,18 +616,18 @@ gcs:
       connection_pool_size: 50
       connection_timeout: "30s"
       socket_timeout: "60s"
-      
+
       # Retry configuration
       max_retries: 5
       retry_interval: "1s"
       retry_multiplier: 2
       max_retry_interval: "30s"
-      
+
       # Performance settings
-      chunk_size: "256mb"  # Larger chunks for better throughput
+      chunk_size: "256mb" # Larger chunks for better throughput
       request_compression: true
       response_compression: true
-      
+
       # HTTP settings
       http:
         max_connections: 50
@@ -694,14 +695,14 @@ class ParallelSnapshotManager:
         self.url = opensearch_url
         self.auth = auth
         self.max_workers = 5
-        
+
     def create_snapshot_parallel(self, indices_groups, repository):
         """Create snapshots in parallel for different index groups"""
         timestamp = datetime.now().strftime('%Y%m%d-%H%M%S')
-        
+
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
             futures = []
-            
+
             for i, indices in enumerate(indices_groups):
                 snapshot_name = f"parallel-{timestamp}-group{i}"
                 future = executor.submit(
@@ -711,7 +712,7 @@ class ParallelSnapshotManager:
                     indices
                 )
                 futures.append((snapshot_name, future))
-            
+
             # Wait for all snapshots to complete
             results = []
             for snapshot_name, future in futures:
@@ -728,9 +729,9 @@ class ParallelSnapshotManager:
                         'status': 'failed',
                         'error': str(e)
                     })
-            
+
             return results
-    
+
     def _create_snapshot(self, repository, snapshot_name, indices):
         """Create a single snapshot"""
         response = requests.put(
@@ -745,13 +746,13 @@ class ParallelSnapshotManager:
                 }
             }
         )
-        
+
         if response.status_code != 200:
             raise Exception(f"Failed to create snapshot: {response.text}")
-        
+
         # Wait for completion
         return self._wait_for_snapshot(repository, snapshot_name)
-    
+
     def _wait_for_snapshot(self, repository, snapshot_name):
         """Wait for snapshot completion"""
         while True:
@@ -759,16 +760,16 @@ class ParallelSnapshotManager:
                 f"{self.url}/_snapshot/{repository}/{snapshot_name}",
                 auth=self.auth
             )
-            
+
             if response.status_code != 200:
                 raise Exception(f"Failed to get snapshot status: {response.text}")
-            
+
             snapshot = response.json()['snapshots'][0]
             if snapshot['state'] == 'SUCCESS':
                 return snapshot
             elif snapshot['state'] == 'FAILED':
                 raise Exception(f"Snapshot failed: {snapshot.get('failures', 'Unknown error')}")
-            
+
             time.sleep(10)
 ```
 
@@ -785,30 +786,30 @@ while true; do
     echo "=== OpenSearch GCS Plugin Monitor ==="
     echo "Time: $(date)"
     echo ""
-    
+
     # Plugin status
     echo "Plugin Status:"
     curl -s $AUTH "$OPENSEARCH_URL/_nodes/stats/repositories" | \
       jq '.nodes[].repositories'
     echo ""
-    
+
     # Active operations
     echo "Active Snapshot Operations:"
     curl -s $AUTH "$OPENSEARCH_URL/_snapshot/_status" | \
       jq '.snapshots[] | {snapshot: .snapshot, state: .state, progress: .shards_stats.done}'
     echo ""
-    
+
     # Repository stats
     echo "Repository Statistics:"
     curl -s $AUTH "$OPENSEARCH_URL/_snapshot/_stats" | \
       jq '.stats'
     echo ""
-    
+
     # GCS metrics
     echo "GCS Client Metrics:"
     curl -s $AUTH "$OPENSEARCH_URL/_nodes/stats/repositories?include_repository_stats=true" | \
       jq '.nodes[].repositories.gcs'
-    
+
     sleep 30
 done
 ```
@@ -829,21 +830,21 @@ class GCSPluginValidator:
         self.url = opensearch_url
         self.auth = auth
         self.validation_results = []
-        
+
     def run_all_validations(self):
         """Run complete validation suite"""
         print("Running GCS Plugin Validation Suite...")
         print("=" * 50)
-        
+
         self.validate_plugin_installation()
         self.validate_repository_access()
         self.validate_snapshot_operations()
         self.validate_restore_operations()
         self.validate_performance_metrics()
         self.validate_security_settings()
-        
+
         self.print_results()
-        
+
     def validate_plugin_installation(self):
         """Validate plugin is properly installed"""
         try:
@@ -851,10 +852,10 @@ class GCSPluginValidator:
                 f"{self.url}/_cat/plugins?format=json",
                 auth=self.auth
             )
-            
+
             plugins = response.json()
             gcs_plugin = next((p for p in plugins if p['component'] == 'repository-gcs'), None)
-            
+
             if gcs_plugin:
                 self.validation_results.append({
                     'test': 'Plugin Installation',
@@ -873,11 +874,11 @@ class GCSPluginValidator:
                 'status': 'ERROR',
                 'details': str(e)
             })
-    
+
     def validate_repository_access(self):
         """Validate GCS repository access"""
         test_repo = "gcs-validation-test"
-        
+
         try:
             # Create test repository
             response = requests.put(
@@ -892,14 +893,14 @@ class GCSPluginValidator:
                     }
                 }
             )
-            
+
             if response.status_code == 200:
                 # Verify repository
                 verify_response = requests.post(
                     f"{self.url}/_snapshot/{test_repo}/_verify",
                     auth=self.auth
                 )
-                
+
                 if verify_response.status_code == 200:
                     self.validation_results.append({
                         'test': 'Repository Access',
@@ -912,7 +913,7 @@ class GCSPluginValidator:
                         'status': 'FAIL',
                         'details': f"Verification failed: {verify_response.text}"
                     })
-                
+
                 # Cleanup
                 requests.delete(f"{self.url}/_snapshot/{test_repo}", auth=self.auth)
             else:
@@ -921,31 +922,31 @@ class GCSPluginValidator:
                     'status': 'FAIL',
                     'details': f"Failed to create repository: {response.text}"
                 })
-                
+
         except Exception as e:
             self.validation_results.append({
                 'test': 'Repository Access',
                 'status': 'ERROR',
                 'details': str(e)
             })
-    
+
     def validate_snapshot_operations(self):
         """Validate snapshot creation and management"""
         # Implementation continues...
         pass
-    
+
     def print_results(self):
         """Print validation results"""
         print("\nValidation Results:")
         print("=" * 50)
-        
+
         for result in self.validation_results:
             status_color = {
                 'PASS': '\033[92m',
                 'FAIL': '\033[91m',
                 'ERROR': '\033[93m'
             }.get(result['status'], '\033[0m')
-            
+
             print(f"{status_color}{result['status']}\033[0m - {result['test']}")
             print(f"  Details: {result['details']}")
             print()
@@ -1007,13 +1008,13 @@ gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
 gcs:
   client:
     default:
-      connect_timeout: "60s"  # Increase from default 30s
-      read_timeout: "120s"     # Increase from default 60s
-      
+      connect_timeout: "60s" # Increase from default 30s
+      read_timeout: "120s" # Increase from default 60s
+
       # Retry settings for transient failures
       max_retries: 10
       retry_interval: "5s"
-      
+
       # Connection pool
       connection_pool_size: 100
       connection_pool_timeout: "30s"
@@ -1075,13 +1076,13 @@ gcs:
       # Use service account instead of API keys
       credentials:
         file: "/etc/opensearch/gcs-sa.json"
-      
+
       # Enable request signing
       signing_enabled: true
-      
+
       # Use private service endpoint
       endpoint: "https://storage.googleapis.com"
-      
+
       # Enable SSL/TLS verification
       protocol: "https"
       verify_ssl: true
@@ -1174,7 +1175,7 @@ class GCSCostOptimizer:
     def __init__(self, opensearch_url, auth):
         self.url = opensearch_url
         self.auth = auth
-        
+
     def analyze_snapshot_costs(self):
         """Analyze snapshot storage costs"""
         # Get all snapshots
@@ -1182,21 +1183,21 @@ class GCSCostOptimizer:
             f"{self.url}/_snapshot/_all",
             auth=self.auth
         )
-        
+
         total_size = 0
         old_snapshots = []
-        
+
         for repo_name, repo_data in response.json().items():
             snapshots_response = requests.get(
                 f"{self.url}/_snapshot/{repo_name}/_all",
                 auth=self.auth
             )
-            
+
             for snapshot in snapshots_response.json()['snapshots']:
                 # Calculate age
                 start_time = datetime.fromtimestamp(snapshot['start_time_in_millis'] / 1000)
                 age = datetime.now() - start_time
-                
+
                 # Track old snapshots
                 if age > timedelta(days=90):
                     old_snapshots.append({
@@ -1205,17 +1206,17 @@ class GCSCostOptimizer:
                         'age_days': age.days,
                         'size_gb': snapshot.get('total_size', 0) / (1024**3)
                     })
-                
+
                 total_size += snapshot.get('total_size', 0)
-        
+
         # Calculate costs (example: $0.02 per GB per month for standard storage)
         monthly_cost = (total_size / (1024**3)) * 0.02
-        
+
         print(f"\nSnapshot Storage Analysis:")
         print(f"Total Size: {total_size / (1024**3):.2f} GB")
         print(f"Estimated Monthly Cost: ${monthly_cost:.2f}")
         print(f"\nOld Snapshots (>90 days): {len(old_snapshots)}")
-        
+
         # Recommendations
         if old_snapshots:
             potential_savings = sum(s['size_gb'] for s in old_snapshots) * 0.02
@@ -1223,7 +1224,7 @@ class GCSCostOptimizer:
             print("\nRecommended Deletions:")
             for snapshot in sorted(old_snapshots, key=lambda x: x['age_days'], reverse=True)[:10]:
                 print(f"- {snapshot['repository']}/{snapshot['snapshot']} ({snapshot['age_days']} days, {snapshot['size_gb']:.2f} GB)")
-    
+
     def implement_lifecycle_policy(self):
         """Implement cost-optimized lifecycle policy"""
         policy = {
@@ -1242,14 +1243,14 @@ class GCSCostOptimizer:
                 "max_count": 30         # Never keep more than 30
             }
         }
-        
+
         # Apply policy
         response = requests.put(
             f"{self.url}/_slm/policy/cost-optimized",
             auth=self.auth,
             json=policy
         )
-        
+
         if response.status_code == 200:
             print("Cost-optimized lifecycle policy implemented successfully")
         else:

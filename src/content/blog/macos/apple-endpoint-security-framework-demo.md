@@ -46,6 +46,7 @@ The Endpoint Security framework, introduced in macOS Catalina 10.15, allows auth
 ### Entitlements
 
 The key entitlement required is:
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -104,9 +105,9 @@ uint64_t MachTimeToNanoseconds(uint64_t machTime) {
     static mach_timebase_info_data_t sTimebase;
     if(sTimebase.denom == 0)
         (void)mach_timebase_info(&sTimebase);
-        
+
     nanoseconds = ((machTime * sTimebase.numer) / sTimebase.denom);
-        
+
     return nanoseconds;
 }
 
@@ -121,20 +122,20 @@ uint64_t MachTimeToSeconds(uint64_t machTime) {
 const NSString* event_type_str(const es_event_type_t event_type) {
     static const NSString *names[] = {
         // macOS 10.15
-        @"ES_EVENT_TYPE_AUTH_EXEC", @"ES_EVENT_TYPE_AUTH_OPEN", 
+        @"ES_EVENT_TYPE_AUTH_EXEC", @"ES_EVENT_TYPE_AUTH_OPEN",
         @"ES_EVENT_TYPE_AUTH_KEXTLOAD", @"ES_EVENT_TYPE_AUTH_MMAP",
         @"ES_EVENT_TYPE_NOTIFY_EXEC", @"ES_EVENT_TYPE_NOTIFY_OPEN",
         @"ES_EVENT_TYPE_NOTIFY_FORK", @"ES_EVENT_TYPE_NOTIFY_CLOSE",
         // ... additional event types
-        
+
         // macOS 15.0
         @"ES_EVENT_TYPE_NOTIFY_GATEKEEPER_USER_OVERRIDE"
     };
-    
+
     if(event_type >= ES_EVENT_TYPE_LAST) {
         return [NSString stringWithFormat:@"Unknown event type: %d", event_type];
     }
-    
+
     return names[event_type];
 }
 ```
@@ -145,7 +146,7 @@ const NSString* event_type_str(const es_event_type_t event_type) {
 bool setup_endpoint_security(void) {
     // Create a new client with event handler
     es_new_client_result_t res = es_new_client(&g_client, g_handler);
-    
+
     if(ES_NEW_CLIENT_RESULT_SUCCESS != res) {
         switch(res) {
             case ES_NEW_CLIENT_RESULT_ERR_NOT_ENTITLED:
@@ -163,31 +164,31 @@ bool setup_endpoint_security(void) {
             default:
                 LOG_ERROR("es_new_client: %d", res);
         }
-        
+
         return false;
     }
-    
+
     // Clear cache of previous results
     es_clear_cache_result_t resCache = es_clear_cache(g_client);
     if(ES_CLEAR_CACHE_RESULT_SUCCESS != resCache) {
         LOG_ERROR("es_clear_cache: %d", resCache);
         return false;
     }
-    
+
     // Subscribe to events we're interested in
     es_event_type_t events[] = {
         ES_EVENT_TYPE_AUTH_EXEC,
         ES_EVENT_TYPE_AUTH_OPEN,
         ES_EVENT_TYPE_NOTIFY_FORK
     };
-    
+
     es_return_t subscribed = es_subscribe(g_client, events, sizeof events / sizeof *events);
-    
+
     if(ES_RETURN_ERROR == subscribed) {
         LOG_ERROR("es_subscribe: ES_RETURN_ERROR");
         return false;
     }
-    
+
     return log_subscribed_events();
 }
 ```
@@ -200,10 +201,10 @@ bool setup_endpoint_security(void) {
 es_handler_block_t serial_message_handler = ^(es_client_t *clt, const es_message_t *msg) {
     // Log event message if verbose
     LOG_VERBOSE_EVENT_MESSAGE(msg);
-    
+
     // Detect dropped events
     detect_and_log_dropped_events(msg);
-    
+
     // Auth events require a response before deadline
     if(ES_ACTION_TYPE_AUTH == msg->action_type) {
         respond_to_auth_event(clt, msg, auth_event_handler(msg));
@@ -217,33 +218,33 @@ es_handler_block_t serial_message_handler = ^(es_client_t *clt, const es_message
 es_handler_block_t asynchronous_message_handler = ^(es_client_t *clt, const es_message_t *msg) {
     LOG_VERBOSE_EVENT_MESSAGE(msg);
     detect_and_log_dropped_events(msg);
-    
+
     // Copy message for async processing
     es_message_t *copied_msg = copy_message(msg);
-    
+
     if(!copied_msg) {
         LOG_ERROR("Failed to copy message");
         return;
     }
-    
+
     // Handle auth events asynchronously
     if(ES_ACTION_TYPE_AUTH == copied_msg->action_type) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void){
             es_auth_result_t result = auth_event_handler(copied_msg);
-            
+
             // Demonstrate delayed response for denied execs
             if(ES_AUTH_RESULT_DENY == result &&
                ES_EVENT_TYPE_AUTH_EXEC == copied_msg->event_type) {
                 [NSThread sleepForTimeInterval:20.0];
             }
-            
+
             respond_to_auth_event(clt, copied_msg, result);
             free_message(copied_msg);
         });
-        
+
         return;
     }
-    
+
     free_message(copied_msg);
 };
 ```
@@ -258,46 +259,46 @@ es_auth_result_t auth_event_handler(const es_message_t *msg) {
     if(msg->process->is_es_client) {
         return ES_AUTH_RESULT_ALLOW;
     }
-    
+
     // Ignore events from root processes
     if(0 == audit_token_to_ruid(msg->process->audit_token)) {
         return ES_AUTH_RESULT_ALLOW;
     }
-    
+
     // Block exec if path is in blocked list
     if(ES_EVENT_TYPE_AUTH_EXEC == msg->event_type) {
         NSString *path = esstring_to_nsstring(msg->event.exec.target->executable->path);
-        
+
         if(![g_blocked_paths containsObject:path]) {
             return ES_AUTH_RESULT_ALLOW;
         }
-        
+
         LOG_IMPORTANT_INFO("BLOCKING EXEC: %@", path);
         return ES_AUTH_RESULT_DENY;
     }
-    
+
     // Block vim from accessing plain text files
     if(ES_EVENT_TYPE_AUTH_OPEN == msg->event_type) {
         NSString *processPath = esstring_to_nsstring(msg->process->executable->path);
-        
+
         if(![processPath isEqualToString:@"/usr/bin/vim"]) {
             return ES_AUTH_RESULT_ALLOW;
         }
-        
+
         NSString *filePath = esstring_to_nsstring(msg->event.open.file->path);
-        
+
         if(is_system_file(filePath)) {
             return ES_AUTH_RESULT_ALLOW;
         }
-        
+
         if(!is_plain_text_file(filePath)) {
             return ES_AUTH_RESULT_ALLOW;
         }
-        
+
         LOG_IMPORTANT_INFO("BLOCKING OPEN: %@", filePath);
         return ES_AUTH_RESULT_DENY;
     }
-    
+
     return ES_AUTH_RESULT_ALLOW;
 }
 ```
@@ -310,26 +311,26 @@ void respond_to_auth_event(es_client_t *clt, const es_message_t *msg, es_auth_re
     if(ES_AUTH_RESULT_DENY == result) {
         LOG_NON_VERBOSE_EVENT_MESSAGE(msg);
     }
-    
+
     // AUTH_OPEN events require special response
     if(ES_EVENT_TYPE_AUTH_OPEN == msg->event_type) {
         uint32_t authorized_flags = 0;
-        
+
         if(ES_AUTH_RESULT_ALLOW == result) {
             authorized_flags = msg->event.open.fflag;
         }
-        
+
         es_respond_result_t res =
             es_respond_flags_result(clt, msg, authorized_flags, g_cache_auth_results);
-        
+
         if(ES_RESPOND_RESULT_SUCCESS != res) {
             LOG_ERROR("es_respond_flags_result: %d", res);
         }
-        
+
     } else {
         es_respond_result_t res =
             es_respond_auth_result(clt, msg, result, g_cache_auth_results);
-        
+
         if(ES_RESPOND_RESULT_SUCCESS != res) {
             LOG_ERROR("es_respond_auth_result: %d", res);
         }
@@ -344,30 +345,30 @@ void respond_to_auth_event(es_client_t *clt, const es_message_t *msg, es_auth_re
 ```objc
 void detect_and_log_dropped_events(const es_message_t *msg) {
     uint32_t version = msg->version;
-    
+
     // Use seq_num field for per-event-type detection
     if(version >= 2) {
         uint64_t seq_num = msg->seq_num;
-        
+
         const NSString *type = event_type_str(msg->event_type);
         NSNumber *last_seq_num = [g_seq_nums objectForKey:type];
-        
+
         if(last_seq_num != nil) {
             uint64_t expected_seq_num = [last_seq_num unsignedLongLongValue] + 1;
-            
+
             if(seq_num > expected_seq_num) {
                 LOG_ERROR("EVENTS DROPPED! seq_num is ahead by: %llu",
                           (seq_num - expected_seq_num));
             }
         }
-        
+
         [g_seq_nums setObject:[NSNumber numberWithUnsignedLong:seq_num] forKey:type];
     }
-    
+
     // Use global_seq_num for overall detection
     if(version >= 4) {
         uint64_t global_seq_num = msg->global_seq_num;
-        
+
         if(global_seq_num > ++g_global_seq_num) {
             LOG_ERROR("EVENTS DROPPED! global_seq_num is ahead by: %llu",
                       (global_seq_num - g_global_seq_num));
@@ -382,18 +383,18 @@ void detect_and_log_dropped_events(const es_message_t *msg) {
 ```objc
 bool mute_path(const char* path) {
     es_return_t result = ES_RETURN_ERROR;
-    
+
     if(@available(macOS 12.0, *)) {
         result = es_mute_path(g_client, path, ES_MUTE_PATH_TYPE_LITERAL);
     } else {
         result = es_mute_path_literal(g_client, path);
     }
-    
+
     if(ES_RETURN_SUCCESS != result) {
         LOG_ERROR("mute_path: ES_RETURN_ERROR");
         return false;
     }
-    
+
     return true;
 }
 ```
@@ -405,21 +406,21 @@ API_AVAILABLE(macos(12.0))
 bool log_muted_paths_events(void) {
     es_muted_paths_t *muted_paths = NULL;
     es_return_t result = es_muted_paths_events(g_client, &muted_paths);
-    
+
     if(ES_RETURN_SUCCESS != result) {
         LOG_ERROR("es_muted_paths_events: ES_RETURN_ERROR");
         return false;
     }
-    
+
     if(NULL == muted_paths) {
         return true;
     }
-    
+
     LOG_IMPORTANT_INFO("Muted Paths");
     for(size_t i = 0; i < muted_paths->count; i++) {
         es_muted_path_t muted_path = muted_paths->paths[i];
         LOG_INFO("muted_path[%ld]: %@", i, esstring_to_nsstring(muted_path.path));
-        
+
         if(g_verbose_logging) {
             LOG_INDENT_INC();
             LOG_INFO("type: %s", (muted_path.type == ES_MUTE_PATH_TYPE_PREFIX) ? "Prefix" : "Literal");
@@ -428,7 +429,7 @@ bool log_muted_paths_events(void) {
             LOG_INDENT_DEC();
         }
     }
-    
+
     es_release_muted_paths(muted_paths);
     return true;
 }
@@ -439,43 +440,43 @@ bool log_muted_paths_events(void) {
 ```objc
 int main(int argc, const char * argv[]) {
     signal(SIGINT, &sig_handler);
-    
+
     @autoreleasepool {
         // Initialize globals
         g_handler = get_message_handler_from_commandline_args(argc, argv);
-        
+
         if(!g_handler) {
             print_usage(argv[0]);
             return 1;
         }
-        
+
         init_date_formater();
         g_seq_nums = [NSMutableDictionary new];
-        
+
         // Configure blocked paths
         g_blocked_paths = [NSSet setWithObjects:
                           @"/usr/bin/top",
                           @"/System/Applications/Calculator.app/Contents/MacOS/Calculator",
                           nil];
-        
+
         if(!setup_endpoint_security()) {
             return 1;
         }
-        
+
         // Example: Mute specific paths
         // mute_path("/usr/bin/vim");
-        
+
         if(@available(macOS 12.0, *)) {
             log_muted_paths_events();
         } else {
             // Prevent deadlocks on older macOS versions
             mute_path("/usr/sbin/cfprefsd");
         }
-        
+
         // Start handling events
         dispatch_main();
     }
-    
+
     return 0;
 }
 ```
@@ -498,6 +499,7 @@ sudo ./EndpointSecurityDemo serial verbose
 ### Expected Behavior
 
 The demo will:
+
 1. Block the 'top' binary and Calculator app from running
 2. Block 'vim' from reading plain text files
 3. Monitor fork events
@@ -535,7 +537,8 @@ The demo will:
 
 **Problem**: `ES_NEW_CLIENT_RESULT_ERR_NOT_ENTITLED`
 
-**Solution**: 
+**Solution**:
+
 - Ensure proper code signing with entitlement
 - For development, disable SIP in recovery mode
 
@@ -544,6 +547,7 @@ The demo will:
 **Problem**: `ES_NEW_CLIENT_RESULT_ERR_NOT_PERMITTED`
 
 **Solution**:
+
 - Grant Full Disk Access in System Preferences
 - Reset TCC if needed: `tccutil reset SystemPolicyAllFiles`
 
@@ -552,6 +556,7 @@ The demo will:
 **Problem**: Kernel drops events due to slow processing
 
 **Solution**:
+
 - Use asynchronous processing for complex logic
 - Cache auth results
 - Optimize decision algorithms
@@ -561,6 +566,7 @@ The demo will:
 **Problem**: Memory leaks with message copying
 
 **Solution**:
+
 - Always free copied messages
 - Use retain/release on macOS 11+
 - Implement proper cleanup handlers
@@ -587,7 +593,7 @@ if(ES_EVENT_TYPE_NOTIFY_WRITE == msg->event_type) {
 if(ES_EVENT_TYPE_NOTIFY_FORK == msg->event_type) {
     audit_token_t parent = msg->process->audit_token;
     audit_token_t child = msg->event.fork.child->audit_token;
-    
+
     // Build process tree for analysis
     [process_tree addChild:child toParent:parent];
 }
@@ -600,7 +606,7 @@ if(ES_EVENT_TYPE_NOTIFY_FORK == msg->event_type) {
 if(ES_EVENT_TYPE_NOTIFY_UIPC_CONNECT == msg->event_type) {
     NSString *process = esstring_to_nsstring(msg->process->executable->path);
     NSString *domain = esstring_to_nsstring(msg->event.uipc_connect.domain);
-    
+
     if([suspicious_domains containsObject:domain]) {
         LOG_ALERT("Suspicious connection: %@ -> %@", process, domain);
     }

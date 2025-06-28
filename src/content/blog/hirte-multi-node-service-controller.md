@@ -54,36 +54,36 @@ graph TB
         SD1[systemd]
         AGENT1[Hirte Agent]
     end
-    
+
     subgraph "Worker Node 1"
         AGENT2[Hirte Agent]
         DBUS2[D-Bus API]
         SD2[systemd]
         SVC1[Services/<br/>Containers]
     end
-    
+
     subgraph "Worker Node 2"
         AGENT3[Hirte Agent]
         DBUS3[D-Bus API]
         SD3[systemd]
         SVC2[Services/<br/>Containers]
     end
-    
+
     CLI --> HM
     HM --> AGENT1
     AGENT1 --> DBUS1
     DBUS1 --> SD1
-    
+
     HM -.TCP 2020.-> AGENT2
     AGENT2 --> DBUS2
     DBUS2 --> SD2
     SD2 --> SVC1
-    
+
     HM -.TCP 2020.-> AGENT3
     AGENT3 --> DBUS3
     DBUS3 --> SD3
     SD3 --> SVC2
-    
+
     style HM fill:#4a90e2,color:#fff
     style SD1 fill:#50e3c2,color:#000
     style SD2 fill:#50e3c2,color:#000
@@ -103,7 +103,7 @@ sequenceDiagram
     participant DBus
     participant systemd
     participant Service
-    
+
     Admin->>hirtectl: start node1 nginx.service
     hirtectl->>Manager: Service start request
     Manager->>Manager: Validate request
@@ -133,13 +133,13 @@ graph TB
         P[Podman Runtime]
         C[Containers]
     end
-    
+
     Q --> SG
     SG --> SU
     H --> SU
     SU --> P
     P --> C
-    
+
     style Q fill:#f9a825,color:#000
     style H fill:#4a90e2,color:#fff
     style P fill:#7b1fa2,color:#fff
@@ -158,7 +158,7 @@ graph LR
         H4[Simple State]
         H5[FuSa Ready]
     end
-    
+
     subgraph "Kubernetes Characteristics"
         K1[Declarative]
         K2[Heavy<br/>~1GB+]
@@ -166,7 +166,7 @@ graph LR
         K4[Complex State]
         K5[Cloud Native]
     end
-    
+
     subgraph "Use Cases"
         U1[Safety Critical ✓]
         U2[Edge Computing ✓]
@@ -174,13 +174,13 @@ graph LR
         U4[Large Scale ✗]
         U5[Multi-Cloud ✗]
     end
-    
+
     H1 --> U1
     H2 --> U2
     H5 --> U3
     K4 --> U4
     K5 --> U5
-    
+
     style H1 fill:#4caf50,color:#fff
     style H5 fill:#4caf50,color:#fff
     style K4 fill:#2196f3,color:#fff
@@ -192,6 +192,7 @@ graph LR
 ### Prerequisites
 
 For this implementation, you'll need:
+
 - Two Rocky Linux 9 servers (one primary, one agent node)
 - Network connectivity between nodes
 - Root or sudo access
@@ -531,18 +532,18 @@ sudo tee /usr/local/bin/hirte-monitor.sh << 'EOF'
 # Monitor all nodes
 for node in $(hirtectl list-nodes | tail -n +2 | awk '{print $1}'); do
     echo "=== Node: $node ==="
-    
+
     # Get failed units
     failed=$(hirtectl list-units $node | grep -c failed) || failed=0
     if [ $failed -gt 0 ]; then
         echo "WARNING: $failed failed units on $node"
         hirtectl list-units $node | grep failed
     fi
-    
+
     # Check node connectivity
     last_seen=$(hirtectl list-nodes | grep $node | awk '{print $3, $4}')
     echo "Last seen: $last_seen"
-    
+
     echo ""
 done
 EOF
@@ -1015,7 +1016,7 @@ DASHBOARD_TEMPLATE = '''
 </head>
 <body>
     <h1>Hirte Service Controller Dashboard</h1>
-    
+
     <h2>Nodes</h2>
     <table>
         <tr><th>Node</th><th>State</th><th>Last Seen</th></tr>
@@ -1027,7 +1028,7 @@ DASHBOARD_TEMPLATE = '''
         </tr>
         {% endfor %}
     </table>
-    
+
     <h2>Services</h2>
     <table>
         <tr><th>Node</th><th>Service</th><th>State</th><th>Description</th></tr>
@@ -1040,7 +1041,7 @@ DASHBOARD_TEMPLATE = '''
         </tr>
         {% endfor %}
     </table>
-    
+
     <p>Last updated: {{ timestamp }}</p>
 </body>
 </html>
@@ -1049,10 +1050,10 @@ DASHBOARD_TEMPLATE = '''
 @app.route('/')
 def dashboard():
     from datetime import datetime
-    
+
     # Get nodes
     nodes = []
-    result = subprocess.run(['sudo', 'hirtectl', 'list-nodes'], 
+    result = subprocess.run(['sudo', 'hirtectl', 'list-nodes'],
                           capture_output=True, text=True)
     if result.returncode == 0:
         lines = result.stdout.strip().split('\n')[1:]  # Skip header
@@ -1064,11 +1065,11 @@ def dashboard():
                     'state': parts[1],
                     'last_seen': ' '.join(parts[2:])
                 })
-    
+
     # Get services
     services = []
     for node in nodes:
-        result = subprocess.run(['sudo', 'hirtectl', 'list-units', node['name']], 
+        result = subprocess.run(['sudo', 'hirtectl', 'list-units', node['name']],
                               capture_output=True, text=True)
         if result.returncode == 0:
             lines = result.stdout.strip().split('\n')[1:]  # Skip header
@@ -1081,7 +1082,7 @@ def dashboard():
                         'state': parts[1],
                         'description': parts[3] if len(parts) > 3 else ''
                     })
-    
+
     return render_template_string(DASHBOARD_TEMPLATE,
                                 nodes=nodes,
                                 services=services,
@@ -1143,6 +1144,7 @@ Hirte provides a unique solution for deterministic service orchestration across 
 ### When to Use Hirte
 
 Choose Hirte when you need:
+
 - Functional safety compliance (ISO 26262, IEC 61508)
 - Predictable real-time behavior
 - Minimal resource overhead
@@ -1152,6 +1154,7 @@ Choose Hirte when you need:
 ### When NOT to Use Hirte
 
 Consider alternatives when you need:
+
 - Large-scale deployments (1000+ nodes)
 - Complex scheduling algorithms
 - Multi-cloud portability

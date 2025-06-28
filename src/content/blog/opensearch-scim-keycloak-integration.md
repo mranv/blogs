@@ -57,7 +57,7 @@ sequenceDiagram
     participant OpenSearchDashboards
     participant Keycloak
     participant OpenSearch
-    
+
     User->>Browser: Access OpenSearch Dashboards
     Browser->>OpenSearchDashboards: GET /
     OpenSearchDashboards->>Browser: Redirect to Keycloak
@@ -82,7 +82,7 @@ sequenceDiagram
     participant Keycloak
     participant SCIMBridge as SCIM Bridge
     participant OpenSearch
-    
+
     IDM->>Keycloak: SCIM User Create Request
     Keycloak->>Keycloak: Create User
     Keycloak->>SCIMBridge: Webhook Event
@@ -121,9 +121,7 @@ bruteForceProtected: true
     "https://opensearch-dashboards.example.com/auth/openid/login",
     "https://opensearch-dashboards.example.com/_opendistro/_security/oidc"
   ],
-  "webOrigins": [
-    "https://opensearch-dashboards.example.com"
-  ],
+  "webOrigins": ["https://opensearch-dashboards.example.com"],
   "protocol": "openid-connect",
   "attributes": {
     "oidc.ciba.grant.enabled": "false",
@@ -195,7 +193,7 @@ config:
             jwt_clock_skew_tolerance_seconds: 30
         authentication_backend:
           type: noop
-      
+
       basic_internal_auth_domain:
         http_enabled: true
         transport_enabled: true
@@ -224,7 +222,8 @@ opensearch_security.openid.header: "Authorization"
 opensearch_security.openid.logout_url: "https://keycloak.example.com/auth/realms/opensearch-realm/protocol/openid-connect/logout"
 
 # TLS Configuration
-opensearch.ssl.certificateAuthorities: ["/usr/share/opensearch-dashboards/config/root-ca.pem"]
+opensearch.ssl.certificateAuthorities:
+  ["/usr/share/opensearch-dashboards/config/root-ca.pem"]
 opensearch.ssl.verificationMode: certificate
 ```
 
@@ -234,157 +233,159 @@ opensearch.ssl.verificationMode: certificate
 
 ```javascript
 // scim-bridge.js
-const express = require('express');
-const axios = require('axios');
-const jwt = require('jsonwebtoken');
+const express = require("express");
+const axios = require("axios");
+const jwt = require("jsonwebtoken");
 const app = express();
 
 class SCIMBridge {
-    constructor(config) {
-        this.keycloakUrl = config.keycloakUrl;
-        this.opensearchUrl = config.opensearchUrl;
-        this.adminToken = config.adminToken;
+  constructor(config) {
+    this.keycloakUrl = config.keycloakUrl;
+    this.opensearchUrl = config.opensearchUrl;
+    this.adminToken = config.adminToken;
+  }
+
+  // Handle Keycloak User Events
+  async handleUserEvent(eventType, userData) {
+    try {
+      switch (eventType) {
+        case "USER_CREATE":
+          await this.createOpenSearchUser(userData);
+          break;
+        case "USER_UPDATE":
+          await this.updateOpenSearchUser(userData);
+          break;
+        case "USER_DELETE":
+          await this.deleteOpenSearchUser(userData);
+          break;
+      }
+    } catch (error) {
+      console.error(`Error handling ${eventType}:`, error);
     }
+  }
 
-    // Handle Keycloak User Events
-    async handleUserEvent(eventType, userData) {
-        try {
-            switch(eventType) {
-                case 'USER_CREATE':
-                    await this.createOpenSearchUser(userData);
-                    break;
-                case 'USER_UPDATE':
-                    await this.updateOpenSearchUser(userData);
-                    break;
-                case 'USER_DELETE':
-                    await this.deleteOpenSearchUser(userData);
-                    break;
-            }
-        } catch (error) {
-            console.error(`Error handling ${eventType}:`, error);
-        }
-    }
+  // Create User in OpenSearch
+  async createOpenSearchUser(userData) {
+    const userPayload = {
+      password: this.generateTemporaryPassword(),
+      backend_roles: this.mapKeycloakRolesToOpenSearch(userData.roles),
+      attributes: {
+        email: userData.email,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        keycloakId: userData.id,
+      },
+    };
 
-    // Create User in OpenSearch
-    async createOpenSearchUser(userData) {
-        const userPayload = {
-            password: this.generateTemporaryPassword(),
-            backend_roles: this.mapKeycloakRolesToOpenSearch(userData.roles),
-            attributes: {
-                email: userData.email,
-                firstName: userData.firstName,
-                lastName: userData.lastName,
-                keycloakId: userData.id
-            }
-        };
+    const response = await axios.put(
+      `${this.opensearchUrl}/_plugins/_security/api/internalusers/${userData.username}`,
+      userPayload,
+      {
+        headers: {
+          Authorization: `Bearer ${this.adminToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-        const response = await axios.put(
-            `${this.opensearchUrl}/_plugins/_security/api/internalusers/${userData.username}`,
-            userPayload,
-            {
-                headers: {
-                    'Authorization': `Bearer ${this.adminToken}`,
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
+    console.log(`Created OpenSearch user: ${userData.username}`);
+    return response.data;
+  }
 
-        console.log(`Created OpenSearch user: ${userData.username}`);
-        return response.data;
-    }
+  // Update User in OpenSearch
+  async updateOpenSearchUser(userData) {
+    const updatePayload = [
+      {
+        op: "replace",
+        path: "/backend_roles",
+        value: this.mapKeycloakRolesToOpenSearch(userData.roles),
+      },
+      {
+        op: "replace",
+        path: "/attributes",
+        value: {
+          email: userData.email,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          keycloakId: userData.id,
+        },
+      },
+    ];
 
-    // Update User in OpenSearch
-    async updateOpenSearchUser(userData) {
-        const updatePayload = [
-            {
-                op: "replace",
-                path: "/backend_roles",
-                value: this.mapKeycloakRolesToOpenSearch(userData.roles)
-            },
-            {
-                op: "replace",
-                path: "/attributes",
-                value: {
-                    email: userData.email,
-                    firstName: userData.firstName,
-                    lastName: userData.lastName,
-                    keycloakId: userData.id
-                }
-            }
-        ];
+    const response = await axios.patch(
+      `${this.opensearchUrl}/_plugins/_security/api/internalusers/${userData.username}`,
+      updatePayload,
+      {
+        headers: {
+          Authorization: `Bearer ${this.adminToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-        const response = await axios.patch(
-            `${this.opensearchUrl}/_plugins/_security/api/internalusers/${userData.username}`,
-            updatePayload,
-            {
-                headers: {
-                    'Authorization': `Bearer ${this.adminToken}`,
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
+    console.log(`Updated OpenSearch user: ${userData.username}`);
+    return response.data;
+  }
 
-        console.log(`Updated OpenSearch user: ${userData.username}`);
-        return response.data;
-    }
+  // Delete User from OpenSearch
+  async deleteOpenSearchUser(userData) {
+    const response = await axios.delete(
+      `${this.opensearchUrl}/_plugins/_security/api/internalusers/${userData.username}`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.adminToken}`,
+        },
+      }
+    );
 
-    // Delete User from OpenSearch
-    async deleteOpenSearchUser(userData) {
-        const response = await axios.delete(
-            `${this.opensearchUrl}/_plugins/_security/api/internalusers/${userData.username}`,
-            {
-                headers: {
-                    'Authorization': `Bearer ${this.adminToken}`
-                }
-            }
-        );
+    console.log(`Deleted OpenSearch user: ${userData.username}`);
+    return response.data;
+  }
 
-        console.log(`Deleted OpenSearch user: ${userData.username}`);
-        return response.data;
-    }
+  // Map Keycloak roles to OpenSearch backend roles
+  mapKeycloakRolesToOpenSearch(keycloakRoles) {
+    const roleMapping = {
+      opensearch_admin: ["all_access"],
+      opensearch_user: ["readall"],
+      opensearch_readonly: ["readall_and_monitor"],
+      kibana_user: ["kibana_user"],
+    };
 
-    // Map Keycloak roles to OpenSearch backend roles
-    mapKeycloakRolesToOpenSearch(keycloakRoles) {
-        const roleMapping = {
-            'opensearch_admin': ['all_access'],
-            'opensearch_user': ['readall'],
-            'opensearch_readonly': ['readall_and_monitor'],
-            'kibana_user': ['kibana_user']
-        };
+    const mappedRoles = [];
+    keycloakRoles.forEach(role => {
+      if (roleMapping[role]) {
+        mappedRoles.push(...roleMapping[role]);
+      }
+    });
 
-        const mappedRoles = [];
-        keycloakRoles.forEach(role => {
-            if (roleMapping[role]) {
-                mappedRoles.push(...roleMapping[role]);
-            }
-        });
+    return [...new Set(mappedRoles)]; // Remove duplicates
+  }
 
-        return [...new Set(mappedRoles)]; // Remove duplicates
-    }
-
-    generateTemporaryPassword() {
-        return Math.random().toString(36).slice(-12) + 
-               Math.random().toString(36).slice(-12).toUpperCase() + 
-               '!@#';
-    }
+  generateTemporaryPassword() {
+    return (
+      Math.random().toString(36).slice(-12) +
+      Math.random().toString(36).slice(-12).toUpperCase() +
+      "!@#"
+    );
+  }
 }
 
 // Webhook endpoint for Keycloak events
-app.post('/webhook/keycloak', async (req, res) => {
-    try {
-        const event = req.body;
-        const bridge = new SCIMBridge({
-            keycloakUrl: process.env.KEYCLOAK_URL,
-            opensearchUrl: process.env.OPENSEARCH_URL,
-            adminToken: process.env.OPENSEARCH_ADMIN_TOKEN
-        });
+app.post("/webhook/keycloak", async (req, res) => {
+  try {
+    const event = req.body;
+    const bridge = new SCIMBridge({
+      keycloakUrl: process.env.KEYCLOAK_URL,
+      opensearchUrl: process.env.OPENSEARCH_URL,
+      adminToken: process.env.OPENSEARCH_ADMIN_TOKEN,
+    });
 
-        await bridge.handleUserEvent(event.type, event.user);
-        res.status(200).json({ status: 'success' });
-    } catch (error) {
-        console.error('Webhook error:', error);
-        res.status(500).json({ error: error.message });
-    }
+    await bridge.handleUserEvent(event.type, event.user);
+    res.status(200).json({ status: "success" });
+  } catch (error) {
+    console.error("Webhook error:", error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports = SCIMBridge;
@@ -394,7 +395,7 @@ module.exports = SCIMBridge;
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: "3.8"
 services:
   keycloak:
     image: quay.io/keycloak/keycloak:23.0
@@ -410,7 +411,7 @@ services:
     depends_on:
       - postgres
     command: start-dev
-    
+
   opensearch:
     image: opensearchproject/opensearch:2.11.0
     environment:
@@ -497,7 +498,7 @@ opensearch_user:
   backend_roles:
     - "opensearch_user"
   description: "Standard user access"
-  
+
 kibana_user:
   reserved: false
   backend_roles:
@@ -510,31 +511,27 @@ kibana_user:
 ```javascript
 // Audit logging implementation
 class AuditLogger {
-    logUserCreation(username, roles, timestamp) {
-        const auditEntry = {
-            event: 'USER_CREATED',
-            username,
-            roles,
-            timestamp,
-            source: 'SCIM_BRIDGE'
-        };
-        
-        // Send to OpenSearch audit index
-        this.sendToAuditIndex(auditEntry);
-    }
-    
-    async sendToAuditIndex(entry) {
-        await axios.post(
-            `${this.opensearchUrl}/audit-logs/_doc`,
-            entry,
-            {
-                headers: {
-                    'Authorization': `Bearer ${this.adminToken}`,
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
-    }
+  logUserCreation(username, roles, timestamp) {
+    const auditEntry = {
+      event: "USER_CREATED",
+      username,
+      roles,
+      timestamp,
+      source: "SCIM_BRIDGE",
+    };
+
+    // Send to OpenSearch audit index
+    this.sendToAuditIndex(auditEntry);
+  }
+
+  async sendToAuditIndex(entry) {
+    await axios.post(`${this.opensearchUrl}/audit-logs/_doc`, entry, {
+      headers: {
+        Authorization: `Bearer ${this.adminToken}`,
+        "Content-Type": "application/json",
+      },
+    });
+  }
 }
 ```
 
@@ -569,12 +566,12 @@ class AuditLogger {
 
 ### Common Issues
 
-| Issue | Symptom | Solution |
-|-------|---------|----------|
-| OIDC Login Fails | Redirect loop or 401 errors | Check client secret and redirect URIs |
-| Token Validation Error | JWT validation failures | Verify JWKS endpoint accessibility |
-| User Not Provisioned | SCIM events not creating users | Check webhook connectivity and logs |
-| Role Mapping Issues | Incorrect permissions | Verify role mapping configuration |
+| Issue                  | Symptom                        | Solution                              |
+| ---------------------- | ------------------------------ | ------------------------------------- |
+| OIDC Login Fails       | Redirect loop or 401 errors    | Check client secret and redirect URIs |
+| Token Validation Error | JWT validation failures        | Verify JWKS endpoint accessibility    |
+| User Not Provisioned   | SCIM events not creating users | Check webhook connectivity and logs   |
+| Role Mapping Issues    | Incorrect permissions          | Verify role mapping configuration     |
 
 ### Log Analysis
 

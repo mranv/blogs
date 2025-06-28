@@ -33,12 +33,14 @@ Oracle offers a dedicated tool for data masking and subsetting to help organizat
 - **Work in conjunction with Transparent Data Encryption (TDE)** to secure data at rest
 
 Key Features:
+
 - Format-preserving masking
 - Conditional masking based on data relationships
 - Application-aware subsetting
 - Integration with Oracle Enterprise Manager
 
 Official Resources:
+
 - [Oracle Data Masking and Subsetting](https://www.oracle.com/security/database-security/data-masking-subsetting/)
 - [Oracle Transparent Data Encryption (TDE)](https://docs.oracle.com/en/database/oracle/oracle-database/19/asoag/introduction-to-transparent-data-encryption.html)
 
@@ -53,6 +55,7 @@ SQL Server provides built-in capabilities that help protect sensitive data witho
 - **Transparent Data Encryption (TDE)**: Encrypts the entire database at rest
 
 Example of Dynamic Data Masking:
+
 ```sql
 -- Create a table with masked columns
 CREATE TABLE Customers (
@@ -64,6 +67,7 @@ CREATE TABLE Customers (
 ```
 
 Official Resources:
+
 - [Dynamic Data Masking (SQL Server)](https://docs.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking)
 - [Always Encrypted Overview](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine)
 - [SQL Server Transparent Data Encryption (TDE)](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption)
@@ -78,12 +82,14 @@ IBM Db2 includes features to protect sensitive data at query time and at rest:
 - **Native Encryption**: Encrypts databases using a two-tier key architecture (data encryption key protected by a master key)
 
 Key Features:
+
 - Column-level masking policies
 - Role-based data access
 - Hardware-accelerated encryption
 - Integrated key management
 
 Official Resources:
+
 - [IBM Db2 Data Redaction](https://www.ibm.com/docs/en/db2/11.5?topic=management-data-redaction)
 - [IBM Db2 Native Encryption](https://www.ibm.com/docs/en/db2/11.5?topic=encryption-native-encryption)
 
@@ -97,9 +103,10 @@ MySQL Enterprise Edition provides tools to safeguard sensitive information:
 - **Transparent Data Encryption (TDE)**: Encrypts data at rest using a two-tier key architecture via a keyring plugin
 
 Example of Data Masking in MySQL:
+
 ```sql
 -- Using MySQL Enterprise Data Masking functions
-SELECT 
+SELECT
     mask_inner(email, 2, 2) AS masked_email,
     mask_ssn(ssn) AS masked_ssn,
     mask_pan(credit_card) AS masked_cc
@@ -107,6 +114,7 @@ FROM customers;
 ```
 
 Official Resources:
+
 - [MySQL Enterprise Data Masking and De-Identification](https://www.mysql.com/products/enterprise/masking.html)
 - [MySQL Enterprise Encryption](https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html)
 
@@ -121,12 +129,13 @@ PostgreSQL does not include built-in data masking or subsetting features similar
 - **Third-Party Tools**: Commercial products offer masking and subsetting services
 
 Example using pgcrypto:
+
 ```sql
 -- Install pgcrypto extension
 CREATE EXTENSION pgcrypto;
 
 -- Encrypt sensitive data
-UPDATE customers 
+UPDATE customers
 SET credit_card = pgp_sym_encrypt(credit_card, 'encryption_key');
 
 -- Decrypt when needed
@@ -135,6 +144,7 @@ FROM customers;
 ```
 
 Official Resources:
+
 - [pgcrypto – PostgreSQL Documentation](https://www.postgresql.org/docs/current/pgcrypto.html)
 
 ### MongoDB
@@ -148,6 +158,7 @@ MongoDB Enterprise provides robust security features:
 - **Custom Masking**: Use aggregation pipeline or views to obscure data
 
 Example of field-level masking in MongoDB:
+
 ```javascript
 // Using aggregation pipeline for data masking
 db.customers.aggregate([
@@ -158,18 +169,19 @@ db.customers.aggregate([
         $concat: [
           { $substr: ["$email", 0, 3] },
           "****",
-          { $substr: ["$email", { $indexOfCP: ["$email", "@"] }, -1] }
-        ]
+          { $substr: ["$email", { $indexOfCP: ["$email", "@"] }, -1] },
+        ],
       },
       phone: {
-        $concat: ["XXX-XXX-", { $substr: ["$phone", -4, 4] }]
-      }
-    }
-  }
+        $concat: ["XXX-XXX-", { $substr: ["$phone", -4, 4] }],
+      },
+    },
+  },
 ]);
 ```
 
 Official Resources:
+
 - [MongoDB Encryption at Rest](https://www.mongodb.com/docs/manual/core/security-encryption-at-rest/)
 - [Client-Side Field Level Encryption](https://www.mongodb.com/docs/manual/core/security-client-side-encryption/)
 
@@ -240,7 +252,7 @@ Before implementing masking or encryption:
 
 ```sql
 -- Example: Identify sensitive columns in SQL Server
-SELECT 
+SELECT
     SCHEMA_NAME(t.schema_id) AS schema_name,
     t.name AS table_name,
     c.name AS column_name,
@@ -248,8 +260,8 @@ SELECT
 FROM sys.tables t
 INNER JOIN sys.columns c ON t.object_id = c.object_id
 INNER JOIN sys.types ty ON c.user_type_id = ty.user_type_id
-WHERE c.name LIKE '%ssn%' 
-   OR c.name LIKE '%credit%' 
+WHERE c.name LIKE '%ssn%'
+   OR c.name LIKE '%credit%'
    OR c.name LIKE '%password%'
    OR c.name LIKE '%email%'
 ORDER BY schema_name, table_name, column_name;
@@ -263,7 +275,7 @@ Different data types require different masking approaches:
 - **Randomization**: Replaces with random values
 - **Shuffling**: Reorders existing values within a column
 - **Nulling**: Replaces with NULL values
-- **Character masking**: Replaces characters with 'X' or '*'
+- **Character masking**: Replaces characters with 'X' or '\*'
 
 ### 3. Maintaining Referential Integrity
 
@@ -272,7 +284,7 @@ When masking related data across tables:
 ```sql
 -- Example: Consistent masking across related tables
 WITH MaskMapping AS (
-    SELECT 
+    SELECT
         customer_id,
         ROW_NUMBER() OVER (ORDER BY NEWID()) AS masked_id
     FROM customers
@@ -300,10 +312,10 @@ graph TD
     B --> C[Database Layer]
     C --> D[Encryption at Rest]
     D --> E[Storage Layer]
-    
+
     F[Access Control] --> B
     F --> C
-    
+
     G[Audit Logging] --> B
     G --> C
     G --> D
@@ -318,14 +330,14 @@ graph TD
 
 ## Comparison Matrix
 
-| Feature | Oracle | SQL Server | PostgreSQL | MySQL Enterprise | MongoDB |
-|---------|---------|------------|------------|------------------|----------|
-| Dynamic Data Masking | ✓ (Redaction) | ✓ | Via Views | ✓ | Via Aggregation |
-| Static Data Masking | ✓ | ✓ | Third-party | ✓ | Third-party |
-| TDE | ✓ | ✓ | pg_tde | ✓ | ✓ |
-| Column Encryption | ✓ | ✓ (Always Encrypted) | pgcrypto | ✓ | ✓ (Field-level) |
-| Subsetting | ✓ | Third-party | Third-party | Third-party | Via Export |
-| Built-in Key Management | ✓ | ✓ | ✗ | ✓ | ✓ |
+| Feature                 | Oracle        | SQL Server           | PostgreSQL  | MySQL Enterprise | MongoDB         |
+| ----------------------- | ------------- | -------------------- | ----------- | ---------------- | --------------- |
+| Dynamic Data Masking    | ✓ (Redaction) | ✓                    | Via Views   | ✓                | Via Aggregation |
+| Static Data Masking     | ✓             | ✓                    | Third-party | ✓                | Third-party     |
+| TDE                     | ✓             | ✓                    | pg_tde      | ✓                | ✓               |
+| Column Encryption       | ✓             | ✓ (Always Encrypted) | pgcrypto    | ✓                | ✓ (Field-level) |
+| Subsetting              | ✓             | Third-party          | Third-party | Third-party      | Via Export      |
+| Built-in Key Management | ✓             | ✓                    | ✗           | ✓                | ✓               |
 
 ## Implementation Checklist
 
@@ -347,6 +359,7 @@ graph TD
 Data masking, subsetting, and encryption are critical components of a comprehensive data security strategy. While enterprise databases offer varying levels of native support, the combination of built-in features and third-party tools can provide robust protection for sensitive data across all environments.
 
 Key takeaways:
+
 - **Oracle** and **SQL Server** offer the most comprehensive built-in solutions
 - **PostgreSQL** users often need third-party tools or custom solutions
 - **MongoDB** provides strong encryption but limited native masking

@@ -31,26 +31,26 @@ graph TB
         subgraph "Management Layer"
             XDR[XDR Manager<br/>Platform]
             MDM[MDM Solution<br/>MicroMDM]
-            
+
             XDR <--> MDM
         end
-        
+
         subgraph "Client Layer"
             MAC[Managed macOS<br/>Clients]
             MDM <--> MAC
         end
-        
+
         subgraph "Monitoring & Reporting"
             DASH[Security<br/>Dashboard]
             COMP[Compliance<br/>Reporting]
             LOG[Logging &<br/>Monitoring]
-            
+
             XDR --> DASH
             DASH <--> COMP
             COMP <--> LOG
         end
     end
-    
+
     style XDR fill:#e3f2fd
     style MDM fill:#fff9c4
     style MAC fill:#e8f5e9
@@ -62,6 +62,7 @@ graph TB
 ### Client-Side Components
 
 #### System Extension
+
 - **Technology**: Built using Apple's EndpointSecurity framework
 - **Functions**:
   - Real-time USB and external storage device monitoring
@@ -71,6 +72,7 @@ graph TB
 - **Deployment**: Distributed via MDM as part of installation package
 
 #### MDM Profile
+
 - **Type**: DiskManagement configuration profile
 - **Features**:
   - External storage access restrictions
@@ -79,6 +81,7 @@ graph TB
 - **Deployment**: Applied automatically via MDM enrollment
 
 #### XDR Agent
+
 - **Functions**:
   - Monitors system extension health and status
   - Reports security events to central XDR platform
@@ -89,6 +92,7 @@ graph TB
 ### Server-Side Components
 
 #### MDM Server (MicroMDM)
+
 - **Purpose**: Central management of macOS devices
 - **Features**:
   - Device enrollment and authentication
@@ -98,6 +102,7 @@ graph TB
 - **Integration**: APIs for XDR platform communication
 
 #### XDR Manager Platform
+
 - **Functions**:
   - Central policy management console
   - Real-time threat detection and response
@@ -110,6 +115,7 @@ graph TB
   - Forensic investigation tools
 
 #### Logging & Monitoring
+
 - **Components**:
   - Event collection infrastructure
   - Log aggregation and storage
@@ -132,25 +138,25 @@ graph LR
         PM[Policy<br/>Manager]
         EH[Event<br/>Handler]
         XC[XDR<br/>Client]
-        
+
         ES --> EH
         EH --> PM
         PM --> XC
     end
-    
+
     subgraph "macOS System"
         USB[USB<br/>Subsystem]
         FS[File<br/>System]
-        
+
         USB --> ES
         FS --> ES
     end
-    
+
     subgraph "Communication"
         XC --> API[XDR API]
         API --> XDR[XDR Platform]
     end
-    
+
     style ES fill:#ffebee
     style PM fill:#e3f2fd
     style XC fill:#e8f5e9
@@ -163,24 +169,24 @@ graph LR
 class USBBlockingManager {
     private var esClient: OpaquePointer?
     private let authorizationRights: [String]
-    
+
     func start() -> Bool {
         // Initialize EndpointSecurity client
         let result = es_new_client(&esClient) { client, event in
             self.handleEvent(event)
         }
-        
+
         // Subscribe to relevant events
         let events: [es_event_type_t] = [
             ES_EVENT_TYPE_AUTH_MOUNT,
             ES_EVENT_TYPE_AUTH_OPEN,
             ES_EVENT_TYPE_AUTH_CREATE
         ]
-        
+
         es_subscribe(esClient, events, UInt32(events.count))
         return result == ES_NEW_CLIENT_RESULT_SUCCESS
     }
-    
+
     func handleEvent(_ event: UnsafePointer<es_event_t>) {
         switch event.pointee.event_type {
         case ES_EVENT_TYPE_AUTH_MOUNT:
@@ -193,7 +199,7 @@ class USBBlockingManager {
             break
         }
     }
-    
+
     private func handleMountEvent(_ event: UnsafePointer<es_event_t>) {
         // Check if mount is for external storage
         // Apply policy based on device type
@@ -205,19 +211,19 @@ class USBBlockingManager {
 class XDRAgentClient {
     private let baseURL: URL
     private let session: URLSession
-    
+
     func reportBlockedDevice(deviceInfo: USBDeviceInfo) {
         // Send blocked device information to XDR platform
         let endpoint = baseURL.appendingPathComponent("device/blocked")
         var request = URLRequest(url: endpoint)
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(deviceInfo)
-        
+
         session.dataTask(with: request) { data, response, error in
             // Handle response
         }.resume()
     }
-    
+
     func checkPolicyUpdates() -> USBPolicy? {
         // Fetch latest policy from XDR platform
         // Apply any changes to local configuration
@@ -229,7 +235,9 @@ class XDRAgentClient {
 ## Implementation Plan
 
 ### Phase 1: Infrastructure Setup (Weeks 1-2)
+
 1. **MDM Server Configuration**
+
    - Install and configure MicroMDM
    - Set up APNS certificates
    - Configure network connectivity
@@ -242,13 +250,16 @@ class XDRAgentClient {
    - Establish logging infrastructure
 
 ### Phase 2: Client Development (Weeks 3-5)
+
 1. **System Extension Development**
+
    - Implement EndpointSecurity framework integration
    - Develop USB monitoring capabilities
    - Create policy enforcement engine
    - Build event logging system
 
 2. **XDR Agent Development**
+
    - Create communication protocols
    - Implement health monitoring
    - Build reporting mechanisms
@@ -261,13 +272,16 @@ class XDRAgentClient {
    - Sign package for distribution
 
 ### Phase 3: Server Development (Weeks 6-8)
+
 1. **Management Console**
+
    - Develop policy management interface
    - Create device inventory views
    - Build reporting dashboards
    - Implement user management
 
 2. **MDM Profile Templates**
+
    - Create DiskManagement profiles
    - Develop deployment workflows
    - Build testing procedures
@@ -280,13 +294,16 @@ class XDRAgentClient {
    - Build notification systems
 
 ### Phase 4: Testing & Validation (Weeks 9-10)
+
 1. **Functionality Testing**
+
    - Test on macOS versions (11.x, 12.x, 13.x, 14.x)
    - Validate USB blocking effectiveness
    - Test various storage device types
    - Verify policy enforcement
 
 2. **Performance Testing**
+
    - Measure system impact
    - Test under load conditions
    - Validate response times
@@ -299,7 +316,9 @@ class XDRAgentClient {
    - Check authentication
 
 ### Phase 5: Deployment (Weeks 11-12)
+
 1. **Pilot Deployment**
+
    - Select pilot group
    - Deploy to test users
    - Monitor for issues
@@ -316,13 +335,16 @@ class XDRAgentClient {
 ### Infrastructure Requirements
 
 #### Server Resources
+
 - **MDM Server**:
+
   - CPU: 4+ cores
   - RAM: 8GB minimum
   - Storage: 100GB+ SSD
   - Network: Gigabit connection
 
 - **XDR Platform**:
+
   - CPU: 8+ cores (scalable)
   - RAM: 16GB minimum (scalable)
   - Storage: 500GB+ SSD (scalable)
@@ -335,12 +357,15 @@ class XDRAgentClient {
   - Disaster recovery plan
 
 #### Network Requirements
+
 - **APNS Connectivity**:
+
   - Outbound TCP ports: 443, 2195, 2196
   - Stable internet connection
   - Low latency preferred
 
 - **Client-Server Communication**:
+
   - TLS 1.3 encryption
   - Certificate-based authentication
   - API rate limiting
@@ -355,7 +380,9 @@ class XDRAgentClient {
 ### Security Requirements
 
 #### Encryption
+
 - **Data in Transit**:
+
   - TLS 1.3 for all communications
   - Certificate pinning for critical connections
   - Perfect forward secrecy
@@ -368,7 +395,9 @@ class XDRAgentClient {
   - Secure key storage (HSM)
 
 #### Authentication & Authorization
+
 - **Device Authentication**:
+
   - Certificate-based enrollment
   - Device identity verification
   - Regular re-authentication
@@ -381,13 +410,16 @@ class XDRAgentClient {
   - Audit logging
 
 #### Compliance Features
+
 - **Logging Requirements**:
+
   - All USB/storage access attempts
   - Policy changes
   - Administrative actions
   - System events
 
 - **Reporting Capabilities**:
+
   - Compliance dashboards
   - Audit reports
   - Export functionality
@@ -408,7 +440,7 @@ sequenceDiagram
     participant XDR
     participant Client
     participant SysExt as System Extension
-    
+
     Admin->>XDR: Define USB Policy
     XDR->>MDM: Push Configuration
     MDM->>Client: Deploy Profile & Package
@@ -417,9 +449,9 @@ sequenceDiagram
     SysExt->>Client: Request Approval
     Client->>Client: User Approves
     SysExt->>XDR: Report Status
-    
+
     Note over SysExt: Monitoring Active
-    
+
     Client->>SysExt: USB Device Connected
     SysExt->>SysExt: Check Policy
     SysExt->>Client: Block/Allow Decision
@@ -430,13 +462,16 @@ sequenceDiagram
 ## Maintenance Procedures
 
 ### Regular Updates
+
 1. **System Extension Updates**
+
    - Quarterly security updates
    - Bug fixes as needed
    - Feature enhancements
    - Compatibility updates
 
 2. **Policy Template Updates**
+
    - Review and update policies
    - Add new device types
    - Adjust restrictions
@@ -449,13 +484,16 @@ sequenceDiagram
    - Performance improvements
 
 ### Monitoring Requirements
+
 1. **Real-time Monitoring**
+
    - Circumvention attempt alerts
    - System health checks
    - Performance metrics
    - Error tracking
 
 2. **Dashboards**
+
    - Compliance metrics
    - Device status
    - Policy effectiveness
@@ -468,7 +506,9 @@ sequenceDiagram
    - Error rates
 
 ### Backup & Recovery
+
 1. **Backup Strategy**
+
    - Daily configuration backups
    - Weekly full backups
    - Offsite backup storage
@@ -483,7 +523,9 @@ sequenceDiagram
 ## Security Considerations
 
 ### Protection Against Tampering
+
 - **System Extension Protection**:
+
   - Code signing requirements
   - System Integrity Protection (SIP)
   - Secure boot chain
@@ -496,7 +538,9 @@ sequenceDiagram
   - Tamper detection
 
 ### Policy Enforcement
+
 - **Local Bypass Prevention**:
+
   - Kernel-level enforcement
   - Multiple check points
   - Fail-secure defaults
@@ -509,7 +553,9 @@ sequenceDiagram
   - Access reviews
 
 ### Monitoring & Detection
+
 - **Bypass Attempt Detection**:
+
   - Multiple detection methods
   - Behavioral analysis
   - Anomaly detection
@@ -524,24 +570,28 @@ sequenceDiagram
 ## Best Practices
 
 ### Development
+
 1. Use secure coding practices
 2. Implement comprehensive logging
 3. Follow Apple's guidelines
 4. Regular code reviews
 
 ### Deployment
+
 1. Test thoroughly before production
 2. Use phased rollout approach
 3. Monitor deployment progress
 4. Have rollback plan ready
 
 ### Operations
+
 1. Regular health monitoring
 2. Proactive maintenance
 3. Incident response planning
 4. Continuous improvement
 
 ### Security
+
 1. Regular security assessments
 2. Keep all components updated
 3. Monitor for new threats
@@ -552,24 +602,28 @@ sequenceDiagram
 ### Common Issues
 
 #### System Extension Not Loading
+
 - Check code signing
 - Verify MDM approval
 - Review system logs
 - Check user approval
 
 #### Policy Not Applying
+
 - Verify MDM profile installation
 - Check XDR connectivity
 - Review policy syntax
 - Validate device scope
 
 #### Performance Issues
+
 - Check resource usage
 - Review event volume
 - Optimize policies
 - Consider scaling
 
 ### Diagnostic Tools
+
 - Console.app for system logs
 - `systemextensionsctl` command
 - MDM diagnostic commands

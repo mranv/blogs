@@ -56,14 +56,14 @@ This plan outlines the development and deployment of a next-generation Security 
 
 ### Central SIEM Platform (Rust)
 
-| Component | Technology | Purpose | Key Features |
-|-----------|------------|---------|--------------|
-| Detection Engine | uSIEM | Core SIEM framework | SIGMA rules, custom logic, MITRE ATT&CK mapping |
-| Data Pipeline | Vector | Log processing | 100k+ EPS throughput, transformation, routing |
-| Search Engine | Quickwit | Forensic analysis | Sub-second search on cloud storage |
-| Observability | OpenObserve | Real-time monitoring | Logs, metrics, traces, 140x cost reduction |
-| Windows Analysis | Hayabusa + Chainsaw | Windows forensics | 2500+ SIGMA rules, EVTX parsing |
-| Network Security | Suricata (Rust components) | Network monitoring | IDS/IPS with Rust protocol parsers |
+| Component        | Technology                 | Purpose              | Key Features                                    |
+| ---------------- | -------------------------- | -------------------- | ----------------------------------------------- |
+| Detection Engine | uSIEM                      | Core SIEM framework  | SIGMA rules, custom logic, MITRE ATT&CK mapping |
+| Data Pipeline    | Vector                     | Log processing       | 100k+ EPS throughput, transformation, routing   |
+| Search Engine    | Quickwit                   | Forensic analysis    | Sub-second search on cloud storage              |
+| Observability    | OpenObserve                | Real-time monitoring | Logs, metrics, traces, 140x cost reduction      |
+| Windows Analysis | Hayabusa + Chainsaw        | Windows forensics    | 2500+ SIGMA rules, EVTX parsing                 |
+| Network Security | Suricata (Rust components) | Network monitoring   | IDS/IPS with Rust protocol parsers              |
 
 ### Endpoint Agents by Platform
 
@@ -81,6 +81,7 @@ serde = "1.0"
 ```
 
 **Monitoring Capabilities:**
+
 - System calls via eBPF/BPF
 - Process creation/termination
 - File system events (inotify)
@@ -98,6 +99,7 @@ import CryptoKit
 ```
 
 **Monitoring Capabilities:**
+
 - Endpoint Security Framework integration
 - Process execution monitoring
 - File system events
@@ -115,6 +117,7 @@ using Microsoft.Win32;
 ```
 
 **Monitoring Capabilities:**
+
 - Event Tracing for Windows (ETW)
 - Windows Management Instrumentation (WMI)
 - Registry monitoring
@@ -128,6 +131,7 @@ using Microsoft.Win32;
 ### Phase 1: Foundation (Months 1-3)
 
 #### Week 1-4: Core Infrastructure
+
 - Set up Rust development environment and CI/CD pipeline
 - Deploy uSIEM framework with basic components
 - Configure Vector for multi-source data ingestion
@@ -135,6 +139,7 @@ using Microsoft.Win32;
 - Create Docker containerization and orchestration
 
 #### Week 5-8: Linux Agent Development
+
 - Develop Rust-based Linux agent with eBPF integration
 - Implement system call monitoring and filtering
 - Create process behavior analysis engine
@@ -142,6 +147,7 @@ using Microsoft.Win32;
 - Establish secure communication with SIEM core
 
 #### Week 9-12: SIGMA Rules Engine
+
 - Implement SIGMA rules parser and compiler
 - Create rule evaluation engine with performance optimization
 - Add MITRE ATT&CK framework mapping
@@ -151,6 +157,7 @@ using Microsoft.Win32;
 ### Phase 2: Cross-Platform Expansion (Months 4-6)
 
 #### Week 13-16: Windows Integration
+
 - Deploy Hayabusa for Windows event log analysis
 - Integrate Chainsaw for forensic investigation
 - Develop Windows agent using C#/.NET
@@ -158,6 +165,7 @@ using Microsoft.Win32;
 - Create PowerShell execution monitoring
 
 #### Week 17-20: macOS Agent Development
+
 - Build Swift-based macOS agent
 - Integrate Endpoint Security Framework
 - Implement system event monitoring
@@ -165,6 +173,7 @@ using Microsoft.Win32;
 - Create secure communication protocols
 
 #### Week 21-24: Search and Analytics
+
 - Deploy Quickwit for high-performance search
 - Configure OpenObserve for observability
 - Implement real-time alerting system
@@ -174,6 +183,7 @@ using Microsoft.Win32;
 ### Phase 3: Advanced Features (Months 7-9)
 
 #### Week 25-28: Network Security
+
 - Integrate Suricata with Rust components
 - Implement network traffic analysis
 - Add threat intelligence feeds
@@ -181,6 +191,7 @@ using Microsoft.Win32;
 - Deploy Zerotect for exploit detection
 
 #### Week 29-32: Machine Learning & Analytics
+
 - Implement anomaly detection algorithms
 - Create user behavior analytics (UBA)
 - Add entity relationship analysis
@@ -188,6 +199,7 @@ using Microsoft.Win32;
 - Develop automated response capabilities
 
 #### Week 33-36: UI/UX and Reporting
+
 - Deploy Grafana dashboards
 - Create custom web interface
 - Implement role-based access control
@@ -197,6 +209,7 @@ using Microsoft.Win32;
 ### Phase 4: Production Deployment (Months 10-12)
 
 #### Week 37-40: Testing and Hardening
+
 - Comprehensive security testing
 - Performance optimization and tuning
 - Load testing and scalability validation
@@ -204,6 +217,7 @@ using Microsoft.Win32;
 - Documentation and training materials
 
 #### Week 41-44: Deployment and Migration
+
 - Production environment setup
 - Agent deployment across endpoints
 - Data migration from existing SIEM
@@ -211,6 +225,7 @@ using Microsoft.Win32;
 - Staff training and knowledge transfer
 
 #### Week 45-48: Optimization and Monitoring
+
 - Performance monitoring and optimization
 - Rule tuning and false positive reduction
 - Threat hunting capability development
@@ -223,7 +238,7 @@ using Microsoft.Win32;
 
 ```yaml
 # docker-compose.production.yml
-version: '3.8'
+version: "3.8"
 services:
   # Core SIEM Services
   rust-siem-cluster:
@@ -232,7 +247,7 @@ services:
       replicas: 3
       resources:
         limits:
-          cpus: '2'
+          cpus: "2"
           memory: 4G
     environment:
       - RUST_LOG=info
@@ -318,7 +333,7 @@ pub struct SigmaProcessor {
 impl SigmaProcessor {
     pub async fn load_rules(&mut self, rules_path: &Path) -> Result<usize> {
         let mut loaded = 0;
-        
+
         for entry in fs::read_dir(rules_path)? {
             let path = entry?.path();
             if path.extension() == Some(OsStr::new("yml")) {
@@ -328,11 +343,11 @@ impl SigmaProcessor {
                 loaded += 1;
             }
         }
-        
+
         info!("Loaded {} SIGMA rules", loaded);
         Ok(loaded)
     }
-    
+
     pub fn evaluate_event(&self, event: &SecurityEvent) -> Vec<Alert> {
         self.rules.par_iter()
             .filter_map(|rule| self.match_rule(event, rule))
@@ -345,14 +360,14 @@ impl SigmaProcessor {
 
 ### Key Performance Indicators (KPIs)
 
-| Metric | Target | Monitoring Method |
-|--------|--------|-------------------|
-| Event Processing Rate | 100,000+ EPS | Prometheus + Grafana |
-| Detection Latency | < 1 second | Built-in metrics |
-| False Positive Rate | < 2% | Manual validation |
-| Agent CPU Usage | < 5% | System monitoring |
-| Memory Usage | < 512MB per agent | Resource monitoring |
-| Network Bandwidth | < 100KB/s per agent | Network monitoring |
+| Metric                | Target              | Monitoring Method    |
+| --------------------- | ------------------- | -------------------- |
+| Event Processing Rate | 100,000+ EPS        | Prometheus + Grafana |
+| Detection Latency     | < 1 second          | Built-in metrics     |
+| False Positive Rate   | < 2%                | Manual validation    |
+| Agent CPU Usage       | < 5%                | System monitoring    |
+| Memory Usage          | < 512MB per agent   | Resource monitoring  |
+| Network Bandwidth     | < 100KB/s per agent | Network monitoring   |
 
 ### Monitoring Stack
 
@@ -389,35 +404,35 @@ static_configs = [
 
 ### Threat Model
 
-| Threat | Mitigation | Implementation |
-|--------|------------|----------------|
-| Agent Compromise | Certificate pinning, code signing | mTLS, signed binaries |
-| Data Interception | End-to-end encryption | TLS 1.3, certificate validation |
-| Privilege Escalation | Least privilege principle | Capability-based permissions |
-| Rule Tampering | Digital signatures | Signed rule packages |
-| Resource Exhaustion | Rate limiting, resource caps | Built-in throttling |
+| Threat               | Mitigation                        | Implementation                  |
+| -------------------- | --------------------------------- | ------------------------------- |
+| Agent Compromise     | Certificate pinning, code signing | mTLS, signed binaries           |
+| Data Interception    | End-to-end encryption             | TLS 1.3, certificate validation |
+| Privilege Escalation | Least privilege principle         | Capability-based permissions    |
+| Rule Tampering       | Digital signatures                | Signed rule packages            |
+| Resource Exhaustion  | Rate limiting, resource caps      | Built-in throttling             |
 
 ## 💰 Cost Analysis and ROI
 
 ### Total Cost of Ownership (3 Years)
 
-| Component | Year 1 | Year 2 | Year 3 | Notes |
-|-----------|--------|--------|--------|-------|
-| Development | $500K | $200K | $100K | Internal development team |
-| Infrastructure | $100K | $120K | $140K | Cloud hosting, storage |
-| Licensing | $0 | $0 | $0 | Open source components |
-| Maintenance | $50K | $100K | $120K | Ongoing support |
-| Training | $30K | $10K | $10K | Staff training |
-| **Total** | **$680K** | **$430K** | **$370K** | **3-year total: $1.48M** |
+| Component      | Year 1    | Year 2    | Year 3    | Notes                     |
+| -------------- | --------- | --------- | --------- | ------------------------- |
+| Development    | $500K     | $200K     | $100K     | Internal development team |
+| Infrastructure | $100K     | $120K     | $140K     | Cloud hosting, storage    |
+| Licensing      | $0        | $0        | $0        | Open source components    |
+| Maintenance    | $50K      | $100K     | $120K     | Ongoing support           |
+| Training       | $30K      | $10K      | $10K      | Staff training            |
+| **Total**      | **$680K** | **$430K** | **$370K** | **3-year total: $1.48M**  |
 
 ### Comparison with Commercial SIEM
 
-| Solution | 3-Year TCO | EPS Capacity | Storage Cost | Maintenance |
-|----------|------------|--------------|--------------|-------------|
-| Rust SIEM | $1.48M | 100K+ | $0.01/GB/day | Low |
-| Splunk Enterprise | $3.2M | 50K | $2.00/GB/day | High |
-| IBM QRadar | $2.8M | 75K | $1.50/GB/day | High |
-| ArcSight ESM | $2.5M | 60K | $1.25/GB/day | Medium |
+| Solution          | 3-Year TCO | EPS Capacity | Storage Cost | Maintenance |
+| ----------------- | ---------- | ------------ | ------------ | ----------- |
+| Rust SIEM         | $1.48M     | 100K+        | $0.01/GB/day | Low         |
+| Splunk Enterprise | $3.2M      | 50K          | $2.00/GB/day | High        |
+| IBM QRadar        | $2.8M      | 75K          | $1.50/GB/day | High        |
+| ArcSight ESM      | $2.5M      | 60K          | $1.25/GB/day | Medium      |
 
 ### ROI Benefits:
 
@@ -501,30 +516,31 @@ spec:
         app: rust-siem-core
     spec:
       containers:
-      - name: rust-siem
-        image: rust-siem:latest
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            cpu: 1000m
-            memory: 2Gi
-          limits:
-            cpu: 2000m
-            memory: 4Gi
-        env:
-        - name: RUST_LOG
-          value: "info"
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: rust-siem-secrets
-              key: database-url
+        - name: rust-siem
+          image: rust-siem:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 1000m
+              memory: 2Gi
+            limits:
+              cpu: 2000m
+              memory: 4Gi
+          env:
+            - name: RUST_LOG
+              value: "info"
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: rust-siem-secrets
+                  key: database-url
 ```
 
 ## 📈 Roadmap and Future Enhancements
 
 ### Short Term (6 months)
+
 - Machine learning-based anomaly detection
 - Advanced correlation rules engine
 - Mobile device monitoring (iOS/Android)
@@ -532,6 +548,7 @@ spec:
 - Threat hunting automation
 
 ### Medium Term (12 months)
+
 - Zero-trust architecture integration
 - Behavioral analytics and UEBA
 - Automated incident response (SOAR)
@@ -539,6 +556,7 @@ spec:
 - Multi-tenant architecture for MSPs
 
 ### Long Term (24 months)
+
 - AI-powered threat prediction
 - Quantum-resistant cryptography
 - Edge computing integration
@@ -549,12 +567,12 @@ spec:
 
 ### Training Program
 
-| Role | Duration | Content | Certification |
-|------|----------|---------|---------------|
-| Administrators | 40 hours | Platform management, rule tuning | Rust SIEM Admin |
-| Analysts | 60 hours | Threat hunting, incident response | Rust SIEM Analyst |
-| Engineers | 80 hours | Custom rule development, integration | Rust SIEM Engineer |
-| Executives | 8 hours | ROI, compliance, strategic overview | Executive Briefing |
+| Role           | Duration | Content                              | Certification      |
+| -------------- | -------- | ------------------------------------ | ------------------ |
+| Administrators | 40 hours | Platform management, rule tuning     | Rust SIEM Admin    |
+| Analysts       | 60 hours | Threat hunting, incident response    | Rust SIEM Analyst  |
+| Engineers      | 80 hours | Custom rule development, integration | Rust SIEM Engineer |
+| Executives     | 8 hours  | ROI, compliance, strategic overview  | Executive Briefing |
 
 ### Knowledge Transfer Plan
 
@@ -568,12 +586,12 @@ spec:
 
 ### Support Tiers
 
-| Tier | Response Time | Coverage | Cost |
-|------|---------------|----------|------|
-| Community | Best effort | Forums, GitHub issues | Free |
-| Professional | 4 hours | Email, chat | $25K/year |
-| Enterprise | 1 hour | Phone, dedicated support | $75K/year |
-| Critical | 15 minutes | 24/7 on-call engineer | $150K/year |
+| Tier         | Response Time | Coverage                 | Cost       |
+| ------------ | ------------- | ------------------------ | ---------- |
+| Community    | Best effort   | Forums, GitHub issues    | Free       |
+| Professional | 4 hours       | Email, chat              | $25K/year  |
+| Enterprise   | 1 hour        | Phone, dedicated support | $75K/year  |
+| Critical     | 15 minutes    | 24/7 on-call engineer    | $150K/year |
 
 ### Maintenance Schedule
 
@@ -586,6 +604,7 @@ spec:
 ## 🏆 Success Metrics
 
 ### Technical Metrics
+
 - 99.9% uptime for core platform
 - Sub-second detection latency
 - 100K+ events per second processing
@@ -593,6 +612,7 @@ spec:
 - 95% threat detection accuracy
 
 ### Business Metrics
+
 - 50% reduction in security incidents
 - 75% faster incident response time
 - 60% reduction in security tooling costs
@@ -602,18 +622,21 @@ spec:
 ## 📚 Additional Resources
 
 ### Documentation Links
+
 - [Technical Architecture Guide](#)
 - [API Reference](#)
 - [Deployment Guide](#)
 - [Troubleshooting Guide](#)
 
 ### Community Resources
+
 - [GitHub Repository](#)
 - [Discussion Forum](#)
 - [Slack Community](#)
 - [Blog and Updates](#)
 
 ### Training Materials
+
 - [Admin Training Course](#)
 - [Analyst Training Course](#)
 - [Developer Documentation](#)
@@ -704,6 +727,7 @@ The ecosystem shows that Swift is increasingly becoming the preferred language f
 Perfect match - A modular and blazing fast runtime security tool for IoT, powered by eBPF and written entirely in Rust. Pulsar is an event-driven framework for monitoring Linux device activity with exactly the monitoring capabilities you specified.
 
 **Capabilities:**
+
 - ✅ System calls via eBPF
 - ✅ Process creation/termination monitoring
 - ✅ File system events
@@ -720,6 +744,7 @@ Perfect match - A modular and blazing fast runtime security tool for IoT, powere
 ingraind is a security monitoring agent built around RedBPF for complex containerized environments and endpoints. Uses eBPF probes to provide safe and performant instrumentation for any Linux-based environment.
 
 **Key Features:**
+
 - DNS activity monitoring without port filtering
 - TLS connection details extraction
 - UDP/TCP traffic volume per process
@@ -741,6 +766,7 @@ The redbpf project is a collection of tools and libraries to build eBPF programs
 Aya is an eBPF library built purely in Rust with BTF support, offering compile-once-run-everywhere solutions without dependencies on libbpf or bcc.
 
 **Notable Security Projects:**
+
 - **kunai** - A threat hunting/detection security monitoring tool utilizing Aya-based eBPF probes for cyber threat hunting and detection tasks
 - **lockc** - An eBPF LSM-based MAC security audit system for container workloads, working with Docker and Kubernetes
 
@@ -761,12 +787,14 @@ Rust library for writing Linux security policies using eBPF, providing a policy 
 ### 🛡️ Security-by-Design Considerations
 
 **Threat Modeling Perspective**: These projects address key attack vectors:
+
 - Process execution monitoring for detecting malicious process spawning
 - File system access tracking for data exfiltration detection
 - Network connection monitoring for C2 communication detection
 - Kernel module loading detection for rootkit prevention
 
 **Defensive Programming Practices:**
+
 - Pulsar's Rust implementation provides memory safety and extreme performance even in constrained environments
 - HarfangLab's experience shows Rust EDR agents provide better performance with <50ms response times and can handle 500k events per minute
 

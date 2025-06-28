@@ -189,10 +189,10 @@ if [ "$DISABLE_SECURITY_PLUGIN" != "true" ]; then
         # Start OpenSearch in background
         /usr/share/opensearch/opensearch-docker-entrypoint.sh opensearch &
         OPENSEARCH_PID=$!
-        
+
         # Wait for OpenSearch to be ready
         wait_for_opensearch
-        
+
         # Initialize security index
         /usr/share/opensearch/plugins/opensearch-security/tools/securityadmin.sh \
             -cd /usr/share/opensearch/config/opensearch-security/ \
@@ -200,7 +200,7 @@ if [ "$DISABLE_SECURITY_PLUGIN" != "true" ]; then
             -cacert /usr/share/opensearch/config/certs/root-ca.pem \
             -cert /usr/share/opensearch/config/certs/admin.pem \
             -key /usr/share/opensearch/config/certs/admin-key.pem
-        
+
         # Bring OpenSearch back to foreground
         wait $OPENSEARCH_PID
     else
@@ -219,7 +219,7 @@ fi
 
 ```yaml
 # docker-compose.dev.yml - Development environment
-version: '3.8'
+version: "3.8"
 
 services:
   opensearch:
@@ -271,7 +271,7 @@ networks:
 
 ```yaml
 # docker-compose.prod.yml - Production cluster with 3 nodes
-version: '3.8'
+version: "3.8"
 
 services:
   opensearch-node1:
@@ -305,7 +305,11 @@ services:
       - opensearch-net
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "curl -k -u admin:admin https://localhost:9200/_cluster/health || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "curl -k -u admin:admin https://localhost:9200/_cluster/health || exit 1",
+        ]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -338,7 +342,11 @@ services:
       - opensearch-net
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "curl -k -u admin:admin https://localhost:9200/_cluster/health || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "curl -k -u admin:admin https://localhost:9200/_cluster/health || exit 1",
+        ]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -371,7 +379,11 @@ services:
       - opensearch-net
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "curl -k -u admin:admin https://localhost:9200/_cluster/health || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "curl -k -u admin:admin https://localhost:9200/_cluster/health || exit 1",
+        ]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -460,12 +472,12 @@ http {
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto $scheme;
-            
+
             # Timeouts
             proxy_connect_timeout 5s;
             proxy_read_timeout 120s;
             proxy_send_timeout 120s;
-            
+
             # Buffer settings
             proxy_buffering off;
             proxy_request_buffering off;
@@ -509,15 +521,15 @@ for i in 1 2 3; do
     openssl pkcs8 -inform PEM -outform PEM -in $CERT_DIR/node${i}-key-temp.pem -topk8 -nocrypt -v1 PBE-SHA1-3DES -out $CERT_DIR/node${i}-key.pem
     openssl req -new -key $CERT_DIR/node${i}-key.pem -out $CERT_DIR/node${i}.csr \
         -subj "/C=US/ST=State/L=City/O=Organization/OU=Unit/CN=opensearch-node${i}"
-    
+
     # Create SAN extension file
     cat > $CERT_DIR/node${i}.ext <<EOF
 subjectAltName = DNS:opensearch-node${i},DNS:localhost,IP:127.0.0.1
 EOF
-    
+
     openssl x509 -req -in $CERT_DIR/node${i}.csr -CA $CERT_DIR/root-ca.pem -CAkey $CERT_DIR/root-ca-key.pem \
         -CAcreateserial -sha256 -out $CERT_DIR/node${i}.pem -days 730 -extfile $CERT_DIR/node${i}.ext
-    
+
     rm $CERT_DIR/node${i}-key-temp.pem $CERT_DIR/node${i}.csr $CERT_DIR/node${i}.ext
 done
 
@@ -631,7 +643,7 @@ fi
 
 ```yaml
 # docker-compose.monitoring.yml - Add monitoring stack
-version: '3.8'
+version: "3.8"
 
 services:
   prometheus:
@@ -641,10 +653,10 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
-      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
     ports:
       - 9090:9090
     networks:
@@ -670,9 +682,9 @@ services:
     image: justwatch/elasticsearch_exporter:latest
     container_name: opensearch-exporter
     command:
-      - '--es.uri=https://admin:admin@opensearch-node1:9200'
-      - '--es.ssl-skip-verify'
-      - '--es.all'
+      - "--es.uri=https://admin:admin@opensearch-node1:9200"
+      - "--es.ssl-skip-verify"
+      - "--es.all"
     ports:
       - 9114:9114
     networks:
@@ -755,7 +767,7 @@ mkdir -p $BACKUP_DIR
 for i in 1 2 3; do
     VOLUME_NAME="opensearch-data${i}"
     echo "Backing up volume: $VOLUME_NAME"
-    
+
     docker run --rm \
         -v ${VOLUME_NAME}:/data \
         -v ${BACKUP_DIR}:/backup \
@@ -811,7 +823,7 @@ curl -s -k -u admin:admin "https://localhost:9200/_cluster/settings?pretty"
 
 ```yaml
 # docker-compose.debug.yml - Debug configuration
-version: '3.8'
+version: "3.8"
 
 services:
   opensearch-debug:
@@ -831,7 +843,7 @@ services:
       - ./logs:/usr/share/opensearch/logs
     ports:
       - 9200:9200
-      - 5005:5005  # Debug port
+      - 5005:5005 # Debug port
     stdin_open: true
     tty: true
     command: ["/bin/bash"]
@@ -870,10 +882,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2.0'
+          cpus: "2.0"
           memory: 4G
         reservations:
-          cpus: '1.0'
+          cpus: "1.0"
           memory: 2G
     environment:
       - "OPENSEARCH_JAVA_OPTS=-Xms2g -Xmx2g"
@@ -882,18 +894,21 @@ services:
 ## Best Practices
 
 1. **Security**
+
    - Always use TLS/SSL in production
    - Change default passwords immediately
    - Use strong certificates
    - Enable audit logging
 
 2. **Performance**
+
    - Set heap size to 50% of available RAM (max 32GB)
    - Use SSDs for data volumes
    - Monitor and tune thread pools
    - Implement proper index lifecycle management
 
 3. **High Availability**
+
    - Use at least 3 master-eligible nodes
    - Distribute nodes across availability zones
    - Implement proper backup strategies

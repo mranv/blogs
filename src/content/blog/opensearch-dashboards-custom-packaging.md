@@ -623,6 +623,7 @@ echo "Build complete: opensearch-dashboards-${CUSTOM_VERSION}.deb"
 ### Common Build Issues
 
 **Memory Issues:**
+
 ```bash
 # Increase Node.js heap size
 export NODE_OPTIONS="--max-old-space-size=16384"
@@ -632,6 +633,7 @@ watch -n 1 'free -h && ps aux | grep node'
 ```
 
 **Permission Issues:**
+
 ```bash
 # Fix ownership
 sudo chown -R $USER:$USER .
@@ -642,6 +644,7 @@ find . -type d -exec chmod 755 {} \;
 ```
 
 **Plugin Conflicts:**
+
 ```bash
 # Clean plugin cache
 rm -rf plugins/*/node_modules
@@ -654,6 +657,7 @@ node --trace-warnings scripts/opensearch_dashboards --verbose
 ### Package Installation Issues
 
 **Service Won't Start:**
+
 ```bash
 # Check service logs
 journalctl -u opensearch-dashboards -f
@@ -667,6 +671,7 @@ ls -la /var/log/opensearch-dashboards
 ```
 
 **Port Conflicts:**
+
 ```bash
 # Check what's using port 5601
 sudo netstat -tlnp | grep 5601
@@ -707,6 +712,7 @@ echo "server.port: 5602" >> /etc/opensearch-dashboards/opensearch_dashboards.yml
 Custom packaging of OpenSearch Dashboards enables organizations to deploy tailored solutions that meet specific requirements while maintaining control over the build and deployment process. Whether you need custom plugins, specific configurations, or enterprise-grade packaging, the approaches outlined in this guide provide a solid foundation for creating and deploying custom OpenSearch Dashboards packages.
 
 Key takeaways:
+
 - Plan your customizations carefully before building
 - Test thoroughly in development environments
 - Implement proper security measures throughout the process

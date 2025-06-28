@@ -31,14 +31,14 @@ graph TB
         USER[Users/Applications]
         CF[Cloudflare Edge Network]
     end
-    
+
     subgraph "Cloudflare Services"
         DNS[Cloudflare DNS]
         WAF[Web Application Firewall]
         DDoS[DDoS Protection]
         TUNNEL[Cloudflare Tunnel]
     end
-    
+
     subgraph "Local Infrastructure"
         subgraph "Host Server"
             PODMAN[Podman Runtime]
@@ -49,7 +49,7 @@ graph TB
             CFD[Cloudflared<br/>Tunnel Client]
         end
     end
-    
+
     USER --> CF
     CF --> DNS
     CF --> WAF
@@ -58,7 +58,7 @@ graph TB
     TUNNEL -.-> CFD
     CFD --> MINIO
     MINIO --> VOL
-    
+
     style CF fill:#f48120,color:#fff
     style MINIO fill:#c53e3e,color:#fff
     style TUNNEL fill:#1a73e8,color:#fff
@@ -77,7 +77,7 @@ sequenceDiagram
     participant MinIO
     participant Cloudflare
     participant DNS
-    
+
     Admin->>Script: Execute deployment
     Script->>Script: Generate credentials
     Script->>Script: Create directories
@@ -85,13 +85,13 @@ sequenceDiagram
     Script->>Podman: Run MinIO container
     Podman->>MinIO: Start services
     MinIO->>MinIO: Initialize storage
-    
+
     Script->>Cloudflare: Create tunnel
     Cloudflare->>Cloudflare: Generate tunnel ID
     Script->>DNS: Add DNS records
     Script->>Cloudflare: Configure tunnel routes
     Script->>Podman: Run cloudflared
-    
+
     Note over MinIO,Cloudflare: Secure tunnel established
     Admin->>MinIO: Access via HTTPS
 ```
@@ -107,25 +107,25 @@ graph LR
         REQ1[HTTPS Request<br/>storage.example.com]
         REQ2[API Request<br/>S3 Compatible]
     end
-    
+
     subgraph "Cloudflare Edge"
         EDGE[Edge Server]
         CACHE[Cache Layer]
         SEC[Security Checks]
         ROUTE[Routing Logic]
     end
-    
+
     subgraph "Tunnel Connection"
         TUN[Encrypted Tunnel]
         HEART[Heartbeat/Keepalive]
     end
-    
+
     subgraph "Local MinIO"
         CFD[cloudflared]
         LOCAL1[localhost:9000]
         LOCAL2[localhost:9001]
     end
-    
+
     CLIENT --> REQ1
     CLIENT --> REQ2
     REQ1 --> EDGE
@@ -139,7 +139,7 @@ graph LR
     CFD --> LOCAL2
     CFD -.-> HEART
     HEART -.-> EDGE
-    
+
     style EDGE fill:#f48120,color:#fff
     style TUN fill:#1a73e8,color:#fff
     style CFD fill:#4caf50,color:#fff
@@ -158,20 +158,20 @@ graph TB
             WAF2[WAF Rules]
             BOT[Bot Protection]
         end
-        
+
         subgraph "Tunnel Security"
             E2E[End-to-End Encryption]
             AUTH[Tunnel Authentication]
             PRIV[Private Network]
         end
-        
+
         subgraph "MinIO Security"
             ACCESS[Access Keys]
             POLICY[Bucket Policies]
             ENCRYPT[Server-Side Encryption]
             AUDIT[Audit Logging]
         end
-        
+
         subgraph "Container Security"
             ISO[Process Isolation]
             READONLY[Read-Only Rootfs]
@@ -179,7 +179,7 @@ graph TB
             SECCOMP[Seccomp Profiles]
         end
     end
-    
+
     CERT --> E2E
     DDOS --> AUTH
     WAF2 --> PRIV
@@ -191,7 +191,7 @@ graph TB
     POLICY --> READONLY
     ENCRYPT --> USER
     AUDIT --> SECCOMP
-    
+
     style CERT fill:#ff9800,color:#fff
     style E2E fill:#2196f3,color:#fff
     style ACCESS fill:#4caf50,color:#fff
@@ -377,7 +377,7 @@ ingress:
       disableChunkedEncoding: true
       connectTimeout: 30s
       noTLSVerify: true
-      
+
   # MinIO Console (Web UI)
   - hostname: ${CONSOLE_DOMAIN}
     service: http://localhost:9001
@@ -385,7 +385,7 @@ ingress:
       disableChunkedEncoding: true
       connectTimeout: 30s
       noTLSVerify: true
-      
+
   # Catch-all rule
   - service: http_status:404
 EOF
@@ -472,7 +472,7 @@ for i in $(seq 1 $NODES); do
   podman pod create --name minio-node-${i} \
     -p 127.0.0.1:${PORT}:9000 \
     -p 127.0.0.1:$((PORT + 100)):9001
-  
+
   MINIO_HOSTS="${MINIO_HOSTS} http://minio-node-${i}:9000/data"
 done
 
@@ -533,9 +533,9 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'minio'
+  - job_name: "minio"
     static_configs:
-      - targets: ['localhost:9000']
+      - targets: ["localhost:9000"]
     metrics_path: /minio/v2/metrics/cluster
     scheme: https
     tls_config:
@@ -620,21 +620,14 @@ Configure MinIO policies for fine-grained access control:
       "Principal": {
         "AWS": ["arn:aws:iam::account:user/developer"]
       },
-      "Action": [
-        "s3:GetObject",
-        "s3:PutObject"
-      ],
-      "Resource": [
-        "arn:aws:s3:::development/*"
-      ]
+      "Action": ["s3:GetObject", "s3:PutObject"],
+      "Resource": ["arn:aws:s3:::development/*"]
     },
     {
       "Effect": "Deny",
       "Principal": "*",
       "Action": "s3:*",
-      "Resource": [
-        "arn:aws:s3:::production/*"
-      ],
+      "Resource": ["arn:aws:s3:::production/*"],
       "Condition": {
         "StringNotEquals": {
           "aws:SourceIp": ["10.0.0.0/8"]
@@ -812,7 +805,7 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
-    
+
   grafana:
     image: grafana/grafana:latest
     environment:
@@ -821,7 +814,7 @@ services:
       - "3000:3000"
     volumes:
       - ./dashboards:/etc/grafana/provisioning/dashboards
-      
+
   alertmanager:
     image: prom/alertmanager:latest
     ports:
@@ -848,25 +841,25 @@ TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 # Function to restore MinIO data
 restore_minio() {
   local backup_date=$1
-  
+
   # Stop MinIO
   systemctl --user stop minio-pod.service
-  
+
   # Create restore directory
   mkdir -p ${RESTORE_TARGET}
-  
+
   # Download backup
   mc cp ${BACKUP_SOURCE}/minio_backup_${backup_date}.tar.gz /tmp/
-  
+
   # Extract backup
   tar -xzf /tmp/minio_backup_${backup_date}.tar.gz -C ${RESTORE_TARGET}
-  
+
   # Restore data
   rsync -av ${RESTORE_TARGET}/${backup_date}/ ${DATA_DIR}/data/
-  
+
   # Start MinIO
   systemctl --user start minio-pod.service
-  
+
   # Verify restoration
   mc admin info local
 }
@@ -999,24 +992,28 @@ deploy:
 ## Advantages of Cloudflare Tunnel Integration
 
 1. **Enhanced Security**
+
    - No exposed ports on your server
    - Built-in DDoS protection
    - Web Application Firewall (WAF)
    - Bot protection
 
 2. **Global Performance**
+
    - Content delivered from edge locations
    - Automatic HTTPS with managed certificates
    - HTTP/3 and QUIC support
    - Smart routing optimization
 
 3. **Simplified Management**
+
    - No firewall configuration needed
    - Automatic SSL/TLS certificate management
    - Built-in analytics and monitoring
    - Easy DNS management
 
 4. **Cost Efficiency**
+
    - Free tier includes generous bandwidth
    - No need for external load balancers
    - Reduced infrastructure complexity
@@ -1033,6 +1030,7 @@ deploy:
 This deployment guide provides a production-ready MinIO setup using Podman containers with Cloudflare Tunnel integration. The architecture ensures security, performance, and ease of management while eliminating the need to expose ports directly to the internet.
 
 Key benefits of this approach:
+
 - **Security**: Multiple layers of protection from Cloudflare and container isolation
 - **Performance**: Global CDN and optimized routing
 - **Simplicity**: Automated certificate management and DNS configuration

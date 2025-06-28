@@ -64,43 +64,43 @@ As Java applications become increasingly central to enterprise systems, secure c
 ```java
 @Component
 public class SecurityArchitecture {
-    
+
     // Multi-layered security approach
     @Autowired
     private AuthenticationService authService;
-    
+
     @Autowired
     private AuthorizationService authzService;
-    
+
     @Autowired
     private InputValidationService validationService;
-    
+
     @Autowired
     private AuditService auditService;
-    
+
     @Autowired
     private EncryptionService encryptionService;
-    
+
     public SecureResponse processRequest(SecureRequest request) {
         try {
             // Layer 1: Input validation
             validationService.validateInput(request);
-            
+
             // Layer 2: Authentication
             User user = authService.authenticate(request.getCredentials());
-            
+
             // Layer 3: Authorization
             authzService.authorize(user, request.getResource(), request.getAction());
-            
+
             // Layer 4: Business logic with encryption
             String encryptedData = encryptionService.encrypt(request.getData());
             SecureResponse response = processBusinessLogic(encryptedData);
-            
+
             // Layer 5: Audit logging
             auditService.logAccess(user, request, response);
-            
+
             return response;
-            
+
         } catch (SecurityException e) {
             auditService.logSecurityViolation(request, e);
             throw new SecureProcessingException("Access denied", e);
@@ -116,7 +116,7 @@ public class SecurityArchitecture {
 ```java
 @Service
 public class ThreatModelingService {
-    
+
     public enum ThreatType {
         SPOOFING,
         TAMPERING,
@@ -125,7 +125,7 @@ public class ThreatModelingService {
         DENIAL_OF_SERVICE,
         ELEVATION_OF_PRIVILEGE
     }
-    
+
     @Data
     public static class ThreatAssessment {
         private ThreatType threatType;
@@ -134,10 +134,10 @@ public class ThreatModelingService {
         private List<String> mitigations;
         private boolean isAddressed;
     }
-    
+
     public List<ThreatAssessment> assessThreats(SystemComponent component) {
         List<ThreatAssessment> threats = new ArrayList<>();
-        
+
         // Assess each STRIDE category
         threats.add(assessSpoofing(component));
         threats.add(assessTampering(component));
@@ -145,14 +145,14 @@ public class ThreatModelingService {
         threats.add(assessInformationDisclosure(component));
         threats.add(assessDenialOfService(component));
         threats.add(assessElevationOfPrivilege(component));
-        
+
         return threats;
     }
-    
+
     private ThreatAssessment assessSpoofing(SystemComponent component) {
         ThreatAssessment assessment = new ThreatAssessment();
         assessment.setThreatType(ThreatType.SPOOFING);
-        
+
         if (component.hasWeakAuthentication()) {
             assessment.setRiskLevel(8);
             assessment.setDescription("Weak authentication mechanisms allow identity spoofing");
@@ -162,7 +162,7 @@ public class ThreatModelingService {
                 "Implement proper session management"
             ));
         }
-        
+
         return assessment;
     }
 }
@@ -178,21 +178,21 @@ public class SecureConfigurationBuilder {
     private int sessionTimeout = 1800; // 30 minutes default
     private Set<String> allowedOrigins = new HashSet<>();
     private Map<String, String> securityHeaders = new HashMap<>();
-    
+
     public static SecureConfigurationBuilder create() {
         return new SecureConfigurationBuilder();
     }
-    
+
     public SecureConfigurationBuilder environment(String environment) {
         this.environment = validateEnvironment(environment);
         return this;
     }
-    
+
     public SecureConfigurationBuilder enableEncryption(boolean enabled) {
         this.encryptionEnabled = enabled;
         return this;
     }
-    
+
     public SecureConfigurationBuilder sessionTimeout(int timeoutSeconds) {
         if (timeoutSeconds < 300 || timeoutSeconds > 7200) {
             throw new SecurityException("Session timeout must be between 5 minutes and 2 hours");
@@ -200,7 +200,7 @@ public class SecureConfigurationBuilder {
         this.sessionTimeout = timeoutSeconds;
         return this;
     }
-    
+
     public SecureConfigurationBuilder allowedOrigin(String origin) {
         if (!isValidOrigin(origin)) {
             throw new SecurityException("Invalid origin: " + origin);
@@ -208,12 +208,12 @@ public class SecureConfigurationBuilder {
         this.allowedOrigins.add(origin);
         return this;
     }
-    
+
     public SecureConfiguration build() {
         validateConfiguration();
         return new SecureConfiguration(this);
     }
-    
+
     private void validateConfiguration() {
         if (environment == null) {
             throw new SecurityException("Environment must be specified");
@@ -232,29 +232,29 @@ public class SecureConfigurationBuilder {
 ```java
 @Component
 public class EnterpriseInputValidator {
-    
-    private static final Pattern SQL_INJECTION_PATTERN = 
+
+    private static final Pattern SQL_INJECTION_PATTERN =
         Pattern.compile("('|(\\-\\-)|(;)|(\\|)|(\\*)|(%))", Pattern.CASE_INSENSITIVE);
-    
-    private static final Pattern XSS_PATTERN = 
+
+    private static final Pattern XSS_PATTERN =
         Pattern.compile("<[^>]+>", Pattern.CASE_INSENSITIVE);
-    
-    private static final Pattern LDAP_INJECTION_PATTERN = 
+
+    private static final Pattern LDAP_INJECTION_PATTERN =
         Pattern.compile("[\\(\\)\\&\\|\\!\\=\\<\\>\\~\\*]");
-    
+
     public ValidationResult validateUserInput(String input, InputType type) {
         ValidationResult result = new ValidationResult();
-        
+
         if (input == null || input.trim().isEmpty()) {
             result.addError("Input cannot be null or empty");
             return result;
         }
-        
+
         // General validation
         if (containsMaliciousPatterns(input)) {
             result.addError("Input contains potentially malicious content");
         }
-        
+
         // Type-specific validation
         switch (type) {
             case EMAIL:
@@ -273,54 +273,54 @@ public class EnterpriseInputValidator {
                 validateLDAPInput(input, result);
                 break;
         }
-        
+
         return result;
     }
-    
+
     private boolean containsMaliciousPatterns(String input) {
         return SQL_INJECTION_PATTERN.matcher(input).find() ||
                XSS_PATTERN.matcher(input).find() ||
                LDAP_INJECTION_PATTERN.matcher(input).find();
     }
-    
+
     private void validatePassword(String password, ValidationResult result) {
         if (password.length() < 12) {
             result.addError("Password must be at least 12 characters long");
         }
-        
+
         if (!password.matches(".*[A-Z].*")) {
             result.addError("Password must contain at least one uppercase letter");
         }
-        
+
         if (!password.matches(".*[a-z].*")) {
             result.addError("Password must contain at least one lowercase letter");
         }
-        
+
         if (!password.matches(".*\\d.*")) {
             result.addError("Password must contain at least one digit");
         }
-        
+
         if (!password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*")) {
             result.addError("Password must contain at least one special character");
         }
-        
+
         // Check against common passwords
         if (isCommonPassword(password)) {
             result.addError("Password is too common and easily guessable");
         }
     }
-    
+
     @Data
     public static class ValidationResult {
         private boolean valid = true;
         private List<String> errors = new ArrayList<>();
         private List<String> warnings = new ArrayList<>();
-        
+
         public void addError(String error) {
             this.valid = false;
             this.errors.add(error);
         }
-        
+
         public void addWarning(String warning) {
             this.warnings.add(warning);
         }
@@ -333,7 +333,7 @@ public class EnterpriseInputValidator {
 ```java
 @Service
 public class ContextAwareEncoder {
-    
+
     public enum OutputContext {
         HTML_CONTENT,
         HTML_ATTRIBUTE,
@@ -345,12 +345,12 @@ public class ContextAwareEncoder {
         XML,
         JSON
     }
-    
+
     public String encode(String input, OutputContext context) {
         if (input == null) {
             return null;
         }
-        
+
         switch (context) {
             case HTML_CONTENT:
                 return encodeForHTML(input);
@@ -374,7 +374,7 @@ public class ContextAwareEncoder {
                 throw new IllegalArgumentException("Unsupported context: " + context);
         }
     }
-    
+
     private String encodeForHTML(String input) {
         return input.replace("&", "&amp;")
                    .replace("<", "&lt;")
@@ -383,7 +383,7 @@ public class ContextAwareEncoder {
                    .replace("'", "&#x27;")
                    .replace("/", "&#x2F;");
     }
-    
+
     private String encodeForJavaScript(String input) {
         StringBuilder encoded = new StringBuilder();
         for (char c : input.toCharArray()) {
@@ -417,41 +417,41 @@ public class ContextAwareEncoder {
 ```java
 @Service
 public class EnterpriseAuthenticationService {
-    
+
     @Autowired
     private TOTPService totpService;
-    
+
     @Autowired
     private BiometricService biometricService;
-    
+
     @Autowired
     private RiskAssessmentService riskService;
-    
+
     public AuthenticationResult authenticate(AuthenticationRequest request) {
         AuthenticationResult result = new AuthenticationResult();
-        
+
         // Step 1: Primary authentication (username/password)
         if (!authenticatePrimary(request.getUsername(), request.getPassword())) {
             result.setStatus(AuthenticationStatus.FAILED);
             result.setMessage("Invalid credentials");
             return result;
         }
-        
+
         // Step 2: Risk assessment
         RiskLevel riskLevel = riskService.assessRisk(request);
-        
+
         // Step 3: Adaptive authentication based on risk
         if (riskLevel == RiskLevel.HIGH) {
             return requireStrongMFA(request, result);
         } else if (riskLevel == RiskLevel.MEDIUM) {
             return requireStandardMFA(request, result);
         }
-        
+
         // Low risk - primary authentication sufficient
         result.setStatus(AuthenticationStatus.SUCCESS);
         return result;
     }
-    
+
     private AuthenticationResult requireStrongMFA(AuthenticationRequest request, AuthenticationResult result) {
         // Require both TOTP and biometric
         if (!totpService.validateTOTP(request.getUsername(), request.getTotpCode())) {
@@ -459,13 +459,13 @@ public class EnterpriseAuthenticationService {
             result.setMessage("Invalid TOTP code");
             return result;
         }
-        
+
         if (!biometricService.validateBiometric(request.getUsername(), request.getBiometricData())) {
             result.setStatus(AuthenticationStatus.MFA_REQUIRED);
             result.setMessage("Biometric verification failed");
             return result;
         }
-        
+
         result.setStatus(AuthenticationStatus.SUCCESS);
         return result;
     }
@@ -477,10 +477,10 @@ public class EnterpriseAuthenticationService {
 ```java
 @Component
 public class EnterpriseAuthorizationService {
-    
+
     @Autowired
     private PolicyEngine policyEngine;
-    
+
     public AuthorizationResult authorize(User user, Resource resource, Action action, Context context) {
         AuthorizationRequest request = AuthorizationRequest.builder()
             .subject(createSubject(user))
@@ -488,10 +488,10 @@ public class EnterpriseAuthorizationService {
             .action(createAction(action))
             .environment(createEnvironment(context))
             .build();
-        
+
         return policyEngine.evaluate(request);
     }
-    
+
     private Subject createSubject(User user) {
         return Subject.builder()
             .id(user.getId())
@@ -504,7 +504,7 @@ public class EnterpriseAuthorizationService {
             ))
             .build();
     }
-    
+
     private Resource createResource(Resource resource) {
         return Resource.builder()
             .id(resource.getId())
@@ -521,23 +521,23 @@ public class EnterpriseAuthorizationService {
 // XACML-style policy implementation
 @Component
 public class PolicyEngine {
-    
+
     public AuthorizationResult evaluate(AuthorizationRequest request) {
         List<Policy> applicablePolicies = findApplicablePolicies(request);
-        
+
         for (Policy policy : applicablePolicies) {
             PolicyResult result = policy.evaluate(request);
-            
+
             if (result.getDecision() == Decision.DENY) {
                 return AuthorizationResult.deny(result.getReason());
             }
-            
+
             if (result.getDecision() == Decision.PERMIT) {
                 return AuthorizationResult.permit()
                     .withObligations(result.getObligations());
             }
         }
-        
+
         // Default deny if no permit found
         return AuthorizationResult.deny("No applicable permit policy found");
     }
@@ -551,38 +551,38 @@ public class PolicyEngine {
 ```java
 @Service
 public class EnterpriseEncryptionService {
-    
+
     private static final String ALGORITHM = "AES/GCM/NoPadding";
     private static final int GCM_IV_LENGTH = 12;
     private static final int GCM_TAG_LENGTH = 16;
-    
+
     @Autowired
     private KeyManagementService keyService;
-    
+
     @Autowired
     private HSMService hsmService; // Hardware Security Module
-    
+
     public EncryptedData encrypt(String plaintext, String keyId, EncryptionContext context) {
         try {
             // Get encryption key from KMS/HSM
             SecretKey key = keyService.getKey(keyId);
-            
+
             // Generate random IV
             byte[] iv = generateSecureRandom(GCM_IV_LENGTH);
-            
+
             // Create cipher
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             GCMParameterSpec spec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv);
             cipher.init(Cipher.ENCRYPT_MODE, key, spec);
-            
+
             // Add context data as AAD (Additional Authenticated Data)
             if (context != null) {
                 cipher.updateAAD(context.toBytes());
             }
-            
+
             // Encrypt data
             byte[] ciphertext = cipher.doFinal(plaintext.getBytes(StandardCharsets.UTF_8));
-            
+
             // Create encrypted data object
             return EncryptedData.builder()
                 .ciphertext(ciphertext)
@@ -592,37 +592,37 @@ public class EnterpriseEncryptionService {
                 .context(context)
                 .timestamp(Instant.now())
                 .build();
-                
+
         } catch (Exception e) {
             throw new EncryptionException("Encryption failed", e);
         }
     }
-    
+
     public String decrypt(EncryptedData encryptedData) {
         try {
             // Get decryption key
             SecretKey key = keyService.getKey(encryptedData.getKeyId());
-            
+
             // Create cipher
             Cipher cipher = Cipher.getInstance(encryptedData.getAlgorithm());
             GCMParameterSpec spec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, encryptedData.getIv());
             cipher.init(Cipher.DECRYPT_MODE, key, spec);
-            
+
             // Add context data as AAD
             if (encryptedData.getContext() != null) {
                 cipher.updateAAD(encryptedData.getContext().toBytes());
             }
-            
+
             // Decrypt data
             byte[] plaintext = cipher.doFinal(encryptedData.getCiphertext());
-            
+
             return new String(plaintext, StandardCharsets.UTF_8);
-            
+
         } catch (Exception e) {
             throw new DecryptionException("Decryption failed", e);
         }
     }
-    
+
     private byte[] generateSecureRandom(int length) {
         byte[] bytes = new byte[length];
         SecureRandom.getInstanceStrong().nextBytes(bytes);
@@ -636,34 +636,34 @@ public class EnterpriseEncryptionService {
 ```java
 @Service
 public class KeyManagementService {
-    
+
     @Autowired
     private HSMClient hsmClient;
-    
+
     @Autowired
     private KeyVaultClient keyVaultClient;
-    
+
     private final Map<String, SecretKey> keyCache = new ConcurrentHashMap<>();
-    
+
     public SecretKey getKey(String keyId) {
         // Check cache first (with TTL)
         SecretKey cachedKey = keyCache.get(keyId);
         if (cachedKey != null && !isKeyExpired(keyId)) {
             return cachedKey;
         }
-        
+
         // Retrieve from HSM or Key Vault
         SecretKey key = retrieveKeyFromSecureStorage(keyId);
-        
+
         // Cache with expiration
         cacheKey(keyId, key);
-        
+
         return key;
     }
-    
+
     public String createKey(KeySpecification spec) {
         String keyId = generateKeyId();
-        
+
         switch (spec.getStorageType()) {
             case HSM:
                 hsmClient.generateKey(keyId, spec);
@@ -674,26 +674,26 @@ public class KeyManagementService {
             default:
                 throw new IllegalArgumentException("Unsupported storage type");
         }
-        
+
         // Log key creation for audit
         auditKeyOperation("CREATE", keyId, spec);
-        
+
         return keyId;
     }
-    
+
     public void rotateKey(String keyId) {
         // Create new key version
         String newKeyId = keyId + "_v" + getNextVersion(keyId);
-        
+
         KeySpecification spec = getKeySpecification(keyId);
         createKey(spec.withKeyId(newKeyId));
-        
+
         // Update key mapping
         updateKeyMapping(keyId, newKeyId);
-        
+
         // Schedule old key for deletion
         scheduleKeyDeletion(keyId);
-        
+
         auditKeyOperation("ROTATE", keyId, spec);
     }
 }
@@ -706,68 +706,68 @@ public class KeyManagementService {
 ```java
 @Service
 public class SecureAICodeGenerator {
-    
+
     @Autowired
     private CodeAnalysisService codeAnalysis;
-    
+
     @Autowired
     private VulnerabilityScanner vulnerabilityScanner;
-    
+
     public CodeGenerationResult generateSecureCode(CodeRequest request) {
         // Validate and sanitize prompt
         String sanitizedPrompt = sanitizePrompt(request.getPrompt());
-        
+
         // Generate code using AI service
         String generatedCode = aiService.generateCode(sanitizedPrompt);
-        
+
         // Security analysis of generated code
         SecurityAnalysisResult analysis = analyzeGeneratedCode(generatedCode);
-        
+
         if (analysis.hasHighRiskVulnerabilities()) {
             return CodeGenerationResult.rejected("Generated code contains high-risk vulnerabilities");
         }
-        
+
         // Apply security fixes
         String secureCode = applySecurityFixes(generatedCode, analysis);
-        
+
         return CodeGenerationResult.success(secureCode, analysis);
     }
-    
+
     private String sanitizePrompt(String prompt) {
         // Remove potentially malicious instructions
         String sanitized = prompt.replaceAll("(?i)(ignore previous|forget|override|bypass|hack)", "");
-        
+
         // Remove system-level commands
         sanitized = sanitized.replaceAll("(?i)(rm -rf|del /s|format c:|shutdown)", "");
-        
+
         // Limit prompt length
         if (sanitized.length() > 2000) {
             sanitized = sanitized.substring(0, 2000);
         }
-        
+
         return sanitized;
     }
-    
+
     private SecurityAnalysisResult analyzeGeneratedCode(String code) {
         SecurityAnalysisResult result = new SecurityAnalysisResult();
-        
+
         // Static analysis
         result.addVulnerabilities(codeAnalysis.findSQLInjectionVulnerabilities(code));
         result.addVulnerabilities(codeAnalysis.findXSSVulnerabilities(code));
         result.addVulnerabilities(codeAnalysis.findHardcodedSecrets(code));
-        
+
         // Pattern-based analysis
         result.addVulnerabilities(findInsecurePatterns(code));
-        
+
         // Dependency analysis
         result.addVulnerabilities(vulnerabilityScanner.scanDependencies(code));
-        
+
         return result;
     }
-    
+
     private String applySecurityFixes(String code, SecurityAnalysisResult analysis) {
         String fixedCode = code;
-        
+
         for (Vulnerability vuln : analysis.getVulnerabilities()) {
             switch (vuln.getType()) {
                 case SQL_INJECTION:
@@ -781,7 +781,7 @@ public class SecureAICodeGenerator {
                     break;
             }
         }
-        
+
         return fixedCode;
     }
 }
@@ -792,64 +792,64 @@ public class SecureAICodeGenerator {
 ```java
 @Service
 public class AISecurityReviewService {
-    
+
     @Autowired
     private LLMService llmService;
-    
+
     @Autowired
     private SecurityKnowledgeBase knowledgeBase;
-    
+
     public SecurityReviewResult reviewCode(String sourceCode, ReviewContext context) {
         // Prepare secure prompt for LLM
         String securePrompt = buildSecurePrompt(sourceCode, context);
-        
+
         // Get AI analysis
         LLMResponse llmResponse = llmService.analyzeWithSecurePrompt(securePrompt);
-        
+
         // Validate and filter AI response
         SecurityReviewResult result = validateAIResponse(llmResponse);
-        
+
         // Cross-reference with knowledge base
         enhanceWithKnowledgeBase(result, sourceCode);
-        
+
         return result;
     }
-    
+
     private String buildSecurePrompt(String sourceCode, ReviewContext context) {
         StringBuilder prompt = new StringBuilder();
         prompt.append("Analyze the following Java code for security vulnerabilities. ");
         prompt.append("Focus on OWASP Top 10 issues. ");
         prompt.append("Provide specific line numbers and remediation suggestions.\n\n");
-        
+
         // Sanitize code before adding to prompt
         String sanitizedCode = sanitizeCodeForPrompt(sourceCode);
         prompt.append("Code to analyze:\n").append(sanitizedCode);
-        
+
         // Add context constraints
         prompt.append("\n\nConstraints:");
         prompt.append("\n- Only analyze the provided code");
         prompt.append("\n- Do not suggest external dependencies without justification");
         prompt.append("\n- Focus on security, not functionality");
-        
+
         return prompt.toString();
     }
-    
+
     private SecurityReviewResult validateAIResponse(LLMResponse response) {
         SecurityReviewResult result = new SecurityReviewResult();
-        
+
         // Parse AI findings
         List<SecurityFinding> findings = parseSecurityFindings(response.getContent());
-        
+
         // Validate each finding
         for (SecurityFinding finding : findings) {
             if (isValidSecurityFinding(finding)) {
                 result.addFinding(finding);
             }
         }
-        
+
         // Add confidence scores
         result.setConfidenceScore(calculateConfidenceScore(findings));
-        
+
         return result;
     }
 }
@@ -862,23 +862,23 @@ public class AISecurityReviewService {
 ```java
 @Service
 public class GDPRComplianceService {
-    
+
     @Autowired
     private PersonalDataInventory dataInventory;
-    
+
     @Autowired
     private ConsentManagementService consentService;
-    
+
     @Autowired
     private DataRetentionService retentionService;
-    
+
     public ComplianceResult processPersonalData(PersonalDataRequest request) {
         // Verify legal basis
         LegalBasis legalBasis = determineLegalBasis(request);
         if (!isValidLegalBasis(legalBasis)) {
             return ComplianceResult.rejected("No valid legal basis for processing");
         }
-        
+
         // Check consent if required
         if (legalBasis == LegalBasis.CONSENT) {
             ConsentRecord consent = consentService.getConsent(request.getDataSubjectId());
@@ -886,21 +886,21 @@ public class GDPRComplianceService {
                 return ComplianceResult.rejected("No valid consent for processing");
             }
         }
-        
+
         // Data minimization check
         if (!isDataMinimized(request)) {
             return ComplianceResult.rejected("Data processing violates minimization principle");
         }
-        
+
         // Process data with protection measures
         ProcessingResult result = processWithProtection(request);
-        
+
         // Record processing activity
         recordProcessingActivity(request, result);
-        
+
         return ComplianceResult.success(result);
     }
-    
+
     public void handleDataSubjectRequest(DataSubjectRequest request) {
         switch (request.getType()) {
             case ACCESS:
@@ -917,17 +917,17 @@ public class GDPRComplianceService {
                 break;
         }
     }
-    
+
     private void handleErasureRequest(DataSubjectRequest request) {
         // Find all personal data for the data subject
         List<PersonalDataRecord> records = dataInventory.findAllData(request.getDataSubjectId());
-        
+
         for (PersonalDataRecord record : records) {
             // Check if erasure is required
             if (shouldErase(record, request)) {
                 // Perform secure deletion
                 secureDelete(record);
-                
+
                 // Log erasure
                 auditService.logDataErasure(record, request);
             }
@@ -941,53 +941,53 @@ public class GDPRComplianceService {
 ```java
 @Service
 public class SOXComplianceService {
-    
+
     @Autowired
     private FinancialControlService controlService;
-    
+
     @Autowired
     private AuditTrailService auditTrail;
-    
+
     public ComplianceResult processFinancialTransaction(FinancialTransaction transaction) {
         // Validate financial controls
         ControlValidationResult controlResult = controlService.validateControls(transaction);
         if (!controlResult.isValid()) {
             return ComplianceResult.rejected("Financial controls validation failed");
         }
-        
+
         // Segregation of duties check
         if (!validateSegregationOfDuties(transaction)) {
             return ComplianceResult.rejected("Segregation of duties violation");
         }
-        
+
         // Authorization check
         if (!isProperlyAuthorized(transaction)) {
             return ComplianceResult.rejected("Insufficient authorization");
         }
-        
+
         // Process transaction with full audit trail
         TransactionResult result = processWithAuditTrail(transaction);
-        
+
         // Generate compliance report
         generateComplianceReport(transaction, result);
-        
+
         return ComplianceResult.success(result);
     }
-    
+
     private boolean validateSegregationOfDuties(FinancialTransaction transaction) {
         User initiator = transaction.getInitiator();
         User approver = transaction.getApprover();
-        
+
         // Different users required
         if (initiator.equals(approver)) {
             return false;
         }
-        
+
         // Different departments for high-value transactions
         if (transaction.getAmount().compareTo(new BigDecimal("10000")) > 0) {
             return !initiator.getDepartment().equals(approver.getDepartment());
         }
-        
+
         return true;
     }
 }
@@ -1000,54 +1000,54 @@ public class SOXComplianceService {
 ```java
 @Component
 public class SecurityMonitoringService {
-    
+
     @Autowired
     private MetricRegistry metricRegistry;
-    
+
     @Autowired
     private AlertingService alertingService;
-    
+
     @EventListener
     public void handleSecurityEvent(SecurityEvent event) {
         // Update metrics
         updateSecurityMetrics(event);
-        
+
         // Real-time threat assessment
         ThreatLevel threatLevel = assessThreatLevel(event);
-        
+
         // Trigger alerts if necessary
         if (threatLevel.isHigh()) {
             alertingService.sendAlert(createSecurityAlert(event, threatLevel));
         }
-        
+
         // Update threat intelligence
         updateThreatIntelligence(event);
     }
-    
+
     private void updateSecurityMetrics(SecurityEvent event) {
         metricRegistry.counter("security.events", "type", event.getType().name()).increment();
         metricRegistry.timer("security.response.time").record(event.getResponseTime(), TimeUnit.MILLISECONDS);
-        
+
         if (event.getType() == SecurityEventType.AUTHENTICATION_FAILURE) {
-            metricRegistry.counter("security.auth.failures", 
+            metricRegistry.counter("security.auth.failures",
                 "source", event.getSourceIP()).increment();
         }
     }
-    
+
     private ThreatLevel assessThreatLevel(SecurityEvent event) {
         ThreatAssessment assessment = new ThreatAssessment();
-        
+
         // Factor 1: Event frequency
         long recentEvents = countRecentEvents(event.getSourceIP(), Duration.ofMinutes(5));
         assessment.addFactor("frequency", recentEvents > 10 ? 0.8 : 0.2);
-        
+
         // Factor 2: Source reputation
         double reputation = getSourceReputation(event.getSourceIP());
         assessment.addFactor("reputation", 1.0 - reputation);
-        
+
         // Factor 3: Event severity
         assessment.addFactor("severity", event.getSeverity().getWeight());
-        
+
         return assessment.calculateThreatLevel();
     }
 }

@@ -41,7 +41,7 @@ graph TD
     B --> E[Encrypted Data 1]
     C --> F[Encrypted Data 2]
     D --> G[Encrypted Data 3]
-    
+
     style A fill:#ff6b6b,color:#fff
     style B fill:#4ecdc4,color:#fff
     style C fill:#4ecdc4,color:#fff
@@ -57,12 +57,14 @@ SQL Server employs a **three-tier key hierarchy** as part of its encryption fram
 #### Key Hierarchy Structure
 
 1. **Service Master Key (SMK)**
+
    - Symmetric root key generated at the instance level
    - Created automatically upon installation
    - Protected by Windows OS (DPAPI)
    - Secures all subordinate keys
 
 2. **Database Master Key (DMK)**
+
    - Symmetric key created at the database level
    - Usually stored in the master database
    - Used to protect certificates or asymmetric keys
@@ -99,6 +101,7 @@ Oracle's TDE uses a **two-tier key architecture**:
 #### Key Components
 
 1. **TDE Master Encryption Key (MEK)**
+
    - Top-level key stored in Oracle Wallet/Keystore
    - Never stored in database files
    - Required to open the wallet/keystore
@@ -111,15 +114,15 @@ Oracle's TDE uses a **two-tier key architecture**:
 ```sql
 -- Example: Setting up TDE in Oracle
 -- 1. Create and open a keystore
-ADMINISTER KEY MANAGEMENT CREATE KEYSTORE '/etc/oracle/wallet' 
+ADMINISTER KEY MANAGEMENT CREATE KEYSTORE '/etc/oracle/wallet'
 IDENTIFIED BY "WalletPassword123";
 
 -- 2. Open the keystore
-ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN 
+ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN
 IDENTIFIED BY "WalletPassword123";
 
 -- 3. Create a master key
-ADMINISTER KEY MANAGEMENT SET KEY 
+ADMINISTER KEY MANAGEMENT SET KEY
 IDENTIFIED BY "WalletPassword123" WITH BACKUP;
 
 -- 4. Create an encrypted tablespace
@@ -136,6 +139,7 @@ Db2 uses **native encryption** with a two-tier approach:
 #### Encryption Architecture
 
 1. **Master Key (MK)**
+
    - Stored externally in a keystore
    - Can use ICSF, PKCS#12, or KMIP-compliant key managers
    - Not stored in plaintext in database files
@@ -147,11 +151,11 @@ Db2 uses **native encryption** with a two-tier approach:
 ```sql
 -- Example: Creating an encrypted database in Db2
 -- 1. Create a keystore
-gsk8capicmd_64 -keydb -create -db /home/db2inst1/keystore.p12 
+gsk8capicmd_64 -keydb -create -db /home/db2inst1/keystore.p12
   -pw StrongPassword123 -type pkcs12
 
 -- 2. Create an encrypted database
-CREATE DATABASE SECUREDB ENCRYPT 
+CREATE DATABASE SECUREDB ENCRYPT
   MASTER KEY LABEL 'DB2_MASTER_KEY';
 
 -- 3. Rotate the master key
@@ -165,6 +169,7 @@ MySQL's TDE uses a **two-tier key architecture**:
 #### Key Management Structure
 
 1. **Master Encryption Key**
+
    - Managed by keyring plugin/component
    - Can integrate with external KMS (HashiCorp Vault, AWS KMS)
    - Not stored in database files
@@ -199,6 +204,7 @@ MongoDB's encrypted storage engine uses a similar master key concept:
 #### Encryption Components
 
 1. **Master Key**
+
    - External key via KMIP server or local keyfile
    - Never stored on disk
    - Loaded into memory when needed
@@ -215,7 +221,7 @@ security:
   enableEncryption: true
   encryptionCipherMode: AES256-CBC
   encryptionKeyFile: /etc/mongodb/mongodb-keyfile
-  
+
 // Or using KMIP
 security:
   enableEncryption: true
@@ -235,21 +241,23 @@ PostgreSQL currently lacks built-in TDE, but several solutions exist:
 #### Available Options
 
 1. **pgcrypto Extension**
+
    ```sql
    -- Column-level encryption with pgcrypto
    CREATE EXTENSION pgcrypto;
-   
+
    -- Encrypt data
-   INSERT INTO users (username, password) 
+   INSERT INTO users (username, password)
    VALUES ('alice', pgp_sym_encrypt('secret123', 'encryption_key'));
-   
+
    -- Decrypt data
-   SELECT username, 
+   SELECT username,
           pgp_sym_decrypt(password::bytea, 'encryption_key') as password
    FROM users;
    ```
 
 2. **pg_tde Extension (Experimental)**
+
    - Community-driven TDE implementation
    - Provides transparent encryption
    - Supports external key management
@@ -276,7 +284,7 @@ Master Key Storage:
   - Hardware Security Module (HSM) - Highest security
   - Key Management Service (KMS) - Cloud-based
   - Encrypted keystore file - Basic security
-  
+
 Data Encryption Keys:
   - Stored encrypted in database
   - Never in plaintext
@@ -293,7 +301,7 @@ ALTER DATABASE ENCRYPTION KEY
 REGENERATE WITH ALGORITHM = AES_256;
 
 -- Oracle
-ADMINISTER KEY MANAGEMENT SET KEY 
+ADMINISTER KEY MANAGEMENT SET KEY
 IDENTIFIED BY "password" WITH BACKUP;
 
 -- MySQL
@@ -317,20 +325,21 @@ Always maintain secure backups:
 
 ## Implementation Comparison
 
-| Feature | SQL Server | Oracle | Db2 | MySQL Enterprise | PostgreSQL |
-|---------|------------|---------|-----|------------------|------------|
-| Native TDE | ✓ | ✓ | ✓ | ✓ | ✗ |
-| Key Hierarchy Tiers | 3 | 2 | 2 | 2 | N/A |
-| External Key Store | ✓ (EKM) | ✓ (Wallet) | ✓ (KMIP) | ✓ (Keyring) | N/A |
-| Transparent to Apps | ✓ | ✓ | ✓ | ✓ | ✗ |
-| Column-level Encryption | ✓ | ✓ | ✓ | ✗ | ✓ (pgcrypto) |
-| Hardware Acceleration | ✓ | ✓ | ✓ | ✓ | ✗ |
+| Feature                 | SQL Server | Oracle     | Db2      | MySQL Enterprise | PostgreSQL   |
+| ----------------------- | ---------- | ---------- | -------- | ---------------- | ------------ |
+| Native TDE              | ✓          | ✓          | ✓        | ✓                | ✗            |
+| Key Hierarchy Tiers     | 3          | 2          | 2        | 2                | N/A          |
+| External Key Store      | ✓ (EKM)    | ✓ (Wallet) | ✓ (KMIP) | ✓ (Keyring)      | N/A          |
+| Transparent to Apps     | ✓          | ✓          | ✓        | ✓                | ✗            |
+| Column-level Encryption | ✓          | ✓          | ✓        | ✗                | ✓ (pgcrypto) |
+| Hardware Acceleration   | ✓          | ✓          | ✓        | ✓                | ✗            |
 
 ## Security Considerations
 
 ### 1. Key Separation
 
 Always maintain separation between:
+
 - Master keys and data
 - Key management and database administration roles
 - Production and non-production keys
@@ -338,6 +347,7 @@ Always maintain separation between:
 ### 2. Access Control
 
 Implement strict controls:
+
 ```sql
 -- Example: Oracle key management privileges
 GRANT ADMINISTER KEY MANAGEMENT TO security_admin;
@@ -348,6 +358,7 @@ GRANT CREATE SESSION TO security_admin;
 ### 3. Audit and Compliance
 
 Enable comprehensive auditing:
+
 ```sql
 -- SQL Server
 USE master;
@@ -391,7 +402,7 @@ Master key encryption does have performance implications:
 ```sql
 -- Check keystore/wallet status
 -- SQL Server
-SELECT name, is_master_key_encrypted_by_server 
+SELECT name, is_master_key_encrypted_by_server
 FROM sys.databases;
 
 -- Oracle

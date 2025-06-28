@@ -28,6 +28,7 @@ Here are multiple methods to block the PowerShell engine and execution:
 2. Right-click Executable Rules → Create New Rule.
 
 3. Set the following:
+
    - **Action**: Deny
    - **User or Group**: Everyone
    - **Condition**: Path
@@ -83,6 +84,7 @@ Disable-WindowsOptionalFeature -Online -FeatureName MicrosoftWindowsPowerShellV2
 ## 🛡️ Method 4: Rename or Remove PowerShell Binaries (Not Recommended)
 
 Manually delete or rename:
+
 - `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`
 - `C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe`
 - PowerShell 7 installation directories (`pwsh.exe`)
@@ -94,6 +96,7 @@ Manually delete or rename:
 If using Microsoft Defender for Endpoint, enable this ASR rule:
 
 **Block all Office applications from creating child processes**
+
 - GUID: `D4F940AB-401B-4EFC-AADC-AD5F3C50688A`
 
 ## ✅ Recommended Combo for Enterprise Environment:

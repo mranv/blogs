@@ -29,6 +29,7 @@ Using a Launch Agent ensures that your backend helper runs continuously (or is r
 ### Lifecycle Management
 
 Launch Agents are managed by launchd, so they can be configured to:
+
 - Run at login automatically
 - Restart on failure
 - Operate independently of your main app
@@ -37,6 +38,7 @@ Launch Agents are managed by launchd, so they can be configured to:
 ### Clear Separation of Concerns
 
 By running your backend separately, you maintain a clean separation between the user interface (the menu-bar app) and the service logic, which can simplify:
+
 - Updates and deployments
 - Debugging and troubleshooting
 - Security management
@@ -66,7 +68,7 @@ class ServiceDelegate: NSObject, NSXPCListenerDelegate, MyXPCProtocol {
         newConnection.resume()
         return true
     }
-    
+
     // MARK: - MyXPCProtocol implementation
     func fetchData(withReply reply: @escaping (String) -> Void) {
         reply("Hello from backend!")
@@ -192,26 +194,26 @@ Implement error handling for the IPC connection so that if the backend isn't ava
 func setupXPCConnection() {
     xpcConnection = NSXPCConnection(machServiceName: "com.yourcompany.backendxpc", options: [])
     xpcConnection?.remoteObjectInterface = NSXPCInterface(with: MyXPCProtocol.self)
-    
+
     xpcConnection?.invalidationHandler = { [weak self] in
         DispatchQueue.main.async {
             self?.handleConnectionLost()
         }
     }
-    
+
     xpcConnection?.interruptionHandler = { [weak self] in
         DispatchQueue.main.async {
             self?.attemptReconnection()
         }
     }
-    
+
     xpcConnection?.resume()
 }
 
 private func handleConnectionLost() {
     // Log the connection loss
     os_log("XPC connection lost", log: .default, type: .error)
-    
+
     // Attempt to reconnect after a delay
     DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
         self.setupXPCConnection()
@@ -244,12 +246,12 @@ Running separate processes requires extra care to avoid privilege escalation or 
 func listener(_ listener: NSXPCListener, shouldAcceptNewConnection newConnection: NSXPCConnection) -> Bool {
     // Verify the connecting process
     let auditToken = newConnection.auditToken
-    
+
     // Add additional security checks here
     guard validateConnection(auditToken) else {
         return false
     }
-    
+
     newConnection.exportedInterface = NSXPCInterface(with: MyXPCProtocol.self)
     newConnection.exportedObject = self
     newConnection.resume()
@@ -269,13 +271,13 @@ func monitorResourceUsage() {
     let task = mach_task_self_
     var info = mach_task_basic_info()
     var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4
-    
+
     let kerr: kern_return_t = withUnsafeMutablePointer(to: &info) {
         $0.withMemoryRebound(to: integer_t.self, capacity: 1) {
             task_info(task, task_flavor_t(MACH_TASK_BASIC_INFO), $0, &count)
         }
     }
-    
+
     if kerr == KERN_SUCCESS {
         let memoryUsage = info.resident_size
         os_log("Memory usage: %llu bytes", log: .default, type: .info, memoryUsage)
@@ -308,17 +310,17 @@ Extensively test the interaction between the menu-bar app and the backend helper
 ```swift
 func testXPCConnection() {
     let expectation = XCTestExpectation(description: "XPC call completes")
-    
+
     let connection = NSXPCConnection(machServiceName: "com.yourcompany.backendxpc")
     connection.remoteObjectInterface = NSXPCInterface(with: MyXPCProtocol.self)
     connection.resume()
-    
+
     let service = connection.remoteObjectProxy as? MyXPCProtocol
     service?.fetchData { response in
         XCTAssertEqual(response, "Hello from backend!")
         expectation.fulfill()
     }
-    
+
     wait(for: [expectation], timeout: 10.0)
 }
 ```
@@ -427,17 +429,17 @@ log show --last 10m --predicate 'process == "launchd"'
 // Add detailed logging to your XPC setup
 func setupXPCConnection() {
     os_log("Attempting to connect to service", log: .default, type: .info)
-    
+
     xpcConnection = NSXPCConnection(machServiceName: "com.yourcompany.backendxpc")
-    
+
     if xpcConnection == nil {
         os_log("Failed to create XPC connection", log: .default, type: .error)
         return
     }
-    
+
     xpcConnection?.remoteObjectInterface = NSXPCInterface(with: MyXPCProtocol.self)
     xpcConnection?.resume()
-    
+
     os_log("XPC connection established", log: .default, type: .info)
 }
 ```
@@ -447,6 +449,7 @@ func setupXPCConnection() {
 By following this approach—packaging your backend as a separate executable launched via a Launch Agent—you'll have a production-grade solution where your backend helper runs independently and continuously using a Launch Agent, and your menu-bar app connects to it as needed via IPC. This separation not only aligns with best practices for persistent background processing on macOS but also provides a robust and maintainable structure for your application.
 
 This production-grade implementation ensures:
+
 - **Reliability**: Automatic restart on crashes
 - **Performance**: Optimized resource usage
 - **Security**: Proper isolation and validation

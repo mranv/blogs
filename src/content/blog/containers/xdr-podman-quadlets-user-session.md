@@ -307,7 +307,7 @@ agent:
   id: ${XDR_NODE_ID}
   name: ${HOSTNAME}-xdr
   type: endpoint
-  
+
 server:
   url: https://${XDR_SERVER}:${XDR_PORT}
   tls:
@@ -315,7 +315,7 @@ server:
     key: /etc/xdr/key.pem
     ca: /etc/xdr/ca.pem
     verify: true
-    
+
 collectors:
   system:
     enabled: true
@@ -325,12 +325,12 @@ collectors:
       - memory
       - disk
       - network
-      
+
   process:
     enabled: true
     interval: 30s
     include_cmdline: true
-    
+
   file_integrity:
     enabled: true
     paths:
@@ -341,17 +341,17 @@ collectors:
     exclude:
       - "*.log"
       - "*.tmp"
-      
+
   network:
     enabled: true
     capture_packets: false
     connection_tracking: true
-    
+
   container:
     enabled: true
     runtime: podman
     socket: /var/run/docker.sock
-    
+
 logging:
   level: ${LOG_LEVEL}
   format: json
@@ -365,7 +365,7 @@ logging:
     - type: syslog
       facility: local0
       tag: xdr-agent
-      
+
 response:
   enabled: true
   actions:
@@ -373,7 +373,7 @@ response:
     - kill_process
     - block_network
   require_approval: true
-  
+
 performance:
   max_cpu_percent: 20
   max_memory_mb: 2048

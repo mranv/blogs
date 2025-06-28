@@ -28,6 +28,7 @@ This project sets up a local DNS infrastructure using CoreDNS, with one Debian s
 ## System Architecture
 
 The setup consists of:
+
 - 1 Debian VM running CoreDNS as the DNS server
 - 2 Client VMs configured to use the CoreDNS server
 - SSL certificates for secure local connections

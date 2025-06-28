@@ -64,6 +64,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 ```
 
 **Key Endpoints**:
+
 - `/mdm/enroll`: Serves enrollment profiles
 - `/mdm/checkin`: Handles device check-ins
 - `/api/v1/*`: Administrative API endpoints
@@ -129,7 +130,7 @@ func (c *APNSClient) Push(deviceToken string, payload APNSPayload) error {
         return err
     }
     defer conn.Close()
-    
+
     // Send push notification
     return c.sendPayload(conn, deviceToken, payload)
 }
@@ -148,14 +149,14 @@ sequenceDiagram
     participant EnrollService
     participant Storage
     participant ProfileSigner
-    
+
     Device->>EnrollEndpoint: GET /mdm/enroll
     EnrollEndpoint->>EnrollService: RequestEnrollmentProfile()
     EnrollService->>ProfileSigner: SignProfile()
     ProfileSigner-->>EnrollService: Signed Profile
     EnrollService-->>EnrollEndpoint: Enrollment Profile
     EnrollEndpoint-->>Device: .mobileconfig
-    
+
     Device->>Device: Install Profile
     Device->>EnrollEndpoint: POST /mdm/checkin (Authenticate)
     EnrollEndpoint->>EnrollService: ProcessAuthentication()
@@ -180,13 +181,13 @@ func (q *CommandQueue) Enqueue(deviceUUID string, cmd Command) error {
     if err := q.store.Save(deviceUUID, cmd); err != nil {
         return err
     }
-    
+
     // Send push notification to wake device
     device, err := q.store.GetDevice(deviceUUID)
     if err != nil {
         return err
     }
-    
+
     return q.push.SendMDMPush(device.PushToken)
 }
 
@@ -195,7 +196,7 @@ func (q *CommandQueue) GetNextCommand(deviceUUID string) (*Command, error) {
     if err != nil || len(commands) == 0 {
         return nil, err
     }
-    
+
     // Return oldest command first
     return &commands[0], nil
 }
@@ -212,7 +213,7 @@ func (s *MDMService) HandleCheckin(r *http.Request) (*CheckinResponse, error) {
     if err := plist.NewDecoder(r.Body).Decode(&checkin); err != nil {
         return nil, err
     }
-    
+
     switch checkin.MessageType {
     case "Authenticate":
         return s.handleAuthenticate(checkin)
@@ -231,18 +232,18 @@ func (s *MDMService) handleStatusReport(checkin CheckinMessage) (*CheckinRespons
     if err != nil {
         return nil, err
     }
-    
+
     device.LastCheckin = time.Now()
     if err := s.store.UpdateDevice(device); err != nil {
         return nil, err
     }
-    
+
     // Get next command
     cmd, err := s.commandQueue.GetNextCommand(checkin.UDID)
     if err != nil || cmd == nil {
         return &CheckinResponse{}, nil
     }
-    
+
     // Return command in response
     return &CheckinResponse{
         Command: cmd,
@@ -261,47 +262,47 @@ graph TB
         D2[iPad]
         D3[Mac]
     end
-    
+
     subgraph "MicroMDM Server"
         subgraph "HTTP Layer"
             HE[Enrollment Endpoint]
             HC[Check-in Endpoint]
             HA[Admin API]
         end
-        
+
         subgraph "Service Layer"
             ES[Enrollment Service]
             CS[Command Service]
             DS[Device Service]
             AS[APNS Service]
         end
-        
+
         subgraph "Storage Layer"
             DB[(BoltDB)]
         end
     end
-    
+
     subgraph "External Services"
         APNS[Apple Push Service]
         DEP[Apple DEP/ABM]
     end
-    
+
     subgraph "Admin Tools"
         CLI[mdmctl CLI]
         API[REST API Client]
     end
-    
+
     D1 & D2 & D3 -->|HTTPS| HE & HC
     DEP -->|Enrollment| HE
-    
+
     HE --> ES
     HC --> DS & CS
     HA --> CS & DS
-    
+
     ES & CS & DS --> DB
     AS --> APNS
     APNS -->|Push| D1 & D2 & D3
-    
+
     CLI & API -->|HTTPS| HA
 ```
 
@@ -348,12 +349,12 @@ func main() {
 
 func sendCommand(c *cli.Context) error {
     client := NewMDMClient(c.String("server"))
-    
+
     cmd := Command{
         Type: c.String("type"),
         UUID: uuid.New().String(),
     }
-    
+
     return client.QueueCommand(c.String("device"), cmd)
 }
 ```
@@ -366,15 +367,15 @@ Administrative operations via HTTP API:
 // API routes
 func (s *Server) setupRoutes() {
     r := mux.NewRouter()
-    
+
     // Device management
     r.HandleFunc("/api/v1/devices", s.listDevices).Methods("GET")
     r.HandleFunc("/api/v1/devices/{uuid}", s.getDevice).Methods("GET")
-    
+
     // Command management
     r.HandleFunc("/api/v1/commands", s.queueCommand).Methods("POST")
     r.HandleFunc("/api/v1/commands/{uuid}", s.getCommandStatus).Methods("GET")
-    
+
     // Apply authentication middleware
     r.Use(s.authMiddleware)
 }
@@ -385,19 +386,19 @@ func (s *Server) queueCommand(w http.ResponseWriter, r *http.Request) {
         http.Error(w, err.Error(), http.StatusBadRequest)
         return
     }
-    
+
     cmd := Command{
         Type:      req.Type,
         UUID:      uuid.New().String(),
         Payload:   req.Payload,
         CreatedAt: time.Now(),
     }
-    
+
     if err := s.CommandService.QueueCommand(req.DeviceUUID, cmd); err != nil {
         http.Error(w, err.Error(), http.StatusInternalServerError)
         return
     }
-    
+
     json.NewEncoder(w).Encode(cmd)
 }
 ```
@@ -433,14 +434,14 @@ func (s *Server) authMiddleware(next http.Handler) http.Handler {
             http.Error(w, "Unauthorized", http.StatusUnauthorized)
             return
         }
-        
+
         // Validate token
         claims, err := s.validateToken(token)
         if err != nil {
             http.Error(w, "Invalid token", http.StatusUnauthorized)
             return
         }
-        
+
         // Add claims to context
         ctx := context.WithValue(r.Context(), "claims", claims)
         next.ServeHTTP(w, r.WithContext(ctx))
@@ -457,18 +458,18 @@ func (s *MDMService) verifyDevice(checkin CheckinMessage) error {
     if err := s.verifyCertificateChain(checkin.Certificate); err != nil {
         return fmt.Errorf("invalid certificate: %w", err)
     }
-    
+
     // Verify device identity
     device, err := s.store.GetDevice(checkin.UDID)
     if err != nil {
         return fmt.Errorf("unknown device: %w", err)
     }
-    
+
     // Compare certificate fingerprint
     if !bytes.Equal(device.CertFingerprint, checkin.CertFingerprint()) {
         return fmt.Errorf("certificate mismatch")
     }
-    
+
     return nil
 }
 ```
@@ -489,7 +490,7 @@ type Store struct {
 func (s *Store) Save(key, value []byte) error {
     s.mutex.Lock()
     defer s.mutex.Unlock()
-    
+
     return s.db.Update(func(tx *bolt.Tx) error {
         b := tx.Bucket([]byte("data"))
         return b.Put(key, value)
@@ -520,7 +521,7 @@ var (
         },
         []string{"status"},
     )
-    
+
     commandQueue = prometheus.NewGaugeVec(
         prometheus.GaugeOpts{
             Name: "mdm_queued_commands",
@@ -582,22 +583,22 @@ func (n *WebhookNotifier) NotifyEnrollment(device *Device) error {
         "device": device,
         "time":   time.Now(),
     }
-    
+
     data, err := json.Marshal(payload)
     if err != nil {
         return err
     }
-    
+
     resp, err := n.client.Post(n.url, "application/json", bytes.NewReader(data))
     if err != nil {
         return err
     }
     defer resp.Body.Close()
-    
+
     if resp.StatusCode != http.StatusOK {
         return fmt.Errorf("webhook failed: %s", resp.Status)
     }
-    
+
     return nil
 }
 ```
@@ -613,25 +614,25 @@ func (s *MDMService) processCommand(cmd Command) error {
     if err := cmd.Validate(); err != nil {
         return fmt.Errorf("invalid command: %w", err)
     }
-    
+
     // Process with timeout
     ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
     defer cancel()
-    
+
     if err := s.executeCommand(ctx, cmd); err != nil {
         // Log error but don't fail the entire check-in
         s.logger.Error("command execution failed", err,
             Field("command_uuid", cmd.UUID),
             Field("command_type", cmd.Type),
         )
-        
+
         // Update command status
         cmd.Status = CommandStatusFailed
         cmd.Error = err.Error()
-        
+
         return s.store.UpdateCommand(cmd)
     }
-    
+
     return nil
 }
 ```
@@ -648,17 +649,17 @@ type Config struct {
 
 func LoadConfig() (*Config, error) {
     var cfg Config
-    
+
     // Load from environment variables
     if err := envconfig.Process("mdm", &cfg); err != nil {
         return nil, err
     }
-    
+
     // Validate configuration
     if err := cfg.Validate(); err != nil {
         return nil, err
     }
-    
+
     return &cfg, nil
 }
 ```
@@ -674,12 +675,12 @@ func TestCommandQueue_Enqueue(t *testing.T) {
         store: store,
         push:  push,
     }
-    
+
     cmd := Command{
         Type: "InstallProfile",
         UUID: "test-uuid",
     }
-    
+
     err := queue.Enqueue("device-uuid", cmd)
     assert.NoError(t, err)
     assert.True(t, store.SaveCalled)
