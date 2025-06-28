@@ -221,7 +221,7 @@ const layoutProps = {
     // Initialize Mermaid diagrams
     const initializeMermaid = async () => {
       const mermaidCodeBlocks = document.querySelectorAll(
-        "pre > code.language-mermaid"
+        'pre[data-language="mermaid"] > code, pre > code.language-mermaid'
       );
 
       if (mermaidCodeBlocks.length > 0) {
