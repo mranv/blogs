@@ -56,7 +56,7 @@
     prose-h1:!text-3xl prose-h2:!text-2xl prose-h3:!text-xl prose-h3:!not-italic
     prose-p:!text-skin-base prose-p:!leading-relaxed prose-p:!mb-6
     prose-a:!text-skin-accent prose-a:!decoration-solid prose-a:!underline-offset-4 prose-a:!decoration-2
-    hover:prose-a:!decoration-skin-accent hover:prose-a:!brightness-110
+    hover:prose-a:!brightness-110
     prose-blockquote:!border-l-skin-accent prose-blockquote:!border-l-4
     prose-blockquote:!border-opacity-60 prose-blockquote:!opacity-90 prose-blockquote:!pl-6 prose-blockquote:!py-2
     prose-figcaption:!text-skin-base prose-figcaption:!opacity-75 prose-figcaption:!text-sm
@@ -143,7 +143,7 @@
   /* Better focus states */
   .prose a:focus,
   .prose button:focus {
-    @apply !outline-2 !outline-offset-2 !outline-skin-accent !rounded-sm;
+    @apply !outline-2 !outline-offset-2 !outline-skin-fill !rounded-sm;
   }
 
   /* Improved list spacing */
