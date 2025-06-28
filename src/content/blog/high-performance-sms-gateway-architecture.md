@@ -2,7 +2,7 @@
 author: Anubhav Gain
 pubDatetime: 2025-03-04T15:44:00Z
 title: "High-Performance SMS Gateway Architecture: Building for 2000 SMS/second"
-slug: high-performance-sms-gateway-architecture
+slug: high-performance-sms-gateway-architecture-old
 featured: false
 draft: false
 tags:
@@ -25,22 +25,28 @@ Below is an example of a production-grade architecture for an open-source SMS ga
 The SMS gateway architecture consists of multiple layers designed for high availability, scalability, and security:
 
 ### Clients
+
 - **SMS applications** (your API consumers) send SMS requests.
 - An **admin interface** allows operators to monitor the system.
 
 ### Edge Layer – Load Balancer
+
 - A robust load balancer (e.g., HAProxy or NGINX in TCP mode) distributes incoming API requests evenly across multiple gateway nodes.
 
 ### SMS Gateway Cluster
+
 - Multiple instances (nodes) of your SMS gateway software (Jasmin, Kannel, etc.) handle incoming requests and perform local rate-limiting, queuing, and basic message formatting.
 
 ### Messaging Middleware (Queue)
+
 - A message queue (RabbitMQ or Redis) buffers and distributes the SMS messages to be processed. This decouples request ingestion from delivery and aids in achieving high throughput.
 
 ### SMSC Connectivity
+
 - Dedicated SMPP connectors on each node (or shared among nodes) establish and maintain connections to the carriers' SMSCs to send out messages using the SMPP protocol.
 
 ### Data & Monitoring
+
 - A centralized database logs delivery reports (DLRs), message statuses, and other metrics.
 - Monitoring tools (e.g., Prometheus/Grafana) provide real-time insights and alerting on performance, failures, and throughput.
 
@@ -63,38 +69,38 @@ graph TB
         A[SMS Applications]
         B[Admin Interface]
     end
-    
+
     subgraph "Edge Layer"
         C[Load Balancer<br/>HAProxy/NGINX]
     end
-    
+
     subgraph "Gateway Cluster"
         D[SMS Gateway Node 1<br/>Jasmin/Kannel]
         E[SMS Gateway Node 2<br/>Jasmin/Kannel]
         F[SMS Gateway Node N<br/>Jasmin/Kannel]
     end
-    
+
     subgraph "Message Queue"
         G[RabbitMQ/Redis<br/>Message Buffer]
     end
-    
+
     subgraph "SMSC Connectivity"
         H[SMPP Connector 1]
         I[SMPP Connector 2]
         J[SMPP Connector N]
     end
-    
+
     subgraph "Carrier Networks"
         K[Carrier SMSC 1]
         L[Carrier SMSC 2]
         M[Carrier SMSC N]
     end
-    
+
     subgraph "Data & Monitoring"
         N[Database<br/>DLRs & Logs]
         O[Monitoring<br/>Prometheus/Grafana]
     end
-    
+
     A --> C
     B --> C
     C --> D
@@ -128,6 +134,7 @@ This architecture is designed for:
 - **Performance** optimized for handling 2000 SMS/second throughput
 
 The message queue is particularly important as it:
+
 - Decouples ingestion from delivery
 - Provides buffering during traffic spikes
 - Enables horizontal scaling of gateway nodes
