@@ -35,6 +35,30 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
     },
+    build: {
+      // Optimize chunk size
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Split vendor chunks for better caching
+            "react-vendor": ["react", "react-dom"],
+            "search-vendor": ["fuse.js"],
+          },
+        },
+      },
+      // Enable CSS code splitting
+      cssCodeSplit: true,
+      // Minify CSS
+      cssMinify: true,
+    },
+  },
+  // Enable compression
+  compressHTML: true,
+  // Build output
+  build: {
+    // Inline small assets
+    inlineStylesheets: "auto",
   },
   scopedStyleStrategy: "where",
 });
