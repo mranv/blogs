@@ -1,0 +1,48 @@
+# Robots.txt for Anubhav Gain's Blog
+# https://mranv.pages.dev
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_astro/
+
+# Specific crawler instructions
+User-agent: Googlebot
+Crawl-delay: 0
+Allow: /
+
+User-agent: Bingbot
+Crawl-delay: 0
+Allow: /
+
+User-agent: Slurp
+Crawl-delay: 0
+Allow: /
+
+User-agent: DuckDuckBot
+Crawl-delay: 0
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Sitemap location
+Sitemap: https://mranv.pages.dev/sitemap-index.xml
+Sitemap: https://mranv.pages.dev/rss.xml
+
+# Host
+Host: https://mranv.pages.dev

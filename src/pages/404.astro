@@ -4,9 +4,15 @@ import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
+
+const layoutProps = {
+  title: "404 Page Not Found - Anubhav Gain",
+  description:
+    "The page you're looking for doesn't exist. Return to Anubhav Gain's blog for DevSecOps, cybersecurity, and technical insights.",
+};
 ---
 
-<Layout title={`404 Not Found | ${SITE.title}`}>
+<Layout {...layoutProps}>
   <Header />
 
   <main id="main-content">
@@ -14,12 +20,31 @@ import LinkButton from "@components/LinkButton.astro";
       <h1 aria-label="404 Not Found">404</h1>
       <span aria-hidden="true">¯\_(ツ)_/¯</span>
       <p>Page Not Found</p>
+      <p class="mt-2 text-lg opacity-80">
+        Sorry, this page doesn't exist on Anubhav Gain's blog
+      </p>
       <LinkButton
         href="/"
         className="my-6 text-lg underline decoration-dashed underline-offset-8"
       >
         Go back home
       </LinkButton>
+      <div class="mt-8 text-center">
+        <p class="mb-4 text-sm">Popular content by Anubhav Gain:</p>
+        <div class="flex flex-wrap gap-2 justify-center">
+          <a href="/posts/" class="text-skin-accent hover:underline"
+            >All Posts</a
+          >
+          <span class="opacity-50">•</span>
+          <a href="/tags/" class="text-skin-accent hover:underline"
+            >Browse Tags</a
+          >
+          <span class="opacity-50">•</span>
+          <a href="/about/" class="text-skin-accent hover:underline"
+            >About Anubhav</a
+          >
+        </div>
+      </div>
     </div>
   </main>
 
