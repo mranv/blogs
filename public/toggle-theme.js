@@ -19,19 +19,18 @@
   }
   t(),
     window.addEventListener("load", () => {
-      function e() {
-        t(),
-          document
-            .querySelector("#theme-btn")
-            ?.addEventListener("click", () => {
-              (e = "light" === e ? "dark" : "light"), t();
-            });
+      function n() {
+        document.querySelector("#theme-btn")?.addEventListener("click", () => {
+          e = "light" === e ? "dark" : "light";
+          t();
+        });
       }
-      e(), document.addEventListener("astro:after-swap", e);
+      n(), document.addEventListener("astro:after-swap", n);
     }),
     window
       .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", ({ matches: t }) => {
-        (e = t ? "dark" : "light"), t();
+      .addEventListener("change", ({ matches: m }) => {
+        e = m ? "dark" : "light";
+        t();
       });
 })();

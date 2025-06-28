@@ -218,6 +218,9 @@ const layoutProps = {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
+    // Store original Mermaid code for theme changes
+    const mermaidDiagrams = new Map();
+
     // Initialize Mermaid diagrams
     const initializeMermaid = async () => {
       const mermaidCodeBlocks = document.querySelectorAll(
@@ -313,9 +316,6 @@ const layoutProps = {
     } else {
       setTimeout(initializeMermaid, 200);
     }
-
-    // Store original Mermaid code for theme changes
-    const mermaidDiagrams = new Map();
 
     // Listen for theme changes to update Mermaid diagrams
     const observer = new MutationObserver(async mutations => {
