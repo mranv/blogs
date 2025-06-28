@@ -5,20 +5,20 @@
 @layer base {
   :root,
   html[data-theme="light"] {
-    --color-fill: 240, 243, 249;
-    --color-text-base: 17, 24, 39;
-    --color-accent: 0, 122, 204;
-    --color-card: 224, 231, 241;
-    --color-card-muted: 199, 210, 226;
-    --color-border: 163, 190, 224;
+    --color-fill: 252, 252, 253;
+    --color-text-base: 28, 25, 23;
+    --color-accent: 99, 102, 241;
+    --color-card: 248, 250, 252;
+    --color-card-muted: 241, 245, 249;
+    --color-border: 226, 232, 240;
   }
   html[data-theme="dark"] {
-    --color-fill: 17, 24, 39;
-    --color-text-base: 230, 237, 243;
-    --color-accent: 0, 191, 255;
-    --color-card: 31, 41, 55;
-    --color-card-muted: 41, 55, 75;
-    --color-border: 0, 143, 191;
+    --color-fill: 12, 12, 12;
+    --color-text-base: 245, 245, 245;
+    --color-accent: 129, 140, 248;
+    --color-card: 20, 20, 20;
+    --color-card-muted: 28, 28, 28;
+    --color-border: 64, 64, 64;
   }
   #sun-svg,
   html[data-theme="dark"] #moon-svg {
@@ -30,7 +30,10 @@
   }
   body {
     @apply flex min-h-[100svh] flex-col bg-skin-fill font-mono text-skin-base
-    selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
+    selection:bg-skin-accent selection:bg-opacity-20 selection:text-skin-base;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   section,
   footer {
@@ -49,23 +52,27 @@
     sm:scale-110;
   }
   .prose {
-    @apply prose-headings:!mb-3 prose-headings:!text-skin-base 
-    prose-h3:italic prose-p:!text-skin-base 
-    prose-a:!text-skin-base prose-a:!decoration-dashed prose-a:underline-offset-8
-    hover:prose-a:text-skin-accent prose-blockquote:!border-l-skin-accent
-    prose-blockquote:border-opacity-50 prose-blockquote:opacity-80
-    prose-figcaption:!text-skin-base prose-figcaption:opacity-70
-    prose-strong:!text-skin-base
-    prose-code:rounded prose-code:bg-skin-card
-    prose-code:bg-opacity-75 prose-code:p-1 prose-code:!text-skin-base
+    @apply prose-headings:!mb-4 prose-headings:!mt-8 prose-headings:!text-skin-base prose-headings:!font-semibold
+    prose-h1:!text-3xl prose-h2:!text-2xl prose-h3:!text-xl prose-h3:!not-italic
+    prose-p:!text-skin-base prose-p:!leading-relaxed prose-p:!mb-6
+    prose-a:!text-skin-accent prose-a:!decoration-solid prose-a:!underline-offset-4 prose-a:!decoration-2
+    hover:prose-a:!decoration-skin-accent hover:prose-a:!brightness-110
+    prose-blockquote:!border-l-skin-accent prose-blockquote:!border-l-4
+    prose-blockquote:!border-opacity-60 prose-blockquote:!opacity-90 prose-blockquote:!pl-6 prose-blockquote:!py-2
+    prose-figcaption:!text-skin-base prose-figcaption:!opacity-75 prose-figcaption:!text-sm
+    prose-strong:!text-skin-base prose-strong:!font-semibold
+    prose-code:!rounded-md prose-code:!bg-skin-card prose-code:!bg-opacity-80 
+    prose-code:!px-2 prose-code:!py-1 prose-code:!text-skin-base prose-code:!text-sm
     prose-code:before:!content-none prose-code:after:!content-none
-    prose-ol:!text-skin-base 
-    prose-ul:overflow-x-clip prose-ul:!text-skin-base prose-li:marker:!text-skin-accent
-    prose-table:text-skin-base prose-th:border
-    prose-th:border-skin-line prose-td:border 
-    prose-td:border-skin-line prose-img:!my-2 
-    prose-img:mx-auto prose-img:border-2 
-    prose-img:border-skin-line prose-hr:!border-skin-line;
+    prose-ol:!text-skin-base prose-ol:!leading-relaxed
+    prose-ul:overflow-x-clip prose-ul:!text-skin-base prose-ul:!leading-relaxed prose-li:marker:!text-skin-accent
+    prose-table:!text-skin-base prose-th:!border prose-th:!border-skin-line prose-th:!bg-skin-card-muted prose-th:!py-3
+    prose-td:!border prose-td:!border-skin-line prose-td:!py-2
+    prose-img:!my-6 prose-img:!mx-auto prose-img:!rounded-lg prose-img:!border 
+    prose-img:!border-skin-line prose-img:!shadow-sm
+    prose-hr:!border-skin-line prose-hr:!border-opacity-50 prose-hr:!my-8;
+    font-size: 1.05rem;
+    line-height: 1.75;
   }
   .prose a {
     @apply break-words hover:!text-skin-accent;
@@ -120,6 +127,32 @@
 
   pre > code {
     white-space: pre;
+  }
+
+  /* Enhanced readability styles */
+  .prose pre {
+    @apply !bg-skin-card !bg-opacity-60 !rounded-lg !border !border-skin-line !p-4 !my-6;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .prose pre code {
+    @apply !bg-transparent !p-0 !text-sm;
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  }
+
+  /* Better focus states */
+  .prose a:focus,
+  .prose button:focus {
+    @apply !outline-2 !outline-offset-2 !outline-skin-accent !rounded-sm;
+  }
+
+  /* Improved list spacing */
+  .prose li {
+    @apply !my-2;
+  }
+
+  .prose li > p {
+    @apply !my-1;
   }
 }
 
