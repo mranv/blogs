@@ -57,17 +57,17 @@ typedef struct {
 int manager_send_keepalive(manager_agent_t *agent) {
     char keepalive_msg[OS_MAXSTR];
     time_t current_time = time(NULL);
-    
+
     // Create keep-alive message
-    snprintf(keepalive_msg, sizeof(keepalive_msg), 
+    snprintf(keepalive_msg, sizeof(keepalive_msg),
              "#!-agent keepalive %s %ld", agent->agent_name, current_time);
-    
+
     // Send keep-alive to agent
     int result = send_message_to_agent(agent->agent_id, keepalive_msg);
-    
+
     if (result == 0) {
         agent->next_keepalive = current_time + agent->keepalive_interval;
-        
+
         // Publish to NATS for XDR monitoring
         if (nats_config.enabled) {
             keepalive_event_t event = {
@@ -79,18 +79,18 @@ int manager_send_keepalive(manager_agent_t *agent) {
                 .manager_node = Config.node_name,
                 .interval = agent->keepalive_interval
             };
-            
+
             nats_publish_keepalive_event(&event);
         }
-        
-        mdebug2("Keep-alive sent to agent %s (%d)", 
+
+        mdebug2("Keep-alive sent to agent %s (%d)",
                 agent->agent_name, agent->agent_id);
     } else {
         // Handle failed keep-alive
         agent->missed_keepalives++;
         handle_keepalive_failure(agent);
     }
-    
+
     return result;
 }
 
@@ -98,12 +98,12 @@ int manager_send_keepalive(manager_agent_t *agent) {
 void monitor_agent_status(manager_agent_t *agent) {
     time_t current_time = time(NULL);
     agent_cs_t previous_status = agent->status;
-    
+
     // Check if keep-alive is overdue
     if (current_time > agent->next_keepalive + KEEPALIVE_TIMEOUT) {
         agent->status = AGENT_CS_DISCONNECTED;
         agent->missed_keepalives++;
-        
+
         // Trigger status change notification
         if (previous_status != agent->status) {
             agent_status_change_event_t event = {
@@ -116,16 +116,16 @@ void monitor_agent_status(manager_agent_t *agent) {
                 .reason = "keepalive_timeout",
                 .missed_keepalives = agent->missed_keepalives
             };
-            
+
             // Update database
             wdb_update_agent_status(agent->agent_id, agent->status);
-            
+
             // Publish to NATS for XDR platform
             if (nats_config.enabled) {
                 nats_publish_agent_status_change(&event);
             }
-            
-            mwarn("Agent %s (%d) marked as disconnected due to keep-alive timeout", 
+
+            mwarn("Agent %s (%d) marked as disconnected due to keep-alive timeout",
                   agent->agent_name, agent->agent_id);
         }
     }
@@ -148,40 +148,40 @@ static bool scheduler_running = false;
 void* keepalive_scheduler_thread(void *arg) {
     time_t current_time;
     manager_agent_t *current_agent;
-    
+
     while (scheduler_running) {
         current_time = time(NULL);
-        
+
         pthread_mutex_lock(&agent_list_mutex);
-        
+
         for (current_agent = agent_list; current_agent; current_agent = current_agent->next) {
             // Check if it's time to send keep-alive
             if (current_time >= current_agent->next_keepalive) {
                 manager_send_keepalive(current_agent);
             }
-            
+
             // Monitor agent status
             monitor_agent_status(current_agent);
         }
-        
+
         pthread_mutex_unlock(&agent_list_mutex);
-        
+
         // Sleep for scheduler interval (default 30 seconds)
         sleep(KEEPALIVE_SCHEDULER_INTERVAL);
     }
-    
+
     return NULL;
 }
 
 // Start the keep-alive scheduler
 int start_keepalive_scheduler(void) {
     scheduler_running = true;
-    
+
     if (pthread_create(&keepalive_thread, NULL, keepalive_scheduler_thread, NULL) != 0) {
         merror("Failed to create keep-alive scheduler thread");
         return -1;
     }
-    
+
     minfo("Keep-alive scheduler started successfully");
     return 0;
 }
@@ -192,7 +192,7 @@ int add_agent_to_scheduler(int agent_id, const char *name, const char *ip) {
     if (!new_agent) {
         return -1;
     }
-    
+
     new_agent->agent_id = agent_id;
     strncpy(new_agent->agent_name, name, sizeof(new_agent->agent_name) - 1);
     strncpy(new_agent->ip_address, ip, sizeof(new_agent->ip_address) - 1);
@@ -200,12 +200,12 @@ int add_agent_to_scheduler(int agent_id, const char *name, const char *ip) {
     new_agent->next_keepalive = time(NULL) + new_agent->keepalive_interval;
     new_agent->status = AGENT_CS_ACTIVE;
     new_agent->missed_keepalives = 0;
-    
+
     pthread_mutex_lock(&agent_list_mutex);
     new_agent->next = agent_list;
     agent_list = new_agent;
     pthread_mutex_unlock(&agent_list_mutex);
-    
+
     return 0;
 }
 ```
@@ -221,13 +221,13 @@ int nats_publish_keepalive_event(const keepalive_event_t *event) {
     if (!nats_conn || !event) {
         return -1;
     }
-    
+
     pthread_mutex_lock(&nats_mutex);
-    
+
     // Create secure JSON message
     cJSON *json = cJSON_CreateObject();
     cJSON *event_data = cJSON_CreateObject();
-    
+
     // Core event data
     cJSON_AddStringToObject(event_data, "agent_id", event->agent_id);
     cJSON_AddStringToObject(event_data, "agent_name", event->agent_name);
@@ -236,40 +236,40 @@ int nats_publish_keepalive_event(const keepalive_event_t *event) {
     cJSON_AddStringToObject(event_data, "event_type", event->event_type);
     cJSON_AddStringToObject(event_data, "manager_node", event->manager_node);
     cJSON_AddNumberToObject(event_data, "interval", event->interval);
-    
+
     // Security metadata
     cJSON *security_meta = cJSON_CreateObject();
     cJSON_AddStringToObject(security_meta, "source", "wazuh-manager");
     cJSON_AddStringToObject(security_meta, "version", __ossec_version);
     cJSON_AddNumberToObject(security_meta, "sequence", get_message_sequence());
-    
+
     cJSON_AddItemToObject(json, "event", event_data);
     cJSON_AddItemToObject(json, "security", security_meta);
-    
+
     char *json_string = cJSON_Print(json);
-    
+
     // Create subject with security classification
     char subject[512];
-    snprintf(subject, sizeof(subject), "%s.manager.keepalive.%s", 
+    snprintf(subject, sizeof(subject), "%s.manager.keepalive.%s",
              nats_config.subject_prefix, event->agent_id);
-    
+
     // Publish with error handling
-    natsStatus status = natsConnection_Publish(nats_conn, subject, 
+    natsStatus status = natsConnection_Publish(nats_conn, subject,
                                              json_string, strlen(json_string));
-    
+
     // Audit log for security compliance
     if (status == NATS_OK) {
         minfo("Keep-alive event published for agent %s", event->agent_name);
     } else {
-        merror("Failed to publish keep-alive event for agent %s: %s", 
+        merror("Failed to publish keep-alive event for agent %s: %s",
                event->agent_name, natsStatus_GetText(status));
     }
-    
+
     // Cleanup
     free(json_string);
     cJSON_Delete(json);
     pthread_mutex_unlock(&nats_mutex);
-    
+
     return (status == NATS_OK) ? 0 : -1;
 }
 
@@ -277,11 +277,11 @@ int nats_publish_agent_status_change(const agent_status_change_event_t *event) {
     if (!nats_conn || !event) {
         return -1;
     }
-    
+
     // Security-focused status change notification
     cJSON *json = cJSON_CreateObject();
     cJSON *status_data = cJSON_CreateObject();
-    
+
     cJSON_AddStringToObject(status_data, "agent_id", event->agent_id);
     cJSON_AddStringToObject(status_data, "agent_name", event->agent_name);
     cJSON_AddNumberToObject(status_data, "previous_status", event->previous_status);
@@ -290,36 +290,36 @@ int nats_publish_agent_status_change(const agent_status_change_event_t *event) {
     cJSON_AddNumberToObject(status_data, "timestamp", event->timestamp);
     cJSON_AddStringToObject(status_data, "reason", event->reason);
     cJSON_AddNumberToObject(status_data, "missed_keepalives", event->missed_keepalives);
-    
+
     // Security alert level based on status change
-    int alert_level = calculate_alert_level(event->previous_status, 
-                                          event->current_status, 
+    int alert_level = calculate_alert_level(event->previous_status,
+                                          event->current_status,
                                           event->missed_keepalives);
     cJSON_AddNumberToObject(status_data, "alert_level", alert_level);
-    
+
     cJSON_AddItemToObject(json, "status_change", status_data);
-    
+
     char *json_string = cJSON_Print(json);
-    
+
     // Publish to both general and alert-specific subjects
     char subject[512];
-    snprintf(subject, sizeof(subject), "%s.agent.%s.status_change", 
+    snprintf(subject, sizeof(subject), "%s.agent.%s.status_change",
              nats_config.subject_prefix, event->agent_id);
-    
-    natsStatus status = natsConnection_Publish(nats_conn, subject, 
+
+    natsStatus status = natsConnection_Publish(nats_conn, subject,
                                              json_string, strlen(json_string));
-    
+
     // Also publish to alert stream if high severity
     if (alert_level >= HIGH_ALERT_THRESHOLD) {
         char alert_subject[512];
-        snprintf(alert_subject, sizeof(alert_subject), "%s.alerts.agent_disconnected", 
+        snprintf(alert_subject, sizeof(alert_subject), "%s.alerts.agent_disconnected",
                  nats_config.subject_prefix);
         natsConnection_Publish(nats_conn, alert_subject, json_string, strlen(json_string));
     }
-    
+
     free(json_string);
     cJSON_Delete(json);
-    
+
     return (status == NATS_OK) ? 0 : -1;
 }
 ```
@@ -335,7 +335,7 @@ int nats_publish_agent_status_change(const agent_status_change_event_t *event) {
     <connection>secure</connection>
     <port>1514</port>
     <protocol>tcp</protocol>
-    
+
     <!-- New keep-alive settings -->
     <manager_keepalive>
       <enabled>yes</enabled>
@@ -345,7 +345,7 @@ int nats_publish_agent_status_change(const agent_status_change_event_t *event) {
       <retry_interval>30</retry_interval>
     </manager_keepalive>
   </remote>
-  
+
   <!-- NATS Integration for XDR Platform -->
   <nats>
     <enabled>yes</enabled>
@@ -356,7 +356,7 @@ int nats_publish_agent_status_change(const agent_status_change_event_t *event) {
     <tls_key>/var/ossec/etc/nats-client.key</tls_key>
     <max_reconnects>10</max_reconnects>
     <reconnect_delay>5</reconnect_delay>
-    
+
     <!-- Security settings -->
     <encrypt_messages>yes</encrypt_messages>
     <message_signing>yes</message_signing>

@@ -53,7 +53,7 @@ fn allocate_executable_memory(size: usize) -> *mut u8 {
             MEM_COMMIT | MEM_RESERVE,
             PAGE_EXECUTE_READWRITE
         );
-        
+
         memory as *mut u8
     }
 }
@@ -61,7 +61,7 @@ fn allocate_executable_memory(size: usize) -> *mut u8 {
 // More secure alternative
 fn allocate_rw_memory(size: usize) -> *mut u8 {
     use winapi::um::winnt::PAGE_READWRITE;
-    
+
     unsafe {
         // Better: Separate read/write from execution permissions
         let memory = VirtualAlloc(
@@ -70,7 +70,7 @@ fn allocate_rw_memory(size: usize) -> *mut u8 {
             MEM_COMMIT | MEM_RESERVE,
             PAGE_READWRITE
         );
-        
+
         memory as *mut u8
     }
 }
@@ -114,7 +114,7 @@ unsafe extern "system" fn thread_procedure(_param: *mut std::ffi::c_void) -> u32
 fn create_new_thread() -> HANDLE {
     unsafe {
         let thread_proc: LPTHREAD_START_ROUTINE = Some(thread_procedure);
-        
+
         let thread_handle = CreateThread(
             null_mut(),       // Default security attributes
             0,                // Default stack size
@@ -123,12 +123,12 @@ fn create_new_thread() -> HANDLE {
             0,                // Run immediately
             null_mut()        // Thread ID (not needed)
         );
-        
+
         // Always validate handles in security-conscious code
         if thread_handle.is_null() {
             panic!("Failed to create thread");
         }
-        
+
         thread_handle
     }
 }
@@ -167,7 +167,7 @@ fn wait_for_thread(thread_handle: HANDLE) {
     unsafe {
         // Wait indefinitely - could lead to hanging if thread never completes
         let result = WaitForSingleObject(thread_handle, INFINITE);
-        
+
         // Security-conscious code should handle all possible outcomes
         if result != 0 {  // WAIT_OBJECT_0
             println!("Error waiting for thread");
@@ -178,10 +178,10 @@ fn wait_for_thread(thread_handle: HANDLE) {
 // More secure alternative with timeout
 fn wait_for_thread_with_timeout(thread_handle: HANDLE, timeout_ms: u32) -> bool {
     use winapi::um::winbase::{WAIT_OBJECT_0, WAIT_TIMEOUT};
-    
+
     unsafe {
         let result = WaitForSingleObject(thread_handle, timeout_ms);
-        
+
         match result {
             WAIT_OBJECT_0 => true,  // Object is signaled
             WAIT_TIMEOUT => {
@@ -237,10 +237,10 @@ unsafe fn execute_shellcode(shellcode: &[u8]) {
         MEM_COMMIT | MEM_RESERVE,
         PAGE_EXECUTE_READWRITE
     ) as *mut u8;
-    
+
     // 2. Copy shellcode to memory
     std::ptr::copy_nonoverlapping(shellcode.as_ptr(), memory, shellcode.len());
-    
+
     // 3. Execute shellcode via thread
     let thread = CreateThread(
         null_mut(),
@@ -250,7 +250,7 @@ unsafe fn execute_shellcode(shellcode: &[u8]) {
         0,
         null_mut()
     );
-    
+
     // 4. Wait for shellcode execution
     WaitForSingleObject(thread, INFINITE);
 }
@@ -259,6 +259,7 @@ unsafe fn execute_shellcode(shellcode: &[u8]) {
 ### Detection Heuristics
 
 XDR/OXDR platforms should monitor for:
+
 - Memory allocations with `PAGE_EXECUTE_READWRITE` flags
 - Thread creation with entry points in recently allocated memory
 - Binaries with unusually high entropy sections (possibly encrypted shellcode)
@@ -285,10 +286,10 @@ unsafe fn secure_execution_pattern(code_data: &[u8]) {
         MEM_COMMIT | MEM_RESERVE,
         PAGE_READWRITE
     ) as *mut u8;
-    
+
     // 2. Initialize memory
     std::ptr::copy_nonoverlapping(code_data.as_ptr(), memory, code_data.len());
-    
+
     // 3. Change to execute-read only (no more writing)
     let mut old_protect = 0;
     VirtualProtect(
@@ -297,7 +298,7 @@ unsafe fn secure_execution_pattern(code_data: &[u8]) {
         PAGE_EXECUTE_READ,  // Execute + Read but NOT write
         &mut old_protect
     );
-    
+
     // 4. Create thread with explicit parameter
     let parameter = create_thread_parameter();  // Create explicit parameter
     let thread = CreateThread(
@@ -308,18 +309,18 @@ unsafe fn secure_execution_pattern(code_data: &[u8]) {
         0,
         null_mut()
     );
-    
+
     // 5. Wait with timeout instead of INFINITE
     const REASONABLE_TIMEOUT: u32 = 30000;  // 30 seconds
     let wait_result = WaitForSingleObject(thread, REASONABLE_TIMEOUT);
-    
+
     // 6. Handle all possible outcomes
     match wait_result {
         0 => { /* Success case */ },
         258 => { /* Timeout case - implement recovery */ },
         _ => { /* Error case - implement error handling */ }
     }
-    
+
     // 7. Clean up resources properly
     // ...
 }
@@ -391,30 +392,30 @@ impl SecureCodeExecution {
                 PAGE_READWRITE
             ) as *mut u8
         };
-        
+
         if memory.is_null() {
             return Err("Failed to allocate memory".to_string());
         }
-        
+
         Ok(Self {
             memory,
             memory_size: code_size,
             thread_handle: None,
         })
     }
-    
+
     fn write_code(&mut self, code_data: &[u8]) -> Result<(), String> {
         if code_data.len() > self.memory_size {
             return Err("Code data exceeds allocated memory size".to_string());
         }
-        
+
         unsafe {
             std::ptr::copy_nonoverlapping(code_data.as_ptr(), self.memory, code_data.len());
         }
-        
+
         Ok(())
     }
-    
+
     fn make_executable(&mut self) -> Result<(), String> {
         let mut old_protect = 0;
         let result = unsafe {
@@ -426,19 +427,19 @@ impl SecureCodeExecution {
                 &mut old_protect
             )
         };
-        
+
         if result == 0 {
             return Err("Failed to change memory protection".to_string());
         }
-        
+
         Ok(())
     }
-    
+
     fn execute(&mut self, parameter: *mut std::ffi::c_void) -> Result<(), String> {
         if self.thread_handle.is_some() {
             return Err("Thread already running".to_string());
         }
-        
+
         let thread = unsafe {
             // 3. Create thread with proper parameters
             CreateThread(
@@ -450,26 +451,26 @@ impl SecureCodeExecution {
                 null_mut()
             )
         };
-        
+
         if thread.is_null() {
             return Err("Failed to create thread".to_string());
         }
-        
+
         self.thread_handle = Some(thread);
         Ok(())
     }
-    
+
     fn wait_for_completion(&mut self, timeout_ms: u32) -> Result<u32, String> {
         let thread = match self.thread_handle {
             Some(h) => h,
             None => return Err("No thread running".to_string()),
         };
-        
+
         let wait_result = unsafe {
             // 4. Wait with timeout rather than INFINITE
             WaitForSingleObject(thread, timeout_ms)
         };
-        
+
         // 5. Proper error handling
         match wait_result {
             0 => { // WAIT_OBJECT_0
@@ -499,7 +500,7 @@ impl Drop for SecureCodeExecution {
                 CloseHandle(thread);
             }
         }
-        
+
         if !self.memory.is_null() {
             unsafe {
                 VirtualFree(self.memory as LPVOID, 0, MEM_RELEASE);
@@ -511,19 +512,19 @@ impl Drop for SecureCodeExecution {
 // Example usage
 fn execute_dynamic_code(code: &[u8]) -> Result<u32, String> {
     let mut executor = SecureCodeExecution::new(code.len())?;
-    
+
     // Initialize memory with code
     executor.write_code(code)?;
-    
+
     // Change permissions following W^X principle
     executor.make_executable()?;
-    
+
     // Create parameter for thread if needed
     let parameter = null_mut();
-    
+
     // Execute code
     executor.execute(parameter)?;
-    
+
     // Wait with reasonable timeout
     const TIMEOUT_MS: u32 = 5000; // 5 seconds
     executor.wait_for_completion(TIMEOUT_MS)
@@ -535,31 +536,37 @@ fn execute_dynamic_code(code: &[u8]) -> Result<u32, String> {
 For security automation platforms focusing on XDR/OXDR:
 
 ### 1. API Monitoring
+
 - Implement hooks for VirtualAlloc, CreateThread, and WaitForSingleObject
 - Detect suspicious patterns in API call sequences
 - Track parameter values, especially memory protection flags
 
 ### 2. Memory Protection
+
 - Deploy runtime memory scanning for executable regions
 - Monitor memory permission changes
 - Detect anomalous memory allocation patterns
 
 ### 3. Thread Analysis
+
 - Track thread creation and termination events
 - Monitor thread entry points
 - Analyze thread behavior patterns
 
 ### 4. Process Relationship Mapping
+
 - Build process trees to identify injection attempts
 - Track parent-child relationships
 - Monitor cross-process operations
 
 ### 5. Behavioral Analytics
+
 - Correlate API usage with other system activities
 - Identify deviation from baseline behavior
 - Implement machine learning for anomaly detection
 
 ### 6. Rule Development
+
 - Create detection rules specific to these APIs in combination
 - Implement severity scoring based on context
 - Develop response playbooks for different scenarios
@@ -569,6 +576,7 @@ For security automation platforms focusing on XDR/OXDR:
 Understanding the security implications of Windows API functions like VirtualAlloc, CreateThread, and WaitForSingleObject is crucial for both offensive and defensive security professionals. These APIs, while essential for legitimate software functionality, are frequently abused in malware and exploitation techniques.
 
 Key takeaways:
+
 - Never allocate memory with RWX permissions
 - Implement the W^X principle consistently
 - Use timeouts to prevent denial of service
@@ -580,15 +588,18 @@ By following secure coding practices and implementing comprehensive monitoring, 
 ## References
 
 1. Microsoft Documentation:
+
    - [VirtualAlloc function](https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc)
    - [CreateThread function](https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createthread)
    - [WaitForSingleObject function](https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject)
 
 2. MITRE ATT&CK:
+
    - [T1055: Process Injection](https://attack.mitre.org/techniques/T1055/)
    - [T1106: Native API](https://attack.mitre.org/techniques/T1106/)
 
 3. Rust Documentation:
+
    - [winapi crate](https://docs.rs/winapi/)
    - [std::thread module](https://doc.rust-lang.org/std/thread/)
 

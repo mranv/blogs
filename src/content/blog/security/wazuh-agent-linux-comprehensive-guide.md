@@ -37,6 +37,7 @@ The agent communicates with the central server through an encrypted, authenticat
 ## Resource Requirements
 
 One of Wazuh agent's key strengths is its lightweight footprint:
+
 - **Memory Usage**: ~35MB RAM
 - **CPU Impact**: Minimal (typically <1% on modern systems)
 - **Disk Space**: ~100MB for installation
@@ -55,6 +56,7 @@ The Wazuh agent excels at comprehensive log collection:
 - **Command Output**: Can execute commands and collect their output as log data
 
 Configuration example for custom log collection:
+
 ```xml
 <localfile>
   <log_format>syslog</log_format>
@@ -73,6 +75,7 @@ FIM provides critical visibility into file system changes:
 - **Baseline Comparison**: Detects deviations from known-good states
 
 Key directories typically monitored:
+
 - `/etc` - System configuration files
 - `/bin`, `/sbin` - System binaries
 - `/boot` - Boot loader files
@@ -89,6 +92,7 @@ Leveraging the Linux Audit framework, Wazuh provides deep system-level visibilit
 - **User Activity Tracking**: Comprehensive audit trail of user actions
 
 Example audit rules:
+
 ```bash
 # Monitor privilege escalation
 -a always,exit -F arch=b64 -S setuid -F a0=0 -F exe=/usr/bin/sudo -k privilege_escalation
@@ -108,6 +112,7 @@ SCA performs automated security compliance checks:
 - **Customizable Checks**: Create organization-specific security policies
 
 Common checks include:
+
 - Password policy compliance
 - SSH configuration hardening
 - Firewall rules validation
@@ -125,6 +130,7 @@ Proactive vulnerability management capabilities:
 - **Zero-day Detection**: Identifies indicators of unknown vulnerabilities
 
 The agent collects package information from:
+
 - APT/dpkg (Debian/Ubuntu)
 - YUM/RPM (RHEL/CentOS)
 - Snap packages
@@ -141,6 +147,7 @@ Non-signature-based detection methods:
 - **Kernel Module Monitoring**: Tracks loaded kernel modules
 
 Detection techniques:
+
 ```bash
 # Check for hidden processes
 /var/ossec/bin/ossec-rootcheck
@@ -160,6 +167,7 @@ Automated threat containment and remediation:
 - **Custom Scripts**: Execute organization-specific response actions
 
 Example active response configuration:
+
 ```xml
 <active-response>
   <command>firewall-drop</command>
@@ -208,6 +216,7 @@ Modern infrastructure monitoring capabilities:
 ### SIEM Integration
 
 The Wazuh agent data can be integrated with:
+
 - **Elasticsearch**: Native integration for log storage
 - **Splunk**: Forwarder configuration available
 - **IBM QRadar**: DSM modules for event parsing
@@ -223,21 +232,25 @@ The Wazuh agent data can be integrated with:
 ## Threat Detection Use Cases
 
 ### 1. Insider Threat Detection
+
 - Monitor privileged user activities
 - Track data exfiltration attempts
 - Detect unauthorized access patterns
 
 ### 2. Advanced Persistent Threats (APT)
+
 - Identify lateral movement
 - Detect persistence mechanisms
 - Track command and control communications
 
 ### 3. Compliance Monitoring
+
 - Continuous compliance validation
 - Audit trail maintenance
 - Policy violation detection
 
 ### 4. Incident Response
+
 - Rapid threat containment
 - Forensic data collection
 - Timeline reconstruction
@@ -247,6 +260,7 @@ The Wazuh agent data can be integrated with:
 The Wazuh agent represents a comprehensive security monitoring solution for Linux environments, providing defense-in-depth through multiple detection layers. Its lightweight design, combined with powerful detection capabilities and automated response features, makes it an excellent choice for organizations seeking to enhance their security posture without significant resource overhead.
 
 By deploying Wazuh agents across your Linux infrastructure, you gain:
+
 - Real-time security visibility
 - Automated threat response
 - Compliance assurance

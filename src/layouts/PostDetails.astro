@@ -115,7 +115,7 @@ const layoutProps = {
 
 <script>
   // Optimized post detail scripts - deferred and performance optimized
-  document.addEventListener("DOMContentLoaded", () => {
+  function initializePostScripts() {
     // Progress bar - only create on scroll
     let progressBar: HTMLDivElement | null = null;
     let hasScrolled = false;
@@ -227,6 +227,11 @@ const layoutProps = {
 
     // Initialize Mermaid diagrams
     const initializeMermaid = async () => {
+      // Check if already initialized
+      if (document.querySelector(".mermaid-rendered")) {
+        return;
+      }
+
       const mermaidCodeBlocks = document.querySelectorAll(
         'pre[data-language="mermaid"] > code, pre > code.language-mermaid'
       );
@@ -314,12 +319,8 @@ const layoutProps = {
       }
     };
 
-    // Defer Mermaid initialization
-    if ("requestIdleCallback" in window) {
-      (window as any).requestIdleCallback(initializeMermaid);
-    } else {
-      setTimeout(initializeMermaid, 200);
-    }
+    // Initialize Mermaid immediately for better first-load experience
+    initializeMermaid();
 
     // Listen for theme changes to update Mermaid diagrams
     const observer = new MutationObserver(async mutations => {
@@ -394,5 +395,17 @@ const layoutProps = {
       attributes: true,
       attributeFilter: ["data-theme"],
     });
+  }
+
+  // Initialize on first load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializePostScripts);
+  } else {
+    initializePostScripts();
+  }
+
+  // Re-initialize on Astro page navigation
+  document.addEventListener("astro:page-load", () => {
+    initializePostScripts();
   });
 </script>

@@ -89,19 +89,19 @@ Create the Filebeat configuration file (`/etc/filebeat/filebeat.yml`):
 ```yaml
 # Wazuh - Filebeat configuration file
 filebeat.inputs:
-- type: filestream
-  id: wazuh-alerts
-  paths:
-    - /var/ossec/logs/alerts/alerts.json
-  parser:
-    format: json
+  - type: filestream
+    id: wazuh-alerts
+    paths:
+      - /var/ossec/logs/alerts/alerts.json
+    parser:
+      format: json
 
-- type: filestream  
-  id: wazuh-archives
-  paths:
-    - /var/ossec/logs/archives/archives.json
-  parser:
-    format: json
+  - type: filestream
+    id: wazuh-archives
+    paths:
+      - /var/ossec/logs/archives/archives.json
+    parser:
+      format: json
 
 output.elasticsearch:
   hosts: ["localhost:9200"]
@@ -110,12 +110,12 @@ output.elasticsearch:
   password: ${password}
   ssl.certificate_authorities:
     - /etc/filebeat/certs/root-ca.pem
-  ssl.certificate: "/etc/filebeat/certs/wazuh-server.pem"  
+  ssl.certificate: "/etc/filebeat/certs/wazuh-server.pem"
   ssl.key: "/etc/filebeat/certs/wazuh-server-key.pem"
 
 setup.template.json.enabled: true
-setup.template.json.path: '/etc/filebeat/wazuh-template.json'
-setup.template.json.name: 'wazuh'
+setup.template.json.path: "/etc/filebeat/wazuh-template.json"
+setup.template.json.name: "wazuh"
 setup.ilm.enabled: false
 
 processors:
@@ -170,7 +170,7 @@ Wazuh supports several correlation mechanisms. Here's an example of creating a c
 ```xml
 <!-- Custom correlation rules in /var/ossec/etc/rules/local_rules.xml -->
 <group name="correlation,attack,">
-  
+
   <!-- Rule for multiple failed logins -->
   <rule id="100001" level="7" frequency="5" timeframe="300">
     <if_matched_sid>5710</if_matched_sid>
@@ -197,7 +197,7 @@ For more complex scenarios involving multiple systems:
 
 ```xml
 <group name="correlation,lateral_movement,">
-  
+
   <!-- Detect suspicious network activity -->
   <rule id="100010" level="8" frequency="3" timeframe="600">
     <if_matched_group>network</if_matched_group>
@@ -241,14 +241,70 @@ Create visualizations for correlation analysis:
     "title": "Alert Correlation Timeline",
     "type": "line",
     "params": {
-      "grid": {"categoryLines": false, "style": {"color": "#eee"}},
-      "categoryAxes": [{"id": "CategoryAxis-1", "type": "category", "position": "bottom", "show": true, "style": {}, "scale": {"type": "linear"}, "labels": {"show": true, "truncate": 100}, "title": {}}],
-      "valueAxes": [{"id": "ValueAxis-1", "name": "LeftAxis-1", "type": "value", "position": "left", "show": true, "style": {}, "scale": {"type": "linear", "mode": "normal"}, "labels": {"show": true, "rotate": 0, "filter": false, "truncate": 100}, "title": {"text": "Alert Count"}}],
-      "seriesParams": [{"show": true, "type": "line", "mode": "normal", "data": {"label": "Alert Count", "id": "1"}, "valueAxis": "ValueAxis-1", "drawLinesBetweenPoints": true, "showCircles": true}]
+      "grid": { "categoryLines": false, "style": { "color": "#eee" } },
+      "categoryAxes": [
+        {
+          "id": "CategoryAxis-1",
+          "type": "category",
+          "position": "bottom",
+          "show": true,
+          "style": {},
+          "scale": { "type": "linear" },
+          "labels": { "show": true, "truncate": 100 },
+          "title": {}
+        }
+      ],
+      "valueAxes": [
+        {
+          "id": "ValueAxis-1",
+          "name": "LeftAxis-1",
+          "type": "value",
+          "position": "left",
+          "show": true,
+          "style": {},
+          "scale": { "type": "linear", "mode": "normal" },
+          "labels": {
+            "show": true,
+            "rotate": 0,
+            "filter": false,
+            "truncate": 100
+          },
+          "title": { "text": "Alert Count" }
+        }
+      ],
+      "seriesParams": [
+        {
+          "show": true,
+          "type": "line",
+          "mode": "normal",
+          "data": { "label": "Alert Count", "id": "1" },
+          "valueAxis": "ValueAxis-1",
+          "drawLinesBetweenPoints": true,
+          "showCircles": true
+        }
+      ]
     },
     "aggs": [
-      {"id": "1", "enabled": true, "type": "count", "schema": "metric", "params": {}},
-      {"id": "2", "enabled": true, "type": "date_histogram", "schema": "segment", "params": {"field": "@timestamp", "interval": "auto", "customInterval": "2h", "min_doc_count": 1, "extended_bounds": {}}}
+      {
+        "id": "1",
+        "enabled": true,
+        "type": "count",
+        "schema": "metric",
+        "params": {}
+      },
+      {
+        "id": "2",
+        "enabled": true,
+        "type": "date_histogram",
+        "schema": "segment",
+        "params": {
+          "field": "@timestamp",
+          "interval": "auto",
+          "customInterval": "2h",
+          "min_doc_count": 1,
+          "extended_bounds": {}
+        }
+      }
     ]
   }
 }
@@ -273,19 +329,19 @@ OpenSearch Dashboards 2.19.2 includes built-in correlation graph capabilities:
       "query": {
         "bool": {
           "must": [
-            {"match": {"rule.groups": "authentication_failed"}},
-            {"range": {"@timestamp": {"gte": "now-1h"}}}
+            { "match": { "rule.groups": "authentication_failed" } },
+            { "range": { "@timestamp": { "gte": "now-1h" } } }
           ]
         }
       }
     },
     {
-      "index": "wazuh-alerts-*", 
+      "index": "wazuh-alerts-*",
       "query": {
         "bool": {
           "must": [
-            {"match": {"rule.groups": "authentication_success"}},
-            {"range": {"@timestamp": {"gte": "now-1h"}}}
+            { "match": { "rule.groups": "authentication_success" } },
+            { "range": { "@timestamp": { "gte": "now-1h" } } }
           ]
         }
       }
@@ -313,35 +369,41 @@ Set up OpenSearch alerting to trigger on correlation patterns:
       "unit": "MINUTES"
     }
   },
-  "inputs": [{
-    "search": {
-      "indices": ["wazuh-alerts-*"],
-      "query": {
-        "bool": {
-          "must": [
-            {"match": {"rule.groups": "correlation"}},
-            {"range": {"@timestamp": {"gte": "now-10m"}}}
-          ]
+  "inputs": [
+    {
+      "search": {
+        "indices": ["wazuh-alerts-*"],
+        "query": {
+          "bool": {
+            "must": [
+              { "match": { "rule.groups": "correlation" } },
+              { "range": { "@timestamp": { "gte": "now-10m" } } }
+            ]
+          }
         }
       }
     }
-  }],
-  "triggers": [{
-    "name": "High Priority Correlation",
-    "severity": "1",
-    "condition": {
-      "script": {
-        "source": "ctx.results[0].hits.total.value > 0"
-      }
-    },
-    "actions": [{
-      "name": "Send Email Alert",
-      "destination_id": "email-destination-id",
-      "message_template": {
-        "source": "Alert: Correlation detected - {{ctx.results.0.hits.hits.0._source.rule.description}}"
-      }
-    }]
-  }]
+  ],
+  "triggers": [
+    {
+      "name": "High Priority Correlation",
+      "severity": "1",
+      "condition": {
+        "script": {
+          "source": "ctx.results[0].hits.total.value > 0"
+        }
+      },
+      "actions": [
+        {
+          "name": "Send Email Alert",
+          "destination_id": "email-destination-id",
+          "message_template": {
+            "source": "Alert: Correlation detected - {{ctx.results.0.hits.hits.0._source.rule.description}}"
+          }
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -357,15 +419,15 @@ dashboard:
     - title: "Alert Volume by Source IP"
       type: "data_table"
       query: "rule.groups:correlation AND agent.ip:*"
-      
+
     - title: "Correlation Timeline"
       type: "line_chart"
       timeframe: "24h"
-      
+
     - title: "Geographic Distribution"
       type: "map"
       field: "geoip.location"
-      
+
     - title: "Top Correlation Rules"
       type: "pie_chart"
       field: "rule.id"
@@ -433,11 +495,11 @@ class WazuhCorrelationEngine:
     def __init__(self, opensearch_host, username, password):
         self.opensearch_host = opensearch_host
         self.auth = (username, password)
-    
+
     def search_alerts(self, query, time_range="1h"):
         """Search for alerts in OpenSearch"""
         endpoint = f"{self.opensearch_host}/wazuh-alerts-*/_search"
-        
+
         search_body = {
             "query": {
                 "bool": {
@@ -454,30 +516,30 @@ class WazuhCorrelationEngine:
             "size": 100,
             "sort": [{"@timestamp": {"order": "desc"}}]
         }
-        
-        response = requests.post(endpoint, 
-                               json=search_body, 
+
+        response = requests.post(endpoint,
+                               json=search_body,
                                auth=self.auth,
                                verify=False)
         return response.json()
-    
+
     def correlate_events(self, rule_config):
         """Correlate events based on rule configuration"""
         correlations = []
-        
+
         for rule in rule_config:
             # Search for first event type
             primary_events = self.search_alerts(rule['primary_query'])
-            
+
             for event in primary_events['hits']['hits']:
                 source_ip = event['_source'].get('data', {}).get('srcip')
                 if source_ip:
                     # Search for correlated events from same IP
                     correlated_query = rule['secondary_query']
                     correlated_query.append({"term": {"data.srcip": source_ip}})
-                    
+
                     secondary_events = self.search_alerts(correlated_query, "30m")
-                    
+
                     if secondary_events['hits']['total']['value'] > 0:
                         correlations.append({
                             'primary_event': event,
@@ -485,7 +547,7 @@ class WazuhCorrelationEngine:
                             'correlation_rule': rule['name'],
                             'severity': rule['severity']
                         })
-        
+
         return correlations
 
 # Usage example
@@ -531,47 +593,47 @@ check_service() {
 # Setup index templates
 setup_index_templates() {
     echo "Setting up index templates..."
-    
+
     curl -X PUT "${OPENSEARCH_HOST}:${OPENSEARCH_PORT}/_template/wazuh" \
         -H 'Content-Type: application/json' \
         -d @/etc/filebeat/wazuh-template.json \
         --user admin:admin -k
-    
+
     echo "Index templates configured successfully"
 }
 
 # Create correlation dashboards
 setup_dashboards() {
     echo "Setting up correlation dashboards..."
-    
+
     # Download Wazuh dashboards for OpenSearch
     wget -O /tmp/wazuh-dashboards.ndjson \
         "https://packages.wazuh.com/integrations/opensearch/4.x-2.x/dashboards/wz-os-4.x-2.x-dashboards.ndjson"
-    
+
     # Import dashboards
     curl -X POST "${OPENSEARCH_HOST}:5601/api/saved_objects/_import" \
         -H "osd-xsrf: true" \
         -H "Content-Type: application/json" \
         --form file=@/tmp/wazuh-dashboards.ndjson \
         --user admin:admin -k
-    
+
     echo "Dashboards imported successfully"
 }
 
 # Main execution
 main() {
     echo "Starting Wazuh-OpenSearch integration setup..."
-    
+
     # Check prerequisites
     check_service wazuh-manager
     check_service opensearch
     check_service opensearch-dashboards
     check_service filebeat
-    
+
     # Setup components
     setup_index_templates
     setup_dashboards
-    
+
     echo "Integration setup completed successfully!"
     echo "Access OpenSearch Dashboards at: https://${OPENSEARCH_HOST}:5601"
 }

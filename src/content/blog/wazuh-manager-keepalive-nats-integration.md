@@ -27,6 +27,7 @@ The `wazuh-remoted` daemon is the core component responsible for agent communica
 **Main Database**: Keep-alive timestamps and agent connection states are stored in `/var/ossec/queue/db/global.db` (SQLite database) within the agent table.
 
 **Key Tables**:
+
 - **agent table**: Stores `last_keepalive`, `connection_status`, and `status_code` fields
 - **belongs table**: Maps agents to groups for bulk keep-alive operations
 - Individual agent databases at `/var/ossec/queue/db/{AGENT_ID}.db` contain sync status and module-specific keep-alive data
@@ -60,6 +61,7 @@ The `wazuh-remoted` daemon is the core component responsible for agent communica
 - **AGENT_CS_UNKNOWN**: Initial state or connection error
 
 **Status Verification Tools**:
+
 - `/var/ossec/bin/agent_control -l` displays agent keep-alive status
 - `/var/ossec/bin/agent_control -i <AGENT_ID>` shows last keep-alive timestamp
 - `/var/ossec/bin/wazuh-db` provides database-level keep-alive queries
@@ -86,19 +88,19 @@ graph TB
         C --> D[(global.db)]
         B --> E[NATS Publisher]
     end
-    
+
     subgraph "Agents"
         F[Agent 001] -->|TCP/1514| A
         G[Agent 002] -->|TCP/1514| A
         H[Agent 003] -->|TCP/1514| A
     end
-    
+
     subgraph "NATS Streaming"
         E --> I[agent.keepalive.*]
         I --> J[XDR Platform]
         I --> K[Monitoring Dashboard]
     end
-    
+
     subgraph "Database Schema"
         D --> L[agent table<br/>- id<br/>- last_keepalive<br/>- connection_status<br/>- status_code]
     end
@@ -127,11 +129,13 @@ The `wazuh-remoted` daemon is the core server-side component that manages agent 
 ### 4. Agent Status Mechanisms
 
 **Connection Status**: Agents report their status through multiple states:
+
 - **pending**: Waiting for acknowledgment from manager
 - **disconnected**: No acknowledgment in last 60 seconds
 - **connected**: Acknowledged connection established
 
 **Status Verification Tools**:
+
 - `/var/ossec/bin/agent_control -l` lists all agents and their status
 - `/var/ossec/bin/agent_control -i <AGENT_ID>` shows specific agent status
 - Agent state is also tracked in `/var/ossec/var/run/wazuh-agentd.state` on the agent side

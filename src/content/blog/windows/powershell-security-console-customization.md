@@ -58,20 +58,20 @@ function prompt {
     $lastCommand = $?
     $statusIndicator = if ($lastCommand) { "+" } else { "!" }
     $statusColor = if ($lastCommand) { "Green" } else { "Red" }
-    
+
     # Admin check
     $admin = [bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S-1-5-32-544")
     $adminTag = if ($admin) { "[ADMIN] " } else { "" }
-    
+
     # Current path
     $path = $pwd.Path.Replace($HOME, "~")
-    
+
     # Current time for audit logging
     $time = Get-Date -Format "HH:mm:ss"
-    
+
     # Update window title with path info
     $Host.UI.RawUI.WindowTitle = "Anubhav - $path $adminTag"
-    
+
     # Multi-line prompt for better readability
     Write-Host ""
     Write-Host "[$time] " -NoNewline -ForegroundColor Cyan
@@ -104,7 +104,7 @@ function Test-Port {
 function Get-SystemInfo {
     $os = Get-CimInstance Win32_OperatingSystem
     $cs = Get-CimInstance Win32_ComputerSystem
-    
+
     Write-Host "OS: $($os.Caption) $($os.Version)" -ForegroundColor Green
     Write-Host "Boot Time: $($os.LastBootUpTime)" -ForegroundColor Green
     Write-Host "Uptime: $([math]::Round(($os.LocalDateTime - $os.LastBootUpTime).TotalHours, 2)) hours" -ForegroundColor Green
@@ -133,17 +133,20 @@ Write-Host 'powershell -ExecutionPolicy Bypass -NoExit -Command ". $PROFILE"' -F
 ### Key Features of the PowerShell Profile
 
 1. **Enhanced Security Prompt**:
+
    - Shows current time for audit trails
    - Displays admin status clearly
    - Indicates last command success/failure
    - Updates window title with context
 
 2. **Security Utility Functions**:
+
    - `Test-Port`: Quick port scanning capability
    - `Get-SystemInfo`: System security auditing
    - Custom aliases for common tasks
 
 3. **Professional Appearance**:
+
    - Dark theme optimized for long sessions
    - Color-coded output for different message types
    - Clean, organized welcome banner
@@ -190,9 +193,9 @@ echo.
 :: Custom prompt with admin check
 net session >nul 2>&1
 if %errorlevel% == 0 (
-    prompt $E[36m[$T]$E[0m [ADMIN] $E[94m$P$E[0m$_$E[92m^>$E[0m 
+    prompt $E[36m[$T]$E[0m [ADMIN] $E[94m$P$E[0m$_$E[92m^>$E[0m
 ) else (
-    prompt $E[36m[$T]$E[0m $E[94m$P$E[0m$_$E[92m^>$E[0m 
+    prompt $E[36m[$T]$E[0m $E[94m$P$E[0m$_$E[92m^>$E[0m
 )
 
 :: Security aliases
@@ -231,12 +234,14 @@ Save this as `SetupAutoRun.bat` and run it as administrator.
 ### CMD Console Features
 
 1. **Security Commands**:
+
    - `sysinfo`: Quick OS information
    - `ports`: Show listening ports
    - `netinfo`: Network configuration
    - `scan`: Ping utility wrapper
 
 2. **Enhanced Prompt**:
+
    - Shows current time
    - Indicates admin privileges
    - Color-coded for visibility
@@ -257,7 +262,7 @@ Extend your profile with additional utilities:
 function Get-OpenPorts {
     param($Target = "localhost", $StartPort = 1, $EndPort = 1000)
     Write-Host "Scanning $Target from port $StartPort to $EndPort..." -ForegroundColor Yellow
-    
+
     $StartPort..$EndPort | ForEach-Object {
         $port = $_
         $tcp = New-Object System.Net.Sockets.TcpClient
@@ -274,7 +279,7 @@ function Get-OpenPorts {
 # Process Security Checker
 function Get-SuspiciousProcesses {
     Get-Process | Where-Object {
-        $_.Path -eq $null -or 
+        $_.Path -eq $null -or
         $_.Company -eq $null -or
         $_.Path -like "*\Temp\*"
     } | Select-Object Name, Id, Path, Company
@@ -283,13 +288,13 @@ function Get-SuspiciousProcesses {
 # Quick Security Audit
 function Start-SecurityAudit {
     Write-Host "=== Security Audit ===" -ForegroundColor Yellow
-    
+
     # Check Windows Defender status
     Get-MpComputerStatus | Select-Object AntivirusEnabled, RealTimeProtectionEnabled, IoavProtectionEnabled
-    
+
     # Check firewall status
     Get-NetFirewallProfile | Select-Object Name, Enabled
-    
+
     # Check for suspicious scheduled tasks
     Get-ScheduledTask | Where-Object {$_.Author -notlike "*Microsoft*"} | Select-Object TaskName, Author, State
 }
@@ -346,6 +351,7 @@ Start-Transcript -Path "$env:USERPROFILE\Documents\PSTranscripts\$(Get-Date -For
 ### PowerShell Profile Not Loading
 
 1. Check profile path:
+
    ```powershell
    $PROFILE
    Test-Path $PROFILE
@@ -358,6 +364,7 @@ Start-Transcript -Path "$env:USERPROFILE\Documents\PSTranscripts\$(Get-Date -For
 ### CMD Customization Not Working
 
 1. Verify registry key:
+
    ```cmd
    reg query "HKCU\Software\Microsoft\Command Processor" /v AutoRun
    ```
@@ -369,6 +376,7 @@ Start-Transcript -Path "$env:USERPROFILE\Documents\PSTranscripts\$(Get-Date -For
 ### Color Codes Not Displaying
 
 For modern Windows 10/11, enable ANSI color support:
+
 ```cmd
 reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1
 ```

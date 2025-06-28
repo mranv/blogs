@@ -54,7 +54,7 @@ sudo mkdir -p /var/lib/dataprepper
 
 # Set ownership
 sudo chown -R dataprepper:dataprepper /etc/data-prepper
-sudo chown -R dataprepper:dataprepper /var/log/data-prepper  
+sudo chown -R dataprepper:dataprepper /var/log/data-prepper
 sudo chown -R dataprepper:dataprepper /var/lib/dataprepper
 ```
 
@@ -92,12 +92,12 @@ wazuh-alerts-pipeline:
       path: "/var/ossec/logs/alerts/alerts.json"
       # Use no codec (plain text) and parse JSON in processor
       record_type: "event"
-      
+
   processor:
     # Parse each line as JSON (equivalent to Logstash codec behavior)
     - parse_json:
         source: "message"
-        
+
   sink:
     - opensearch:
         hosts:
@@ -229,11 +229,11 @@ wazuh-alerts-pipeline:
     file:
       path: "/var/ossec/logs/alerts/alerts.json"
       record_type: "event"
-      
+
   processor:
     - parse_json:
         source: "message"
-        
+
   sink:
     - opensearch:
         hosts:
@@ -277,9 +277,9 @@ sudo systemctl edit data-prepper --full
 
 ```yaml
 # In pipeline configuration, adjust:
-bulk_size: 1000          # Increase for higher throughput
-flush_timeout: 5000      # Decrease for lower latency
-request_timeout: "30s"   # Increase for large batches
+bulk_size: 1000 # Increase for higher throughput
+flush_timeout: 5000 # Decrease for lower latency
+request_timeout: "30s" # Increase for large batches
 ```
 
 ## Equivalent Logstash vs Data Prepper

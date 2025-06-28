@@ -37,11 +37,13 @@ The Security Analytics Dashboard plugin transforms OpenSearch into a powerful se
 Before installing the Security Analytics Dashboard plugin, ensure you have:
 
 1. **OpenSearch cluster with Dashboards installed**
+
    - OpenSearch version 2.x or later
    - OpenSearch Dashboards version matching your OpenSearch version
    - Cluster properly configured and running
 
 2. **System Requirements**
+
    - Root or sudo access to the server
    - Sufficient disk space (at least 1GB free)
    - Network connectivity to download plugins
@@ -108,12 +110,14 @@ Install the plugin using the OpenSearch Dashboards plugin installer:
 ```
 
 The system will:
+
 - Download the plugin from the OpenSearch repository
 - Verify plugin compatibility
 - Extract and install plugin files
 - Update plugin registry
 
 **Expected output:**
+
 ```
 Attempting to transfer from https://artifacts.opensearch.org/.../securityAnalyticsDashboards-*.zip
 Transferring [====================] 100%
@@ -168,6 +172,7 @@ sudo journalctl -u opensearch-dashboards -f
 ```
 
 Wait for the service to fully start. Look for messages like:
+
 ```
 Server running at https://0.0.0.0:5601
 ```
@@ -175,6 +180,7 @@ Server running at https://0.0.0.0:5601
 ### Step 8: Verify Installation in Web Interface
 
 1. Open your browser and navigate to OpenSearch Dashboards:
+
    ```
    https://your-server-ip:5601
    ```
@@ -206,6 +212,7 @@ curl -X POST "https://localhost:9200/_plugins/_security_analytics/indices/_initi
 ### 2. Configure Detection Rules
 
 Access the Rules section to:
+
 - Import pre-built detection rules
 - Create custom rules
 - Configure rule actions
@@ -213,6 +220,7 @@ Access the Rules section to:
 ### 3. Set Up Detectors
 
 Create detectors for your log sources:
+
 - Windows Security Events
 - Network Traffic Logs
 - Application Logs
@@ -221,6 +229,7 @@ Create detectors for your log sources:
 ### 4. Configure Notifications
 
 Set up alert destinations:
+
 - Email notifications
 - Slack/Teams webhooks
 - Custom webhooks
@@ -257,20 +266,23 @@ curl -s https://opensearch.org/docs/latest/dashboards/compatibility/
 If installation fails:
 
 1. Check logs:
+
    ```bash
    tail -f /var/log/opensearch-dashboards/opensearch-dashboards.log
    ```
 
 2. Clear plugin cache:
+
    ```bash
    rm -rf /usr/share/opensearch-dashboards/optimize/bundles/
    ```
 
 3. Try manual installation:
+
    ```bash
    # Download plugin ZIP manually
    wget https://artifacts.opensearch.org/.../securityAnalyticsDashboards-VERSION.zip
-   
+
    # Install from local file
    ./opensearch-dashboards-plugin install file:///path/to/securityAnalyticsDashboards-VERSION.zip
    ```
@@ -311,14 +323,12 @@ Configure role-based access:
       "cluster:admin/opensearch/securityanalytics/detector/search",
       "cluster:admin/opensearch/securityanalytics/rule/search"
     ],
-    "index_permissions": [{
-      "index_patterns": [
-        "security-analytics-*"
-      ],
-      "allowed_actions": [
-        "read"
-      ]
-    }]
+    "index_permissions": [
+      {
+        "index_patterns": ["security-analytics-*"],
+        "allowed_actions": ["read"]
+      }
+    ]
   }
 }
 ```
@@ -450,7 +460,7 @@ output.opensearch:
   username: "beats_user"
   password: "${BEATS_PASSWORD}"
   index: "security-analytics-beats-%{[agent.version]}-%{+yyyy.MM.dd}"
-  
+
 processors:
   - add_tags:
       tags: [security-analytics]

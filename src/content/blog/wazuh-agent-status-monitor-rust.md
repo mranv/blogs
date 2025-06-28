@@ -220,6 +220,7 @@ impl EncryptionHandler {
 ### Phase 1: Database Integration (3-4 hours)
 
 1. **SQLite Connection Management**
+
    - Implement connection pooling for `/var/ossec/queue/db/global.db`
    - Handle database locks and read-only access
    - Create agent status query functions
@@ -232,6 +233,7 @@ impl EncryptionHandler {
 ### Phase 2: NATS Integration (2-3 hours)
 
 1. **NATS Client Setup**
+
    - Configure connection with authentication (JWT/NKeys)
    - Implement TLS encryption for transport security
    - Handle connection failures and auto-reconnection
@@ -244,6 +246,7 @@ impl EncryptionHandler {
 ### Phase 3: Security & Reliability (2-3 hours)
 
 1. **Message Integrity**
+
    - Implement HMAC signing for message authenticity
    - Add optional message encryption for sensitive data
    - Create message versioning scheme
@@ -256,6 +259,7 @@ impl EncryptionHandler {
 ### Phase 4: Testing & Documentation (1-2 hours)
 
 1. **Unit Tests**
+
    - Mock SQLite database interactions
    - Test NATS message publishing scenarios
    - Validate security implementations
@@ -321,7 +325,9 @@ monitoring:
   "manager_node": "wazuh-manager-01",
   "timestamp": "2025-05-28T10:35:00Z",
   "events": [
-    { /* individual agent events */ }
+    {
+      /* individual agent events */
+    }
   ],
   "summary": {
     "total_agents": 150,
@@ -388,16 +394,19 @@ monitoring:
 ## Bonus Challenges
 
 ### Advanced Features (Optional)
+
 - Implement message compression for high-throughput scenarios
 - Add support for multiple Wazuh manager nodes
 - Create a web dashboard for monitoring service health
 
 ### Security Enhancements (Optional)
+
 - Implement message rate limiting per agent
 - Add anomaly detection for unusual status patterns
 - Create audit logging for all published events
 
 ### Operational Excellence (Optional)
+
 - Add Prometheus metrics endpoint
 - Implement graceful shutdown with message queue draining
 - Create Docker containerization with security hardening
