@@ -60,5 +60,11 @@ export default defineConfig({
     // Inline small assets
     inlineStylesheets: "auto",
   },
+  // Optimize images
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+    },
+  },
   scopedStyleStrategy: "where",
 });
