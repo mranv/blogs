@@ -23,6 +23,9 @@ module.exports = {
           base: withOpacity("--color-text-base"),
           accent: withOpacity("--color-accent"),
           inverted: withOpacity("--color-fill"),
+          secondary: withOpacity("--color-secondary"),
+          success: withOpacity("--color-success"),
+          warning: withOpacity("--color-warning"),
         },
       },
       backgroundColor: {
@@ -32,6 +35,9 @@ module.exports = {
           inverted: withOpacity("--color-text-base"),
           card: withOpacity("--color-card"),
           "card-muted": withOpacity("--color-card-muted"),
+          secondary: withOpacity("--color-secondary"),
+          success: withOpacity("--color-success"),
+          warning: withOpacity("--color-warning"),
         },
       },
       outlineColor: {
@@ -60,10 +66,11 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["IBM Plex Sans", "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
-        serif: ["Source Serif 4", "Georgia", "Cambria", "Times New Roman", "Times", "serif"],
+        sans: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
+        serif: ["Charter", "Source Serif Pro", "Georgia", "Cambria", "Times New Roman", "Times", "serif"],
         mono: ["JetBrains Mono", "SF Mono", "Monaco", "Cascadia Code", "Roboto Mono", "Consolas", "Courier New", "monospace"],
-        reading: ["Source Serif 4", "Georgia", "Cambria", "Times New Roman", "Times", "serif"],
+        reading: ["Charter", "Source Serif Pro", "Georgia", "Cambria", "Times New Roman", "Times", "serif"],
+        corporate: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
       },
 
       typography: {
