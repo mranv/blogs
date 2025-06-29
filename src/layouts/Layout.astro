@@ -21,7 +21,6 @@ export interface Props {
 
 const {
   title = SITE.title,
-  author = SITE.author,
   description = SITE.desc,
   ogImage = SITE.ogImage,
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
@@ -31,13 +30,6 @@ const {
   tags = [],
   article = false,
 } = Astro.props;
-
-const socialImageURL = new URL(
-  ogImage ??
-    SITE.ogImage ??
-    "https://mranv.pages.dev/assets/forrest-gump-quote.webp",
-  Astro.url.origin
-).href;
 ---
 
 <!doctype html>

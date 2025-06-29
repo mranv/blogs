@@ -99,7 +99,7 @@ class ThemeManager {
       });
     } else {
       // Fallback for older browsers
-      this.mediaQuery.addListener(e => {
+      this.mediaQuery.addEventListener('change', e => {
         if (!this.getStoredTheme()) {
           this.theme = e.matches ? "dark" : "light";
           this.applyTheme();
