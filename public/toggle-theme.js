@@ -73,7 +73,7 @@
     });
   } else {
     // Fallback for older browsers
-    mediaQuery.addListener(e => {
+    mediaQuery.addEventListener('change', e => {
       currentTheme = e.matches ? "dark" : "light";
       applyTheme();
     });
