@@ -20,15 +20,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 <Layout>
   <Header />
   <main id="main-content">
-    <section id="hero" class="py-12" aria-labelledby="hero-heading">
-      <h1 id="hero-heading" class="mb-4 text-center text-4xl font-bold">
+    <section
+      id="hero"
+      class="py-12 animate-fade-up"
+      aria-labelledby="hero-heading"
+    >
+      <h1
+        id="hero-heading"
+        class="mb-4 text-center text-4xl font-bold text-reveal"
+      >
         Anubhav Gain - DevSecOps Engineer &amp; Technical Writer
       </h1>
-      <p class="mb-8 text-center text-xl text-opacity-90">
+      <p class="mb-8 text-center text-xl text-opacity-90 animate-on-scroll">
         Explore cutting-edge technology insights from Anubhav Gain
       </p>
 
-      <div class="video-container relative mx-auto max-w-3xl">
+      <div class="video-container relative mx-auto max-w-3xl animate-scale-in">
         <video
           id="myVideo"
           src="/assets/video.mp4"
@@ -48,7 +55,9 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         </button>
       </div>
 
-      <p class="mx-auto mt-8 max-w-2xl text-center text-opacity-90">
+      <p
+        class="mx-auto mt-8 max-w-2xl text-center text-opacity-90 animate-on-scroll"
+      >
         Welcome to Anubhav Gain's technical blog. Discover in-depth articles on
         DevSecOps, cybersecurity, cloud security, and modern infrastructure by
         Anubhav Gain.
@@ -56,8 +65,10 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
       {
         socialCount > 0 && (
-          <div class="mt-8 flex flex-col items-center justify-center sm:flex-row">
-            <div class="mb-2 mr-4 font-semibold sm:mb-0">Social Links:</div>
+          <div class="mt-8 flex flex-col items-center justify-center sm:flex-row animate-on-scroll">
+            <div class="mb-2 mr-4 font-semibold sm:mb-0 hover-bounce">
+              Social Links:
+            </div>
             <Socials />
           </div>
         )
@@ -69,8 +80,10 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     {
       featuredPosts.length > 0 && (
         <section id="featured" class="py-12">
-          <h2 class="mb-6 text-center text-2xl font-semibold">Featured</h2>
-          <ul class="mx-auto grid max-w-4xl gap-6 px-4 sm:grid-cols-2">
+          <h2 class="mb-6 text-center text-2xl font-semibold animate-on-scroll">
+            Featured
+          </h2>
+          <ul class="mx-auto grid max-w-4xl gap-6 px-4 sm:grid-cols-2 stagger-children">
             {featuredPosts.map(({ data, slug }) => (
               <Card
                 href={`/posts/${slug}/`}
@@ -88,8 +101,10 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="py-12">
-          <h2 class="mb-6 text-center text-2xl font-semibold">Recent Posts</h2>
-          <ul class="mx-auto grid max-w-4xl gap-6 px-4 sm:grid-cols-2">
+          <h2 class="mb-6 text-center text-2xl font-semibold animate-on-scroll">
+            Recent Posts
+          </h2>
+          <ul class="mx-auto grid max-w-4xl gap-6 px-4 sm:grid-cols-2 stagger-children">
             {recentPosts.slice(0, 4).map(({ data, slug }) => (
               <Card
                 href={`/posts/${slug}/`}
