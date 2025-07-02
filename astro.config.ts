@@ -35,6 +35,11 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
     },
+    resolve: {
+      alias: {
+        "@scripts": "/src/scripts",
+      },
+    },
     build: {
       // Optimize chunk size
       chunkSizeWarningLimit: 1000,
