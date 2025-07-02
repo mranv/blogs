@@ -1,6 +1,7 @@
 ---
 import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
+import "@styles/animations.css";
 import { ViewTransitions } from "astro:transitions";
 import SEO from "@components/SEO.astro";
 
@@ -107,7 +108,7 @@ const {
 
     <ViewTransitions />
 
-    <script is:inline src="/theme-manager.js"></script>
+    <script is:inline src="/theme-toggle-handler.js"></script>
 
     <!-- Web Font Loader for optimal font loading -->
     <script is:inline>

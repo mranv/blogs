@@ -13,23 +13,47 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
 
   const headerProps = {
     style: { viewTransitionName: slugifyStr(title) },
-    className: "text-lg font-medium decoration-dashed hover:underline",
+    className:
+      "text-lg font-medium decoration-dashed hover:underline transition-all duration-300 hover:text-skin-accent",
   };
 
   return (
-    <li className="my-6">
+    <li className="my-6 animate-fadeIn">
       <a
         href={href}
-        className="inline-block text-lg font-medium text-skin-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
+        className="group block p-6 rounded-xl border border-skin-line bg-skin-card/50 backdrop-blur-sm hover:bg-skin-card/80 hover:border-skin-accent/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
       >
-        {secHeading ? (
-          <h2 {...headerProps}>{title}</h2>
-        ) : (
-          <h3 {...headerProps}>{title}</h3>
-        )}
+        <div className="absolute inset-0 bg-gradient-to-br from-skin-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="relative">
+          {secHeading ? (
+            <h2 {...headerProps}>{title}</h2>
+          ) : (
+            <h3 {...headerProps}>{title}</h3>
+          )}
+          <div className="mt-2 mb-3 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+            <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
+          </div>
+          <p className="text-skin-base/80 group-hover:text-skin-base transition-colors duration-300 line-clamp-3">
+            {description}
+          </p>
+          <div className="mt-4 flex items-center text-sm text-skin-accent opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+            <span>Read more</span>
+            <svg
+              className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </div>
+        </div>
       </a>
-      <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
-      <p>{description}</p>
     </li>
   );
 }

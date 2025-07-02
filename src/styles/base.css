@@ -17,6 +17,8 @@
     --color-secondary: 75, 85, 99;
     --color-success: 34, 197, 94;
     --color-warning: 245, 158, 11;
+    --color-glow: 37, 99, 235;
+    --color-shadow: 0, 0, 0;
   }
   html[data-theme="dark"] {
     --color-fill: 15, 23, 42;
@@ -30,7 +32,10 @@
     --color-secondary: 148, 163, 184;
     --color-success: 34, 197, 94;
     --color-warning: 245, 158, 11;
+    --color-glow: 147, 51, 234;
+    --color-shadow: 0, 0, 0;
   }
+  /* Theme icon visibility - commented out as we're using different approach
   #sun-svg,
   html[data-theme="dark"] #moon-svg {
     display: none;
@@ -39,12 +44,29 @@
   html[data-theme="dark"] #sun-svg {
     display: block;
   }
+  */
   * {
     box-sizing: border-box;
   }
 
+  /* Smooth theme transitions */
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      fill 0.3s ease,
+      stroke 0.3s ease,
+      opacity 0.3s ease,
+      box-shadow 0.3s ease !important;
+  }
+
   html {
     scroll-behavior: smooth;
+    transition: none;
   }
 
   /* Font-display swap for all web fonts */
@@ -69,14 +91,51 @@
       "ss01" 1;
     background-image: radial-gradient(
         circle at 20% 80%,
-        rgba(var(--color-gradient-start), 0.03) 0%,
+        rgba(var(--color-gradient-start), 0.06) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle at 80% 20%,
-        rgba(var(--color-gradient-end), 0.03) 0%,
+        rgba(var(--color-gradient-end), 0.06) 0%,
         transparent 50%
+      ),
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(var(--color-accent), 0.02) 0%,
+        transparent 70%
       );
+    background-attachment: fixed;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba(var(--color-gradient-start), 0.1) 0%,
+      transparent 30%
+    );
+    opacity: 0;
+    animation: pulse-background 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @keyframes pulse-background {
+    0%,
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(1.1);
+    }
   }
 
   @media (min-width: 640px) {
@@ -349,7 +408,47 @@
   }
 
   .card {
-    @apply bg-skin-card border border-skin-line rounded-xl p-6 shadow-sm transition-all duration-200 hover:shadow-md;
+    @apply bg-skin-card border border-skin-line rounded-xl p-6 shadow-sm transition-all duration-300;
+    @apply hover:shadow-xl hover:-translate-y-1;
+    @apply backdrop-blur-md bg-opacity-80;
+    background: rgba(var(--color-card), 0.8);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid rgba(var(--color-border), 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(var(--color-gradient-start), 0.5),
+      rgba(var(--color-gradient-end), 0.5),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  .card-glass {
+    @apply rounded-xl p-6 shadow-lg transition-all duration-300;
+    @apply hover:shadow-2xl hover:-translate-y-1;
+    background: rgba(var(--color-card), 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(var(--color-border), 0.2);
+    position: relative;
   }
 
   .badge {

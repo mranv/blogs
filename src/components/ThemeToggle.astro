@@ -1,0 +1,204 @@
+---
+
+---
+
+<button
+  id="theme-btn"
+  class="theme-switch"
+  aria-label="Toggle between dark and light mode"
+  title="Toggle theme"
+  type="button"
+>
+  <span class="switch-track">
+    <span class="switch-thumb">
+      <svg
+        class="sun-icon"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"
+        ></circle>
+        <path
+          d="M12 2V6M12 18V22M22 12H18M6 12H2M19.07 4.93L16.24 7.76M7.76 16.24L4.93 19.07M19.07 19.07L16.24 16.24M7.76 7.76L4.93 4.93"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"></path>
+      </svg>
+      <svg
+        class="moon-icon"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </span>
+  </span>
+</button>
+
+<style>
+  .theme-switch {
+    @apply relative inline-flex items-center;
+    @apply p-0 bg-transparent border-0;
+    @apply cursor-pointer;
+    @apply focus:outline-none focus:ring-2 focus:ring-skin-accent focus:ring-offset-2;
+    @apply transition-all duration-300;
+  }
+
+  .switch-track {
+    @apply relative inline-flex items-center;
+    @apply w-14 h-7 sm:w-12 sm:h-6;
+    @apply bg-gray-300 dark:bg-gray-600;
+    @apply rounded-full;
+    @apply transition-all duration-300;
+    @apply shadow-inner;
+    overflow: hidden;
+  }
+
+  .switch-track::before {
+    content: "";
+    @apply absolute inset-0;
+    @apply bg-gradient-to-r from-blue-400 to-blue-500;
+    @apply dark:from-purple-400 dark:to-pink-500;
+    @apply opacity-0 dark:opacity-100;
+    @apply transition-opacity duration-300;
+  }
+
+  .theme-switch:hover .switch-track {
+    @apply shadow-md;
+    transform: scale(1.05);
+  }
+
+  .switch-thumb {
+    @apply absolute top-0.5 left-0.5;
+    @apply w-6 h-6 sm:w-5 sm:h-5;
+    @apply bg-white;
+    @apply rounded-full;
+    @apply shadow-md;
+    @apply transition-all duration-300 ease-in-out;
+    @apply flex items-center justify-center;
+    transform: translateX(0);
+  }
+
+  :global([data-theme="dark"]) .switch-thumb {
+    transform: translateX(28px);
+  }
+
+  @media (max-width: 640px) {
+    :global([data-theme="dark"]) .switch-thumb {
+      transform: translateX(28px);
+    }
+  }
+
+  @media (min-width: 640px) {
+    :global([data-theme="dark"]) .switch-thumb {
+      transform: translateX(24px);
+    }
+  }
+
+  .sun-icon,
+  .moon-icon {
+    @apply absolute inset-0 w-full h-full p-1;
+    @apply transition-all duration-300;
+  }
+
+  .sun-icon {
+    @apply text-yellow-500;
+    @apply opacity-100 rotate-0 scale-100;
+  }
+
+  .moon-icon {
+    @apply text-purple-400;
+    @apply opacity-0 rotate-180 scale-0;
+  }
+
+  :global([data-theme="dark"]) .sun-icon {
+    @apply opacity-0 -rotate-180 scale-0;
+  }
+
+  :global([data-theme="dark"]) .moon-icon {
+    @apply opacity-100 rotate-0 scale-100;
+  }
+
+  /* Smooth transition animation */
+  .theme-switch:active .switch-thumb {
+    @apply w-7 sm:w-6;
+  }
+
+  /* Glow effect on hover */
+  .theme-switch:hover .switch-thumb {
+    box-shadow:
+      0 0 0 2px rgba(var(--color-accent), 0.2),
+      0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<script>
+  // Inline script to handle theme toggling
+  document.addEventListener("DOMContentLoaded", () => {
+    const themeBtn = document.getElementById("theme-btn");
+    if (!themeBtn) return;
+
+    // Get current theme
+    const getTheme = () => {
+      const storedTheme = localStorage.getItem("theme");
+      if (storedTheme) return storedTheme;
+
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    };
+
+    // Apply theme
+    const applyTheme = (theme: string) => {
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+
+      // Update meta theme color
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+      if (metaThemeColor) {
+        const bgColor = getComputedStyle(document.body).backgroundColor;
+        metaThemeColor.setAttribute("content", bgColor);
+      }
+    };
+
+    // Toggle theme
+    const toggleTheme = () => {
+      const currentTheme =
+        document.documentElement.getAttribute("data-theme") || getTheme();
+      const newTheme = currentTheme === "light" ? "dark" : "light";
+
+      // Add transition class
+      document.documentElement.classList.add("theme-transition");
+
+      applyTheme(newTheme);
+
+      // Remove transition class after animation
+      setTimeout(() => {
+        document.documentElement.classList.remove("theme-transition");
+      }, 300);
+    };
+
+    // Add click handler
+    themeBtn.addEventListener("click", e => {
+      e.preventDefault();
+      toggleTheme();
+    });
+
+    // Handle view transitions
+    document.addEventListener("astro:after-swap", () => {
+      const theme = getTheme();
+      applyTheme(theme);
+    });
+  });
+</script>

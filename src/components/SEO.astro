@@ -27,8 +27,8 @@ const authorName = "Anubhav Gain";
 const socialImageURL = ogImage
   ? new URL(ogImage, Astro.url.origin).href
   : SITE.ogImage
-  ? new URL(SITE.ogImage, Astro.url.origin).href
-  : new URL("/og-image.png", Astro.url.origin).href;
+    ? new URL(SITE.ogImage, Astro.url.origin).href
+    : new URL("/og-image.png", Astro.url.origin).href;
 
 // Enhanced title for better SEO
 const enhancedTitle =

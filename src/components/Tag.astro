@@ -29,10 +29,43 @@ const { tag, size = "sm" } = Astro.props;
 </li>
 
 <style>
-  a {
-    @apply relative underline decoration-dashed hover:-top-0.5 hover:text-skin-accent focus-visible:p-1;
+  li {
+    @apply transition-all duration-300 hover:scale-105;
   }
+
+  a {
+    @apply relative inline-flex items-center px-3 py-1 rounded-full;
+    @apply text-skin-accent hover:text-skin-accent;
+    @apply transition-all duration-300;
+    @apply border border-skin-line hover:border-skin-accent;
+    @apply shadow-sm hover:shadow-md;
+    @apply no-underline;
+    background: rgba(var(--color-accent), 0.1);
+  }
+
+  a:hover {
+    background: rgba(var(--color-accent), 0.2);
+  }
+
+  a::before {
+    content: "";
+    @apply absolute inset-0 rounded-full;
+    @apply opacity-0 hover:opacity-100;
+    @apply transition-opacity duration-300;
+    background: linear-gradient(
+      to right,
+      rgba(var(--color-accent), 0.2),
+      transparent
+    );
+    z-index: -1;
+  }
+
   a svg {
-    @apply -mr-5 h-6 w-6 scale-95 text-skin-base opacity-80 group-hover:fill-skin-accent;
+    @apply -mr-1 h-4 w-4 text-skin-accent opacity-70 group-hover:opacity-100;
+    @apply transition-all duration-300 group-hover:rotate-12;
+  }
+
+  a span {
+    @apply font-medium;
   }
 </style>
