@@ -36,6 +36,19 @@ class ThemeManager {
       // Handle localStorage errors gracefully
     }
 
+    // Add transition class for smooth theme changes
+    if (
+      this.initialized &&
+      !document.documentElement.classList.contains("theme-transition")
+    ) {
+      document.documentElement.classList.add("theme-transition");
+
+      // Remove transition class after animation completes
+      setTimeout(() => {
+        document.documentElement.classList.remove("theme-transition");
+      }, 300);
+    }
+
     // Apply to DOM
     document.documentElement.setAttribute("data-theme", this.theme);
 
@@ -48,7 +61,7 @@ class ThemeManager {
       );
     }
 
-    // Update theme-color meta
+    // Update theme-color meta with smooth transition
     requestAnimationFrame(() => {
       const bgColor = getComputedStyle(document.body).backgroundColor;
       const meta = document.querySelector('meta[name="theme-color"]');
@@ -83,6 +96,15 @@ class ThemeManager {
       }
     });
 
+    // Direct handler as fallback
+    const themeBtn = document.getElementById("theme-btn");
+    if (themeBtn) {
+      themeBtn.addEventListener("click", e => {
+        e.preventDefault();
+        this.toggle();
+      });
+    }
+
     // Handle Astro view transitions
     document.addEventListener("astro:after-swap", () => {
       this.applyTheme();
@@ -99,7 +121,7 @@ class ThemeManager {
       });
     } else {
       // Fallback for older browsers
-      this.mediaQuery.addEventListener('change', e => {
+      this.mediaQuery.addEventListener("change", e => {
         if (!this.getStoredTheme()) {
           this.theme = e.matches ? "dark" : "light";
           this.applyTheme();
