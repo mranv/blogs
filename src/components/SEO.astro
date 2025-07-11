@@ -265,7 +265,11 @@ const allSchemas = [
 <meta name="geo.placename" content="India" />
 
 <!-- Structured Data -->
-<script type="application/ld+json" set:html={JSON.stringify(allSchemas)} />
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(allSchemas)}
+/>
 
 <!-- Preconnect to external domains -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
