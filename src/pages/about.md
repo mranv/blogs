@@ -6,7 +6,7 @@ keywords: "cybersecurity expert, security engineer, XDR platform, OXDR, DevSecOp
 ---
 
 <div align="center">
-  <img src="/assets/gainsaheb.png" width="280" height="280" alt="Anubhav Gain - Cybersecurity Expert and Security Engineer" class="rounded-lg shadow-md mb-6">
+  <img src="/assets/gainsaheb.jpg" width="280" height="280" alt="Anubhav Gain - Cybersecurity Expert and Security Engineer" class="rounded-lg shadow-md mb-6">
   <h1 class="text-3xl font-bold text-skin-base mb-3">Anubhav Gain</h1>
   <p class="text-lg text-skin-base font-medium mb-2">Security Engineer | Cybersecurity Consultant | Technology Leader</p>
   <p class="text-base text-skin-accent">Delivering enterprise-grade security solutions and strategic cybersecurity consulting</p>

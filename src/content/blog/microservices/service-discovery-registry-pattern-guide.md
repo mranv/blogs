@@ -1,7 +1,7 @@
 ---
 title: "Service Discovery Pattern: The Complete Guide to Microservices Communication"
 description: "Master the Service Discovery pattern with comprehensive examples using Consul, Eureka, and Kubernetes. Learn client-side vs server-side discovery, health checking, and load balancing strategies."
-publishDate: 2025-01-27
+pubDatetime: 2025-01-27T13:00:00+05:30
 author: "Anubhav Gain"
 tags:
   [
