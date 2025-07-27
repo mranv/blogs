@@ -1,366 +1,463 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-30T10:00:00+05:30
-modDatetime: 2024-09-30T10:00:00+05:30
+pubDatetime: 2024-10-03T09:00:00+05:30
+modDatetime: 2024-10-03T09:00:00+05:30
 title: Day 94 - Zero Trust Security in Multi-Cloud Environments
 slug: day94
 featured: false
 draft: false
 tags:
-  - Security
-  - ZeroTrust
-  - CloudSecurity
-  - MultiCloud
-  - DevSecOps
-  - IAM
-description: Implementing Zero Trust security architecture across multiple cloud providers, ensuring consistent security policies and access controls in hybrid environments.
+  - security
+  - zero-trust
+  - cloud
+  - multi-cloud
+  - architecture
+description: Implement Zero Trust security architecture across AWS, Azure, and GCP. Learn practical strategies for identity, network segmentation, and continuous verification in multi-cloud deployments.
 ---
 
 # Day 94 - Zero Trust Security in Multi-Cloud Environments
 
-[![Watch the video](/thumbnails/day94.png)](https://www.youtube.com/watch?v=placeholder94)
+[![Watch the video](/thumbnails/day94.png)](https://www.youtube.com/watch?v=VIDEO_ID_HERE)
 
-As organizations embrace multi-cloud strategies, traditional perimeter-based security models become obsolete. Zero Trust architecture assumes no implicit trust and continuously verifies every transaction, regardless of source. Today, we'll explore implementing comprehensive Zero Trust security across AWS, Azure, Google Cloud, and hybrid environments.
+As organizations embrace multi-cloud strategies, traditional perimeter-based security models become obsolete. Zero Trust architecture, with its "never trust, always verify" principle, provides the framework needed to secure modern distributed infrastructure. Today, we'll implement Zero Trust security across AWS, Azure, and GCP.
 
-## Understanding Zero Trust Principles
+## Understanding Zero Trust in Multi-Cloud
 
-Zero Trust operates on three core principles:
+Zero Trust eliminates the concept of trusted networks, devices, or users. In a multi-cloud environment, this means:
 
-1. **Never Trust, Always Verify**: Every access request is authenticated and authorized
-2. **Least Privilege Access**: Users and services get minimal required permissions
-3. **Assume Breach**: Design systems assuming attackers are already inside
+- No implicit trust based on network location
+- Continuous verification of every transaction
+- Least-privilege access enforcement
+- Assume breach mindset
+- Microsegmentation across cloud boundaries
 
-## Multi-Cloud Identity Foundation
+## Core Components of Multi-Cloud Zero Trust
 
-### Unified Identity Management with OIDC
+### 1. Identity as the New Perimeter
 
-```yaml
-# kubernetes/identity-provider.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: oidc-discovery
-  namespace: kube-system
-data:
-  config.json: |
-    {
-      "issuer": "https://identity.company.com",
-      "authorization_endpoint": "https://identity.company.com/oauth2/authorize",
-      "token_endpoint": "https://identity.company.com/oauth2/token",
-      "userinfo_endpoint": "https://identity.company.com/userinfo",
-      "jwks_uri": "https://identity.company.com/.well-known/jwks.json",
-      "response_types_supported": ["code", "token", "id_token"],
-      "subject_types_supported": ["public"],
-      "id_token_signing_alg_values_supported": ["RS256"],
-      "scopes_supported": ["openid", "email", "profile", "groups"]
-    }
-```
+Identity becomes the primary security perimeter in Zero Trust architecture.
 
-### Cross-Cloud Service Authentication
+#### Unified Identity Management Across Clouds
 
 ```python
-# multi_cloud_auth.py
+# Multi-Cloud Identity Federation with Python
+import boto3
+from azure.identity import DefaultAzureCredential
+from google.cloud import iam
+from google.oauth2 import service_account
 import jwt
-import requests
-from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.asymmetric import rsa
+import json
 from datetime import datetime, timedelta
 
-class MultiCloudAuthenticator:
-    def __init__(self, identity_provider_url):
-        self.identity_provider_url = identity_provider_url
-        self.jwks_cache = {}
+class MultiCloudIdentityManager:
+    def __init__(self):
+        # AWS
+        self.aws_sts = boto3.client('sts')
+        self.aws_iam = boto3.client('iam')
 
-    def generate_service_token(self, service_account, target_cloud, scopes):
-        """Generate JWT for service-to-service authentication"""
-        # Load service account key
-        with open(f"/keys/{service_account}.json", 'r') as f:
-            key_data = json.load(f)
+        # Azure
+        self.azure_credential = DefaultAzureCredential()
 
-        # Create JWT claims
-        now = datetime.utcnow()
-        claims = {
-            "iss": key_data["client_email"],
-            "sub": key_data["client_email"],
-            "aud": f"https://{target_cloud}.api.company.com",
-            "iat": now,
-            "exp": now + timedelta(hours=1),
-            "scope": " ".join(scopes),
-            "target_cloud": target_cloud,
-            "service_account_id": key_data["client_id"]
+        # GCP
+        self.gcp_iam = iam.IAMClient()
+
+    def create_federated_identity(self, user_email, roles):
+        """Create federated identity across all clouds"""
+
+        identity_config = {
+            'user': user_email,
+            'created_at': datetime.utcnow().isoformat(),
+            'roles': roles,
+            'clouds': {}
         }
 
-        # Sign JWT
-        private_key = serialization.load_pem_private_key(
-            key_data["private_key"].encode(),
-            password=None
-        )
+        # AWS Identity
+        aws_role = self._create_aws_federated_role(user_email, roles.get('aws', []))
+        identity_config['clouds']['aws'] = {
+            'role_arn': aws_role['Arn'],
+            'trust_policy': aws_role['TrustPolicy']
+        }
 
-        token = jwt.encode(
-            claims,
-            private_key,
-            algorithm="RS256",
-            headers={"kid": key_data["private_key_id"]}
-        )
+        # Azure Identity
+        azure_principal = self._create_azure_service_principal(user_email, roles.get('azure', []))
+        identity_config['clouds']['azure'] = {
+            'principal_id': azure_principal['id'],
+            'tenant_id': azure_principal['tenant_id']
+        }
 
-        return token
+        # GCP Identity
+        gcp_sa = self._create_gcp_service_account(user_email, roles.get('gcp', []))
+        identity_config['clouds']['gcp'] = {
+            'service_account': gcp_sa['email'],
+            'project_id': gcp_sa['project_id']
+        }
 
-    def verify_cross_cloud_token(self, token, expected_audience):
-        """Verify token from another cloud service"""
-        # Decode header to get key ID
-        header = jwt.get_unverified_header(token)
-        kid = header.get("kid")
+        return identity_config
 
-        # Get public key from JWKS endpoint
-        public_key = self._get_public_key(kid)
+    def _create_aws_federated_role(self, user_email, permissions):
+        """Create AWS role with OIDC federation"""
 
-        # Verify and decode token
+        trust_policy = {
+            "Version": "2012-10-17",
+            "Statement": [{
+                "Effect": "Allow",
+                "Principal": {
+                    "Federated": f"arn:aws:iam::{AWS_ACCOUNT_ID}:oidc-provider/{OIDC_PROVIDER}"
+                },
+                "Action": "sts:AssumeRoleWithWebIdentity",
+                "Condition": {
+                    "StringEquals": {
+                        f"{OIDC_PROVIDER}:sub": user_email,
+                        f"{OIDC_PROVIDER}:aud": "sts.amazonaws.com"
+                    }
+                }
+            }]
+        }
+
+        # Create role
+        role_name = f"federated-{user_email.replace('@', '-').replace('.', '-')}"
+
         try:
-            payload = jwt.decode(
-                token,
-                public_key,
-                algorithms=["RS256"],
-                audience=expected_audience,
-                options={"verify_exp": True}
+            response = self.aws_iam.create_role(
+                RoleName=role_name,
+                AssumeRolePolicyDocument=json.dumps(trust_policy),
+                Description=f'Federated role for {user_email}',
+                MaxSessionDuration=3600,  # 1 hour
+                Tags=[
+                    {'Key': 'Environment', 'Value': 'production'},
+                    {'Key': 'ZeroTrust', 'Value': 'enabled'}
+                ]
             )
-            return payload
-        except jwt.InvalidTokenError as e:
-            raise ValueError(f"Invalid token: {str(e)}")
 
-    def _get_public_key(self, kid):
-        """Retrieve public key from JWKS endpoint"""
-        if kid not in self.jwks_cache:
-            jwks_url = f"{self.identity_provider_url}/.well-known/jwks.json"
-            response = requests.get(jwks_url)
-            jwks = response.json()
+            # Attach policies based on permissions
+            for permission in permissions:
+                self.aws_iam.attach_role_policy(
+                    RoleName=role_name,
+                    PolicyArn=self._get_aws_policy_arn(permission)
+                )
 
-            for key in jwks["keys"]:
-                if key["kid"] == kid:
-                    self.jwks_cache[kid] = jwt.algorithms.RSAAlgorithm.from_jwk(
-                        json.dumps(key)
-                    )
-                    break
+            return {
+                'Arn': response['Role']['Arn'],
+                'TrustPolicy': trust_policy
+            }
 
-        return self.jwks_cache.get(kid)
+        except Exception as e:
+            print(f"Error creating AWS role: {e}")
+            raise
 ```
 
-## Policy-as-Code Across Clouds
-
-### Open Policy Agent (OPA) for Unified Policies
-
-```rego
-# policies/multi_cloud_access.rego
-package multicloud.access
-
-import future.keywords.contains
-import future.keywords.if
-import future.keywords.in
-
-# Default deny
-default allow := false
-
-# Cloud provider configurations
-cloud_providers := {
-    "aws": {"regions": ["us-east-1", "eu-west-1"], "services": ["ec2", "s3", "rds"]},
-    "azure": {"regions": ["eastus", "westeurope"], "services": ["vm", "storage", "sql"]},
-    "gcp": {"regions": ["us-central1", "europe-west1"], "services": ["compute", "storage", "sql"]}
-}
-
-# Allow access if all conditions are met
-allow if {
-    # User is authenticated
-    input.user.authenticated == true
-
-    # User has valid MFA
-    input.user.mfa_verified == true
-
-    # Request is for allowed cloud provider
-    input.cloud in cloud_providers
-
-    # Request is for allowed region
-    input.region in cloud_providers[input.cloud].regions
-
-    # User has permission for the action
-    user_has_permission
-
-    # Request complies with data residency requirements
-    data_residency_compliant
-}
-
-# Check user permissions
-user_has_permission if {
-    some role in input.user.roles
-    some permission in data.roles[role].permissions
-    permission.cloud == input.cloud
-    permission.service == input.service
-    permission.action == input.action
-}
-
-# Data residency compliance
-data_residency_compliant if {
-    input.data_classification == "public"
-} else if {
-    input.data_classification == "internal"
-    input.region in data.data_residency[input.user.country].allowed_regions
-} else if {
-    input.data_classification == "confidential"
-    input.region == data.data_residency[input.user.country].primary_region
-}
-
-# Conditional access based on risk score
-allow if {
-    input.risk_score < 30
-    basic_authentication_met
-} else if {
-    input.risk_score < 70
-    enhanced_authentication_met
-} else := false
-
-basic_authentication_met if {
-    input.user.authenticated == true
-    input.device.managed == true
-}
-
-enhanced_authentication_met if {
-    basic_authentication_met
-    input.user.mfa_verified == true
-    input.device.compliant == true
-    input.network.trusted == true
-}
-```
-
-### Policy Enforcement Gateway
-
-```go
-// policy_gateway.go
-package main
-
-import (
-    "context"
-    "encoding/json"
-    "net/http"
-
-    "github.com/open-policy-agent/opa/rego"
-)
-
-type PolicyGateway struct {
-    opaQuery *rego.PreparedEvalQuery
-    cloudProviders map[string]CloudProvider
-}
-
-type AuthzRequest struct {
-    User            User            `json:"user"`
-    Cloud           string          `json:"cloud"`
-    Service         string          `json:"service"`
-    Action          string          `json:"action"`
-    Resource        string          `json:"resource"`
-    Region          string          `json:"region"`
-    DataClass       string          `json:"data_classification"`
-    RiskScore       int             `json:"risk_score"`
-    Device          DeviceInfo      `json:"device"`
-    Network         NetworkInfo     `json:"network"`
-}
-
-func (pg *PolicyGateway) AuthorizeRequest(w http.ResponseWriter, r *http.Request) {
-    var authzReq AuthzRequest
-    if err := json.NewDecoder(r.Body).Decode(&authzReq); err != nil {
-        http.Error(w, "Invalid request", http.StatusBadRequest)
-        return
-    }
-
-    // Evaluate OPA policy
-    results, err := pg.opaQuery.Eval(context.Background(), rego.EvalInput(authzReq))
-    if err != nil {
-        http.Error(w, "Policy evaluation failed", http.StatusInternalServerError)
-        return
-    }
-
-    allowed := results[0].Expressions[0].Value.(bool)
-
-    if allowed {
-        // Generate cloud-specific credentials
-        creds, err := pg.generateCloudCredentials(authzReq)
-        if err != nil {
-            http.Error(w, "Failed to generate credentials", http.StatusInternalServerError)
-            return
-        }
-
-        // Audit log
-        pg.auditLog(authzReq, "allowed", creds.SessionID)
-
-        json.NewEncoder(w).Encode(map[string]interface{}{
-            "allowed": true,
-            "credentials": creds,
-            "session_id": creds.SessionID,
-            "expires_at": creds.ExpiresAt,
-        })
-    } else {
-        // Audit log
-        pg.auditLog(authzReq, "denied", "")
-
-        json.NewEncoder(w).Encode(map[string]interface{}{
-            "allowed": false,
-            "reason": "Policy denied access",
-        })
-    }
-}
-
-func (pg *PolicyGateway) generateCloudCredentials(req AuthzRequest) (*CloudCredentials, error) {
-    provider := pg.cloudProviders[req.Cloud]
-
-    // Generate temporary credentials with least privilege
-    creds := &CloudCredentials{
-        SessionID: generateSessionID(),
-        ExpiresAt: time.Now().Add(1 * time.Hour),
-    }
-
-    switch req.Cloud {
-    case "aws":
-        assumeRoleOutput, err := provider.AssumeRole(AssumeRoleInput{
-            RoleARN:         fmt.Sprintf("arn:aws:iam::%s:role/%s", accountID, req.User.Role),
-            SessionName:     creds.SessionID,
-            DurationSeconds: 3600,
-            Policy:          pg.generateScopedPolicy(req),
-        })
-        if err != nil {
-            return nil, err
-        }
-        creds.AWS = assumeRoleOutput.Credentials
-
-    case "azure":
-        token, err := provider.GetToken(TokenRequest{
-            TenantID:     req.User.TenantID,
-            ClientID:     req.User.ClientID,
-            Scope:        pg.generateAzureScope(req),
-            GrantType:    "client_credentials",
-        })
-        if err != nil {
-            return nil, err
-        }
-        creds.Azure = token
-
-    case "gcp":
-        accessToken, err := provider.GenerateAccessToken(AccessTokenRequest{
-            ServiceAccount: req.User.ServiceAccount,
-            Scopes:        pg.generateGCPScopes(req),
-            Lifetime:      "3600s",
-        })
-        if err != nil {
-            return nil, err
-        }
-        creds.GCP = accessToken
-    }
-
-    return creds, nil
-}
-```
-
-## Network Security Across Clouds
-
-### Service Mesh for Zero Trust Networking
+#### Conditional Access Policies
 
 ```yaml
-# istio-multi-cloud-config.yaml
+# Azure Conditional Access Policy
+apiVersion: authorization.azure.com/v1
+kind: ConditionalAccessPolicy
+metadata:
+  name: zero-trust-multi-cloud
+spec:
+  displayName: "Zero Trust Multi-Cloud Access"
+  state: enabled
+  conditions:
+    users:
+      includeUsers:
+        - All
+      excludeGroups:
+        - emergency-access
+    applications:
+      includeApplications:
+        - All
+    locations:
+      includeLocations:
+        - All
+      excludeLocations:
+        - trusted-locations
+    platforms:
+      includePlatforms:
+        - all
+    signInRiskLevels:
+      - high
+      - medium
+  grantControls:
+    operator: AND
+    builtInControls:
+      - mfa
+      - compliantDevice
+      - approvedApplication
+    customAuthenticationFactors: []
+  sessionControls:
+    signInFrequency:
+      value: 1
+      type: hours
+    persistentBrowser:
+      mode: never
+```
+
+### 2. Microsegmentation Across Clouds
+
+Implement granular network segmentation that spans cloud boundaries.
+
+```hcl
+# Terraform - Multi-Cloud Network Segmentation
+module "zero_trust_network" {
+  source = "./modules/zero-trust-network"
+
+  # AWS VPC Configuration
+  aws_vpc = {
+    cidr_block = "10.0.0.0/16"
+    enable_dns_hostnames = true
+    enable_flow_logs = true
+
+    # Microsegmentation with Security Groups
+    security_groups = {
+      web_tier = {
+        description = "Web tier security group"
+        ingress_rules = [
+          {
+            from_port   = 443
+            to_port     = 443
+            protocol    = "tcp"
+            cidr_blocks = ["0.0.0.0/0"]  # Public HTTPS
+          }
+        ]
+        egress_rules = [
+          {
+            from_port       = 3306
+            to_port         = 3306
+            protocol        = "tcp"
+            security_groups = ["app_tier"]  # Only to app tier
+          }
+        ]
+      }
+
+      app_tier = {
+        description = "Application tier security group"
+        ingress_rules = [
+          {
+            from_port       = 3306
+            to_port         = 3306
+            protocol        = "tcp"
+            security_groups = ["web_tier"]  # Only from web tier
+          }
+        ]
+        egress_rules = [
+          {
+            from_port       = 5432
+            to_port         = 5432
+            protocol        = "tcp"
+            security_groups = ["data_tier"]  # Only to data tier
+          }
+        ]
+      }
+
+      data_tier = {
+        description = "Data tier security group"
+        ingress_rules = [
+          {
+            from_port       = 5432
+            to_port         = 5432
+            protocol        = "tcp"
+            security_groups = ["app_tier"]  # Only from app tier
+          }
+        ]
+        egress_rules = []  # No outbound connections
+      }
+    }
+  }
+
+  # Azure Network Security Groups
+  azure_network = {
+    address_space = ["10.1.0.0/16"]
+
+    subnets = {
+      web = {
+        address_prefix = "10.1.1.0/24"
+        network_security_group = {
+          security_rules = [
+            {
+              name                       = "HTTPS"
+              priority                   = 100
+              direction                  = "Inbound"
+              access                     = "Allow"
+              protocol                   = "Tcp"
+              source_port_range          = "*"
+              destination_port_range     = "443"
+              source_address_prefix      = "*"
+              destination_address_prefix = "*"
+            }
+          ]
+        }
+      }
+
+      app = {
+        address_prefix = "10.1.2.0/24"
+        network_security_group = {
+          security_rules = [
+            {
+              name                       = "FromWebTier"
+              priority                   = 100
+              direction                  = "Inbound"
+              access                     = "Allow"
+              protocol                   = "Tcp"
+              source_port_range          = "*"
+              destination_port_range     = "8080"
+              source_address_prefix      = "10.1.1.0/24"
+              destination_address_prefix = "*"
+            }
+          ]
+        }
+      }
+    }
+  }
+
+  # GCP VPC with Firewall Rules
+  gcp_network = {
+    auto_create_subnetworks = false
+
+    subnets = [
+      {
+        name          = "web-subnet"
+        ip_cidr_range = "10.2.1.0/24"
+        region        = "us-central1"
+      },
+      {
+        name          = "app-subnet"
+        ip_cidr_range = "10.2.2.0/24"
+        region        = "us-central1"
+      }
+    ]
+
+    firewall_rules = [
+      {
+        name        = "allow-web-to-app"
+        direction   = "INGRESS"
+        priority    = 1000
+
+        source_ranges = ["10.2.1.0/24"]
+        target_tags   = ["app-tier"]
+
+        allow = [{
+          protocol = "tcp"
+          ports    = ["8080"]
+        }]
+      },
+      {
+        name        = "deny-all-else"
+        direction   = "INGRESS"
+        priority    = 65534
+
+        source_ranges = ["0.0.0.0/0"]
+
+        deny = [{
+          protocol = "all"
+        }]
+      }
+    ]
+  }
+}
+```
+
+### 3. Policy-as-Code with Open Policy Agent (OPA)
+
+Implement consistent policy enforcement across all clouds.
+
+```rego
+# zero_trust_policies.rego
+package zero_trust.authorization
+
+import future.keywords.if
+import future.keywords.contains
+
+default allow = false
+
+# Multi-Cloud Resource Access Policy
+allow if {
+    # Verify JWT token
+    token_valid
+
+    # Check user authentication
+    input.user.authenticated == true
+    input.user.mfa_verified == true
+
+    # Verify device compliance
+    input.device.compliant == true
+    input.device.managed == true
+
+    # Check network context
+    network_trusted
+
+    # Verify least privilege
+    required_permission in user_permissions
+}
+
+# Token validation
+token_valid if {
+    [header, payload, _] := io.jwt.decode_verify(
+        input.token,
+        {"secret": data.jwt_secret}
+    )
+
+    # Check token expiration
+    payload.exp > time.now_ns() / 1000000000
+
+    # Verify issuer
+    payload.iss == data.trusted_issuer
+}
+
+# Network trust evaluation
+network_trusted if {
+    # Check if request is from internal network
+    net.cidr_contains("10.0.0.0/8", input.source_ip)
+} else if {
+    # Or if VPN connected
+    input.network.vpn_connected == true
+    input.network.vpn_compliance == true
+} else if {
+    # Or if using verified ZTNA
+    input.network.ztna_verified == true
+}
+
+# Permission checking
+user_permissions[permission] if {
+    some role in input.user.roles
+    some permission in data.rbac[role].permissions
+}
+
+required_permission := permission if {
+    # Map action to permission
+    action_map := {
+        "read": "viewer",
+        "write": "editor",
+        "delete": "admin"
+    }
+    permission := action_map[input.action]
+}
+
+# Cloud-specific policies
+aws_resource_allowed if {
+    input.cloud == "aws"
+    input.resource.type in data.aws_allowed_resources
+    input.resource.tags.environment == input.user.allowed_environments[_]
+}
+
+azure_resource_allowed if {
+    input.cloud == "azure"
+    input.resource.type in data.azure_allowed_resources
+    input.resource.resource_group in input.user.allowed_resource_groups
+}
+
+gcp_resource_allowed if {
+    input.cloud == "gcp"
+    input.resource.type in data.gcp_allowed_resources
+    input.resource.project_id in input.user.allowed_projects
+}
+```
+
+### 4. Service Mesh for Zero Trust Networking
+
+Deploy Istio service mesh across multi-cloud environments.
+
+```yaml
+# Istio Multi-Cloud Configuration
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 metadata:
@@ -372,17 +469,38 @@ spec:
         PILOT_ENABLE_WORKLOAD_ENTRY_AUTOREGISTRATION: true
         PILOT_ENABLE_CROSS_CLUSTER_WORKLOAD_ENTRY: true
     global:
-      meshID: mesh-global
+      meshID: mesh1
       multiCluster:
         clusterName: aws-cluster
-      network: aws-network
+      network: network1
+
   components:
     pilot:
       k8s:
         env:
-          - name: PILOT_ENABLE_VIRTUAL_SERVICE_DELEGATE
-            value: "true"
+          - name: PILOT_TRACE_SAMPLING
+            value: "100"
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1024Mi
+
+    # Enable mTLS everywhere
+    ingressGateways:
+      - name: istio-ingressgateway
+        enabled: true
+        k8s:
+          service:
+            type: LoadBalancer
+            ports:
+              - port: 15021
+                targetPort: 15021
+                name: status-port
+              - port: 443
+                targetPort: 8443
+                name: https
 ---
+# PeerAuthentication for mTLS
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
@@ -392,685 +510,456 @@ spec:
   mtls:
     mode: STRICT
 ---
+# AuthorizationPolicy for Zero Trust
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: deny-all
-  namespace: istio-system
-spec: {} # Deny all by default
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-internal-services
+  name: zero-trust-policy
   namespace: production
 spec:
+  selector:
+    matchLabels:
+      app: api-service
   action: ALLOW
   rules:
     - from:
         - source:
-            principals: ["cluster.local/ns/production/sa/*"]
+            principals: ["cluster.local/ns/production/sa/frontend"]
       to:
         - operation:
             methods: ["GET", "POST"]
+            paths: ["/api/v1/*"]
       when:
+        - key: request.headers[x-user-id]
+          values: ["*"]
+        - key: request.auth.claims[verified]
+          values: ["true"]
         - key: source.ip
           notValues: ["0.0.0.0/0"]
-        - key: request.auth.claims[iss]
-          values: ["https://identity.company.com"]
 ```
 
-### Cross-Cloud VPN Mesh
+### 5. Continuous Verification and Monitoring
+
+Implement real-time verification of all access attempts.
 
 ```python
-# vpn_mesh_orchestrator.py
-import boto3
-import azure.mgmt.network
-from google.cloud import compute_v1
-import ipaddress
-
-class CrossCloudVPNMesh:
-    def __init__(self):
-        self.aws_ec2 = boto3.client('ec2')
-        self.azure_network = azure.mgmt.network.NetworkManagementClient(
-            credential, subscription_id
-        )
-        self.gcp_vpn = compute_v1.VpnGatewaysClient()
-
-    def create_mesh_topology(self, regions):
-        """Create full mesh VPN topology across clouds"""
-        vpn_endpoints = {}
-
-        # Create VPN gateways in each cloud
-        for region in regions:
-            if region['cloud'] == 'aws':
-                vpn_endpoints[region['id']] = self._create_aws_vpn_gateway(region)
-            elif region['cloud'] == 'azure':
-                vpn_endpoints[region['id']] = self._create_azure_vpn_gateway(region)
-            elif region['cloud'] == 'gcp':
-                vpn_endpoints[region['id']] = self._create_gcp_vpn_gateway(region)
-
-        # Create connections between all pairs
-        connections = []
-        for i, (region1_id, endpoint1) in enumerate(vpn_endpoints.items()):
-            for region2_id, endpoint2 in list(vpn_endpoints.items())[i+1:]:
-                connection = self._create_vpn_connection(
-                    endpoint1, endpoint2,
-                    f"conn-{region1_id}-{region2_id}"
-                )
-                connections.append(connection)
-
-        return {
-            'endpoints': vpn_endpoints,
-            'connections': connections,
-            'topology': 'full-mesh'
-        }
-
-    def _create_aws_vpn_gateway(self, region):
-        """Create AWS Virtual Private Gateway"""
-        # Create customer gateway for cross-cloud connectivity
-        cgw_response = self.aws_ec2.create_customer_gateway(
-            BgpAsn=65000,
-            PublicIp=region['public_ip'],
-            Type='ipsec.1',
-            TagSpecifications=[{
-                'ResourceType': 'customer-gateway',
-                'Tags': [
-                    {'Key': 'Name', 'Value': f"cgw-{region['id']}"},
-                    {'Key': 'Environment', 'Value': 'production'},
-                    {'Key': 'ZeroTrust', 'Value': 'enabled'}
-                ]
-            }]
-        )
-
-        # Create VPN connection
-        vpn_response = self.aws_ec2.create_vpn_connection(
-            CustomerGatewayId=cgw_response['CustomerGateway']['CustomerGatewayId'],
-            Type='ipsec.1',
-            VpnGatewayId=region['vpn_gateway_id'],
-            Options={
-                'EnableAcceleration': True,
-                'TunnelOptions': [
-                    {
-                        'TunnelInsideCidr': '169.254.10.0/30',
-                        'PreSharedKey': self._generate_psk()
-                    },
-                    {
-                        'TunnelInsideCidr': '169.254.10.4/30',
-                        'PreSharedKey': self._generate_psk()
-                    }
-                ]
-            }
-        )
-
-        return {
-            'cloud': 'aws',
-            'region': region['name'],
-            'vpn_connection_id': vpn_response['VpnConnection']['VpnConnectionId'],
-            'customer_gateway_id': cgw_response['CustomerGateway']['CustomerGatewayId']
-        }
-```
-
-## Workload Identity and Access
-
-### Workload Identity Federation
-
-```yaml
-# workload-identity-config.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: cross-cloud-workload
-  namespace: production
-  annotations:
-    # AWS IRSA
-    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/cross-cloud-workload
-    # GCP Workload Identity
-    iam.gke.io/gcp-service-account: cross-cloud-workload@project.iam.gserviceaccount.com
-    # Azure Workload Identity
-    azure.workload.identity/client-id: "12345678-1234-1234-1234-123456789012"
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: workload-identity-config
-  namespace: production
-data:
-  config.yaml: |
-    identity_providers:
-      aws:
-        region: us-east-1
-        sts_endpoint: https://sts.amazonaws.com
-        audience: sts.amazonaws.com
-      gcp:
-        project_id: my-project
-        workload_identity_pool: cross-cloud-pool
-        provider: cross-cloud-provider
-      azure:
-        tenant_id: 12345678-1234-1234-1234-123456789012
-        client_id: 87654321-4321-4321-4321-210987654321
-```
-
-### Dynamic Credential Management
-
-```go
-// workload_identity_manager.go
-package main
-
-import (
-    "context"
-    "encoding/json"
-    "fmt"
-    "time"
-
-    "github.com/aws/aws-sdk-go-v2/service/sts"
-    "google.golang.org/api/iamcredentials/v1"
-    "github.com/Azure/azure-sdk-for-go/sdk/azidentity"
-)
-
-type WorkloadIdentityManager struct {
-    awsSTS          *sts.Client
-    gcpIAM          *iamcredentials.Service
-    azureCredential *azidentity.DefaultAzureCredential
-}
-
-func (wim *WorkloadIdentityManager) GetCloudCredentials(ctx context.Context, targetCloud string, workloadID string) (interface{}, error) {
-    // Verify workload identity
-    workload, err := wim.verifyWorkloadIdentity(ctx, workloadID)
-    if err != nil {
-        return nil, fmt.Errorf("workload verification failed: %w", err)
-    }
-
-    switch targetCloud {
-    case "aws":
-        return wim.getAWSCredentials(ctx, workload)
-    case "gcp":
-        return wim.getGCPCredentials(ctx, workload)
-    case "azure":
-        return wim.getAzureCredentials(ctx, workload)
-    default:
-        return nil, fmt.Errorf("unsupported cloud: %s", targetCloud)
-    }
-}
-
-func (wim *WorkloadIdentityManager) getAWSCredentials(ctx context.Context, workload *WorkloadIdentity) (*AWSCredentials, error) {
-    // Exchange workload token for AWS credentials
-    result, err := wim.awsSTS.AssumeRoleWithWebIdentity(ctx, &sts.AssumeRoleWithWebIdentityInput{
-        RoleArn:          &workload.AWSRoleARN,
-        RoleSessionName:  &workload.SessionName,
-        WebIdentityToken: &workload.Token,
-        DurationSeconds:  aws.Int32(3600),
-        Policy:          wim.generateScopedPolicy(workload),
-    })
-
-    if err != nil {
-        return nil, fmt.Errorf("failed to assume AWS role: %w", err)
-    }
-
-    return &AWSCredentials{
-        AccessKeyID:     *result.Credentials.AccessKeyId,
-        SecretAccessKey: *result.Credentials.SecretAccessKey,
-        SessionToken:    *result.Credentials.SessionToken,
-        Expiration:      *result.Credentials.Expiration,
-    }, nil
-}
-
-func (wim *WorkloadIdentityManager) getGCPCredentials(ctx context.Context, workload *WorkloadIdentity) (*GCPCredentials, error) {
-    // Generate access token for GCP
-    name := fmt.Sprintf("projects/-/serviceAccounts/%s", workload.GCPServiceAccount)
-
-    req := &iamcredentials.GenerateAccessTokenRequest{
-        Scope:    workload.RequiredScopes,
-        Lifetime: "3600s",
-    }
-
-    resp, err := wim.gcpIAM.Projects.ServiceAccounts.GenerateAccessToken(name, req).Context(ctx).Do()
-    if err != nil {
-        return nil, fmt.Errorf("failed to generate GCP access token: %w", err)
-    }
-
-    return &GCPCredentials{
-        AccessToken: resp.AccessToken,
-        ExpireTime:  resp.ExpireTime,
-    }, nil
-}
-
-func (wim *WorkloadIdentityManager) generateScopedPolicy(workload *WorkloadIdentity) *string {
-    // Generate least-privilege policy based on workload requirements
-    policy := map[string]interface{}{
-        "Version": "2012-10-17",
-        "Statement": []interface{}{
-            map[string]interface{}{
-                "Effect": "Allow",
-                "Action": workload.AllowedActions,
-                "Resource": workload.AllowedResources,
-                "Condition": map[string]interface{}{
-                    "DateLessThan": map[string]string{
-                        "aws:CurrentTime": time.Now().Add(1 * time.Hour).Format(time.RFC3339),
-                    },
-                    "StringEquals": map[string]string{
-                        "aws:userid": workload.SessionName,
-                    },
-                },
-            },
-        },
-    }
-
-    policyJSON, _ := json.Marshal(policy)
-    policyStr := string(policyJSON)
-    return &policyStr
-}
-```
-
-## Continuous Compliance Monitoring
-
-### Cloud Security Posture Management
-
-```python
-# cspm_scanner.py
+# Real-time Zero Trust Monitoring System
 import asyncio
-from typing import Dict, List, Any
-import boto3
-import azure.mgmt.security
-from google.cloud import securitycenter
+from elasticsearch import AsyncElasticsearch
+from kafka import KafkaProducer, KafkaConsumer
+import json
+from datetime import datetime
+import numpy as np
+from sklearn.ensemble import IsolationForest
 
-class MultiCloudCSPM:
+class ZeroTrustMonitor:
     def __init__(self):
-        self.scanners = {
-            'aws': AWSSecurityScanner(),
-            'azure': AzureSecurityScanner(),
-            'gcp': GCPSecurityScanner()
-        }
+        # Elasticsearch for log aggregation
+        self.es = AsyncElasticsearch(['http://localhost:9200'])
 
-    async def scan_all_clouds(self) -> Dict[str, List[Finding]]:
-        """Perform security scanning across all clouds"""
-        tasks = []
-        for cloud, scanner in self.scanners.items():
-            tasks.append(scanner.scan())
-
-        results = await asyncio.gather(*tasks)
-
-        # Aggregate and normalize findings
-        findings = self._normalize_findings(results)
-
-        # Apply Zero Trust validation
-        validated_findings = self._validate_zero_trust_compliance(findings)
-
-        return validated_findings
-
-    def _validate_zero_trust_compliance(self, findings: List[Finding]) -> List[Finding]:
-        """Check findings against Zero Trust principles"""
-        zero_trust_rules = {
-            'no_public_access': self._check_no_public_access,
-            'encryption_at_rest': self._check_encryption_at_rest,
-            'mfa_enabled': self._check_mfa_enabled,
-            'least_privilege': self._check_least_privilege,
-            'network_segmentation': self._check_network_segmentation,
-            'audit_logging': self._check_audit_logging
-        }
-
-        validated = []
-        for finding in findings:
-            for rule_name, rule_func in zero_trust_rules.items():
-                if not rule_func(finding):
-                    finding.zero_trust_violations.append(rule_name)
-
-            if finding.zero_trust_violations:
-                finding.severity = 'CRITICAL'
-
-            validated.append(finding)
-
-        return validated
-
-class AWSSecurityScanner:
-    def __init__(self):
-        self.security_hub = boto3.client('securityhub')
-        self.config = boto3.client('config')
-        self.iam = boto3.client('iam')
-
-    async def scan(self) -> List[Finding]:
-        findings = []
-
-        # Check IAM policies for least privilege
-        policies = self.iam.list_policies(Scope='Local')['Policies']
-        for policy in policies:
-            policy_version = self.iam.get_policy_version(
-                PolicyArn=policy['Arn'],
-                VersionId=policy['DefaultVersionId']
-            )
-
-            violations = self._analyze_policy_permissions(
-                policy_version['PolicyVersion']['Document']
-            )
-
-            if violations:
-                findings.append(Finding(
-                    cloud='aws',
-                    resource_type='iam_policy',
-                    resource_id=policy['Arn'],
-                    title=f"Overly permissive IAM policy: {policy['PolicyName']}",
-                    severity='HIGH',
-                    violations=violations
-                ))
-
-        # Check Security Hub findings
-        sh_findings = self.security_hub.get_findings(
-            Filters={
-                'RecordState': [{'Value': 'ACTIVE', 'Comparison': 'EQUALS'}],
-                'ComplianceStatus': [{'Value': 'FAILED', 'Comparison': 'EQUALS'}]
-            }
+        # Kafka for real-time event streaming
+        self.producer = KafkaProducer(
+            bootstrap_servers=['localhost:9092'],
+            value_serializer=lambda v: json.dumps(v).encode('utf-8')
         )
 
-        for finding in sh_findings['Findings']:
-            findings.append(self._convert_security_hub_finding(finding))
+        # ML model for anomaly detection
+        self.anomaly_detector = IsolationForest(
+            contamination=0.1,
+            random_state=42
+        )
 
-        return findings
+        # Risk scoring thresholds
+        self.risk_thresholds = {
+            'low': 0.3,
+            'medium': 0.6,
+            'high': 0.8,
+            'critical': 0.95
+        }
 
-    def _analyze_policy_permissions(self, policy_document: dict) -> List[str]:
-        violations = []
+    async def monitor_access_attempt(self, access_event):
+        """Monitor and score each access attempt"""
 
-        for statement in policy_document.get('Statement', []):
-            if statement.get('Effect') == 'Allow':
-                # Check for wildcards in actions
-                actions = statement.get('Action', [])
-                if isinstance(actions, str):
-                    actions = [actions]
+        # Calculate risk score
+        risk_score = await self.calculate_risk_score(access_event)
 
-                for action in actions:
-                    if '*' in action:
-                        violations.append(f"Wildcard in action: {action}")
+        # Add risk score to event
+        access_event['risk_score'] = risk_score
+        access_event['risk_level'] = self.get_risk_level(risk_score)
+        access_event['timestamp'] = datetime.utcnow().isoformat()
 
-                # Check for wildcards in resources
-                resources = statement.get('Resource', [])
-                if isinstance(resources, str):
-                    resources = [resources]
+        # Store in Elasticsearch
+        await self.es.index(
+            index=f"zero-trust-{datetime.utcnow().strftime('%Y.%m.%d')}",
+            body=access_event
+        )
 
-                if '*' in resources:
-                    violations.append("Wildcard in resource specification")
+        # Stream to Kafka for real-time processing
+        self.producer.send('zero-trust-events', access_event)
 
-        return violations
+        # Take action based on risk
+        if risk_score > self.risk_thresholds['high']:
+            await self.handle_high_risk_event(access_event)
+
+        return {
+            'allowed': risk_score < self.risk_thresholds['medium'],
+            'risk_score': risk_score,
+            'risk_level': access_event['risk_level'],
+            'additional_verification_required': risk_score > self.risk_thresholds['low']
+        }
+
+    async def calculate_risk_score(self, event):
+        """Calculate risk score using multiple factors"""
+
+        risk_factors = []
+
+        # User behavior analysis
+        user_risk = await self.analyze_user_behavior(event['user_id'])
+        risk_factors.append(user_risk * 0.3)
+
+        # Device trust score
+        device_risk = self.calculate_device_risk(event['device'])
+        risk_factors.append(device_risk * 0.2)
+
+        # Network context
+        network_risk = self.evaluate_network_risk(event['network'])
+        risk_factors.append(network_risk * 0.2)
+
+        # Resource sensitivity
+        resource_risk = self.assess_resource_sensitivity(event['resource'])
+        risk_factors.append(resource_risk * 0.2)
+
+        # Time-based anomaly
+        time_risk = self.detect_time_anomaly(event)
+        risk_factors.append(time_risk * 0.1)
+
+        # Combine risk factors
+        total_risk = sum(risk_factors)
+
+        # Apply ML anomaly detection
+        anomaly_score = self.detect_anomaly(event)
+        if anomaly_score == -1:  # Anomaly detected
+            total_risk = min(total_risk * 1.5, 1.0)
+
+        return total_risk
+
+    async def analyze_user_behavior(self, user_id):
+        """Analyze user behavior patterns"""
+
+        # Query historical user behavior
+        query = {
+            "query": {
+                "bool": {
+                    "must": [
+                        {"term": {"user_id": user_id}},
+                        {"range": {"timestamp": {"gte": "now-30d"}}}
+                    ]
+                }
+            },
+            "aggs": {
+                "login_times": {
+                    "date_histogram": {
+                        "field": "timestamp",
+                        "calendar_interval": "hour"
+                    }
+                },
+                "accessed_resources": {
+                    "cardinality": {
+                        "field": "resource.id"
+                    }
+                },
+                "failed_attempts": {
+                    "filter": {
+                        "term": {"success": False}
+                    }
+                }
+            }
+        }
+
+        result = await self.es.search(index="zero-trust-*", body=query)
+
+        # Calculate behavior risk score
+        failed_ratio = result['aggregations']['failed_attempts']['doc_count'] / max(result['hits']['total']['value'], 1)
+        resource_diversity = result['aggregations']['accessed_resources']['value']
+
+        # Higher risk for unusual patterns
+        if failed_ratio > 0.1:
+            return 0.8
+        elif resource_diversity > 100:  # Accessing too many different resources
+            return 0.6
+        else:
+            return 0.2
+
+    def detect_anomaly(self, event):
+        """Use ML to detect anomalous access patterns"""
+
+        # Feature extraction
+        features = [
+            event.get('user_risk_score', 0),
+            event.get('device_trust_score', 0),
+            1 if event.get('network', {}).get('vpn_connected') else 0,
+            len(event.get('resource', {}).get('tags', [])),
+            event.get('request_size', 0),
+            event.get('response_time', 0)
+        ]
+
+        # Predict anomaly
+        prediction = self.anomaly_detector.predict([features])
+        return prediction[0]
+
+    async def handle_high_risk_event(self, event):
+        """Handle high-risk access attempts"""
+
+        # Send alert
+        alert = {
+            'severity': 'HIGH',
+            'event': event,
+            'timestamp': datetime.utcnow().isoformat(),
+            'actions_required': [
+                'Block access attempt',
+                'Notify security team',
+                'Initiate step-up authentication',
+                'Log for forensic analysis'
+            ]
+        }
+
+        # Send to security team
+        self.producer.send('security-alerts', alert)
+
+        # Block access
+        await self.block_access(event['session_id'])
+
+        # Trigger incident response
+        if event['risk_score'] > self.risk_thresholds['critical']:
+            await self.trigger_incident_response(event)
 ```
 
-### Compliance Dashboard
+### 6. Automated Incident Response
 
-```typescript
-// compliance-dashboard.tsx
-import React, { useState, useEffect } from 'react';
-import { Card, Grid, Progress, Alert, Table } from '@mantine/core';
-import { IconShield, IconAlertTriangle, IconCheck } from '@tabler/icons-react';
-
-interface ComplianceStatus {
-  framework: string;
-  cloud: string;
-  score: number;
-  findings: Finding[];
-}
-
-export function ZeroTrustComplianceDashboard() {
-  const [complianceData, setComplianceData] = useState<ComplianceStatus[]>([]);
-  const [criticalFindings, setCriticalFindings] = useState<Finding[]>([]);
-
-  useEffect(() => {
-    // Fetch compliance data
-    fetchComplianceStatus();
-    const interval = setInterval(fetchComplianceStatus, 60000); // Refresh every minute
-    return () => clearInterval(interval);
-  }, []);
-
-  const fetchComplianceStatus = async () => {
-    const response = await fetch('/api/compliance/zero-trust/status');
-    const data = await response.json();
-    setComplianceData(data.compliance);
-    setCriticalFindings(data.critical_findings);
-  };
-
-  const getComplianceColor = (score: number) => {
-    if (score >= 90) return 'green';
-    if (score >= 70) return 'yellow';
-    return 'red';
-  };
-
-  return (
-    <div>
-      <h1>Zero Trust Compliance Dashboard</h1>
-
-      {criticalFindings.length > 0 && (
-        <Alert
-          icon={<IconAlertTriangle />}
-          title="Critical Zero Trust Violations"
-          color="red"
-          mb="lg"
-        >
-          {criticalFindings.length} critical findings require immediate attention
-        </Alert>
-      )}
-
-      <Grid>
-        {complianceData.map((compliance) => (
-          <Grid.Col span={4} key={`${compliance.cloud}-${compliance.framework}`}>
-            <Card shadow="sm" p="lg">
-              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-                <IconShield size={24} style={{ marginRight: '0.5rem' }} />
-                <h3>{compliance.cloud.toUpperCase()} - {compliance.framework}</h3>
-              </div>
-
-              <Progress
-                value={compliance.score}
-                size="xl"
-                color={getComplianceColor(compliance.score)}
-                label={`${compliance.score}%`}
-              />
-
-              <div style={{ marginTop: '1rem' }}>
-                <strong>Top Violations:</strong>
-                <ul>
-                  {compliance.findings.slice(0, 3).map((finding, idx) => (
-                    <li key={idx}>{finding.title}</li>
-                  ))}
-                </ul>
-              </div>
-            </Card>
-          </Grid.Col>
-        ))}
-      </Grid>
-
-      <Card shadow="sm" p="lg" mt="xl">
-        <h2>Zero Trust Principles Compliance</h2>
-        <Table>
-          <thead>
-            <tr>
-              <th>Principle</th>
-              <th>AWS</th>
-              <th>Azure</th>
-              <th>GCP</th>
-              <th>Overall</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Identity Verification</td>
-              <td><ComplianceIcon score={95} /></td>
-              <td><ComplianceIcon score={88} /></td>
-              <td><ComplianceIcon score={92} /></td>
-              <td><ComplianceIcon score={91} /></td>
-            </tr>
-            <tr>
-              <td>Least Privilege Access</td>
-              <td><ComplianceIcon score={78} /></td>
-              <td><ComplianceIcon score={82} /></td>
-              <td><ComplianceIcon score={85} /></td>
-              <td><ComplianceIcon score={81} /></td>
-            </tr>
-            <tr>
-              <td>Network Segmentation</td>
-              <td><ComplianceIcon score={90} /></td>
-              <td><ComplianceIcon score={87} /></td>
-              <td><ComplianceIcon score={89} /></td>
-              <td><ComplianceIcon score={88} /></td>
-            </tr>
-            <tr>
-              <td>Encryption Everywhere</td>
-              <td><ComplianceIcon score={94} /></td>
-              <td><ComplianceIcon score={96} /></td>
-              <td><ComplianceIcon score={93} /></td>
-              <td><ComplianceIcon score={94} /></td>
-            </tr>
-            <tr>
-              <td>Continuous Monitoring</td>
-              <td><ComplianceIcon score={86} /></td>
-              <td><ComplianceIcon score={84} /></td>
-              <td><ComplianceIcon score={88} /></td>
-              <td><ComplianceIcon score={86} /></td>
-            </tr>
-          </tbody>
-        </Table>
-      </Card>
-    </div>
-  );
-}
-
-function ComplianceIcon({ score }: { score: number }) {
-  if (score >= 90) {
-    return <IconCheck color="green" />;
-  } else if (score >= 70) {
-    return <IconAlertTriangle color="orange" />;
-  } else {
-    return <IconAlertTriangle color="red" />;
-  }
-}
-```
-
-## Incident Response Automation
-
-### Multi-Cloud Security Orchestration
+Implement automated responses to security events.
 
 ```python
-# incident_response_orchestrator.py
-class MultiCloudIncidentResponse:
+# Automated Zero Trust Incident Response
+class IncidentResponseOrchestrator:
     def __init__(self):
-        self.cloud_apis = {
-            'aws': AWSSecurityAPI(),
-            'azure': AzureSecurityAPI(),
-            'gcp': GCPSecurityAPI()
+        self.response_playbooks = {
+            'suspicious_login': self.handle_suspicious_login,
+            'privilege_escalation': self.handle_privilege_escalation,
+            'data_exfiltration': self.handle_data_exfiltration,
+            'lateral_movement': self.handle_lateral_movement
         }
-        self.notification_service = NotificationService()
 
-    async def handle_security_incident(self, incident: SecurityIncident):
-        """Orchestrate incident response across clouds"""
-        response_actions = []
+    async def respond_to_incident(self, incident):
+        """Orchestrate incident response"""
 
-        # Immediate containment
-        if incident.severity == 'CRITICAL':
-            containment_tasks = []
-            for affected_resource in incident.affected_resources:
-                task = self._contain_resource(affected_resource)
-                containment_tasks.append(task)
+        incident_type = self.classify_incident(incident)
 
-            containment_results = await asyncio.gather(*containment_tasks)
-            response_actions.extend(containment_results)
+        # Execute appropriate playbook
+        if incident_type in self.response_playbooks:
+            response = await self.response_playbooks[incident_type](incident)
+        else:
+            response = await self.handle_unknown_incident(incident)
 
-        # Investigate across all clouds
-        investigation_results = await self._investigate_lateral_movement(incident)
+        # Log response
+        await self.log_incident_response(incident, response)
 
-        # Apply remediation
-        remediation_plan = self._generate_remediation_plan(
-            incident, investigation_results
-        )
+        return response
 
-        remediation_results = await self._execute_remediation(remediation_plan)
-        response_actions.extend(remediation_results)
+    async def handle_suspicious_login(self, incident):
+        """Handle suspicious login attempts"""
 
-        # Update security policies
-        policy_updates = self._generate_policy_updates(incident)
-        await self._apply_policy_updates(policy_updates)
-
-        # Generate report
-        report = self._generate_incident_report(
-            incident, response_actions, remediation_results
-        )
-
-        await self.notification_service.send_incident_report(report)
-
-        return report
-
-    async def _contain_resource(self, resource: AffectedResource):
-        """Immediately contain compromised resource"""
-        cloud_api = self.cloud_apis[resource.cloud]
+        user_id = incident['user_id']
+        session_id = incident['session_id']
 
         actions = []
 
-        # Isolate network
-        if resource.type in ['vm', 'instance', 'container']:
-            isolation_result = await cloud_api.isolate_network(resource.id)
-            actions.append({
-                'action': 'network_isolation',
-                'resource': resource.id,
-                'result': isolation_result
-            })
+        # 1. Terminate session
+        await self.terminate_session(session_id)
+        actions.append('Session terminated')
 
-        # Revoke credentials
-        if resource.has_credentials:
-            revoke_result = await cloud_api.revoke_credentials(resource.id)
-            actions.append({
-                'action': 'credential_revocation',
-                'resource': resource.id,
-                'result': revoke_result
-            })
+        # 2. Disable user account temporarily
+        await self.disable_user_account(user_id, duration_minutes=30)
+        actions.append('User account disabled for 30 minutes')
 
-        # Create snapshot for forensics
-        if resource.type in ['vm', 'disk', 'database']:
-            snapshot_result = await cloud_api.create_forensic_snapshot(resource.id)
-            actions.append({
-                'action': 'forensic_snapshot',
-                'resource': resource.id,
-                'result': snapshot_result
-            })
+        # 3. Force password reset
+        await self.force_password_reset(user_id)
+        actions.append('Password reset required')
 
-        return actions
+        # 4. Revoke all tokens
+        await self.revoke_user_tokens(user_id)
+        actions.append('All tokens revoked')
 
-    async def _investigate_lateral_movement(self, incident: SecurityIncident):
-        """Check for lateral movement across clouds"""
-        investigation_tasks = []
+        # 5. Send notification
+        await self.notify_user(user_id, {
+            'type': 'security_alert',
+            'message': 'Suspicious login detected. Your account has been temporarily locked.',
+            'actions_required': ['Reset password', 'Verify identity']
+        })
 
-        for cloud, api in self.cloud_apis.items():
-            # Check access logs
-            task = api.analyze_access_logs(
-                start_time=incident.detected_at - timedelta(hours=24),
-                end_time=incident.detected_at,
-                source_ips=incident.source_ips,
-                suspicious_patterns=incident.indicators
-            )
-            investigation_tasks.append(task)
+        return {
+            'incident_id': incident['id'],
+            'response_time': datetime.utcnow().isoformat(),
+            'actions_taken': actions,
+            'status': 'contained'
+        }
 
-        results = await asyncio.gather(*investigation_tasks)
+    async def handle_lateral_movement(self, incident):
+        """Handle detected lateral movement"""
 
-        # Correlate findings across clouds
-        correlated_findings = self._correlate_findings(results)
+        source_ip = incident['source_ip']
+        compromised_resources = incident['accessed_resources']
 
-        return correlated_findings
+        actions = []
+
+        # 1. Isolate affected resources
+        for resource in compromised_resources:
+            await self.isolate_resource(resource)
+            actions.append(f'Isolated resource: {resource["id"]}')
+
+        # 2. Block source IP across all clouds
+        await self.block_ip_multicloud(source_ip)
+        actions.append(f'Blocked IP {source_ip} across all clouds')
+
+        # 3. Snapshot for forensics
+        for resource in compromised_resources:
+            snapshot_id = await self.create_forensic_snapshot(resource)
+            actions.append(f'Created forensic snapshot: {snapshot_id}')
+
+        # 4. Deploy honeypot
+        honeypot = await self.deploy_honeypot(incident['attack_pattern'])
+        actions.append(f'Deployed honeypot: {honeypot["id"]}')
+
+        # 5. Enhance monitoring
+        await self.enhance_monitoring(compromised_resources)
+        actions.append('Enhanced monitoring on affected resources')
+
+        return {
+            'incident_id': incident['id'],
+            'response_time': datetime.utcnow().isoformat(),
+            'actions_taken': actions,
+            'status': 'investigating',
+            'forensics_enabled': True
+        }
 ```
 
-## Best Practices for Zero Trust Multi-Cloud
+### 7. Compliance and Audit
 
-1. **Identity-First Security**: Start with strong identity management
-2. **Automate Policy Enforcement**: Use Policy-as-Code everywhere
-3. **Continuous Verification**: Never trust, always verify
-4. **Micro-Segmentation**: Implement fine-grained network controls
-5. **Encrypt Everything**: Data at rest and in transit
-6. **Monitor Continuously**: Real-time security monitoring
-7. **Automate Response**: Quick incident containment
-8. **Regular Audits**: Compliance and security assessments
+Maintain continuous compliance across all cloud environments.
+
+```yaml
+# Cloud Custodian - Multi-Cloud Compliance Policies
+policies:
+  # AWS Zero Trust Compliance
+  - name: aws-zero-trust-iam-mfa
+    resource: aws.iam-user
+    filters:
+      - type: mfa-device
+        value: empty
+    actions:
+      - type: remove-keys
+        age: 0
+      - type: notify
+        template: zero-trust-violation
+        subject: "Zero Trust Violation: MFA Not Enabled"
+
+  - name: aws-zero-trust-sg-ingress
+    resource: aws.security-group
+    filters:
+      - type: ingress
+        Cidr:
+          value: "0.0.0.0/0"
+        OnlyPorts: false
+    actions:
+      - type: delete
+      - type: notify
+        template: zero-trust-violation
+
+  # Azure Zero Trust Compliance
+  - name: azure-zero-trust-network-watcher
+    resource: azure.networkinterface
+    filters:
+      - type: network-flow-logs
+        enabled: false
+    actions:
+      - type: set-flow-logs
+        enabled: true
+
+  - name: azure-zero-trust-storage-encryption
+    resource: azure.storage
+    filters:
+      - not:
+          - type: storage-encryption
+            enabled: true
+    actions:
+      - type: set-encryption
+        enabled: true
+
+  # GCP Zero Trust Compliance
+  - name: gcp-zero-trust-iam-audit
+    resource: gcp.project
+    filters:
+      - type: iam-policy
+        doc:
+          bindings:
+            - members: ["allUsers", "allAuthenticatedUsers"]
+    actions:
+      - type: set-iam-policy
+        remove-bindings:
+          - members: ["allUsers", "allAuthenticatedUsers"]
+
+  - name: gcp-zero-trust-vpc-flow-logs
+    resource: gcp.subnet
+    filters:
+      - type: flow-logs
+        enabled: false
+    actions:
+      - type: set-flow-logs
+        config:
+          enable: true
+          aggregationInterval: INTERVAL_5_SEC
+          flowSampling: 1.0
+```
+
+## Best Practices for Multi-Cloud Zero Trust
+
+### 1. Start with Identity
+
+- Implement strong authentication (MFA, passwordless)
+- Use temporary credentials with short TTLs
+- Enforce least privilege at all levels
+- Regular access reviews and certification
+
+### 2. Embrace Automation
+
+- Automate policy enforcement
+- Use Infrastructure as Code for consistency
+- Implement automated incident response
+- Continuous compliance monitoring
+
+### 3. Monitor Everything
+
+- Collect logs from all cloud services
+- Correlate events across clouds
+- Use ML for anomaly detection
+- Real-time alerting and response
+
+### 4. Plan for Failure
+
+- Assume breach mentality
+- Regular disaster recovery testing
+- Incident response playbooks
+- Forensic readiness
 
 ## Conclusion
 
-Implementing Zero Trust in multi-cloud environments requires a comprehensive approach combining identity management, policy enforcement, network security, and continuous monitoring. By treating every request as potentially hostile and implementing defense in depth, organizations can maintain security across diverse cloud platforms while enabling business agility.
+Implementing Zero Trust in multi-cloud environments requires a fundamental shift in security thinking. By eliminating implicit trust, continuously verifying every transaction, and enforcing least privilege access, organizations can maintain security across distributed cloud infrastructure.
 
-## Additional Resources
+Key takeaways:
 
-- [NIST Zero Trust Architecture](https://www.nist.gov/publications/zero-trust-architecture)
-- [Google BeyondCorp](https://cloud.google.com/beyondcorp)
-- [Microsoft Zero Trust Deployment Guide](https://docs.microsoft.com/en-us/security/zero-trust/)
-- [AWS Zero Trust on AWS](https://aws.amazon.com/security/zero-trust/)
-- [CNCF Zero Trust Whitepaper](https://www.cncf.io/blog/2021/05/12/zero-trust-whitepaper/)
+- Identity is the new perimeter
+- Microsegmentation limits blast radius
+- Policy-as-Code ensures consistency
+- Continuous verification is essential
+- Automation enables scale
 
-Tomorrow, we'll explore DevOps Excellence and best practices for 2025. Stay tuned!
+Zero Trust isn't a product but a journey. Start with high-value assets, gradually expand coverage, and continuously improve based on lessons learned. In today's threat landscape, Zero Trust isn't optional—it's essential for securing multi-cloud environments.
