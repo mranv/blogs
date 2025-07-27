@@ -6,7 +6,7 @@ keywords: "cybersecurity expert, security engineer, XDR platform, OXDR, DevSecOp
 ---
 
 <div align="center">
-  <img src="/assets/mranv.png" width="280" height="280" alt="Anubhav Gain - Cybersecurity Expert and Security Engineer" class="rounded-lg shadow-md mb-6">
+  <img src="/assets/gainsaheb.png" width="280" height="280" alt="Anubhav Gain - Cybersecurity Expert and Security Engineer" class="rounded-lg shadow-md mb-6">
   <h1 class="text-3xl font-bold text-skin-base mb-3">Anubhav Gain</h1>
   <p class="text-lg text-skin-base font-medium mb-2">Security Engineer | Cybersecurity Consultant | Technology Leader</p>
   <p class="text-base text-skin-accent">Delivering enterprise-grade security solutions and strategic cybersecurity consulting</p>
@@ -107,7 +107,7 @@ Specialized in fraud detection and financial security for payment processing sys
 
 ### Academic Credentials
 
-**Bachelor of Technology - Cyber/Computer Forensics and Counterterrorism**  
+**Bachelor of Technology - Cyber/Computer Forensics and Counterterrorism**
 Parul University (2021-2025)
 
 **Specialized Certifications - Charles Sturt University**
@@ -175,13 +175,13 @@ Anubhav has provided cybersecurity consulting services to major organizations ac
 
 Anubhav actively contributes to the cybersecurity community through open-source development on [GitHub (mranv)](https://github.com/mranv):
 
-**honeypot.rs** - Advanced threat detection system focused on CVE-2023-46604 (Apache ActiveMQ RCE Vulnerability) for collecting Indicators of Compromise  
-**tls.rs** - A Rust-based TCP client-server application with SSL/TLS encryption and real-time data transmission using tokio and rustls  
-**invinservicedemon** - Rust application for monitoring osquery, Wazuh, and ClamAV services with JSON status reporting  
-**adPentest** - Comprehensive Windows Active Directory Pentesting documentation  
-**solitude** - Shell scripts for managing isolation settings on macOS and Linux to enhance firewall control  
-**toolkit** - Security tools designed to assist penetration testers and red teamers during engagements  
-**macos-security-logger** - Cross-platform security monitoring solution  
+**honeypot.rs** - Advanced threat detection system focused on CVE-2023-46604 (Apache ActiveMQ RCE Vulnerability) for collecting Indicators of Compromise
+**tls.rs** - A Rust-based TCP client-server application with SSL/TLS encryption and real-time data transmission using tokio and rustls
+**invinservicedemon** - Rust application for monitoring osquery, Wazuh, and ClamAV services with JSON status reporting
+**adPentest** - Comprehensive Windows Active Directory Pentesting documentation
+**solitude** - Shell scripts for managing isolation settings on macOS and Linux to enhance firewall control
+**toolkit** - Security tools designed to assist penetration testers and red teamers during engagements
+**macos-security-logger** - Cross-platform security monitoring solution
 **opensearch-deployment-tools** - Enterprise OpenSearch deployment automation
 
 _"Cybersecurity wizard with Rusty spells, cloud enchantments, and network ninja skills, battling digital chaos with a touch of humor!"_ - GitHub Profile
@@ -231,12 +231,12 @@ Designed and implemented enterprise-wide cybersecurity solutions across multiple
 
 ## Professional Contact Information
 
-**Business Inquiries:** iamanubhavgain@gmail.com  
-**LinkedIn:** [linkedin.com/in/anubhavgain](https://linkedin.com/in/anubhavgain)  
-**Professional Portfolio:** [mranv.pages.dev](https://mranv.pages.dev) | [mranv.github.io](https://mranv.github.io)  
+**Business Inquiries:** iamanubhavgain@gmail.com
+**LinkedIn:** [linkedin.com/in/anubhavgain](https://linkedin.com/in/anubhavgain)
+**Professional Portfolio:** [mranv.pages.dev](https://mranv.pages.dev) | [mranv.github.io](https://mranv.github.io)
 **Technical Repositories:** [github.com/mranv](https://github.com/mranv)
 
-**Location:** Vadodara, Gujarat, India  
+**Location:** Vadodara, Gujarat, India
 **Availability:** Available for enterprise consulting and strategic security partnerships
 
 ---
