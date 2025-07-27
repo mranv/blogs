@@ -58,4 +58,13 @@ claude-flow
 claude-flow.bat
 claude-flow.ps1
 hive-mind-prompt-*.txt
-*.md
+spiffe-spire-content-roadmap.md
+spiffe-spire-system-architectures.md
+supply-chain-security-patterns.md
+xdr-production-readiness.md
+security-testing-automation-topics.md
+security-automation-code-examples.md
+security_patterns_research_2025.md
+research_notes.md
+comprehensive-security-automation-blog-ideas-2025.md
+cloud-security-automation-trends-2025.md
