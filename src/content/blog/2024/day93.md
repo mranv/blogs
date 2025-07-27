@@ -1,706 +1,871 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-29T10:00:00+05:30
-modDatetime: 2024-09-29T10:00:00+05:30
+pubDatetime: 2024-10-02T09:00:00+05:30
+modDatetime: 2024-10-02T09:00:00+05:30
 title: Day 93 - MLOps - Operationalizing Machine Learning at Scale
 slug: day93
 featured: false
 draft: false
 tags:
-  - MLOps
-  - MachineLearning
-  - DevOps
-  - DataScience
-  - AI
-  - Automation
-description: Exploring MLOps practices, tools, and workflows for deploying, monitoring, and maintaining machine learning models in production environments.
+  - mlops
+  - machine-learning
+  - devops
+  - ai
+  - automation
+description: Deep dive into MLOps practices for deploying, monitoring, and maintaining machine learning models in production. Learn how to build robust ML pipelines that scale.
 ---
 
 # Day 93 - MLOps: Operationalizing Machine Learning at Scale
 
-[![Watch the video](/thumbnails/day93.png)](https://www.youtube.com/watch?v=placeholder93)
+[![Watch the video](/thumbnails/day93.png)](https://www.youtube.com/watch?v=VIDEO_ID_HERE)
 
-Machine Learning Operations (MLOps) bridges the gap between experimental ML development and reliable production systems. As organizations increasingly rely on ML models for critical decisions, the need for robust MLOps practices has never been greater. Today, we'll explore how to build scalable, maintainable ML systems that deliver consistent value in production.
+Machine Learning Operations (MLOps) has emerged as a critical discipline that bridges the gap between ML development and production deployment. Today, we'll explore how to build robust, scalable ML systems that can handle the unique challenges of operationalizing machine learning models.
 
-## Understanding MLOps
+## The MLOps Challenge
 
-MLOps applies DevOps principles to machine learning workflows, addressing unique challenges like:
+Traditional software follows deterministic patterns, but ML introduces unique complexities:
 
-- **Data Drift**: When production data differs from training data
-- **Model Decay**: Performance degradation over time
-- **Reproducibility**: Ensuring experiments can be replicated
-- **Versioning**: Managing models, data, and code versions
-- **Monitoring**: Tracking model performance and data quality
+- **Data Dependency**: Models are only as good as their training data
+- **Model Drift**: Performance degrades over time as data distributions change
+- **Experimentation**: Hundreds of experiments before production-ready models
+- **Reproducibility**: Ensuring consistent results across environments
+- **Monitoring**: Tracking not just system metrics but model performance
 
 ## The MLOps Lifecycle
 
-### 1. Data Engineering
+### 1. Data Engineering & Feature Engineering
 
-Robust data pipelines form the foundation of successful ML systems:
-
-```python
-# Example: Data validation with Great Expectations
-import great_expectations as ge
-import pandas as pd
-
-# Create expectation suite
-df = ge.read_csv("data/training_data.csv")
-
-# Define data quality expectations
-df.expect_column_values_to_not_be_null("customer_id")
-df.expect_column_values_to_be_between("age", min_value=18, max_value=120)
-df.expect_column_values_to_be_in_set("country", ["US", "UK", "CA", "AU"])
-df.expect_column_mean_to_be_between("purchase_amount", min_value=10, max_value=1000)
-
-# Validate incoming data
-validation_results = df.validate()
-if not validation_results["success"]:
-    raise ValueError("Data quality check failed")
-```
-
-### 2. Feature Engineering
-
-Feature stores centralize feature computation and serving:
+The foundation of any ML system is robust data pipelines.
 
 ```python
-# Example: Feast feature store configuration
-from feast import Entity, Feature, FeatureView, FileSource, ValueType
-from datetime import timedelta
-
-# Define data source
-driver_stats = FileSource(
-    path="data/driver_stats.parquet",
-    event_timestamp_column="event_timestamp",
-    created_timestamp_column="created_timestamp"
-)
-
-# Define entity
-driver = Entity(name="driver_id", value_type=ValueType.INT64)
-
-# Define feature view
-driver_stats_fv = FeatureView(
-    name="driver_activity",
-    entities=["driver_id"],
-    ttl=timedelta(days=7),
-    features=[
-        Feature(name="trips_today", dtype=ValueType.INT64),
-        Feature(name="avg_trip_distance", dtype=ValueType.FLOAT),
-        Feature(name="rating", dtype=ValueType.FLOAT),
-    ],
-    online=True,
-    source=driver_stats,
-)
-
-# Retrieve features for inference
+# Feature Store Implementation with Feast
 from feast import FeatureStore
+import pandas as pd
+from datetime import datetime, timedelta
 
-store = FeatureStore(".")
-features = store.get_online_features(
+# Initialize feature store
+store = FeatureStore(repo_path="feature_repo/")
+
+# Define feature retrieval
+entity_df = pd.DataFrame({
+    "customer_id": [1001, 1002, 1003],
+    "event_timestamp": [
+        datetime.now() - timedelta(hours=3),
+        datetime.now() - timedelta(hours=2),
+        datetime.now() - timedelta(hours=1)
+    ]
+})
+
+# Retrieve features
+training_df = store.get_historical_features(
+    entity_df=entity_df,
     features=[
-        "driver_activity:trips_today",
-        "driver_activity:avg_trip_distance",
-        "driver_activity:rating",
-    ],
-    entity_rows=[{"driver_id": 12345}],
-).to_dict()
+        "customer_stats:total_transactions",
+        "customer_stats:avg_transaction_amount",
+        "customer_stats:days_since_last_purchase"
+    ]
+).to_df()
+
+# Feature validation
+from great_expectations import DataContext
+
+context = DataContext()
+batch = context.get_batch(
+    datasource_name="customer_features",
+    data_asset_name="training_features"
+)
+
+# Define expectations
+batch.expect_column_values_to_not_be_null("customer_id")
+batch.expect_column_values_to_be_between(
+    "avg_transaction_amount",
+    min_value=0,
+    max_value=10000
+)
+
+# Validate
+results = batch.validate()
 ```
 
-### 3. Model Development
+### 2. Experiment Tracking
 
-Experiment tracking ensures reproducibility:
+Track experiments systematically to ensure reproducibility.
 
 ```python
-# Example: MLflow experiment tracking
+# MLflow Experiment Tracking
 import mlflow
 import mlflow.sklearn
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import accuracy_score, roc_auc_score
+import numpy as np
 
 # Start MLflow run
-with mlflow.start_run(run_name="rf_classifier_v1"):
+with mlflow.start_run(run_name="rf_customer_churn_v3"):
     # Log parameters
     n_estimators = 100
     max_depth = 10
     mlflow.log_param("n_estimators", n_estimators)
     mlflow.log_param("max_depth", max_depth)
+    mlflow.log_param("feature_set_version", "v2.1")
 
     # Train model
-    rf_model = RandomForestClassifier(
+    rf = RandomForestClassifier(
         n_estimators=n_estimators,
         max_depth=max_depth,
         random_state=42
     )
-    rf_model.fit(X_train, y_train)
+    rf.fit(X_train, y_train)
 
     # Make predictions
-    predictions = rf_model.predict(X_test)
+    y_pred = rf.predict(X_test)
+    y_pred_proba = rf.predict_proba(X_test)[:, 1]
 
     # Log metrics
-    accuracy = accuracy_score(y_test, predictions)
-    f1 = f1_score(y_test, predictions, average='weighted')
+    accuracy = accuracy_score(y_test, y_pred)
+    auc = roc_auc_score(y_test, y_pred_proba)
     mlflow.log_metric("accuracy", accuracy)
-    mlflow.log_metric("f1_score", f1)
+    mlflow.log_metric("auc", auc)
 
     # Log model
     mlflow.sklearn.log_model(
-        sk_model=rf_model,
-        artifact_path="model",
-        registered_model_name="fraud_detection_model"
+        rf,
+        "model",
+        registered_model_name="customer_churn_classifier"
     )
 
-    # Log additional artifacts
-    mlflow.log_artifact("data/feature_importance.png")
-    mlflow.set_tag("model_type", "RandomForest")
+    # Log feature importance
+    feature_importance = pd.DataFrame({
+        'feature': X_train.columns,
+        'importance': rf.feature_importances_
+    }).sort_values('importance', ascending=False)
+
+    mlflow.log_table(feature_importance, "feature_importance.json")
+
+    # Log artifacts
+    mlflow.log_artifact("preprocessing_pipeline.pkl")
+    mlflow.log_artifact("model_config.yaml")
 ```
 
-### 4. Model Deployment
+### 3. Model Training Pipeline
 
-Containerized model serving with BentoML:
+Automated training pipelines ensure consistency and scalability.
 
 ```python
-# service.py
-import bentoml
-import numpy as np
-from bentoml.io import NumpyNdarray, JSON
-
-# Load the model
-fraud_model = bentoml.sklearn.get("fraud_detector:latest").to_runner()
-
-# Create service
-svc = bentoml.Service("fraud_detection_service", runners=[fraud_model])
-
-# Define API endpoint
-@svc.api(input=NumpyNdarray(), output=JSON())
-async def predict(input_data: np.ndarray) -> dict:
-    prediction = await fraud_model.predict.async_run(input_data)
-    confidence = await fraud_model.predict_proba.async_run(input_data)
-
-    return {
-        "prediction": int(prediction[0]),
-        "confidence": float(confidence[0].max()),
-        "fraud_probability": float(confidence[0][1])
-    }
-
-# Health check endpoint
-@svc.api(input=JSON(), output=JSON())
-def health_check(input_data: dict) -> dict:
-    return {"status": "healthy", "service": "fraud_detection"}
-```
-
-```yaml
-# bentofile.yaml
-service: "service:svc"
-labels:
-  owner: ml-team
-  stage: production
-include:
-  - "*.py"
-python:
-  packages:
-    - scikit-learn
-    - numpy
-    - pandas
-docker:
-  base_image: python:3.9-slim
-  system_packages:
-    - libgomp1
-```
-
-### 5. Model Monitoring
-
-Implement comprehensive monitoring with Evidently:
-
-```python
-# monitoring.py
-import evidently
-from evidently.dashboard import Dashboard
-from evidently.dashboard.tabs import DataDriftTab, CatTargetDriftTab
-from evidently.model_profile import Profile
-from evidently.model_profile.sections import DataDriftProfileSection
-
-# Create monitoring dashboard
-def create_monitoring_dashboard(reference_data, production_data, column_mapping):
-    # Create dashboard
-    dashboard = Dashboard(tabs=[
-        DataDriftTab(),
-        CatTargetDriftTab()
-    ])
-
-    # Calculate dashboard
-    dashboard.calculate(
-        reference_data=reference_data,
-        production_data=production_data,
-        column_mapping=column_mapping
-    )
-
-    # Save dashboard
-    dashboard.save("reports/data_drift_dashboard.html")
-
-    # Create drift profile
-    profile = Profile(sections=[DataDriftProfileSection()])
-    profile.calculate(reference_data, production_data, column_mapping)
-
-    # Get drift metrics
-    drift_results = profile.json()
-    return drift_results
-
-# Alert on significant drift
-def check_drift_alerts(drift_results):
-    alerts = []
-    drift_score = drift_results["data_drift"]["metrics"]["dataset_drift_score"]
-
-    if drift_score > 0.5:
-        alerts.append({
-            "severity": "high",
-            "message": f"Significant data drift detected: {drift_score:.2f}",
-            "timestamp": datetime.now().isoformat()
-        })
-
-    # Check individual feature drift
-    for feature, metrics in drift_results["data_drift"]["metrics"]["features"].items():
-        if metrics["drift_score"] > 0.7:
-            alerts.append({
-                "severity": "medium",
-                "feature": feature,
-                "message": f"Feature drift detected: {metrics['drift_score']:.2f}",
-                "timestamp": datetime.now().isoformat()
-            })
-
-    return alerts
-```
-
-## MLOps Pipeline Architecture
-
-### Complete Pipeline with Kubeflow
-
-```yaml
-# kubeflow_pipeline.py
+# Kubeflow Pipeline for Model Training
 import kfp
 from kfp import dsl
-from kfp.components import InputPath, OutputPath
+from kfp.components import func_to_container_op
 
-@dsl.component(
-    base_image='python:3.9',
-    packages_to_install=['pandas', 'scikit-learn', 'feast']
-)
-def prepare_features(
-    data_path: InputPath(str),
-    features_path: OutputPath(str)
-):
+# Define pipeline components
+@func_to_container_op
+def load_data(data_path: str) -> str:
     import pandas as pd
-    from feast import FeatureStore
+    import boto3
+    from io import StringIO
 
-    # Load data
+    s3 = boto3.client('s3')
+    obj = s3.get_object(Bucket='ml-data', Key=data_path)
+    df = pd.read_csv(StringIO(obj['Body'].read().decode('utf-8')))
+
+    # Save to shared volume
+    df.to_csv('/mnt/data/raw_data.csv', index=False)
+    return '/mnt/data/raw_data.csv'
+
+@func_to_container_op
+def preprocess_data(data_path: str) -> str:
+    import pandas as pd
+    from sklearn.preprocessing import StandardScaler
+    import joblib
+
     df = pd.read_csv(data_path)
 
-    # Get features from feature store
-    store = FeatureStore(".")
-    training_df = store.get_historical_features(
-        entity_df=df,
-        features=[
-            "driver_activity:trips_today",
-            "driver_activity:avg_trip_distance",
-        ],
-    ).to_df()
+    # Feature engineering
+    df['total_spend_per_transaction'] = df['total_spend'] / df['transaction_count']
+    df['days_since_registration'] = (pd.Timestamp.now() - pd.to_datetime(df['registration_date'])).dt.days
 
-    # Save features
-    training_df.to_csv(features_path, index=False)
+    # Scaling
+    scaler = StandardScaler()
+    numeric_features = ['total_spend', 'transaction_count', 'days_since_registration']
+    df[numeric_features] = scaler.fit_transform(df[numeric_features])
 
-@dsl.component(
-    base_image='python:3.9',
-    packages_to_install=['scikit-learn', 'mlflow']
-)
-def train_model(
-    features_path: InputPath(str),
-    model_path: OutputPath(str),
-    metrics_path: OutputPath(dict)
-):
+    # Save preprocessor
+    joblib.dump(scaler, '/mnt/model/preprocessor.pkl')
+
+    # Save processed data
+    df.to_csv('/mnt/data/processed_data.csv', index=False)
+    return '/mnt/data/processed_data.csv'
+
+@func_to_container_op
+def train_model(data_path: str, model_type: str) -> str:
     import pandas as pd
-    import mlflow
-    import json
+    import joblib
     from sklearn.model_selection import train_test_split
     from sklearn.ensemble import RandomForestClassifier
-    from sklearn.metrics import accuracy_score, f1_score
+    from sklearn.linear_model import LogisticRegression
+    import mlflow
 
-    # Load features
-    df = pd.read_csv(features_path)
-    X = df.drop("target", axis=1)
-    y = df["target"]
+    df = pd.read_csv(data_path)
+    X = df.drop(['target', 'customer_id'], axis=1)
+    y = df['target']
 
-    # Split data
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42
     )
 
-    # Train model
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
+    if model_type == 'random_forest':
+        model = RandomForestClassifier(n_estimators=100, random_state=42)
+    else:
+        model = LogisticRegression(random_state=42)
+
     model.fit(X_train, y_train)
 
-    # Evaluate
-    predictions = model.predict(X_test)
-    accuracy = accuracy_score(y_test, predictions)
-    f1 = f1_score(y_test, predictions, average='weighted')
-
     # Save model
-    import joblib
+    model_path = f'/mnt/model/{model_type}_model.pkl'
     joblib.dump(model, model_path)
 
-    # Save metrics
-    metrics = {"accuracy": accuracy, "f1_score": f1}
-    with open(metrics_path, 'w') as f:
-        json.dump(metrics, f)
+    # Log to MLflow
+    mlflow.log_model(model, model_type)
 
-@dsl.component(
-    base_image='python:3.9',
-    packages_to_install=['bentoml', 'scikit-learn']
-)
-def deploy_model(
-    model_path: InputPath(str),
-    metrics_path: InputPath(dict),
-    deployment_endpoint: OutputPath(str)
-):
-    import json
+    return model_path
+
+@func_to_container_op
+def evaluate_model(model_path: str, data_path: str) -> float:
+    import pandas as pd
     import joblib
-    import bentoml
+    from sklearn.metrics import roc_auc_score
+    import mlflow
 
-    # Load metrics
-    with open(metrics_path, 'r') as f:
-        metrics = json.load(f)
+    model = joblib.load(model_path)
+    df = pd.read_csv(data_path)
 
-    # Deploy only if metrics meet threshold
-    if metrics["accuracy"] > 0.85:
-        # Load model
-        model = joblib.load(model_path)
+    X = df.drop(['target', 'customer_id'], axis=1)
+    y = df['target']
 
-        # Save to BentoML
-        bentoml.sklearn.save_model(
-            "fraud_detector",
-            model,
-            labels={
-                "accuracy": str(metrics["accuracy"]),
-                "f1_score": str(metrics["f1_score"])
-            }
-        )
+    predictions = model.predict_proba(X)[:, 1]
+    auc = roc_auc_score(y, predictions)
 
-        # Build and push container
-        bento = bentoml.build(
-            "service:svc",
-            labels={"stage": "production"}
-        )
+    mlflow.log_metric("test_auc", auc)
 
-        # Deploy to Kubernetes
-        endpoint = f"http://fraud-detector.ml-models.svc.cluster.local"
-        with open(deployment_endpoint, 'w') as f:
-            f.write(endpoint)
+    return auc
 
+# Define pipeline
 @dsl.pipeline(
-    name="Fraud Detection Pipeline",
-    description="End-to-end ML pipeline for fraud detection"
+    name='Customer Churn Training Pipeline',
+    description='End-to-end ML training pipeline'
 )
-def ml_pipeline(data_path: str):
-    # Prepare features
-    features_task = prepare_features(data_path=data_path)
+def ml_pipeline(data_path: str = 'data/customers.csv'):
+    # Pipeline DAG
+    data = load_data(data_path)
+    processed_data = preprocess_data(data.output)
 
-    # Train model
-    train_task = train_model(features_path=features_task.outputs["features_path"])
+    # Train multiple models in parallel
+    rf_model = train_model(processed_data.output, 'random_forest')
+    lr_model = train_model(processed_data.output, 'logistic_regression')
 
-    # Deploy model
-    deploy_task = deploy_model(
-        model_path=train_task.outputs["model_path"],
-        metrics_path=train_task.outputs["metrics_path"]
-    )
+    # Evaluate models
+    rf_score = evaluate_model(rf_model.output, processed_data.output)
+    lr_score = evaluate_model(lr_model.output, processed_data.output)
 
-    return deploy_task.outputs["deployment_endpoint"]
+    # Select best model
+    with dsl.Condition(rf_score.output > lr_score.output):
+        deploy_model(rf_model.output)
 
 # Compile and run pipeline
-if __name__ == "__main__":
-    kfp.compiler.Compiler().compile(
-        pipeline_func=ml_pipeline,
-        package_path="fraud_detection_pipeline.yaml"
-    )
+kfp.compiler.Compiler().compile(ml_pipeline, 'ml_pipeline.yaml')
 ```
 
-## Model Governance and Compliance
+### 4. Model Deployment
 
-### Model Registry with MLflow
+Deploy models with proper versioning and rollback capabilities.
 
 ```python
-# model_governance.py
-from mlflow.tracking import MlflowClient
-from datetime import datetime
-import json
+# Model Serving with BentoML
+import bentoml
+from bentoml.io import JSON, NumpyNdarray
+import numpy as np
 
-class ModelGovernance:
-    def __init__(self):
-        self.client = MlflowClient()
+# Define service
+@bentoml.env(pip_packages=["scikit-learn", "pandas", "numpy"])
+@bentoml.artifacts([
+    bentoml.artifact.PickleArtifact("model"),
+    bentoml.artifact.PickleArtifact("preprocessor")
+])
+class ChurnPredictionService(bentoml.BentoService):
 
-    def register_model(self, model_name, run_id, tags):
-        """Register model with governance metadata"""
-        # Create registered model
-        self.client.create_registered_model(
-            name=model_name,
-            tags={
-                "compliance_checked": "pending",
-                "risk_assessment": "required",
-                "data_privacy": "gdpr_compliant",
-                **tags
-            }
+    @bentoml.api(input=JSON(), output=JSON())
+    def predict(self, input_data):
+        # Preprocess input
+        features = self.artifacts.preprocessor.transform(
+            pd.DataFrame([input_data])
         )
 
-        # Create model version
-        model_version = self.client.create_model_version(
-            name=model_name,
-            source=f"runs:/{run_id}/model",
-            run_id=run_id,
-            tags={
-                "created_by": tags.get("created_by", "unknown"),
-                "created_at": datetime.now().isoformat(),
-                "approval_status": "pending"
-            }
-        )
-
-        return model_version
-
-    def approve_model(self, model_name, version, approver, comments):
-        """Approve model for production"""
-        # Update approval status
-        self.client.set_model_version_tag(
-            name=model_name,
-            version=version,
-            key="approval_status",
-            value="approved"
-        )
-
-        # Add approval metadata
-        approval_info = {
-            "approver": approver,
-            "approved_at": datetime.now().isoformat(),
-            "comments": comments
-        }
-
-        self.client.set_model_version_tag(
-            name=model_name,
-            version=version,
-            key="approval_info",
-            value=json.dumps(approval_info)
-        )
-
-        # Transition to production
-        self.client.transition_model_version_stage(
-            name=model_name,
-            version=version,
-            stage="Production",
-            archive_existing_versions=True
-        )
-
-    def audit_model_lineage(self, model_name, version):
-        """Get complete model lineage for audit"""
-        model_version = self.client.get_model_version(
-            name=model_name,
-            version=version
-        )
-
-        run = self.client.get_run(model_version.run_id)
-
-        lineage = {
-            "model_name": model_name,
-            "version": version,
-            "run_id": model_version.run_id,
-            "source_code": run.data.tags.get("mlflow.source.name"),
-            "git_commit": run.data.tags.get("mlflow.source.git.commit"),
-            "training_data": run.data.params.get("training_data_version"),
-            "hyperparameters": run.data.params,
-            "metrics": run.data.metrics,
-            "created_at": model_version.creation_timestamp,
-            "tags": model_version.tags
-        }
-
-        return lineage
-```
-
-## A/B Testing and Gradual Rollout
-
-### Canary Deployment with Seldon
-
-```yaml
-# seldon-deployment.yaml
-apiVersion: machinelearning.seldon.io/v1
-kind: SeldonDeployment
-metadata:
-  name: fraud-detector
-spec:
-  predictors:
-    - name: stable
-      replicas: 3
-      traffic: 90
-      graph:
-        name: fraud-model
-        implementation: SKLEARN_SERVER
-        modelUri: s3://models/fraud-detector/v1
-      componentSpecs:
-        - spec:
-            containers:
-              - name: fraud-model
-                resources:
-                  requests:
-                    memory: "1Gi"
-                    cpu: "100m"
-    - name: canary
-      replicas: 1
-      traffic: 10
-      graph:
-        name: fraud-model
-        implementation: SKLEARN_SERVER
-        modelUri: s3://models/fraud-detector/v2
-      componentSpecs:
-        - spec:
-            containers:
-              - name: fraud-model
-                resources:
-                  requests:
-                    memory: "1Gi"
-                    cpu: "100m"
-```
-
-### Progressive Rollout Controller
-
-```python
-# progressive_rollout.py
-class ProgressiveRollout:
-    def __init__(self, deployment_name, metrics_client):
-        self.deployment_name = deployment_name
-        self.metrics_client = metrics_client
-
-    def evaluate_canary(self, canary_version, stable_version, duration_minutes=30):
-        """Evaluate canary performance against stable"""
-        # Get metrics for both versions
-        canary_metrics = self.metrics_client.get_metrics(
-            model_version=canary_version,
-            duration=duration_minutes
-        )
-
-        stable_metrics = self.metrics_client.get_metrics(
-            model_version=stable_version,
-            duration=duration_minutes
-        )
-
-        # Compare key metrics
-        metrics_comparison = {
-            "latency_improvement": (
-                stable_metrics["avg_latency"] - canary_metrics["avg_latency"]
-            ) / stable_metrics["avg_latency"],
-            "accuracy_delta": canary_metrics["accuracy"] - stable_metrics["accuracy"],
-            "error_rate_delta": canary_metrics["error_rate"] - stable_metrics["error_rate"]
-        }
-
-        # Decision logic
-        if (metrics_comparison["accuracy_delta"] > -0.01 and  # No significant accuracy drop
-            metrics_comparison["error_rate_delta"] < 0.01 and  # No increase in errors
-            metrics_comparison["latency_improvement"] > -0.1):  # Latency not worse by 10%
-            return "promote"
-        else:
-            return "rollback"
-
-    def update_traffic_split(self, canary_traffic_percentage):
-        """Update traffic split between stable and canary"""
-        # Update Seldon deployment
-        patch = {
-            "spec": {
-                "predictors": [
-                    {"name": "stable", "traffic": 100 - canary_traffic_percentage},
-                    {"name": "canary", "traffic": canary_traffic_percentage}
-                ]
-            }
-        }
-
-        # Apply patch to Kubernetes
-        return patch
-```
-
-## Cost Optimization in MLOps
-
-### Resource Management
-
-```python
-# resource_optimizer.py
-class MLResourceOptimizer:
-    def __init__(self):
-        self.gpu_costs = {"v100": 2.48, "t4": 0.526, "a100": 3.06}  # $/hour
-
-    def optimize_batch_inference(self, model_size_gb, dataset_size_gb, sla_hours):
-        """Optimize resource allocation for batch inference"""
-        # Estimate compute requirements
-        inference_time_cpu = dataset_size_gb * 0.5  # hours (rough estimate)
-        inference_time_gpu = dataset_size_gb * 0.05  # hours (10x speedup)
-
-        # Calculate costs
-        cpu_cost = inference_time_cpu * 0.096  # c5.xlarge pricing
-        gpu_options = {}
-
-        for gpu_type, hourly_cost in self.gpu_costs.items():
-            if gpu_type == "t4" and model_size_gb > 8:
-                continue  # T4 has 16GB memory limit
-
-            total_cost = inference_time_gpu * hourly_cost
-            if inference_time_gpu <= sla_hours:
-                gpu_options[gpu_type] = total_cost
-
-        # Recommendation
-        if min(gpu_options.values()) < cpu_cost:
-            best_gpu = min(gpu_options, key=gpu_options.get)
-            return {
-                "recommendation": "gpu",
-                "instance_type": best_gpu,
-                "estimated_cost": gpu_options[best_gpu],
-                "estimated_time": inference_time_gpu
-            }
-        else:
-            return {
-                "recommendation": "cpu",
-                "instance_type": "c5.xlarge",
-                "estimated_cost": cpu_cost,
-                "estimated_time": inference_time_cpu
-            }
-
-    def auto_scale_serving(self, current_qps, target_latency_ms):
-        """Calculate optimal serving infrastructure"""
-        # Model serving capacity (requests per second per replica)
-        capacity_per_replica = 100
-
-        # Calculate required replicas
-        required_replicas = math.ceil(current_qps / capacity_per_replica)
-
-        # Add buffer for reliability
-        recommended_replicas = int(required_replicas * 1.3)
+        # Make prediction
+        prediction = self.artifacts.model.predict_proba(features)[0]
 
         return {
-            "min_replicas": required_replicas,
-            "max_replicas": recommended_replicas,
-            "target_cpu_utilization": 70,
-            "scale_down_delay": 300  # seconds
+            "customer_id": input_data["customer_id"],
+            "churn_probability": float(prediction[1]),
+            "prediction": "churn" if prediction[1] > 0.5 else "retain",
+            "model_version": self.version
         }
+
+    @bentoml.api(input=JSON(), output=JSON())
+    def batch_predict(self, input_data):
+        df = pd.DataFrame(input_data["customers"])
+        features = self.artifacts.preprocessor.transform(df)
+        predictions = self.artifacts.model.predict_proba(features)
+
+        results = []
+        for i, customer in enumerate(input_data["customers"]):
+            results.append({
+                "customer_id": customer["customer_id"],
+                "churn_probability": float(predictions[i][1]),
+                "prediction": "churn" if predictions[i][1] > 0.5 else "retain"
+            })
+
+        return {"predictions": results}
+
+# Save service
+svc = ChurnPredictionService()
+svc.pack("model", model)
+svc.pack("preprocessor", preprocessor)
+svc.save()
+
+# Deploy with Kubernetes
+# bentoml containerize ChurnPredictionService:latest
+# bentoml deploy ChurnPredictionService:latest --platform=kubernetes
 ```
 
-## Best Practices for MLOps
+### Kubernetes Deployment Configuration
 
-1. **Version Everything**: Models, data, code, and configurations
-2. **Automate Testing**: Unit tests for code, integration tests for pipelines
-3. **Monitor Continuously**: Track both model and data quality metrics
-4. **Implement Gradual Rollouts**: Use canary deployments for safety
-5. **Maintain Reproducibility**: Document and version all experiments
-6. **Optimize Resources**: Balance performance with cost efficiency
-7. **Ensure Compliance**: Implement proper governance and audit trails
+```yaml
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: churn-prediction-service
+  namespace: ml-models
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "2"
+        autoscaling.knative.dev/maxScale: "100"
+        autoscaling.knative.dev/target: "100"
+    spec:
+      containers:
+        - image: gcr.io/project/churn-prediction:v1.2.0
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MODEL_NAME
+              value: "churn_classifier"
+            - name: MODEL_VERSION
+              value: "v1.2.0"
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "1"
+            limits:
+              memory: "4Gi"
+              cpu: "2"
+              nvidia.com/gpu: "1" # For GPU inference
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+```
+
+### 5. Model Monitoring
+
+Monitor model performance in production to detect drift and degradation.
+
+```python
+# Model Monitoring with Evidently
+from evidently import ColumnMapping
+from evidently.report import Report
+from evidently.metric_preset import DataDriftPreset, TargetDriftPreset
+from evidently.test_suite import TestSuite
+from evidently.test_preset import DataQualityTestPreset
+import pandas as pd
+from datetime import datetime
+import boto3
+
+class ModelMonitor:
+    def __init__(self, reference_data, model_name):
+        self.reference_data = reference_data
+        self.model_name = model_name
+        self.s3_client = boto3.client('s3')
+
+    def check_data_drift(self, current_data):
+        """Check for data drift between reference and current data"""
+
+        # Create column mapping
+        column_mapping = ColumnMapping(
+            target='target',
+            prediction='prediction',
+            numerical_features=['total_spend', 'transaction_count', 'days_since_registration'],
+            categorical_features=['customer_segment', 'region']
+        )
+
+        # Create drift report
+        drift_report = Report(metrics=[
+            DataDriftPreset(),
+            TargetDriftPreset()
+        ])
+
+        drift_report.run(
+            reference_data=self.reference_data,
+            current_data=current_data,
+            column_mapping=column_mapping
+        )
+
+        # Extract results
+        drift_results = drift_report.as_dict()
+
+        # Check if drift detected
+        drift_detected = False
+        for metric in drift_results['metrics']:
+            if metric.get('result', {}).get('drift_detected', False):
+                drift_detected = True
+                break
+
+        # Log results
+        self.log_monitoring_results({
+            'timestamp': datetime.now().isoformat(),
+            'model_name': self.model_name,
+            'drift_detected': drift_detected,
+            'drift_score': drift_results.get('metrics', [{}])[0].get('result', {}).get('drift_score', 0),
+            'n_drifted_features': sum(1 for m in drift_results['metrics'] if m.get('result', {}).get('drift_detected', False))
+        })
+
+        # Alert if drift detected
+        if drift_detected:
+            self.send_alert(f"Data drift detected for model {self.model_name}")
+
+        return drift_results
+
+    def check_prediction_quality(self, predictions_df):
+        """Monitor prediction quality metrics"""
+
+        # Run quality tests
+        test_suite = TestSuite(tests=[
+            DataQualityTestPreset()
+        ])
+
+        test_suite.run(
+            reference_data=self.reference_data,
+            current_data=predictions_df
+        )
+
+        # Calculate performance metrics
+        from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+        metrics = {
+            'accuracy': accuracy_score(predictions_df['target'], predictions_df['prediction']),
+            'precision': precision_score(predictions_df['target'], predictions_df['prediction']),
+            'recall': recall_score(predictions_df['target'], predictions_df['prediction']),
+            'f1_score': f1_score(predictions_df['target'], predictions_df['prediction'])
+        }
+
+        # Check for performance degradation
+        performance_threshold = 0.85
+        if metrics['accuracy'] < performance_threshold:
+            self.send_alert(
+                f"Model performance degraded: Accuracy {metrics['accuracy']:.2f} < {performance_threshold}"
+            )
+            self.trigger_retraining()
+
+        return metrics
+
+    def log_monitoring_results(self, results):
+        """Log monitoring results to S3"""
+        import json
+
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        key = f"monitoring/{self.model_name}/{timestamp}.json"
+
+        self.s3_client.put_object(
+            Bucket='ml-monitoring',
+            Key=key,
+            Body=json.dumps(results)
+        )
+
+    def send_alert(self, message):
+        """Send alert via SNS"""
+        sns_client = boto3.client('sns')
+        sns_client.publish(
+            TopicArn='arn:aws:sns:us-east-1:123456789:ml-alerts',
+            Message=message,
+            Subject=f'ML Model Alert: {self.model_name}'
+        )
+
+    def trigger_retraining(self):
+        """Trigger model retraining pipeline"""
+        import requests
+
+        response = requests.post(
+            'https://airflow.company.com/api/v1/dags/model_retraining/dagRuns',
+            json={
+                'conf': {
+                    'model_name': self.model_name,
+                    'trigger_reason': 'performance_degradation'
+                }
+            },
+            headers={'Authorization': 'Bearer ' + os.getenv('AIRFLOW_TOKEN')}
+        )
+
+        print(f"Retraining triggered: {response.status_code}")
+```
+
+### 6. A/B Testing and Gradual Rollout
+
+Safely deploy new models with controlled rollouts.
+
+```python
+# Feature Flag Based Model Routing
+from flask import Flask, request, jsonify
+import random
+import json
+from datetime import datetime
+
+app = Flask(__name__)
+
+class ModelRouter:
+    def __init__(self):
+        self.models = {
+            'v1': ModelV1(),
+            'v2': ModelV2()
+        }
+        self.rollout_config = {
+            'v2_percentage': 10,  # Start with 10% traffic to v2
+            'sticky_sessions': True,
+            'excluded_segments': ['high_value_customers']
+        }
+
+    def get_model_version(self, customer_id, customer_segment):
+        # Check if customer should be excluded from rollout
+        if customer_segment in self.rollout_config['excluded_segments']:
+            return 'v1'
+
+        # Implement sticky sessions
+        if self.rollout_config['sticky_sessions']:
+            # Use consistent hashing for sticky routing
+            hash_value = hash(customer_id) % 100
+            if hash_value < self.rollout_config['v2_percentage']:
+                return 'v2'
+            return 'v1'
+
+        # Random routing
+        if random.random() * 100 < self.rollout_config['v2_percentage']:
+            return 'v2'
+        return 'v1'
+
+router = ModelRouter()
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.json
+    customer_id = data['customer_id']
+    customer_segment = data.get('customer_segment', 'standard')
+
+    # Determine model version
+    model_version = router.get_model_version(customer_id, customer_segment)
+    model = router.models[model_version]
+
+    # Make prediction
+    start_time = datetime.now()
+    prediction = model.predict(data)
+    latency = (datetime.now() - start_time).total_seconds()
+
+    # Log for analysis
+    log_prediction({
+        'customer_id': customer_id,
+        'model_version': model_version,
+        'prediction': prediction,
+        'latency': latency,
+        'timestamp': datetime.now().isoformat()
+    })
+
+    return jsonify({
+        'prediction': prediction,
+        'model_version': model_version,
+        'request_id': str(uuid.uuid4())
+    })
+
+@app.route('/rollout/update', methods=['POST'])
+def update_rollout():
+    """Update rollout configuration"""
+    data = request.json
+
+    # Validate rollout percentage
+    new_percentage = data.get('v2_percentage')
+    if new_percentage and 0 <= new_percentage <= 100:
+        router.rollout_config['v2_percentage'] = new_percentage
+
+        # Log configuration change
+        log_config_change({
+            'action': 'rollout_update',
+            'new_percentage': new_percentage,
+            'timestamp': datetime.now().isoformat()
+        })
+
+        return jsonify({'status': 'success', 'new_config': router.rollout_config})
+
+    return jsonify({'status': 'error', 'message': 'Invalid percentage'}), 400
+```
+
+### 7. Automated ML Pipeline
+
+End-to-end automation with Apache Airflow.
+
+```python
+# Airflow DAG for ML Pipeline
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from airflow.operators.kubernetes_pod import KubernetesPodOperator
+from airflow.providers.amazon.aws.sensors.s3 import S3KeySensor
+from datetime import datetime, timedelta
+
+default_args = {
+    'owner': 'ml-team',
+    'depends_on_past': False,
+    'start_date': datetime(2024, 1, 1),
+    'email_on_failure': True,
+    'email_on_retry': False,
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5)
+}
+
+dag = DAG(
+    'ml_training_pipeline',
+    default_args=default_args,
+    description='Automated ML training pipeline',
+    schedule_interval='@daily',
+    catchup=False
+)
+
+# Wait for new data
+wait_for_data = S3KeySensor(
+    task_id='wait_for_data',
+    bucket_name='ml-data',
+    bucket_key='raw/{{ ds }}/customer_data.csv',
+    aws_conn_id='aws_default',
+    timeout=18*60*60,
+    poke_interval=300,
+    dag=dag
+)
+
+# Data validation
+validate_data = KubernetesPodOperator(
+    task_id='validate_data',
+    name='validate-data',
+    namespace='ml-jobs',
+    image='ml-pipeline:data-validator',
+    arguments=[
+        '--input-path', 's3://ml-data/raw/{{ ds }}/customer_data.csv',
+        '--schema-path', 's3://ml-config/schemas/customer_schema.json'
+    ],
+    dag=dag
+)
+
+# Feature engineering
+feature_engineering = KubernetesPodOperator(
+    task_id='feature_engineering',
+    name='feature-engineering',
+    namespace='ml-jobs',
+    image='ml-pipeline:feature-engineering',
+    arguments=[
+        '--input-path', 's3://ml-data/raw/{{ ds }}/customer_data.csv',
+        '--output-path', 's3://ml-data/features/{{ ds }}/features.parquet'
+    ],
+    resources={
+        'request_memory': '4Gi',
+        'request_cpu': '2',
+        'limit_memory': '8Gi',
+        'limit_cpu': '4'
+    },
+    dag=dag
+)
+
+# Model training
+model_training = KubernetesPodOperator(
+    task_id='model_training',
+    name='model-training',
+    namespace='ml-jobs',
+    image='ml-pipeline:model-training',
+    arguments=[
+        '--features-path', 's3://ml-data/features/{{ ds }}/features.parquet',
+        '--model-type', 'xgboost',
+        '--hyperparameter-tuning', 'true'
+    ],
+    resources={
+        'request_memory': '8Gi',
+        'request_cpu': '4',
+        'limit_memory': '16Gi',
+        'limit_cpu': '8',
+        'limit_gpu': '1'
+    },
+    dag=dag
+)
+
+# Model evaluation
+model_evaluation = KubernetesPodOperator(
+    task_id='model_evaluation',
+    name='model-evaluation',
+    namespace='ml-jobs',
+    image='ml-pipeline:model-evaluation',
+    arguments=[
+        '--model-path', 's3://ml-models/{{ run_id }}/model.pkl',
+        '--test-data', 's3://ml-data/features/{{ ds }}/test_features.parquet',
+        '--baseline-metrics', 's3://ml-metrics/baseline_metrics.json'
+    ],
+    dag=dag
+)
+
+# Deploy model if evaluation passes
+deploy_model = KubernetesPodOperator(
+    task_id='deploy_model',
+    name='deploy-model',
+    namespace='ml-jobs',
+    image='ml-pipeline:model-deployer',
+    arguments=[
+        '--model-path', 's3://ml-models/{{ run_id }}/model.pkl',
+        '--deployment-config', 's3://ml-config/deployment/production.yaml',
+        '--canary-percentage', '10'
+    ],
+    dag=dag
+)
+
+# Define dependencies
+wait_for_data >> validate_data >> feature_engineering >> model_training >> model_evaluation >> deploy_model
+```
+
+## Best Practices for Production MLOps
+
+### 1. Version Everything
+
+```yaml
+# model_manifest.yaml
+model:
+  name: customer_churn_classifier
+  version: 2.3.1
+  framework: scikit-learn==1.2.0
+
+training:
+  data_version: v3.2.0
+  code_version: git:8a3f2d1
+  hyperparameters:
+    n_estimators: 150
+    max_depth: 12
+
+dependencies:
+  - pandas==1.5.3
+  - numpy==1.24.2
+  - scikit-learn==1.2.0
+
+metrics:
+  validation_auc: 0.892
+  test_auc: 0.887
+  training_date: 2024-01-15T10:30:00Z
+```
+
+### 2. Implement Comprehensive Testing
+
+```python
+# tests/test_model_quality.py
+import pytest
+from model import ChurnClassifier
+import pandas as pd
+
+class TestModelQuality:
+
+    def test_prediction_range(self, trained_model, test_data):
+        """Ensure predictions are in valid range"""
+        predictions = trained_model.predict_proba(test_data)
+        assert (predictions >= 0).all() and (predictions <= 1).all()
+
+    def test_prediction_distribution(self, trained_model, test_data):
+        """Check prediction distribution is reasonable"""
+        predictions = trained_model.predict(test_data)
+        churn_rate = predictions.mean()
+        assert 0.05 <= churn_rate <= 0.30, f"Unusual churn rate: {churn_rate}"
+
+    def test_feature_importance_stability(self, trained_model, previous_model):
+        """Ensure feature importance doesn't change drastically"""
+        current_importance = trained_model.feature_importances_
+        previous_importance = previous_model.feature_importances_
+
+        correlation = np.corrcoef(current_importance, previous_importance)[0, 1]
+        assert correlation > 0.8, f"Feature importance correlation too low: {correlation}"
+
+    def test_inference_latency(self, trained_model, test_data):
+        """Ensure inference meets latency requirements"""
+        import time
+
+        sample = test_data.sample(100)
+        start = time.time()
+        _ = trained_model.predict(sample)
+        latency = (time.time() - start) / 100
+
+        assert latency < 0.01, f"Inference too slow: {latency}s per prediction"
+```
+
+### 3. Implement Model Governance
+
+```python
+# Model Registry with Governance
+class ModelRegistry:
+    def __init__(self):
+        self.approved_models = {}
+        self.pending_approval = {}
+
+    def submit_model(self, model_metadata):
+        """Submit model for approval"""
+        model_id = f"{model_metadata['name']}:{model_metadata['version']}"
+
+        # Automated checks
+        checks = {
+            'performance': self._check_performance(model_metadata),
+            'bias': self._check_bias(model_metadata),
+            'security': self._check_security(model_metadata),
+            'compliance': self._check_compliance(model_metadata)
+        }
+
+        if all(checks.values()):
+            # Auto-approve if all checks pass
+            self.approved_models[model_id] = {
+                **model_metadata,
+                'approval_date': datetime.now(),
+                'checks': checks
+            }
+            return {'status': 'approved', 'model_id': model_id}
+        else:
+            # Require manual review
+            self.pending_approval[model_id] = {
+                **model_metadata,
+                'checks': checks,
+                'submitted_date': datetime.now()
+            }
+            return {'status': 'pending', 'model_id': model_id, 'failed_checks': [k for k, v in checks.items() if not v]}
+```
 
 ## Conclusion
 
-MLOps transforms machine learning from experimental notebooks to production-grade systems. By implementing proper versioning, monitoring, deployment strategies, and governance, organizations can reliably deploy and maintain ML models at scale. The key is to start simple and gradually add sophistication as your ML operations mature.
+MLOps is essential for successfully deploying and maintaining ML models in production. Key takeaways:
 
-## Additional Resources
+1. **Automate Everything**: From data validation to model deployment
+2. **Version Religiously**: Track data, code, models, and configurations
+3. **Monitor Continuously**: Watch for drift, degradation, and anomalies
+4. **Test Comprehensively**: Unit tests, integration tests, and ML-specific tests
+5. **Deploy Gradually**: Use canary deployments and A/B testing
+6. **Govern Properly**: Implement checks for bias, compliance, and security
 
-- [MLOps: Continuous Delivery and Automation Pipelines in Machine Learning](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
-- [The ML Test Score: A Rubric for ML Production Readiness](https://research.google/pubs/pub46555/)
-- [MLflow Documentation](https://mlflow.org/)
-- [Kubeflow - The Machine Learning Toolkit for Kubernetes](https://www.kubeflow.org/)
-- [Feast - Feature Store for Machine Learning](https://feast.dev/)
-
-Tomorrow, we'll explore Zero Trust Security in Multi-Cloud Environments. See you then!
+The tools and practices we've covered form the foundation of a robust MLOps platform. As ML becomes increasingly critical to business operations, investing in proper MLOps infrastructure is no longer optional—it's essential for maintaining competitive advantage while ensuring reliability, compliance, and scalability.
