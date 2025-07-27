@@ -173,11 +173,18 @@ Anubhav has provided cybersecurity consulting services to major organizations ac
 
 ### Open Source Contributions
 
-Anubhav actively contributes to the cybersecurity community through open-source development:
+Anubhav actively contributes to the cybersecurity community through open-source development on [GitHub (mranv)](https://github.com/mranv):
 
-**honeypot.rs** - Advanced threat detection system for Apache ActiveMQ vulnerabilities  
+**honeypot.rs** - Advanced threat detection system focused on CVE-2023-46604 (Apache ActiveMQ RCE Vulnerability) for collecting Indicators of Compromise  
+**tls.rs** - A Rust-based TCP client-server application with SSL/TLS encryption and real-time data transmission using tokio and rustls  
+**invinservicedemon** - Rust application for monitoring osquery, Wazuh, and ClamAV services with JSON status reporting  
+**adPentest** - Comprehensive Windows Active Directory Pentesting documentation  
+**solitude** - Shell scripts for managing isolation settings on macOS and Linux to enhance firewall control  
+**toolkit** - Security tools designed to assist penetration testers and red teamers during engagements  
 **macos-security-logger** - Cross-platform security monitoring solution  
 **opensearch-deployment-tools** - Enterprise OpenSearch deployment automation
+
+_"Cybersecurity wizard with Rusty spells, cloud enchantments, and network ninja skills, battling digital chaos with a touch of humor!"_ - GitHub Profile
 
 ### Professional Affiliations
 
@@ -226,7 +233,7 @@ Designed and implemented enterprise-wide cybersecurity solutions across multiple
 
 **Business Inquiries:** iamanubhavgain@gmail.com  
 **LinkedIn:** [linkedin.com/in/anubhavgain](https://linkedin.com/in/anubhavgain)  
-**Professional Portfolio:** [mranv.pages.dev](https://mranv.pages.dev)  
+**Professional Portfolio:** [mranv.pages.dev](https://mranv.pages.dev) | [mranv.github.io](https://mranv.github.io)  
 **Technical Repositories:** [github.com/mranv](https://github.com/mranv)
 
 **Location:** Vadodara, Gujarat, India  
