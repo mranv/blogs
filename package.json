@@ -18,6 +18,7 @@
     "@astrojs/check": "^0.5.10",
     "@astrojs/rss": "^4.0.2",
     "@radix-ui/react-dropdown-menu": "^2.1.15",
+    "@radix-ui/react-navigation-menu": "^1.2.13",
     "@radix-ui/react-slot": "^1.2.3",
     "@resvg/resvg-js": "^2.6.0",
     "astro": "^4.2.1",
