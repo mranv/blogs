@@ -3,8 +3,8 @@ import type { Site, SocialObjects } from "./types";
 export const SITE: Site = {
   website: "https://mranv.pages.dev/",
   author: "Anubhav Gain",
-  desc: "Anubhav Gain is an experienced DevSecOps Engineer and Cyber Security expert with expertise in Security Information and Event Management (SIEM), Linux, Information Security, Cybersecurity, Threat & Vulnerability Management, Cloud Security, Rust Programming, and Network Security. This blog documents his journey in the cyber security field.",
-  title: "Anubhav Gain - DevSecOps Engineer & Cyber Security Expert",
+  desc: "Anubhav Gain is a leading DevSecOps Engineer and Cybersecurity expert specializing in Security Information and Event Management (SIEM), cloud security automation, threat detection, vulnerability management, DevSecOps practices, and security architecture. Expert insights on cybersecurity, Linux security, Rust programming, network security, and enterprise security solutions from an experienced professional.",
+  title: "Anubhav Gain - DevSecOps Engineer & Cybersecurity Expert Blog",
   ogImage: "https://mranv.pages.dev/assets/forrest-gump-quote.webp",
   lightAndDarkMode: true,
   postPerPage: 3,

@@ -20,9 +20,32 @@ let tags = getUniqueTags(posts);
       alt="Anubhav Gain"
       style="display: block; margin: 0 auto; border-radius: 80%; border: 3px solid #000; width: 300px; height: 300px; object-fit: cover;"
     />
-    <ul>
+    <ul class="tag-list">
       {tags.map(({ tag }) => <Tag {tag} size="lg" />)}
     </ul>
   </Main>
   <Footer />
 </Layout>
+
+<style>
+  .tag-list {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 2rem 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 100px !important;
+    width: 100% !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .tag-list li {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+</style>
