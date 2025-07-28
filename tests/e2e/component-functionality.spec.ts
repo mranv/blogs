@@ -65,7 +65,7 @@ test.describe('Component Functionality Tests', () => {
   });
 
   test.describe('Theme Toggle', () => {
-    test('Theme persistence', async ({ page, context }) => {
+    test('Theme persistence', async ({ page }) => {
       await page.goto('/');
       
       // Get initial theme
@@ -215,8 +215,9 @@ test.describe('Component Functionality Tests', () => {
       await page.waitForTimeout(500);
       
       // Should show results
-      const results = resultsContainer.locator('article');
-      await expect(results).toHaveCount(greaterThan(0));
+      const results = resultsContainer.locator('article, li');
+      const count = await results.count();
+      expect(count).toBeGreaterThan(0);
     });
 
     test('Search keyboard navigation', async ({ page }) => {

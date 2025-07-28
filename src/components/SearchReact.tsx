@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import Fuse from "fuse.js";
 import { Search, X } from "lucide-react";
-import { slugifyStr } from "@utils/slugify";
 import type { CollectionEntry } from "astro:content";
 
 export interface SearchItem {
@@ -82,7 +81,7 @@ export default function SearchReact({ searchList }: Props) {
         <div className="absolute top-full left-0 right-0 z-10 mt-2 max-h-80 overflow-auto rounded-md border border-border bg-popover shadow-lg">
           {searchResults && searchResults.length > 0 ? (
             <ul className="py-2">
-              {searchResults.map(({ slug, data, title, description }) => (
+              {searchResults.map(({ slug, title, description }) => (
                 <li key={slug}>
                   <a
                     href={`/posts/${slug}/`}
