@@ -1,5 +1,6 @@
 ---
 title: "SPIRE Controller Manager Deep Dive: Mastering Kubernetes CRDs for Workload Identity"
+slug: "spire-controller-manager-kubernetes-crds"
 description: "Learn how to use SPIRE Controller Manager and Custom Resource Definitions (CRDs) to automate workload identity management in Kubernetes. Complete guide with advanced patterns and production tips."
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"

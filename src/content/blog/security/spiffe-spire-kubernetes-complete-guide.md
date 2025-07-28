@@ -1,5 +1,6 @@
 ---
 title: "SPIFFE/SPIRE on Kubernetes: Complete Installation and Configuration Guide"
+slug: "spiffe-spire-kubernetes-complete-guide"
 description: "Master zero-trust workload identity in Kubernetes with this comprehensive SPIFFE/SPIRE deployment guide. Learn production-ready installation, configuration, and integration patterns."
 pubDatetime: 2025-01-27T16:00:00+05:30
 author: "Anubhav Gain"

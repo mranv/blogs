@@ -1,5 +1,6 @@
 ---
 title: "SPIFFE/SPIRE Observability: Comprehensive Monitoring with Prometheus and Grafana"
+slug: "spiffe-spire-observability-prometheus-grafana"
 description: "Build production-grade observability for SPIFFE/SPIRE with Prometheus metrics, Grafana dashboards, and intelligent alerting. Learn to monitor workload identity health, performance, and security incidents."
 pubDatetime: 2025-01-31T16:00:00+05:30
 author: "Anubhav Gain"

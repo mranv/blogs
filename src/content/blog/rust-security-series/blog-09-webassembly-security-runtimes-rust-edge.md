@@ -1,5 +1,6 @@
 ---
 title: "WebAssembly Security Runtimes: Deploying Rust Security Tools at the Edge"
+slug: "blog-09-webassembly-security-runtimes-rust-edge"
 description: "Master WebAssembly security by deploying Rust-based security tools at the edge. Learn to build high-performance, sandboxed security runtimes for distributed and edge computing environments."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:30:00+05:30

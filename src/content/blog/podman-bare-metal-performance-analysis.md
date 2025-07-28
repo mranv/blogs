@@ -1,5 +1,6 @@
 ---
 title: "Podman Bare Metal Performance Analysis: Comprehensive Benchmarking and Optimization Guide"
+slug: "podman-bare-metal-performance-analysis"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-11T06:00:00Z
 featured: false

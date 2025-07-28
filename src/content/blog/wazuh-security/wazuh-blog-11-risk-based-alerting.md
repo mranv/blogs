@@ -1,5 +1,6 @@
 ---
 title: "Risk-Based Alerting: AI-Powered Priority Scoring and Alert Consolidation"
+slug: "wazuh-blog-11-risk-based-alerting"
 description: "Master risk-based alerting with Wazuh's AI-powered priority scoring and alert consolidation. Learn to reduce alert volume by 80% while improving detection accuracy and eliminating analyst alert fatigue."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:15:00+05:30

@@ -1,5 +1,6 @@
 ---
 title: "Enterprise Custom Decoders: Advanced Log Parsing for Complex Environments"
+slug: "wazuh-blog-08-custom-decoders"
 description: "In the heterogeneous landscape of enterprise IT, where legacy systems coexist with cutting-edge cloud services, the ability to parse and understand diverse log formats is crucial. Wazuh's custom decoder architecture provides unparalleled flexibility in handling everything from proprietary application logs to complex multi-line formats. This comprehensive guide explores advanced decoder development techniques that transform unstructured logs into actionable security intelligence."
 pubDatetime: 2025-01-28T00:00:00Z
 author: "Anubhav Gain"

@@ -2,6 +2,7 @@
 author: Anubhav Gain
 pubDatetime: 2025-01-28T14:11:00Z
 title: Complete Data Prepper 2.11.0 Setup Guide - Wazuh to OpenSearch
+slug: "wazuh-dataprepper-setup-guide"
 featured: false
 draft: false
 tags:

@@ -1,5 +1,6 @@
 ---
 title: "Network Unisolation Security Commands: Complete Guide to Windows Firewall Recovery"
+slug: "network-unisolation-security-commands"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-27T15:50:00Z
 featured: true

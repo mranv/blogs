@@ -1,5 +1,6 @@
 ---
 title: "AI-Powered Behavioral Analytics: MITRE ATT&CK Detection with Rust and Machine Learning"
+slug: "blog-03-ai-powered-behavioral-analytics-mitre-attack"
 description: "Master advanced behavioral analytics using AI and machine learning to detect sophisticated threats mapped to MITRE ATT&CK framework. Complete guide to building intelligent threat detection systems with Rust."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30

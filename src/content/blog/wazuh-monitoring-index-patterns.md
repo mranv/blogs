@@ -1,5 +1,6 @@
 ---
 title: "Wazuh Monitoring Index Patterns: Complete Guide to XDR Data Management"
+slug: "wazuh-monitoring-index-patterns"
 author: "Anubhav Gain"
 pubDatetime: 2025-02-02T15:58:00Z
 featured: false

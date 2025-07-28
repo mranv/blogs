@@ -2,6 +2,7 @@
 title: "Database Patterns in Microservices: A Complete Guide to Data Architecture"
 description: "Master database patterns for microservices architecture. Learn Database per Service, avoid anti-patterns, implement data consistency, and manage migration strategies with practical examples."
 author: "Anubhav Gain"
+slug: "database-patterns-microservices-guide"
 pubDatetime: 2025-01-27T16:00:00+05:30
 tags:
   [

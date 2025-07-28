@@ -1,5 +1,6 @@
 ---
 title: "Elasticsearch and OpenSearch Cluster Health Troubleshooting Guide"
+slug: "elasticsearch-opensearch-cluster-troubleshooting"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T15:00:00Z
 featured: true

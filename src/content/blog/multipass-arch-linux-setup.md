@@ -1,5 +1,6 @@
 ---
 title: "Setting Up Multipass on Arch Linux: Complete Guide with Security Considerations"
+slug: "multipass-arch-linux-setup"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:00:00Z
 featured: false

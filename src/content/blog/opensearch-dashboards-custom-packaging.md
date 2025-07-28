@@ -1,5 +1,6 @@
 ---
 title: "Custom OpenSearch Dashboards Packaging Guide: Building from Source with Custom Plugins"
+slug: "opensearch-dashboards-custom-packaging"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T17:00:00Z
 featured: false

@@ -1,6 +1,7 @@
 ---
 title: "Microservices Communication Patterns: A Comprehensive Guide"
 description: "Master the essential communication patterns in microservices architecture. Learn about synchronous and asynchronous patterns, service mesh, and when to use each approach."
+slug: "microservices-communication-patterns-guide"
 pubDatetime: 2025-01-27T12:00:00+05:30
 author: "Anubhav Gain"
 tags:

@@ -1,5 +1,6 @@
 ---
 title: "Network Unisolation Queries: Advanced Incident Response and Forensic Analysis"
+slug: "network-unisolation-queries-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-11T04:00:00Z
 featured: false

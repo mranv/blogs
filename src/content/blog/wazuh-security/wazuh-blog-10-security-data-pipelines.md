@@ -1,5 +1,6 @@
 ---
 title: "Security Data Pipelines: Revolutionizing Wazuh Architecture for 2025"
+slug: "wazuh-blog-10-security-data-pipelines"
 description: "Master modern security data pipeline architectures with Wazuh to achieve 10x performance improvements while reducing costs by 60%. Learn to implement scalable data processing for 75TB+ daily security data volumes."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:00:00+05:30

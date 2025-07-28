@@ -1,5 +1,6 @@
 ---
 title: "Service Mesh Integration: SPIFFE/SPIRE with Istio for Zero-Trust Networking"
+slug: "service-mesh-integration-spiffe-spire-istio"
 description: "Complete guide to integrating SPIFFE/SPIRE with Istio service mesh. Learn workload identity, mTLS automation, advanced policies, and production deployment patterns."
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"

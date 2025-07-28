@@ -1,5 +1,6 @@
 ---
 title: "eBPF + Rust: Building Kernel-Level Security Monitoring Without Kernel Modules"
+slug: "blog-07-ebpf-rust-kernel-level-security-monitoring"
 description: "Master eBPF and Rust to build high-performance kernel-level security monitoring systems. Learn to create safe, efficient programs that run in kernel space without dangerous kernel modules."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T13:45:00+05:30

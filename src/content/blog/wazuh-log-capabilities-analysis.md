@@ -2,6 +2,7 @@
 author: Anubhav Gain
 pubDatetime: 2025-01-28T02:10:00Z
 title: "Wazuh Agent Logging Capabilities: Comprehensive Technical Analysis"
+slug: "wazuh-log-capabilities-analysis"
 featured: false
 draft: false
 tags:

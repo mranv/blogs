@@ -1,5 +1,6 @@
 ---
 title: "Security Correlation System Architecture: Database Design and Deployment Patterns"
+slug: "security-correlation-system-architecture"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T18:00:00Z
 featured: false

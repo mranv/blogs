@@ -1,5 +1,6 @@
 ---
 title: "Security Analysis for macOS SecurityStatusApp: Critical Vulnerabilities and Fixes"
+slug: "macos-security-status-app-analysis"
 author: "Anubhav Gain"
 pubDatetime: 2025-02-11T14:12:00Z
 featured: true

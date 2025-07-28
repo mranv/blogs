@@ -1,5 +1,6 @@
 ---
 title: "Advanced Workload Attestation: TPM and Cloud Provider Security for SPIFFE/SPIRE"
+slug: "advanced-workload-attestation-tpm-cloud-providers"
 description: "Master hardware-based attestation with TPM, cloud provider attestors, and advanced security patterns for enterprise SPIFFE/SPIRE deployments. Complete guide with production examples."
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"

@@ -1,5 +1,6 @@
 ---
 title: "Legacy PHP Containerization: Securing PHP 5.3.3 with Podman and CentOS 6"
+slug: "legacy-php-containerization-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T02:19:00Z
 featured: false

@@ -1,5 +1,6 @@
 ---
 title: "Kubernetes Security Excellence: Advanced Container Monitoring and Threat Detection with Wazuh"
+slug: "wazuh-blog-14-kubernetes-security"
 description: "Master Kubernetes security using Wazuh's advanced container monitoring and threat detection capabilities. Learn to secure containerized applications and achieve 94.3% threat detection accuracy in Kubernetes environments."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T15:45:00+05:30

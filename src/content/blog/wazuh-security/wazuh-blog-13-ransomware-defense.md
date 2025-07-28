@@ -1,5 +1,6 @@
 ---
 title: "Advanced Ransomware Defense: AI-Powered Early Detection and Response with Wazuh"
+slug: "wazuh-blog-13-ransomware-defense"
 description: "Build advanced ransomware defense systems using Wazuh's AI-powered detection capabilities. Learn to implement early detection, automated response, and comprehensive protection against ransomware attacks."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z

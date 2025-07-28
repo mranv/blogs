@@ -1,5 +1,6 @@
 ---
 title: "Cloud Security Mastery: Multi-Cloud Correlation Rules with Wazuh"
+slug: "wazuh-blog-04-cloud-security"
 description: "Master cloud security operations using Wazuh's multi-cloud correlation rules. Learn to build unified security monitoring across AWS, Azure, GCP, and containerized environments with advanced threat detection."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z

@@ -1,5 +1,6 @@
 ---
 title: "RSyslog Secure Configuration: Advanced Logging Architecture and Hardening Guide"
+slug: "rsyslog-secure-configuration-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-11T08:00:00Z
 featured: false

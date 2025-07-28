@@ -1,6 +1,7 @@
 ---
 title: "Complete Guide to Testing Patterns in Microservices Architecture"
 description: "Master microservices testing with comprehensive patterns, strategies, and practical examples using Jest, TestContainers, Pact, and modern testing tools"
+slug: "testing-patterns-microservices-guide"
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:

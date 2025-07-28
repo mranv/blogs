@@ -1,5 +1,6 @@
 ---
 title: "Windows Toast Notifications with Rust: Complete Implementation Guide"
+slug: "windows-toast-notifications-rust-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T18:30:00Z
 featured: false

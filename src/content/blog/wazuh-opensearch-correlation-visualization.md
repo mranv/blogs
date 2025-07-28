@@ -2,6 +2,7 @@
 author: Anubhav Gain
 pubDatetime: 2025-01-28T12:59:00Z
 title: Integrating Wazuh Alerts Correlation and Graphs with OpenSearch Dashboards
+slug: "wazuh-opensearch-correlation-visualization"
 featured: false
 draft: false
 tags:

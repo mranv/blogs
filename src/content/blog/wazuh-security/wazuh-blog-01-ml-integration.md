@@ -1,5 +1,6 @@
 ---
 title: "Enterprise-Grade Wazuh SIEM: 2025 Machine Learning Integration Guide"
+slug: "wazuh-blog-01-ml-integration"
 description: "Master Wazuh SIEM's cutting-edge machine learning integration achieving 97.2% detection accuracy with sub-100ms response times. Complete guide to hybrid ML detection models and advanced threat analysis."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z

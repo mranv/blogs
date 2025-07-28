@@ -1,5 +1,6 @@
 ---
 title: "Complete Wazuh to OpenSearch Migration Guide: Indexer Replacement and Data Migration"
+slug: "wazuh-opensearch-migration-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:00:00Z
 featured: true

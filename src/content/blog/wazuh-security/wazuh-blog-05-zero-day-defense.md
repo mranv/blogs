@@ -1,5 +1,6 @@
 ---
 title: "Zero-Day Defense: Signature-Less Detection with Wazuh"
+slug: "wazuh-blog-05-zero-day-defense"
 description: "Zero-day exploits represent the ultimate challenge in cybersecurity—threats that have never been seen before, with no signatures, no patches, and no warning. With an average detection time of 312 days and 80% of breaches involving zero-day exploits, traditional signature-based security crumbles. This guide reveals how Wazuh's behavioral detection capabilities achieve 92% precision and 88% recall in identifying zero-day threats without relying on signatures."
 pubDatetime: 2025-01-28T00:00:00Z
 author: "Anubhav Gain"

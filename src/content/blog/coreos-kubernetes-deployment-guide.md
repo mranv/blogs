@@ -1,5 +1,6 @@
 ---
 title: "CoreOS Kubernetes Deployment: Production-Ready Multi-Node Cluster Guide"
+slug: "coreos-kubernetes-deployment-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-11T02:00:00Z
 featured: false

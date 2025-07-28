@@ -1,5 +1,6 @@
 ---
 title: "The Open XDR Revolution: Breaking Free from Vendor Lock-in with Interoperable Security"
+slug: "open-xdr-revolution-breaking-vendor-lockin"
 description: "Discover how Open XDR transforms security operations by breaking vendor lock-in, enabling seamless integration across security tools, and providing unprecedented visibility into modern threat landscapes."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T11:00:00+05:30

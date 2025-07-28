@@ -1,5 +1,6 @@
 ---
 title: "Production-Grade macOS Launch Agents: Building Robust Background Services"
+slug: "macos-production-grade-launch-agents"
 author: "Anubhav Gain"
 pubDatetime: 2025-02-10T22:15:00Z
 featured: true

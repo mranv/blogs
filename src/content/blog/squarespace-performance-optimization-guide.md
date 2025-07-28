@@ -1,5 +1,6 @@
 ---
 title: "Squarespace Performance Optimization: Complete Guide to Site Speed Enhancement"
+slug: "squarespace-performance-optimization-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T16:45:00Z
 featured: false

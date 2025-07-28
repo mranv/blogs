@@ -1,5 +1,6 @@
 ---
 title: "Zero Trust Network Access (ZTNA) with Rust: Never Trust, Always Verify"
+slug: "blog-08-zero-trust-network-access-rust-implementation"
 description: "Implement Zero Trust Network Access using Rust. Learn to build secure, high-performance ZTNA systems with continuous authentication, authorization, and least-privilege access controls."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:15:00+05:30

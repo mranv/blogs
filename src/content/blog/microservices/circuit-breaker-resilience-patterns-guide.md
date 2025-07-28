@@ -2,6 +2,7 @@
 title: "Circuit Breakers and Resilience Patterns: Building Fault-Tolerant Microservices"
 description: "Master resilience patterns including Circuit Breakers, Timeouts, Retries, Bulkheads, and Rate Limiting. Learn how to build fault-tolerant distributed systems with Resilience4j and modern approaches."
 author: "Anubhav Gain"
+slug: "circuit-breaker-resilience-patterns-guide"
 pubDatetime: 2025-01-27T11:00:00+05:30
 tags:
   [

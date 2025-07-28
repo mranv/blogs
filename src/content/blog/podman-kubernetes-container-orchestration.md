@@ -1,5 +1,6 @@
 ---
 title: "Podman and Kubernetes Container Orchestration: Pods vs Containers Deep Dive"
+slug: "podman-kubernetes-container-orchestration"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T19:00:00Z
 featured: false

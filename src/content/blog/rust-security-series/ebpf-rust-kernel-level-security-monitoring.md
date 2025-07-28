@@ -1,5 +1,6 @@
 ---
 title: "eBPF + Rust: Building Kernel-Level Security Monitoring Without Kernel Modules"
+slug: "ebpf-rust-kernel-level-security-monitoring"
 description: "Build a complete kernel-level security monitoring system using eBPF and Rust, implementing system call monitoring, privilege escalation detection, container security, and intrusion detection while maintaining system safety through eBPF's verification process"
 pubDate: 2025-01-28T00:00:00Z
 pubDatetime: 2025-01-28T00:00:00Z

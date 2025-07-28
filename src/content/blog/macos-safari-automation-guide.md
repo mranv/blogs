@@ -1,5 +1,6 @@
 ---
 title: "Automating Safari Configuration on macOS: Complete Scripting Guide"
+slug: "macos-safari-automation-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-02-04T00:49:00Z
 featured: false
