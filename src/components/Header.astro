@@ -122,11 +122,12 @@ const { activeNav } = Astro.props;
     @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
   }
   .logo {
-    @apply absolute py-1 text-xl font-bold sm:static sm:text-2xl text-skin-accent;
-    @apply transition-all duration-300 hover:scale-110;
-    @apply hover:text-transparent hover:bg-clip-text;
-    @apply hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600;
-    @apply dark:hover:from-purple-400 dark:hover:to-indigo-600;
+    @apply absolute py-1 text-xl font-bold sm:static sm:text-2xl;
+    @apply bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent;
+    @apply transition-all duration-300 hover:scale-105;
+    @apply hover:from-primary/90 hover:to-primary/70;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
   .hamburger-menu {
     @apply self-end p-2 sm:hidden;
@@ -145,12 +146,12 @@ const { activeNav } = Astro.props;
     @apply col-span-2 flex items-center justify-center;
   }
   nav ul li a {
-    @apply w-full px-4 py-3 text-center font-medium sm:my-0 sm:px-2 sm:py-1;
-    @apply transition-all duration-300 rounded-lg;
-    @apply hover:text-skin-accent hover:bg-skin-card/50;
-    @apply hover:shadow-lg hover:scale-105;
-    @apply hover:backdrop-blur-md;
+    @apply w-full px-4 py-2 text-center font-medium sm:my-0 sm:px-3 sm:py-2;
+    @apply transition-all duration-200 rounded-md;
+    @apply hover:bg-primary/10 hover:text-primary;
+    @apply hover:shadow-sm;
     @apply relative overflow-hidden;
+    @apply text-sm tracking-wide;
   }
 
   nav ul li a::before {
@@ -170,10 +171,9 @@ const { activeNav } = Astro.props;
     @apply col-span-1;
   }
   nav a.active {
-    @apply text-skin-accent font-semibold;
-    @apply bg-gradient-to-r from-blue-500/10 to-purple-500/10;
-    @apply dark:from-purple-500/10 dark:to-indigo-500/10;
-    @apply shadow-md scale-105;
+    @apply text-primary font-semibold;
+    @apply bg-primary/10;
+    @apply shadow-sm;
   }
   nav a.active svg {
     @apply fill-skin-accent;
