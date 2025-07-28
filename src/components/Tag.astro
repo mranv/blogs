@@ -19,10 +19,20 @@ const { tag, size = "sm" } = Astro.props;
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class={`${size === "sm" ? " scale-75" : "scale-110"}`}
-      ><path
-        d="M16.018 3.815 15.232 8h-4.966l.716-3.815-1.964-.37L8.232 8H4v2h3.857l-.751 4H3v2h3.731l-.714 3.805 1.965.369L8.766 16h4.966l-.714 3.805 1.965.369.783-4.174H20v-2h-3.859l.751-4H21V8h-3.733l.716-3.815-1.965-.37zM14.106 14H9.141l.751-4h4.966l-.752 4z"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={`${size === "sm" ? "scale-75" : "scale-110"}`}
+    >
+      <path
+        d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"
       ></path>
+      <circle cx="7" cy="7" r="1"></circle>
     </svg>
     &nbsp;<span>{tag}</span>
   </a>
@@ -31,6 +41,8 @@ const { tag, size = "sm" } = Astro.props;
 <style>
   li {
     @apply transition-all duration-300 hover:scale-105;
+    display: inline-block !important;
+    visibility: visible !important;
   }
 
   a {
@@ -41,6 +53,9 @@ const { tag, size = "sm" } = Astro.props;
     @apply shadow-sm hover:shadow-md;
     @apply no-underline;
     background: rgba(var(--color-accent), 0.1);
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   a:hover {
@@ -61,11 +76,16 @@ const { tag, size = "sm" } = Astro.props;
   }
 
   a svg {
-    @apply -mr-1 h-4 w-4 text-skin-accent opacity-70 group-hover:opacity-100;
+    @apply h-4 w-4 text-skin-accent opacity-70 group-hover:opacity-100;
     @apply transition-all duration-300 group-hover:rotate-12;
+    margin-right: 0.25rem;
+    display: inline-block !important;
+    visibility: visible !important;
   }
 
   a span {
     @apply font-medium;
+    display: inline-block !important;
+    visibility: visible !important;
   }
 </style>
