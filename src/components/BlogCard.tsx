@@ -26,49 +26,55 @@ export default function BlogCard({
 
   const headerProps = {
     style: { viewTransitionName: slugifyStr(title) },
-    className: "transition-all duration-300 hover:text-skin-accent",
+    className:
+      "text-xl font-semibold text-foreground/90 group-hover:text-primary transition-colors duration-300",
   };
 
   return (
-    <li className="my-6 animate-fadeIn">
+    <li className="my-4">
       <a href={href} className="block no-underline">
         <Card
           className={cn(
             "group relative overflow-hidden",
-            "border-skin-line bg-skin-card/50 backdrop-blur-sm",
-            "hover:bg-skin-card/80 hover:border-skin-accent/30",
-            "hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            "border-border/50 bg-card/40 backdrop-blur-sm",
+            "hover:bg-card/60 hover:border-primary/20",
+            "hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300",
+            "bg-gradient-to-br from-background to-muted/20"
           )}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-skin-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-          <CardHeader className="relative">
+          <CardHeader className="relative pb-3">
             {secHeading ? (
               <CardTitle
-                className={headerProps.className}
+                className={cn(headerProps.className, "line-clamp-2")}
                 style={headerProps.style}
               >
                 {title}
               </CardTitle>
             ) : (
               <CardTitle asChild>
-                <h3 className={headerProps.className} style={headerProps.style}>
+                <h3
+                  className={cn(headerProps.className, "line-clamp-2")}
+                  style={headerProps.style}
+                >
                   {title}
                 </h3>
               </CardTitle>
             )}
-            <CardDescription className="opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+            <CardDescription className="text-muted-foreground/70 text-sm mt-2">
               <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
             </CardDescription>
           </CardHeader>
 
-          <CardContent className="relative">
-            <p className="text-skin-base/80 group-hover:text-skin-base transition-colors duration-300 line-clamp-3">
+          <CardContent className="relative pt-0">
+            <p className="text-muted-foreground/80 group-hover:text-muted-foreground transition-colors duration-300 line-clamp-2 text-sm leading-relaxed">
               {description}
             </p>
-            <div className="mt-4 flex items-center text-sm text-skin-accent opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-              <span>Read more</span>
-              <ChevronRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+            <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
+              <span>Read article</span>
+              <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
             </div>
           </CardContent>
         </Card>
