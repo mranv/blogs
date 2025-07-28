@@ -51,7 +51,7 @@ let tags = getUniqueTags(posts);
   }
 
   .tags-header h1 {
-    @apply text-4xl font-bold text-skin-accent mb-4;
+    @apply text-4xl font-bold mb-4;
     background: linear-gradient(
       135deg,
       rgb(var(--color-gradient-start)),
@@ -60,10 +60,14 @@ let tags = getUniqueTags(posts);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .tags-header p {
-    @apply text-lg text-skin-base mb-6 opacity-80;
+    @apply text-lg mb-6;
+    color: rgb(var(--color-text-base));
+    opacity: 0.8;
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .profile-image {
@@ -77,12 +81,36 @@ let tags = getUniqueTags(posts);
     box-shadow: 0 8px 32px rgba(var(--color-accent), 0.3);
     transition:
       transform 0.3s ease,
-      box-shadow 0.3s ease;
+      box-shadow 0.3s ease,
+      border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .profile-image:hover {
     transform: scale(1.05);
     box-shadow: 0 12px 48px rgba(var(--color-accent), 0.4);
+  }
+
+  /* Enhanced theme-specific styling */
+  :global(html[data-theme="light"]) .tags-header h1 {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  :global(html[data-theme="dark"]) .tags-header h1 {
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  :global(html[data-theme="light"]) .tags-header p {
+    color: rgb(17, 24, 39);
+  }
+
+  :global(html[data-theme="dark"]) .tags-header p {
+    color: rgb(243, 244, 246);
   }
 
   /* Clean tag list styling */
@@ -102,12 +130,41 @@ let tags = getUniqueTags(posts);
     display: inline-block;
   }
 
-  /* Ensure tag visibility */
+  /* Ensure tag visibility and theme transitions */
   .tag-list li a {
     display: inline-flex !important;
     align-items: center !important;
     visibility: visible !important;
     opacity: 1 !important;
+  }
+
+  /* Theme transition support for entire page */
+  .tags-page,
+  .tags-page * {
+    transition:
+      color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Enhanced theme-specific backgrounds */
+  :global(html[data-theme="light"]) .tags-page {
+    background: transparent;
+  }
+
+  :global(html[data-theme="dark"]) .tags-page {
+    background: transparent;
+  }
+
+  /* Smooth theme transitions when theme-transition class is active */
+  :global(.theme-transition) .tags-page,
+  :global(.theme-transition) .tags-page *,
+  :global(.theme-transition) .profile-image,
+  :global(.theme-transition) .tags-header h1,
+  :global(.theme-transition) .tags-header p {
+    transition-duration: 0.4s !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 
   /* Responsive design */
