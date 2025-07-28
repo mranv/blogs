@@ -9,16 +9,16 @@
     /* Corporate color palette */
     --color-fill: 250, 250, 252;
     --color-text-base: 17, 24, 39;
-    --color-accent: 99, 102, 241;
+    --color-accent: 37, 99, 235; /* Professional blue */
     --color-card: 255, 255, 255;
     --color-card-muted: 249, 250, 251;
     --color-border: 229, 231, 235;
-    --color-gradient-start: 99, 102, 241;
-    --color-gradient-end: 79, 70, 229;
+    --color-gradient-start: 37, 99, 235; /* Professional blue */
+    --color-gradient-end: 30, 64, 175; /* Darker blue */
     --color-secondary: 75, 85, 99;
     --color-success: 16, 185, 129;
     --color-warning: 251, 146, 60;
-    --color-glow: 99, 102, 241;
+    --color-glow: 37, 99, 235;
     --color-shadow: 0, 0, 0;
     
     /* Corporate shadcn/ui theme */
@@ -28,35 +28,35 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 234.5 89.5% 73.9%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 214.3 31.8% 91.4%;
+    --primary: 217.2 91.2% 59.8%; /* Professional blue */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 234.5 89.5% 73.9%;
+    --accent: 217.2 91.2% 59.8%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 234.5 89.5% 73.9%;
-    --radius: 0.375rem;
+    --ring: 217.2 91.2% 59.8%;
+    --radius: 0.5rem;
   }
   html[data-theme="dark"] {
     /* Corporate dark theme */
     --color-fill: 17, 24, 39;
     --color-text-base: 243, 244, 246;
-    --color-accent: 129, 140, 248;
+    --color-accent: 96, 165, 250; /* Professional blue in dark */
     --color-card: 31, 41, 55;
     --color-card-muted: 55, 65, 81;
     --color-border: 75, 85, 99;
-    --color-gradient-start: 129, 140, 248;
-    --color-gradient-end: 167, 139, 250;
+    --color-gradient-start: 96, 165, 250;
+    --color-gradient-end: 59, 130, 246;
     --color-secondary: 156, 163, 175;
     --color-success: 52, 211, 153;
     --color-warning: 252, 211, 77;
-    --color-glow: 167, 139, 250;
+    --color-glow: 96, 165, 250;
     --color-shadow: 0, 0, 0;
     
     /* Corporate dark shadcn/ui theme */
@@ -66,19 +66,19 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 234.5 89.5% 73.9%;
+    --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 234.5 89.5% 73.9%;
+    --accent: 217.2 91.2% 59.8%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 234.5 89.5% 73.9%;
+    --ring: 217.2 91.2% 59.8%;
   }
   /* Theme icon visibility - commented out as we're using different approach
   #sun-svg,
