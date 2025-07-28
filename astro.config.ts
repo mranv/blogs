@@ -17,14 +17,6 @@ export default defineConfig({
     react(),
     sitemap(),
   ],
-  vite: {
-    resolve: {
-      alias: {
-        "@/components": path.resolve("./src/components"),
-        "@/utils": path.resolve("./src/utils"),
-      },
-    },
-  },
   markdown: {
     remarkPlugins: [
       remarkToc,
@@ -46,6 +38,8 @@ export default defineConfig({
     },
     resolve: {
       alias: {
+        "@/components": path.resolve("./src/components"),
+        "@/utils": path.resolve("./src/utils"),
         "@scripts": "/src/scripts",
       },
     },

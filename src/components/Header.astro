@@ -123,11 +123,28 @@ const { activeNav } = Astro.props;
   }
   .logo {
     @apply absolute py-1 text-xl font-bold sm:static sm:text-2xl;
-    @apply bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent;
+    @apply text-skin-accent;
     @apply transition-all duration-300 hover:scale-105;
-    @apply hover:from-primary/90 hover:to-primary/70;
+    background: linear-gradient(
+      135deg,
+      rgb(var(--color-accent)),
+      rgba(var(--color-accent), 0.8)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 700;
     letter-spacing: -0.02em;
+  }
+  .logo:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(var(--color-accent), 0.9),
+      rgba(var(--color-accent), 0.7)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .hamburger-menu {
     @apply self-end p-2 sm:hidden;
@@ -148,7 +165,7 @@ const { activeNav } = Astro.props;
   nav ul li a {
     @apply w-full px-4 py-2 text-center font-medium sm:my-0 sm:px-3 sm:py-2;
     @apply transition-all duration-200 rounded-md;
-    @apply hover:bg-primary/10 hover:text-primary;
+    @apply hover:bg-skin-accent/10 hover:text-skin-accent;
     @apply hover:shadow-sm;
     @apply relative overflow-hidden;
     @apply text-sm tracking-wide;
@@ -171,8 +188,8 @@ const { activeNav } = Astro.props;
     @apply col-span-1;
   }
   nav a.active {
-    @apply text-primary font-semibold;
-    @apply bg-primary/10;
+    @apply text-skin-accent font-semibold;
+    @apply bg-skin-accent/10;
     @apply shadow-sm;
   }
   nav a.active svg {

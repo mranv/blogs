@@ -72,6 +72,10 @@ module.exports = {
         reading: ["Charter", "Iowan Old Style", "Georgia", "Source Serif Pro", "Palatino", "Book Antiqua", "serif"],
         corporate: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "sans-serif"],
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
 
       typography: {
         DEFAULT: {
