@@ -568,6 +568,91 @@
     @apply hidden;
   }
 
+  /* Search Component Styling - Theme Aware */
+  .search-input {
+    color: rgb(var(--color-text-base));
+    background-color: rgb(var(--color-card));
+    border: 1px solid rgba(var(--color-border), 0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .search-input::placeholder {
+    color: rgba(var(--color-text-base), 0.5);
+  }
+
+  .search-input:focus {
+    border-color: rgb(var(--color-accent));
+    box-shadow: 0 0 0 2px rgba(var(--color-accent), 0.1);
+    ring-color: rgb(var(--color-accent));
+  }
+
+  .search-icon {
+    color: rgba(var(--color-text-base), 0.6);
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .search-clear-btn {
+    color: rgba(var(--color-text-base), 0.6);
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .search-clear-btn:hover {
+    color: rgb(var(--color-text-base));
+  }
+
+  .search-results {
+    background-color: rgb(var(--color-card));
+    border: 1px solid rgba(var(--color-border), 0.8);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+  }
+
+  .search-result-item {
+    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .search-result-item:hover {
+    background-color: rgba(var(--color-accent), 0.1);
+  }
+
+  .search-result-item:focus {
+    background-color: rgba(var(--color-accent), 0.1);
+  }
+
+  .search-result-title {
+    color: rgb(var(--color-text-base));
+  }
+
+  .search-result-description {
+    color: rgba(var(--color-text-base), 0.7);
+  }
+
+  .search-no-results {
+    color: rgba(var(--color-text-base), 0.6);
+  }
+
+  /* Theme-specific enhancements */
+  :root,
+  html[data-theme="light"] {
+    .search-input {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .search-results {
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  html[data-theme="dark"] {
+    .search-input {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-results {
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+  }
+
   .focus-outline {
     @apply outline-2 outline-offset-2 outline-skin-accent focus-visible:no-underline focus-visible:outline-dashed transition-all duration-200;
   }

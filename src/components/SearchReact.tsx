@@ -54,10 +54,10 @@ export default function SearchReact({ searchList }: Props) {
     <div className="relative">
       <label className="relative block">
         <span className="absolute inset-y-0 left-0 flex items-center pl-4">
-          <Search className="h-5 w-5 text-muted-foreground" />
+          <Search className="h-5 w-5 search-icon" />
         </span>
         <input
-          className="block w-full rounded-md border border-input bg-background py-3 pl-12 pr-12 text-sm placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="search-input block w-full rounded-md py-3 pl-12 pr-12 text-sm focus:outline-none focus:ring-2 transition-all duration-300"
           placeholder="Search for anything..."
           type="text"
           name="search"
@@ -67,7 +67,7 @@ export default function SearchReact({ searchList }: Props) {
         />
         {inputVal && (
           <button
-            className="absolute inset-y-0 right-0 flex items-center pr-4 text-muted-foreground hover:text-foreground"
+            className="absolute inset-y-0 right-0 flex items-center pr-4 search-clear-btn"
             onClick={clearSearch}
             type="button"
             aria-label="Clear search"
@@ -78,19 +78,19 @@ export default function SearchReact({ searchList }: Props) {
       </label>
 
       {inputVal.length > 1 && (
-        <div className="absolute top-full left-0 right-0 z-10 mt-2 max-h-80 overflow-auto rounded-md border border-border bg-popover shadow-lg">
+        <div className="search-results absolute top-full left-0 right-0 z-10 mt-2 max-h-80 overflow-auto rounded-md shadow-lg">
           {searchResults && searchResults.length > 0 ? (
             <ul className="py-2">
               {searchResults.map(({ slug, title, description }) => (
                 <li key={slug}>
                   <a
                     href={`/posts/${slug}/`}
-                    className="block px-4 py-3 hover:bg-accent focus:bg-accent focus:outline-none"
+                    className="search-result-item block px-4 py-3 focus:outline-none transition-colors duration-200"
                   >
-                    <h3 className="text-sm font-medium text-foreground mb-1">
+                    <h3 className="search-result-title text-sm font-medium mb-1">
                       {title}
                     </h3>
-                    <p className="text-xs text-muted-foreground line-clamp-2">
+                    <p className="search-result-description text-xs line-clamp-2">
                       {description}
                     </p>
                   </a>
@@ -99,7 +99,7 @@ export default function SearchReact({ searchList }: Props) {
             </ul>
           ) : (
             <div className="px-4 py-8 text-center">
-              <p className="text-sm text-muted-foreground">
+              <p className="search-no-results text-sm">
                 No articles found for "
                 <span className="font-medium">{inputVal}</span>"
               </p>
