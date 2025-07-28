@@ -632,25 +632,22 @@
   }
 
   /* Theme-specific enhancements */
-  :root,
-  html[data-theme="light"] {
-    .search-input {
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-
-    .search-results {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
+  :root .search-input,
+  html[data-theme="light"] .search-input {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 
-  html[data-theme="dark"] {
-    .search-input {
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
+  :root .search-results,
+  html[data-theme="light"] .search-results {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
 
-    .search-results {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    }
+  html[data-theme="dark"] .search-input {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  html[data-theme="dark"] .search-results {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   }
 
   .focus-outline {
