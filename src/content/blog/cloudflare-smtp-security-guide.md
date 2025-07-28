@@ -1,6 +1,6 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-06-28T13:30:00+05:30
+pubDatetime: 2025-01-28T13:30:00+05:30
 modDatetime: 2025-06-28T13:30:00+05:30
 title: Secure Email Routing with Cloudflare and Third-Party SMTP
 slug: cloudflare-smtp-security-guide

@@ -56,6 +56,9 @@ export default defineConfig({
       cssCodeSplit: true,
       // Minify CSS
       cssMinify: true,
+      // Memory optimization
+      minify: false, // Disable minification to save memory
+      sourcemap: false,
     },
   },
   // Enable compression

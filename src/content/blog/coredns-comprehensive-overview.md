@@ -1,6 +1,6 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-06-28T10:30:00+05:30
+pubDatetime: 2025-01-28T10:30:00+05:30
 modDatetime: 2025-06-28T10:30:00+05:30
 title: "CoreDNS: A Comprehensive Overview"
 slug: coredns-comprehensive-overview

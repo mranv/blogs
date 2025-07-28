@@ -1,6 +1,6 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-06-28T14:30:00+05:30
+pubDatetime: 2025-01-28T14:30:00+05:30
 modDatetime: 2025-06-28T14:30:00+05:30
 title: Wazuh Manager-Side Keep-Alive Integration with NATS
 slug: wazuh-manager-nats-keepalive-integration

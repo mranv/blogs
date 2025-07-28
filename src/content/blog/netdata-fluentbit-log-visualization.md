@@ -1,6 +1,6 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-06-28T13:00:00+05:30
+pubDatetime: 2025-01-28T13:00:00+05:30
 modDatetime: 2025-06-28T13:00:00+05:30
 title: Visualizing Log Files with Netdata and Fluent Bit
 slug: netdata-fluentbit-log-visualization
