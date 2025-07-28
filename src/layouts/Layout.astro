@@ -58,6 +58,25 @@ const {
       article={article}
     />
 
+    <!-- Enhanced Author Schema for better Anubhav Gain targeting -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        url: Astro.site,
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${Astro.site}search?q={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+      })}
+    />
+
     <!-- Premium Reading Fonts with Performance Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

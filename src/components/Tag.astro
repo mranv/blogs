@@ -43,49 +43,69 @@ const { tag, size = "sm" } = Astro.props;
     @apply transition-all duration-300 hover:scale-105;
     display: inline-block !important;
     visibility: visible !important;
+    margin: 0.25rem !important;
   }
 
   a {
     @apply relative inline-flex items-center px-3 py-1 rounded-full;
-    @apply text-skin-accent hover:text-skin-accent;
     @apply transition-all duration-300;
-    @apply border border-skin-line hover:border-skin-accent;
     @apply shadow-sm hover:shadow-md;
     @apply no-underline;
-    background: rgba(var(--color-accent), 0.1);
+
+    /* Explicit colors for visibility */
+    color: rgb(37, 99, 235) !important; /* Professional blue */
+    background-color: rgba(37, 99, 235, 0.1) !important;
+    border: 1px solid rgba(37, 99, 235, 0.3) !important;
+
     display: inline-flex !important;
     visibility: visible !important;
     opacity: 1 !important;
+    min-height: 32px !important;
+    align-items: center !important;
   }
 
   a:hover {
-    background: rgba(var(--color-accent), 0.2);
-  }
-
-  a::before {
-    content: "";
-    @apply absolute inset-0 rounded-full;
-    @apply opacity-0 hover:opacity-100;
-    @apply transition-opacity duration-300;
-    background: linear-gradient(
-      to right,
-      rgba(var(--color-accent), 0.2),
-      transparent
-    );
-    z-index: -1;
+    background-color: rgba(37, 99, 235, 0.2) !important;
+    border-color: rgb(37, 99, 235) !important;
+    color: rgb(30, 64, 175) !important;
+    transform: scale(1.05);
   }
 
   a svg {
-    @apply h-4 w-4 text-skin-accent opacity-70 group-hover:opacity-100;
-    @apply transition-all duration-300 group-hover:rotate-12;
-    margin-right: 0.25rem;
+    width: 16px !important;
+    height: 16px !important;
+    color: rgb(37, 99, 235) !important;
+    stroke: currentColor !important;
+    margin-right: 0.5rem !important;
     display: inline-block !important;
     visibility: visible !important;
+    opacity: 0.8 !important;
   }
 
   a span {
-    @apply font-medium;
+    font-weight: 500 !important;
+    color: rgb(37, 99, 235) !important;
     display: inline-block !important;
     visibility: visible !important;
+    opacity: 1 !important;
+    font-size: inherit !important;
+  }
+
+  /* Dark mode support */
+  html[data-theme="dark"] a {
+    color: rgb(96, 165, 250) !important;
+    background-color: rgba(96, 165, 250, 0.1) !important;
+    border-color: rgba(96, 165, 250, 0.3) !important;
+  }
+
+  html[data-theme="dark"] a:hover {
+    background-color: rgba(96, 165, 250, 0.2) !important;
+    border-color: rgb(96, 165, 250) !important;
+    color: rgb(147, 197, 253) !important;
+  }
+
+  html[data-theme="dark"] a svg,
+  html[data-theme="dark"] a span {
+    color: rgb(96, 165, 250) !important;
   }
 </style>

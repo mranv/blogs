@@ -33,9 +33,9 @@ const socialImageURL = ogImage
 // Enhanced title for better SEO
 const enhancedTitle =
   title === SITE.title
-    ? `${title} - ${authorName}`
-    : `${title} | ${authorName} - ${SITE.title}`;
-const enhancedDescription = `${description} Learn more from ${authorName}, a ${SITE.author} specializing in DevSecOps, cybersecurity, and cloud technologies.`;
+    ? `${title} - ${authorName} | DevSecOps Expert Blog`
+    : `${title} | ${authorName} - DevSecOps & Cybersecurity Expert`;
+const enhancedDescription = `${description} Expert insights from ${authorName}, a leading DevSecOps Engineer and Cybersecurity specialist with expertise in cloud security, automation, and threat detection.`;
 
 // Schema.org structured data
 const personSchema = {
@@ -175,7 +175,7 @@ const allSchemas = [
 <!-- Additional Meta Tags for SEO -->
 <meta
   name="keywords"
-  content={`${authorName}, Anubhav Gain, mranv, DevSecOps, ${tags.join(", ")}, cybersecurity, cloud security, technical blog`}
+  content={`${authorName}, Anubhav Gain, mranv, DevSecOps Engineer, Cybersecurity Expert, SIEM, ${tags.join(", ")}, cloud security, automation, technical blog, security automation, threat detection`}
 />
 <meta
   name="robots"

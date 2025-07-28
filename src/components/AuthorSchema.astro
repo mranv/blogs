@@ -1,0 +1,243 @@
+---
+import { SITE, SOCIALS } from "@config";
+
+const authorName = "Anubhav Gain";
+
+// Enhanced Person schema with more specific expertise and credentials
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": ["Person", "Author", "CreativeWork"],
+  "@id": `${Astro.site}#anubhav-gain`,
+  name: authorName,
+  givenName: "Anubhav",
+  familyName: "Gain",
+  alternateName: ["Anubhav Gain", "mranv", "DevSecOps Engineer"],
+  description:
+    "Expert DevSecOps Engineer and Cybersecurity specialist with deep expertise in cloud security automation, SIEM implementation, threat detection, and security infrastructure design.",
+  url: Astro.site,
+  mainEntityOfPage: Astro.site,
+
+  // Professional Details
+  jobTitle: "Senior DevSecOps Engineer",
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "DevSecOps Engineer",
+    occupationLocation: {
+      "@type": "Country",
+      name: "India",
+    },
+    skills: [
+      "DevSecOps Engineering",
+      "Cloud Security Architecture",
+      "SIEM Implementation",
+      "Security Automation",
+      "Kubernetes Security",
+      "Container Security",
+      "Infrastructure as Code",
+      "Threat Detection",
+      "Penetration Testing",
+      "Security Compliance",
+      "CI/CD Security",
+      "Zero Trust Architecture",
+    ],
+  },
+
+  // Areas of Expertise
+  knowsAbout: [
+    "DevSecOps",
+    "Cybersecurity",
+    "Cloud Security",
+    "SIEM (Security Information and Event Management)",
+    "Security Automation",
+    "Kubernetes Security",
+    "Container Security",
+    "Docker Security",
+    "Infrastructure as Code",
+    "CI/CD Security",
+    "Penetration Testing",
+    "Threat Detection and Response",
+    "Security Compliance",
+    "Zero Trust Architecture",
+    "Cloud Security Architecture",
+    "Security Monitoring",
+    "Incident Response",
+    "Vulnerability Management",
+    "Security Orchestration",
+    "Linux Security",
+    "Network Security",
+    "Application Security",
+  ],
+
+  // Awards and Recognition
+  award: [
+    "Certified Kubernetes Security Specialist",
+    "AWS Security Specialty Certification",
+    "CISSP (Certified Information Systems Security Professional)",
+  ],
+
+  // Skills with proficiency levels
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "DevSecOps Engineering",
+      description:
+        "Expert-level proficiency in DevSecOps practices and implementation",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Cloud Security Architecture",
+      description:
+        "Advanced expertise in designing secure cloud infrastructures",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "SIEM Implementation",
+      description:
+        "Extensive experience in SIEM platform deployment and management",
+    },
+  ],
+
+  // Social profiles
+  sameAs: [
+    SOCIALS.find(link => link.name === "Github")?.href,
+    SOCIALS.find(link => link.name === "LinkedIn")?.href,
+    SOCIALS.find(link => link.name === "Twitter")?.href,
+    SOCIALS.find(link => link.name === "Facebook")?.href,
+    SOCIALS.find(link => link.name === "Instagram")?.href,
+  ].filter(Boolean),
+
+  // Contact information
+  email: "iamanubhavgain@gmail.com",
+
+  // Work examples and publications
+  workExample: [
+    {
+      "@type": "CreativeWork",
+      name: "AI-Powered Cloud Security Automation",
+      description:
+        "Comprehensive guide on implementing AI-driven security automation",
+      url: `${Astro.site}posts/blog-01-ai-powered-cloud-security-automation/`,
+    },
+    {
+      "@type": "CreativeWork",
+      name: "Zero Trust Architecture Implementation",
+      description:
+        "Advanced implementation strategies for Zero Trust security models",
+      url: `${Astro.site}posts/blog-02-zero-trust-architecture-automation/`,
+    },
+    {
+      "@type": "CreativeWork",
+      name: "Container Security Automation",
+      description:
+        "Best practices for securing containerized applications and infrastructure",
+      url: `${Astro.site}posts/blog-03-container-security-automation/`,
+    },
+  ],
+
+  // Publishing information
+  author: {
+    "@type": "Person",
+    "@id": `${Astro.site}#anubhav-gain`,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: `${authorName} Blog`,
+    url: Astro.site,
+    logo: {
+      "@type": "ImageObject",
+      url: `${Astro.site}favicon.svg`,
+    },
+  },
+};
+
+// Professional Organization schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${Astro.site}#organization`,
+  name: `${authorName} - DevSecOps Consulting`,
+  description:
+    "Professional DevSecOps engineering and cybersecurity consulting services",
+  url: Astro.site,
+  founder: {
+    "@id": `${Astro.site}#anubhav-gain`,
+  },
+  employee: {
+    "@id": `${Astro.site}#anubhav-gain`,
+  },
+  serviceType: [
+    "DevSecOps Engineering",
+    "Cloud Security Architecture",
+    "Security Automation",
+    "SIEM Implementation",
+    "Cybersecurity Consulting",
+  ],
+  areaServed: {
+    "@type": "Country",
+    name: "India",
+  },
+};
+
+// FAQ Schema for common questions about Anubhav Gain
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Who is Anubhav Gain?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Anubhav Gain is a senior DevSecOps Engineer and cybersecurity expert specializing in cloud security automation, SIEM implementation, and security infrastructure design. He has extensive experience in implementing secure CI/CD pipelines, container security, and zero-trust architectures.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What are Anubhav Gain's main areas of expertise?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Anubhav Gain specializes in DevSecOps engineering, cloud security architecture, SIEM implementation, security automation, Kubernetes security, container security, and threat detection. He has deep expertise in implementing security controls across the entire software development lifecycle.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What kind of content does Anubhav Gain write about?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Anubhav Gain writes in-depth technical articles about DevSecOps practices, cloud security automation, SIEM deployment strategies, container security, zero-trust architecture implementation, and advanced cybersecurity techniques. His content focuses on practical implementation guides and real-world security solutions.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How can I contact Anubhav Gain?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "You can contact Anubhav Gain through his professional social media profiles on LinkedIn, GitHub, or via email. He regularly shares insights and engages with the cybersecurity community through his blog and social platforms.",
+      },
+    },
+  ],
+};
+
+const allSchemas = [personSchema, organizationSchema, faqSchema];
+---
+
+<!-- Enhanced Author Structured Data -->
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(allSchemas)}
+/>
+
+<!-- Additional meta tags for author expertise -->
+<meta
+  name="expertise"
+  content="DevSecOps, Cybersecurity, Cloud Security, SIEM, Security Automation"
+/>
+<meta
+  name="author-specialty"
+  content="DevSecOps Engineering and Cybersecurity"
+/>
+<meta
+  name="professional-focus"
+  content="Cloud Security Architecture and Automation"
+/>
