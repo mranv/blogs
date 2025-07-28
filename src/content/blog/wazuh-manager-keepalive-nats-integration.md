@@ -2,6 +2,7 @@
 author: Anubhav Gain
 pubDatetime: 2025-01-28T11:53:00Z
 title: "Wazuh Manager Keep-Alive Communication Through NATS"
+slug: "wazuh-manager-keepalive-nats-integration"
 featured: false
 draft: false
 tags:

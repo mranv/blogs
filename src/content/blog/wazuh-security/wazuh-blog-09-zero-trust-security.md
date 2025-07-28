@@ -1,5 +1,6 @@
 ---
 title: "Zero Trust Security with Wazuh: Micro-Segmentation Detection & Network Correlation"
+slug: "wazuh-blog-09-zero-trust-security"
 description: "Zero Trust security has evolved from a buzzword to a critical necessity in 2025's threat landscape. With 76% of organizations experiencing lateral movement attacks and traditional perimeter security proving ineffective, implementing Zero Trust principles with continuous verification is paramount. This comprehensive guide demonstrates how Wazuh's advanced correlation capabilities enable micro-segmentation monitoring, identity-based access control verification, and east-west traffic analysis to achieve true Zero Trust security."
 pubDatetime: 2025-01-28T00:00:00Z
 author: "Anubhav Gain"

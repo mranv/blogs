@@ -1,5 +1,6 @@
 ---
 title: "Force Group Policy Update: Complete Technical Guide for Windows Domain Administration"
+slug: "windows-group-policy-force-update-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-31T15:17:00Z
 featured: true

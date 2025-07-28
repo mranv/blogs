@@ -1,5 +1,6 @@
 ---
 title: "Edge Computing with SPIFFE/SPIRE: Zero-Trust Identity for IoT and Edge Devices"
+slug: "edge-computing-spiffe-spire-iot-zero-trust"
 description: "Master SPIFFE/SPIRE deployment for edge computing and IoT environments. Complete guide to extending zero-trust identity to constrained devices and edge locations."
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"

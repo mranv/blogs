@@ -1,5 +1,6 @@
 ---
 title: "Insider Threat Detection: Behavioral Analytics with Wazuh"
+slug: "wazuh-blog-03-insider-threats"
 description: "Master insider threat detection using Wazuh's advanced behavioral analytics. Learn to identify malicious insiders and compromised accounts with 96-99% accuracy while reducing false positives through intelligent baseline analysis."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z

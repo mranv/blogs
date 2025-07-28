@@ -1,5 +1,6 @@
 ---
 title: "OpenSearch Dashboards Build Configuration: Complete Manifest Guide"
+slug: "opensearch-dashboards-build-configuration"
 author: "Anubhav Gain"
 pubDatetime: 2025-02-02T23:22:00Z
 featured: false

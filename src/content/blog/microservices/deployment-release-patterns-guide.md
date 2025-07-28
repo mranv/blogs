@@ -1,6 +1,7 @@
 ---
 title: "Mastering Microservices: A Complete Guide to Modern Deployment and Release Patterns"
 description: "Comprehensive guide to deployment patterns including Blue-Green, Canary, Rolling Updates, Feature Flags, GitOps, and CI/CD best practices with Kubernetes, Istio, and ArgoCD"
+slug: "deployment-release-patterns-guide"
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:

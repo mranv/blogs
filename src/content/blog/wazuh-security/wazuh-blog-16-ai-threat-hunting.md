@@ -1,5 +1,6 @@
 ---
 title: "AI-Powered Threat Hunting: Advanced Behavioral Analytics and Hypothesis-Driven Investigation with Wazuh"
+slug: "wazuh-blog-16-ai-threat-hunting"
 description: "Master AI-powered threat hunting with Wazuh's advanced behavioral analytics and hypothesis-driven investigation capabilities. Learn to achieve 91.4% success rates in detecting unknown threats through machine learning-powered hunting techniques."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:30:00+05:30

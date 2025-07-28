@@ -2,6 +2,7 @@
 author: Anubhav Gain
 pubDatetime: 2025-01-28T18:25:00Z
 title: Customizing Zsh with Oh-My-Zsh on macOS ARM M1
+slug: "zsh-customize-macos"
 featured: false
 draft: false
 tags:

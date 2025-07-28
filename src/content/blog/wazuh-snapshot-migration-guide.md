@@ -1,5 +1,6 @@
 ---
 title: "Wazuh Snapshot Migration Guide: Data Analysis, Rule Engine, and Windows Monitoring"
+slug: "wazuh-snapshot-migration-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00Z
 featured: true

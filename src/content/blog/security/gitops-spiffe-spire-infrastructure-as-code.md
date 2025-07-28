@@ -1,5 +1,6 @@
 ---
 title: "GitOps for SPIFFE/SPIRE: Infrastructure-as-Code for Identity Management"
+slug: "gitops-spiffe-spire-infrastructure-as-code"
 description: "Master GitOps patterns for SPIFFE/SPIRE with ArgoCD, Flux, and comprehensive infrastructure-as-code practices. Complete guide to automated identity management at scale."
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"

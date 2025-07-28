@@ -1,5 +1,6 @@
 ---
 title: "Multi-Cluster SPIFFE Federation: Building Cross-Cloud Zero-Trust Architecture"
+slug: "multi-cluster-spiffe-federation"
 description: "Master multi-cluster SPIFFE federation for enterprise-scale zero-trust deployments. Complete guide to cross-cloud workload identity, trust relationships, and production patterns."
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"

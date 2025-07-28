@@ -2,6 +2,7 @@
 author: Anubhav Gain
 pubDatetime: 2025-01-28T16:02:00Z
 title: "OpenSearch SCIM Integration with Keycloak: Enterprise Identity Management Architecture"
+slug: "opensearch-scim-keycloak-integration"
 featured: false
 draft: false
 tags:

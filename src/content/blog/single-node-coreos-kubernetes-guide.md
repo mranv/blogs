@@ -1,5 +1,6 @@
 ---
 title: "Single Node CoreOS Kubernetes: Complete Setup and Configuration Guide"
+slug: "single-node-coreos-kubernetes-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-11T00:00:00Z
 featured: false

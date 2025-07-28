@@ -1,5 +1,6 @@
 ---
 title: "OT/ICS Security Mastery: Advanced Monitoring for Industrial Control Systems with Wazuh"
+slug: "wazuh-blog-17-ot-ics-security"
 description: "Operational Technology (OT) and Industrial Control Systems (ICS) represent the critical backbone of global infrastructure—power grids, water treatment facilities, manufacturing plants, and transportation systems. Yet 76% of industrial organizations experienced at least one security incident in 2024, with attacks like Colonial Pipeline, Ukrainian power grid, and Triton/TRISIS demonstrating catastrophic potential. Traditional IT security approaches fail in OT environments due to unique requirements: real-time constraints, legacy protocols, air-gapped networks, and safety-critical operations where availability trumps confidentiality. This comprehensive guide demonstrates how Wazuh's specialized OT/ICS monitoring achieves 94.1% threat detection accuracy while maintaining the operational reliability essential for industrial environments."
 pubDatetime: 2025-01-28T00:00:00Z
 author: "Anubhav Gain"

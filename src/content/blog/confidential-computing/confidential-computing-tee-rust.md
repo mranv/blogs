@@ -1,5 +1,6 @@
 ---
 title: "Confidential Computing with Trusted Execution Environments: Secure Enclaves in Rust"
+slug: "confidential-computing-tee-rust"
 description: "Master confidential computing with Trusted Execution Environments (TEE) using Rust. Complete guide to building secure enclaves for Intel SGX, AMD SEV, and ARM TrustZone with hardware-backed security guarantees."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30

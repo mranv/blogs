@@ -1,5 +1,6 @@
 ---
 title: "Enterprise Compliance: Automated Violation Detection Framework with Wazuh"
+slug: "wazuh-blog-06-compliance-automation"
 description: "Master enterprise compliance automation with Wazuh's violation detection framework. Learn to build automated compliance monitoring, reporting, and remediation systems for regulatory requirements."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:20:00+05:30

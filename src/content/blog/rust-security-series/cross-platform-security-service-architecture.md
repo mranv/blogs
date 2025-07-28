@@ -1,5 +1,6 @@
 ---
 title: "Cross-Platform Security Service Architecture in Rust: Building Enterprise-Grade Daemons"
+slug: "cross-platform-security-service-architecture"
 description: "Learn how to build production-ready security services in Rust that run seamlessly across Linux (systemd), Windows, and macOS. Master async patterns, privilege management, and secure configuration."
 pubDatetime: 2025-01-30T16:00:00+05:30
 heroImage: "/rust-cross-platform-service.png"

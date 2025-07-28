@@ -2,6 +2,7 @@
 author: Anubhav Gain
 pubDatetime: 2025-01-28T15:16:00Z
 title: macOS XProtect Security Status Monitoring
+slug: "xprotect-macos-security-check"
 featured: false
 draft: false
 tags:

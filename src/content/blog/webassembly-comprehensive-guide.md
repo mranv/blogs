@@ -1,5 +1,6 @@
 ---
 title: "WebAssembly (WASM) Comprehensive Guide: From Basics to Production"
+slug: "webassembly-comprehensive-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-02-07T21:56:00Z
 featured: true

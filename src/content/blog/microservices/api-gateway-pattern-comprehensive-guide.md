@@ -2,6 +2,7 @@
 title: "The API Gateway Pattern: A Comprehensive Guide for Modern Microservices"
 description: "Master the API Gateway pattern with in-depth architecture, implementation strategies, and real-world examples. Learn how to build scalable, secure, and maintainable API gateways in 2025."
 author: "Anubhav Gain"
+slug: "api-gateway-pattern-comprehensive-guide"
 pubDatetime: 2025-01-27T10:00:00+05:30
 tags:
   [

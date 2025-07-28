@@ -1,5 +1,6 @@
 ---
 title: "Supply Chain Security Revolution: Trusted Publishing with Rust and Cryptographic Attestations"
+slug: "blog-10-supply-chain-security-trusted-publishing-rust"
 description: "Master supply chain security by implementing trusted publishing mechanisms with Rust. Learn to build secure package distribution, cryptographic verification, and automated security scanning for software supply chains."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:00:00+05:30

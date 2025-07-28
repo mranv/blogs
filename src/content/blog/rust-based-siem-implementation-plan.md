@@ -2,6 +2,7 @@
 author: Anubhav Gain
 pubDatetime: 2025-01-28T01:59:00Z
 title: "Cross-Platform Rust-Based SIEM Platform Implementation Plan"
+slug: "rust-based-siem-implementation-plan"
 featured: true
 draft: false
 tags:

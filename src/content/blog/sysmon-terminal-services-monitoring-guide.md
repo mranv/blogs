@@ -1,5 +1,6 @@
 ---
 title: "Sysmon Terminal Services Monitoring: Complete Detection and Response Guide"
+slug: "sysmon-terminal-services-monitoring-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T22:30:00Z
 featured: false

@@ -1,5 +1,6 @@
 ---
 title: "SOAR Integration Excellence: Advanced Security Orchestration with Wazuh"
+slug: "wazuh-blog-15-soar-automation"
 description: "Master SOAR integration with Wazuh for advanced security orchestration and automated response. Learn to build intelligent incident response workflows and automated threat remediation systems."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T15:50:00+05:30

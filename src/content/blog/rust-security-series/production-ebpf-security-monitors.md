@@ -1,5 +1,6 @@
 ---
 title: "Building Production eBPF Security Monitors in Rust: Advanced Threat Detection"
+slug: "production-ebpf-security-monitors"
 description: "Build enterprise-grade security monitoring systems using eBPF and Rust. Learn network traffic analysis with XDP, process behavior detection, and real-time threat correlation techniques."
 pubDatetime: 2025-02-02T16:00:00+05:30
 heroImage: "/rust-production-ebpf.png"

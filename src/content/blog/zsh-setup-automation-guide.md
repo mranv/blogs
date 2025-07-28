@@ -1,5 +1,6 @@
 ---
 title: "Automated Zsh Setup: Complete Installation and Configuration Script"
+slug: "zsh-setup-automation-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T14:13:00Z
 featured: false

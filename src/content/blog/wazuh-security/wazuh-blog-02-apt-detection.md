@@ -1,5 +1,6 @@
 ---
 title: "Detecting Advanced Persistent Threats: Multi-Stage Correlation Rules in Wazuh"
+slug: "wazuh-blog-02-apt-detection"
 description: "Master advanced APT detection using Wazuh's multi-stage correlation rules. Learn to build intelligent detection systems that reduce APT dwell time by 90% through sophisticated attack chain analysis."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z

@@ -1,5 +1,6 @@
 ---
 title: "SPIFFE/SPIRE High Availability in Kubernetes: Production Deployment Patterns"
+slug: "spiffe-spire-high-availability-production"
 description: "Build enterprise-grade SPIFFE/SPIRE deployments with high availability, disaster recovery, and scalability. Learn multi-region patterns, database optimization, and zero-downtime operations."
 pubDatetime: 2025-01-30T16:00:00+05:30
 author: "Anubhav Gain"

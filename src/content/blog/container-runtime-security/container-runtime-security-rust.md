@@ -1,5 +1,6 @@
 ---
 title: "Container Runtime Security with Rust: Building Secure, High-Performance Container Runtimes"
+slug: "container-runtime-security-rust"
 description: "Master container runtime security by building secure, high-performance container runtimes in Rust. Complete guide to implementing OCI-compliant runtimes with advanced security features, syscall filtering, and rootless containers."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30

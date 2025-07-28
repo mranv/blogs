@@ -1,5 +1,6 @@
 ---
 title: "Creating Organizational Charts with Mermaid: A Complete Guide"
+slug: "organizational-charts-with-mermaid"
 author: "Anubhav Gain"
 pubDatetime: 2025-02-05T21:01:00Z
 featured: false

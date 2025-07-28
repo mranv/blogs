@@ -2,6 +2,7 @@
 title: "The Saga Pattern: Mastering Distributed Transactions in Microservices"
 description: "Learn how to implement reliable distributed transactions across microservices using the Saga pattern. Explore choreography vs orchestration, compensation logic, and real-world implementations with detailed examples."
 author: "Anubhav Gain"
+slug: "saga-pattern-distributed-transactions-guide"
 pubDatetime: 2025-01-27T14:00:00+05:30
 tags:
   [

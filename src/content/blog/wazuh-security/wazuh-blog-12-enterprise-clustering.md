@@ -1,5 +1,6 @@
 ---
 title: "Enterprise Clustering & High Availability: Scaling Wazuh for Fortune 500 Operations"
+slug: "wazuh-blog-12-enterprise-clustering"
 description: "Master enterprise-grade Wazuh clustering and high availability for Fortune 500 operations. Learn to build scalable, fault-tolerant SIEM architectures with advanced clustering techniques and disaster recovery."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:45:00+05:30

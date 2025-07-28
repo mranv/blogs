@@ -2,6 +2,7 @@
 author: Anubhav Gain
 pubDatetime: 2025-01-28T16:32:00Z
 title: Completely Disable PowerShell on Windows for Enhanced Security
+slug: "disable-powershell-windows-security"
 featured: false
 draft: false
 tags:

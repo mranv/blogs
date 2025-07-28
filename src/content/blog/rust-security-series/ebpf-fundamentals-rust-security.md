@@ -1,5 +1,6 @@
 ---
 title: "eBPF Fundamentals for Rust Security Engineers: Building Kernel-Level Security Tools"
+slug: "ebpf-fundamentals-rust-security"
 description: "Master eBPF programming in Rust with the Aya framework. Learn how to build high-performance security monitoring tools that run in kernel space with memory safety guarantees."
 pubDatetime: 2025-01-28T16:00:00+05:30
 heroImage: "/rust-ebpf-security.png"

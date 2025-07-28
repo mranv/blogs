@@ -1,5 +1,6 @@
 ---
 title: "Post-Quantum Cryptography in Production: Implementing ML-KEM and Kyber with Rust"
+slug: "blog-06-post-quantum-cryptography-rust-implementation"
 description: "Master post-quantum cryptography implementation in Rust. Learn to build quantum-resistant security systems using ML-KEM, Kyber, and production-ready PQC with hardware acceleration and migration strategies."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T13:30:00+05:30

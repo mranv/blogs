@@ -1,5 +1,6 @@
 ---
 title: "OpenSSH Docker Security: Complete Guide to Secure SSH Containers"
+slug: "openssh-docker-security-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T20:15:00Z
 featured: false

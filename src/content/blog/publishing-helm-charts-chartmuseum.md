@@ -2,6 +2,7 @@
 author: Anubhav Gain
 pubDatetime: 2025-01-28T14:35:00Z
 title: "Complete Guide: Setting Up and Publishing Helm Charts to ChartMuseum"
+slug: "publishing-helm-charts-chartmuseum"
 featured: false
 draft: false
 tags:

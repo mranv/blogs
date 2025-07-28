@@ -1,5 +1,6 @@
 ---
 title: "Kubernetes Workload Identity with SPIFFE: Pod-to-Pod mTLS Implementation Guide"
+slug: "kubernetes-workload-identity-pod-to-pod-mtls"
 description: "Implement secure pod-to-pod communication in Kubernetes using SPIFFE/SPIRE workload identities. Learn CSI driver integration, mTLS patterns, and real-world application integration."
 pubDatetime: 2025-01-29T16:00:00+05:30
 author: "Anubhav Gain"

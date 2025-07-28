@@ -1,5 +1,6 @@
 ---
 title: "Building Production-Ready XDR: Testing, Benchmarking, and Deploying Rust Security Systems"
+slug: "blog-05-production-ready-xdr-testing-benchmarking"
 description: "Learn how to test, benchmark, and validate XDR platforms for production deployment. Complete guide to performance testing, load testing, and security validation of extended detection and response systems using Rust."
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:30:00+05:30

@@ -1,5 +1,6 @@
 ---
 author: Anubhav Gain
+slug: "utm-stack-correlation-engine-analysis"
 pubDatetime: 2025-01-28T12:05:00Z
 title: "UTMStack Correlation Engine - Complete Technical Documentation"
 featured: true
