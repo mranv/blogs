@@ -2,6 +2,7 @@
 title: "AI-Driven Threat Hunting with Rust Machine Learning: Advanced Behavioral Analytics for Modern Cybersecurity"
 description: "Build sophisticated AI-powered threat hunting systems using Rust and machine learning. Complete guide to implementing behavioral analytics, anomaly detection, and intelligent threat classification with production-ready performance."
 author: "Anubhav Gain"
+slug: "ai-driven-threat-hunting-rust-ml"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
   [
