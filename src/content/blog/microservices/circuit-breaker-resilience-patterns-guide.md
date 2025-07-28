@@ -1285,6 +1285,7 @@ public class ResilienceMetricsCollector {
    - Use metrics for continuous tuning
 
 5. **Test Failure Scenarios**
+
    ```java
    @Test
    public void testCircuitBreakerOpens() {

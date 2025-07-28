@@ -1,6 +1,6 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-06-28T11:00:00+05:30
+pubDatetime: 2025-01-28T11:00:00+05:30
 modDatetime: 2025-06-28T11:00:00+05:30
 title: CoreDNS Setup for Local Network with SSL
 slug: coredns-setup-ssl-local-network

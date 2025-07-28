@@ -1,6 +1,6 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-06-28T15:00:00+05:30
+pubDatetime: 2025-01-28T15:00:00+05:30
 modDatetime: 2025-06-28T15:00:00+05:30
 title: Wazuh Core Integration with NATS - C/C++ POC Implementation
 slug: wazuh-core-nats-integration-c

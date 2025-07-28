@@ -1,6 +1,6 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-06-28T12:00:00+05:30
+pubDatetime: 2025-01-28T12:00:00+05:30
 modDatetime: 2025-06-28T12:00:00+05:30
 title: Windows Exporter Configuration for Netdata Monitoring
 slug: windows-exporter-netdata-configuration

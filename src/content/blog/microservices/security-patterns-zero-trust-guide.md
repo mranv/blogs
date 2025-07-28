@@ -1,7 +1,7 @@
 ---
 title: "Complete Guide to Microservices Security Patterns and Zero Trust Architecture"
 description: "Comprehensive guide to implementing security patterns in microservices architecture, covering Zero Trust principles, OAuth2/OpenID Connect, JWT management, mTLS, API security, and modern threat mitigation strategies."
-pubDate: "2025-07-28"
+pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
   [

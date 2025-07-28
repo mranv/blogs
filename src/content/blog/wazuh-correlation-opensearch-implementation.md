@@ -1,6 +1,6 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-06-28T14:00:00+05:30
+pubDatetime: 2025-01-28T14:00:00+05:30
 modDatetime: 2025-06-28T14:00:00+05:30
 title: Wazuh 4.12.0 + OpenSearch 2.19.2 + Filebeat Integration Guide
 slug: wazuh-correlation-opensearch-implementation

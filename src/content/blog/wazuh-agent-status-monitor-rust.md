@@ -1,6 +1,6 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-06-28T15:30:00+05:30
+pubDatetime: 2025-01-28T15:30:00+05:30
 modDatetime: 2025-06-28T15:30:00+05:30
 title: Wazuh Agent Status to NATS Integration - Rust POC
 slug: wazuh-agent-status-monitor-rust

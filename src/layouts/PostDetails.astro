@@ -117,7 +117,7 @@ const layoutProps = {
   // Optimized post detail scripts - deferred and performance optimized
   function initializePostScripts() {
     // Progress bar - only create on scroll
-    let progressBar: HTMLDivElement | null = null;
+    let progressBar = null;
     let hasScrolled = false;
 
     const createProgressBar = () => {
@@ -146,7 +146,7 @@ const layoutProps = {
     };
 
     // Throttled scroll handler
-    let scrollTimeout: number | null = null;
+    let scrollTimeout = null;
     window.addEventListener(
       "scroll",
       () => {
@@ -212,7 +212,7 @@ const layoutProps = {
 
     // Defer copy buttons until needed
     if ("requestIdleCallback" in window) {
-      (window as any).requestIdleCallback(attachCopyButtons);
+      window.requestIdleCallback(attachCopyButtons);
     } else {
       setTimeout(attachCopyButtons, 100);
     }

@@ -1,6 +1,6 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-06-28T16:00:00+05:30
+pubDatetime: 2025-01-28T16:00:00+05:30
 modDatetime: 2025-06-28T16:00:00+05:30
 title: Secure Kafka UI Helm Configuration for Kubernetes
 slug: kafka-ui-helm-secure-configuration
