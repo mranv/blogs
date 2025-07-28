@@ -1,0 +1,29 @@
+{
+  "name": "astro-blog-tests",
+  "version": "1.0.0",
+  "description": "UI validation tests for Astro blog",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:visual": "playwright test visual-regression",
+    "test:a11y": "playwright test accessibility",
+    "test:responsive": "playwright test responsive",
+    "test:performance": "playwright test performance",
+    "test:components": "playwright test component-functionality",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "test:update-snapshots": "playwright test --update-snapshots",
+    "test:ci": "playwright test --reporter=junit,html",
+    "lighthouse": "lighthouse http://localhost:4321 --output=html --output-path=./test-results/lighthouse.html",
+    "axe": "axe http://localhost:4321 --save test-results/axe-report.json"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.8.5",
+    "@playwright/test": "^1.41.2",
+    "@types/node": "^20.11.20",
+    "axe-cli": "^4.8.5",
+    "lighthouse": "^11.6.0",
+    "playwright": "^1.41.2"
+  }
+}

@@ -3,6 +3,7 @@ title: "Secure Authentication Systems in Rust: JWT, OAuth2, and Multi-Factor Aut
 slug: "secure-authentication-systems"
 description: "Build enterprise-grade authentication systems in Rust with JWT tokens, OAuth2 integration, and multi-factor authentication. Learn security hardening, session management, and production deployment patterns."
 pubDatetime: 2025-02-05T16:00:00+05:30
+author: "Anubhav Gain"
 heroImage: "/rust-secure-authentication.png"
 category: "Rust"
 tags:

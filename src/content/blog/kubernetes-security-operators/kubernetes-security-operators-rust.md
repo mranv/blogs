@@ -2,7 +2,9 @@
 title: "Kubernetes Security Operators with Rust: Automated Cluster Protection at Scale"
 slug: "kubernetes-security-operators-rust"
 description: "Build production-ready Kubernetes operators in Rust for automated security enforcement. From admission controllers and policy engines to runtime protection and compliance automation."
-date: 2025-01-28
+pubDatetime: 2025-01-28T12:00:00+05:30
+featured: false
+draft: false
 author: "Anubhav Gain"
 tags:
   [

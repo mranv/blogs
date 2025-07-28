@@ -2,7 +2,9 @@
 title: "Service Mesh Security Implementation in Rust: Zero-Trust Microservices at Scale"
 slug: "service-mesh-security-rust"
 description: "Build production-ready service mesh security with Rust. From mTLS automation and sidecar proxies to policy enforcement and observability - achieving sub-millisecond latency."
-date: 2025-01-28
+pubDatetime: 2025-01-28T12:00:00+05:30
+featured: false
+draft: false
 author: "Anubhav Gain"
 tags:
   [
