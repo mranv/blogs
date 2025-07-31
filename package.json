@@ -24,7 +24,6 @@
     "@resvg/resvg-js": "^2.6.0",
     "astro": "^4.2.1",
     "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "fuse.js": "^7.0.0",
     "github-slugger": "^2.0.0",
     "lucide-react": "^0.528.0",
@@ -32,8 +31,6 @@
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
     "satori": "^0.10.11",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^3.4.1",
     "typescript": "^5.4.4"
   },
   "devDependencies": {
@@ -48,17 +45,21 @@
     "@types/react": "^18.2.48",
     "@typescript-eslint/parser": "^6.19.0",
     "astro-eslint-parser": "^0.16.2",
+    "clsx": "^2.1.1",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.56.0",
     "eslint-plugin-astro": "^0.31.3",
+    "framer-motion": "^12.23.12",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "prettier": "^3.2.4",
     "prettier-plugin-astro": "^0.13.0",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.11"
   },
   "config": {
     "commitizen": {
