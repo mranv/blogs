@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
-import LinkButton from "@components/LinkButton.astro";
 import Hr from "@components/Hr.astro";
 import LazyCard from "@components/LazyCard.astro";
 import Socials from "@components/Socials.astro";
@@ -483,7 +482,7 @@ const featuredTechnologies = [
     );
 
     categoryBadges.forEach(badge => {
-      badge.addEventListener("click", function () {
+      badge.addEventListener("click", function (this: HTMLElement) {
         const tag = this.textContent?.trim();
         if (tag) {
           // Navigate to posts page with tag filter
@@ -532,10 +531,10 @@ const featuredTechnologies = [
       badge.setAttribute("tabindex", "0");
       badge.setAttribute("role", "button");
 
-      badge.addEventListener("keydown", function (e) {
+      badge.addEventListener("keydown", function (e: KeyboardEvent) {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          badge.click();
+          (badge as HTMLElement).click();
         }
       });
     });

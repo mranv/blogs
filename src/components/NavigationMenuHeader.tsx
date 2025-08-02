@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ChevronDown, Search, Sun, Moon, Menu, X, Bell } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,12 +11,7 @@ import {
 import NotificationBadge from "./NotificationBadge.tsx";
 import SearchButton from "./SearchButton.tsx";
 import NavigationSkeleton from "./skeletons/NavigationSkeleton.tsx";
-import {
-  FadeIn,
-  SlideIn,
-  StaggerChildren,
-  ScaleIn,
-} from "@components/animations";
+import { FadeIn, StaggerChildren } from "@components/animations";
 import { cn } from "@utils/cn";
 
 interface NavigationMenuHeaderProps {

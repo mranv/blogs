@@ -170,7 +170,7 @@ html[data-theme="light"] {
 
 /* About page container */
 .about-page {
-  @apply max-w-4xl mx-auto px-4 py-8;
+  @apply w-full px-4 py-8;
   @apply bg-background text-foreground;
 }
 
@@ -179,6 +179,7 @@ html[data-theme="light"] {
   @apply text-center mb-12;
   @apply bg-card border border-border rounded-xl p-8;
   @apply shadow-lg;
+  @apply max-w-6xl mx-auto;
 }
 
 .about-header img {
@@ -195,7 +196,10 @@ html[data-theme="light"] {
 .about-header h1 {
   @apply text-4xl font-bold text-foreground;
   @apply mb-4;
-  @apply bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent;
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .about-header .title {
@@ -214,6 +218,7 @@ html[data-theme="light"] {
   @apply bg-card border border-border rounded-xl p-8;
   @apply shadow-md;
   @apply transition-all duration-300;
+  @apply max-w-6xl mx-auto;
 }
 
 .about-section:hover {
@@ -335,7 +340,7 @@ html[data-theme="light"] {
 /* About page call-to-action section */
 .about-cta {
   @apply text-center mt-12;
-  @apply bg-gradient-to-r from-primary/10 to-secondary/10;
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)));
   @apply border border-primary/20 rounded-xl p-8;
   @apply shadow-lg;
 }

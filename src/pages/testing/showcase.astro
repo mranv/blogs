@@ -154,7 +154,11 @@ const sampleTags = [
         <div
           class="bg-gradient-to-r from-primary to-purple-600 rounded-lg overflow-hidden"
         >
-          <AuthorHero client:load author={sampleAuthor} variant="hero" />
+          <AuthorHero
+            client:load
+            author={sampleAuthor}
+            stats={{ experience: "10+", clients: 100, projects: 50 }}
+          />
         </div>
 
         <!-- Author Bio -->
@@ -228,7 +232,7 @@ const sampleTags = [
           </h3>
 
           <SlideIn client:load direction="right">
-            <AuthorBio client:load author={sampleAuthor} showStats={true} />
+            <AuthorBio client:load author={sampleAuthor} />
           </SlideIn>
         </div>
       </div>

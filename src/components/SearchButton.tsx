@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Search, Command } from "lucide-react";
+import { Search } from "lucide-react";
 import { cn } from "@utils/cn";
 
 interface SearchButtonProps {

@@ -47,7 +47,19 @@ const PerformanceTester: React.FC<{
     null
   );
   const containerRef = useRef<HTMLDivElement>(null);
-  const performanceDataRef = useRef({
+  const performanceDataRef = useRef<{
+    renderCount: number;
+    renderTimes: number[];
+    memoryUsage: {
+      used: number;
+      total: number;
+      limit: number;
+      timestamp: number;
+    }[];
+    frameRates: number[];
+    startTime: number;
+    endTime: number;
+  }>({
     renderCount: 0,
     renderTimes: [],
     memoryUsage: [],
