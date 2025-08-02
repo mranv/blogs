@@ -154,8 +154,8 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
         disabled={disableAnimations}
         pattern="sequential"
       >
-        <NavigationMenu className="hidden md:flex">
-          <NavigationMenuList className="space-x-2">
+        <NavigationMenu className="flex">
+          <NavigationMenuList className="flex flex-wrap space-x-1 sm:space-x-2">
             {/* Posts Menu */}
             <NavigationMenuItem>
               <NavigationMenuTrigger
@@ -175,7 +175,7 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <div className="grid gap-3 p-4 sm:p-6 w-full sm:w-[90vw] md:w-[400px] lg:w-[500px] xl:w-[600px] lg:grid-cols-[.75fr_1fr]">
+                <div className="grid gap-3 p-4 sm:p-6 w-[350px] sm:w-[400px] md:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <div className="row-span-3">
                     <NavigationMenuLink asChild>
                       <a
@@ -233,7 +233,7 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <div className="grid gap-3 p-4 sm:p-6 w-full sm:w-[90vw] md:w-[400px] lg:w-[500px] xl:w-[600px]">
+                <div className="grid gap-3 p-4 sm:p-6 w-[350px] sm:w-[400px] md:w-[500px]">
                   <div className="grid gap-2">
                     <NavigationMenuLink asChild>
                       <a
@@ -287,7 +287,7 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <div className="grid gap-3 p-4 sm:p-6 w-full sm:w-[90vw] md:w-[400px] lg:w-[500px] xl:w-[600px] lg:grid-cols-2">
+                <div className="grid gap-3 p-4 sm:p-6 w-[350px] sm:w-[400px] md:w-[500px] lg:grid-cols-2">
                   <div>
                     <NavigationMenuLink asChild>
                       <a
@@ -356,116 +356,7 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-
-        {/* Mobile Menu Button */}
-        <ScaleIn variant="pop" hoverScale={1.1} disabled={disableAnimations}>
-          <button
-            ref={menuButtonRef}
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg border border-transparent hover:border-skin-accent/20 hover:bg-skin-accent/15 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isOpen}
-            aria-controls="mobile-navigation-menu"
-          >
-            {isOpen ? (
-              <X className="h-6 w-6 transform transition-transform duration-300 rotate-90" />
-            ) : (
-              <Menu className="h-6 w-6 transform transition-transform duration-300" />
-            )}
-          </button>
-        </ScaleIn>
       </StaggerChildren>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <SlideIn direction="down" duration={300} disabled={disableAnimations}>
-          <div
-            ref={mobileMenuRef}
-            id="mobile-navigation-menu"
-            className="absolute top-full left-0 right-0 z-50 md:hidden bg-skin-fill/95 backdrop-blur-md border-t border-skin-accent/20 shadow-lg"
-            role="navigation"
-            aria-label="Mobile navigation menu"
-          >
-            <StaggerChildren
-              animation="slide-left"
-              staggerDelay={80}
-              duration={300}
-              disabled={disableAnimations}
-              className="p-4 space-y-4"
-            >
-              <a
-                href="/posts/"
-                className={cn(
-                  "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
-                  "hover:bg-skin-accent/15 hover:text-skin-accent",
-                  activeNav === "posts" && "text-skin-accent bg-skin-accent/15"
-                )}
-                onClick={() => setIsOpen(false)}
-                aria-current={activeNav === "posts" ? "page" : undefined}
-              >
-                <NotificationBadge show={hasNewPosts}>Posts</NotificationBadge>
-              </a>
-              <a
-                href="/tags/"
-                className={cn(
-                  "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
-                  "hover:bg-skin-accent/15 hover:text-skin-accent",
-                  activeNav === "tags" && "text-skin-accent bg-skin-accent/15"
-                )}
-                onClick={() => setIsOpen(false)}
-                aria-current={activeNav === "tags" ? "page" : undefined}
-              >
-                Tags
-              </a>
-              <a
-                href="/about/"
-                className={cn(
-                  "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
-                  "hover:bg-skin-accent/15 hover:text-skin-accent",
-                  activeNav === "about" && "text-skin-accent bg-skin-accent/15"
-                )}
-                onClick={() => setIsOpen(false)}
-                aria-current={activeNav === "about" ? "page" : undefined}
-              >
-                About
-              </a>
-              <a
-                href="/search/"
-                className={cn(
-                  "flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
-                  "hover:bg-skin-accent/15 hover:text-skin-accent",
-                  activeNav === "search" && "text-skin-accent bg-skin-accent/15"
-                )}
-                onClick={() => setIsOpen(false)}
-                aria-current={activeNav === "search" ? "page" : undefined}
-              >
-                <Search className="mr-2 h-4 w-4" aria-hidden="true" />
-                Search
-              </a>
-              <button
-                onClick={() => {
-                  toggleTheme();
-                  setIsOpen(false);
-                }}
-                className="flex items-center w-full px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-skin-accent/15 hover:text-skin-accent focus:outline-none focus:ring-2 focus:ring-skin-accent/50"
-                aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-              >
-                {theme === "light" ? (
-                  <>
-                    <Moon className="mr-2 h-4 w-4" aria-hidden="true" />
-                    Dark Mode
-                  </>
-                ) : (
-                  <>
-                    <Sun className="mr-2 h-4 w-4" aria-hidden="true" />
-                    Light Mode
-                  </>
-                )}
-              </button>
-            </StaggerChildren>
-          </div>
-        </SlideIn>
-      )}
     </FadeIn>
   );
 };

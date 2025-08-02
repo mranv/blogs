@@ -5,6 +5,7 @@ import SEO from "@components/SEO.astro";
 import AnimationWrapper from "@components/AnimationWrapper.tsx";
 import "@styles/base.css";
 import "@styles/animations.css";
+import "@styles/components.css";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -81,7 +82,7 @@ const {
     <!-- Preload critical resources -->
     <link
       rel="preload"
-      href="/assets/logo.svg.svg"
+      href="/assets/logo.svg"
       as="image"
       fetchpriority="high"
       type="image/svg+xml"
@@ -143,7 +144,7 @@ const {
         margin-left: auto;
         margin-right: auto;
         width: 100%;
-        max-width: 100vw;
+        max-width: 100%;
         padding-left: 1rem;
         padding-right: 1rem;
       }
@@ -155,7 +156,6 @@ const {
         footer {
           padding-left: 1.5rem;
           padding-right: 1.5rem;
-          max-width: 90vw;
         }
       }
       @media (min-width: 768px) {
@@ -163,25 +163,6 @@ const {
         footer {
           padding-left: 2rem;
           padding-right: 2rem;
-          max-width: 85vw;
-        }
-      }
-      @media (min-width: 1024px) {
-        section,
-        footer {
-          max-width: 80vw;
-        }
-      }
-      @media (min-width: 1280px) {
-        section,
-        footer {
-          max-width: 75vw;
-        }
-      }
-      @media (min-width: 1536px) {
-        section,
-        footer {
-          max-width: 70vw;
         }
       }
       h1,

@@ -8,6 +8,7 @@ import Hr from "@components/Hr.astro";
 import LazyCard from "@components/LazyCard.astro";
 import Socials from "@components/Socials.astro";
 import Chatbot from "@components/Chatbot";
+import Globe from "@components/Globe";
 import getSortedPosts from "@utils/getSortedPosts";
 import { SOCIALS } from "@config";
 
@@ -30,12 +31,36 @@ const allTags = [...new Set(sortedPosts.flatMap(post => post.data.tags || []))];
 
 // Featured technologies/skills
 const featuredTechnologies = [
-  { name: "Kubernetes", icon: "🚢", description: "Container orchestration and management" },
-  { name: "eBPF", icon: "🔬", description: "Kernel-level observability and security" },
-  { name: "Rust", icon: "🦀", description: "Systems programming and performance" },
-  { name: "DevSecOps", icon: "🔒", description: "Security-integrated development practices" },
-  { name: "Cloud Security", icon: "☁️", description: "Multi-cloud security architecture" },
-  { name: "Terraform", icon: "🏗️", description: "Infrastructure as Code automation" }
+  {
+    name: "Kubernetes",
+    icon: "🚢",
+    description: "Container orchestration and management",
+  },
+  {
+    name: "eBPF",
+    icon: "🔬",
+    description: "Kernel-level observability and security",
+  },
+  {
+    name: "Rust",
+    icon: "🦀",
+    description: "Systems programming and performance",
+  },
+  {
+    name: "DevSecOps",
+    icon: "🔒",
+    description: "Security-integrated development practices",
+  },
+  {
+    name: "Cloud Security",
+    icon: "☁️",
+    description: "Multi-cloud security architecture",
+  },
+  {
+    name: "Terraform",
+    icon: "🏗️",
+    description: "Infrastructure as Code automation",
+  },
 ];
 ---
 
@@ -67,28 +92,68 @@ const featuredTechnologies = [
         Exploring the depths of security, automation, and modern infrastructure.
       </p>
 
-      <div class="video-container relative mx-auto max-w-3xl animate-scale-in">
-        <video
-          id="myVideo"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          width="1920"
-          height="1080"
-          class="w-full rounded-lg shadow-lg"
-          poster="/assets/video-poster.jpg"
+      <!-- Interactive Globe Section -->
+      <div
+        class="globe-container relative mx-auto max-w-2xl flex flex-col items-center animate-scale-in"
+      >
+        <div class="mb-6 text-center">
+          <h3
+            class="text-lg font-semibold text-primary mb-2 animate-fade-in-up"
+            style="animation-delay: 0.6s"
+          >
+            Global Cybersecurity Network
+          </h3>
+          <p
+            class="text-sm text-muted-foreground animate-fade-in-up"
+            style="animation-delay: 0.7s"
+          >
+            Explore key technology hubs and cybersecurity centers worldwide
+          </p>
+        </div>
+
+        <Globe
+          client:load
+          size={500}
+          className="mx-auto"
+          autoRotate={true}
+          rotationSpeed={0.008}
+          markers={[
+            { location: [37.7749, -122.4194], size: 0.12 }, // San Francisco
+            { location: [40.7128, -74.006], size: 0.1 }, // New York
+            { location: [51.5074, -0.1278], size: 0.08 }, // London
+            { location: [35.6762, 139.6503], size: 0.07 }, // Tokyo
+            { location: [52.52, 13.405], size: 0.06 }, // Berlin
+            { location: [55.7558, 37.6176], size: 0.05 }, // Moscow
+            { location: [39.9042, 116.4074], size: 0.06 }, // Beijing
+            { location: [19.076, 72.8777], size: 0.05 }, // Mumbai
+            { location: [1.3521, 103.8198], size: 0.05 }, // Singapore
+            { location: [-33.8688, 151.2093], size: 0.04 }, // Sydney
+            { location: [59.3293, 18.0686], size: 0.04 }, // Stockholm
+            { location: [45.5017, -73.5673], size: 0.04 }, // Montreal
+          ]}
+        />
+
+        <div
+          class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-xs text-muted-foreground animate-fade-in-up"
+          style="animation-delay: 0.8s"
         >
-          <source src="/assets/video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <button
-          id="unmuteBtn"
-          class="absolute bottom-4 left-1/2 -translate-x-1/2 transform rounded bg-white px-4 py-2 font-semibold text-gray-800 transition-colors hover:bg-gray-200"
-        >
-          Unmute
-        </button>
+          <div class="p-2">
+            <div class="text-primary font-semibold">🌐</div>
+            <div>Global Reach</div>
+          </div>
+          <div class="p-2">
+            <div class="text-primary font-semibold">🔒</div>
+            <div>Security Focus</div>
+          </div>
+          <div class="p-2">
+            <div class="text-primary font-semibold">⚡</div>
+            <div>Real-time Monitoring</div>
+          </div>
+          <div class="p-2">
+            <div class="text-primary font-semibold">🛡️</div>
+            <div>Threat Detection</div>
+          </div>
+        </div>
       </div>
 
       <!-- Stats Section with shadcn Cards -->
@@ -97,21 +162,29 @@ const featuredTechnologies = [
         style="animation-delay: 0.8s"
       >
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30">
+          <div
+            class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30"
+          >
             <div class="text-2xl font-bold text-primary stats-number">
               {sortedPosts.length}+
             </div>
             <div class="text-sm text-muted-foreground">Articles</div>
           </div>
-          <div class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30">
+          <div
+            class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30"
+          >
             <div class="text-2xl font-bold text-primary stats-number">10+</div>
             <div class="text-sm text-muted-foreground">Technologies</div>
           </div>
-          <div class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30">
+          <div
+            class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30"
+          >
             <div class="text-2xl font-bold text-primary stats-number">5+</div>
             <div class="text-sm text-muted-foreground">Years Experience</div>
           </div>
-          <div class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30">
+          <div
+            class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30"
+          >
             <div class="text-2xl font-bold text-primary stats-number">24/7</div>
             <div class="text-sm text-muted-foreground">Security Focus</div>
           </div>
@@ -154,31 +227,32 @@ const featuredTechnologies = [
           class="text-muted-foreground max-w-2xl mx-auto animate-fade-in-up"
           style="animation-delay: 0.1s"
         >
-          The cutting-edge tools and technologies I work with to build secure, scalable solutions
+          The cutting-edge tools and technologies I work with to build secure,
+          scalable solutions
         </p>
       </div>
-      <div class="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-        {featuredTechnologies.map((tech, index) => (
-          <div 
-            class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 group tech-card"
-          >
-            <div class="flex flex-col space-y-1.5 p-6">
-              <div class="flex items-center space-x-3">
-                <span class="text-2xl group-hover:scale-110 transition-transform duration-300">
-                  {tech.icon}
-                </span>
-                <h3 class="text-xl font-semibold leading-none tracking-tight">
-                  {tech.name}
-                </h3>
+      <div
+        class="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4"
+      >
+        {
+          featuredTechnologies.map((tech, index) => (
+            <div class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 group tech-card">
+              <div class="flex flex-col space-y-1.5 p-6">
+                <div class="flex items-center space-x-3">
+                  <span class="text-2xl group-hover:scale-110 transition-transform duration-300">
+                    {tech.icon}
+                  </span>
+                  <h3 class="text-xl font-semibold leading-none tracking-tight">
+                    {tech.name}
+                  </h3>
+                </div>
+              </div>
+              <div class="p-6 pt-0">
+                <p class="text-sm text-muted-foreground">{tech.description}</p>
               </div>
             </div>
-            <div class="p-6 pt-0">
-              <p class="text-sm text-muted-foreground">
-                {tech.description}
-              </p>
-            </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </section>
 
@@ -230,11 +304,12 @@ const featuredTechnologies = [
               trends
             </p>
           </div>
-          <!-- Category Filters -->
           <div class="text-center mb-8">
-            <h3 class="text-lg font-semibold text-primary mb-4">Explore by Topic</h3>
+            <h3 class="text-lg font-semibold text-primary mb-4">
+              Explore by Topic
+            </h3>
             <div class="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
-              {allTags.slice(0, 12).map((tag) => (
+              {allTags.slice(0, 12).map(tag => (
                 <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 cursor-pointer hover:scale-105 transition-transform duration-200">
                   {tag}
                 </span>
@@ -257,7 +332,7 @@ const featuredTechnologies = [
     }
 
     <div class="py-8 text-center">
-      <a 
+      <a
         href="/posts/"
         class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0 before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700 h-10 px-5 py-2"
       >
@@ -281,13 +356,18 @@ const featuredTechnologies = [
     <!-- Newsletter Signup Section -->
     <section id="newsletter" class="py-16">
       <div class="mx-auto max-w-2xl text-center">
-        <div class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg backdrop-blur-sm bg-card/90 p-8">
+        <div
+          class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg backdrop-blur-sm bg-card/90 p-8"
+        >
           <div class="flex flex-col space-y-1.5 mb-6">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight text-primary">
+            <h3
+              class="text-2xl font-semibold leading-none tracking-tight text-primary"
+            >
               Stay Updated
             </h3>
             <p class="text-sm text-muted-foreground">
-              Get the latest insights on cybersecurity, DevSecOps, and cutting-edge technology delivered to your inbox.
+              Get the latest insights on cybersecurity, DevSecOps, and
+              cutting-edge technology delivered to your inbox.
             </p>
           </div>
           <div class="flex flex-col sm:flex-row gap-3">
@@ -315,199 +395,71 @@ const featuredTechnologies = [
   <Chatbot client:load searchList={searchList} />
 </Layout>
 
-<style>
-  #main-content {
-    @apply bg-skin-fill text-skin-base;
-  }
-
-  .animate-gradient-text {
-    background-size: 200% 200%;
-    animation: gradientShift 4s ease-in-out infinite;
-  }
-
-  @keyframes gradientShift {
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
-  .animate-fade-in-up {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .stagger-children > * {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s ease-out forwards;
-  }
-
-  .stagger-children > *:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  .stagger-children > *:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  .stagger-children > *:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  .stagger-children > *:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-  .stagger-children > *:nth-child(5) {
-    animation-delay: 0.5s;
-  }
-  .stagger-children > *:nth-child(6) {
-    animation-delay: 0.6s;
-  }
-  .stagger-children > *:nth-child(7) {
-    animation-delay: 0.7s;
-  }
-  .stagger-children > *:nth-child(8) {
-    animation-delay: 0.8s;
-  }
-
-  .link-button {
-    @apply bg-skin-accent text-skin-inverted transition-all duration-300 hover:opacity-90 hover:scale-105 hover:shadow-lg;
-  }
-
-  #unmuteBtn {
-    @apply bg-skin-fill text-skin-base hover:bg-skin-accent hover:text-skin-inverted transition-all duration-300 hover:scale-105;
-  }
-
-  .video-container {
-    @apply relative overflow-hidden rounded-2xl shadow-2xl;
-  }
-
-  .video-container::before {
-    content: "";
-    @apply absolute inset-0 pointer-events-none z-10;
-    background: linear-gradient(to bottom right, rgb(var(--color-primary) / 0.1), transparent, rgb(var(--color-accent) / 0.1));
-  }
-
-  /* Hover effects for stats cards */
-  .stats-card {
-    @apply transition-all duration-300 hover:shadow-xl;
-  }
-  
-  .stats-card:hover {
-    border-color: rgb(var(--color-primary) / 0.5);
-  }
-
-  .stats-card:hover .stats-number {
-    @apply scale-110;
-  }
-
-  /* Enhanced animations for new components */
-  .tech-card {
-    @apply opacity-0 transform translate-y-4;
-    animation: fadeInUp 0.6s ease-out forwards;
-  }
-
-  .tech-card:nth-child(1) { animation-delay: 0.1s; }
-  .tech-card:nth-child(2) { animation-delay: 0.2s; }
-  .tech-card:nth-child(3) { animation-delay: 0.3s; }
-  .tech-card:nth-child(4) { animation-delay: 0.4s; }
-  .tech-card:nth-child(5) { animation-delay: 0.5s; }
-  .tech-card:nth-child(6) { animation-delay: 0.6s; }
-
-  /* Newsletter section animations */
-  #newsletter .rounded-xl {
-    @apply animate-fade-in-up;
-    animation-delay: 0.2s;
-  }
-
-  /* Category badge hover effects */
-  .category-badge {
-    @apply transform transition-all duration-200 hover:scale-105 hover:shadow-md;
-  }
-
-  /* Enhanced button animations */
-  .enhanced-button {
-    @apply relative overflow-hidden;
-  }
-
-  .enhanced-button::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform translate-x-[-200%] transition-transform duration-700;
-  }
-
-  .enhanced-button:hover::before {
-    @apply translate-x-[200%];
-  }
-
-  /* Loading skeleton animations */
-  .skeleton-loader {
-    background: linear-gradient(90deg, rgb(var(--color-muted)) 0%, rgb(var(--color-muted) / 0.5) 50%, rgb(var(--color-muted)) 100%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite linear;
-  }
-
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-
-  /* Smooth scroll behavior for category navigation */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Focus styles for accessibility */
-  .focus-visible:focus-visible {
-    @apply outline-none ring-2 ring-offset-2;
-    --tw-ring-color: rgb(var(--color-primary));
-  }
-</style>
-
 <script>
-  // Defer video interaction setup to avoid blocking main thread
+  // Defer interaction setup to avoid blocking main thread
   if ("requestIdleCallback" in window) {
     requestIdleCallback(() => {
-      setupVideoControls();
+      setupGlobeEnhancements();
       setupNewsletterForm();
       setupCategoryFilters();
     });
   } else {
     // Fallback for browsers without requestIdleCallback
     setTimeout(() => {
-      setupVideoControls();
+      setupGlobeEnhancements();
       setupNewsletterForm();
       setupCategoryFilters();
     }, 1);
   }
 
-  function setupVideoControls() {
-    const video = document.getElementById("myVideo") as HTMLVideoElement | null;
-    const unmuteBtn = document.getElementById("unmuteBtn");
-
-    if (video && unmuteBtn) {
-      unmuteBtn.addEventListener("click", function () {
-        video.muted = false;
-        video.play().catch(err => console.log("Video play failed:", err));
-        unmuteBtn.style.display = "none";
+  function setupGlobeEnhancements() {
+    // Add theme-aware globe updates
+    const themeObserver = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "data-theme"
+        ) {
+          const theme = document.documentElement.getAttribute("data-theme");
+          // Globe component will automatically update via React props
+          console.log("Theme changed to:", theme);
+        }
       });
+    });
+
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    // Add globe container animations on scroll
+    const globeContainer = document.querySelector(".globe-container");
+    if (globeContainer) {
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-in");
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      observer.observe(globeContainer);
     }
   }
 
   function setupNewsletterForm() {
-    const newsletterForm = document.querySelector('#newsletter form, #newsletter button[type="submit"]');
+    const newsletterForm = document.querySelector(
+      '#newsletter form, #newsletter button[type="submit"]'
+    );
     if (newsletterForm) {
       newsletterForm.addEventListener("click", function (e) {
         e.preventDefault();
-        const emailInput = document.querySelector('#newsletter input[type="email"]') as HTMLInputElement;
+        const emailInput = document.querySelector(
+          '#newsletter input[type="email"]'
+        ) as HTMLInputElement;
         if (emailInput && emailInput.value) {
           // Simple email validation
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -526,14 +478,16 @@ const featuredTechnologies = [
   }
 
   function setupCategoryFilters() {
-    const categoryBadges = document.querySelectorAll('#recent-posts .inline-flex[class*="cursor-pointer"]');
-    
+    const categoryBadges = document.querySelectorAll(
+      '#recent-posts .inline-flex[class*="cursor-pointer"]'
+    );
+
     categoryBadges.forEach(badge => {
       badge.addEventListener("click", function () {
         const tag = this.textContent?.trim();
         if (tag) {
           // Navigate to posts page with tag filter
-          window.location.href = `/tags/${tag.toLowerCase().replace(/\s+/g, '-')}/`;
+          window.location.href = `/tags/${tag.toLowerCase().replace(/\s+/g, "-")}/`;
         }
       });
     });
@@ -541,7 +495,7 @@ const featuredTechnologies = [
 
   // Loading states with skeleton components
   function showLoadingStates() {
-    const contentSections = document.querySelectorAll('[data-loading-section]');
+    const contentSections = document.querySelectorAll("[data-loading-section]");
     contentSections.forEach(section => {
       const skeletonHTML = `
         <div class="animate-pulse rounded-md bg-muted h-6 mb-4"></div>
@@ -555,24 +509,31 @@ const featuredTechnologies = [
   // Enhanced accessibility
   document.addEventListener("DOMContentLoaded", function () {
     // Add ARIA labels for interactive elements
-    const interactiveElements = document.querySelectorAll('[class*="cursor-pointer"], button, a');
+    const interactiveElements = document.querySelectorAll(
+      '[class*="cursor-pointer"], button, a'
+    );
     interactiveElements.forEach(element => {
-      if (!element.getAttribute('aria-label') && !element.getAttribute('aria-labelledby')) {
+      if (
+        !element.getAttribute("aria-label") &&
+        !element.getAttribute("aria-labelledby")
+      ) {
         const text = element.textContent?.trim();
         if (text) {
-          element.setAttribute('aria-label', text);
+          element.setAttribute("aria-label", text);
         }
       }
     });
 
     // Keyboard navigation for category badges
-    const categoryBadges = document.querySelectorAll('#recent-posts .inline-flex[class*="cursor-pointer"]');
+    const categoryBadges = document.querySelectorAll(
+      '#recent-posts .inline-flex[class*="cursor-pointer"]'
+    );
     categoryBadges.forEach(badge => {
-      badge.setAttribute('tabindex', '0');
-      badge.setAttribute('role', 'button');
-      
-      badge.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
+      badge.setAttribute("tabindex", "0");
+      badge.setAttribute("role", "button");
+
+      badge.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           badge.click();
         }
