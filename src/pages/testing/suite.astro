@@ -259,7 +259,7 @@ const pageDescription =
             {
               name: "Link Functionality",
               description: "BlogCard should have proper link attributes",
-              test: (element: HTMLElement) => {
+              test: element => {
                 const link = element.querySelector("a");
                 return link && link.href.includes("/posts/test-post");
               },
@@ -268,7 +268,7 @@ const pageDescription =
             {
               name: "Content Display",
               description: "BlogCard should display title and description",
-              test: (element: HTMLElement) => {
+              test: element => {
                 const title = element.textContent?.includes("Test Blog Post");
                 const description = element.textContent?.includes(
                   "This is a test blog post"
@@ -314,7 +314,7 @@ const pageDescription =
             {
               name: "Keyboard Navigation",
               description: "Search should support keyboard navigation",
-              test: (element: HTMLElement) => {
+              test: element => {
                 const input = element.querySelector("input");
                 return input && input.getAttribute("aria-label") !== null;
               },
@@ -340,7 +340,7 @@ const pageDescription =
             {
               name: "Renders",
               description: "NavigationMenuHeader should render without errors",
-              test: (element: HTMLElement) => {
+              test: element => {
                 return element !== null;
               },
               expectation: "Component should render successfully",
