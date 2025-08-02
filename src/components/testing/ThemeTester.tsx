@@ -119,7 +119,7 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
       await new Promise(resolve => setTimeout(resolve, 100));
 
       // Test 1: Theme application
-      const containerStyles = window.getComputedStyle(container);
+
       const hasThemeClass = theme.className
         ? container.classList.contains(theme.className)
         : true;

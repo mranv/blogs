@@ -189,7 +189,6 @@ const PerformanceTester: React.FC<{
 
     // Calculate metrics
     const data = performanceDataRef.current;
-    const testDuration = data.endTime - data.startTime;
 
     const metrics: PerformanceMetric[] = [];
     const recommendations: string[] = [];

@@ -68,7 +68,6 @@ interface ResponsiveDesignCheckerProps {
 }
 
 const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
-  children,
   customBreakpoints = defaultBreakpoints,
   testInteractions = true,
 }) => {
