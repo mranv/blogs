@@ -1,14 +1,28 @@
 ---
-import { LOGO_IMAGE, SITE } from "@config";
+import { LOGO_IMAGE, SITE, SOCIALS } from "@config";
 import Hr from "./Hr.astro";
-import LinkButton from "./LinkButton.astro";
-import ThemeToggle from "./ThemeToggle.astro";
+import NavigationMenuHeader from "./NavigationMenuHeader.tsx";
+import { getCollection } from "astro:content";
+import getSortedPosts from "@utils/getSortedPosts";
+import getUniqueTags from "@utils/getUniqueTags";
 
 export interface Props {
   activeNav?: "posts" | "tags" | "about" | "search";
 }
 
 const { activeNav } = Astro.props;
+
+// Get posts and tags data for navigation menus
+const posts = await getCollection("blog");
+const sortedPosts = getSortedPosts(posts);
+const uniqueTags = getUniqueTags(posts);
+
+// Check for new posts (posts from last 7 days)
+const oneWeekAgo = new Date();
+oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+const hasNewPosts = sortedPosts.some(post => 
+  new Date(post.data.pubDatetime) > oneWeekAgo
+);
 ---
 
 <header>
@@ -32,75 +46,15 @@ const { activeNav } = Astro.props;
           )
         }
       </a>
-      <nav id="nav-menu">
-        <button
-          class="hamburger-menu focus-outline"
-          aria-label="Open Menu"
-          aria-expanded="false"
-          aria-controls="menu-items"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="menu-icon"
-          >
-            <line x1="7" y1="12" x2="21" y2="12" class="line"></line>
-            <line x1="3" y1="6" x2="21" y2="6" class="line"></line>
-            <line x1="12" y1="18" x2="21" y2="18" class="line"></line>
-            <line x1="18" y1="6" x2="6" y2="18" class="close"></line>
-            <line x1="6" y1="6" x2="18" y2="18" class="close"></line>
-          </svg>
-        </button>
-        <ul id="menu-items" class="display-none sm:flex">
-          <li>
-            <a href="/posts/" class={activeNav === "posts" ? "active" : ""}>
-              Posts
-            </a>
-          </li>
-          <li>
-            <a href="/tags/" class={activeNav === "tags" ? "active" : ""}>
-              Tags
-            </a>
-          </li>
-          <li>
-            <a href="/about/" class={activeNav === "about" ? "active" : ""}>
-              About
-            </a>
-          </li>
-          <li>
-            <LinkButton
-              href="/search/"
-              className={`focus-outline p-3 sm:p-1 ${
-                activeNav === "search" ? "active" : ""
-              } flex`}
-              ariaLabel="search"
-              title="Search"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="scale-125 sm:scale-100"
-                ><path
-                  d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
-                ></path>
-              </svg>
-              <span class="sr-only">Search</span>
-            </LinkButton>
-          </li>
-          {
-            SITE.lightAndDarkMode && (
-              <li class="flex items-center">
-                <ThemeToggle />
-              </li>
-            )
-          }
-        </ul>
+      <nav id="nav-menu" class="flex items-center">
+        <NavigationMenuHeader 
+          client:load
+          activeNav={activeNav}
+          posts={sortedPosts.slice(0, 5)}
+          tags={uniqueTags.slice(0, 8)}
+          socialLinks={SOCIALS}
+          hasNewPosts={hasNewPosts}
+        />
       </nav>
     </div>
   </div>
@@ -197,8 +151,8 @@ const { activeNav } = Astro.props;
   }
 
   nav ul li a::before {
-    @apply absolute inset-0 bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent;
-    @apply transform -translate-x-full transition-transform duration-700;
+    @apply absolute inset-0 transform -translate-x-full transition-transform duration-700;
+    background: linear-gradient(to right, transparent, rgba(var(--color-accent), 0.1), transparent);
     content: "";
   }
 
@@ -257,6 +211,44 @@ const { activeNav } = Astro.props;
   .menu-icon.is-active .close {
     @apply opacity-100;
   }
+
+  /* Enhanced NavigationMenu Styles */
+  :global([data-radix-navigation-menu-viewport]) {
+    background: rgba(var(--color-fill), 0.95) !important;
+    backdrop-filter: blur(20px) saturate(180%) brightness(1.1) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.1) !important;
+    border: 1px solid rgba(var(--color-border), 0.3) !important;
+    box-shadow: 0 20px 40px rgba(var(--color-shadow), 0.15) !important;
+  }
+
+  :global([data-radix-navigation-menu-content]) {
+    animation-duration: 300ms !important;
+  }
+
+  :global(.navigation-menu-trigger[data-state="open"]) {
+    background: rgba(var(--color-accent), 0.15) !important;
+    color: rgb(var(--color-accent)) !important;
+    transform: scale(1.05) !important;
+  }
+
+  /* Custom scrollbar for navigation content */
+  :global([data-radix-navigation-menu-content]::-webkit-scrollbar) {
+    width: 6px;
+  }
+
+  :global([data-radix-navigation-menu-content]::-webkit-scrollbar-track) {
+    background: rgba(var(--color-border), 0.1);
+    border-radius: 3px;
+  }
+
+  :global([data-radix-navigation-menu-content]::-webkit-scrollbar-thumb) {
+    background: rgba(var(--color-accent), 0.3);
+    border-radius: 3px;
+  }
+
+  :global([data-radix-navigation-menu-content]::-webkit-scrollbar-thumb:hover) {
+    background: rgba(var(--color-accent), 0.5);
+  }
 </style>
 
 <script>
@@ -278,8 +270,57 @@ const { activeNav } = Astro.props;
     });
   }
 
+  // Enhanced keyboard navigation for desktop navigation menu
+  function enhanceKeyboardNavigation() {
+    const navTriggers = document.querySelectorAll('[data-radix-navigation-menu-trigger]');
+    
+    navTriggers.forEach((trigger, index) => {
+      trigger.addEventListener('keydown', (e) => {
+        const event = e as KeyboardEvent;
+        
+        switch(event.key) {
+          case 'ArrowRight':
+            event.preventDefault();
+            const nextTrigger = navTriggers[index + 1] || navTriggers[0];
+            (nextTrigger as HTMLElement).focus();
+            break;
+          case 'ArrowLeft':
+            event.preventDefault();
+            const prevTrigger = navTriggers[index - 1] || navTriggers[navTriggers.length - 1];
+            (prevTrigger as HTMLElement).focus();
+            break;
+        }
+      });
+    });
+  }
+
+  // Global keyboard shortcuts
+  function setupGlobalShortcuts() {
+    document.addEventListener('keydown', (e) => {
+      // Search shortcut (Cmd+K or Ctrl+K)
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        window.location.href = '/search/';
+      }
+      
+      // Escape to close any open navigation menus
+      if (e.key === 'Escape') {
+        const openTriggers = document.querySelectorAll('[data-radix-navigation-menu-trigger][data-state="open"]');
+        openTriggers.forEach((trigger) => {
+          (trigger as HTMLElement).click();
+        });
+      }
+    });
+  }
+
   toggleNav();
+  enhanceKeyboardNavigation();
+  setupGlobalShortcuts();
 
   // Runs on view transitions navigation
-  document.addEventListener("astro:after-swap", toggleNav);
+  document.addEventListener("astro:after-swap", () => {
+    toggleNav();
+    enhanceKeyboardNavigation();
+    setupGlobalShortcuts();
+  });
 </script>
