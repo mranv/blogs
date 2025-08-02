@@ -79,7 +79,7 @@ export const ParallaxScroll = forwardRef<HTMLDivElement, ParallaxScrollProps>(
     ref
   ) => {
     const elementRef = useRef<HTMLDivElement>(null);
-    const parallaxRef = ref || elementRef;
+    const parallaxRef = (ref as React.RefObject<HTMLDivElement>) || elementRef;
     const [isInView, setIsInView] = useState(false);
     const cleanupRef = useRef<(() => void) | null>(null);
 
@@ -96,7 +96,7 @@ export const ParallaxScroll = forwardRef<HTMLDivElement, ParallaxScrollProps>(
 
     // Setup intersection observer for performance
     useEffect(() => {
-      const element = parallaxRef.current;
+      const element = parallaxRef?.current;
       if (!element || !shouldEnableParallax) return;
 
       const observer = new IntersectionObserver(
@@ -135,7 +135,7 @@ export const ParallaxScroll = forwardRef<HTMLDivElement, ParallaxScrollProps>(
 
     // Setup parallax effect
     useEffect(() => {
-      const element = parallaxRef.current;
+      const element = parallaxRef?.current;
       if (!element || !shouldEnableParallax || !isInView) {
         return;
       }
@@ -230,7 +230,8 @@ export const MouseParallax = forwardRef<HTMLDivElement, MouseParallaxProps>(
     ref
   ) => {
     const elementRef = useRef<HTMLDivElement>(null);
-    const mouseParallaxRef = ref || elementRef;
+    const mouseParallaxRef =
+      (ref as React.RefObject<HTMLDivElement>) || elementRef;
     const animationRef = useRef<number>();
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [targetPosition, setTargetPosition] = useState({ x: 0, y: 0 });
@@ -241,7 +242,7 @@ export const MouseParallax = forwardRef<HTMLDivElement, MouseParallaxProps>(
     // Handle mouse move
     const handleMouseMove = useCallback(
       (event: MouseEvent) => {
-        if (!mouseParallaxRef.current || prefersReducedMotion) return;
+        if (!mouseParallaxRef?.current || prefersReducedMotion) return;
 
         const rect = mouseParallaxRef.current.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
@@ -280,7 +281,7 @@ export const MouseParallax = forwardRef<HTMLDivElement, MouseParallaxProps>(
           const newY = prev.y + (targetPosition.y - prev.y) * smoothness;
 
           // Apply transform
-          if (mouseParallaxRef.current) {
+          if (mouseParallaxRef?.current) {
             mouseParallaxRef.current.style.transform = `translate3d(${newX}px, ${newY}px, 0)`;
           }
 
@@ -303,7 +304,7 @@ export const MouseParallax = forwardRef<HTMLDivElement, MouseParallaxProps>(
 
     // Setup event listeners
     useEffect(() => {
-      const element = mouseParallaxRef.current;
+      const element = mouseParallaxRef?.current;
       if (!element || prefersReducedMotion) return;
 
       element.addEventListener("mousemove", handleMouseMove);

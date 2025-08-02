@@ -164,7 +164,7 @@ export const ScaleIn = forwardRef<HTMLDivElement, ScaleInProps>(
     // Sync refs
     useEffect(() => {
       if (animationRef && "current" in animationRef && observerRef.current) {
-        (animationRef as React.MutableRefObject<HTMLDivElement>).current =
+        (animationRef as React.MutableRefObject<HTMLElement>).current =
           observerRef.current;
       }
     }, [animationRef, observerRef]);
@@ -173,7 +173,7 @@ export const ScaleIn = forwardRef<HTMLDivElement, ScaleInProps>(
     useEffect(() => {
       if (!shouldAnimate) return;
 
-      const animationId = `scale-in-${Math.random().toString(36).substr(2, 9)}`;
+      const animationId = `scale-in-${Math.random().toString(36).substring(2, 11)}`;
       const cleanup = registerAnimation(animationId);
 
       return cleanup;
@@ -305,7 +305,7 @@ export const ScaleIn = forwardRef<HTMLDivElement, ScaleInProps>(
 
     return (
       <div
-        ref={observerRef}
+        ref={observerRef as React.RefObject<HTMLDivElement>}
         className={cn(
           "scale-in-container",
           `scale-in-${variant}`,

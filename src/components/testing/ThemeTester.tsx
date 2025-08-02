@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-interface ThemeTestResult {
+export interface ThemeTestResult {
   theme: string;
   passed: boolean;
   issues: ThemeIssue[];
@@ -8,7 +8,7 @@ interface ThemeTestResult {
   timestamp: Date;
 }
 
-interface ThemeIssue {
+export interface ThemeIssue {
   severity: "error" | "warning" | "info";
   category: string;
   description: string;
@@ -16,7 +16,7 @@ interface ThemeIssue {
   suggestion: string;
 }
 
-interface ThemeVariant {
+export interface ThemeVariant {
   name: string;
   className: string;
   description: string;

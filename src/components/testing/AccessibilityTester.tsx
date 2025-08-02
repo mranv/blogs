@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-interface AccessibilityIssue {
+export interface AccessibilityIssue {
   level: "error" | "warning" | "info";
   rule: string;
   description: string;
@@ -9,7 +9,7 @@ interface AccessibilityIssue {
   wcagGuideline?: string;
 }
 
-interface AccessibilityTestResult {
+export interface AccessibilityTestResult {
   score: number;
   totalChecks: number;
   passedChecks: number;
@@ -17,7 +17,7 @@ interface AccessibilityTestResult {
   timestamp: Date;
 }
 
-interface AccessibilityRule {
+export interface AccessibilityRule {
   id: string;
   name: string;
   description: string;

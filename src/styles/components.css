@@ -2,6 +2,7 @@
  * Consolidated Component Styles
  * All CSS from Astro, TS, and TSX files consolidated into one file
  * This includes styles from: Header, Layout, Main, Footer, Breadcrumbs, Tag, ThemeToggle, and index page
+ * Updated to align with Claude Theme from theme.json
  */
 
 /* ===== INDEX PAGE STYLES ===== */
@@ -559,5 +560,437 @@ footer p {
   
   .theme-toggle-icon svg {
     @apply h-2.5 w-2.5;
+  }
+}
+
+/* ===== BLOG POST ALIGNMENT STYLES ===== */
+
+/* Enhanced blog post layout alignment */
+.post-container {
+  @apply mx-auto max-w-4xl px-4 sm:px-6 lg:px-8;
+  @apply bg-background text-foreground;
+}
+
+.post-header {
+  @apply mb-8 text-center;
+  @apply border-b border-border pb-8;
+}
+
+.post-title {
+  @apply text-4xl sm:text-5xl font-bold text-foreground tracking-tight leading-tight;
+  letter-spacing: -0.03em;
+  font-family: theme("fontFamily.corporate");
+  background: linear-gradient(
+    135deg,
+    hsl(var(--foreground)),
+    hsl(var(--primary)),
+    hsl(var(--foreground))
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.post-meta {
+  @apply mt-4 text-muted-foreground;
+  @apply flex flex-wrap items-center justify-center gap-4;
+}
+
+.post-content {
+  @apply prose prose-lg mx-auto;
+  @apply max-w-none;
+  @apply text-foreground;
+}
+
+/* Enhanced prose styles for better markdown alignment */
+.post-content .prose {
+  @apply text-foreground;
+}
+
+.post-content .prose h1,
+.post-content .prose h2,
+.post-content .prose h3,
+.post-content .prose h4,
+.post-content .prose h5,
+.post-content .prose h6 {
+  @apply text-foreground font-semibold;
+  @apply scroll-mt-20;
+}
+
+.post-content .prose h1 {
+  @apply text-4xl font-bold mb-8 mt-12;
+  letter-spacing: -0.03em;
+}
+
+.post-content .prose h2 {
+  @apply text-3xl font-semibold mb-6 mt-10;
+  letter-spacing: -0.02em;
+}
+
+.post-content .prose h3 {
+  @apply text-2xl font-medium mb-4 mt-8;
+  letter-spacing: -0.01em;
+}
+
+.post-content .prose p {
+  @apply text-foreground/90 leading-relaxed mb-6;
+  @apply text-lg;
+}
+
+.post-content .prose a {
+  @apply text-primary hover:text-primary/80;
+  @apply underline decoration-primary/30 underline-offset-2;
+  @apply transition-all duration-200;
+}
+
+.post-content .prose a:hover {
+  @apply decoration-primary/60;
+}
+
+.post-content .prose strong {
+  @apply text-foreground font-semibold;
+}
+
+.post-content .prose em {
+  @apply text-foreground/80 italic;
+}
+
+.post-content .prose blockquote {
+  @apply border-l-4 border-primary/60 bg-primary/5;
+  @apply pl-6 py-4 my-8 rounded-r-lg;
+  @apply italic text-foreground/80;
+}
+
+.post-content .prose code {
+  @apply bg-muted text-foreground;
+  @apply px-2 py-1 rounded text-sm font-mono;
+  @apply border border-border/50;
+}
+
+.post-content .prose pre {
+  @apply bg-card border border-border;
+  @apply p-6 rounded-xl shadow-lg;
+  @apply overflow-x-auto;
+}
+
+.post-content .prose pre code {
+  @apply bg-transparent border-none p-0;
+  @apply text-foreground;
+}
+
+.post-content .prose ul,
+.post-content .prose ol {
+  @apply text-foreground/90 space-y-2;
+}
+
+.post-content .prose li {
+  @apply text-foreground/90;
+}
+
+.post-content .prose li::marker {
+  @apply text-primary;
+}
+
+.post-content .prose table {
+  @apply w-full border-collapse;
+  @apply bg-card border border-border rounded-lg overflow-hidden;
+}
+
+.post-content .prose th {
+  @apply bg-muted text-foreground font-semibold;
+  @apply p-3 text-left border-b border-border;
+}
+
+.post-content .prose td {
+  @apply p-3 border-b border-border/50;
+  @apply text-foreground/90;
+}
+
+.post-content .prose img {
+  @apply rounded-xl shadow-lg;
+  @apply mx-auto my-8;
+  @apply border border-border/50;
+}
+
+.post-content .prose hr {
+  @apply border-border/50 my-12;
+}
+
+/* Post navigation */
+.post-navigation {
+  @apply mt-12 pt-8 border-t border-border;
+  @apply flex justify-between items-center;
+}
+
+.post-navigation a {
+  @apply flex items-center gap-2 px-4 py-2 rounded-lg;
+  @apply bg-card border border-border;
+  @apply text-foreground hover:text-primary;
+  @apply transition-all duration-200 hover:shadow-md;
+}
+
+.post-navigation a:hover {
+  @apply bg-primary/5 border-primary/30;
+}
+
+/* Post tags */
+.post-tags {
+  @apply mt-8 flex flex-wrap gap-2;
+}
+
+.post-tags .tag {
+  @apply bg-primary/10 text-primary border-primary/30;
+  @apply hover:bg-primary hover:text-primary-foreground;
+}
+
+/* Reading progress bar */
+.reading-progress {
+  @apply fixed top-0 left-0 w-full h-1 z-50;
+  @apply bg-primary/20;
+}
+
+.reading-progress-bar {
+  @apply h-full bg-primary;
+  @apply transition-all duration-300 ease-out;
+  width: 0%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .post-title {
+    @apply text-3xl sm:text-4xl;
+  }
+  
+  .post-content .prose h1 {
+    @apply text-3xl;
+  }
+  
+  .post-content .prose h2 {
+    @apply text-2xl;
+  }
+  
+  .post-content .prose h3 {
+    @apply text-xl;
+  }
+  
+  .post-content .prose p {
+    @apply text-base;
+  }
+}
+
+/* ===== BLOG POST ALIGNMENT STYLES ===== */
+
+/* Enhanced blog post layout alignment */
+.post-container {
+  @apply mx-auto max-w-4xl px-4 sm:px-6 lg:px-8;
+  @apply bg-background text-foreground;
+}
+
+.post-header {
+  @apply mb-8 text-center;
+  @apply border-b border-border pb-8;
+}
+
+.post-title {
+  @apply text-4xl sm:text-5xl font-bold text-foreground tracking-tight leading-tight;
+  letter-spacing: -0.03em;
+  font-family: theme("fontFamily.corporate");
+  background: linear-gradient(
+    135deg,
+    hsl(var(--foreground)),
+    hsl(var(--primary)),
+    hsl(var(--foreground))
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.post-meta {
+  @apply mt-4 text-muted-foreground;
+  @apply flex flex-wrap items-center justify-center gap-4;
+}
+
+.post-content {
+  @apply prose prose-lg mx-auto;
+  @apply max-w-none;
+  @apply text-foreground;
+}
+
+/* Enhanced prose styles for better markdown alignment */
+.post-content .prose {
+  @apply text-foreground;
+}
+
+.post-content .prose h1,
+.post-content .prose h2,
+.post-content .prose h3,
+.post-content .prose h4,
+.post-content .prose h5,
+.post-content .prose h6 {
+  @apply text-foreground font-semibold;
+  @apply scroll-mt-20;
+}
+
+.post-content .prose h1 {
+  @apply text-4xl font-bold mb-8 mt-12;
+  letter-spacing: -0.03em;
+}
+
+.post-content .prose h2 {
+  @apply text-3xl font-semibold mb-6 mt-10;
+  letter-spacing: -0.02em;
+}
+
+.post-content .prose h3 {
+  @apply text-2xl font-medium mb-4 mt-8;
+  letter-spacing: -0.01em;
+}
+
+.post-content .prose p {
+  @apply text-foreground/90 leading-relaxed mb-6;
+  @apply text-lg;
+}
+
+.post-content .prose a {
+  @apply text-primary hover:text-primary/80;
+  @apply underline decoration-primary/30 underline-offset-2;
+  @apply transition-all duration-200;
+}
+
+.post-content .prose a:hover {
+  @apply decoration-primary/60;
+}
+
+.post-content .prose strong {
+  @apply text-foreground font-semibold;
+}
+
+.post-content .prose em {
+  @apply text-foreground/80 italic;
+}
+
+.post-content .prose blockquote {
+  @apply border-l-4 border-primary/60 bg-primary/5;
+  @apply pl-6 py-4 my-8 rounded-r-lg;
+  @apply italic text-foreground/80;
+}
+
+.post-content .prose code {
+  @apply bg-muted text-foreground;
+  @apply px-2 py-1 rounded text-sm font-mono;
+  @apply border border-border/50;
+}
+
+.post-content .prose pre {
+  @apply bg-card border border-border;
+  @apply p-6 rounded-xl shadow-lg;
+  @apply overflow-x-auto;
+}
+
+.post-content .prose pre code {
+  @apply bg-transparent border-none p-0;
+  @apply text-foreground;
+}
+
+.post-content .prose ul,
+.post-content .prose ol {
+  @apply text-foreground/90 space-y-2;
+}
+
+.post-content .prose li {
+  @apply text-foreground/90;
+}
+
+.post-content .prose li::marker {
+  @apply text-primary;
+}
+
+.post-content .prose table {
+  @apply w-full border-collapse;
+  @apply bg-card border border-border rounded-lg overflow-hidden;
+}
+
+.post-content .prose th {
+  @apply bg-muted text-foreground font-semibold;
+  @apply p-3 text-left border-b border-border;
+}
+
+.post-content .prose td {
+  @apply p-3 border-b border-border/50;
+  @apply text-foreground/90;
+}
+
+.post-content .prose img {
+  @apply rounded-xl shadow-lg;
+  @apply mx-auto my-8;
+  @apply border border-border/50;
+}
+
+.post-content .prose hr {
+  @apply border-border/50 my-12;
+}
+
+/* Post navigation */
+.post-navigation {
+  @apply mt-12 pt-8 border-t border-border;
+  @apply flex justify-between items-center;
+}
+
+.post-navigation a {
+  @apply flex items-center gap-2 px-4 py-2 rounded-lg;
+  @apply bg-card border border-border;
+  @apply text-foreground hover:text-primary;
+  @apply transition-all duration-200 hover:shadow-md;
+}
+
+.post-navigation a:hover {
+  @apply bg-primary/5 border-primary/30;
+}
+
+/* Post tags */
+.post-tags {
+  @apply mt-8 flex flex-wrap gap-2;
+}
+
+.post-tags .tag {
+  @apply bg-primary/10 text-primary border-primary/30;
+  @apply hover:bg-primary hover:text-primary-foreground;
+}
+
+/* Reading progress bar */
+.reading-progress {
+  @apply fixed top-0 left-0 w-full h-1 z-50;
+  @apply bg-primary/20;
+}
+
+.reading-progress-bar {
+  @apply h-full bg-primary;
+  @apply transition-all duration-300 ease-out;
+  width: 0%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .post-title {
+    @apply text-3xl sm:text-4xl;
+  }
+  
+  .post-content .prose h1 {
+    @apply text-3xl;
+  }
+  
+  .post-content .prose h2 {
+    @apply text-2xl;
+  }
+  
+  .post-content .prose h3 {
+    @apply text-xl;
+  }
+  
+  .post-content .prose p {
+    @apply text-base;
   }
 }

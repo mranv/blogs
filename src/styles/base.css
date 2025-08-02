@@ -48,21 +48,6 @@
 @layer base {
   :root,
   html[data-theme="light"] {
-    /* Legacy color variables for Tailwind compatibility */
-    --color-fill: 250, 250, 252;
-    --color-text-base: 17, 24, 39;
-    --color-accent: 59, 130, 246;
-    --color-card: 255, 255, 255;
-    --color-card-muted: 249, 250, 251;
-    --color-border: 229, 231, 235;
-    --color-gradient-start: 98, 114, 164;
-    --color-gradient-end: 71, 85, 105;
-    --color-secondary: 75, 85, 99;
-    --color-success: 16, 185, 129;
-    --color-warning: 251, 146, 60;
-    --color-glow: 98, 114, 164;
-    --color-shadow: 0, 0, 0;
-    
     /* Claude Theme OKLCH color variables from theme.json */
     --background: oklch(0.9818 0.0054 95.0986);
     --foreground: oklch(0.3438 0.0269 95.7226);
@@ -111,23 +96,9 @@
     --tracking-normal: 0em;
     --spacing: 0.25rem;
   }
+  
   html[data-theme="dark"] {
-    /* Legacy color variables for Tailwind compatibility */
-    --color-fill: 17, 24, 39;
-    --color-text-base: 243, 244, 246;
-    --color-accent: 96, 165, 250;
-    --color-card: 31, 41, 55;
-    --color-card-muted: 55, 65, 81;
-    --color-border: 75, 85, 99;
-    --color-gradient-start: 98, 114, 164;
-    --color-gradient-end: 71, 85, 105;
-    --color-secondary: 156, 163, 175;
-    --color-success: 52, 211, 153;
-    --color-warning: 252, 211, 77;
-    --color-glow: 98, 114, 164;
-    --color-shadow: 0, 0, 0;
-    
-    /* Claude Theme OKLCH color variables from theme.json */
+    /* Claude Theme Dark mode OKLCH color variables */
     --background: oklch(0.2679 0.0036 106.6427);
     --foreground: oklch(0.8074 0.0142 93.0137);
     --card: oklch(0.2679 0.0036 106.6427);
@@ -173,16 +144,7 @@
     --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
     --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
   }
-  /* Theme icon visibility - commented out as we're using different approach
-  #sun-svg,
-  html[data-theme="dark"] #moon-svg {
-    display: none;
-  }
-  #moon-svg,
-  html[data-theme="dark"] #sun-svg {
-    display: block;
-  }
-  */
+
   * {
     box-sizing: border-box;
   }
@@ -281,6 +243,7 @@
       font-size: 17px;
     }
   }
+  
   section,
   footer {
     @apply mx-auto w-full px-0;
@@ -290,6 +253,7 @@
   main {
     @apply flex-1;
   }
+  
   a {
     @apply outline-2 outline-offset-2 outline-primary
     focus-visible:no-underline focus-visible:outline-dashed transition-all duration-200;
@@ -298,14 +262,18 @@
   a:hover {
     @apply transition-all duration-200;
   }
+  
   svg {
     @apply inline-block h-6 w-6 fill-foreground group-hover:fill-primary;
   }
+  
   svg.icon-tabler {
     @apply inline-block h-6 w-6 scale-125 fill-transparent
     stroke-current stroke-2 opacity-90 group-hover:fill-transparent
     sm:scale-110;
   }
+  
+  /* Enhanced Prose Styles for Markdown Content Alignment */
   .prose {
     @apply prose-headings:!text-foreground prose-headings:!font-corporate prose-headings:!leading-snug
     prose-h1:!text-4xl prose-h1:!font-bold prose-h1:!tracking-tight prose-h1:!mb-8 prose-h1:!mt-2
@@ -361,23 +329,29 @@
   .prose h3 {
     letter-spacing: -0.01em;
   }
+  
   .prose a {
     @apply break-words hover:!text-primary;
   }
+  
   .prose thead th:first-child,
   tbody td:first-child,
   tfoot td:first-child {
     padding-left: 0.5714286em;
   }
+  
   .prose h2#table-of-contents {
     @apply mb-2;
   }
+  
   .prose details {
     @apply inline-block cursor-pointer select-none text-foreground;
   }
+  
   .prose summary {
     @apply focus-outline;
   }
+  
   .prose h2#table-of-contents + p {
     @apply hidden;
   }

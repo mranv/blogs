@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 
-interface PerformanceMetric {
+export interface PerformanceMetric {
   name: string;
   value: number;
   unit: string;
@@ -9,14 +9,14 @@ interface PerformanceMetric {
   description: string;
 }
 
-interface PerformanceTestResult {
+export interface PerformanceTestResult {
   timestamp: Date;
   metrics: PerformanceMetric[];
   score: number;
   recommendations: string[];
 }
 
-interface PerformanceMonitorOptions {
+export interface PerformanceMonitorOptions {
   trackRenders?: boolean;
   trackMemory?: boolean;
   trackFPS?: boolean;

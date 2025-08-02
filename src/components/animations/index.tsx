@@ -3,7 +3,7 @@
  * Centralized exports for all animation components and utilities
  */
 
-import React from 'react';
+import React from "react";
 
 // Core Animation Components
 export {
@@ -16,7 +16,10 @@ export {
   type AnimationContextType,
   type AnimationContextState,
   type AnimationContextMethods,
-} from './AnimationProvider';
+} from "./AnimationProvider";
+
+// Import AnimationConfig for use in this file
+import type { AnimationConfig } from "./AnimationProvider";
 
 export {
   FadeIn,
@@ -26,7 +29,7 @@ export {
   type FadeInTextProps,
   type FadeInStaggerProps,
   type FadeDirection,
-} from './FadeIn';
+} from "./FadeIn";
 
 export {
   SlideIn,
@@ -39,7 +42,7 @@ export {
   type SlideInTextProps,
   type SlideDirection,
   type SlideVariant,
-} from './SlideIn';
+} from "./SlideIn";
 
 export {
   ScaleIn,
@@ -50,7 +53,7 @@ export {
   type ScaleInButtonProps,
   type ScaleVariant,
   type ScaleOrigin,
-} from './ScaleIn';
+} from "./ScaleIn";
 
 export {
   StaggerChildren,
@@ -63,7 +66,7 @@ export {
   type StaggerTextProps,
   type StaggerPattern,
   type StaggerAnimation,
-} from './StaggerChildren';
+} from "./StaggerChildren";
 
 export {
   ParallaxScroll,
@@ -78,7 +81,7 @@ export {
   type ParallaxImageProps,
   type ParallaxDirection,
   type ParallaxLayer,
-} from './ParallaxScroll';
+} from "./ParallaxScroll";
 
 export {
   PageTransition,
@@ -95,7 +98,7 @@ export {
   type TransitionGroupProps,
   type PageTransitionType,
   type TransitionDirection,
-} from './PageTransition';
+} from "./PageTransition";
 
 // Animation Utilities
 export {
@@ -106,12 +109,12 @@ export {
   animationPresets,
   animationUtils,
   performanceUtils,
-  
+
   // Types
   type EasingCurve,
   type Duration,
   type AnimationPreset,
-} from '@utils/animations/animationUtils';
+} from "../../utils/animations/animationUtils";
 
 export {
   // Intersection Observer utilities
@@ -121,11 +124,11 @@ export {
   IntersectionManager,
   globalIntersectionManager,
   intersectionUtils,
-  
+
   // Types
   type IntersectionConfig,
   type IntersectionState,
-} from '@utils/animations/intersectionObserver';
+} from "../../utils/animations/intersectionObserver";
 
 export {
   // Scroll Animation utilities
@@ -136,12 +139,12 @@ export {
   globalScrollTracker,
   scrollAnimations,
   initScrollAnimations,
-  
+
   // Types
   type ScrollAnimationConfig,
   type ParallaxConfig,
   type ProgressCallback,
-} from '@utils/animations/scrollAnimations';
+} from "../../utils/animations/scrollAnimations";
 
 export {
   // Reduced Motion utilities
@@ -149,39 +152,54 @@ export {
   globalReducedMotionManager,
   reducedMotionUtils,
   useReducedMotion,
-  
+
   // Types
   type ReducedMotionConfig,
-} from '@utils/animations/reducedMotion';
+} from "../../utils/animations/reducedMotion";
 
 // Re-import components for convenience bundles
-import { AnimationProvider } from './AnimationProvider';
-import { FadeIn, FadeInText } from './FadeIn';
-import { SlideIn, SlideInList, SlideInCards, SlideInText } from './SlideIn';
-import { ScaleIn, ScaleInGrid, ScaleInButton } from './ScaleIn';
-import { StaggerChildren, StaggerList, StaggerCards, StaggerText } from './StaggerChildren';
-import { ParallaxScroll, MouseParallax, ParallaxLayers } from './ParallaxScroll';
-import { PageTransition, PageLoader, RouteTransition, ViewTransitionWrapper, TransitionGroup } from './PageTransition';
+import { AnimationProvider, withAnimation } from "./AnimationProvider";
+import { FadeIn, FadeInText } from "./FadeIn";
+import { SlideIn, SlideInList, SlideInCards, SlideInText } from "./SlideIn";
+import { ScaleIn, ScaleInGrid, ScaleInButton } from "./ScaleIn";
+import {
+  StaggerChildren,
+  StaggerList,
+  StaggerCards,
+  StaggerText,
+} from "./StaggerChildren";
+import {
+  ParallaxScroll,
+  MouseParallax,
+  ParallaxLayers,
+} from "./ParallaxScroll";
+import {
+  PageTransition,
+  PageLoader,
+  RouteTransition,
+  ViewTransitionWrapper,
+  TransitionGroup,
+} from "./PageTransition";
 
 // Re-import utilities for default export
-import { 
-  animationUtils, 
-  performanceUtils, 
-  animationPresets 
-} from '@utils/animations/animationUtils';
-import { 
-  intersectionUtils, 
-  globalIntersectionManager 
-} from '@utils/animations/intersectionObserver';
-import { 
-  scrollAnimations, 
-  globalParallaxManager, 
-  globalScrollTracker 
-} from '@utils/animations/scrollAnimations';
-import { 
-  reducedMotionUtils, 
-  globalReducedMotionManager 
-} from '@utils/animations/reducedMotion';
+import {
+  animationUtils,
+  performanceUtils,
+  animationPresets,
+} from "../../utils/animations/animationUtils";
+import {
+  intersectionUtils,
+  globalIntersectionManager,
+} from "../../utils/animations/intersectionObserver";
+import {
+  scrollAnimations,
+  globalParallaxManager,
+  globalScrollTracker,
+} from "../../utils/animations/scrollAnimations";
+import {
+  reducedMotionUtils,
+  globalReducedMotionManager,
+} from "../../utils/animations/reducedMotion";
 
 // Convenience component bundles
 export const CoreAnimations = {
@@ -228,75 +246,110 @@ export const LoadingAnimations = {
 export const componentAnimationPresets = {
   // Blog post animations
   blogPost: {
-    title: { component: FadeIn, props: { direction: 'up', duration: 600 } },
-    content: { component: StaggerChildren, props: { animation: 'fade', staggerDelay: 100 } },
-    sidebar: { component: SlideIn, props: { direction: 'right', delay: 300 } },
+    title: { component: FadeIn, props: { direction: "up", duration: 600 } },
+    content: {
+      component: StaggerChildren,
+      props: { animation: "fade", staggerDelay: 100 },
+    },
+    sidebar: { component: SlideIn, props: { direction: "right", delay: 300 } },
   },
-  
+
   // Navigation animations
   navigation: {
-    menu: { component: SlideIn, props: { direction: 'down', duration: 300 } },
-    items: { component: StaggerChildren, props: { pattern: 'sequential', staggerDelay: 50 } },
-    search: { component: ScaleIn, props: { variant: 'pop', origin: 'top-right' } },
+    menu: { component: SlideIn, props: { direction: "down", duration: 300 } },
+    items: {
+      component: StaggerChildren,
+      props: { pattern: "sequential", staggerDelay: 50 },
+    },
+    search: {
+      component: ScaleIn,
+      props: { variant: "pop", origin: "top-right" },
+    },
   },
-  
+
   // Card grid animations
   cardGrid: {
-    container: { component: FadeIn, props: { direction: 'up' } },
-    cards: { component: StaggerCards, props: { pattern: 'grid', itemDelay: 100 } },
+    container: { component: FadeIn, props: { direction: "up" } },
+    cards: {
+      component: StaggerCards,
+      props: { pattern: "grid", itemDelay: 100 },
+    },
   },
-  
+
   // Hero section animations
   hero: {
-    background: { component: ParallaxScroll, props: { speed: 0.3, direction: 'up' } },
-    title: { component: FadeIn, props: { direction: 'up', duration: 800 } },
-    subtitle: { component: SlideIn, props: { direction: 'up', delay: 400 } },
-    cta: { component: ScaleIn, props: { variant: 'bounce', delay: 800 } },
+    background: {
+      component: ParallaxScroll,
+      props: { speed: 0.3, direction: "up" },
+    },
+    title: { component: FadeIn, props: { direction: "up", duration: 800 } },
+    subtitle: { component: SlideIn, props: { direction: "up", delay: 400 } },
+    cta: { component: ScaleIn, props: { variant: "bounce", delay: 800 } },
   },
-  
+
   // Cybersecurity theme animations
   cybersecurity: {
-    terminal: { component: FadeIn, props: { direction: 'up', easing: 'cubic-bezier(0.190, 1.000, 0.220, 1.000)' } },
-    matrix: { component: StaggerChildren, props: { animation: 'fade', pattern: 'random' } },
-    glitch: { component: ScaleIn, props: { variant: 'elastic', hoverScale: 1.1 } },
+    terminal: {
+      component: FadeIn,
+      props: {
+        direction: "up",
+        easing: "cubic-bezier(0.190, 1.000, 0.220, 1.000)",
+      },
+    },
+    matrix: {
+      component: StaggerChildren,
+      props: { animation: "fade", pattern: "random" },
+    },
+    glitch: {
+      component: ScaleIn,
+      props: { variant: "elastic", hoverScale: 1.1 },
+    },
   },
 };
 
 // Quick start utilities
-export const createAnimationSequence = (animations: Array<{
-  component: React.ComponentType<any>;
-  props: any;
-  delay?: number;
-}>) => {
-  return animations.map(({ component: Component, props, delay = 0 }, index) => ({
-    Component,
-    props: { ...props, delay: delay + (props.delay || 0) },
-    index,
-  }));
+export const createAnimationSequence = (
+  animations: Array<{
+    component: React.ComponentType<any>;
+    props: any;
+    delay?: number;
+  }>
+) => {
+  return animations.map(
+    ({ component: Component, props, delay = 0 }, index) => ({
+      Component,
+      props: { ...props, delay: delay + (props.delay || 0) },
+      index,
+    })
+  );
 };
 
 export const withAnimationProvider = <P extends object>(
   Component: React.ComponentType<P>,
   animationConfig?: Partial<AnimationConfig>
 ) => {
-  return withAnimation(Component)(animationConfig || {});
+  const AnimatedComponent = withAnimation(Component);
+  return (props: P) => (
+    <AnimatedComponent {...props} animationConfig={animationConfig} />
+  );
 };
 
 // Animation system status
 export const getAnimationSystemStatus = () => {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return {
       supported: false,
       reducedMotion: false,
-      performance: 'unknown',
+      performance: "unknown",
       activeAnimations: 0,
     };
   }
 
   return {
     supported: true,
-    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-    performance: 'requestAnimationFrame' in window ? 'good' : 'limited',
+    reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)")
+      .matches,
+    performance: "requestAnimationFrame" in window ? "good" : "limited",
     activeAnimations: globalIntersectionManager.activeCount,
     parallaxElements: globalParallaxManager.count,
   };
@@ -311,23 +364,23 @@ export default {
   ...LayoutAnimations,
   ...InteractionAnimations,
   ...LoadingAnimations,
-  
+
   // Utilities
   animationUtils,
   performanceUtils,
   intersectionUtils,
   scrollAnimations,
   reducedMotionUtils,
-  
+
   // Managers
   globalIntersectionManager,
   globalParallaxManager,
   globalScrollTracker,
   globalReducedMotionManager,
-  
+
   // Presets
   animationPresets,
-  
+
   // Utilities
   createAnimationSequence,
   withAnimationProvider,

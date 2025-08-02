@@ -1,5 +1,6 @@
 /* ===== CENTRALIZED THEME COLORS ===== */
 /* Based on theme.json - Claude Theme from tweakcn.com */
+/* Updated to ensure proper alignment with markdown content and blog posts */
 
 :root,
 html[data-theme="light"] {
@@ -392,6 +393,150 @@ html[data-theme="dark"] .chatbot-window {
   .theme-mobile {
     --radius: 0.375rem;
   }
+}
+
+/* ===== BLOG POST THEME ENHANCEMENTS ===== */
+.blog-post-theme {
+  --post-max-width: 65ch;
+  --post-line-height: 1.75;
+  --post-paragraph-spacing: 1.5rem;
+  --post-heading-spacing: 2rem;
+}
+
+.blog-post-theme .prose {
+  max-width: var(--post-max-width);
+  line-height: var(--post-line-height);
+}
+
+.blog-post-theme .prose p {
+  margin-bottom: var(--post-paragraph-spacing);
+}
+
+.blog-post-theme .prose h1,
+.blog-post-theme .prose h2,
+.blog-post-theme .prose h3,
+.blog-post-theme .prose h4,
+.blog-post-theme .prose h5,
+.blog-post-theme .prose h6 {
+  margin-top: var(--post-heading-spacing);
+  margin-bottom: calc(var(--post-heading-spacing) * 0.5);
+}
+
+/* ===== MARKDOWN CONTENT ALIGNMENT ===== */
+.markdown-content {
+  @apply text-foreground;
+  @apply leading-relaxed;
+  @apply max-w-none;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  @apply text-foreground font-semibold;
+  @apply scroll-mt-20;
+  @apply mb-4;
+}
+
+.markdown-content h1 {
+  @apply text-4xl font-bold mt-12 mb-8;
+  letter-spacing: -0.03em;
+}
+
+.markdown-content h2 {
+  @apply text-3xl font-semibold mt-10 mb-6;
+  letter-spacing: -0.02em;
+}
+
+.markdown-content h3 {
+  @apply text-2xl font-medium mt-8 mb-4;
+  letter-spacing: -0.01em;
+}
+
+.markdown-content p {
+  @apply text-foreground/90 mb-6;
+  @apply text-lg leading-relaxed;
+}
+
+.markdown-content a {
+  @apply text-primary hover:text-primary/80;
+  @apply underline decoration-primary/30 underline-offset-2;
+  @apply transition-all duration-200;
+}
+
+.markdown-content a:hover {
+  @apply decoration-primary/60;
+}
+
+.markdown-content strong {
+  @apply text-foreground font-semibold;
+}
+
+.markdown-content em {
+  @apply text-foreground/80 italic;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-primary/60 bg-primary/5;
+  @apply pl-6 py-4 my-8 rounded-r-lg;
+  @apply italic text-foreground/80;
+}
+
+.markdown-content code {
+  @apply bg-muted text-foreground;
+  @apply px-2 py-1 rounded text-sm font-mono;
+  @apply border border-border/50;
+}
+
+.markdown-content pre {
+  @apply bg-card border border-border;
+  @apply p-6 rounded-xl shadow-lg;
+  @apply overflow-x-auto my-8;
+}
+
+.markdown-content pre code {
+  @apply bg-transparent border-none p-0;
+  @apply text-foreground;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  @apply text-foreground/90 space-y-2 mb-6;
+}
+
+.markdown-content li {
+  @apply text-foreground/90;
+}
+
+.markdown-content li::marker {
+  @apply text-primary;
+}
+
+.markdown-content table {
+  @apply w-full border-collapse my-8;
+  @apply bg-card border border-border rounded-lg overflow-hidden;
+}
+
+.markdown-content th {
+  @apply bg-muted text-foreground font-semibold;
+  @apply p-3 text-left border-b border-border;
+}
+
+.markdown-content td {
+  @apply p-3 border-b border-border/50;
+  @apply text-foreground/90;
+}
+
+.markdown-content img {
+  @apply rounded-xl shadow-lg;
+  @apply mx-auto my-8;
+  @apply border border-border/50;
+}
+
+.markdown-content hr {
+  @apply border-border/50 my-12;
 }
 
 /* ===== ACCESSIBILITY ENHANCEMENTS ===== */

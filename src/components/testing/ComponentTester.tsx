@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import type { Component } from "react";
 
-interface TestResult {
+export interface TestResult {
   component: string;
   test: string;
   status: "pass" | "fail" | "warning";
@@ -9,14 +9,14 @@ interface TestResult {
   timestamp: Date;
 }
 
-interface ComponentTestProps {
+export interface ComponentTestProps {
   componentName: string;
   testComponent: React.ComponentType<any>;
   testProps?: Record<string, any>;
   tests: ComponentTest[];
 }
 
-interface ComponentTest {
+export interface ComponentTest {
   name: string;
   description: string;
   test: (element: HTMLElement) => boolean | Promise<boolean>;

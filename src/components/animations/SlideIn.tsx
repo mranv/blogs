@@ -122,7 +122,7 @@ export const SlideIn = forwardRef<HTMLDivElement, SlideInProps>(
     // Sync refs
     useEffect(() => {
       if (animationRef && "current" in animationRef && observerRef.current) {
-        (animationRef as React.MutableRefObject<HTMLDivElement>).current =
+        (animationRef as React.MutableRefObject<HTMLElement>).current =
           observerRef.current;
       }
     }, [animationRef, observerRef]);
@@ -131,7 +131,7 @@ export const SlideIn = forwardRef<HTMLDivElement, SlideInProps>(
     useEffect(() => {
       if (!shouldAnimate) return;
 
-      const animationId = `slide-in-${Math.random().toString(36).substr(2, 9)}`;
+      const animationId = `slide-in-${Math.random().toString(36).substring(2, 11)}`;
       const cleanup = registerAnimation(animationId);
 
       return cleanup;
@@ -234,7 +234,7 @@ export const SlideIn = forwardRef<HTMLDivElement, SlideInProps>(
 
     return (
       <div
-        ref={observerRef}
+        ref={observerRef as React.RefObject<HTMLDivElement>}
         className={cn(
           "slide-in-container",
           `slide-in-${direction}`,

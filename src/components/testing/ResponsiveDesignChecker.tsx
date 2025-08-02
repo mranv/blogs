@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 
-interface BreakpointTest {
+export interface BreakpointTest {
   name: string;
   width: number;
   height: number;
   description: string;
 }
 
-interface ResponsiveTestResult {
+export interface ResponsiveTestResult {
   breakpoint: string;
   width: number;
   height: number;

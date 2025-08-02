@@ -246,7 +246,7 @@ export const StaggerChildren = forwardRef<HTMLDivElement, StaggerChildrenProps>(
     // Sync refs
     useEffect(() => {
       if (animationRef && "current" in animationRef && observerRef.current) {
-        (animationRef as React.MutableRefObject<HTMLDivElement>).current =
+        (animationRef as React.MutableRefObject<HTMLElement>).current =
           observerRef.current;
       }
     }, [animationRef, observerRef]);
@@ -255,7 +255,7 @@ export const StaggerChildren = forwardRef<HTMLDivElement, StaggerChildrenProps>(
     useEffect(() => {
       if (!shouldAnimate) return;
 
-      const animationId = `stagger-children-${Math.random().toString(36).substr(2, 9)}`;
+      const animationId = `stagger-children-${Math.random().toString(36).substring(2, 11)}`;
       const cleanup = registerAnimation(animationId);
 
       return cleanup;
@@ -377,7 +377,7 @@ export const StaggerChildren = forwardRef<HTMLDivElement, StaggerChildrenProps>(
 
     return (
       <div
-        ref={observerRef}
+        ref={observerRef as React.RefObject<HTMLDivElement>}
         className={cn(
           "stagger-children-container",
           `stagger-children-${pattern}`,
