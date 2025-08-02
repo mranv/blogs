@@ -542,7 +542,8 @@ const featuredTechnologies = [
       badge.setAttribute("role", "button");
 
       badge.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
+        const keyboardEvent = e as KeyboardEvent;
+        if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
           e.preventDefault();
           (badge as HTMLElement).click();
         }

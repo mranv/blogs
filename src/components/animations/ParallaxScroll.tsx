@@ -277,17 +277,20 @@ export const MouseParallax = forwardRef<HTMLDivElement, MouseParallaxProps>(
     // Smooth animation loop
     useEffect(() => {
       const animate = () => {
-        setMousePosition((prev: { x: number; y: number }) => {
-          const newX = prev.x + (targetPosition.x - prev.x) * smoothness;
-          const newY = prev.y + (targetPosition.y - prev.y) * smoothness;
-
-          // Apply transform
-          if (mouseParallaxRef?.current) {
-            mouseParallaxRef.current.style.transform = `translate3d(${newX}px, ${newY}px, 0)`;
-          }
-
-          return { x: newX, y: newY };
-        });
+        // Apply transform directly without state update
+        if (mouseParallaxRef?.current) {
+          const currentX =
+            parseFloat(
+              mouseParallaxRef.current.style.transform.replace(/[^\d.-]/g, "")
+            ) || 0;
+          const currentY =
+            parseFloat(
+              mouseParallaxRef.current.style.transform.replace(/[^\d.-]/g, "")
+            ) || 0;
+          const newX = currentX + (targetPosition.x - currentX) * smoothness;
+          const newY = currentY + (targetPosition.y - currentY) * smoothness;
+          mouseParallaxRef.current.style.transform = `translate3d(${newX}px, ${newY}px, 0)`;
+        }
 
         animationRef.current = requestAnimationFrame(animate);
       };
