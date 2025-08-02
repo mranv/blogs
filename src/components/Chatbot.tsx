@@ -8,8 +8,8 @@ import {
   User,
   Sun,
   Moon,
+  Tag,
 } from "lucide-react";
-import Fuse from "fuse.js";
 import type { SearchItem } from "./SearchReact";
 
 export interface ChatbotProps {
@@ -32,12 +32,14 @@ export default function Chatbot({ searchList }: ChatbotProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const fuse = new Fuse(searchList, {
-    keys: ["title", "description"],
-    includeMatches: true,
-    minMatchCharLength: 2,
-    threshold: 0.4,
-  });
+  // Extract all unique tags from the search list
+  const allTags = Array.from(
+    new Set(
+      searchList.flatMap(
+        item => item.data.tags?.map(tag => tag.toLowerCase()) || []
+      )
+    )
+  ).sort();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -82,7 +84,11 @@ export default function Chatbot({ searchList }: ChatbotProps) {
       // Add welcome message when chatbot is first opened
       const welcomeMessage: Message = {
         id: Date.now().toString(),
-        text: "Hi! I'm your blog assistant. I can help you search for articles or answer questions about the content. What are you looking for?",
+        text: `Hi! I'm your blog assistant. I can help you find articles by topic.
+
+Popular topics include: ${allTags.slice(0, 10).join(", ")}${allTags.length > 10 ? "..." : ""}
+
+What topic are you interested in?`,
         isBot: true,
         timestamp: new Date(),
       };
@@ -90,11 +96,43 @@ export default function Chatbot({ searchList }: ChatbotProps) {
     }
   }, [isOpen, messages.length]);
 
-  const searchArticles = (query: string): SearchItem[] => {
-    return fuse
-      .search(query)
-      .map(({ item }) => item)
-      .slice(0, 5);
+  const searchArticlesByTags = (query: string): SearchItem[] => {
+    const queryLower = query.toLowerCase();
+    const queryWords = queryLower.split(/\s+/).filter(word => word.length > 2);
+
+    // Find matching tags
+    const matchingTags = allTags.filter(tag =>
+      queryWords.some(word => tag.includes(word) || word.includes(tag))
+    );
+
+    // If no matching tags, try to find tags that contain any query word
+    if (matchingTags.length === 0) {
+      const partialMatches = allTags.filter(tag =>
+        queryWords.some(word =>
+          tag
+            .split(/[-_]/)
+            .some(tagPart => tagPart.includes(word) || word.includes(tagPart))
+        )
+      );
+      matchingTags.push(...partialMatches);
+    }
+
+    // Find articles that have any of the matching tags
+    const matchedArticles = searchList.filter(item => {
+      const itemTags = item.data.tags?.map(tag => tag.toLowerCase()) || [];
+      return matchingTags.some(tag => itemTags.includes(tag));
+    });
+
+    // Sort by relevance (number of matching tags)
+    matchedArticles.sort((a, b) => {
+      const aTags = a.data.tags?.map(tag => tag.toLowerCase()) || [];
+      const bTags = b.data.tags?.map(tag => tag.toLowerCase()) || [];
+      const aMatches = matchingTags.filter(tag => aTags.includes(tag)).length;
+      const bMatches = matchingTags.filter(tag => bTags.includes(tag)).length;
+      return bMatches - aMatches;
+    });
+
+    return matchedArticles.slice(0, 5);
   };
 
   const generateResponse = (
@@ -119,12 +157,16 @@ export default function Chatbot({ searchList }: ChatbotProps) {
       lowerMessage.includes("what can you do")
     ) {
       return {
-        text: "I can help you:\n• Search for specific articles by topic\n• Find posts about security, DevOps, automation\n• Recommend articles based on your interests\n• Answer questions about the blog content\n\nJust tell me what you're looking for!",
+        text: `I can help you find articles by topic. Available topics include:
+
+${allTags.map(tag => `• ${tag}`).join("\n")}
+
+Just type any topic you're interested in!`,
       };
     }
 
-    // Search for articles
-    const searchResults = searchArticles(userMessage);
+    // Search for articles by tags
+    const searchResults = searchArticlesByTags(userMessage);
 
     if (searchResults.length > 0) {
       const response =
@@ -137,8 +179,21 @@ export default function Chatbot({ searchList }: ChatbotProps) {
         searchResults,
       };
     } else {
+      // Suggest similar tags if no exact match
+      const suggestedTags = allTags
+        .filter(
+          tag =>
+            tag.includes(queryLower.split(/\s+/)[0]) ||
+            queryLower.split(/\s+/).some(word => tag.includes(word))
+        )
+        .slice(0, 5);
+
       return {
-        text: "I couldn't find any articles matching your search. Try searching for topics like 'security', 'automation', 'DevOps', 'cloud', or 'containers'. You can also ask me about specific technologies!",
+        text: `I couldn't find articles matching "${userMessage}". ${
+          suggestedTags.length > 0
+            ? `Did you mean: ${suggestedTags.join(", ")}?`
+            : `Try searching for topics like: ${allTags.slice(0, 8).join(", ")}`
+        }`,
       };
     }
   };
@@ -255,9 +310,30 @@ export default function Chatbot({ searchList }: ChatbotProps) {
                                 <h4 className="font-medium text-sm text-skin-base mb-1">
                                   {result.title}
                                 </h4>
-                                <p className="text-xs text-skin-base/70 line-clamp-2">
+                                <p className="text-xs text-skin-base/70 line-clamp-2 mb-2">
                                   {result.description}
                                 </p>
+                                {result.data.tags &&
+                                  result.data.tags.length > 0 && (
+                                    <div className="flex flex-wrap gap-1">
+                                      {result.data.tags
+                                        .slice(0, 3)
+                                        .map((tag, index) => (
+                                          <span
+                                            key={index}
+                                            className="inline-flex items-center gap-1 px-2 py-0.5 text-xs bg-skin-accent/10 text-skin-accent rounded-full"
+                                          >
+                                            <Tag className="h-2.5 w-2.5" />
+                                            {tag}
+                                          </span>
+                                        ))}
+                                      {result.data.tags.length > 3 && (
+                                        <span className="text-xs text-skin-base/50">
+                                          +{result.data.tags.length - 3}
+                                        </span>
+                                      )}
+                                    </div>
+                                  )}
                               </a>
                             ))}
                           </div>

@@ -610,6 +610,14 @@
   .hover\:bg-skin-accent\/90:hover {
     background-color: rgba(var(--color-accent), 0.9);
   }
+
+  .bg-skin-inverted\/30 {
+    background-color: rgba(var(--color-text-base), 0.3);
+  }
+
+  .hover\:bg-skin-inverted\/30:hover {
+    background-color: rgba(var(--color-text-base), 0.3);
+  }
 }
 
 @layer components {
