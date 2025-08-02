@@ -18,7 +18,7 @@ const SearchButton: React.FC<SearchButtonProps> = ({
   useEffect(() => {
     const isMac =
       typeof window !== "undefined" &&
-      navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+      navigator.userAgent.toUpperCase().indexOf("MAC") >= 0;
     setShortcut(isMac ? "⌘K" : "Ctrl+K");
   }, []);
 
