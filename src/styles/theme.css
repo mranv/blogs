@@ -248,6 +248,7 @@ html[data-theme="light"] {
   @apply text-foreground/90;
   @apply leading-relaxed;
   @apply space-y-4;
+  @apply w-full;
 }
 
 .about-content p {
@@ -343,6 +344,7 @@ html[data-theme="light"] {
   background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)));
   @apply border border-primary/20 rounded-xl p-8;
   @apply shadow-lg;
+  @apply max-w-6xl mx-auto;
 }
 
 .about-cta h3 {
@@ -607,8 +609,12 @@ html[data-theme="dark"] .chatbot-window {
     --radius: 0.375rem;
   }
   
+  .about-page {
+    @apply px-2;
+  }
+  
   .about-header {
-    @apply p-6;
+    @apply p-4 mx-2;
   }
   
   .about-header h1 {
@@ -616,15 +622,43 @@ html[data-theme="dark"] .chatbot-window {
   }
   
   .about-section {
-    @apply p-6;
+    @apply p-4 mx-2;
   }
   
   .about-section h2 {
     @apply text-2xl;
   }
   
+  .about-cta {
+    @apply mx-2;
+  }
+  
   .about-cta .cta-links {
     @apply flex-col;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .about-page {
+    @apply px-6;
+  }
+  
+  .about-header,
+  .about-section,
+  .about-cta {
+    @apply mx-4;
+  }
+}
+
+@media (min-width: 1025px) {
+  .about-page {
+    @apply px-8;
+  }
+  
+  .about-header,
+  .about-section,
+  .about-cta {
+    @apply mx-auto;
   }
 }
 
