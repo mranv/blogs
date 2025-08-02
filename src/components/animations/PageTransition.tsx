@@ -281,7 +281,10 @@ PageLoader.displayName = "PageLoader";
  * RouteTransition Component - For route changes
  */
 const RouteTransition = forwardRef<HTMLDivElement, RouteTransitionProps>(
-  ({ children, from, to, trigger = false, ...transitionProps }, ref) => {
+  (
+    { children, from: _from, to: _to, trigger = false, ...transitionProps },
+    ref
+  ) => {
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [currentChildren, setCurrentChildren] = useState(children);
 

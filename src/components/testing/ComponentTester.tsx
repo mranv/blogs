@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Component } from "react";
+// import type { Component } from "react";
 
 export interface TestResult {
   component: string;

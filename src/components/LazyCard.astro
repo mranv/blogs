@@ -8,7 +8,7 @@ export interface Props {
   index: number;
 }
 
-const { href, frontmatter, secHeading = true, index } = Astro.props;
+const { href, frontmatter, secHeading = true, index: _index } = Astro.props;
 
 // Show all cards immediately for better UX
 const isLazy = false;

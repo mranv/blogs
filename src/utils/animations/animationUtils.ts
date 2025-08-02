@@ -244,13 +244,13 @@ export const animationUtils = {
   ): number => {
     const cx = 3 * x1;
     const bx = 3 * (x2 - x1) - cx;
-    const ax = 1 - cx - bx;
+    const _ax = 1 - cx - bx;
 
     const cy = 3 * y1;
     const by = 3 * (y2 - y1) - cy;
     const ay = 1 - cy - by;
 
-    const cuberoot = (x: number) =>
+    const _cuberoot = (x: number) =>
       x < 0 ? -Math.pow(-x, 1 / 3) : Math.pow(x, 1 / 3);
 
     return ay * Math.pow(t, 3) + by * Math.pow(t, 2) + cy * t;

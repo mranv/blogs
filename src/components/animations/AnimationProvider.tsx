@@ -188,7 +188,7 @@ const AnimationProvider: React.FC<AnimationProviderProps> = ({
 
   // Check if element should animate
   const shouldAnimateElement = useCallback(
-    (element: Element): boolean => {
+    (_element: Element): boolean => {
       // Check reduced motion preference
       if (prefersReducedMotion && config.simplifyAnimations) {
         return false;

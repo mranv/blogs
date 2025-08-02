@@ -3,7 +3,7 @@
  * Provides support for users who prefer reduced motion for accessibility
  */
 
-import { animationUtils } from "./animationUtils";
+// import { animationUtils } from "./animationUtils";
 
 // Configuration for reduced motion
 export interface ReducedMotionConfig {

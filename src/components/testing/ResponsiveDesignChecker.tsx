@@ -69,7 +69,7 @@ interface ResponsiveDesignCheckerProps {
 
 const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
   customBreakpoints = defaultBreakpoints,
-  testInteractions = true,
+  testInteractions: _testInteractions = true,
 }) => {
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
     customBreakpoints[0]

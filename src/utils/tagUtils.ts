@@ -338,6 +338,11 @@ export function getTagVariantByCategory(
 // Legacy compatibility function
 export function getUniqueTags(posts: CollectionEntry<"blog">[]): Tag[] {
   return getTagsWithStats(posts).map(
-    ({ relatedTags, trending, lastUsed, ...tag }) => tag
+    ({
+      relatedTags: _relatedTags,
+      trending: _trending,
+      lastUsed: _lastUsed,
+      ...tag
+    }) => tag
   );
 }

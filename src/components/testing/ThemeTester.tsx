@@ -227,7 +227,7 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
         "button, a, input, select, textarea"
       );
       interactiveElements.forEach((element, index) => {
-        const elementStyles = window.getComputedStyle(element);
+        const _elementStyles = window.getComputedStyle(element);
         const classList = Array.from(element.classList);
 
         // Check for hover/focus states

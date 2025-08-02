@@ -153,7 +153,7 @@ export class LoadingManager {
     this.timeouts.clear();
 
     // Notify all callbacks
-    this.callbacks.forEach((callbacks, key) => {
+    this.callbacks.forEach((callbacks, _key) => {
       callbacks.forEach(callback => callback(false));
     });
   }

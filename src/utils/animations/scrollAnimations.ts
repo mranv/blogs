@@ -3,7 +3,7 @@
  * Provides smooth scrolling, scroll-based animations, and performance optimizations
  */
 
-import { animationUtils, performanceUtils } from "./animationUtils";
+import { performanceUtils } from "./animationUtils";
 
 // Scroll animation configuration
 export interface ScrollAnimationConfig {
@@ -123,7 +123,7 @@ export const smoothScroll = {
   by: (distance: number, config: ScrollAnimationConfig = {}): Promise<void> => {
     const mergedConfig = { ...defaultScrollConfig, ...config };
     const startPosition = window.pageYOffset;
-    const targetPosition = startPosition + distance;
+    const _targetPosition = startPosition + distance;
     const startTime = performance.now();
 
     return new Promise(resolve => {
@@ -217,7 +217,7 @@ export class ParallaxManager {
         }
 
         // Calculate parallax offset
-        const progress =
+        const _progress =
           (scrollY - elementTop + windowHeight) / (windowHeight + rect.height);
         let offset = 0;
 
@@ -486,7 +486,7 @@ export const scrollAnimations = {
     startScale: number = 0.8,
     endScale: number = 1
   ): (() => void) => {
-    const callback: ProgressCallback = () => {
+    const callback: ProgressCallback = _progress => {
       const rect = element.getBoundingClientRect();
       const elementTop = rect.top + window.pageYOffset;
       const windowHeight = window.innerHeight;

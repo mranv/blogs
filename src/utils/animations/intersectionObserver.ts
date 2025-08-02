@@ -3,7 +3,7 @@
  * Provides hooks and utilities for triggering animations when elements enter/exit viewport
  */
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animationUtils } from "./animationUtils";
 
 // Configuration options for intersection observer
