@@ -38,14 +38,18 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       <div class="video-container relative mx-auto max-w-3xl animate-scale-in">
         <video
           id="myVideo"
-          src="/assets/video.mp4"
           autoplay
           muted
           loop
+          playsinline
+          preload="metadata"
           width="1920"
           height="1080"
           class="w-full rounded-lg shadow-lg"
+          poster="/assets/video-poster.jpg"
         >
+          <source src="/assets/video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
         <button
           id="unmuteBtn"
@@ -160,14 +164,37 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 </style>
 
 <script>
-  const video = document.getElementById("myVideo") as HTMLVideoElement | null;
-  const unmuteBtn = document.getElementById("unmuteBtn");
+  // Defer video interaction setup to avoid blocking main thread
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(() => {
+      const video = document.getElementById(
+        "myVideo"
+      ) as HTMLVideoElement | null;
+      const unmuteBtn = document.getElementById("unmuteBtn");
 
-  if (video && unmuteBtn) {
-    unmuteBtn.addEventListener("click", function () {
-      video.muted = false;
-      video.play();
-      unmuteBtn.style.display = "none";
+      if (video && unmuteBtn) {
+        unmuteBtn.addEventListener("click", function () {
+          video.muted = false;
+          video.play().catch(err => console.log("Video play failed:", err));
+          unmuteBtn.style.display = "none";
+        });
+      }
     });
+  } else {
+    // Fallback for browsers without requestIdleCallback
+    setTimeout(() => {
+      const video = document.getElementById(
+        "myVideo"
+      ) as HTMLVideoElement | null;
+      const unmuteBtn = document.getElementById("unmuteBtn");
+
+      if (video && unmuteBtn) {
+        unmuteBtn.addEventListener("click", function () {
+          video.muted = false;
+          video.play().catch(err => console.log("Video play failed:", err));
+          unmuteBtn.style.display = "none";
+        });
+      }
+    }, 1);
   }
 </script>

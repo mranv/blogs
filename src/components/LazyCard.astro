@@ -1,0 +1,60 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+  href?: string;
+  frontmatter: CollectionEntry<"blog">["data"];
+  secHeading?: boolean;
+  index: number;
+}
+
+const { href, frontmatter, secHeading = true, index } = Astro.props;
+const { title } = frontmatter;
+
+// Only load first 4 cards immediately, lazy load the rest
+const isLazy = index >= 4;
+---
+
+<li
+  class="lazy-card-wrapper"
+  data-lazy={isLazy}
+  data-href={href}
+  data-frontmatter={JSON.stringify(frontmatter)}
+  data-sec-heading={secHeading}
+>
+  {!isLazy && <div class="card-content"></div>}
+</li>
+
+<script>
+  // Lazy load cards when they come into viewport
+  if ("IntersectionObserver" in window) {
+    const lazyCards = document.querySelectorAll('[data-lazy="true"]');
+
+    const cardObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const wrapper = entry.target as HTMLElement;
+            const href = wrapper.dataset.href;
+            const frontmatter = JSON.parse(wrapper.dataset.frontmatter || "{}");
+            const secHeading = wrapper.dataset.secHeading === "true";
+
+            // Load the card content dynamically
+            import("../components/Card.js").then(({ default: Card }) => {
+              const cardElement = Card({ href, frontmatter, secHeading });
+              wrapper.innerHTML = "";
+              wrapper.appendChild(cardElement);
+              wrapper.removeAttribute("data-lazy");
+              cardObserver.unobserve(wrapper);
+            });
+          }
+        });
+      },
+      {
+        rootMargin: "50px",
+      }
+    );
+
+    lazyCards.forEach(card => cardObserver.observe(card));
+  }
+</script>
