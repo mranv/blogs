@@ -7,12 +7,17 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuLink,
-} from "@/components/ui/navigation-menu";
+} from "@components/ui/navigation-menu";
 import NotificationBadge from "./NotificationBadge.tsx";
 import SearchButton from "./SearchButton.tsx";
 import NavigationSkeleton from "./skeletons/NavigationSkeleton.tsx";
-import { FadeIn, SlideIn, StaggerChildren, ScaleIn } from "@components/animations";
-import { cn } from "@/utils/cn";
+import {
+  FadeIn,
+  SlideIn,
+  StaggerChildren,
+  ScaleIn,
+} from "@components/animations";
+import { cn } from "@utils/cn";
 
 interface NavigationMenuHeaderProps {
   activeNav?: "posts" | "tags" | "about" | "search";
@@ -135,8 +140,8 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
   const popularTags = tags.slice(0, 8);
 
   return (
-    <FadeIn 
-      direction="down" 
+    <FadeIn
+      direction="down"
       duration={600}
       disabled={disableAnimations}
       className={cn("relative", className)}
@@ -150,211 +155,210 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
         pattern="sequential"
       >
         <NavigationMenu className="hidden md:flex">
-        <NavigationMenuList className="space-x-2">
-          {/* Posts Menu */}
-          <NavigationMenuItem>
-            <NavigationMenuTrigger
-              className={cn(
-                "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
-                "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
-                "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
-                "border border-transparent hover:border-skin-accent/20",
-                "relative overflow-hidden",
-                activeNav === "posts" &&
-                  "text-skin-accent bg-skin-accent/15 shadow-md border-skin-accent/30 scale-105"
-              )}
-            >
-              <NotificationBadge show={hasNewPosts}>
-                <span className="relative z-10">Posts</span>
-              </NotificationBadge>
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <div className="row-span-3">
-                  <NavigationMenuLink asChild>
-                    <a
-                      className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-skin-accent/20 to-skin-accent/10 p-6 no-underline outline-none focus:shadow-md"
-                      href="/posts/"
-                    >
-                      <div className="mb-2 mt-4 text-lg font-medium">
-                        All Posts
-                      </div>
-                      <p className="text-sm leading-tight text-muted-foreground">
-                        Explore all cybersecurity insights and DevSecOps guides.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </div>
-                <div className="grid gap-2">
-                  <h4 className="text-sm font-medium leading-none mb-2">
-                    Recent Posts
-                  </h4>
-                  {recentPosts.map((post, index) => (
-                    <NavigationMenuLink key={index} asChild>
+          <NavigationMenuList className="space-x-2">
+            {/* Posts Menu */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger
+                className={cn(
+                  "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
+                  "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
+                  "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
+                  "border border-transparent hover:border-skin-accent/20",
+                  "relative overflow-hidden",
+                  activeNav === "posts" &&
+                    "text-skin-accent bg-skin-accent/15 shadow-md border-skin-accent/30 scale-105"
+                )}
+              >
+                <NotificationBadge show={hasNewPosts}>
+                  <span className="relative z-10">Posts</span>
+                </NotificationBadge>
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <div className="grid gap-3 p-4 sm:p-6 w-full sm:w-[90vw] md:w-[400px] lg:w-[500px] xl:w-[600px] lg:grid-cols-[.75fr_1fr]">
+                  <div className="row-span-3">
+                    <NavigationMenuLink asChild>
                       <a
-                        href={`/posts/${post.slug}/`}
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-skin-accent/20 to-skin-accent/10 p-6 no-underline outline-none focus:shadow-md"
+                        href="/posts/"
                       >
-                        <div className="text-sm font-medium leading-none line-clamp-1">
-                          {post.data?.title || post.title}
+                        <div className="mb-2 mt-4 text-lg font-medium">
+                          All Posts
                         </div>
-                        <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
-                          {post.data?.description || post.description}
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Explore all cybersecurity insights and DevSecOps
+                          guides.
                         </p>
                       </a>
                     </NavigationMenuLink>
-                  ))}
-                </div>
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-
-          {/* Tags Menu */}
-          <NavigationMenuItem>
-            <NavigationMenuTrigger
-              className={cn(
-                "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
-                "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
-                "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
-                "border border-transparent hover:border-skin-accent/20",
-                "relative overflow-hidden",
-                activeNav === "tags" &&
-                  "text-skin-accent bg-skin-accent/15 shadow-md border-skin-accent/30 scale-105"
-              )}
-            >
-              <span className="relative z-10">Tags</span>
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="grid gap-3 p-6 md:w-[400px] lg:w-[500px]">
-                <div className="grid gap-2">
-                  <NavigationMenuLink asChild>
-                    <a
-                      href="/tags/"
-                      className="block select-none space-y-1 rounded-md bg-gradient-to-b from-skin-accent/20 to-skin-accent/10 p-4 leading-none no-underline outline-none transition-colors hover:shadow-md focus:shadow-md"
-                    >
-                      <div className="text-lg font-medium">All Tags</div>
-                      <p className="text-sm leading-tight text-muted-foreground">
-                        Browse all topics and categories.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </div>
-                <div className="grid gap-2">
-                  <h4 className="text-sm font-medium leading-none mb-2">
-                    Popular Tags
-                  </h4>
-                  <div className="grid grid-cols-2 gap-2">
-                    {popularTags.map((tag, index) => (
+                  </div>
+                  <div className="grid gap-2">
+                    <h4 className="text-sm font-medium leading-none mb-2">
+                      Recent Posts
+                    </h4>
+                    {recentPosts.map((post, index) => (
                       <NavigationMenuLink key={index} asChild>
                         <a
-                          href={`/tags/${tag.tag || tag.slug}/`}
-                          className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          href={`/posts/${post.slug}/`}
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                         >
-                          <span className="font-medium">
-                            {tag.tagName || tag.name}
-                          </span>
+                          <div className="text-sm font-medium leading-none line-clamp-1">
+                            {post.data?.title || post.title}
+                          </div>
+                          <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
+                            {post.data?.description || post.description}
+                          </p>
                         </a>
                       </NavigationMenuLink>
                     ))}
                   </div>
                 </div>
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
 
-          {/* About Menu */}
-          <NavigationMenuItem>
-            <NavigationMenuTrigger
-              className={cn(
-                "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
-                "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
-                "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
-                "border border-transparent hover:border-skin-accent/20",
-                "relative overflow-hidden",
-                activeNav === "about" &&
-                  "text-skin-accent bg-skin-accent/15 shadow-md border-skin-accent/30 scale-105"
-              )}
-            >
-              <span className="relative z-10">About</span>
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-2">
-                <div>
-                  <NavigationMenuLink asChild>
-                    <a
-                      href="/about/"
-                      className="block select-none space-y-1 rounded-md bg-gradient-to-b from-skin-accent/20 to-skin-accent/10 p-4 leading-none no-underline outline-none transition-colors hover:shadow-md focus:shadow-md"
-                    >
-                      <div className="text-lg font-medium">About Me</div>
-                      <p className="text-sm leading-tight text-muted-foreground">
-                        Learn about my background in DevSecOps and
-                        cybersecurity.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
+            {/* Tags Menu */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger
+                className={cn(
+                  "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
+                  "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
+                  "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
+                  "border border-transparent hover:border-skin-accent/20",
+                  "relative overflow-hidden",
+                  activeNav === "tags" &&
+                    "text-skin-accent bg-skin-accent/15 shadow-md border-skin-accent/30 scale-105"
+                )}
+              >
+                <span className="relative z-10">Tags</span>
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <div className="grid gap-3 p-4 sm:p-6 w-full sm:w-[90vw] md:w-[400px] lg:w-[500px] xl:w-[600px]">
+                  <div className="grid gap-2">
+                    <NavigationMenuLink asChild>
+                      <a
+                        href="/tags/"
+                        className="block select-none space-y-1 rounded-md bg-gradient-to-b from-skin-accent/20 to-skin-accent/10 p-4 leading-none no-underline outline-none transition-colors hover:shadow-md focus:shadow-md"
+                      >
+                        <div className="text-lg font-medium">All Tags</div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Browse all topics and categories.
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </div>
+                  <div className="grid gap-2">
+                    <h4 className="text-sm font-medium leading-none mb-2">
+                      Popular Tags
+                    </h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {popularTags.map((tag, index) => (
+                        <NavigationMenuLink key={index} asChild>
+                          <a
+                            href={`/tags/${tag.tag || tag.slug}/`}
+                            className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            <span className="font-medium">
+                              {tag.tagName || tag.name}
+                            </span>
+                          </a>
+                        </NavigationMenuLink>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div className="grid gap-2">
-                  <h4 className="text-sm font-medium leading-none mb-2">
-                    Connect
-                  </h4>
-                  {socialLinks
-                    .filter(link => link.active)
-                    .map((link, index) => (
-                      <NavigationMenuLink key={index} asChild>
-                        <a
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                        >
-                          <div className="text-sm font-medium">{link.name}</div>
-                        </a>
-                      </NavigationMenuLink>
-                    ))}
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            {/* About Menu */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger
+                className={cn(
+                  "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
+                  "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
+                  "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
+                  "border border-transparent hover:border-skin-accent/20",
+                  "relative overflow-hidden",
+                  activeNav === "about" &&
+                    "text-skin-accent bg-skin-accent/15 shadow-md border-skin-accent/30 scale-105"
+                )}
+              >
+                <span className="relative z-10">About</span>
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <div className="grid gap-3 p-4 sm:p-6 w-full sm:w-[90vw] md:w-[400px] lg:w-[500px] xl:w-[600px] lg:grid-cols-2">
+                  <div>
+                    <NavigationMenuLink asChild>
+                      <a
+                        href="/about/"
+                        className="block select-none space-y-1 rounded-md bg-gradient-to-b from-skin-accent/20 to-skin-accent/10 p-4 leading-none no-underline outline-none transition-colors hover:shadow-md focus:shadow-md"
+                      >
+                        <div className="text-lg font-medium">About Me</div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Learn about my background in DevSecOps and
+                          cybersecurity.
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </div>
+                  <div className="grid gap-2">
+                    <h4 className="text-sm font-medium leading-none mb-2">
+                      Connect
+                    </h4>
+                    {socialLinks
+                      .filter(link => link.active)
+                      .map((link, index) => (
+                        <NavigationMenuLink key={index} asChild>
+                          <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            <div className="text-sm font-medium">
+                              {link.name}
+                            </div>
+                          </a>
+                        </NavigationMenuLink>
+                      ))}
+                  </div>
                 </div>
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
 
-          {/* Search Button */}
-          <NavigationMenuItem>
-            <SearchButton isActive={activeNav === "search"} />
-          </NavigationMenuItem>
+            {/* Search Button */}
+            <NavigationMenuItem>
+              <SearchButton isActive={activeNav === "search"} />
+            </NavigationMenuItem>
 
-          {/* Theme Toggle */}
-          <NavigationMenuItem>
-            <button
-              onClick={toggleTheme}
-              className={cn(
-                "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-3 py-2 text-sm font-medium transition-all duration-300",
-                "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
-                "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
-                "border border-transparent hover:border-skin-accent/20",
-                "relative overflow-hidden"
-              )}
-              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-              title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-            >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )}
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-            </button>
-          </NavigationMenuItem>
-        </NavigationMenuList>
+            {/* Theme Toggle */}
+            <NavigationMenuItem>
+              <button
+                onClick={toggleTheme}
+                className={cn(
+                  "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-3 py-2 text-sm font-medium transition-all duration-300",
+                  "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
+                  "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
+                  "border border-transparent hover:border-skin-accent/20",
+                  "relative overflow-hidden"
+                )}
+                aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+                title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              >
+                {theme === "light" ? (
+                  <Moon className="h-5 w-5" />
+                ) : (
+                  <Sun className="h-5 w-5" />
+                )}
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              </button>
+            </NavigationMenuItem>
+          </NavigationMenuList>
         </NavigationMenu>
 
         {/* Mobile Menu Button */}
-        <ScaleIn 
-          variant="pop" 
-          hoverScale={1.1}
-          disabled={disableAnimations}
-        >
+        <ScaleIn variant="pop" hoverScale={1.1} disabled={disableAnimations}>
           <button
             ref={menuButtonRef}
             onClick={() => setIsOpen(!isOpen)}
@@ -374,11 +378,7 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
 
       {/* Mobile Menu */}
       {isOpen && (
-        <SlideIn 
-          direction="down" 
-          duration={300}
-          disabled={disableAnimations}
-        >
+        <SlideIn direction="down" duration={300} disabled={disableAnimations}>
           <div
             ref={mobileMenuRef}
             id="mobile-navigation-menu"
@@ -394,74 +394,74 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
               className="p-4 space-y-4"
             >
               <a
-              href="/posts/"
-              className={cn(
-                "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
-                "hover:bg-skin-accent/15 hover:text-skin-accent",
-                activeNav === "posts" && "text-skin-accent bg-skin-accent/15"
-              )}
-              onClick={() => setIsOpen(false)}
-              aria-current={activeNav === "posts" ? "page" : undefined}
-            >
-              <NotificationBadge show={hasNewPosts}>Posts</NotificationBadge>
-            </a>
-            <a
-              href="/tags/"
-              className={cn(
-                "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
-                "hover:bg-skin-accent/15 hover:text-skin-accent",
-                activeNav === "tags" && "text-skin-accent bg-skin-accent/15"
-              )}
-              onClick={() => setIsOpen(false)}
-              aria-current={activeNav === "tags" ? "page" : undefined}
-            >
-              Tags
-            </a>
-            <a
-              href="/about/"
-              className={cn(
-                "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
-                "hover:bg-skin-accent/15 hover:text-skin-accent",
-                activeNav === "about" && "text-skin-accent bg-skin-accent/15"
-              )}
-              onClick={() => setIsOpen(false)}
-              aria-current={activeNav === "about" ? "page" : undefined}
-            >
-              About
-            </a>
-            <a
-              href="/search/"
-              className={cn(
-                "flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
-                "hover:bg-skin-accent/15 hover:text-skin-accent",
-                activeNav === "search" && "text-skin-accent bg-skin-accent/15"
-              )}
-              onClick={() => setIsOpen(false)}
-              aria-current={activeNav === "search" ? "page" : undefined}
-            >
-              <Search className="mr-2 h-4 w-4" aria-hidden="true" />
-              Search
-            </a>
-            <button
-              onClick={() => {
-                toggleTheme();
-                setIsOpen(false);
-              }}
-              className="flex items-center w-full px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-skin-accent/15 hover:text-skin-accent focus:outline-none focus:ring-2 focus:ring-skin-accent/50"
-              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-            >
-              {theme === "light" ? (
-                <>
-                  <Moon className="mr-2 h-4 w-4" aria-hidden="true" />
-                  Dark Mode
-                </>
-              ) : (
-                <>
-                  <Sun className="mr-2 h-4 w-4" aria-hidden="true" />
-                  Light Mode
-                </>
-              )}
-            </button>
+                href="/posts/"
+                className={cn(
+                  "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
+                  "hover:bg-skin-accent/15 hover:text-skin-accent",
+                  activeNav === "posts" && "text-skin-accent bg-skin-accent/15"
+                )}
+                onClick={() => setIsOpen(false)}
+                aria-current={activeNav === "posts" ? "page" : undefined}
+              >
+                <NotificationBadge show={hasNewPosts}>Posts</NotificationBadge>
+              </a>
+              <a
+                href="/tags/"
+                className={cn(
+                  "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
+                  "hover:bg-skin-accent/15 hover:text-skin-accent",
+                  activeNav === "tags" && "text-skin-accent bg-skin-accent/15"
+                )}
+                onClick={() => setIsOpen(false)}
+                aria-current={activeNav === "tags" ? "page" : undefined}
+              >
+                Tags
+              </a>
+              <a
+                href="/about/"
+                className={cn(
+                  "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
+                  "hover:bg-skin-accent/15 hover:text-skin-accent",
+                  activeNav === "about" && "text-skin-accent bg-skin-accent/15"
+                )}
+                onClick={() => setIsOpen(false)}
+                aria-current={activeNav === "about" ? "page" : undefined}
+              >
+                About
+              </a>
+              <a
+                href="/search/"
+                className={cn(
+                  "flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
+                  "hover:bg-skin-accent/15 hover:text-skin-accent",
+                  activeNav === "search" && "text-skin-accent bg-skin-accent/15"
+                )}
+                onClick={() => setIsOpen(false)}
+                aria-current={activeNav === "search" ? "page" : undefined}
+              >
+                <Search className="mr-2 h-4 w-4" aria-hidden="true" />
+                Search
+              </a>
+              <button
+                onClick={() => {
+                  toggleTheme();
+                  setIsOpen(false);
+                }}
+                className="flex items-center w-full px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-skin-accent/15 hover:text-skin-accent focus:outline-none focus:ring-2 focus:ring-skin-accent/50"
+                aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              >
+                {theme === "light" ? (
+                  <>
+                    <Moon className="mr-2 h-4 w-4" aria-hidden="true" />
+                    Dark Mode
+                  </>
+                ) : (
+                  <>
+                    <Sun className="mr-2 h-4 w-4" aria-hidden="true" />
+                    Light Mode
+                  </>
+                )}
+              </button>
             </StaggerChildren>
           </div>
         </SlideIn>
