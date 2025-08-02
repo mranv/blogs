@@ -215,7 +215,8 @@
 
 .enhanced-button::before {
   content: '';
-  @apply absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform translate-x-[-200%] transition-transform duration-700;
+  @apply absolute inset-0 bg-gradient-to-r from-white via-white to-white transform translate-x-[-200%] transition-transform duration-700;
+  opacity: 0.2;
 }
 
 .enhanced-button:hover::before {
@@ -1078,3 +1079,61 @@ footer p {
     @apply text-base;
   }
 }
+
+/* ===== TAG CLOUD STYLES ===== */
+/* Dynamic tag cloud styles for components */
+.tag-cloud-circular {
+  @apply relative;
+}
+
+.tag-cloud-item {
+  @apply absolute transform -translate-x-1/2 -translate-y-1/2;
+  @apply transition-all duration-300 hover:scale-110;
+}
+
+.tag-popularity-bar {
+  @apply absolute inset-0 bg-gradient-to-r from-primary to-transparent;
+  @apply transition-all duration-500;
+  opacity: 0.1;
+}
+
+/* Tag trending styles */
+.tag-trending {
+  @apply flex items-center justify-between p-3;
+  @apply bg-gradient-to-r from-orange-500 to-red-500;
+  @apply rounded-lg border border-orange-500/20;
+  @apply hover:shadow-md transition-all duration-300 hover:scale-[1.02];
+  opacity: 0.05;
+}
+
+.tag-popular {
+  @apply relative overflow-hidden p-3;
+  @apply bg-card rounded-lg border;
+  @apply hover:shadow-md transition-all duration-300 hover:scale-[1.02] cursor-pointer;
+  /* Add group class separately since it can't be used with @apply */
+  /* The group class should be added directly to the HTML element */
+}
+
+/* Progress bar width utilities */
+.w-10p { width: 10%; }
+.w-20p { width: 20%; }
+.w-30p { width: 30%; }
+.w-40p { width: 40%; }
+.w-50p { width: 50%; }
+.w-60p { width: 60%; }
+.w-70p { width: 70%; }
+.w-80p { width: 80%; }
+.w-90p { width: 90%; }
+.w-100p { width: 100%; }
+
+/* Floating particle animations */
+.particle-float {
+  @apply absolute w-1 h-1 bg-primary/20 rounded-full;
+  animation: float 10s ease-in-out infinite;
+}
+
+.particle-float-1 { animation-delay: 0s; left: 20%; }
+.particle-float-2 { animation-delay: 2s; left: 50%; }
+.particle-float-3 { animation-delay: 4s; left: 80%; }
+.particle-float-4 { animation-delay: 6s; left: 35%; }
+.particle-float-5 { animation-delay: 8s; left: 65%; }

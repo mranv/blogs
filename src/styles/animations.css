@@ -1018,6 +1018,30 @@
 .animate-typing { animation: terminalTyping 2s steps(40) both; }
 .animate-glitch { animation: cyberGlitch 0.5s ease-in-out; }
 
+/* Animation delay utilities */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+.animate-delay-500 { animation-delay: 0.5s; }
+.animate-delay-600 { animation-delay: 0.6s; }
+.animate-delay-700 { animation-delay: 0.7s; }
+.animate-delay-800 { animation-delay: 0.8s; }
+.animate-delay-900 { animation-delay: 0.9s; }
+.animate-delay-1000 { animation-delay: 1s; }
+
+/* Stagger animation delays */
+.stagger-delay-50 { animation-delay: 50ms; }
+.stagger-delay-100 { animation-delay: 100ms; }
+.stagger-delay-150 { animation-delay: 150ms; }
+.stagger-delay-200 { animation-delay: 200ms; }
+.stagger-delay-250 { animation-delay: 250ms; }
+.stagger-delay-300 { animation-delay: 300ms; }
+.stagger-delay-350 { animation-delay: 350ms; }
+.stagger-delay-400 { animation-delay: 400ms; }
+.stagger-delay-450 { animation-delay: 450ms; }
+.stagger-delay-500 { animation-delay: 500ms; }
+
 /* Hover utilities */
 .hover-lift:hover { transform: translateY(-4px); }
 .hover-glow:hover { box-shadow: 0 0 20px rgba(var(--color-cyber-green), 0.3); }

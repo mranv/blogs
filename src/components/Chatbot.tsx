@@ -415,14 +415,8 @@ Type /help to see available commands or just type any topic to search!`,
                     <Bot className="h-4 w-4 text-primary" />
                     <div className="flex space-x-1">
                       <div className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce"></div>
-                      <div
-                        className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce"
-                        style={{ animationDelay: "0.1s" }}
-                      ></div>
-                      <div
-                        className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce"
-                        style={{ animationDelay: "0.2s" }}
-                      ></div>
+                      <div className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce animate-delay-100"></div>
+                      <div className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce animate-delay-200"></div>
                     </div>
                   </div>
                 </div>
