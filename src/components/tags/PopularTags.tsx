@@ -99,9 +99,6 @@ export function PopularTags({
           </p>
           <div className="space-y-2">
             {trendingTags.map((tag, index) => {
-              const variant = getTagVariantByCategory(
-                tag.category || "general"
-              );
               return (
                 <div
                   key={tag.tag}
@@ -163,9 +160,6 @@ export function PopularTags({
           </p>
           <div className="space-y-2">
             {popularTags.map((tag, index) => {
-              const variant = getTagVariantByCategory(
-                tag.category || "general"
-              );
               const popularityPercentage = Math.round(tag.popularity * 100);
 
               return (

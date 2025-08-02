@@ -1,7 +1,7 @@
 import React from "react";
-import { Badge, badgeVariants } from "@components/ui/badge";
+import { Badge } from "@components/ui/badge";
 import { cn } from "@utils/cn";
-import type { EnhancedTagProps, TagSize, TagVariant } from "./types";
+import type { EnhancedTagProps, TagSize, TagWithStats } from "./types";
 
 // Size mappings for enhanced visual hierarchy
 const tagSizes: Record<TagSize, string> = {
@@ -41,7 +41,7 @@ export function EnhancedTag({
   ...props
 }: EnhancedTagProps) {
   const isClickable = interactive && (onClick || tag.tag);
-  const tagStats = "count" in tag ? tag : null;
+  const tagStats = "count" in tag ? (tag as TagWithStats) : null;
 
   const handleClick = (e: React.MouseEvent) => {
     if (onClick) {

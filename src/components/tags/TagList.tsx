@@ -48,8 +48,6 @@ export function TagList({
   filterOptions = {},
   showFilters = true,
   groupByCategory = false,
-  sortable = true,
-  searchable = true,
   className,
   onTagClick,
   onFilterChange,
