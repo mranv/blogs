@@ -498,8 +498,8 @@ const {
         window.addEventListener("load", () => {
           navigator.serviceWorker
             .register("/sw.js")
-            .then(_registration => console.log("Service Worker registered"))
-            .catch(_err => console.log("Service Worker registration failed"));
+            .then(() => console.log("Service Worker registered"))
+            .catch(() => console.log("Service Worker registration failed"));
         });
       }
     </script>

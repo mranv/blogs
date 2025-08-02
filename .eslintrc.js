@@ -13,6 +13,12 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
+  rules: {
+    "no-case-declarations": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "warn",
+    "@typescript-eslint/triple-slash-reference": "off",
+  },
   overrides: [
     {
       files: ["*.astro"],
@@ -28,6 +34,7 @@ module.exports = {
           "error",
           { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
         ],
+        "no-case-declarations": "off",
       },
     },
     {
@@ -42,6 +49,7 @@ module.exports = {
           "error",
           { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
         ],
+        "no-case-declarations": "off",
       },
     },
   ],

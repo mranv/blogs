@@ -525,19 +525,6 @@ const featuredTechnologies = [
     });
   }
 
-  // Loading states with skeleton components
-  function showLoadingStates() {
-    const contentSections = document.querySelectorAll("[data-loading-section]");
-    contentSections.forEach(section => {
-      const skeletonHTML = `
-        <div class="animate-pulse rounded-md bg-muted h-6 mb-4"></div>
-        <div class="animate-pulse rounded-md bg-muted h-4 mb-2 w-3/4"></div>
-        <div class="animate-pulse rounded-md bg-muted h-4 w-1/2"></div>
-      `;
-      section.innerHTML = skeletonHTML;
-    });
-  }
-
   // Enhanced accessibility
   document.addEventListener("DOMContentLoaded", function () {
     // Add ARIA labels for interactive elements
