@@ -47,7 +47,7 @@ export default function Chatbot({ searchList }: ChatbotProps) {
 
 Popular topics include: ${allTags.slice(0, 10).join(", ")}${allTags.length > 10 ? "..." : ""}
 
-What topic are you interested in?`,
+Type /help to see available commands or just type any topic to search!`,
         isBot: true,
         timestamp: new Date(),
       };
@@ -253,6 +253,23 @@ Just type any topic you're interested in!`,
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
+
+    // Check if it's the clear command
+    if (inputValue.toLowerCase() === "/clear") {
+      setMessages([]);
+      setInputValue("");
+      // Add welcome message again after clearing
+      const welcomeMessage: Message = {
+        id: Date.now().toString(),
+        text: `Chat cleared! How can I help you find articles today?
+
+Type /help to see available commands or just type any topic to search!`,
+        isBot: true,
+        timestamp: new Date(),
+      };
+      setMessages([welcomeMessage]);
+      return;
+    }
 
     const userMessage: Message = {
       id: Date.now().toString(),
