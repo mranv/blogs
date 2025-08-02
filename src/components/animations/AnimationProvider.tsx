@@ -139,7 +139,7 @@ export interface AnimationProviderProps {
 /**
  * Animation Provider Component
  */
-export const AnimationProvider: React.FC<AnimationProviderProps> = ({
+const AnimationProvider: React.FC<AnimationProviderProps> = ({
   children,
   config: userConfig = {},
 }) => {
@@ -396,7 +396,7 @@ export const AnimationProvider: React.FC<AnimationProviderProps> = ({
 /**
  * Hook to use animation context
  */
-function useAnimation(): AnimationContextType {
+const useAnimation = (): AnimationContextType => {
   const context = useContext(AnimationContext);
 
   if (!context) {
@@ -418,14 +418,12 @@ function useAnimation(): AnimationContextType {
   }
 
   return context;
-}
-
-export { useAnimation };
+};
 
 /**
  * Hook for simplified animation state
  */
-function useAnimationState() {
+const useAnimationState = () => {
   const {
     prefersReducedMotion,
     isScrolling,
@@ -441,14 +439,12 @@ function useAnimationState() {
     shouldAnimateElement,
     getOptimalDuration,
   };
-}
-
-export { useAnimationState };
+};
 
 /**
  * Hook for animation performance metrics
  */
-function useAnimationPerformance() {
+const useAnimationPerformance = () => {
   const { performanceMetrics, activeAnimations, reportPerformanceIssue } =
     useAnimation();
 
@@ -457,14 +453,12 @@ function useAnimationPerformance() {
     activeAnimations,
     reportPerformanceIssue,
   };
-}
-
-export { useAnimationPerformance };
+};
 
 /**
  * Higher-order component for animation context
  */
-export const withAnimation = <P extends object>(
+const withAnimation = <P extends object>(
   Component: React.ComponentType<P>
 ): React.ComponentType<P & { animationConfig?: Partial<AnimationConfig> }> => {
   return ({ animationConfig, ...props }) => (
@@ -472,6 +466,14 @@ export const withAnimation = <P extends object>(
       <Component {...(props as P)} />
     </AnimationProvider>
   );
+};
+
+export {
+  AnimationProvider,
+  useAnimation,
+  useAnimationState,
+  useAnimationPerformance,
+  withAnimation,
 };
 
 export default AnimationProvider;

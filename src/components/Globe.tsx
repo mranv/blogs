@@ -20,7 +20,7 @@ interface GlobeProps {
   rotationSpeed?: number;
 }
 
-export const Globe: React.FC<GlobeProps> = ({
+const Globe: React.FC<GlobeProps> = ({
   className,
   size = 600,
   theme = "light",
@@ -107,16 +107,43 @@ export const Globe: React.FC<GlobeProps> = ({
     };
   }, [size, theme, autoRotate, rotationSpeed]);
 
-  // Update theme when it changes
+  // Note: cobe globe doesn't have an updateConfig method
+  // Theme changes will require re-initialization of the globe
   useEffect(() => {
     if (globeRef.current) {
-      // Update globe colors based on theme
-      globeRef.current.updateConfig({
-        dark: theme === "dark" ? 1 : 0,
-        baseColor: currentColors.baseColor,
-        markerColor: currentColors.markerColor,
-        glowColor: currentColors.glowColor,
-      });
+      // Re-initialize globe when theme changes
+      const canvas = canvasRef.current;
+      if (canvas) {
+        globeRef.current.destroy();
+
+        globeRef.current = createGlobe(canvas, {
+          devicePixelRatio: 2,
+          width: size * 2,
+          height: size * 2,
+          phi: phiRef.current,
+          theta: 0.3,
+          dark: theme === "dark" ? 1 : 0,
+          diffuse: 1.2,
+          mapSamples: 16000,
+          mapBrightness: 6,
+          baseColor: currentColors.baseColor,
+          markerColor: currentColors.markerColor,
+          glowColor: currentColors.glowColor,
+          markers: markers.map(marker => ({
+            location: marker.location,
+            size: marker.size,
+            color: marker.color || currentColors.markerColor,
+          })),
+          onRender: state => {
+            if (autoRotate) {
+              phiRef.current += rotationSpeed;
+              state.phi = phiRef.current;
+            }
+            // Slight theta oscillation for dynamic effect
+            state.theta = 0.3 + Math.sin(phiRef.current * 0.5) * 0.1;
+          },
+        });
+      }
     }
   }, [theme]);
 

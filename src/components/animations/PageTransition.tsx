@@ -59,7 +59,7 @@ export interface RouteTransitionProps
 /**
  * PageTransition Component
  */
-export const PageTransition = forwardRef<HTMLDivElement, PageTransitionProps>(
+const PageTransition = forwardRef<HTMLDivElement, PageTransitionProps>(
   (
     {
       children,
@@ -162,7 +162,7 @@ PageTransition.displayName = "PageTransition";
 /**
  * PageLoader Component
  */
-export const PageLoader = forwardRef<HTMLDivElement, PageLoaderProps>(
+const PageLoader = forwardRef<HTMLDivElement, PageLoaderProps>(
   (
     {
       type = "spinner",
@@ -280,7 +280,7 @@ PageLoader.displayName = "PageLoader";
 /**
  * RouteTransition Component - For route changes
  */
-export const RouteTransition = forwardRef<HTMLDivElement, RouteTransitionProps>(
+const RouteTransition = forwardRef<HTMLDivElement, RouteTransitionProps>(
   ({ children, from, to, trigger = false, ...transitionProps }, ref) => {
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [currentChildren, setCurrentChildren] = useState(children);
@@ -335,7 +335,7 @@ export interface ViewTransitionWrapperProps {
   style?: React.CSSProperties;
 }
 
-export const ViewTransitionWrapper = forwardRef<
+const ViewTransitionWrapper = forwardRef<
   HTMLDivElement,
   ViewTransitionWrapperProps
 >(({ children, name, className, style }, ref) => {
@@ -367,7 +367,7 @@ export interface TransitionGroupProps {
   style?: React.CSSProperties;
 }
 
-export const TransitionGroup = forwardRef<HTMLDivElement, TransitionGroupProps>(
+const TransitionGroup = forwardRef<HTMLDivElement, TransitionGroupProps>(
   ({ children, mode = "out-in", className, style }, ref) => {
     return (
       <div
@@ -390,10 +390,10 @@ TransitionGroup.displayName = "TransitionGroup";
 /**
  * Utility function to trigger programmatic page transitions
  */
-function triggerPageTransition(
+const triggerPageTransition = (
   type: PageTransitionType = "fade",
   duration: number = 500
-): Promise<void> {
+): Promise<void> => {
   return new Promise(resolve => {
     // Add transition class to body
     document.body.classList.add(`page-transition-${type}-out`);
@@ -408,14 +408,12 @@ function triggerPageTransition(
       }, duration);
     }, duration / 2);
   });
-}
-
-export { triggerPageTransition };
+};
 
 /**
  * Hook for managing page transitions
  */
-function usePageTransition(type: PageTransitionType = "fade") {
+const usePageTransition = (type: PageTransitionType = "fade") => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const startTransition = async (callback?: () => void) => {
@@ -431,6 +429,16 @@ function usePageTransition(type: PageTransitionType = "fade") {
     isTransitioning,
     startTransition,
   };
-}
+};
+
+export {
+  PageTransition,
+  PageLoader,
+  RouteTransition,
+  ViewTransitionWrapper,
+  TransitionGroup,
+  triggerPageTransition,
+  usePageTransition,
+};
 
 export default PageTransition;
