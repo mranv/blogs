@@ -345,7 +345,7 @@ test.describe('Component Functionality Tests', () => {
   });
 });
 
-function greaterThan(expected: number) {
+function _greaterThan(expected: number) {
   return {
     pass: (actual: number) => actual > expected,
     message: () => `expected ${expected} to be greater than ${expected}`

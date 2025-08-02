@@ -16,7 +16,7 @@ test.describe('Performance Tests', () => {
         domContentLoaded: number;
         windowLoad: number;
       }>((resolve) => {
-        let lcp: PerformanceEntry | undefined, fid: PerformanceEntry | undefined, cls: number = 0;
+        let lcp: PerformanceEntry | undefined, _fid: PerformanceEntry | undefined, cls: number = 0;
         
         // Largest Contentful Paint
         new PerformanceObserver((list) => {
