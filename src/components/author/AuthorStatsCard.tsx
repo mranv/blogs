@@ -1,8 +1,8 @@
 import React from "react";
 import { cn } from "@utils/cn";
-import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { Card, CardHeader, CardContent, CardTitle } from "@components/ui/card";
+import { Badge } from "@components/ui/badge";
+import { AnimatedCounter } from "@components/AnimatedCounter";
 import type { AuthorStatsCardProps } from "./types";
 
 /**

@@ -1,4 +1,4 @@
-import type { SocialObjects } from "@/types";
+import type { SocialObjects } from "@types";
 
 export interface AuthorInfo {
   name: string;
