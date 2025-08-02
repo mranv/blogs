@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import type { Component } from 'react';
+import React, { useState, useEffect } from "react";
+import type { Component } from "react";
 
 interface TestResult {
   component: string;
   test: string;
-  status: 'pass' | 'fail' | 'warning';
+  status: "pass" | "fail" | "warning";
   message: string;
   timestamp: Date;
 }
@@ -27,11 +27,13 @@ const ComponentTester: React.FC<ComponentTestProps> = ({
   componentName,
   testComponent: TestComponent,
   testProps = {},
-  tests
+  tests,
 }) => {
   const [results, setResults] = useState<TestResult[]>([]);
   const [isRunning, setIsRunning] = useState(false);
-  const [testContainer, setTestContainer] = useState<HTMLDivElement | null>(null);
+  const [testContainer, setTestContainer] = useState<HTMLDivElement | null>(
+    null
+  );
 
   const runTests = async () => {
     setIsRunning(true);
@@ -44,9 +46,9 @@ const ComponentTester: React.FC<ComponentTestProps> = ({
           newResults.push({
             component: componentName,
             test: test.name,
-            status: 'fail',
-            message: 'Test container not found',
-            timestamp: new Date()
+            status: "fail",
+            message: "Test container not found",
+            timestamp: new Date(),
           });
           continue;
         }
@@ -55,17 +57,17 @@ const ComponentTester: React.FC<ComponentTestProps> = ({
         newResults.push({
           component: componentName,
           test: test.name,
-          status: result ? 'pass' : 'fail',
+          status: result ? "pass" : "fail",
           message: result ? `✓ ${test.expectation}` : `✗ ${test.expectation}`,
-          timestamp: new Date()
+          timestamp: new Date(),
         });
       } catch (error) {
         newResults.push({
           component: componentName,
           test: test.name,
-          status: 'fail',
-          message: `Error: ${error instanceof Error ? error.message : 'Unknown error'}`,
-          timestamp: new Date()
+          status: "fail",
+          message: `Error: ${error instanceof Error ? error.message : "Unknown error"}`,
+          timestamp: new Date(),
         });
       }
     }
@@ -74,18 +76,26 @@ const ComponentTester: React.FC<ComponentTestProps> = ({
     setIsRunning(false);
   };
 
-  const getStatusColor = (status: TestResult['status']) => {
+  const getStatusColor = (status: TestResult["status"]) => {
     switch (status) {
-      case 'pass': return 'text-green-600 bg-green-50 border-green-200';
-      case 'fail': return 'text-red-600 bg-red-50 border-red-200';
-      case 'warning': return 'text-yellow-600 bg-yellow-50 border-yellow-200';
-      default: return 'text-gray-600 bg-gray-50 border-gray-200';
+      case "pass":
+        return "text-green-600 bg-green-50 border-green-200";
+      case "fail":
+        return "text-red-600 bg-red-50 border-red-200";
+      case "warning":
+        return "text-yellow-600 bg-yellow-50 border-yellow-200";
+      default:
+        return "text-gray-600 bg-gray-50 border-gray-200";
     }
   };
 
-  const passRate = results.length > 0 
-    ? Math.round((results.filter(r => r.status === 'pass').length / results.length) * 100)
-    : 0;
+  const passRate =
+    results.length > 0
+      ? Math.round(
+          (results.filter(r => r.status === "pass").length / results.length) *
+            100
+        )
+      : 0;
 
   return (
     <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6 space-y-6">
@@ -97,7 +107,10 @@ const ComponentTester: React.FC<ComponentTestProps> = ({
         <div className="flex items-center space-x-4">
           {results.length > 0 && (
             <div className="text-sm text-gray-600 dark:text-gray-400">
-              Pass Rate: <span className={`font-semibold ${passRate >= 80 ? 'text-green-600' : passRate >= 60 ? 'text-yellow-600' : 'text-red-600'}`}>
+              Pass Rate:{" "}
+              <span
+                className={`font-semibold ${passRate >= 80 ? "text-green-600" : passRate >= 60 ? "text-yellow-600" : "text-red-600"}`}
+              >
                 {passRate}%
               </span>
             </div>
@@ -105,9 +118,9 @@ const ComponentTester: React.FC<ComponentTestProps> = ({
           <button
             onClick={runTests}
             disabled={isRunning}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            {isRunning ? 'Running Tests...' : 'Run Tests'}
+            {isRunning ? "Running Tests..." : "Run Tests"}
           </button>
         </div>
       </div>
@@ -117,7 +130,7 @@ const ComponentTester: React.FC<ComponentTestProps> = ({
         <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
           Component Preview
         </h4>
-        <div 
+        <div
           ref={setTestContainer}
           className="bg-gray-50 dark:bg-gray-800 p-4 rounded border"
           data-testid={`${componentName}-test-container`}
@@ -132,7 +145,7 @@ const ComponentTester: React.FC<ComponentTestProps> = ({
           <h4 className="text-lg font-medium text-gray-900 dark:text-white">
             Test Results ({results.length} tests)
           </h4>
-          
+
           <div className="space-y-2">
             {results.map((result, index) => (
               <div
@@ -142,10 +155,15 @@ const ComponentTester: React.FC<ComponentTestProps> = ({
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <span className="font-medium">{result.test}</span>
-                    <span className={`px-2 py-1 text-xs rounded-full font-medium
-                      ${result.status === 'pass' ? 'bg-green-100 text-green-800' : 
-                        result.status === 'fail' ? 'bg-red-100 text-red-800' : 
-                        'bg-yellow-100 text-yellow-800'}`}
+                    <span
+                      className={`px-2 py-1 text-xs rounded-full font-medium
+                      ${
+                        result.status === "pass"
+                          ? "bg-green-100 text-green-800"
+                          : result.status === "fail"
+                            ? "bg-red-100 text-red-800"
+                            : "bg-yellow-100 text-yellow-800"
+                      }`}
                     >
                       {result.status.toUpperCase()}
                     </span>
@@ -171,7 +189,7 @@ const ComponentTester: React.FC<ComponentTestProps> = ({
             <div key={index} className="text-sm">
               <span className="font-medium text-gray-900 dark:text-white">
                 {test.name}:
-              </span>{' '}
+              </span>{" "}
               <span className="text-gray-600 dark:text-gray-400">
                 {test.description}
               </span>
@@ -187,20 +205,25 @@ const ComponentTester: React.FC<ComponentTestProps> = ({
 export const commonTests = {
   // Accessibility tests
   hasAriaLabel: (element: HTMLElement) => {
-    const interactiveElements = element.querySelectorAll('button, a, input, select, textarea');
-    return Array.from(interactiveElements).every(el => 
-      el.getAttribute('aria-label') || 
-      el.getAttribute('aria-labelledby') || 
-      el.textContent?.trim()
+    const interactiveElements = element.querySelectorAll(
+      "button, a, input, select, textarea"
+    );
+    return Array.from(interactiveElements).every(
+      el =>
+        el.getAttribute("aria-label") ||
+        el.getAttribute("aria-labelledby") ||
+        el.textContent?.trim()
     );
   },
 
   // Responsive tests
   isResponsive: (element: HTMLElement) => {
     const computedStyle = window.getComputedStyle(element);
-    return computedStyle.display === 'flex' || 
-           computedStyle.display === 'grid' || 
-           element.querySelector('[class*="responsive"]') !== null;
+    return (
+      computedStyle.display === "flex" ||
+      computedStyle.display === "grid" ||
+      element.querySelector('[class*="responsive"]') !== null
+    );
   },
 
   // Performance tests
@@ -208,49 +231,54 @@ export const commonTests = {
     const start = performance.now();
     await new Promise(resolve => requestAnimationFrame(resolve));
     const end = performance.now();
-    return (end - start) < 16; // Should render within one frame (16ms)
+    return end - start < 16; // Should render within one frame (16ms)
   },
 
   // Content tests
   hasContent: (element: HTMLElement) => {
-    return element.textContent?.trim().length > 0 || 
-           element.querySelector('img, svg, video') !== null;
+    return (
+      element.textContent?.trim().length > 0 ||
+      element.querySelector("img, svg, video") !== null
+    );
   },
 
   // Theme tests
   supportsThemes: (element: HTMLElement) => {
-    return element.classList.contains('dark') || 
-           element.querySelector('.dark') !== null ||
-           window.getComputedStyle(element).getPropertyValue('--theme-color') !== '';
-  }
+    return (
+      element.classList.contains("dark") ||
+      element.querySelector(".dark") !== null ||
+      window.getComputedStyle(element).getPropertyValue("--theme-color") !== ""
+    );
+  },
 };
 
 // Default test suite for components
 export const createDefaultTests = (componentName: string): ComponentTest[] => [
   {
-    name: 'Accessibility',
-    description: 'Component has proper ARIA labels and accessibility attributes',
+    name: "Accessibility",
+    description:
+      "Component has proper ARIA labels and accessibility attributes",
     test: commonTests.hasAriaLabel,
-    expectation: 'All interactive elements should have proper labels'
+    expectation: "All interactive elements should have proper labels",
   },
   {
-    name: 'Content',
-    description: 'Component renders visible content',
+    name: "Content",
+    description: "Component renders visible content",
     test: commonTests.hasContent,
-    expectation: 'Component should display text, images, or other content'
+    expectation: "Component should display text, images, or other content",
   },
   {
-    name: 'Performance',
-    description: 'Component renders quickly',
+    name: "Performance",
+    description: "Component renders quickly",
     test: commonTests.rendersQuickly,
-    expectation: 'Component should render within 16ms'
+    expectation: "Component should render within 16ms",
   },
   {
-    name: 'Theme Support',
-    description: 'Component supports dark/light themes',
+    name: "Theme Support",
+    description: "Component supports dark/light themes",
     test: commonTests.supportsThemes,
-    expectation: 'Component should adapt to theme changes'
-  }
+    expectation: "Component should adapt to theme changes",
+  },
 ];
 
 export default ComponentTester;

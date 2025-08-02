@@ -7,6 +7,18 @@ function withOpacity(variableName) {
   };
 }
 
+// Function for OKLCH colors with opacity
+function withOklchOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      // For OKLCH colors, we need to handle opacity differently
+      // Since OKLCH doesn't support alpha directly in the same way as RGB
+      return `color-mix(in srgb, var(${variableName}) ${opacityValue * 100}%, transparent)`;
+    }
+    return `var(${variableName})`;
+  };
+}
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -48,6 +60,26 @@ module.exports = {
           success: withOpacity("--color-success"),
           warning: withOpacity("--color-warning"),
         },
+        // New OKLCH color system
+        primary: withOklchOpacity("--primary"),
+        "primary-foreground": withOklchOpacity("--primary-foreground"),
+        secondary: withOklchOpacity("--secondary"),
+        "secondary-foreground": withOklchOpacity("--secondary-foreground"),
+        muted: withOklchOpacity("--muted"),
+        "muted-foreground": withOklchOpacity("--muted-foreground"),
+        accent: withOklchOpacity("--accent"),
+        "accent-foreground": withOklchOpacity("--accent-foreground"),
+        destructive: withOklchOpacity("--destructive"),
+        "destructive-foreground": withOklchOpacity("--destructive-foreground"),
+        border: withOklchOpacity("--border"),
+        input: withOklchOpacity("--input"),
+        ring: withOklchOpacity("--ring"),
+        background: withOklchOpacity("--background"),
+        foreground: withOklchOpacity("--foreground"),
+        card: withOklchOpacity("--card"),
+        "card-foreground": withOklchOpacity("--card-foreground"),
+        popover: withOklchOpacity("--popover"),
+        "popover-foreground": withOklchOpacity("--popover-foreground"),
       },
       backgroundColor: {
         skin: {
@@ -60,12 +92,52 @@ module.exports = {
           success: withOpacity("--color-success"),
           warning: withOpacity("--color-warning"),
         },
+        // New OKLCH color system
+        primary: withOklchOpacity("--primary"),
+        "primary-foreground": withOklchOpacity("--primary-foreground"),
+        secondary: withOklchOpacity("--secondary"),
+        "secondary-foreground": withOklchOpacity("--secondary-foreground"),
+        muted: withOklchOpacity("--muted"),
+        "muted-foreground": withOklchOpacity("--muted-foreground"),
+        accent: withOklchOpacity("--accent"),
+        "accent-foreground": withOklchOpacity("--accent-foreground"),
+        destructive: withOklchOpacity("--destructive"),
+        "destructive-foreground": withOklchOpacity("--destructive-foreground"),
+        border: withOklchOpacity("--border"),
+        input: withOklchOpacity("--input"),
+        ring: withOklchOpacity("--ring"),
+        background: withOklchOpacity("--background"),
+        foreground: withOklchOpacity("--foreground"),
+        card: withOklchOpacity("--card"),
+        "card-foreground": withOklchOpacity("--card-foreground"),
+        popover: withOklchOpacity("--popover"),
+        "popover-foreground": withOklchOpacity("--popover-foreground"),
       },
       outlineColor: {
         skin: {
           fill: withOpacity("--color-accent"),
           accent: withOpacity("--color-accent"),
         },
+        // New OKLCH color system
+        primary: withOklchOpacity("--primary"),
+        "primary-foreground": withOklchOpacity("--primary-foreground"),
+        secondary: withOklchOpacity("--secondary"),
+        "secondary-foreground": withOklchOpacity("--secondary-foreground"),
+        muted: withOklchOpacity("--muted"),
+        "muted-foreground": withOklchOpacity("--muted-foreground"),
+        accent: withOklchOpacity("--accent"),
+        "accent-foreground": withOklchOpacity("--accent-foreground"),
+        destructive: withOklchOpacity("--destructive"),
+        "destructive-foreground": withOklchOpacity("--destructive-foreground"),
+        border: withOklchOpacity("--border"),
+        input: withOklchOpacity("--input"),
+        ring: withOklchOpacity("--ring"),
+        background: withOklchOpacity("--background"),
+        foreground: withOklchOpacity("--foreground"),
+        card: withOklchOpacity("--card"),
+        "card-foreground": withOklchOpacity("--card-foreground"),
+        popover: withOklchOpacity("--popover"),
+        "popover-foreground": withOklchOpacity("--popover-foreground"),
       },
       borderColor: {
         skin: {
@@ -73,18 +145,78 @@ module.exports = {
           fill: withOpacity("--color-text-base"),
           accent: withOpacity("--color-accent"),
         },
+        // New OKLCH color system
+        primary: withOklchOpacity("--primary"),
+        "primary-foreground": withOklchOpacity("--primary-foreground"),
+        secondary: withOklchOpacity("--secondary"),
+        "secondary-foreground": withOklchOpacity("--secondary-foreground"),
+        muted: withOklchOpacity("--muted"),
+        "muted-foreground": withOklchOpacity("--muted-foreground"),
+        accent: withOklchOpacity("--accent"),
+        "accent-foreground": withOklchOpacity("--accent-foreground"),
+        destructive: withOklchOpacity("--destructive"),
+        "destructive-foreground": withOklchOpacity("--destructive-foreground"),
+        border: withOklchOpacity("--border"),
+        input: withOklchOpacity("--input"),
+        ring: withOklchOpacity("--ring"),
+        background: withOklchOpacity("--background"),
+        foreground: withOklchOpacity("--foreground"),
+        card: withOklchOpacity("--card"),
+        "card-foreground": withOklchOpacity("--card-foreground"),
+        popover: withOklchOpacity("--popover"),
+        "popover-foreground": withOklchOpacity("--popover-foreground"),
       },
       fill: {
         skin: {
           base: withOpacity("--color-text-base"),
           accent: withOpacity("--color-accent"),
         },
+        // New OKLCH color system
+        primary: withOklchOpacity("--primary"),
+        "primary-foreground": withOklchOpacity("--primary-foreground"),
+        secondary: withOklchOpacity("--secondary"),
+        "secondary-foreground": withOklchOpacity("--secondary-foreground"),
+        muted: withOklchOpacity("--muted"),
+        "muted-foreground": withOklchOpacity("--muted-foreground"),
+        accent: withOklchOpacity("--accent"),
+        "accent-foreground": withOklchOpacity("--accent-foreground"),
+        destructive: withOklchOpacity("--destructive"),
+        "destructive-foreground": withOklchOpacity("--destructive-foreground"),
+        border: withOklchOpacity("--border"),
+        input: withOklchOpacity("--input"),
+        ring: withOklchOpacity("--ring"),
+        background: withOklchOpacity("--background"),
+        foreground: withOklchOpacity("--foreground"),
+        card: withOklchOpacity("--card"),
+        "card-foreground": withOklchOpacity("--card-foreground"),
+        popover: withOklchOpacity("--popover"),
+        "popover-foreground": withOklchOpacity("--popover-foreground"),
         transparent: "transparent",
       },
       ringColor: {
         skin: {
           accent: withOpacity("--color-accent"),
         },
+        // New OKLCH color system
+        primary: withOklchOpacity("--primary"),
+        "primary-foreground": withOklchOpacity("--primary-foreground"),
+        secondary: withOklchOpacity("--secondary"),
+        "secondary-foreground": withOklchOpacity("--secondary-foreground"),
+        muted: withOklchOpacity("--muted"),
+        "muted-foreground": withOklchOpacity("--muted-foreground"),
+        accent: withOklchOpacity("--accent"),
+        "accent-foreground": withOklchOpacity("--accent-foreground"),
+        destructive: withOklchOpacity("--destructive"),
+        "destructive-foreground": withOklchOpacity("--destructive-foreground"),
+        border: withOklchOpacity("--border"),
+        input: withOklchOpacity("--input"),
+        ring: withOklchOpacity("--ring"),
+        background: withOklchOpacity("--background"),
+        foreground: withOklchOpacity("--foreground"),
+        card: withOklchOpacity("--card"),
+        "card-foreground": withOklchOpacity("--card-foreground"),
+        popover: withOklchOpacity("--popover"),
+        "popover-foreground": withOklchOpacity("--popover-foreground"),
       },
       fontFamily: {
         sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Arial", "sans-serif"],

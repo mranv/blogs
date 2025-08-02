@@ -19,7 +19,7 @@
   
   /* Cybersecurity theme colors */
   --color-cyber-green: #00ff41;
-  --color-cyber-blue: #0099ff;
+  --color-cyber-blue: hsl(var(--primary));
   --color-cyber-red: #ff0040;
   --color-cyber-orange: #ff6600;
   --color-matrix-green: #8fbc8f;

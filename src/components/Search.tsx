@@ -5,7 +5,12 @@ import { Input } from "@components/ui/input";
 import { Badge } from "@components/ui/badge";
 import { Skeleton } from "@components/ui/skeleton";
 import SearchSkeleton from "@components/skeletons/SearchSkeleton";
-import { FadeIn, ScaleIn, StaggerChildren, SlideIn } from "@components/animations";
+import {
+  FadeIn,
+  ScaleIn,
+  StaggerChildren,
+  SlideIn,
+} from "@components/animations";
 import type { CollectionEntry } from "astro:content";
 
 export type SearchItem = {
@@ -274,15 +279,15 @@ export default function SearchBar({
   };
 
   return (
-    <FadeIn 
-      direction="up" 
+    <FadeIn
+      direction="up"
       duration={600}
       disabled={disableAnimations}
       className={className}
     >
       {/* Command Palette Style Search Interface */}
-      <ScaleIn 
-        variant="subtle" 
+      <ScaleIn
+        variant="scale"
         duration={500}
         disabled={disableAnimations}
         className="relative"
@@ -310,7 +315,7 @@ export default function SearchBar({
             ref={inputRef}
             className="w-full h-14 pl-12 pr-20 text-base rounded-xl border-border/40 bg-card/60 backdrop-blur-sm 
                      placeholder:italic placeholder:text-muted-foreground/60 text-foreground
-                     focus:border-primary/50 focus:bg-card/80 focus:ring-2 focus:ring-primary/20
+                     focus:border-primary/50 focus:bg-card/80 focus:ring-2 focus:ring-primary
                      transition-all duration-300 hover:border-border/60 hover:bg-card/70
                      shadow-sm hover:shadow-md focus:shadow-lg"
             placeholder="Search articles, topics, technologies... (Ctrl+K)"
@@ -337,8 +342,8 @@ export default function SearchBar({
 
         {/* Search Suggestions Dropdown */}
         {showSuggestions && getSuggestions().length > 0 && (
-          <SlideIn 
-            direction="down" 
+          <SlideIn
+            direction="down"
             duration={300}
             disabled={disableAnimations}
             className="absolute top-full left-0 right-0 mt-2 bg-card border border-border/40 rounded-xl shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-y-auto"
@@ -386,8 +391,8 @@ export default function SearchBar({
 
       {/* Category Filters */}
       {inputVal.length > 0 && categoryFilters.length > 0 && (
-        <SlideIn 
-          direction="up" 
+        <SlideIn
+          direction="up"
           delay={200}
           disabled={disableAnimations}
           className="mt-6"
@@ -421,8 +426,8 @@ export default function SearchBar({
 
       {/* Search Results Header */}
       {inputVal.length > 1 && (
-        <FadeIn 
-          direction="up" 
+        <FadeIn
+          direction="up"
           delay={300}
           disabled={disableAnimations}
           className="mt-6"
@@ -551,7 +556,7 @@ export default function SearchBar({
           </div>
         ) : (
           /* Search Results */
-          <StaggerChildren 
+          <StaggerChildren
             animation="slide-up"
             staggerDelay={100}
             duration={500}

@@ -7,7 +7,7 @@ const authorImage = "/assets/gainsaheb.jpg";
 
 <!-- Enhanced Author Box for better SEO and user engagement -->
 <div
-  class="author-box bg-skin-card p-6 rounded-lg border border-skin-line my-8 animate-fade-up"
+  class="author-box bg-card p-6 rounded-lg border border-border my-8 animate-fade-up"
   itemscope
   itemtype="https://schema.org/Person"
 >
@@ -25,15 +25,15 @@ const authorImage = "/assets/gainsaheb.jpg";
 
     <!-- Author Info -->
     <div class="flex-1 text-center sm:text-left">
-      <h3 class="text-xl font-bold text-skin-accent mb-2" itemprop="name">
+      <h3 class="text-xl font-bold text-primary mb-2" itemprop="name">
         {authorName}
       </h3>
-      <p class="text-sm text-skin-muted mb-3" itemprop="jobTitle">
+      <p class="text-sm text-muted-foreground mb-3" itemprop="jobTitle">
         DevSecOps Engineer & Cybersecurity Expert
       </p>
 
       <p
-        class="text-sm text-skin-base leading-relaxed mb-4"
+        class="text-sm text-foreground leading-relaxed mb-4"
         itemprop="description"
       >
         {authorName} is a leading DevSecOps Engineer specializing in cloud security
@@ -52,7 +52,7 @@ const authorImage = "/assets/gainsaheb.jpg";
           ).map(social => (
             <a
               href={social.href}
-              class="inline-flex items-center gap-2 text-xs bg-skin-accent text-skin-inverted px-3 py-1 rounded-full hover:opacity-80 transition-opacity"
+              class="inline-flex items-center gap-2 text-xs bg-primary text-primary-foreground px-3 py-1 rounded-full hover:opacity-80 transition-opacity"
               target="_blank"
               rel="noopener noreferrer"
               itemprop="sameAs"
@@ -63,7 +63,7 @@ const authorImage = "/assets/gainsaheb.jpg";
         }
         <a
           href="/about/"
-          class="inline-flex items-center gap-2 text-xs bg-skin-fill border border-skin-line text-skin-base px-3 py-1 rounded-full hover:bg-skin-accent hover:text-skin-inverted transition-colors"
+          class="inline-flex items-center gap-2 text-xs bg-background border border-border text-foreground px-3 py-1 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
         >
           About {authorName}
         </a>

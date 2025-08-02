@@ -190,7 +190,7 @@ export const tagCloudStyles = `
   .tag-cloud--rainbow .rainbow-tag-1 { --tag-color: #f97316; }
   .tag-cloud--rainbow .rainbow-tag-2 { --tag-color: #eab308; }
   .tag-cloud--rainbow .rainbow-tag-3 { --tag-color: #22c55e; }
-  .tag-cloud--rainbow .rainbow-tag-4 { --tag-color: #3b82f6; }
+      .tag-cloud--rainbow .rainbow-tag-4 { --tag-color: hsl(var(--primary)); }
   .tag-cloud--rainbow .rainbow-tag-5 { --tag-color: #a855f7; }
   
   @keyframes fade-in-up {

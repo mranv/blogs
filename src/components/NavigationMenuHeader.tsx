@@ -30,16 +30,17 @@ interface NavigationMenuHeaderProps {
   disableAnimations?: boolean;
 }
 
-const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
-  activeNav,
-  posts = [],
-  tags = [],
-  socialLinks = [],
-  className,
-  hasNewPosts = false,
-  isLoading = false,
-  disableAnimations = false,
-}) => {
+const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = props => {
+  const {
+    activeNav,
+    posts = [],
+    tags = [],
+    socialLinks = [],
+    className,
+    hasNewPosts = false,
+    isLoading = false,
+    disableAnimations = false,
+  } = props;
   // Show skeleton while loading
   if (isLoading) {
     return <NavigationSkeleton className={className} />;
@@ -58,6 +59,36 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
     const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
     setTheme(initialTheme as "light" | "dark");
   }, []);
+
+  // Debug navigation menu
+  useEffect(() => {
+    console.log("NavigationMenuHeader mounted with props:", {
+      activeNav,
+      postsCount: posts.length,
+      tagsCount: tags.length,
+      socialLinksCount: socialLinks.length,
+      hasNewPosts,
+    });
+
+    // Check if navigation menu elements are properly rendered
+    setTimeout(() => {
+      const navLinks = document.querySelectorAll(
+        "[data-radix-navigation-menu-content] a"
+      );
+      console.log("Found navigation links:", navLinks.length);
+      navLinks.forEach((link, index) => {
+        console.log(
+          `Link ${index}:`,
+          link.getAttribute("href"),
+          link.textContent
+        );
+        // Add click event listener for debugging
+        link.addEventListener("click", e => {
+          console.log("Link clicked:", link.getAttribute("href"));
+        });
+      });
+    }, 1000);
+  }, [activeNav, posts, tags, socialLinks, hasNewPosts]);
 
   // Handle keyboard navigation for mobile menu
   useEffect(() => {
@@ -161,25 +192,26 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
               <NavigationMenuTrigger
                 className={cn(
                   "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
-                  "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
-                  "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
-                  "border border-transparent hover:border-skin-accent/20",
-                  "relative overflow-hidden",
+                  "hover:bg-primary/15 hover:text-primary hover:shadow-md hover:scale-105",
+                  "focus:bg-primary/15 focus:text-primary focus:outline-none",
+                  "border border-transparent hover:border-primary/20",
+                  "relative overflow-hidden cursor-pointer",
                   activeNav === "posts" &&
-                    "text-skin-accent bg-skin-accent/15 shadow-md border-skin-accent/30 scale-105"
+                    "text-primary bg-primary/15 shadow-md border-primary/30 scale-105"
                 )}
+                onClick={() => console.log("Posts menu trigger clicked")}
               >
                 <NotificationBadge show={hasNewPosts}>
                   <span className="relative z-10">Posts</span>
                 </NotificationBadge>
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div className="grid gap-3 p-4 sm:p-6 w-[350px] sm:w-[400px] md:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <div className="row-span-3">
                     <NavigationMenuLink asChild>
                       <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-skin-accent/20 to-skin-accent/10 p-6 no-underline outline-none focus:shadow-md"
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-primary/20 to-primary/10 p-6 no-underline outline-none focus:shadow-md cursor-pointer"
                         href="/posts/"
                       >
                         <div className="mb-2 mt-4 text-lg font-medium">
@@ -200,7 +232,7 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
                       <NavigationMenuLink key={index} asChild>
                         <a
                           href={`/posts/${post.slug}/`}
-                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer"
                         >
                           <div className="text-sm font-medium leading-none line-clamp-1">
                             {post.data?.title || post.title}
@@ -221,16 +253,17 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
               <NavigationMenuTrigger
                 className={cn(
                   "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
-                  "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
-                  "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
-                  "border border-transparent hover:border-skin-accent/20",
-                  "relative overflow-hidden",
+                  "hover:bg-primary/15 hover:text-primary hover:shadow-md hover:scale-105",
+                  "focus:bg-primary/15 focus:text-primary focus:outline-none",
+                  "border border-transparent hover:border-primary/20",
+                  "relative overflow-hidden cursor-pointer",
                   activeNav === "tags" &&
-                    "text-skin-accent bg-skin-accent/15 shadow-md border-skin-accent/30 scale-105"
+                    "text-primary bg-primary/15 shadow-md border-primary/30 scale-105"
                 )}
+                onClick={() => console.log("Tags menu trigger clicked")}
               >
                 <span className="relative z-10">Tags</span>
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div className="grid gap-3 p-4 sm:p-6 w-[350px] sm:w-[400px] md:w-[500px]">
@@ -238,7 +271,7 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
                     <NavigationMenuLink asChild>
                       <a
                         href="/tags/"
-                        className="block select-none space-y-1 rounded-md bg-gradient-to-b from-skin-accent/20 to-skin-accent/10 p-4 leading-none no-underline outline-none transition-colors hover:shadow-md focus:shadow-md"
+                        className="block select-none space-y-1 rounded-md bg-gradient-to-b from-primary/20 to-primary/10 p-4 leading-none no-underline outline-none transition-colors hover:shadow-md focus:shadow-md cursor-pointer"
                       >
                         <div className="text-lg font-medium">All Tags</div>
                         <p className="text-sm leading-tight text-muted-foreground">
@@ -256,7 +289,7 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
                         <NavigationMenuLink key={index} asChild>
                           <a
                             href={`/tags/${tag.tag || tag.slug}/`}
-                            className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer"
                           >
                             <span className="font-medium">
                               {tag.tagName || tag.name}
@@ -275,16 +308,17 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
               <NavigationMenuTrigger
                 className={cn(
                   "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
-                  "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
-                  "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
-                  "border border-transparent hover:border-skin-accent/20",
-                  "relative overflow-hidden",
+                  "hover:bg-primary/15 hover:text-primary hover:shadow-md hover:scale-105",
+                  "focus:bg-primary/15 focus:text-primary focus:outline-none",
+                  "border border-transparent hover:border-primary/20",
+                  "relative overflow-hidden cursor-pointer",
                   activeNav === "about" &&
-                    "text-skin-accent bg-skin-accent/15 shadow-md border-skin-accent/30 scale-105"
+                    "text-primary bg-primary/15 shadow-md border-primary/30 scale-105"
                 )}
+                onClick={() => console.log("About menu trigger clicked")}
               >
                 <span className="relative z-10">About</span>
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div className="grid gap-3 p-4 sm:p-6 w-[350px] sm:w-[400px] md:w-[500px] lg:grid-cols-2">
@@ -292,7 +326,7 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
                     <NavigationMenuLink asChild>
                       <a
                         href="/about/"
-                        className="block select-none space-y-1 rounded-md bg-gradient-to-b from-skin-accent/20 to-skin-accent/10 p-4 leading-none no-underline outline-none transition-colors hover:shadow-md focus:shadow-md"
+                        className="block select-none space-y-1 rounded-md bg-gradient-to-b from-primary/20 to-primary/10 p-4 leading-none no-underline outline-none transition-colors hover:shadow-md focus:shadow-md cursor-pointer"
                       >
                         <div className="text-lg font-medium">About Me</div>
                         <p className="text-sm leading-tight text-muted-foreground">
@@ -314,7 +348,7 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer"
                           >
                             <div className="text-sm font-medium">
                               {link.name}
@@ -338,9 +372,9 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
                 onClick={toggleTheme}
                 className={cn(
                   "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-3 py-2 text-sm font-medium transition-all duration-300",
-                  "hover:bg-skin-accent/15 hover:text-skin-accent hover:shadow-md hover:scale-105",
-                  "focus:bg-skin-accent/15 focus:text-skin-accent focus:outline-none",
-                  "border border-transparent hover:border-skin-accent/20",
+                  "hover:bg-primary/15 hover:text-primary hover:shadow-md hover:scale-105",
+                  "focus:bg-primary/15 focus:text-primary focus:outline-none",
+                  "border border-transparent hover:border-primary/20",
                   "relative overflow-hidden"
                 )}
                 aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
@@ -351,8 +385,26 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
                 ) : (
                   <Sun className="h-5 w-5" />
                 )}
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </button>
+            </NavigationMenuItem>
+
+            {/* Test Navigation Link */}
+            <NavigationMenuItem>
+              <a
+                href="/posts/"
+                className={cn(
+                  "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
+                  "hover:bg-primary/15 hover:text-primary hover:shadow-md hover:scale-105",
+                  "focus:bg-primary/15 focus:text-primary focus:outline-none",
+                  "border border-transparent hover:border-primary/20",
+                  "relative overflow-hidden cursor-pointer"
+                )}
+                onClick={() => console.log("Test link clicked")}
+              >
+                <span className="relative z-10">Test</span>
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              </a>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>

@@ -251,7 +251,7 @@ export default function AuthorContactCard({
             </div>
             <div className="flex items-center space-x-1">
               <svg
-                className="w-3 h-3 text-blue-500"
+                className="w-3 h-3 text-primary"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >

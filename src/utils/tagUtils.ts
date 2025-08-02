@@ -84,12 +84,12 @@ const TAG_CATEGORIES: Record<string, TagCategory> = {
 const CYBERSECURITY_COLORS: Record<TagCategory, string> = {
   security: "#dc2626", // Red
   compliance: "#7c3aed", // Purple
-  technology: "#2563eb", // Blue
+  technology: "hsl(var(--primary))", // Primary theme color
   tools: "#059669", // Green
   infrastructure: "#ea580c", // Orange
   development: "#0891b2", // Cyan
   rust: "#f97316", // Orange
-  kubernetes: "#3b82f6", // Blue
+  kubernetes: "hsl(var(--primary))", // Primary theme color
   monitoring: "#84cc16", // Lime
   automation: "#8b5cf6", // Violet
   networking: "#06b6d4", // Cyan

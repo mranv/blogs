@@ -112,7 +112,7 @@ const tagsWithStats = getTagsWithStats(posts);
   .btn-enhanced,
   .btn-search {
     @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
     text-decoration: none;
   }
 
@@ -133,11 +133,7 @@ const tagsWithStats = getTagsWithStats(posts);
 
   .tags-header h1 {
     @apply text-4xl font-bold mb-4;
-    background: linear-gradient(
-      135deg,
-      rgb(var(--color-gradient-start)),
-      rgb(var(--color-gradient-end))
-    );
+    background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -146,7 +142,7 @@ const tagsWithStats = getTagsWithStats(posts);
 
   .tags-header p {
     @apply text-lg mb-6;
-    color: rgb(var(--color-text-base));
+    color: var(--foreground);
     opacity: 0.8;
     transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -155,11 +151,11 @@ const tagsWithStats = getTagsWithStats(posts);
     display: block;
     margin: 0 auto 2rem;
     border-radius: 50%;
-    border: 3px solid rgb(var(--color-accent));
+    border: 3px solid var(--primary);
     width: 200px;
     height: 200px;
     object-fit: cover;
-    box-shadow: 0 8px 32px rgba(var(--color-accent), 0.3);
+    box-shadow: 0 8px 32px color-mix(in srgb, var(--primary) 30%, transparent);
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease,
@@ -168,30 +164,30 @@ const tagsWithStats = getTagsWithStats(posts);
 
   .profile-image:hover {
     transform: scale(1.05);
-    box-shadow: 0 12px 48px rgba(var(--color-accent), 0.4);
+    box-shadow: 0 12px 48px color-mix(in srgb, var(--primary) 40%, transparent);
   }
 
   /* Enhanced theme-specific styling */
   :global(html[data-theme="light"]) .tags-header h1 {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   :global(html[data-theme="dark"]) .tags-header h1 {
-    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   :global(html[data-theme="light"]) .tags-header p {
-    color: rgb(17, 24, 39);
+    color: var(--foreground);
   }
 
   :global(html[data-theme="dark"]) .tags-header p {
-    color: rgb(243, 244, 246);
+    color: var(--foreground);
   }
 
   /* Clean tag list styling */

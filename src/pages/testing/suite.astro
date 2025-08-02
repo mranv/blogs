@@ -8,10 +8,11 @@ import { SITE } from "@config";
 export const prerender = true;
 
 const pageTitle = "Testing Suite - Component Validation";
-const pageDescription = "Comprehensive testing suite for validating component functionality, accessibility, performance, and responsive design";
+const pageDescription =
+  "Comprehensive testing suite for validating component functionality, accessibility, performance, and responsive design";
 ---
 
-<Layout 
+<Layout
   title={pageTitle}
   author={SITE.author}
   description={pageDescription}
@@ -25,33 +26,51 @@ const pageDescription = "Comprehensive testing suite for validating component fu
   >
     <!-- Testing Suite Container -->
     <div class="space-y-8">
-      
       <!-- Introduction -->
-      <section class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+      <section
+        class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6"
+      >
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           Component Testing Suite
         </h2>
         <p class="text-gray-600 dark:text-gray-400 mb-4">
-          This comprehensive testing suite validates all blog components for functionality, accessibility, 
-          performance, and responsive design. Use the interactive tools below to test components across 
-          different scenarios and ensure production readiness.
+          This comprehensive testing suite validates all blog components for
+          functionality, accessibility, performance, and responsive design. Use
+          the interactive tools below to test components across different
+          scenarios and ensure production readiness.
         </p>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-          <div class="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-            <div class="text-2xl font-bold text-blue-600">5+</div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">Testing Tools</div>
+          <div
+            class="text-center p-4 bg-primary/10 dark:bg-primary/20 rounded-lg"
+          >
+            <div class="text-2xl font-bold text-primary">5+</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              Testing Tools
+            </div>
           </div>
-          <div class="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+          <div
+            class="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg"
+          >
             <div class="text-2xl font-bold text-green-600">25+</div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">Components</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              Components
+            </div>
           </div>
-          <div class="text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+          <div
+            class="text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg"
+          >
             <div class="text-2xl font-bold text-yellow-600">50+</div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">Test Cases</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              Test Cases
+            </div>
           </div>
-          <div class="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+          <div
+            class="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg"
+          >
             <div class="text-2xl font-bold text-purple-600">7</div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">Breakpoints</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              Breakpoints
+            </div>
           </div>
         </div>
       </section>
@@ -137,7 +156,10 @@ const pageDescription = "Comprehensive testing suite for validating component fu
       </section>
 
       <!-- Test Results Summary -->
-      <section id="test-summary" class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+      <section
+        id="test-summary"
+        class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6"
+      >
         <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
           Testing Summary
         </h3>
@@ -149,14 +171,16 @@ const pageDescription = "Comprehensive testing suite for validating component fu
       </section>
 
       <!-- Quick Actions -->
-      <section class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+      <section
+        class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6"
+      >
         <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
           Quick Actions
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <button
             id="run-all-tests"
-            class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            class="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
           >
             Run All Tests
           </button>
@@ -166,7 +190,7 @@ const pageDescription = "Comprehensive testing suite for validating component fu
           >
             Export Results
           </button>
-          <a 
+          <a
             href="/testing/showcase"
             class="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-center"
           >
@@ -174,354 +198,453 @@ const pageDescription = "Comprehensive testing suite for validating component fu
           </a>
         </div>
       </section>
-
     </div>
   </Main>
   <Footer />
 </Layout>
 
 <script>
-  import React from 'react';
-  import { createRoot } from 'react-dom/client';
-  
+  import React from "react";
+  import { createRoot } from "react-dom/client";
+
   // Import testing components
-  import { 
-    ComponentTester, 
-    ResponsiveDesignChecker, 
-    AccessibilityTester, 
-    PerformanceTester, 
+  import {
+    ComponentTester,
+    ResponsiveDesignChecker,
+    AccessibilityTester,
+    PerformanceTester,
     ThemeTester,
-    createDefaultTests 
-  } from '@components/testing';
-  
+    createDefaultTests,
+  } from "@components/testing";
+
   // Import components to test
-  import BlogCard from '@components/BlogCard';
-  import Search from '@components/Search';
-  import NavigationMenuHeader from '@components/NavigationMenuHeader';
-  import { AuthorCard, AuthorBio } from '@components/author';
-  import { TagCloud, EnhancedTag } from '@components/tags';
-  import { FadeIn, SlideIn, ScaleIn } from '@components/animations';
+  import BlogCard from "@components/BlogCard";
+  import Search from "@components/Search";
+  import NavigationMenuHeader from "@components/NavigationMenuHeader";
+  import { AuthorCard, AuthorBio } from "@components/author";
+  import { TagCloud, EnhancedTag } from "@components/tags";
+  import { FadeIn, SlideIn, ScaleIn } from "@components/animations";
 
   // Initialize testing suite when DOM is ready
-  document.addEventListener('DOMContentLoaded', () => {
-    
+  document.addEventListener("DOMContentLoaded", () => {
     // BlogCard Testing
-    const blogCardContainer = document.getElementById('blogcard-component-tester');
+    const blogCardContainer = document.getElementById(
+      "blogcard-component-tester"
+    );
     if (blogCardContainer) {
       const root = createRoot(blogCardContainer);
       root.render(
         React.createElement(ComponentTester, {
-          componentName: 'BlogCard',
+          componentName: "BlogCard",
           testComponent: BlogCard,
           testProps: {
-            href: '/posts/test-post',
+            href: "/posts/test-post",
             frontmatter: {
-              title: 'Test Blog Post',
-              description: 'This is a test blog post for component testing',
-              pubDatetime: new Date('2024-01-01'),
-              tags: ['test', 'blog', 'component'],
-              author: 'Test Author'
-            }
+              title: "Test Blog Post",
+              description: "This is a test blog post for component testing",
+              pubDatetime: new Date("2024-01-01"),
+              tags: ["test", "blog", "component"],
+              author: "Test Author",
+            },
           },
           tests: [
-            ...createDefaultTests('BlogCard'),
+            ...createDefaultTests("BlogCard"),
             {
-              name: 'Link Functionality',
-              description: 'BlogCard should have proper link attributes',
-              test: (element) => {
-                const link = element.querySelector('a');
-                return link && link.href.includes('/posts/test-post');
+              name: "Link Functionality",
+              description: "BlogCard should have proper link attributes",
+              test: element => {
+                const link = element.querySelector("a");
+                return link && link.href.includes("/posts/test-post");
               },
-              expectation: 'Card should contain a link to the post'
+              expectation: "Card should contain a link to the post",
             },
             {
-              name: 'Content Display',
-              description: 'BlogCard should display title and description',
-              test: (element) => {
-                const title = element.textContent?.includes('Test Blog Post');
-                const description = element.textContent?.includes('This is a test blog post');
+              name: "Content Display",
+              description: "BlogCard should display title and description",
+              test: element => {
+                const title = element.textContent?.includes("Test Blog Post");
+                const description = element.textContent?.includes(
+                  "This is a test blog post"
+                );
                 return title && description;
               },
-              expectation: 'Card should show title and description'
-            }
-          ]
+              expectation: "Card should show title and description",
+            },
+          ],
         })
       );
     }
 
     // Search Component Testing
-    const searchContainer = document.getElementById('search-component-tester');
+    const searchContainer = document.getElementById("search-component-tester");
     if (searchContainer) {
       const root = createRoot(searchContainer);
       root.render(
         React.createElement(ComponentTester, {
-          componentName: 'Search',
+          componentName: "Search",
           testComponent: Search,
           testProps: {},
           tests: [
-            ...createDefaultTests('Search'),
+            ...createDefaultTests("Search"),
             {
-              name: 'Input Functionality',
-              description: 'Search input should accept text',
-              test: (element) => {
-                const input = element.querySelector('input[type="text"], input[type="search"]');
+              name: "Input Functionality",
+              description: "Search input should accept text",
+              test: element => {
+                const input = element.querySelector(
+                  'input[type="text"], input[type="search"]'
+                );
                 return input !== null;
               },
-              expectation: 'Search should have an input field'
+              expectation: "Search should have an input field",
             },
             {
-              name: 'Keyboard Navigation',
-              description: 'Search should support keyboard navigation',
-              test: (element) => {
-                const input = element.querySelector('input');
-                return input && input.getAttribute('aria-label') !== null;
+              name: "Keyboard Navigation",
+              description: "Search should support keyboard navigation",
+              test: element => {
+                const input = element.querySelector("input");
+                return input && input.getAttribute("aria-label") !== null;
               },
-              expectation: 'Search input should have proper ARIA labels'
-            }
-          ]
+              expectation: "Search input should have proper ARIA labels",
+            },
+          ],
         })
       );
     }
 
     // Navigation Testing
-    const navigationContainer = document.getElementById('navigation-component-tester');
+    const navigationContainer = document.getElementById(
+      "navigation-component-tester"
+    );
     if (navigationContainer) {
       const root = createRoot(navigationContainer);
       root.render(
         React.createElement(ComponentTester, {
-          componentName: 'NavigationMenuHeader',
+          componentName: "NavigationMenuHeader",
           testComponent: NavigationMenuHeader,
           testProps: {},
-          tests: createDefaultTests('NavigationMenuHeader')
+          tests: createDefaultTests("NavigationMenuHeader"),
         })
       );
     }
 
     // Author Components Testing
-    const authorContainer = document.getElementById('author-component-tester');
+    const authorContainer = document.getElementById("author-component-tester");
     if (authorContainer) {
       const root = createRoot(authorContainer);
       root.render(
-        React.createElement('div', { className: 'space-y-6' }, [
+        React.createElement("div", { className: "space-y-6" }, [
           React.createElement(ComponentTester, {
-            key: 'author-card',
-            componentName: 'AuthorCard',
+            key: "author-card",
+            componentName: "AuthorCard",
             testComponent: AuthorCard,
             testProps: {
               author: {
-                name: 'Test Author',
-                bio: 'A test author for component testing',
-                avatar: '/assets/test-avatar.jpg',
+                name: "Test Author",
+                bio: "A test author for component testing",
+                avatar: "/assets/test-avatar.jpg",
                 social: {
-                  twitter: '@testauthor',
-                  github: 'testauthor'
-                }
-              }
+                  twitter: "@testauthor",
+                  github: "testauthor",
+                },
+              },
             },
-            tests: createDefaultTests('AuthorCard')
+            tests: createDefaultTests("AuthorCard"),
           }),
           React.createElement(ComponentTester, {
-            key: 'author-bio',
-            componentName: 'AuthorBio',
+            key: "author-bio",
+            componentName: "AuthorBio",
             testComponent: AuthorBio,
             testProps: {
               author: {
-                name: 'Test Author',
-                bio: 'A comprehensive bio for testing the AuthorBio component with longer text content.',
-                avatar: '/assets/test-avatar.jpg'
-              }
+                name: "Test Author",
+                bio: "A comprehensive bio for testing the AuthorBio component with longer text content.",
+                avatar: "/assets/test-avatar.jpg",
+              },
             },
-            tests: createDefaultTests('AuthorBio')
-          })
+            tests: createDefaultTests("AuthorBio"),
+          }),
         ])
       );
     }
 
     // Tag Components Testing
-    const tagContainer = document.getElementById('tag-component-tester');
+    const tagContainer = document.getElementById("tag-component-tester");
     if (tagContainer) {
       const root = createRoot(tagContainer);
       root.render(
-        React.createElement('div', { className: 'space-y-6' }, [
+        React.createElement("div", { className: "space-y-6" }, [
           React.createElement(ComponentTester, {
-            key: 'tag-cloud',
-            componentName: 'TagCloud',
+            key: "tag-cloud",
+            componentName: "TagCloud",
             testComponent: TagCloud,
             testProps: {
               tags: [
-                { name: 'react', count: 15 },
-                { name: 'typescript', count: 12 },
-                { name: 'javascript', count: 20 },
-                { name: 'css', count: 8 },
-                { name: 'html', count: 6 }
-              ]
+                { name: "react", count: 15 },
+                { name: "typescript", count: 12 },
+                { name: "javascript", count: 20 },
+                { name: "css", count: 8 },
+                { name: "html", count: 6 },
+              ],
             },
-            tests: createDefaultTests('TagCloud')
+            tests: createDefaultTests("TagCloud"),
           }),
           React.createElement(ComponentTester, {
-            key: 'enhanced-tag',
-            componentName: 'EnhancedTag',
+            key: "enhanced-tag",
+            componentName: "EnhancedTag",
             testComponent: EnhancedTag,
             testProps: {
-              tag: { name: 'test-tag', count: 5 },
-              size: 'medium',
-              variant: 'default'
+              tag: { name: "test-tag", count: 5 },
+              size: "medium",
+              variant: "default",
             },
-            tests: createDefaultTests('EnhancedTag')
-          })
+            tests: createDefaultTests("EnhancedTag"),
+          }),
         ])
       );
     }
 
     // Animation Components Testing
-    const animationContainer = document.getElementById('animation-component-tester');
+    const animationContainer = document.getElementById(
+      "animation-component-tester"
+    );
     if (animationContainer) {
       const root = createRoot(animationContainer);
       root.render(
-        React.createElement('div', { className: 'space-y-6' }, [
+        React.createElement("div", { className: "space-y-6" }, [
           React.createElement(ComponentTester, {
-            key: 'fade-in',
-            componentName: 'FadeIn',
+            key: "fade-in",
+            componentName: "FadeIn",
             testComponent: FadeIn,
             testProps: {
-              children: React.createElement('div', {}, 'Fade In Animation Test')
+              children: React.createElement(
+                "div",
+                {},
+                "Fade In Animation Test"
+              ),
             },
-            tests: createDefaultTests('FadeIn')
+            tests: createDefaultTests("FadeIn"),
           }),
           React.createElement(ComponentTester, {
-            key: 'slide-in',
-            componentName: 'SlideIn',
+            key: "slide-in",
+            componentName: "SlideIn",
             testComponent: SlideIn,
             testProps: {
-              direction: 'left',
-              children: React.createElement('div', {}, 'Slide In Animation Test')
+              direction: "left",
+              children: React.createElement(
+                "div",
+                {},
+                "Slide In Animation Test"
+              ),
             },
-            tests: createDefaultTests('SlideIn')
+            tests: createDefaultTests("SlideIn"),
           }),
           React.createElement(ComponentTester, {
-            key: 'scale-in',
-            componentName: 'ScaleIn',
+            key: "scale-in",
+            componentName: "ScaleIn",
             testComponent: ScaleIn,
             testProps: {
-              children: React.createElement('div', {}, 'Scale In Animation Test')
+              children: React.createElement(
+                "div",
+                {},
+                "Scale In Animation Test"
+              ),
             },
-            tests: createDefaultTests('ScaleIn')
-          })
+            tests: createDefaultTests("ScaleIn"),
+          }),
         ])
       );
     }
 
     // Responsive Design Testing
-    const responsiveContainer = document.getElementById('responsive-design-checker');
+    const responsiveContainer = document.getElementById(
+      "responsive-design-checker"
+    );
     if (responsiveContainer) {
       const root = createRoot(responsiveContainer);
       root.render(
         React.createElement(ResponsiveDesignChecker, {
-          children: React.createElement('div', { className: 'p-4 bg-white dark:bg-gray-800 rounded' }, [
-            React.createElement('h3', { key: 'title', className: 'text-lg font-semibold mb-2' }, 'Responsive Test Content'),
-            React.createElement('p', { key: 'desc', className: 'text-gray-600 dark:text-gray-400 mb-4' }, 'This content tests responsive behavior across different screen sizes.'),
-            React.createElement('button', { 
-              key: 'btn', 
-              className: 'px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700' 
-            }, 'Test Button')
-          ])
+          children: React.createElement(
+            "div",
+            { className: "p-4 bg-white dark:bg-gray-800 rounded" },
+            [
+              React.createElement(
+                "h3",
+                { key: "title", className: "text-lg font-semibold mb-2" },
+                "Responsive Test Content"
+              ),
+              React.createElement(
+                "p",
+                {
+                  key: "desc",
+                  className: "text-gray-600 dark:text-gray-400 mb-4",
+                },
+                "This content tests responsive behavior across different screen sizes."
+              ),
+              React.createElement(
+                "button",
+                {
+                  key: "btn",
+                  className:
+                    "px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90",
+                },
+                "Test Button"
+              ),
+            ]
+          ),
         })
       );
     }
 
     // Accessibility Testing
-    const accessibilityContainer = document.getElementById('accessibility-tester');
+    const accessibilityContainer = document.getElementById(
+      "accessibility-tester"
+    );
     if (accessibilityContainer) {
       const root = createRoot(accessibilityContainer);
       root.render(
         React.createElement(AccessibilityTester, {
           autoTest: true,
-          children: React.createElement('div', { className: 'space-y-4' }, [
-            React.createElement('h3', { key: 'heading' }, 'Accessibility Test Content'),
-            React.createElement('p', { key: 'text' }, 'This content tests accessibility compliance.'),
-            React.createElement('button', { 
-              key: 'button', 
-              'aria-label': 'Test button for accessibility'
-            }, 'Accessible Button'),
-            React.createElement('img', { 
-              key: 'image', 
-              src: '/assets/test-image.jpg', 
-              alt: 'Test image with proper alt text' 
+          children: React.createElement("div", { className: "space-y-4" }, [
+            React.createElement(
+              "h3",
+              { key: "heading" },
+              "Accessibility Test Content"
+            ),
+            React.createElement(
+              "p",
+              { key: "text" },
+              "This content tests accessibility compliance."
+            ),
+            React.createElement(
+              "button",
+              {
+                key: "button",
+                "aria-label": "Test button for accessibility",
+              },
+              "Accessible Button"
+            ),
+            React.createElement("img", {
+              key: "image",
+              src: "/assets/test-image.jpg",
+              alt: "Test image with proper alt text",
             }),
-            React.createElement('input', { 
-              key: 'input', 
-              type: 'text', 
-              id: 'test-input',
-              'aria-label': 'Test input field'
+            React.createElement("input", {
+              key: "input",
+              type: "text",
+              id: "test-input",
+              "aria-label": "Test input field",
             }),
-            React.createElement('label', { 
-              key: 'label', 
-              htmlFor: 'test-input' 
-            }, 'Test Label')
-          ])
+            React.createElement(
+              "label",
+              {
+                key: "label",
+                htmlFor: "test-input",
+              },
+              "Test Label"
+            ),
+          ]),
         })
       );
     }
 
     // Performance Testing
-    const performanceContainer = document.getElementById('performance-tester');
+    const performanceContainer = document.getElementById("performance-tester");
     if (performanceContainer) {
       const root = createRoot(performanceContainer);
       root.render(
         React.createElement(PerformanceTester, {
-          componentName: 'TestComponent',
+          componentName: "TestComponent",
           options: {
             trackRenders: true,
             trackMemory: true,
             trackFPS: true,
-            duration: 3000
+            duration: 3000,
           },
-          children: React.createElement('div', { className: 'space-y-4' }, [
-            React.createElement('h3', { key: 'title' }, 'Performance Test Component'),
-            React.createElement('div', { key: 'content', className: 'grid grid-cols-3 gap-4' }, 
-              Array.from({ length: 9 }, (_, i) => 
-                React.createElement('div', { 
-                  key: i, 
-                  className: 'p-4 bg-blue-100 dark:bg-blue-900 rounded animate-pulse'
-                }, `Item ${i + 1}`)
+          children: React.createElement("div", { className: "space-y-4" }, [
+            React.createElement(
+              "h3",
+              { key: "title" },
+              "Performance Test Component"
+            ),
+            React.createElement(
+              "div",
+              { key: "content", className: "grid grid-cols-3 gap-4" },
+              Array.from({ length: 9 }, (_, i) =>
+                React.createElement(
+                  "div",
+                  {
+                    key: i,
+                    className:
+                      "p-4 bg-primary/10 dark:bg-primary/20 rounded animate-pulse",
+                  },
+                  `Item ${i + 1}`
+                )
               )
-            )
-          ])
+            ),
+          ]),
         })
       );
     }
 
     // Theme Testing
-    const themeContainer = document.getElementById('theme-tester');
+    const themeContainer = document.getElementById("theme-tester");
     if (themeContainer) {
       const root = createRoot(themeContainer);
       root.render(
         React.createElement(ThemeTester, {
           autoTest: true,
-          children: React.createElement('div', { className: 'space-y-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white' }, [
-            React.createElement('h3', { key: 'title', className: 'text-lg font-semibold' }, 'Theme Test Content'),
-            React.createElement('p', { key: 'text', className: 'text-gray-600 dark:text-gray-400' }, 'This content tests theme switching capabilities.'),
-            React.createElement('button', { 
-              key: 'button', 
-              className: 'px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded hover:bg-blue-700 dark:hover:bg-blue-600'
-            }, 'Theme-aware Button'),
-            React.createElement('div', { 
-              key: 'card', 
-              className: 'p-4 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded'
-            }, 'Theme-aware Card')
-          ])
+          children: React.createElement(
+            "div",
+            {
+              className:
+                "space-y-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white",
+            },
+            [
+              React.createElement(
+                "h3",
+                { key: "title", className: "text-lg font-semibold" },
+                "Theme Test Content"
+              ),
+              React.createElement(
+                "p",
+                { key: "text", className: "text-gray-600 dark:text-gray-400" },
+                "This content tests theme switching capabilities."
+              ),
+              React.createElement(
+                "button",
+                {
+                  key: "button",
+                  className:
+                    "px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90",
+                },
+                "Theme-aware Button"
+              ),
+              React.createElement(
+                "div",
+                {
+                  key: "card",
+                  className:
+                    "p-4 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded",
+                },
+                "Theme-aware Card"
+              ),
+            ]
+          ),
         })
       );
     }
 
     // Run All Tests Button
-    const runAllButton = document.getElementById('run-all-tests');
+    const runAllButton = document.getElementById("run-all-tests");
     if (runAllButton) {
-      runAllButton.addEventListener('click', () => {
-        console.log('Running all tests...');
+      runAllButton.addEventListener("click", () => {
+        console.log("Running all tests...");
         // Trigger all test runners
-        document.querySelectorAll('button').forEach(button => {
-          if (button.textContent?.includes('Run Test') || button.textContent?.includes('Test All')) {
+        document.querySelectorAll("button").forEach(button => {
+          if (
+            button.textContent?.includes("Run Test") ||
+            button.textContent?.includes("Test All")
+          ) {
             button.click();
           }
         });
@@ -529,25 +652,26 @@ const pageDescription = "Comprehensive testing suite for validating component fu
     }
 
     // Export Results Button
-    const exportButton = document.getElementById('export-results');
+    const exportButton = document.getElementById("export-results");
     if (exportButton) {
-      exportButton.addEventListener('click', () => {
+      exportButton.addEventListener("click", () => {
         const results = {
           timestamp: new Date().toISOString(),
-          testResults: 'Test results would be collected here',
-          summary: 'Overall testing summary'
+          testResults: "Test results would be collected here",
+          summary: "Overall testing summary",
         };
-        
-        const blob = new Blob([JSON.stringify(results, null, 2)], { type: 'application/json' });
+
+        const blob = new Blob([JSON.stringify(results, null, 2)], {
+          type: "application/json",
+        });
         const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
-        a.download = `test-results-${new Date().toISOString().split('T')[0]}.json`;
+        a.download = `test-results-${new Date().toISOString().split("T")[0]}.json`;
         a.click();
         URL.revokeObjectURL(url);
       });
     }
-
   });
 </script>
 
@@ -556,17 +680,17 @@ const pageDescription = "Comprehensive testing suite for validating component fu
   .testing-section {
     scroll-margin-top: 2rem;
   }
-  
+
   /* Smooth scrolling for navigation */
   html {
     scroll-behavior: smooth;
   }
-  
+
   /* Enhanced focus indicators for testing */
   button:focus,
   input:focus,
   select:focus {
-    outline: 2px solid #3b82f6;
+    outline: 2px solid hsl(var(--primary));
     outline-offset: 2px;
   }
 </style>

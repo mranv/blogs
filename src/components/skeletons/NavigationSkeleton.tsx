@@ -16,7 +16,7 @@ export default function NavigationSkeleton({
     return (
       <div
         className={cn(
-          "md:hidden space-y-4 p-4 bg-skin-fill/95 backdrop-blur-md border-t border-skin-accent/20 shadow-lg",
+          "md:hidden space-y-4 p-4 bg-background/95 backdrop-blur-md border-t border-primary/20 shadow-lg",
           className
         )}
       >
@@ -70,7 +70,7 @@ export default function NavigationSkeleton({
         {[...Array(4)].map((_, index) => (
           <div key={index} className="relative">
             {/* Menu trigger skeleton */}
-            <div className="flex items-center space-x-1 p-2 rounded-lg border border-transparent hover:border-skin-accent/20">
+            <div className="flex items-center space-x-1 p-2 rounded-lg border border-transparent hover:border-primary/20">
               <Skeleton
                 className="h-4 bg-gradient-to-r from-muted via-muted/50 to-muted bg-[length:200%_100%] animate-[shimmer_1.5s_infinite]"
                 style={{

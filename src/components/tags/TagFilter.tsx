@@ -17,7 +17,7 @@ const CATEGORY_CONFIG: Record<TagCategory, { label: string; color: string }> = {
   },
   technology: {
     label: "Technology",
-    color: "bg-blue-500/10 text-blue-600 border-blue-500/30",
+    color: "bg-primary/10 text-primary border-primary/30",
   },
   tools: {
     label: "Tools",
@@ -37,7 +37,7 @@ const CATEGORY_CONFIG: Record<TagCategory, { label: string; color: string }> = {
   },
   kubernetes: {
     label: "Kubernetes",
-    color: "bg-blue-600/10 text-blue-700 border-blue-600/30",
+    color: "bg-primary/20 text-primary border-primary/40",
   },
   monitoring: {
     label: "Monitoring",

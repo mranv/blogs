@@ -28,7 +28,7 @@ const isLazy = false;
         href={href}
         class="inline-block w-full hover:scale-105 transition-transform duration-300"
       >
-        <div class="card bg-skin-card rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+        <div class="card bg-card rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
           <h3 class="text-lg font-semibold mb-2">{frontmatter.title}</h3>
           {frontmatter.description && (
             <p class="text-sm opacity-80 mb-3">{frontmatter.description}</p>
@@ -43,10 +43,10 @@ const isLazy = false;
         </div>
       </a>
     ) : (
-      <div class="card bg-skin-card rounded-lg shadow-md p-6 animate-pulse">
-        <div class="h-6 bg-skin-card-muted rounded mb-2" />
-        <div class="h-4 bg-skin-card-muted rounded mb-3 w-3/4" />
-        <div class="h-3 bg-skin-card-muted rounded w-1/3" />
+      <div class="card bg-card rounded-lg shadow-md p-6 animate-pulse">
+        <div class="h-6 bg-muted rounded mb-2" />
+        <div class="h-4 bg-muted rounded mb-3 w-3/4" />
+        <div class="h-3 bg-muted rounded w-1/3" />
       </div>
     )
   }
@@ -70,7 +70,7 @@ const isLazy = false;
               // Create the card content
               const cardHtml = `
                 <a href="${href}" class="inline-block w-full hover:scale-105 transition-transform duration-300">
-                  <div class="card bg-skin-card rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                  <div class="card bg-card rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                     <h3 class="text-lg font-semibold mb-2">${frontmatter.title}</h3>
                     ${frontmatter.description ? `<p class="text-sm opacity-80 mb-3">${frontmatter.description}</p>` : ""}
                     <time class="text-xs opacity-60">${new Date(

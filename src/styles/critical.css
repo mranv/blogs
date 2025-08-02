@@ -172,17 +172,17 @@ img {
   display: none;
 }
 
-/* Skin color utilities */
-.bg-skin-fill {
-  background-color: rgb(var(--color-fill));
+/* Claude theme color utilities */
+.bg-background {
+  background-color: var(--background);
 }
 
-.text-skin-base {
-  color: rgb(var(--color-text-base));
+.text-foreground {
+  color: var(--foreground);
 }
 
-.text-skin-accent {
-  color: rgb(var(--color-accent));
+.text-primary {
+  color: var(--primary);
 }
 
 /* Basic responsive grid */

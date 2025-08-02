@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
 interface BreakpointTest {
   name: string;
@@ -17,13 +17,48 @@ interface ResponsiveTestResult {
 }
 
 const defaultBreakpoints: BreakpointTest[] = [
-  { name: 'Mobile Portrait', width: 375, height: 667, description: 'iPhone 8 size' },
-  { name: 'Mobile Landscape', width: 667, height: 375, description: 'iPhone 8 landscape' },
-  { name: 'Tablet Portrait', width: 768, height: 1024, description: 'iPad size' },
-  { name: 'Tablet Landscape', width: 1024, height: 768, description: 'iPad landscape' },
-  { name: 'Desktop Small', width: 1280, height: 720, description: 'Small laptop' },
-  { name: 'Desktop Large', width: 1920, height: 1080, description: 'Full HD desktop' },
-  { name: 'Ultra Wide', width: 2560, height: 1440, description: '1440p ultrawide' }
+  {
+    name: "Mobile Portrait",
+    width: 375,
+    height: 667,
+    description: "iPhone 8 size",
+  },
+  {
+    name: "Mobile Landscape",
+    width: 667,
+    height: 375,
+    description: "iPhone 8 landscape",
+  },
+  {
+    name: "Tablet Portrait",
+    width: 768,
+    height: 1024,
+    description: "iPad size",
+  },
+  {
+    name: "Tablet Landscape",
+    width: 1024,
+    height: 768,
+    description: "iPad landscape",
+  },
+  {
+    name: "Desktop Small",
+    width: 1280,
+    height: 720,
+    description: "Small laptop",
+  },
+  {
+    name: "Desktop Large",
+    width: 1920,
+    height: 1080,
+    description: "Full HD desktop",
+  },
+  {
+    name: "Ultra Wide",
+    width: 2560,
+    height: 1440,
+    description: "1440p ultrawide",
+  },
 ];
 
 interface ResponsiveDesignCheckerProps {
@@ -35,14 +70,16 @@ interface ResponsiveDesignCheckerProps {
 const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
   children,
   customBreakpoints = defaultBreakpoints,
-  testInteractions = true
+  testInteractions = true,
 }) => {
-  const [currentBreakpoint, setCurrentBreakpoint] = useState(customBreakpoints[0]);
+  const [currentBreakpoint, setCurrentBreakpoint] = useState(
+    customBreakpoints[0]
+  );
   const [testResults, setTestResults] = useState<ResponsiveTestResult[]>([]);
   const [isTestingAll, setIsTestingAll] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [iframeContent, setIframeContent] = useState('');
+  const [iframeContent, setIframeContent] = useState("");
 
   useEffect(() => {
     // Create iframe content with the component
@@ -83,7 +120,9 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
     setIframeContent(createIframeContent());
   }, []);
 
-  const runResponsiveTest = async (breakpoint: BreakpointTest): Promise<ResponsiveTestResult> => {
+  const runResponsiveTest = async (
+    breakpoint: BreakpointTest
+  ): Promise<ResponsiveTestResult> => {
     const iframe = iframeRef.current;
     if (!iframe) {
       return {
@@ -91,7 +130,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
         width: breakpoint.width,
         height: breakpoint.height,
         passed: false,
-        issues: ['iframe not available']
+        issues: ["iframe not available"],
       };
     }
 
@@ -107,24 +146,29 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
 
       const iframeDoc = iframe.contentDocument;
       if (!iframeDoc) {
-        issues.push('Cannot access iframe content');
+        issues.push("Cannot access iframe content");
       } else {
         // Test for common responsive issues
-        const elements = iframeDoc.querySelectorAll('*');
-        
+        const elements = iframeDoc.querySelectorAll("*");
+
         // Check for horizontal overflow
         Array.from(elements).forEach((el, index) => {
           const element = el as HTMLElement;
           if (element.scrollWidth > breakpoint.width) {
-            issues.push(`Element ${index} has horizontal overflow (${element.scrollWidth}px > ${breakpoint.width}px)`);
+            issues.push(
+              `Element ${index} has horizontal overflow (${element.scrollWidth}px > ${breakpoint.width}px)`
+            );
           }
         });
 
         // Check for text readability
-        const textElements = iframeDoc.querySelectorAll('p, span, h1, h2, h3, h4, h5, h6');
-        Array.from(textElements).forEach((el) => {
+        const textElements = iframeDoc.querySelectorAll(
+          "p, span, h1, h2, h3, h4, h5, h6"
+        );
+        Array.from(textElements).forEach(el => {
           const element = el as HTMLElement;
-          const computedStyle = iframeDoc.defaultView?.getComputedStyle(element);
+          const computedStyle =
+            iframeDoc.defaultView?.getComputedStyle(element);
           if (computedStyle) {
             const fontSize = parseFloat(computedStyle.fontSize);
             if (fontSize < 14 && breakpoint.width < 768) {
@@ -135,32 +179,40 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
 
         // Check for touch targets on mobile
         if (breakpoint.width < 768) {
-          const interactiveElements = iframeDoc.querySelectorAll('button, a, input, select');
+          const interactiveElements = iframeDoc.querySelectorAll(
+            "button, a, input, select"
+          );
           Array.from(interactiveElements).forEach((el, index) => {
             const element = el as HTMLElement;
             const rect = element.getBoundingClientRect();
             if (rect.width < 44 || rect.height < 44) {
-              issues.push(`Touch target ${index} too small: ${rect.width}x${rect.height}px (minimum 44x44px)`);
+              issues.push(
+                `Touch target ${index} too small: ${rect.width}x${rect.height}px (minimum 44x44px)`
+              );
             }
           });
         }
 
         // Check for proper spacing
-        const containers = iframeDoc.querySelectorAll('div, section, article');
+        const containers = iframeDoc.querySelectorAll("div, section, article");
         Array.from(containers).forEach((el, index) => {
           const element = el as HTMLElement;
-          const computedStyle = iframeDoc.defaultView?.getComputedStyle(element);
+          const computedStyle =
+            iframeDoc.defaultView?.getComputedStyle(element);
           if (computedStyle) {
-            const padding = parseInt(computedStyle.paddingLeft) + parseInt(computedStyle.paddingRight);
+            const padding =
+              parseInt(computedStyle.paddingLeft) +
+              parseInt(computedStyle.paddingRight);
             if (breakpoint.width < 768 && padding < 16) {
               issues.push(`Container ${index} needs more padding on mobile`);
             }
           }
         });
       }
-
     } catch (error) {
-      issues.push(`Test error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      issues.push(
+        `Test error: ${error instanceof Error ? error.message : "Unknown error"}`
+      );
     }
 
     return {
@@ -168,7 +220,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
       width: breakpoint.width,
       height: breakpoint.height,
       passed: issues.length === 0,
-      issues
+      issues,
     };
   };
 
@@ -187,9 +239,10 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
   };
 
   const getBreakpointColor = (breakpoint: BreakpointTest) => {
-    if (breakpoint.width < 768) return 'bg-red-100 text-red-800 border-red-300';
-    if (breakpoint.width < 1024) return 'bg-yellow-100 text-yellow-800 border-yellow-300';
-    return 'bg-green-100 text-green-800 border-green-300';
+    if (breakpoint.width < 768) return "bg-red-100 text-red-800 border-red-300";
+    if (breakpoint.width < 1024)
+      return "bg-yellow-100 text-yellow-800 border-yellow-300";
+    return "bg-green-100 text-green-800 border-green-300";
   };
 
   const toggleOverlay = () => {
@@ -208,9 +261,9 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
             <button
               onClick={toggleOverlay}
               className={`px-3 py-1 text-sm rounded ${
-                showOverlay 
-                  ? 'bg-blue-600 text-white' 
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                showOverlay
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
               }`}
             >
               Grid Overlay
@@ -218,9 +271,9 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
             <button
               onClick={runAllTests}
               disabled={isTestingAll}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+              className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 disabled:opacity-50"
             >
-              {isTestingAll ? 'Testing...' : 'Test All'}
+              {isTestingAll ? "Testing..." : "Test All"}
             </button>
           </div>
         </div>
@@ -236,7 +289,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
               className={`px-3 py-2 text-sm rounded-md border transition-colors ${
                 currentBreakpoint.name === breakpoint.name
                   ? getBreakpointColor(breakpoint)
-                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
               }`}
             >
               <div className="font-medium">{breakpoint.name}</div>
@@ -252,9 +305,11 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
       <div className="px-6 py-3 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between text-sm">
           <div className="text-gray-600 dark:text-gray-400">
-            Current: <span className="font-medium text-gray-900 dark:text-white">
+            Current:{" "}
+            <span className="font-medium text-gray-900 dark:text-white">
               {currentBreakpoint.name}
-            </span> - {currentBreakpoint.description}
+            </span>{" "}
+            - {currentBreakpoint.description}
           </div>
           <div className="text-gray-600 dark:text-gray-400">
             {currentBreakpoint.width} × {currentBreakpoint.height} px
@@ -270,19 +325,30 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
               <div className="text-2xl font-bold text-green-600">
                 {testResults.filter(r => r.passed).length}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Passed</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                Passed
+              </div>
             </div>
             <div>
               <div className="text-2xl font-bold text-red-600">
                 {testResults.filter(r => !r.passed).length}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Failed</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                Failed
+              </div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-blue-600">
-                {Math.round((testResults.filter(r => r.passed).length / testResults.length) * 100)}%
+              <div className="text-2xl font-bold text-primary">
+                {Math.round(
+                  (testResults.filter(r => r.passed).length /
+                    testResults.length) *
+                    100
+                )}
+                %
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Success Rate</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                Success Rate
+              </div>
             </div>
           </div>
         </div>
@@ -291,14 +357,14 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
       {/* Preview Container */}
       <div className="relative">
         {showOverlay && (
-          <div 
+          <div
             className="absolute inset-0 pointer-events-none z-10"
             style={{
               backgroundImage: `
                 linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
               `,
-              backgroundSize: '20px 20px'
+              backgroundSize: "20px 20px",
             }}
           />
         )}
@@ -309,7 +375,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
             style={{
               width: `${currentBreakpoint.width}px`,
               height: `${currentBreakpoint.height}px`,
-              maxWidth: '100%'
+              maxWidth: "100%",
             }}
             srcDoc={iframeContent}
             title={`Responsive test - ${currentBreakpoint.name}`}
@@ -328,27 +394,32 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
               <div
                 key={index}
                 className={`p-4 rounded-lg border ${
-                  result.passed 
-                    ? 'bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800' 
-                    : 'bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-800'
+                  result.passed
+                    ? "bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800"
+                    : "bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-800"
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
                   <h5 className="font-medium text-gray-900 dark:text-white">
                     {result.breakpoint} ({result.width} × {result.height})
                   </h5>
-                  <span className={`px-2 py-1 text-xs rounded-full font-medium ${
-                    result.passed 
-                      ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100' 
-                      : 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100'
-                  }`}>
-                    {result.passed ? 'PASS' : 'FAIL'}
+                  <span
+                    className={`px-2 py-1 text-xs rounded-full font-medium ${
+                      result.passed
+                        ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
+                        : "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100"
+                    }`}
+                  >
+                    {result.passed ? "PASS" : "FAIL"}
                   </span>
                 </div>
                 {result.issues.length > 0 && (
                   <ul className="space-y-1">
                     {result.issues.map((issue, issueIndex) => (
-                      <li key={issueIndex} className="text-sm text-gray-600 dark:text-gray-400">
+                      <li
+                        key={issueIndex}
+                        className="text-sm text-gray-600 dark:text-gray-400"
+                      >
                         • {issue}
                       </li>
                     ))}

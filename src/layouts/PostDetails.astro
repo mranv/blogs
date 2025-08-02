@@ -107,7 +107,7 @@ const layoutProps = {
     @apply mx-auto w-full max-w-3xl px-4 pb-12;
   }
   .post-title {
-    @apply text-4xl sm:text-5xl font-bold text-skin-base tracking-tight leading-tight;
+    @apply text-4xl sm:text-5xl font-bold text-foreground tracking-tight leading-tight;
     letter-spacing: -0.03em;
     font-family: theme("fontFamily.corporate");
   }
@@ -124,9 +124,9 @@ const layoutProps = {
       if (progressBar) return;
       const container = document.createElement("div");
       container.className =
-        "progress-container fixed top-0 z-10 h-1 w-full bg-skin-fill";
+        "progress-container fixed top-0 z-10 h-1 w-full bg-background";
       progressBar = document.createElement("div");
-      progressBar.className = "progress-bar h-1 w-0 bg-skin-accent";
+      progressBar.className = "progress-bar h-1 w-0 bg-primary";
       container.appendChild(progressBar);
       document.body.appendChild(container);
     };
@@ -196,7 +196,7 @@ const layoutProps = {
 
         const button = document.createElement("button");
         button.className =
-          "copy-code absolute right-3 top-3 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium border border-skin-line";
+          "copy-code absolute right-3 top-3 rounded bg-card px-2 py-1 text-xs leading-4 text-foreground font-medium border border-border";
         button.textContent = "Copy";
         button.addEventListener("click", async () => {
           const code = pre.querySelector("code");

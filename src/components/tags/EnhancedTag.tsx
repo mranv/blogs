@@ -17,7 +17,7 @@ const enhancedVariants = {
   cybersecurity:
     "border-transparent bg-gradient-to-r from-red-500/10 to-orange-500/10 text-red-600 hover:from-red-500/20 hover:to-orange-500/20 border border-red-500/30 hover:border-red-500/50 shadow-sm hover:shadow-md hover:shadow-red-500/20",
   professional:
-    "border-transparent bg-gradient-to-r from-blue-500/10 to-indigo-500/10 text-blue-600 hover:from-blue-500/20 hover:to-indigo-500/20 border border-blue-500/30 hover:border-blue-500/50 shadow-sm hover:shadow-md hover:shadow-blue-500/20",
+    "border-transparent bg-gradient-to-r from-primary/10 to-primary/20 text-primary hover:from-primary/20 hover:to-primary/30 border border-primary/30 hover:border-primary/50 shadow-sm hover:shadow-md hover:shadow-primary/20",
 } as const;
 
 // Dark mode variants
@@ -25,7 +25,7 @@ const darkModeVariants = {
   cybersecurity:
     "dark:text-red-400 dark:from-red-400/15 dark:to-orange-400/15 dark:hover:from-red-400/25 dark:hover:to-orange-400/25 dark:border-red-400/40 dark:hover:border-red-400/60 dark:hover:shadow-red-400/25",
   professional:
-    "dark:text-blue-400 dark:from-blue-400/15 dark:to-indigo-400/15 dark:hover:from-blue-400/25 dark:hover:to-indigo-400/25 dark:border-blue-400/40 dark:hover:border-blue-400/60 dark:hover:shadow-blue-400/25",
+    "dark:text-primary/80 dark:from-primary/15 dark:to-primary/25 dark:hover:from-primary/25 dark:hover:to-primary/35 dark:border-primary/40 dark:hover:border-primary/60 dark:hover:shadow-primary/25",
 } as const;
 
 export function EnhancedTag({
@@ -64,7 +64,7 @@ export function EnhancedTag({
   const baseClasses = cn(
     "inline-flex items-center gap-1.5 font-medium transition-all duration-300 ease-in-out",
     "hover:scale-105 active:scale-95",
-    "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50",
+    "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary",
     tagSizes[size],
     isClickable && "cursor-pointer select-none",
     !isClickable && "cursor-default"

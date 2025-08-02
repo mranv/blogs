@@ -1,0 +1,356 @@
+{
+    "designSystem": {
+      "name": "Claude Theme (tweakcn.com)",
+      "version": "1.0.0",
+      "theme": "dual (light/dark)",
+      "description": "Official Claude theme from tweakcn.com using OKLCH color space",
+      "framework": "shadcn/ui",
+      "colorSpace": "OKLCH",
+      "schema": "https://ui.shadcn.com/schema/registry-item.json"
+    },
+    "claudeTheme": {
+      "fonts": {
+        "sans": "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+        "serif": "ui-serif, Georgia, Cambria, \"Times New Roman\", Times, serif",
+        "mono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      },
+      "radius": "0.5rem",
+      "shadows": {
+        "xs": "0 1px 3px 0px hsl(0 0% 0% / 0.05)",
+        "sm": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)",
+        "md": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10)",
+        "lg": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)",
+        "xl": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)",
+        "2xl": "0 1px 3px 0px hsl(0 0% 0% / 0.25)"
+      },
+      "light": {
+        "background": "oklch(0.9818 0.0054 95.0986)",
+        "foreground": "oklch(0.3438 0.0269 95.7226)",
+        "card": "oklch(0.9818 0.0054 95.0986)",
+        "card-foreground": "oklch(0.1908 0.0020 106.5859)",
+        "popover": "oklch(1.0000 0 0)",
+        "popover-foreground": "oklch(0.2671 0.0196 98.9390)",
+        "primary": "oklch(0.6171 0.1375 39.0427)",
+        "primary-foreground": "oklch(1.0000 0 0)",
+        "secondary": "oklch(0.9245 0.0138 92.9892)",
+        "secondary-foreground": "oklch(0.4334 0.0177 98.6048)",
+        "muted": "oklch(0.9341 0.0153 90.2390)",
+        "muted-foreground": "oklch(0.6059 0.0075 97.4233)",
+        "accent": "oklch(0.9245 0.0138 92.9892)",
+        "accent-foreground": "oklch(0.2671 0.0196 98.9390)",
+        "destructive": "oklch(0.1908 0.0020 106.5859)",
+        "destructive-foreground": "oklch(1.0000 0 0)",
+        "border": "oklch(0.8847 0.0069 97.3627)",
+        "input": "oklch(0.7621 0.0156 98.3528)",
+        "ring": "oklch(0.6171 0.1375 39.0427)",
+        "sidebar": "oklch(0.9663 0.0080 98.8792)",
+        "sidebar-foreground": "oklch(0.3590 0.0051 106.6524)",
+        "sidebar-primary": "oklch(0.6171 0.1375 39.0427)",
+        "sidebar-primary-foreground": "oklch(0.9881 0 0)",
+        "sidebar-accent": "oklch(0.9245 0.0138 92.9892)",
+        "sidebar-accent-foreground": "oklch(0.3250 0 0)",
+        "sidebar-border": "oklch(0.9401 0 0)",
+        "sidebar-ring": "oklch(0.7731 0 0)",
+        "chart-1": "oklch(0.5583 0.1276 42.9956)",
+        "chart-2": "oklch(0.6898 0.1581 290.4107)",
+        "chart-3": "oklch(0.8816 0.0276 93.1280)",
+        "chart-4": "oklch(0.8822 0.0403 298.1792)",
+        "chart-5": "oklch(0.5608 0.1348 42.0584)"
+      },
+      "dark": {
+        "background": "oklch(0.2679 0.0036 106.6427)",
+        "foreground": "oklch(0.8074 0.0142 93.0137)",
+        "card": "oklch(0.2679 0.0036 106.6427)",
+        "card-foreground": "oklch(0.9818 0.0054 95.0986)",
+        "popover": "oklch(0.3085 0.0035 106.6039)",
+        "popover-foreground": "oklch(0.9211 0.0040 106.4781)",
+        "primary": "oklch(0.6724 0.1308 38.7559)",
+        "primary-foreground": "oklch(1.0000 0 0)",
+        "secondary": "oklch(0.9818 0.0054 95.0986)",
+        "secondary-foreground": "oklch(0.3085 0.0035 106.6039)",
+        "muted": "oklch(0.2213 0.0038 106.7070)",
+        "muted-foreground": "oklch(0.7713 0.0169 99.0657)",
+        "accent": "oklch(0.2130 0.0078 95.4245)",
+        "accent-foreground": "oklch(0.9663 0.0080 98.8792)",
+        "destructive": "oklch(0.6368 0.2078 25.3313)",
+        "destructive-foreground": "oklch(1.0000 0 0)",
+        "border": "oklch(0.3618 0.0101 106.8928)",
+        "input": "oklch(0.4336 0.0113 100.2195)",
+        "ring": "oklch(0.6724 0.1308 38.7559)",
+        "sidebar": "oklch(0.2357 0.0024 67.7077)",
+        "sidebar-foreground": "oklch(0.8074 0.0142 93.0137)",
+        "sidebar-primary": "oklch(0.3250 0 0)",
+        "sidebar-primary-foreground": "oklch(0.9881 0 0)",
+        "sidebar-accent": "oklch(0.1680 0.0020 106.6177)",
+        "sidebar-accent-foreground": "oklch(0.8074 0.0142 93.0137)",
+        "sidebar-border": "oklch(0.9401 0 0)",
+        "sidebar-ring": "oklch(0.7731 0 0)",
+        "chart-1": "oklch(0.5583 0.1276 42.9956)",
+        "chart-2": "oklch(0.6898 0.1581 290.4107)",
+        "chart-3": "oklch(0.2130 0.0078 95.4245)",
+        "chart-4": "oklch(0.3074 0.0516 289.3230)",
+        "chart-5": "oklch(0.5608 0.1348 42.0584)"
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "primary": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif",
+        "monospace": "'SF Mono', 'Monaco', 'Inconsolata', monospace"
+      },
+      "scale": {
+        "xs": "12px",
+        "sm": "14px",
+        "base": "16px",
+        "lg": "18px",
+        "xl": "20px",
+        "2xl": "24px",
+        "3xl": "32px",
+        "4xl": "48px"
+      },
+      "weights": {
+        "normal": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "lineHeights": {
+        "tight": 1.25,
+        "normal": 1.5,
+        "relaxed": 1.75
+      }
+    },
+    "spacing": {
+      "scale": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "32px",
+        "2xl": "48px",
+        "3xl": "64px"
+      },
+      "component": {
+        "cardPadding": "24px",
+        "sectionGap": "32px",
+        "gridGap": "16px",
+        "inputPadding": "12px 16px",
+        "buttonPadding": "8px 16px"
+      }
+    },
+    "layout": {
+      "structure": {
+        "type": "sidebar-main",
+        "sidebar": {
+          "width": "280px",
+          "position": "fixed-left",
+          "background": "primary.surface"
+        },
+        "main": {
+          "marginLeft": "280px",
+          "padding": "24px",
+          "background": "primary.background"
+        }
+      },
+      "grid": {
+        "columns": 12,
+        "gap": "16px",
+        "breakpoints": {
+          "sm": "640px",
+          "md": "768px",
+          "lg": "1024px",
+          "xl": "1280px"
+        }
+      },
+      "containers": {
+        "maxWidth": "1400px",
+        "padding": "0 24px"
+      }
+    },
+    "shadcnComponents": {
+      "Card": {
+        "base": "rounded-lg border bg-card text-card-foreground shadow-sm",
+        "variants": {
+          "default": "border-border",
+          "destructive": "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive"
+        },
+        "parts": {
+          "header": "flex flex-col space-y-1.5 p-6",
+          "title": "text-2xl font-semibold leading-none tracking-tight",
+          "description": "text-sm text-muted-foreground",
+          "content": "p-6 pt-0",
+          "footer": "flex items-center p-6 pt-0"
+        }
+      },
+      "Button": {
+        "base": "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "variants": {
+          "default": "bg-primary text-primary-foreground hover:bg-primary/90",
+          "destructive": "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "outline": "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "secondary": "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "ghost": "hover:bg-accent hover:text-accent-foreground",
+          "link": "text-primary underline-offset-4 hover:underline"
+        },
+        "sizes": {
+          "default": "h-10 px-4 py-2",
+          "sm": "h-9 rounded-md px-3",
+          "lg": "h-11 rounded-md px-8",
+          "icon": "h-10 w-10"
+        }
+      },
+      "Input": {
+        "base": "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+      },
+      "Badge": {
+        "base": "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+        "variants": {
+          "default": "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+          "secondary": "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "destructive": "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+          "outline": "text-foreground"
+        }
+      },
+      "Avatar": {
+        "base": "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
+        "image": "aspect-square h-full w-full",
+        "fallback": "flex h-full w-full items-center justify-center rounded-full bg-muted"
+      },
+      "NavigationMenu": {
+        "root": "relative z-10 flex max-w-max flex-1 items-center justify-center",
+        "list": "group flex flex-1 list-none items-center justify-center space-x-1",
+        "item": "",
+        "trigger": "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+      }
+    },
+    "dashboardPatterns": {
+      "layouts": {
+        "metricCard": {
+          "container": "rounded-lg border bg-card text-card-foreground shadow-sm p-6",
+          "header": "flex flex-row items-center justify-between space-y-0 pb-2",
+          "title": "text-sm font-medium",
+          "icon": "h-4 w-4 text-muted-foreground",
+          "content": "space-y-1",
+          "value": "text-2xl font-bold",
+          "description": "text-xs text-muted-foreground"
+        },
+        "chartCard": {
+          "container": "rounded-lg border bg-card text-card-foreground shadow-sm",
+          "header": "flex flex-col space-y-1.5 p-6 pb-4",
+          "title": "text-lg font-semibold leading-none tracking-tight",
+          "content": "p-6 pt-0",
+          "chart": "h-[200px] w-full"
+        },
+        "sidebar": {
+          "container": "flex h-full w-[280px] flex-col bg-background border-r",
+          "header": "flex h-14 items-center border-b px-4",
+          "nav": "flex-1 overflow-auto py-2",
+          "navItem": "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-accent",
+          "navItemActive": "bg-accent text-accent-foreground"
+        },
+        "mainContent": {
+          "container": "flex-1 space-y-4 p-8 pt-6",
+          "header": "flex items-center justify-between space-y-2",
+          "title": "text-3xl font-bold tracking-tight",
+          "grid": "grid gap-4 md:grid-cols-2 lg:grid-cols-4"
+        }
+      },
+      "commonComponents": {
+        "userAvatar": {
+          "container": "flex items-center gap-2",
+          "avatar": "relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full",
+          "info": "grid gap-0.5 text-sm",
+          "name": "font-medium",
+          "email": "text-muted-foreground"
+        },
+        "statCard": {
+          "trending": "flex items-center gap-1 text-sm text-green-600",
+          "declining": "flex items-center gap-1 text-sm text-red-600",
+          "icon": "h-3 w-3"
+        }
+      }
+    },
+    "designPrinciples": {
+      "colorSpace": "Uses OKLCH for perceptually uniform colors across light/dark modes",
+      "consistency": "Unified theme tokens for all components and states",
+      "accessibility": "WCAG compliant contrast ratios in both light and dark modes",
+      "modernDesign": "Clean, minimal aesthetic with subtle shadows and rounded corners",
+      "systemIntegration": "Leverages system fonts for optimal performance and familiarity"
+    },
+    "claudeThemeFeatures": {
+      "dualMode": "Complete light and dark mode support with automatic switching",
+      "sidebarTokens": "Dedicated sidebar color tokens for proper navigation styling",
+      "chartColors": "Five distinct chart colors for data visualization",
+      "oklchColors": "Modern OKLCH color space for better color consistency",
+      "systemFonts": "Optimized system font stacks for performance",
+      "subtleShadows": "Refined shadow system for depth without distraction",
+      "implementation": "Direct integration with tweakcn.com theme editor"
+    },
+    "usage": {
+      "installation": {
+        "shadcn": "npx shadcn-ui@latest init",
+        "theme": "Download from https://tweakcn.com/r/themes/claude.json",
+        "implementation": "Add CSS variables to globals.css",
+        "components": ["card", "button", "input", "badge", "avatar", "navigation-menu", "sidebar"]
+      },
+      "globals.css": {
+        "cssVariables": "@layer base {\n  :root {\n    --background: oklch(0.9818 0.0054 95.0986);\n    --foreground: oklch(0.3438 0.0269 95.7226);\n    --card: oklch(0.9818 0.0054 95.0986);\n    --card-foreground: oklch(0.1908 0.0020 106.5859);\n    --popover: oklch(1.0000 0 0);\n    --popover-foreground: oklch(0.2671 0.0196 98.9390);\n    --primary: oklch(0.6171 0.1375 39.0427);\n    --primary-foreground: oklch(1.0000 0 0);\n    --secondary: oklch(0.9245 0.0138 92.9892);\n    --secondary-foreground: oklch(0.4334 0.0177 98.6048);\n    --muted: oklch(0.9341 0.0153 90.2390);\n    --muted-foreground: oklch(0.6059 0.0075 97.4233);\n    --accent: oklch(0.9245 0.0138 92.9892);\n    --accent-foreground: oklch(0.2671 0.0196 98.9390);\n    --destructive: oklch(0.1908 0.0020 106.5859);\n    --destructive-foreground: oklch(1.0000 0 0);\n    --border: oklch(0.8847 0.0069 97.3627);\n    --input: oklch(0.7621 0.0156 98.3528);\n    --ring: oklch(0.6171 0.1375 39.0427);\n    --radius: 0.5rem;\n  }\n  .dark {\n    --background: oklch(0.2679 0.0036 106.6427);\n    --foreground: oklch(0.8074 0.0142 93.0137);\n    --card: oklch(0.2679 0.0036 106.6427);\n    --card-foreground: oklch(0.9818 0.0054 95.0986);\n    --popover: oklch(0.3085 0.0035 106.6039);\n    --popover-foreground: oklch(0.9211 0.0040 106.4781);\n    --primary: oklch(0.6724 0.1308 38.7559);\n    --primary-foreground: oklch(1.0000 0 0);\n    --secondary: oklch(0.9818 0.0054 95.0986);\n    --secondary-foreground: oklch(0.3085 0.0035 106.6039);\n    --muted: oklch(0.2213 0.0038 106.7070);\n    --muted-foreground: oklch(0.7713 0.0169 99.0657);\n    --accent: oklch(0.2130 0.0078 95.4245);\n    --accent-foreground: oklch(0.9663 0.0080 98.8792);\n    --destructive: oklch(0.6368 0.2078 25.3313);\n    --destructive-foreground: oklch(1.0000 0 0);\n    --border: oklch(0.3618 0.0101 106.8928);\n    --input: oklch(0.4336 0.0113 100.2195);\n    --ring: oklch(0.6724 0.1308 38.7559);\n  }\n}"
+      },
+      "codeTemplates": {
+        "metricCard": {
+          "jsx": "<Card>\n  <CardHeader className=\"flex flex-row items-center justify-between space-y-0 pb-2\">\n    <CardTitle className=\"text-sm font-medium\">Total Revenue</CardTitle>\n    <DollarSign className=\"h-4 w-4 text-muted-foreground\" />\n  </CardHeader>\n  <CardContent>\n    <div className=\"text-2xl font-bold\">$45,231.89</div>\n    <p className=\"text-xs text-muted-foreground\">+20.1% from last month</p>\n  </CardContent>\n</Card>",
+          "classes": "rounded-lg border bg-card text-card-foreground shadow-sm"
+        },
+        "dashboardGrid": {
+          "jsx": "<div className=\"grid gap-4 md:grid-cols-2 lg:grid-cols-4\">\n  {/* Metric cards */}\n</div>",
+          "responsive": "Uses md:grid-cols-2 lg:grid-cols-4 for responsive behavior"
+        },
+        "sidebar": {
+          "jsx": "<aside className=\"flex h-full w-[280px] flex-col bg-sidebar border-r border-sidebar-border\">\n  <div className=\"flex h-14 items-center border-b border-sidebar-border px-4\">\n    <h2 className=\"text-lg font-semibold text-sidebar-foreground\">Navigation</h2>\n  </div>\n  <nav className=\"flex-1 overflow-auto py-2\">\n    {/* Navigation items */}\n  </nav>\n</aside>",
+          "classes": "bg-sidebar text-sidebar-foreground border-sidebar-border"
+        }
+      },
+      "colorMapping": {
+        "backgrounds": {
+          "primary": "bg-background",
+          "elevated": "bg-card",
+          "sidebar": "bg-sidebar"
+        },
+        "text": {
+          "primary": "text-foreground",
+          "secondary": "text-muted-foreground",
+          "sidebar": "text-sidebar-foreground"
+        },
+        "interactive": {
+          "primary": "bg-primary text-primary-foreground",
+          "secondary": "bg-secondary text-secondary-foreground",
+          "accent": "bg-accent text-accent-foreground"
+        },
+        "charts": {
+          "color1": "hsl(var(--chart-1))",
+          "color2": "hsl(var(--chart-2))",
+          "color3": "hsl(var(--chart-3))",
+          "color4": "hsl(var(--chart-4))",
+          "color5": "hsl(var(--chart-5))"
+        }
+      },
+      "bestPractices": [
+        "Use OKLCH color space for better perceptual uniformity",
+        "Apply theme-specific sidebar colors for navigation",
+        "Use chart-* variables for data visualization consistency",
+        "Implement proper dark/light mode switching",
+        "Leverage CSS custom properties for dynamic theming"
+      ],
+      "cursorPrompts": {
+        "claudeTheme": "Create a dashboard using the Claude theme from tweakcn.com with OKLCH colors",
+        "metricCard": "Build a metric card with the Claude theme colors and shadcn/ui Card component",
+        "chartCard": "Generate a chart container using Claude theme chart colors and proper card styling",
+        "sidebar": "Create a sidebar navigation using Claude theme sidebar-specific color tokens",
+        "dashboard": "Build a complete dashboard with Claude theme, including sidebar and responsive metric grid"
+      },
+      "dependencies": {
+        "required": ["@radix-ui/react-*", "tailwindcss", "clsx", "tailwind-merge"],
+        "optional": ["recharts", "lucide-react", "date-fns", "next-themes"],
+        "fonts": ["System fonts (included in theme)"]
+      }
+    }
+  }

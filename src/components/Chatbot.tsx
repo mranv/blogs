@@ -323,10 +323,10 @@ Type /help to see available commands or just type any topic to search!`,
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="chatbot-window absolute bottom-16 right-0 w-96 h-[32rem] bg-skin-card rounded-2xl border border-skin-line flex flex-col overflow-hidden">
+        <div className="chatbot-window absolute bottom-16 right-0 w-96 h-[32rem] bg-card rounded-2xl border border-border flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-skin-accent text-skin-inverted p-4 flex items-center gap-3">
-            <div className="bg-skin-inverted/20 rounded-full p-2">
+          <div className="bg-primary text-primary-foreground p-4 flex items-center gap-3">
+            <div className="bg-primary-foreground/20 rounded-full p-2">
               <Bot className="h-5 w-5" />
             </div>
             <div>
@@ -345,11 +345,11 @@ Type /help to see available commands or just type any topic to search!`,
                 className={`flex ${message.isBot ? "justify-start" : "justify-end"}`}
               >
                 <div
-                  className={`chatbot-message max-w-[80%] ${message.isBot ? "bg-skin-card-muted text-skin-base" : "bg-skin-accent text-skin-inverted"} rounded-2xl p-3`}
+                  className={`chatbot-message max-w-[80%] ${message.isBot ? "bg-muted text-foreground" : "bg-primary text-primary-foreground"} rounded-2xl p-3`}
                 >
                   <div className="flex items-start gap-2">
                     {message.isBot && (
-                      <Bot className="h-4 w-4 mt-1 text-skin-accent flex-shrink-0" />
+                      <Bot className="h-4 w-4 mt-1 text-primary flex-shrink-0" />
                     )}
                     <div className="flex-1">
                       <p className="text-sm whitespace-pre-line">
@@ -364,13 +364,13 @@ Type /help to see available commands or just type any topic to search!`,
                               <a
                                 key={result.slug}
                                 href={`/posts/${result.slug}/`}
-                                className="block p-3 bg-skin-card rounded-lg border border-skin-line hover:border-skin-accent/30 transition-colors"
+                                className="block p-3 bg-card rounded-lg border border-border hover:border-primary/30 transition-colors"
                                 onClick={() => setIsOpen(false)}
                               >
-                                <h4 className="font-medium text-sm text-skin-base mb-1">
+                                <h4 className="font-medium text-sm text-foreground mb-1">
                                   {result.title}
                                 </h4>
-                                <p className="text-xs text-skin-base/70 line-clamp-2 mb-2">
+                                <p className="text-xs text-foreground/70 line-clamp-2 mb-2">
                                   {result.description}
                                 </p>
                                 {result.data.tags &&
@@ -381,14 +381,14 @@ Type /help to see available commands or just type any topic to search!`,
                                         .map((tag, index) => (
                                           <span
                                             key={index}
-                                            className="inline-flex items-center gap-1 px-2 py-0.5 text-xs bg-skin-accent/10 text-skin-accent rounded-full"
+                                            className="inline-flex items-center gap-1 px-2 py-0.5 text-xs bg-primary/10 text-primary rounded-full"
                                           >
                                             <Tag className="h-2.5 w-2.5" />
                                             {tag}
                                           </span>
                                         ))}
                                       {result.data.tags.length > 3 && (
-                                        <span className="text-xs text-skin-base/50">
+                                        <span className="text-xs text-foreground/50">
                                           +{result.data.tags.length - 3}
                                         </span>
                                       )}
@@ -410,17 +410,17 @@ Type /help to see available commands or just type any topic to search!`,
             {/* Typing Indicator */}
             {isTyping && (
               <div className="flex justify-start">
-                <div className="bg-skin-card-muted rounded-2xl p-3 max-w-[80%]">
+                <div className="bg-muted rounded-2xl p-3 max-w-[80%]">
                   <div className="flex items-center gap-2">
-                    <Bot className="h-4 w-4 text-skin-accent" />
+                    <Bot className="h-4 w-4 text-primary" />
                     <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-skin-base/40 rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce"></div>
                       <div
-                        className="w-2 h-2 bg-skin-base/40 rounded-full animate-bounce"
+                        className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce"
                         style={{ animationDelay: "0.1s" }}
                       ></div>
                       <div
-                        className="w-2 h-2 bg-skin-base/40 rounded-full animate-bounce"
+                        className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce"
                         style={{ animationDelay: "0.2s" }}
                       ></div>
                     </div>
@@ -432,7 +432,7 @@ Type /help to see available commands or just type any topic to search!`,
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-skin-line">
+          <div className="p-4 border-t border-border">
             <div className="flex gap-2">
               <input
                 type="text"
@@ -440,12 +440,12 @@ Type /help to see available commands or just type any topic to search!`,
                 onChange={e => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask me about articles..."
-                className="flex-1 px-4 py-2 border border-skin-line rounded-full focus:outline-none focus:ring-2 focus:ring-skin-accent focus:border-transparent bg-skin-card text-skin-base"
+                className="flex-1 px-4 py-2 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-card text-foreground"
               />
               <button
                 onClick={handleSendMessage}
                 disabled={!inputValue.trim()}
-                className="bg-skin-accent hover:bg-skin-accent/90 disabled:bg-skin-base/30 disabled:cursor-not-allowed text-skin-inverted rounded-full p-2 transition-colors"
+                className="bg-primary hover:bg-primary/90 disabled:bg-foreground/30 disabled:cursor-not-allowed text-primary-foreground rounded-full p-2 transition-colors"
               >
                 <Send className="h-4 w-4" />
               </button>

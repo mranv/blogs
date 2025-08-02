@@ -36,8 +36,8 @@ export default function AuthorStatsCard({
           />
         </svg>
       ),
-      color: "text-blue-600",
-      bgColor: "bg-blue-100 dark:bg-blue-900/20",
+      color: "text-primary",
+      bgColor: "bg-primary/10 dark:bg-primary/20",
     },
     {
       id: "clients",
