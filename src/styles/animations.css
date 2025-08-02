@@ -1,14 +1,60 @@
-/* Modern animations for the blog */
+/* Professional Animation System for Cybersecurity Blog */
 
-/* Fade in animation */
+/* CSS Custom Properties for Animation System */
+:root {
+  /* Professional easing curves */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-cyber: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+  --ease-matrix: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-hack: cubic-bezier(0.77, 0, 0.175, 1);
+  
+  /* Animation durations */
+  --duration-instant: 50ms;
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 750ms;
+  
+  /* Cybersecurity theme colors */
+  --color-cyber-green: #00ff41;
+  --color-cyber-blue: #0099ff;
+  --color-cyber-red: #ff0040;
+  --color-cyber-orange: #ff6600;
+  --color-matrix-green: #8fbc8f;
+  
+  /* Animation system variables */
+  --animation-scale: 1;
+  --animation-duration-multiplier: 1;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --animation-scale: 0;
+    --animation-duration-multiplier: 0.01;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Enhanced fade in animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
