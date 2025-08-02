@@ -235,41 +235,6 @@
     @apply mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16;
     max-width: 100%;
   }
-  
-  @media (min-width: 640px) {
-    section,
-    footer {
-      max-width: 95%;
-    }
-  }
-  
-  @media (min-width: 768px) {
-    section,
-    footer {
-      max-width: 90%;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    section,
-    footer {
-      max-width: 85%;
-    }
-  }
-  
-  @media (min-width: 1280px) {
-    section,
-    footer {
-      max-width: 80%;
-    }
-  }
-  
-  @media (min-width: 1536px) {
-    section,
-    footer {
-      max-width: 75%;
-    }
-  }
 
   main {
     @apply flex-1;
@@ -851,7 +816,7 @@
 
   .container {
     @apply w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16;
-    max-width: 95vw;
+    max-width: 100%;
   }
 
   .gradient-text {

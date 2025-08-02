@@ -20,8 +20,8 @@ const uniqueTags = getUniqueTags(posts);
 // Check for new posts (posts from last 7 days)
 const oneWeekAgo = new Date();
 oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-const hasNewPosts = sortedPosts.some(post => 
-  new Date(post.data.pubDatetime) > oneWeekAgo
+const hasNewPosts = sortedPosts.some(
+  post => new Date(post.data.pubDatetime) > oneWeekAgo
 );
 ---
 
@@ -47,7 +47,7 @@ const hasNewPosts = sortedPosts.some(post =>
         }
       </a>
       <nav id="nav-menu" class="flex items-center">
-        <NavigationMenuHeader 
+        <NavigationMenuHeader
           client:load
           activeNav={activeNav}
           posts={sortedPosts.slice(0, 5)}
@@ -61,232 +61,27 @@ const hasNewPosts = sortedPosts.some(post =>
   <Hr />
 </header>
 
-<style>
-  header {
-    @apply sticky top-0 z-50;
-    background: rgba(var(--color-fill), 0.85);
-    backdrop-filter: blur(16px) saturate(180%) brightness(1.1);
-    -webkit-backdrop-filter: blur(16px) saturate(180%) brightness(1.1);
-    border-bottom: 1px solid rgba(var(--color-border), 0.2);
-    box-shadow: 0 4px 24px rgba(var(--color-shadow), 0.06);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  #skip-to-content {
-    @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;
-  }
-  .nav-container {
-    @apply mx-auto flex max-w-4xl flex-col items-center justify-between sm:flex-row px-6 sm:px-8;
-  }
-  .top-nav-wrap {
-    @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
-  }
-  .logo {
-    @apply absolute py-1 text-xl font-bold sm:static sm:text-2xl;
-    @apply text-skin-accent;
-    @apply transition-all duration-500 hover:scale-110;
-    background: linear-gradient(
-      135deg,
-      rgb(var(--color-accent)),
-      rgba(var(--color-accent), 0.8),
-      rgb(var(--color-gradient-end))
-    );
-    background-size: 200% 200%;
-    animation: gradientShift 6s ease-in-out infinite;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    position: relative;
-  }
-  .logo:hover {
-    background: linear-gradient(
-      135deg,
-      rgba(var(--color-accent), 1),
-      rgba(var(--color-gradient-end), 0.9),
-      rgba(var(--color-accent), 0.8)
-    );
-    background-size: 150% 150%;
-    animation: gradientShift 2s ease-in-out infinite;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 8px rgba(var(--color-accent), 0.3));
-  }
-
-  @keyframes gradientShift {
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-  .hamburger-menu {
-    @apply self-end p-2 sm:hidden;
-  }
-  .hamburger-menu svg {
-    @apply h-6 w-6 scale-125 fill-skin-base;
-  }
-
-  nav {
-    @apply flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0;
-  }
-  nav ul {
-    @apply mt-4 grid w-44 grid-cols-2 grid-rows-4 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:w-auto sm:gap-x-5 sm:gap-y-0 sm:flex sm:items-center;
-  }
-  nav ul li {
-    @apply col-span-2 flex items-center justify-center;
-  }
-  nav ul li a {
-    @apply w-full px-4 py-2 text-center font-medium sm:my-0 sm:px-3 sm:py-2;
-    @apply transition-all duration-300 rounded-lg;
-    @apply hover:bg-skin-accent/15 hover:text-skin-accent;
-    @apply hover:shadow-md hover:scale-105;
-    @apply relative overflow-hidden;
-    @apply text-sm tracking-wide;
-    @apply border border-transparent hover:border-skin-accent/20;
-  }
-
-  nav ul li a::before {
-    @apply absolute inset-0 transform -translate-x-full transition-transform duration-700;
-    background: linear-gradient(to right, transparent, rgba(var(--color-accent), 0.1), transparent);
-    content: "";
-  }
-
-  nav ul li a:hover::before {
-    @apply translate-x-full;
-  }
-
-  nav ul li a::after {
-    content: "";
-    @apply absolute bottom-0 left-1/2 w-0 h-0.5 bg-skin-accent;
-    @apply transition-all duration-300 transform -translate-x-1/2;
-  }
-
-  nav ul li a:hover::after {
-    @apply w-3/4;
-  }
-  nav ul li:nth-last-child(2) a {
-    @apply w-auto;
-  }
-  nav ul li:nth-last-child(1),
-  nav ul li:nth-last-child(2) {
-    @apply col-span-1;
-  }
-  nav a.active {
-    @apply text-skin-accent font-semibold;
-    @apply bg-skin-accent/15;
-    @apply shadow-md;
-    @apply border-skin-accent/30;
-    @apply scale-105;
-    position: relative;
-  }
-
-  nav a.active::after {
-    @apply w-3/4;
-  }
-  nav a.active svg {
-    @apply fill-skin-accent;
-  }
-
-  nav button {
-    @apply p-1;
-  }
-  nav button svg {
-    @apply h-6 w-6 fill-skin-base hover:fill-skin-accent;
-  }
-
-  .menu-icon line {
-    @apply transition-opacity duration-75 ease-in-out;
-  }
-  .menu-icon .close {
-    opacity: 0;
-  }
-  .menu-icon.is-active .line {
-    @apply opacity-0;
-  }
-  .menu-icon.is-active .close {
-    @apply opacity-100;
-  }
-
-  /* Enhanced NavigationMenu Styles */
-  :global([data-radix-navigation-menu-viewport]) {
-    background: rgba(var(--color-fill), 0.95) !important;
-    backdrop-filter: blur(20px) saturate(180%) brightness(1.1) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.1) !important;
-    border: 1px solid rgba(var(--color-border), 0.3) !important;
-    box-shadow: 0 20px 40px rgba(var(--color-shadow), 0.15) !important;
-  }
-
-  :global([data-radix-navigation-menu-content]) {
-    animation-duration: 300ms !important;
-  }
-
-  :global(.navigation-menu-trigger[data-state="open"]) {
-    background: rgba(var(--color-accent), 0.15) !important;
-    color: rgb(var(--color-accent)) !important;
-    transform: scale(1.05) !important;
-  }
-
-  /* Custom scrollbar for navigation content */
-  :global([data-radix-navigation-menu-content]::-webkit-scrollbar) {
-    width: 6px;
-  }
-
-  :global([data-radix-navigation-menu-content]::-webkit-scrollbar-track) {
-    background: rgba(var(--color-border), 0.1);
-    border-radius: 3px;
-  }
-
-  :global([data-radix-navigation-menu-content]::-webkit-scrollbar-thumb) {
-    background: rgba(var(--color-accent), 0.3);
-    border-radius: 3px;
-  }
-
-  :global([data-radix-navigation-menu-content]::-webkit-scrollbar-thumb:hover) {
-    background: rgba(var(--color-accent), 0.5);
-  }
-</style>
-
 <script>
-  function toggleNav() {
-    // Toggle menu
-    const menuBtn = document.querySelector(".hamburger-menu");
-    const menuIcon = document.querySelector(".menu-icon");
-    const menuItems = document.querySelector("#menu-items");
-
-    menuBtn?.addEventListener("click", () => {
-      const menuExpanded = menuBtn.getAttribute("aria-expanded") === "true";
-      menuIcon?.classList.toggle("is-active");
-      menuBtn.setAttribute("aria-expanded", menuExpanded ? "false" : "true");
-      menuBtn.setAttribute(
-        "aria-label",
-        menuExpanded ? "Open Menu" : "Close Menu"
-      );
-      menuItems?.classList.toggle("display-none");
-    });
-  }
-
   // Enhanced keyboard navigation for desktop navigation menu
   function enhanceKeyboardNavigation() {
-    const navTriggers = document.querySelectorAll('[data-radix-navigation-menu-trigger]');
-    
+    const navTriggers = document.querySelectorAll(
+      "[data-radix-navigation-menu-trigger]"
+    );
+
     navTriggers.forEach((trigger, index) => {
-      trigger.addEventListener('keydown', (e) => {
+      trigger.addEventListener("keydown", e => {
         const event = e as KeyboardEvent;
-        
-        switch(event.key) {
-          case 'ArrowRight':
+
+        switch (event.key) {
+          case "ArrowRight":
             event.preventDefault();
             const nextTrigger = navTriggers[index + 1] || navTriggers[0];
             (nextTrigger as HTMLElement).focus();
             break;
-          case 'ArrowLeft':
+          case "ArrowLeft":
             event.preventDefault();
-            const prevTrigger = navTriggers[index - 1] || navTriggers[navTriggers.length - 1];
+            const prevTrigger =
+              navTriggers[index - 1] || navTriggers[navTriggers.length - 1];
             (prevTrigger as HTMLElement).focus();
             break;
         }
@@ -296,30 +91,30 @@ const hasNewPosts = sortedPosts.some(post =>
 
   // Global keyboard shortcuts
   function setupGlobalShortcuts() {
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener("keydown", e => {
       // Search shortcut (Cmd+K or Ctrl+K)
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        window.location.href = '/search/';
+        window.location.href = "/search/";
       }
-      
+
       // Escape to close any open navigation menus
-      if (e.key === 'Escape') {
-        const openTriggers = document.querySelectorAll('[data-radix-navigation-menu-trigger][data-state="open"]');
-        openTriggers.forEach((trigger) => {
+      if (e.key === "Escape") {
+        const openTriggers = document.querySelectorAll(
+          '[data-radix-navigation-menu-trigger][data-state="open"]'
+        );
+        openTriggers.forEach(trigger => {
           (trigger as HTMLElement).click();
         });
       }
     });
   }
 
-  toggleNav();
   enhanceKeyboardNavigation();
   setupGlobalShortcuts();
 
   // Runs on view transitions navigation
   document.addEventListener("astro:after-swap", () => {
-    toggleNav();
     enhanceKeyboardNavigation();
     setupGlobalShortcuts();
   });
