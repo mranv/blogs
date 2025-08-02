@@ -186,7 +186,7 @@ export const animationUtils = {
    * Generate unique animation name
    */
   generateAnimationName: (): string => {
-    return `anim-${Math.random().toString(36).substr(2, 9)}`;
+    return `anim-${Math.random().toString(36).substring(2, 11)}`;
   },
 
   /**
@@ -244,14 +244,14 @@ export const animationUtils = {
   ): number => {
     const cx = 3 * x1;
     const bx = 3 * (x2 - x1) - cx;
-    const _ax = 1 - cx - bx;
+    // const _ax = 1 - cx - bx; // Unused variable
 
     const cy = 3 * y1;
     const by = 3 * (y2 - y1) - cy;
     const ay = 1 - cy - by;
 
-    const _cuberoot = (x: number) =>
-      x < 0 ? -Math.pow(-x, 1 / 3) : Math.pow(x, 1 / 3);
+    // const _cuberoot = (x: number) =>
+    //   x < 0 ? -Math.pow(-x, 1 / 3) : Math.pow(x, 1 / 3); // Unused function
 
     return ay * Math.pow(t, 3) + by * Math.pow(t, 2) + cy * t;
   },

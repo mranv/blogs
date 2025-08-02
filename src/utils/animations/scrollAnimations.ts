@@ -123,7 +123,7 @@ export const smoothScroll = {
   by: (distance: number, config: ScrollAnimationConfig = {}): Promise<void> => {
     const mergedConfig = { ...defaultScrollConfig, ...config };
     const startPosition = window.pageYOffset;
-    const _targetPosition = startPosition + distance;
+    // const _targetPosition = startPosition + distance; // Unused variable
     const startTime = performance.now();
 
     return new Promise(resolve => {
@@ -217,8 +217,8 @@ export class ParallaxManager {
         }
 
         // Calculate parallax offset
-        const _progress =
-          (scrollY - elementTop + windowHeight) / (windowHeight + rect.height);
+        // const _progress =
+        //   (scrollY - elementTop + windowHeight) / (windowHeight + rect.height); // Unused variable
         let offset = 0;
 
         switch (config.direction) {
@@ -486,7 +486,7 @@ export const scrollAnimations = {
     startScale: number = 0.8,
     endScale: number = 1
   ): (() => void) => {
-    const callback: ProgressCallback = _progress => {
+    const callback: ProgressCallback = () => {
       const rect = element.getBoundingClientRect();
       const elementTop = rect.top + window.pageYOffset;
       const windowHeight = window.innerHeight;

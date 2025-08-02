@@ -71,7 +71,7 @@ test.describe('Accessibility Tests', () => {
     await expect(searchButton).toBeVisible();
     
     // Check mobile menu button ARIA
-    const isMobile = await page.viewportSize()?.width! < 640;
+    const isMobile = page.viewportSize()?.width! < 640;
     if (isMobile) {
       const menuButton = page.locator('.hamburger-menu');
       await expect(menuButton).toHaveAttribute('aria-expanded', 'false');
@@ -118,7 +118,7 @@ test.describe('Accessibility Tests', () => {
     await page.waitForLoadState('networkidle');
     
     // Test focus trap in mobile menu
-    const isMobile = await page.viewportSize()?.width! < 640;
+    const isMobile = page.viewportSize()?.width! < 640;
     if (isMobile) {
       await page.locator('.hamburger-menu').click();
       

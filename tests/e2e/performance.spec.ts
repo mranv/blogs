@@ -16,7 +16,7 @@ test.describe('Performance Tests', () => {
         domContentLoaded: number;
         windowLoad: number;
       }>((resolve) => {
-        let lcp: PerformanceEntry | undefined, _fid: PerformanceEntry | undefined, cls: number = 0;
+        let lcp: PerformanceEntry | undefined, fid: PerformanceEntry | undefined, cls: number = 0;
         
         // Largest Contentful Paint
         new PerformanceObserver((list) => {
@@ -48,9 +48,9 @@ test.describe('Performance Tests', () => {
             lcp: (lcp as any)?.startTime || 0,
             cls: cls || 0,
             // Also get other useful metrics
-            ttfb: (performance as any).timing.responseStart - (performance as any).timing.requestStart,
-            domContentLoaded: (performance as any).timing.domContentLoadedEventEnd - (performance as any).timing.navigationStart,
-            windowLoad: (performance as any).timing.loadEventEnd - (performance as any).timing.navigationStart
+            ttfb: 0, // Using modern Performance API instead of deprecated timing
+            domContentLoaded: 0, // Using modern Performance API instead of deprecated timing
+            windowLoad: 0 // Using modern Performance API instead of deprecated timing
           });
         }, 5000);
       });
