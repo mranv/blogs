@@ -28,7 +28,9 @@ export default function AuthorHero({
       .slice(0, 2);
   };
 
-  const activeSocials = author.socials.filter(social => social.active);
+  const activeSocials = author.socials.filter(
+    (social: { active: boolean }) => social.active
+  );
 
   return (
     <section
@@ -160,26 +162,36 @@ export default function AuthorHero({
 
               {/* Social links */}
               <div className="flex space-x-4">
-                {activeSocials.slice(0, 4).map(social => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/social relative"
-                    aria-label={social.linkTitle}
-                  >
-                    <div
-                      className="p-3 rounded-full border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/10 transition-all duration-300 group-hover/social:scale-110 group-hover/social:shadow-lg backdrop-blur-sm"
-                      dangerouslySetInnerHTML={{
-                        __html: socialIcons[social.name]?.replace(
-                          'class="icon-tabler"',
-                          'class="icon-tabler w-5 h-5 stroke-current text-muted-foreground group-hover/social:text-primary transition-colors duration-300"'
-                        ),
-                      }}
-                    />
-                  </a>
-                ))}
+                {activeSocials
+                  .slice(0, 4)
+                  .map(
+                    (social: {
+                      name: keyof typeof socialIcons;
+                      href: string;
+                      linkTitle: string;
+                    }) => (
+                      <a
+                        key={social.name}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/social relative"
+                        aria-label={social.linkTitle}
+                      >
+                        <div
+                          className="p-3 rounded-full border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/10 transition-all duration-300 group-hover/social:scale-110 group-hover/social:shadow-lg backdrop-blur-sm"
+                          dangerouslySetInnerHTML={{
+                            __html: socialIcons[
+                              social.name as keyof typeof socialIcons
+                            ]?.replace(
+                              'class="icon-tabler"',
+                              'class="icon-tabler w-5 h-5 stroke-current text-muted-foreground group-hover/social:text-primary transition-colors duration-300"'
+                            ),
+                          }}
+                        />
+                      </a>
+                    )
+                  )}
               </div>
             </div>
           </div>

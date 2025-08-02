@@ -50,6 +50,14 @@ html[data-theme="light"] {
     /* Border radius */
     --radius: 0.5rem;
     
+    /* Shadows from theme.json */
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    
     /* Legacy color variables for compatibility */
     --color-fill: 250, 250, 252;
     --color-text-base: 17, 24, 39;
@@ -157,6 +165,206 @@ html[data-theme="light"] {
 .chart-bg-3 { background-color: hsl(var(--chart-3)); }
 .chart-bg-4 { background-color: hsl(var(--chart-4)); }
 .chart-bg-5 { background-color: hsl(var(--chart-5)); }
+
+/* ===== ABOUT PAGE SPECIFIC STYLES ===== */
+
+/* About page container */
+.about-page {
+  @apply max-w-4xl mx-auto px-4 py-8;
+  @apply bg-background text-foreground;
+}
+
+/* About page header section */
+.about-header {
+  @apply text-center mb-12;
+  @apply bg-card border border-border rounded-xl p-8;
+  @apply shadow-lg;
+}
+
+.about-header img {
+  @apply rounded-full border-4 border-primary/20;
+  @apply shadow-xl;
+  @apply transition-all duration-300;
+}
+
+.about-header img:hover {
+  @apply border-primary/40;
+  @apply scale-105;
+}
+
+.about-header h1 {
+  @apply text-4xl font-bold text-foreground;
+  @apply mb-4;
+  @apply bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent;
+}
+
+.about-header .title {
+  @apply text-xl font-semibold text-foreground;
+  @apply mb-2;
+}
+
+.about-header .subtitle {
+  @apply text-lg text-muted-foreground;
+  @apply max-w-2xl mx-auto;
+}
+
+/* About page sections */
+.about-section {
+  @apply mb-12;
+  @apply bg-card border border-border rounded-xl p-8;
+  @apply shadow-md;
+  @apply transition-all duration-300;
+}
+
+.about-section:hover {
+  @apply shadow-lg;
+  @apply border-primary/20;
+}
+
+.about-section h2 {
+  @apply text-3xl font-bold text-foreground;
+  @apply mb-6;
+  @apply border-b-2 border-primary/30 pb-2;
+}
+
+.about-section h3 {
+  @apply text-2xl font-semibold text-foreground;
+  @apply mb-4;
+  @apply text-primary;
+}
+
+.about-section h4 {
+  @apply text-xl font-medium text-foreground;
+  @apply mb-3;
+}
+
+/* About page content styling */
+.about-content {
+  @apply text-foreground/90;
+  @apply leading-relaxed;
+  @apply space-y-4;
+}
+
+.about-content p {
+  @apply text-lg;
+  @apply mb-4;
+}
+
+.about-content strong {
+  @apply text-foreground font-semibold;
+}
+
+.about-content em {
+  @apply text-foreground/80 italic;
+}
+
+/* About page table styling */
+.about-table {
+  @apply w-full border-collapse my-8;
+  @apply bg-card border border-border rounded-lg overflow-hidden;
+  @apply shadow-md;
+}
+
+.about-table th {
+  @apply bg-muted text-foreground font-semibold;
+  @apply p-4 text-left border-b border-border;
+}
+
+.about-table td {
+  @apply p-4 border-b border-border/50;
+  @apply text-foreground/90;
+}
+
+.about-table tr:hover {
+  @apply bg-muted/50;
+}
+
+/* About page list styling */
+.about-content ul,
+.about-content ol {
+  @apply text-foreground/90 space-y-2 mb-6;
+  @apply pl-6;
+}
+
+.about-content li {
+  @apply text-foreground/90;
+  @apply mb-2;
+}
+
+.about-content li::marker {
+  @apply text-primary;
+}
+
+/* About page link styling */
+.about-content a {
+  @apply text-primary hover:text-primary/80;
+  @apply underline underline-offset-2;
+  @apply transition-all duration-200;
+  text-decoration-color: hsl(var(--primary) / 0.3);
+}
+
+.about-content a:hover {
+  text-decoration-color: hsl(var(--primary) / 0.6);
+}
+
+/* About page code styling */
+.about-content code {
+  @apply bg-muted text-foreground;
+  @apply px-2 py-1 rounded text-sm font-mono;
+  @apply border border-border/50;
+}
+
+.about-content pre {
+  @apply bg-card border border-border;
+  @apply p-6 rounded-xl shadow-lg;
+  @apply overflow-x-auto my-8;
+}
+
+.about-content pre code {
+  @apply bg-transparent border-none p-0;
+  @apply text-foreground;
+}
+
+/* About page blockquote styling */
+.about-content blockquote {
+  @apply border-l-4 border-primary/60 bg-primary/5;
+  @apply pl-6 py-4 my-8 rounded-r-lg;
+  @apply italic text-foreground/80;
+}
+
+/* About page call-to-action section */
+.about-cta {
+  @apply text-center mt-12;
+  @apply bg-gradient-to-r from-primary/10 to-secondary/10;
+  @apply border border-primary/20 rounded-xl p-8;
+  @apply shadow-lg;
+}
+
+.about-cta h3 {
+  @apply text-2xl font-bold text-foreground;
+  @apply mb-4;
+}
+
+.about-cta p {
+  @apply text-lg text-muted-foreground;
+  @apply mb-6;
+}
+
+.about-cta .cta-links {
+  @apply flex flex-wrap justify-center gap-4;
+}
+
+.about-cta .cta-links a {
+  @apply bg-primary hover:bg-primary/90 text-primary-foreground;
+  @apply px-6 py-3 rounded-lg font-semibold;
+  @apply transition-all duration-200;
+  @apply shadow-md hover:shadow-lg;
+  @apply no-underline;
+}
+
+.about-cta .cta-links a:hover {
+  @apply transform scale-105;
+}
 
 /* ===== THEME COMPONENT STYLES ===== */
 
@@ -392,6 +600,26 @@ html[data-theme="dark"] .chatbot-window {
 @media (max-width: 640px) {
   .theme-mobile {
     --radius: 0.375rem;
+  }
+  
+  .about-header {
+    @apply p-6;
+  }
+  
+  .about-header h1 {
+    @apply text-3xl;
+  }
+  
+  .about-section {
+    @apply p-6;
+  }
+  
+  .about-section h2 {
+    @apply text-2xl;
+  }
+  
+  .about-cta .cta-links {
+    @apply flex-col;
   }
 }
 

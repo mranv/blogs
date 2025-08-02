@@ -16,7 +16,15 @@ export default function AuthorStatsCard({
   showIcons = true,
   animated = true,
 }: AuthorStatsCardProps) {
-  const statsData = [
+  const statsData: Array<{
+    id: string;
+    label: string;
+    value: number | string;
+    suffix?: string;
+    icon: React.ReactElement;
+    color: string;
+    bgColor: string;
+  }> = [
     {
       id: "experience",
       label: "Years Experience",

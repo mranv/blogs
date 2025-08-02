@@ -29,7 +29,9 @@ export default function AuthorCard({
       .slice(0, 2);
   };
 
-  const activeSocials = author.socials.filter(social => social.active);
+  const activeSocials = author.socials.filter(
+    (social: { active: boolean }) => social.active
+  );
 
   return (
     <Card
@@ -174,31 +176,41 @@ export default function AuthorCard({
           {/* Social links */}
           {showSocials && activeSocials.length > 0 && (
             <div className="flex justify-center space-x-3">
-              {activeSocials.slice(0, 4).map(social => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/social relative"
-                  aria-label={social.linkTitle}
-                >
-                  <div
-                    className="p-2 rounded-full bg-muted hover:bg-primary/10 transition-all duration-300 group-hover/social:scale-110 group-hover/social:shadow-lg"
-                    dangerouslySetInnerHTML={{
-                      __html: socialIcons[social.name]?.replace(
-                        'class="icon-tabler"',
-                        'class="icon-tabler w-4 h-4 stroke-current text-muted-foreground group-hover/social:text-primary transition-colors duration-300"'
-                      ),
-                    }}
-                  />
+              {activeSocials
+                .slice(0, 4)
+                .map(
+                  (social: {
+                    name: keyof typeof socialIcons;
+                    href: string;
+                    linkTitle: string;
+                  }) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/social relative"
+                      aria-label={social.linkTitle}
+                    >
+                      <div
+                        className="p-2 rounded-full bg-muted hover:bg-primary/10 transition-all duration-300 group-hover/social:scale-110 group-hover/social:shadow-lg"
+                        dangerouslySetInnerHTML={{
+                          __html: socialIcons[
+                            social.name as keyof typeof socialIcons
+                          ]?.replace(
+                            'class="icon-tabler"',
+                            'class="icon-tabler w-4 h-4 stroke-current text-muted-foreground group-hover/social:text-primary transition-colors duration-300"'
+                          ),
+                        }}
+                      />
 
-                  {/* Tooltip */}
-                  <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-popover text-popover-foreground text-xs rounded opacity-0 group-hover/social:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
-                    {social.name}
-                  </div>
-                </a>
-              ))}
+                      {/* Tooltip */}
+                      <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-popover text-popover-foreground text-xs rounded opacity-0 group-hover/social:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+                        {social.name}
+                      </div>
+                    </a>
+                  )
+                )}
             </div>
           )}
 

@@ -1,6 +1,5 @@
 import Fuse from "fuse.js";
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
-import Card from "@components/Card";
 import { Input } from "@components/ui/input";
 import { Badge } from "@components/ui/badge";
 import { Skeleton } from "@components/ui/skeleton";
