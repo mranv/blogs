@@ -243,7 +243,7 @@ export const animationUtils = {
     t: number
   ): number => {
     const cx = 3 * x1;
-    const bx = 3 * (x2 - x1) - cx;
+    // const bx = 3 * (x2 - x1) - cx;
     // const _ax = 1 - cx - bx; // Unused variable
 
     const cy = 3 * y1;

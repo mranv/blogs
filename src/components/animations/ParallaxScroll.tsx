@@ -235,7 +235,7 @@ export const MouseParallax = forwardRef<HTMLDivElement, MouseParallaxProps>(
     const animationRef = useRef<number>();
 
     const [targetPosition, setTargetPosition] = useState({ x: 0, y: 0 });
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     // Get animation context
     const { prefersReducedMotion } = useAnimation();
