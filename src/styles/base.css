@@ -561,6 +561,55 @@
   .hover\:text-skin-accent:hover {
     color: rgb(var(--color-accent));
   }
+
+  /* Additional skin utilities for chatbot theme support */
+  .bg-skin-inverted {
+    background-color: rgb(var(--color-text-base));
+  }
+
+  .text-skin-inverted {
+    color: rgb(var(--color-fill));
+  }
+
+  .bg-skin-inverted\/20 {
+    background-color: rgba(var(--color-text-base), 0.2);
+  }
+
+  .bg-skin-base\/30 {
+    background-color: rgba(var(--color-text-base), 0.3);
+  }
+
+  .bg-skin-base\/40 {
+    background-color: rgba(var(--color-text-base), 0.4);
+  }
+
+  .text-skin-base\/70 {
+    color: rgba(var(--color-text-base), 0.7);
+  }
+
+  .border-skin-line {
+    border-color: rgb(var(--color-border));
+  }
+
+  .border-skin-accent\/30 {
+    border-color: rgba(var(--color-accent), 0.3);
+  }
+
+  .hover\:border-skin-accent\/30:hover {
+    border-color: rgba(var(--color-accent), 0.3);
+  }
+
+  .focus\:ring-skin-accent:focus {
+    --tw-ring-color: rgb(var(--color-accent));
+  }
+
+  .bg-skin-accent\/90 {
+    background-color: rgba(var(--color-accent), 0.9);
+  }
+
+  .hover\:bg-skin-accent\/90:hover {
+    background-color: rgba(var(--color-accent), 0.9);
+  }
 }
 
 @layer components {
