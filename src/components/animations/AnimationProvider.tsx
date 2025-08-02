@@ -268,7 +268,7 @@ const AnimationProvider: React.FC<AnimationProviderProps> = ({
 
     let scrollTimeout: NodeJS.Timeout;
 
-    const scrollCallback = (progress: number, scrollY: number) => {
+    const scrollCallback = (progress: number) => {
       setScrollProgress(progress);
       setIsScrolling(true);
 

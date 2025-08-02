@@ -12,7 +12,7 @@ import React, {
 } from "react";
 import { useAnimation } from "./AnimationProvider";
 import { globalParallaxManager } from "@utils/animations/scrollAnimations";
-import { performanceUtils } from "@utils/animations/animationUtils";
+
 import { cn } from "@utils/cn";
 
 // Parallax directions
