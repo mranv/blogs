@@ -1293,10 +1293,12 @@
   }
   
   .popular-tags__item {
-    @apply group relative overflow-hidden p-3 rounded-lg border cursor-pointer;
+    @apply relative overflow-hidden p-3 rounded-lg border cursor-pointer;
     background-color: hsl(var(--card));
     border-color: hsl(var(--border));
     @apply hover:shadow-md transition-all duration-300 hover:scale-[1.02];
+    /* Add group class separately since it can't be used with @apply */
+    /* The group class should be added directly to the HTML element */
   }
   
   .popular-tags__progress {
