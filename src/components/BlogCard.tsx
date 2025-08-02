@@ -36,19 +36,26 @@ export default function BlogCard({
         <Card
           className={cn(
             "group relative overflow-hidden",
-            "border-border/50 bg-card/40 backdrop-blur-sm",
-            "hover:bg-card/60 hover:border-primary/20",
-            "hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300",
-            "bg-gradient-to-br from-background to-muted/20"
+            "border-border/40 bg-card/50 backdrop-blur-md",
+            "hover:bg-card/70 hover:border-primary/30",
+            "hover:shadow-2xl hover:-translate-y-1 transition-all duration-500",
+            "bg-gradient-to-br from-background via-card/60 to-muted/30",
+            "before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary/3 before:via-transparent before:to-accent/3",
+            "before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100"
           )}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          {/* Enhanced gradient overlays */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-accent/4 to-secondary/6 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
           <CardHeader className="relative pb-3">
             {secHeading ? (
               <CardTitle
-                className={cn(headerProps.className, "line-clamp-2")}
+                className={cn(
+                  headerProps.className,
+                  "line-clamp-2 group-hover:scale-[1.02] transition-transform duration-300"
+                )}
                 style={headerProps.style}
               >
                 {title}
@@ -69,12 +76,19 @@ export default function BlogCard({
           </CardHeader>
 
           <CardContent className="relative pt-0">
-            <p className="text-muted-foreground/80 group-hover:text-muted-foreground transition-colors duration-300 line-clamp-2 text-sm leading-relaxed">
+            <p className="text-muted-foreground/80 group-hover:text-muted-foreground transition-all duration-300 line-clamp-2 text-sm leading-relaxed group-hover:leading-normal">
               {description}
             </p>
-            <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
-              <span>Read article</span>
-              <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+            <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+              <span className="relative overflow-hidden">
+                <span className="block transition-transform duration-300 group-hover:-translate-y-full">
+                  Read article
+                </span>
+                <span className="absolute top-full left-0 transition-transform duration-300 group-hover:-translate-y-full text-accent">
+                  Read article →
+                </span>
+              </span>
+              <ChevronRight className="w-4 h-4 transform group-hover:translate-x-2 group-hover:scale-110 transition-all duration-300" />
             </div>
           </CardContent>
         </Card>

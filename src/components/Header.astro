@@ -110,9 +110,12 @@ const { activeNav } = Astro.props;
 <style>
   header {
     @apply sticky top-0 z-50;
-    background: rgba(var(--color-fill), 0.8);
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    background: rgba(var(--color-fill), 0.85);
+    backdrop-filter: blur(16px) saturate(180%) brightness(1.1);
+    -webkit-backdrop-filter: blur(16px) saturate(180%) brightness(1.1);
+    border-bottom: 1px solid rgba(var(--color-border), 0.2);
+    box-shadow: 0 4px 24px rgba(var(--color-shadow), 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   #skip-to-content {
@@ -127,27 +130,45 @@ const { activeNav } = Astro.props;
   .logo {
     @apply absolute py-1 text-xl font-bold sm:static sm:text-2xl;
     @apply text-skin-accent;
-    @apply transition-all duration-300 hover:scale-105;
+    @apply transition-all duration-500 hover:scale-110;
     background: linear-gradient(
       135deg,
       rgb(var(--color-accent)),
-      rgba(var(--color-accent), 0.8)
+      rgba(var(--color-accent), 0.8),
+      rgb(var(--color-gradient-end))
     );
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease-in-out infinite;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-weight: 700;
     letter-spacing: -0.02em;
+    position: relative;
   }
   .logo:hover {
     background: linear-gradient(
       135deg,
-      rgba(var(--color-accent), 0.9),
-      rgba(var(--color-accent), 0.7)
+      rgba(var(--color-accent), 1),
+      rgba(var(--color-gradient-end), 0.9),
+      rgba(var(--color-accent), 0.8)
     );
+    background-size: 150% 150%;
+    animation: gradientShift 2s ease-in-out infinite;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 0 8px rgba(var(--color-accent), 0.3));
+  }
+
+  @keyframes gradientShift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
   }
   .hamburger-menu {
     @apply self-end p-2 sm:hidden;
@@ -167,21 +188,32 @@ const { activeNav } = Astro.props;
   }
   nav ul li a {
     @apply w-full px-4 py-2 text-center font-medium sm:my-0 sm:px-3 sm:py-2;
-    @apply transition-all duration-200 rounded-md;
-    @apply hover:bg-skin-accent/10 hover:text-skin-accent;
-    @apply hover:shadow-sm;
+    @apply transition-all duration-300 rounded-lg;
+    @apply hover:bg-skin-accent/15 hover:text-skin-accent;
+    @apply hover:shadow-md hover:scale-105;
     @apply relative overflow-hidden;
     @apply text-sm tracking-wide;
+    @apply border border-transparent hover:border-skin-accent/20;
   }
 
   nav ul li a::before {
-    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent;
-    @apply transform -translate-x-full transition-transform duration-500;
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-skin-accent/10 to-transparent;
+    @apply transform -translate-x-full transition-transform duration-700;
     content: "";
   }
 
   nav ul li a:hover::before {
     @apply translate-x-full;
+  }
+
+  nav ul li a::after {
+    content: "";
+    @apply absolute bottom-0 left-1/2 w-0 h-0.5 bg-skin-accent;
+    @apply transition-all duration-300 transform -translate-x-1/2;
+  }
+
+  nav ul li a:hover::after {
+    @apply w-3/4;
   }
   nav ul li:nth-last-child(2) a {
     @apply w-auto;
@@ -192,8 +224,15 @@ const { activeNav } = Astro.props;
   }
   nav a.active {
     @apply text-skin-accent font-semibold;
-    @apply bg-skin-accent/10;
-    @apply shadow-sm;
+    @apply bg-skin-accent/15;
+    @apply shadow-md;
+    @apply border-skin-accent/30;
+    @apply scale-105;
+    position: relative;
+  }
+
+  nav a.active::after {
+    @apply w-3/4;
   }
   nav a.active svg {
     @apply fill-skin-accent;
