@@ -4,21 +4,33 @@
 /* Base reset and theme variables */
 :root,
 html[data-theme="light"] {
-  --color-fill: 250, 250, 252;
-  --color-text-base: 17, 24, 39;
-  --color-accent: 37, 99, 235;
-  --color-card: 255, 255, 255;
-  --color-card-muted: 249, 250, 251;
-  --color-border: 229, 231, 235;
+  /* Claude Theme OKLCH colors from theme.json */
+  --background: oklch(0.9818 0.0054 95.0986);
+  --foreground: oklch(0.3438 0.0269 95.7226);
+  --card: oklch(0.9818 0.0054 95.0986);
+  --card-foreground: oklch(0.1908 0.0020 106.5859);
+  --primary: oklch(0.6171 0.1375 39.0427);
+  --primary-foreground: oklch(1.0000 0 0);
+  --secondary: oklch(0.9245 0.0138 92.9892);
+  --secondary-foreground: oklch(0.4334 0.0177 98.6048);
+  --muted: oklch(0.9341 0.0153 90.2390);
+  --muted-foreground: oklch(0.6059 0.0075 97.4233);
+  --border: oklch(0.8847 0.0069 97.3627);
 }
 
 html[data-theme="dark"] {
-  --color-fill: 17, 24, 39;
-  --color-text-base: 243, 244, 246;
-  --color-accent: 96, 165, 250;
-  --color-card: 31, 41, 55;
-  --color-card-muted: 55, 65, 81;
-  --color-border: 75, 85, 99;
+  /* Claude Theme Dark mode OKLCH colors */
+  --background: oklch(0.2679 0.0036 106.6427);
+  --foreground: oklch(0.8074 0.0142 93.0137);
+  --card: oklch(0.2679 0.0036 106.6427);
+  --card-foreground: oklch(0.9818 0.0054 95.0986);
+  --primary: oklch(0.6724 0.1308 38.7559);
+  --primary-foreground: oklch(1.0000 0 0);
+  --secondary: oklch(0.9818 0.0054 95.0986);
+  --secondary-foreground: oklch(0.3085 0.0035 106.6039);
+  --muted: oklch(0.2213 0.0038 106.7070);
+  --muted-foreground: oklch(0.7713 0.0169 99.0657);
+  --border: oklch(0.3618 0.0101 106.8928);
 }
 
 /* Critical base styles */
@@ -36,8 +48,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: rgb(var(--color-fill));
-  color: rgb(var(--color-text-base));
+  background-color: var(--background);
+  color: var(--foreground);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.75;
@@ -111,7 +123,7 @@ h1, h2, h3 {
 
 /* Critical link styles */
 a {
-  color: rgb(var(--color-accent));
+  color: var(--primary);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -183,6 +195,18 @@ img {
 
 .text-primary {
   color: var(--primary);
+}
+
+.bg-card {
+  background-color: var(--card);
+}
+
+.text-card-foreground {
+  color: var(--card-foreground);
+}
+
+.border-border {
+  border-color: var(--border);
 }
 
 /* Basic responsive grid */

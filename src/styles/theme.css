@@ -179,7 +179,7 @@ html[data-theme="light"] {
   @apply text-center mb-12;
   @apply bg-card border border-border rounded-xl p-8;
   @apply shadow-lg;
-  @apply max-w-6xl mx-auto;
+  @apply mx-auto;
 }
 
 .about-header img {
@@ -209,7 +209,7 @@ html[data-theme="light"] {
 
 .about-header .subtitle {
   @apply text-lg text-muted-foreground;
-  @apply max-w-2xl mx-auto;
+  @apply mx-auto;
 }
 
 /* About page sections */
@@ -218,7 +218,7 @@ html[data-theme="light"] {
   @apply bg-card border border-border rounded-xl p-8;
   @apply shadow-md;
   @apply transition-all duration-300;
-  @apply max-w-6xl mx-auto;
+  @apply mx-auto;
 }
 
 .about-section:hover {
