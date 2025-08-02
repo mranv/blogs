@@ -462,12 +462,13 @@ html[data-theme="dark"] .chatbot-window {
 
 .markdown-content a {
   @apply text-primary hover:text-primary/80;
-  @apply underline decoration-primary/30 underline-offset-2;
+  @apply underline underline-offset-2;
   @apply transition-all duration-200;
+  text-decoration-color: hsl(var(--primary) / 0.3);
 }
 
 .markdown-content a:hover {
-  @apply decoration-primary/60;
+  text-decoration-color: hsl(var(--primary) / 0.6);
 }
 
 .markdown-content strong {
