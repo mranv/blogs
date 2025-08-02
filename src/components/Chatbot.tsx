@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, X, Send, Search, Bot, User, Tag } from "lucide-react";
+import { MessageCircle, X, Send, Bot, User, Tag } from "lucide-react";
 import type { SearchItem } from "./SearchReact";
 
 export interface ChatbotProps {
@@ -438,7 +438,7 @@ Type /help to see available commands or just type any topic to search!`,
                 type="text"
                 value={inputValue}
                 onChange={e => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
                 placeholder="Ask me about articles..."
                 className="flex-1 px-4 py-2 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-background text-foreground placeholder:text-muted-foreground transition-all duration-200"
               />
