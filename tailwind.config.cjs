@@ -10,6 +10,23 @@ function withOpacity(variableName) {
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  // Add safelist for dynamic classes that might be purged
+  safelist: [
+    'animate-in',
+    'animate-fadeIn',
+    'animate-slideInLeft',
+    'animate-slideInRight',
+    'animate-scaleIn',
+    'animate-float',
+    'animate-on-scroll',
+    'animate-fade-up',
+    'animate-fade-in',
+    'animate-slide-in',
+    'animate-scale-in',
+    'text-reveal',
+    'char-reveal',
+    'stagger-children',
+  ],
   theme: {
     // Remove the following screen breakpoint or add other breakpoints
     // if one breakpoint is not enough for you

@@ -1,0 +1,153 @@
+/* Critical CSS for above-the-fold content */
+/* This file contains only the essential styles needed for initial render */
+
+/* Base reset and theme variables */
+:root,
+html[data-theme="light"] {
+  --color-fill: 250, 250, 252;
+  --color-text-base: 17, 24, 39;
+  --color-accent: 37, 99, 235;
+  --color-card: 255, 255, 255;
+  --color-card-muted: 249, 250, 251;
+  --color-border: 229, 231, 235;
+}
+
+html[data-theme="dark"] {
+  --color-fill: 17, 24, 39;
+  --color-text-base: 243, 244, 246;
+  --color-accent: 96, 165, 250;
+  --color-card: 31, 41, 55;
+  --color-card-muted: 55, 65, 81;
+  --color-border: 75, 85, 99;
+}
+
+/* Critical base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(var(--color-fill));
+  color: rgb(var(--color-text-base));
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Critical layout styles */
+main {
+  flex: 1;
+}
+
+section,
+footer {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 64rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  body {
+    font-size: 17px;
+  }
+  section,
+  footer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Critical header styles */
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Critical link styles */
+a {
+  color: rgb(var(--color-accent));
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+/* Hide elements until full CSS loads */
+.animate-on-scroll,
+.animate-fade-up,
+.animate-fade-in,
+.animate-slide-in,
+.animate-scale-in {
+  opacity: 0;
+}
+
+/* Prevent layout shift for images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Video container sizing to prevent shift */
+.video-container {
+  position: relative;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.video-container video {
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Critical utility classes */
+.text-center {
+  text-align: center;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Skin color utilities */
+.bg-skin-fill {
+  background-color: rgb(var(--color-fill));
+}
+
+.text-skin-base {
+  color: rgb(var(--color-text-base));
+}
+
+.text-skin-accent {
+  color: rgb(var(--color-accent));
+}
+
+/* Basic responsive grid */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .sm\\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

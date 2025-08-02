@@ -1,9 +1,9 @@
 ---
 import { LOCALE, SITE } from "@config";
-import "@styles/base.css";
-import "@styles/animations.css";
 import { ViewTransitions } from "astro:transitions";
 import SEO from "@components/SEO.astro";
+import "@styles/base.css";
+import "@styles/animations.css";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -81,17 +81,52 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Load Google Fonts CSS instead of preloading specific font files -->
+    <!-- Preload critical fonts for LCP optimization -->
+    <link
+      rel="preload"
+      as="font"
+      href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7SUc.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
+    <!-- Load Google Fonts CSS with async loading -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
-    <!-- Load additional fonts -->
+    <!-- Load additional fonts with lower priority -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Charter&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Charter&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Charter&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <meta name="theme-color" content="" />
 
@@ -112,50 +147,75 @@ const {
     <script is:inline src="/theme-toggle-handler.js"></script>
 
     <script>
-      // Initialize animations
+      // Initialize animations with optimized performance
       function initAnimations() {
-        // Scroll animations
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px",
-        };
+        // Batch DOM reads and writes to avoid forced reflows
+        requestAnimationFrame(() => {
+          // Scroll animations
+          const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          };
 
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("animate-in");
-            }
-          });
-        }, observerOptions);
+          const observer = new IntersectionObserver(entries => {
+            // Batch DOM updates
+            requestAnimationFrame(() => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("animate-in");
+                }
+              });
+            });
+          }, observerOptions);
 
-        const animatedElements = document.querySelectorAll(
-          ".animate-on-scroll, .animate-fade-up, .animate-fade-in, .animate-slide-in, .animate-scale-in"
-        );
-        animatedElements.forEach(el => observer.observe(el));
+          const animatedElements = document.querySelectorAll(
+            ".animate-on-scroll, .animate-fade-up, .animate-fade-in, .animate-slide-in, .animate-scale-in"
+          );
+          animatedElements.forEach(el => observer.observe(el));
 
-        // Text reveal animation
-        const textElements = document.querySelectorAll(".text-reveal");
-        textElements.forEach(element => {
-          const text = element.textContent;
-          element.innerHTML = "";
+          // Text reveal animation - process in next frame to avoid reflow
+          const textElements = document.querySelectorAll(".text-reveal");
+          if (textElements.length > 0) {
+            requestAnimationFrame(() => {
+              textElements.forEach(element => {
+                const text = element.textContent;
+                const fragment = document.createDocumentFragment();
 
-          [...(text || "")].forEach((char, i) => {
-            const span = document.createElement("span");
-            span.textContent = char === " " ? "\u00A0" : char;
-            span.style.animationDelay = `${i * 0.02}s`;
-            span.classList.add("char-reveal");
-            element.appendChild(span);
-          });
+                [...(text || "")].forEach((char, i) => {
+                  const span = document.createElement("span");
+                  span.textContent = char === " " ? "\u00A0" : char;
+                  span.style.animationDelay = `${i * 0.02}s`;
+                  span.classList.add("char-reveal");
+                  fragment.appendChild(span);
+                });
+
+                element.innerHTML = "";
+                element.appendChild(fragment);
+              });
+            });
+          }
         });
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        initAnimations();
-      });
+      // Use requestIdleCallback for non-critical initialization
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(() => {
+          initAnimations();
+        });
+      } else {
+        // Fallback for browsers that don't support requestIdleCallback
+        setTimeout(initAnimations, 1);
+      }
 
       // Reinitialize animations after view transitions
       document.addEventListener("astro:after-swap", () => {
-        initAnimations();
+        if ("requestIdleCallback" in window) {
+          requestIdleCallback(() => {
+            initAnimations();
+          });
+        } else {
+          setTimeout(initAnimations, 1);
+        }
       });
     </script>
 
@@ -173,6 +233,18 @@ const {
           .catch(error => {
             console.warn("Font loading failed:", error);
           });
+      }
+    </script>
+
+    <!-- Service Worker Registration -->
+    <script is:inline>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then(registration => console.log("Service Worker registered"))
+            .catch(err => console.log("Service Worker registration failed"));
+        });
       }
     </script>
   </head>

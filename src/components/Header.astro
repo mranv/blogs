@@ -23,6 +23,8 @@ const { activeNav } = Astro.props;
               alt={SITE.title}
               width={LOGO_IMAGE.width}
               height={LOGO_IMAGE.height}
+              fetchpriority="high"
+              decoding="async"
             />
           ) : (
             SITE.title
