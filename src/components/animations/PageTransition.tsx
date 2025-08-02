@@ -390,10 +390,10 @@ TransitionGroup.displayName = "TransitionGroup";
 /**
  * Utility function to trigger programmatic page transitions
  */
-export const triggerPageTransition = (
+function triggerPageTransition(
   type: PageTransitionType = "fade",
   duration: number = 500
-): Promise<void> => {
+): Promise<void> {
   return new Promise(resolve => {
     // Add transition class to body
     document.body.classList.add(`page-transition-${type}-out`);
@@ -408,12 +408,14 @@ export const triggerPageTransition = (
       }, duration);
     }, duration / 2);
   });
-};
+}
+
+export { triggerPageTransition };
 
 /**
  * Hook for managing page transitions
  */
-export const usePageTransition = (type: PageTransitionType = "fade") => {
+function usePageTransition(type: PageTransitionType = "fade") {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const startTransition = async (callback?: () => void) => {
@@ -429,6 +431,6 @@ export const usePageTransition = (type: PageTransitionType = "fade") => {
     isTransitioning,
     startTransition,
   };
-};
+}
 
 export default PageTransition;

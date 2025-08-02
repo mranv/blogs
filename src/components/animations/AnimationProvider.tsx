@@ -268,7 +268,7 @@ export const AnimationProvider: React.FC<AnimationProviderProps> = ({
 
     let scrollTimeout: NodeJS.Timeout;
 
-    const cleanup = globalScrollTracker.addCallback((progress, scrollY) => {
+    const scrollCallback = (progress: number, scrollY: number) => {
       setScrollProgress(progress);
       setIsScrolling(true);
 
@@ -279,10 +279,12 @@ export const AnimationProvider: React.FC<AnimationProviderProps> = ({
       scrollTimeout = setTimeout(() => {
         setIsScrolling(false);
       }, 100);
-    });
+    };
+
+    globalScrollTracker.addCallback(scrollCallback);
 
     return () => {
-      cleanup();
+      globalScrollTracker.removeCallback(scrollCallback);
       clearTimeout(scrollTimeout);
     };
   }, [config.enableScrollAnimations]);
@@ -394,7 +396,7 @@ export const AnimationProvider: React.FC<AnimationProviderProps> = ({
 /**
  * Hook to use animation context
  */
-export const useAnimation = (): AnimationContextType => {
+function useAnimation(): AnimationContextType {
   const context = useContext(AnimationContext);
 
   if (!context) {
@@ -416,12 +418,14 @@ export const useAnimation = (): AnimationContextType => {
   }
 
   return context;
-};
+}
+
+export { useAnimation };
 
 /**
  * Hook for simplified animation state
  */
-export const useAnimationState = () => {
+function useAnimationState() {
   const {
     prefersReducedMotion,
     isScrolling,
@@ -437,12 +441,14 @@ export const useAnimationState = () => {
     shouldAnimateElement,
     getOptimalDuration,
   };
-};
+}
+
+export { useAnimationState };
 
 /**
  * Hook for animation performance metrics
  */
-export const useAnimationPerformance = () => {
+function useAnimationPerformance() {
   const { performanceMetrics, activeAnimations, reportPerformanceIssue } =
     useAnimation();
 
@@ -451,7 +457,9 @@ export const useAnimationPerformance = () => {
     activeAnimations,
     reportPerformanceIssue,
   };
-};
+}
+
+export { useAnimationPerformance };
 
 /**
  * Higher-order component for animation context

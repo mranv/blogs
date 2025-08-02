@@ -168,12 +168,12 @@ export const FadeIn = forwardRef<HTMLDivElement, FadeInProps>(
 
       if (shouldTrigger) {
         children.forEach((child, index) => {
-          const cascadeDelay = index * cascadeDelay;
-          child.style.transitionDelay = `${delay + cascadeDelay}ms`;
+          const currentDelay = index * cascadeDelay;
+          child.style.transitionDelay = `${delay + currentDelay}ms`;
 
           setTimeout(() => {
             child.classList.add("fade-in-cascade-active");
-          }, cascadeDelay);
+          }, currentDelay);
         });
       } else if (!triggerOnce) {
         children.forEach(child => {
