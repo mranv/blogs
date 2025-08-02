@@ -881,11 +881,11 @@
     background-clip: text;
   }
 
-  /* Chatbot specific styles */
+  /* Chatbot specific styles - Theme Aware */
   .chatbot-window {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 25px 50px -12px hsl(var(--shadow) / 0.25);
   }
 
   .chatbot-message {
@@ -910,14 +910,16 @@
     overflow: hidden;
   }
 
+  /* Chatbot toggle button - now uses theme colors */
   .chatbot-toggle {
-    background: linear-gradient(135deg, rgb(37, 99, 235), rgb(79, 70, 229));
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    background: hsl(var(--primary));
+    box-shadow: 0 10px 25px hsl(var(--primary) / 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .chatbot-toggle:hover {
-    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+    background: hsl(var(--primary) / 0.9);
+    box-shadow: 0 15px 35px hsl(var(--primary) / 0.4);
     transform: scale(1.05);
   }
 
@@ -925,18 +927,9 @@
     transform: scale(0.95);
   }
 
-  /* Dark mode adjustments for chatbot */
+  /* Dark mode adjustments for chatbot - now theme-aware */
   html[data-theme="dark"] .chatbot-window {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  }
-
-  html[data-theme="dark"] .chatbot-toggle {
-    background: linear-gradient(135deg, rgb(96, 165, 250), rgb(129, 140, 248));
-    box-shadow: 0 10px 25px rgba(96, 165, 250, 0.3);
-  }
-
-  html[data-theme="dark"] .chatbot-toggle:hover {
-    box-shadow: 0 15px 35px rgba(96, 165, 250, 0.4);
+    box-shadow: 0 25px 50px -12px hsl(var(--shadow) / 0.5);
   }
 }
 
@@ -1083,12 +1076,12 @@
       rgba(96, 165, 250, 0.02) 100%);
   }
   
-  .tag-cloud--rainbow .rainbow-tag-0 { --tag-color: #ef4444; }
-  .tag-cloud--rainbow .rainbow-tag-1 { --tag-color: #f97316; }
-  .tag-cloud--rainbow .rainbow-tag-2 { --tag-color: #eab308; }
-  .tag-cloud--rainbow .rainbow-tag-3 { --tag-color: #22c55e; }
+  .tag-cloud--rainbow .rainbow-tag-0 { --tag-color: hsl(var(--destructive)); }
+  .tag-cloud--rainbow .rainbow-tag-1 { --tag-color: hsl(var(--chart-1)); }
+  .tag-cloud--rainbow .rainbow-tag-2 { --tag-color: hsl(var(--chart-2)); }
+  .tag-cloud--rainbow .rainbow-tag-3 { --tag-color: hsl(var(--chart-3)); }
   .tag-cloud--rainbow .rainbow-tag-4 { --tag-color: hsl(var(--primary)); }
-  .tag-cloud--rainbow .rainbow-tag-5 { --tag-color: #a855f7; }
+  .tag-cloud--rainbow .rainbow-tag-5 { --tag-color: hsl(var(--chart-4)); }
   
   @keyframes fade-in-up {
     from {

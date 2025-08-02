@@ -186,12 +186,12 @@ export const tagCloudStyles = `
       rgba(96, 165, 250, 0.02) 100%);
   }
   
-  .tag-cloud--rainbow .rainbow-tag-0 { --tag-color: #ef4444; }
-  .tag-cloud--rainbow .rainbow-tag-1 { --tag-color: #f97316; }
-  .tag-cloud--rainbow .rainbow-tag-2 { --tag-color: #eab308; }
-  .tag-cloud--rainbow .rainbow-tag-3 { --tag-color: #22c55e; }
-      .tag-cloud--rainbow .rainbow-tag-4 { --tag-color: hsl(var(--primary)); }
-  .tag-cloud--rainbow .rainbow-tag-5 { --tag-color: #a855f7; }
+    .tag-cloud--rainbow .rainbow-tag-0 { --tag-color: hsl(var(--destructive)); }
+  .tag-cloud--rainbow .rainbow-tag-1 { --tag-color: hsl(var(--chart-1)); }
+  .tag-cloud--rainbow .rainbow-tag-2 { --tag-color: hsl(var(--chart-2)); }
+  .tag-cloud--rainbow .rainbow-tag-3 { --tag-color: hsl(var(--chart-3)); }
+  .tag-cloud--rainbow .rainbow-tag-4 { --tag-color: hsl(var(--primary)); }
+  .tag-cloud--rainbow .rainbow-tag-5 { --tag-color: hsl(var(--chart-4)); }
   
   @keyframes fade-in-up {
     from {

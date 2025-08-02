@@ -311,7 +311,7 @@ Type /help to see available commands or just type any topic to search!`,
       {/* Chat Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="chatbot-toggle text-white rounded-full p-4 shadow-lg"
+        className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full p-4 shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         aria-label="Open chat"
       >
         {isOpen ? (
@@ -323,7 +323,7 @@ Type /help to see available commands or just type any topic to search!`,
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="chatbot-window absolute bottom-16 right-0 w-96 h-[32rem] bg-card rounded-2xl border border-border flex flex-col overflow-hidden">
+        <div className="absolute bottom-16 right-0 w-96 h-[32rem] bg-card rounded-2xl border border-border flex flex-col overflow-hidden shadow-2xl backdrop-blur-md">
           {/* Header */}
           <div className="bg-primary text-primary-foreground p-4 flex items-center gap-3">
             <div className="bg-primary-foreground/20 rounded-full p-2">
@@ -345,7 +345,7 @@ Type /help to see available commands or just type any topic to search!`,
                 className={`flex ${message.isBot ? "justify-start" : "justify-end"}`}
               >
                 <div
-                  className={`chatbot-message max-w-[80%] ${message.isBot ? "bg-muted text-foreground" : "bg-primary text-primary-foreground"} rounded-2xl p-3`}
+                  className={`max-w-[80%] ${message.isBot ? "bg-muted text-foreground" : "bg-primary text-primary-foreground"} rounded-2xl p-3 transition-all duration-200`}
                 >
                   <div className="flex items-start gap-2">
                     {message.isBot && (
@@ -364,13 +364,13 @@ Type /help to see available commands or just type any topic to search!`,
                               <a
                                 key={result.slug}
                                 href={`/posts/${result.slug}/`}
-                                className="block p-3 bg-card rounded-lg border border-border hover:border-primary/30 transition-colors"
+                                className="block p-3 bg-background rounded-lg border border-border hover:border-primary/30 hover:bg-accent/50 transition-all duration-200"
                                 onClick={() => setIsOpen(false)}
                               >
                                 <h4 className="font-medium text-sm text-foreground mb-1">
                                   {result.title}
                                 </h4>
-                                <p className="text-xs text-foreground/70 line-clamp-2 mb-2">
+                                <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
                                   {result.description}
                                 </p>
                                 {result.data.tags &&
@@ -388,7 +388,7 @@ Type /help to see available commands or just type any topic to search!`,
                                           </span>
                                         ))}
                                       {result.data.tags.length > 3 && (
-                                        <span className="text-xs text-foreground/50">
+                                        <span className="text-xs text-muted-foreground">
                                           +{result.data.tags.length - 3}
                                         </span>
                                       )}
@@ -440,12 +440,12 @@ Type /help to see available commands or just type any topic to search!`,
                 onChange={e => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask me about articles..."
-                className="flex-1 px-4 py-2 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-card text-foreground"
+                className="flex-1 px-4 py-2 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-background text-foreground placeholder:text-muted-foreground transition-all duration-200"
               />
               <button
                 onClick={handleSendMessage}
                 disabled={!inputValue.trim()}
-                className="bg-primary hover:bg-primary/90 disabled:bg-foreground/30 disabled:cursor-not-allowed text-primary-foreground rounded-full p-2 transition-colors"
+                className="bg-primary hover:bg-primary/90 disabled:bg-muted disabled:cursor-not-allowed text-primary-foreground rounded-full p-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               >
                 <Send className="h-4 w-4" />
               </button>
