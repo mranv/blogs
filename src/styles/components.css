@@ -446,24 +446,27 @@ footer p {
 /* ===== TAG COMPONENT STYLES ===== */
 
 .tag {
-  @apply inline-block bg-primary/10 px-3 py-1 text-sm font-medium text-primary transition-all duration-300;
-  @apply rounded-md hover:bg-primary/20 hover:scale-105;
+  @apply inline-block px-3 py-1 text-sm font-medium transition-all duration-300;
+  @apply rounded-md hover:scale-105;
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  border: 1px solid hsl(var(--border));
 }
 
 .tag a {
-  @apply text-primary no-underline;
+  color: hsl(var(--accent-foreground));
+  text-decoration: none;
 }
 
 .tag svg {
-  @apply mr-1 h-4 w-4 scale-110 fill-current;
-}
-
-html[data-theme="dark"] .tag {
-  @apply bg-primary/15 hover:bg-primary/25;
+  @apply mr-1 h-4 w-4 scale-110;
+  fill: currentColor;
 }
 
 .tag:hover {
-  @apply shadow-md;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--primary));
   box-shadow: 0 4px 12px hsl(var(--primary) / 0.15);
 }
 

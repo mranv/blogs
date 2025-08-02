@@ -5,15 +5,15 @@ import { Badge } from "@components/ui/badge";
 import { cn } from "@utils/cn";
 import type { TagFilterProps, TagFilterOptions, TagCategory } from "./types";
 
-// Category display names and colors
+// Category display names and colors using theme variables
 const CATEGORY_CONFIG: Record<TagCategory, { label: string; color: string }> = {
   security: {
     label: "Security",
-    color: "bg-red-500/10 text-red-600 border-red-500/30",
+    color: "bg-destructive/10 text-destructive border-destructive/30",
   },
   compliance: {
     label: "Compliance",
-    color: "bg-purple-500/10 text-purple-600 border-purple-500/30",
+    color: "bg-chart-4/10 text-chart-4 border-chart-4/30",
   },
   technology: {
     label: "Technology",
@@ -21,19 +21,19 @@ const CATEGORY_CONFIG: Record<TagCategory, { label: string; color: string }> = {
   },
   tools: {
     label: "Tools",
-    color: "bg-green-500/10 text-green-600 border-green-500/30",
+    color: "bg-chart-1/10 text-chart-1 border-chart-1/30",
   },
   infrastructure: {
     label: "Infrastructure",
-    color: "bg-orange-500/10 text-orange-600 border-orange-500/30",
+    color: "bg-chart-2/10 text-chart-2 border-chart-2/30",
   },
   development: {
     label: "Development",
-    color: "bg-cyan-500/10 text-cyan-600 border-cyan-500/30",
+    color: "bg-chart-3/10 text-chart-3 border-chart-3/30",
   },
   rust: {
     label: "Rust",
-    color: "bg-orange-600/10 text-orange-700 border-orange-600/30",
+    color: "bg-chart-5/10 text-chart-5 border-chart-5/30",
   },
   kubernetes: {
     label: "Kubernetes",
@@ -41,23 +41,23 @@ const CATEGORY_CONFIG: Record<TagCategory, { label: string; color: string }> = {
   },
   monitoring: {
     label: "Monitoring",
-    color: "bg-lime-500/10 text-lime-600 border-lime-500/30",
+    color: "bg-accent/10 text-accent-foreground border-accent/30",
   },
   automation: {
     label: "Automation",
-    color: "bg-violet-500/10 text-violet-600 border-violet-500/30",
+    color: "bg-secondary/10 text-secondary-foreground border-secondary/30",
   },
   networking: {
     label: "Networking",
-    color: "bg-cyan-600/10 text-cyan-700 border-cyan-600/30",
+    color: "bg-muted/10 text-muted-foreground border-muted/30",
   },
   "ai-ml": {
     label: "AI/ML",
-    color: "bg-pink-500/10 text-pink-600 border-pink-500/30",
+    color: "bg-chart-4/10 text-chart-4 border-chart-4/30",
   },
   general: {
     label: "General",
-    color: "bg-gray-500/10 text-gray-600 border-gray-500/30",
+    color: "bg-muted/10 text-muted-foreground border-muted/30",
   },
 };
 

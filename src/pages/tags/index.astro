@@ -116,13 +116,24 @@ const tagsWithStats = getTagsWithStats(posts);
   }
 
   .btn-enhanced {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
     @apply shadow-sm hover:shadow-md;
   }
 
+  .btn-enhanced:hover {
+    background-color: hsl(var(--primary) / 0.9);
+  }
+
   .btn-search {
-    @apply bg-card border border-border text-foreground hover:bg-muted;
+    background-color: hsl(var(--card));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
     @apply shadow-sm hover:shadow-md;
+  }
+
+  .btn-search:hover {
+    background-color: hsl(var(--muted));
   }
 
   .enhanced-tags-section {
@@ -132,7 +143,11 @@ const tagsWithStats = getTagsWithStats(posts);
 
   .tags-header h1 {
     @apply text-4xl font-bold mb-4;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)),
+      hsl(var(--accent))
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -141,7 +156,7 @@ const tagsWithStats = getTagsWithStats(posts);
 
   .tags-header p {
     @apply text-lg mb-6;
-    color: var(--foreground);
+    color: hsl(var(--foreground));
     opacity: 0.8;
     transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }

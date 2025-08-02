@@ -1064,16 +1064,16 @@
   /* Tag Cloud Animations */
   .tag-cloud--cybersecurity {
     background: linear-gradient(135deg, 
-      rgba(220, 38, 38, 0.05) 0%, 
-      rgba(239, 68, 68, 0.03) 50%, 
-      rgba(248, 113, 113, 0.02) 100%);
+      hsl(var(--destructive) / 0.05) 0%, 
+      hsl(var(--chart-1) / 0.03) 50%, 
+      hsl(var(--destructive) / 0.02) 100%);
   }
   
   .tag-cloud--professional {
     background: linear-gradient(135deg, 
-      rgba(37, 99, 235, 0.05) 0%, 
-      rgba(59, 130, 246, 0.03) 50%, 
-      rgba(96, 165, 250, 0.02) 100%);
+      hsl(var(--primary) / 0.05) 0%, 
+      hsl(var(--accent) / 0.03) 50%, 
+      hsl(var(--primary) / 0.02) 100%);
   }
   
   .tag-cloud--rainbow .rainbow-tag-0 { --tag-color: hsl(var(--destructive)); }
@@ -1131,35 +1131,65 @@
   .enhanced-tag {
     @apply relative inline-flex items-center gap-1.5 font-medium transition-all duration-300 ease-in-out;
     @apply hover:scale-105 active:scale-95;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring;
   }
   
   .enhanced-tag--cybersecurity {
-    @apply border-transparent bg-gradient-to-r from-red-500/10 to-orange-500/10 text-red-600;
-    @apply hover:from-red-500/20 hover:to-orange-500/20 border border-red-500/30 hover:border-red-500/50;
-    @apply shadow-sm hover:shadow-md hover:shadow-red-500/20;
+    background: linear-gradient(135deg, hsl(var(--destructive) / 0.1), hsl(var(--chart-1) / 0.1));
+    color: hsl(var(--destructive));
+    border: 1px solid hsl(var(--destructive) / 0.3);
+    box-shadow: 0 1px 3px hsl(var(--destructive) / 0.1);
+  }
+  
+  .enhanced-tag--cybersecurity:hover {
+    background: linear-gradient(135deg, hsl(var(--destructive) / 0.2), hsl(var(--chart-1) / 0.2));
+    border-color: hsl(var(--destructive) / 0.5);
+    box-shadow: 0 4px 12px hsl(var(--destructive) / 0.2);
   }
   
   .enhanced-tag--professional {
-    @apply border-transparent bg-gradient-to-r from-primary/10 to-primary/20 text-primary;
-    @apply hover:from-primary/20 hover:to-primary/30 border border-primary/30 hover:border-primary/50;
-    @apply shadow-sm hover:shadow-md hover:shadow-primary/20;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.1));
+    color: hsl(var(--primary));
+    border: 1px solid hsl(var(--primary) / 0.3);
+    box-shadow: 0 1px 3px hsl(var(--primary) / 0.1);
+  }
+  
+  .enhanced-tag--professional:hover {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.2), hsl(var(--accent) / 0.2));
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: 0 4px 12px hsl(var(--primary) / 0.2);
   }
   
   /* Dark mode enhancements */
   html[data-theme="dark"] .enhanced-tag--cybersecurity {
-    @apply text-red-400 from-red-400/15 to-orange-400/15 hover:from-red-400/25 hover:to-orange-400/25;
-    @apply border-red-400/40 hover:border-red-400/60 hover:shadow-red-400/25;
+    color: hsl(var(--destructive) / 0.9);
+    background: linear-gradient(135deg, hsl(var(--destructive) / 0.15), hsl(var(--chart-1) / 0.15));
+    border-color: hsl(var(--destructive) / 0.4);
+  }
+  
+  html[data-theme="dark"] .enhanced-tag--cybersecurity:hover {
+    background: linear-gradient(135deg, hsl(var(--destructive) / 0.25), hsl(var(--chart-1) / 0.25));
+    border-color: hsl(var(--destructive) / 0.6);
+    box-shadow: 0 4px 12px hsl(var(--destructive) / 0.25);
   }
   
   html[data-theme="dark"] .enhanced-tag--professional {
-    @apply text-primary/80 from-primary/15 to-primary/25 hover:from-primary/25 hover:to-primary/35;
-    @apply border-primary/40 hover:border-primary/60 hover:shadow-primary/25;
+    color: hsl(var(--primary) / 0.9);
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(var(--accent) / 0.15));
+    border-color: hsl(var(--primary) / 0.4);
+  }
+  
+  html[data-theme="dark"] .enhanced-tag--professional:hover {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.25), hsl(var(--accent) / 0.25));
+    border-color: hsl(var(--primary) / 0.6);
+    box-shadow: 0 4px 12px hsl(var(--primary) / 0.25);
   }
   
   /* Tag Filter Styles */
   .tag-filter {
-    @apply bg-card rounded-lg border border-border p-4 space-y-4;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    @apply rounded-lg p-4 space-y-4;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
@@ -1167,11 +1197,18 @@
   .tag-filter__category-button {
     @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium;
     @apply border transition-all duration-200 hover:scale-105;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border-color: hsl(var(--border));
+    focus-ring-color: hsl(var(--ring));
   }
   
   .tag-filter__category-button--active {
-    @apply ring-2 ring-current/20;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
   }
   
   /* Popular Tags Sidebar */
@@ -1180,23 +1217,32 @@
   }
   
   .popular-tags__stats {
-    @apply p-4 bg-gradient-to-br from-primary/5 to-primary/10 rounded-lg border border-primary/20;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--primary) / 0.1));
+    border: 1px solid hsl(var(--primary) / 0.2);
+    @apply p-4 rounded-lg;
   }
   
   .popular-tags__trending-item {
     @apply flex items-center justify-between p-3 rounded-lg border transition-all duration-300;
-    @apply bg-gradient-to-r from-orange-500/5 to-red-500/5 border-orange-500/20;
+    background: linear-gradient(135deg, hsl(var(--chart-1) / 0.05), hsl(var(--destructive) / 0.05));
+    border-color: hsl(var(--chart-1) / 0.2);
     @apply hover:shadow-md hover:scale-[1.02];
   }
   
   .popular-tags__item {
-    @apply group relative overflow-hidden p-3 bg-card rounded-lg border;
-    @apply hover:shadow-md transition-all duration-300 hover:scale-[1.02] cursor-pointer;
+    @apply group relative overflow-hidden p-3 rounded-lg border cursor-pointer;
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+    @apply hover:shadow-md transition-all duration-300 hover:scale-[1.02];
   }
   
   .popular-tags__progress {
-    @apply absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent;
-    @apply transition-all duration-500 group-hover:to-primary/5;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.1), transparent);
+    @apply absolute inset-0 transition-all duration-500;
+  }
+  
+  .popular-tags__item:hover .popular-tags__progress {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.05), transparent);
   }
   
   /* Tag List Grid/List View */
@@ -1210,7 +1256,9 @@
   }
   
   .tag-list__item--list {
-    @apply flex items-center justify-between p-3 bg-card rounded-lg border hover:shadow-md;
+    @apply flex items-center justify-between p-3 rounded-lg border hover:shadow-md;
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
   }
   
   /* Responsive improvements */
