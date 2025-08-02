@@ -73,10 +73,11 @@ export default function Chatbot({ searchList }: ChatbotProps) {
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = isDarkMode ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-    setIsDarkMode(!isDarkMode);
+    // Find and click the main theme toggle button
+    const themeBtn = document.getElementById("theme-btn");
+    if (themeBtn) {
+      themeBtn.click();
+    }
   };
 
   useEffect(() => {
