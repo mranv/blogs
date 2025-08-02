@@ -1,9 +1,9 @@
 import React from "react";
 import { cn } from "@utils/cn";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { Avatar, AvatarImage, AvatarFallback } from "@components/ui/avatar";
+import { Button } from "@components/ui/button";
+import { Badge } from "@components/ui/badge";
+import { AnimatedCounter } from "@components/AnimatedCounter";
 import socialIcons from "@assets/socialIcons";
 import type { AuthorHeroProps } from "./types";
 

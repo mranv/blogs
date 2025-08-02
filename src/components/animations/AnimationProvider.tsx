@@ -12,7 +12,7 @@ import React, {
 } from "react";
 import {
   globalReducedMotionManager,
-  ReducedMotionConfig,
+  type ReducedMotionConfig,
 } from "@utils/animations/reducedMotion";
 import { globalIntersectionManager } from "@utils/animations/intersectionObserver";
 import {

@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from "@utils/cn";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@components/ui/avatar";
 import type { AuthorBioProps } from "./types";
 
 /**

@@ -1,14 +1,9 @@
 import React from "react";
 import { cn } from "@utils/cn";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarImage, AvatarFallback } from "@components/ui/avatar";
+import { Button } from "@components/ui/button";
+import { Card, CardHeader, CardContent, CardFooter } from "@components/ui/card";
+import { Badge } from "@components/ui/badge";
 import socialIcons from "@assets/socialIcons";
 import type { AuthorCardProps } from "./types";
 
