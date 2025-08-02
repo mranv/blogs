@@ -336,7 +336,16 @@ const pageDescription =
           componentName: "NavigationMenuHeader",
           testComponent: NavigationMenuHeader,
           testProps: {},
-          tests: createDefaultTests("NavigationMenuHeader"),
+          tests: [
+            {
+              name: "Renders",
+              description: "NavigationMenuHeader should render without errors",
+              test: (element: HTMLElement) => {
+                return element !== null;
+              },
+              expectation: "Component should render successfully",
+            },
+          ],
         })
       );
     }

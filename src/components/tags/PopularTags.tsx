@@ -1,7 +1,7 @@
 import React from "react";
 import { EnhancedTag } from "./EnhancedTag";
 import { cn } from "@utils/cn";
-import { getTagVariantByCategory } from "@utils/tagUtils";
+
 import type { PopularTagsProps, TagWithStats } from "./types";
 
 export function PopularTags({
