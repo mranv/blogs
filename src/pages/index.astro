@@ -110,7 +110,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             Recent Posts
           </h2>
           <ul class="mx-auto grid max-w-4xl gap-6 px-4 sm:grid-cols-2 stagger-children">
-            {recentPosts.slice(0, 4).map(({ data, slug }, index) => (
+            {recentPosts.slice(0, 8).map(({ data, slug }, index) => (
               <LazyCard
                 href={`/posts/${slug}/`}
                 frontmatter={data}
