@@ -5,31 +5,82 @@ import Footer from "@components/Footer.astro";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import Tag from "@components/Tag.astro";
-import getUniqueTags from "@utils/getUniqueTags";
+import { getUniqueTags, getTagsWithStats } from "@utils/tagUtils";
 import { SITE } from "@config";
 
 const posts = await getCollection("blog");
 let tags = getUniqueTags(posts);
+const tagsWithStats = getTagsWithStats(posts);
 ---
 
 <Layout title={`Tags | ${SITE.title}`}>
   <Header activeNav="tags" />
 
-  <!-- Clean production tags page -->
+  <!-- Enhanced production tags page -->
   <main class="tags-page">
     <div class="tags-header">
       <h1>Tags</h1>
-      <p>All the tags used in posts ({tags.length} total)</p>
+      <p>
+        Explore {tags.length} tags across all posts with enhanced filtering and analytics
+      </p>
 
       <img
         src="/assets/7c19af9df1e0f73b7146c1d13b5520b8.gif"
         alt="Anubhav Gain"
         class="profile-image"
       />
+
+      <!-- Quick action buttons -->
+      <div class="action-buttons">
+        <a href="/tags/enhanced" class="btn-enhanced">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"
+            ></polygon>
+          </svg>
+          Enhanced View
+        </a>
+        <a href="/search" class="btn-search">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          Search Posts
+        </a>
+      </div>
     </div>
 
-    <!-- All tags -->
-    <ul class="tag-list">
+    <!-- Enhanced tag display with React components -->
+    <div class="enhanced-tags-section loading">
+      <div
+        id="tag-cloud-root"
+        data-tags={JSON.stringify(tagsWithStats.slice(0, 50))}
+      >
+      </div>
+    </div>
+
+    <!-- Fallback: Traditional tag list for non-JS users -->
+    <noscript>
+      <ul class="tag-list">
+        {tags.map(({ tag }) => <Tag {tag} size="lg" />)}
+      </ul>
+    </noscript>
+
+    <!-- Progressive enhancement: Show traditional tags initially, then replace with enhanced version -->
+    <ul class="tag-list" id="fallback-tags">
       {tags.map(({ tag }) => <Tag {tag} size="lg" />)}
     </ul>
   </main>
@@ -48,6 +99,36 @@ let tags = getUniqueTags(posts);
   .tags-header {
     text-align: center;
     margin-bottom: 3rem;
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn-enhanced,
+  .btn-search {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50;
+    text-decoration: none;
+  }
+
+  .btn-enhanced {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    @apply shadow-sm hover:shadow-md;
+  }
+
+  .btn-search {
+    @apply bg-card border border-border text-foreground hover:bg-muted;
+    @apply shadow-sm hover:shadow-md;
+  }
+
+  .enhanced-tags-section {
+    margin-bottom: 3rem;
+    min-height: 400px;
   }
 
   .tags-header h1 {
@@ -186,4 +267,73 @@ let tags = getUniqueTags(posts);
       gap: 0.5rem;
     }
   }
+
+  /* Enhanced section loading state */
+  .enhanced-tags-section {
+    position: relative;
+  }
+
+  .enhanced-tags-section.loading::before {
+    content: "Loading enhanced tag view...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @apply text-muted-foreground text-sm;
+  }
 </style>
+
+<script>
+  // Progressive enhancement: Load enhanced tag components
+  async function loadEnhancedTags() {
+    try {
+      const { TagCloud } = await import("@components/tags");
+      const { createRoot } = await import("react-dom/client");
+      const React = await import("react");
+
+      const rootElement = document.getElementById("tag-cloud-root");
+      const fallbackElement = document.getElementById("fallback-tags");
+
+      if (rootElement && fallbackElement) {
+        const tagsData = JSON.parse(
+          rootElement.getAttribute("data-tags") || "[]"
+        );
+
+        // Create enhanced tag cloud
+        const TagCloudComponent = React.createElement(TagCloud, {
+          tags: tagsData,
+          config: {
+            colorScheme: "cybersecurity",
+            layout: "packed",
+            showCount: true,
+            interactive: true,
+          },
+          maxTags: 50,
+          className: "enhanced-tag-cloud",
+        });
+
+        // Render and replace fallback
+        const root = createRoot(rootElement);
+        root.render(TagCloudComponent);
+
+        // Hide fallback after enhanced version loads
+        setTimeout(() => {
+          fallbackElement.style.display = "none";
+          document
+            .querySelector(".enhanced-tags-section")
+            ?.classList.remove("loading");
+        }, 100);
+      }
+    } catch (error) {
+      console.log("Enhanced tags not available, using fallback");
+      // Keep fallback tags visible
+    }
+  }
+
+  // Load enhanced components when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadEnhancedTags);
+  } else {
+    loadEnhancedTags();
+  }
+</script>

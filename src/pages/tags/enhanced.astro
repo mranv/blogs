@@ -1,0 +1,195 @@
+---
+import { getCollection } from "astro:content";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import { getTagsWithStats } from "@utils/tagUtils";
+import { SITE } from "@config";
+
+const posts = await getCollection("blog");
+const tagsWithStats = getTagsWithStats(posts);
+---
+
+<Layout title={`Enhanced Tags | ${SITE.title}`}>
+  <Header activeNav="tags" />
+  <Main
+    pageTitle="Enhanced Tag Explorer"
+    pageDesc="Explore all tags with advanced filtering and analytics"
+  >
+    <div id="enhanced-tags-root" data-tags={JSON.stringify(tagsWithStats)}>
+    </div>
+  </Main>
+  <Footer />
+</Layout>
+
+<script>
+  import {
+    TagList,
+    TagCloud,
+    PopularTags,
+    getTagAnalytics,
+  } from "@components/tags";
+  import React from "react";
+  import { createRoot } from "react-dom/client";
+
+  function EnhancedTagsPage() {
+    const tagsData = JSON.parse(
+      document
+        .getElementById("enhanced-tags-root")
+        ?.getAttribute("data-tags") || "[]"
+    );
+    const [activeView, setActiveView] = React.useState("list");
+    const analytics = getTagAnalytics(tagsData, []);
+
+    return React.createElement("div", { className: "space-y-8" }, [
+      // Header
+      React.createElement(
+        "div",
+        { key: "header", className: "text-center space-y-4" },
+        [
+          React.createElement(
+            "h1",
+            { key: "title", className: "text-4xl font-bold gradient-text" },
+            "Enhanced Tag Explorer"
+          ),
+          React.createElement(
+            "p",
+            { key: "desc", className: "text-lg text-muted-foreground" },
+            `Discover ${tagsData.length} tags across all posts with advanced filtering and analytics`
+          ),
+        ]
+      ),
+
+      // View Toggle
+      React.createElement(
+        "div",
+        { key: "toggle", className: "flex justify-center" },
+        [
+          React.createElement(
+            "div",
+            {
+              className: "flex rounded-lg border border-border overflow-hidden",
+            },
+            [
+              React.createElement(
+                "button",
+                {
+                  key: "list-btn",
+                  onClick: () => setActiveView("list"),
+                  className: `px-4 py-2 text-sm font-medium transition-colors ${
+                    activeView === "list"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-background text-muted-foreground hover:text-foreground"
+                  }`,
+                },
+                "Tag List"
+              ),
+              React.createElement(
+                "button",
+                {
+                  key: "cloud-btn",
+                  onClick: () => setActiveView("cloud"),
+                  className: `px-4 py-2 text-sm font-medium transition-colors ${
+                    activeView === "cloud"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-background text-muted-foreground hover:text-foreground"
+                  }`,
+                },
+                "Tag Cloud"
+              ),
+              React.createElement(
+                "button",
+                {
+                  key: "popular-btn",
+                  onClick: () => setActiveView("popular"),
+                  className: `px-4 py-2 text-sm font-medium transition-colors ${
+                    activeView === "popular"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-background text-muted-foreground hover:text-foreground"
+                  }`,
+                },
+                "Popular Tags"
+              ),
+            ]
+          ),
+        ]
+      ),
+
+      // Main Content
+      React.createElement(
+        "div",
+        { key: "content", className: "grid grid-cols-1 lg:grid-cols-4 gap-8" },
+        [
+          // Main Content Area
+          React.createElement(
+            "div",
+            { key: "main", className: "lg:col-span-3" },
+            [
+              activeView === "list" &&
+                React.createElement(TagList, {
+                  key: "tag-list",
+                  tags: tagsData,
+                  showFilters: true,
+                  groupByCategory: true,
+                  className: "min-h-[500px]",
+                }),
+              activeView === "cloud" &&
+                React.createElement(TagCloud, {
+                  key: "tag-cloud",
+                  tags: tagsData,
+                  config: {
+                    colorScheme: "cybersecurity",
+                    layout: "packed",
+                    showCount: true,
+                  },
+                  maxTags: 100,
+                  className: "min-h-[500px]",
+                }),
+              activeView === "popular" &&
+                React.createElement("div", { className: "space-y-6" }, [
+                  React.createElement(
+                    "h2",
+                    { key: "title", className: "text-2xl font-bold" },
+                    "Popular Tags Analysis"
+                  ),
+                  React.createElement(PopularTags, {
+                    key: "popular-tags",
+                    tags: tagsData,
+                    maxTags: 20,
+                    showTrending: true,
+                    showStats: true,
+                    className: "min-h-[500px]",
+                  }),
+                ]),
+            ]
+          ),
+
+          // Sidebar
+          React.createElement(
+            "div",
+            { key: "sidebar", className: "lg:col-span-1" },
+            [
+              React.createElement(PopularTags, {
+                key: "sidebar-popular",
+                tags: tagsData.slice(0, 15),
+                maxTags: 10,
+                showTrending: true,
+                showStats: true,
+              }),
+            ]
+          ),
+        ]
+      ),
+    ]);
+  }
+
+  // Initialize React component when DOM is loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    const rootElement = document.getElementById("enhanced-tags-root");
+    if (rootElement) {
+      const root = createRoot(rootElement);
+      root.render(React.createElement(EnhancedTagsPage));
+    }
+  });
+</script>
