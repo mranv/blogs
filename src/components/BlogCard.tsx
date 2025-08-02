@@ -10,18 +10,28 @@ import {
 } from "./ui/card";
 import { cn } from "@utils/cn";
 import { ChevronRight } from "lucide-react";
+import BlogCardSkeleton from "./skeletons/BlogCardSkeleton";
 
 export interface Props {
   href?: string;
   frontmatter: CollectionEntry<"blog">["data"];
   secHeading?: boolean;
+  isLoading?: boolean;
+  className?: string;
 }
 
 export default function BlogCard({
   href,
   frontmatter,
   secHeading = true,
+  isLoading = false,
+  className,
 }: Props) {
+  // Show skeleton while loading
+  if (isLoading) {
+    return <BlogCardSkeleton className={className} />;
+  }
+
   const { title, pubDatetime, modDatetime, description } = frontmatter;
 
   const headerProps = {
@@ -41,7 +51,8 @@ export default function BlogCard({
             "hover:shadow-2xl hover:-translate-y-1 transition-all duration-500",
             "bg-gradient-to-br from-background via-card/60 to-muted/30",
             "before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary/3 before:via-transparent before:to-accent/3",
-            "before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100"
+            "before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100",
+            className
           )}
         >
           {/* Enhanced gradient overlays */}
