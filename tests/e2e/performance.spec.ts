@@ -25,7 +25,7 @@ test.describe('Performance Tests', () => {
         }).observe({ entryTypes: ['largest-contentful-paint'] });
         
         // First Input Delay (approximated with first interaction)
-        new PerformanceObserver((list) => {
+        new PerformanceObserver(() => {
           // const entries = list.getEntries();
           // fid = entries[0]; // Commented out unused variable
         }).observe({ entryTypes: ['first-input'] });
