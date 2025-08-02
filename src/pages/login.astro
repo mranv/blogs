@@ -107,13 +107,17 @@ import Layout from "@layouts/Layout.astro";
   <script>
     let isLoginMode = true;
     // const loginForm = document.getElementById("loginForm");
-    const authForm = document.getElementById("authForm");
-    const toggleBtn = document.getElementById("toggleBtn");
-    const toggleText = document.getElementById("toggleText");
-    const submitBtn = document.getElementById("submitBtn");
-    const confirmPasswordDiv = document.getElementById("confirmPasswordDiv");
-    const confirmPasswordInput = document.getElementById("confirmPassword");
-    const messageDiv = document.getElementById("message");
+    const authForm = document.getElementById("authForm") as HTMLFormElement;
+    const toggleBtn = document.getElementById("toggleBtn") as HTMLButtonElement;
+    const toggleText = document.getElementById("toggleText") as HTMLElement;
+    const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
+    const confirmPasswordDiv = document.getElementById(
+      "confirmPasswordDiv"
+    ) as HTMLElement;
+    const confirmPasswordInput = document.getElementById(
+      "confirmPassword"
+    ) as HTMLInputElement;
+    const messageDiv = document.getElementById("message") as HTMLElement;
 
     // Check if user is already logged in
     if (localStorage.getItem("isAuthenticated") === "true") {
@@ -146,9 +150,13 @@ import Layout from "@layouts/Layout.astro";
     authForm.addEventListener("submit", e => {
       e.preventDefault();
 
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const confirmPassword = document.getElementById("confirmPassword").value;
+      const email = (document.getElementById("email") as HTMLInputElement)
+        .value;
+      const password = (document.getElementById("password") as HTMLInputElement)
+        .value;
+      const confirmPassword = (
+        document.getElementById("confirmPassword") as HTMLInputElement
+      ).value;
 
       if (isLoginMode) {
         // Login logic
@@ -187,15 +195,19 @@ import Layout from "@layouts/Layout.astro";
       }
     });
 
-    function showMessage(text, type) {
-      messageDiv.textContent = text;
-      messageDiv.className = `text-center p-4 rounded-lg ${type === "error" ? "bg-red-500/20 text-red-300 border border-red-500/30" : "bg-green-500/20 text-green-300 border border-green-500/30"}`;
-      messageDiv.classList.remove("hidden");
+    function showMessage(text: string, type: string) {
+      if (messageDiv) {
+        messageDiv.textContent = text;
+        messageDiv.className = `text-center p-4 rounded-lg ${type === "error" ? "bg-red-500/20 text-red-300 border border-red-500/30" : "bg-green-500/20 text-green-300 border border-green-500/30"}`;
+        messageDiv.classList.remove("hidden");
 
-      if (text) {
-        setTimeout(() => {
-          messageDiv.classList.add("hidden");
-        }, 5000);
+        if (text) {
+          setTimeout(() => {
+            if (messageDiv) {
+              messageDiv.classList.add("hidden");
+            }
+          }, 5000);
+        }
       }
     }
   </script>

@@ -235,6 +235,7 @@ export const MouseParallax = forwardRef<HTMLDivElement, MouseParallaxProps>(
     const animationRef = useRef<number>();
 
     const [targetPosition, setTargetPosition] = useState({ x: 0, y: 0 });
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     // Get animation context
     const { prefersReducedMotion } = useAnimation();
@@ -276,7 +277,7 @@ export const MouseParallax = forwardRef<HTMLDivElement, MouseParallaxProps>(
     // Smooth animation loop
     useEffect(() => {
       const animate = () => {
-        setMousePosition(prev => {
+        setMousePosition((prev: { x: number; y: number }) => {
           const newX = prev.x + (targetPosition.x - prev.x) * smoothness;
           const newY = prev.y + (targetPosition.y - prev.y) * smoothness;
 
