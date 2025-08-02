@@ -40,7 +40,7 @@ const tagsWithStats = getTagsWithStats(posts);
         ?.getAttribute("data-tags") || "[]"
     );
     const [activeView, setActiveView] = React.useState("list");
-    const analytics = getTagAnalytics(tagsData, []);
+    const _analytics = getTagAnalytics(tagsData, []);
 
     return React.createElement("div", { className: "space-y-8" }, [
       // Header
