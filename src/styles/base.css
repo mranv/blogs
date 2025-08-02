@@ -3,6 +3,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Loading and skeleton animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 @layer base {
   :root,
   html[data-theme="light"] {
@@ -842,5 +884,131 @@
 
   html[data-theme="dark"] .chatbot-toggle:hover {
     box-shadow: 0 15px 35px rgba(96, 165, 250, 0.4);
+  }
+}
+
+/* Loading and skeleton utility classes */
+@layer components {
+  .skeleton-shimmer {
+    background: linear-gradient(90deg, 
+      hsl(var(--muted)) 0%, 
+      hsl(var(--muted) / 0.5) 50%, 
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  .skeleton-pulse {
+    animation: pulse-slow 2s infinite ease-in-out;
+  }
+
+  .skeleton-wave {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skeleton-wave::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    animation: wave 2s infinite;
+  }
+
+  .loading-overlay {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .loading-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    animation: wave 2s infinite;
+    z-index: 1;
+  }
+
+  .stagger-fade-in > * {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .stagger-fade-in > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-fade-in > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-fade-in > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-fade-in > *:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-fade-in > *:nth-child(5) { animation-delay: 0.5s; }
+  .stagger-fade-in > *:nth-child(6) { animation-delay: 0.6s; }
+  .stagger-fade-in > *:nth-child(7) { animation-delay: 0.7s; }
+  .stagger-fade-in > *:nth-child(8) { animation-delay: 0.8s; }
+
+  /* Loading states for global body */
+  .loading {
+    cursor: wait;
+  }
+
+  .loading * {
+    pointer-events: none;
+  }
+
+  .loading .skeleton-shimmer {
+    animation-duration: 1s;
+  }
+
+  /* Enhanced skeleton variations */
+  .skeleton-card {
+    @apply skeleton-shimmer rounded-lg p-4 space-y-3;
+  }
+
+  .skeleton-text {
+    @apply skeleton-shimmer rounded h-4;
+  }
+
+  .skeleton-title {
+    @apply skeleton-shimmer rounded h-6;
+  }
+
+  .skeleton-avatar {
+    @apply skeleton-shimmer rounded-full;
+  }
+
+  .skeleton-button {
+    @apply skeleton-shimmer rounded-md h-10 px-4;
+  }
+
+  /* Dark theme skeleton adjustments */
+  html[data-theme="dark"] .skeleton-shimmer {
+    background: linear-gradient(90deg, 
+      hsl(var(--muted)) 0%, 
+      hsl(var(--muted) / 0.8) 50%, 
+      hsl(var(--muted)) 100%
+    );
+  }
+
+  html[data-theme="dark"] .skeleton-wave::after {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.05),
+      transparent
+    );
   }
 }

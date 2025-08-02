@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import NotificationBadge from "./NotificationBadge.tsx";
 import SearchButton from "./SearchButton.tsx";
+import NavigationSkeleton from "./skeletons/NavigationSkeleton.tsx";
 import { cn } from "@/utils/cn";
 
 interface NavigationMenuHeaderProps {
@@ -19,6 +20,7 @@ interface NavigationMenuHeaderProps {
   socialLinks?: any[];
   className?: string;
   hasNewPosts?: boolean;
+  isLoading?: boolean;
 }
 
 const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
@@ -28,7 +30,12 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
   socialLinks = [],
   className,
   hasNewPosts = false,
+  isLoading = false,
 }) => {
+  // Show skeleton while loading
+  if (isLoading) {
+    return <NavigationSkeleton className={className} />;
+  }
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const mobileMenuRef = useRef<HTMLDivElement>(null);

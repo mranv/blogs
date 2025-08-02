@@ -4,6 +4,7 @@ import Card from "@components/Card";
 import { Input } from "@components/ui/input";
 import { Badge } from "@components/ui/badge";
 import { Skeleton } from "@components/ui/skeleton";
+import SearchSkeleton from "@components/skeletons/SearchSkeleton";
 import type { CollectionEntry } from "astro:content";
 
 export type SearchItem = {
@@ -26,6 +27,8 @@ type CategoryFilter = {
 
 interface Props {
   searchList: SearchItem[];
+  isLoading?: boolean;
+  className?: string;
 }
 
 interface SearchResult {
@@ -33,7 +36,15 @@ interface SearchResult {
   refIndex: number;
 }
 
-export default function SearchBar({ searchList }: Props) {
+export default function SearchBar({
+  searchList,
+  isLoading = false,
+  className,
+}: Props) {
+  // Show skeleton while loading
+  if (isLoading || !searchList || searchList.length === 0) {
+    return <SearchSkeleton className={className} showFilters resultCount={3} />;
+  }
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputVal, setInputVal] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(
@@ -43,37 +54,46 @@ export default function SearchBar({ searchList }: Props) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>([]);
   const [categoryFilters, setCategoryFilters] = useState<CategoryFilter[]>([]);
-  const [activeCategoryFilter, setActiveCategoryFilter] = useState<string | null>(null);
+  const [activeCategoryFilter, setActiveCategoryFilter] = useState<
+    string | null
+  >(null);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
 
   // localStorage functions for recent searches
-  const saveRecentSearch = useCallback((query: string) => {
-    if (query.trim().length < 2) return;
-    
-    const newSearch: RecentSearch = {
-      query: query.trim(),
-      timestamp: Date.now()
-    };
-    
-    const existing = recentSearches.filter(search => search.query !== query.trim());
-    const updated = [newSearch, ...existing].slice(0, 5); // Keep only 5 recent searches
-    
-    setRecentSearches(updated);
-    localStorage.setItem('blog-recent-searches', JSON.stringify(updated));
-  }, [recentSearches]);
+  const saveRecentSearch = useCallback(
+    (query: string) => {
+      if (query.trim().length < 2) return;
+
+      const newSearch: RecentSearch = {
+        query: query.trim(),
+        timestamp: Date.now(),
+      };
+
+      const existing = recentSearches.filter(
+        search => search.query !== query.trim()
+      );
+      const updated = [newSearch, ...existing].slice(0, 5); // Keep only 5 recent searches
+
+      setRecentSearches(updated);
+      localStorage.setItem("blog-recent-searches", JSON.stringify(updated));
+    },
+    [recentSearches]
+  );
 
   const loadRecentSearches = useCallback(() => {
     try {
-      const stored = localStorage.getItem('blog-recent-searches');
+      const stored = localStorage.getItem("blog-recent-searches");
       if (stored) {
         const parsed = JSON.parse(stored) as RecentSearch[];
         // Remove searches older than 30 days
-        const thirtyDaysAgo = Date.now() - (30 * 24 * 60 * 60 * 1000);
-        const filtered = parsed.filter(search => search.timestamp > thirtyDaysAgo);
+        const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+        const filtered = parsed.filter(
+          search => search.timestamp > thirtyDaysAgo
+        );
         setRecentSearches(filtered);
       }
     } catch (error) {
-      console.error('Error loading recent searches:', error);
+      console.error("Error loading recent searches:", error);
     }
   }, []);
 
@@ -119,7 +139,7 @@ export default function SearchBar({ searchList }: Props) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Ctrl+K or Cmd+K to focus search
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
         e.preventDefault();
         inputRef.current?.focus();
         return;
@@ -127,37 +147,37 @@ export default function SearchBar({ searchList }: Props) {
 
       // Handle suggestion navigation when suggestions are shown
       if (showSuggestions && recentSearches.length > 0) {
-        if (e.key === 'ArrowDown') {
+        if (e.key === "ArrowDown") {
           e.preventDefault();
-          setSelectedSuggestionIndex(prev => 
+          setSelectedSuggestionIndex(prev =>
             prev < recentSearches.length - 1 ? prev + 1 : 0
           );
-        } else if (e.key === 'ArrowUp') {
+        } else if (e.key === "ArrowUp") {
           e.preventDefault();
-          setSelectedSuggestionIndex(prev => 
+          setSelectedSuggestionIndex(prev =>
             prev > 0 ? prev - 1 : recentSearches.length - 1
           );
-        } else if (e.key === 'Enter' && selectedSuggestionIndex >= 0) {
+        } else if (e.key === "Enter" && selectedSuggestionIndex >= 0) {
           e.preventDefault();
           const selectedSearch = recentSearches[selectedSuggestionIndex];
           setInputVal(selectedSearch.query);
           setShowSuggestions(false);
           setSelectedSuggestionIndex(-1);
-        } else if (e.key === 'Escape') {
+        } else if (e.key === "Escape") {
           setShowSuggestions(false);
           setSelectedSuggestionIndex(-1);
         }
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [showSuggestions, recentSearches, selectedSuggestionIndex]);
 
   useEffect(() => {
     // Load recent searches from localStorage
     loadRecentSearches();
-    
+
     // if URL has search query,
     // insert that search query in input field
     const searchUrl = new URLSearchParams(window.location.search);
@@ -180,22 +200,22 @@ export default function SearchBar({ searchList }: Props) {
       }
 
       setIsLoading(true);
-      
+
       // Simulate a small delay for better UX
       await new Promise(resolve => setTimeout(resolve, 100));
-      
+
       let inputResult = fuse.search(inputVal);
-      
+
       // Apply category filter if active
       if (activeCategoryFilter) {
-        inputResult = inputResult.filter(result => 
+        inputResult = inputResult.filter(result =>
           result.item.data.tags?.includes(activeCategoryFilter)
         );
       }
-      
+
       setSearchResults(inputResult);
       setIsLoading(false);
-      
+
       // Save to recent searches if we have results
       if (inputResult.length > 0) {
         saveRecentSearch(inputVal);
@@ -219,40 +239,60 @@ export default function SearchBar({ searchList }: Props) {
   // Helper function to highlight search terms
   const highlightSearchTerm = (text: string, term: string) => {
     if (!term || term.length < 2) return text;
-    
-    const regex = new RegExp(`(${term})`, 'gi');
+
+    const regex = new RegExp(`(${term})`, "gi");
     const parts = text.split(regex);
-    
-    return parts.map((part, index) => 
-      regex.test(part) ? 
-        <mark key={index} className="bg-yellow-200 dark:bg-yellow-800 px-1 rounded">{part}</mark> : 
+
+    return parts.map((part, index) =>
+      regex.test(part) ? (
+        <mark
+          key={index}
+          className="bg-yellow-200 dark:bg-yellow-800 px-1 rounded"
+        >
+          {part}
+        </mark>
+      ) : (
         part
+      )
     );
   };
 
   const handleCategoryFilter = (categoryName: string) => {
-    setActiveCategoryFilter(prev => prev === categoryName ? null : categoryName);
+    setActiveCategoryFilter(prev =>
+      prev === categoryName ? null : categoryName
+    );
   };
 
   const getSuggestions = () => {
     if (inputVal.length === 0) return recentSearches;
-    return recentSearches.filter(search => 
+    return recentSearches.filter(search =>
       search.query.toLowerCase().includes(inputVal.toLowerCase())
     );
   };
 
   return (
-    <>
+    <div className={className}>
       {/* Command Palette Style Search Interface */}
       <div className="relative">
         <label className="relative block">
           <span className="absolute inset-y-0 left-0 flex items-center pl-4 opacity-75 z-10">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
             </svg>
             <span className="sr-only">Search</span>
           </span>
-          
+
           <Input
             ref={inputRef}
             className="w-full h-14 pl-12 pr-20 text-base rounded-xl border-border/40 bg-card/60 backdrop-blur-sm 
@@ -265,11 +305,15 @@ export default function SearchBar({ searchList }: Props) {
             name="search"
             value={inputVal}
             onChange={handleChange}
-            onFocus={() => setShowSuggestions(inputVal.length === 0 && recentSearches.length > 0)}
+            onFocus={() =>
+              setShowSuggestions(
+                inputVal.length === 0 && recentSearches.length > 0
+              )
+            }
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             autoComplete="off"
           />
-          
+
           {/* Keyboard shortcut hint */}
           <div className="absolute inset-y-0 right-0 flex items-center pr-4">
             <kbd className="hidden sm:inline-flex items-center px-2 py-1 text-xs font-semibold text-muted-foreground bg-muted border border-border rounded">
@@ -277,21 +321,21 @@ export default function SearchBar({ searchList }: Props) {
             </kbd>
           </div>
         </label>
-        
+
         {/* Search Suggestions Dropdown */}
         {showSuggestions && getSuggestions().length > 0 && (
           <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border/40 rounded-xl shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-y-auto">
             <div className="p-2">
               <div className="text-xs font-medium text-muted-foreground px-3 py-2 mb-1">
-                {inputVal.length === 0 ? 'Recent Searches' : 'Suggestions'}
+                {inputVal.length === 0 ? "Recent Searches" : "Suggestions"}
               </div>
               {getSuggestions().map((search, index) => (
                 <button
                   key={search.query}
                   className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                    index === selectedSuggestionIndex 
-                      ? 'bg-primary/10 text-primary' 
-                      : 'hover:bg-muted/50'
+                    index === selectedSuggestionIndex
+                      ? "bg-primary/10 text-primary"
+                      : "hover:bg-muted/50"
                   }`}
                   onClick={() => {
                     setInputVal(search.query);
@@ -300,8 +344,18 @@ export default function SearchBar({ searchList }: Props) {
                   }}
                 >
                   <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-4 h-4 opacity-50"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                     {search.query}
                   </div>
@@ -316,8 +370,10 @@ export default function SearchBar({ searchList }: Props) {
       {inputVal.length > 0 && categoryFilters.length > 0 && (
         <div className="mt-6 animate-in slide-in-from-top-2 duration-300">
           <div className="flex flex-wrap gap-2 mb-4">
-            <span className="text-sm text-muted-foreground mr-2">Filter by category:</span>
-            <Badge 
+            <span className="text-sm text-muted-foreground mr-2">
+              Filter by category:
+            </span>
+            <Badge
               variant={activeCategoryFilter === null ? "default" : "outline"}
               className="cursor-pointer hover:bg-primary/20 transition-colors"
               onClick={() => setActiveCategoryFilter(null)}
@@ -325,9 +381,11 @@ export default function SearchBar({ searchList }: Props) {
               All
             </Badge>
             {categoryFilters.slice(0, 8).map(category => (
-              <Badge 
+              <Badge
                 key={category.name}
-                variant={activeCategoryFilter === category.name ? "default" : "outline"}
+                variant={
+                  activeCategoryFilter === category.name ? "default" : "outline"
+                }
                 className="cursor-pointer hover:bg-primary/20 transition-colors"
                 onClick={() => handleCategoryFilter(category.name)}
               >
@@ -362,11 +420,14 @@ export default function SearchBar({ searchList }: Props) {
                 />
               </svg>
               Found {searchResults?.length || 0}
-              {searchResults?.length === 1 ? " result" : " results"}{" "}
-              for <span className="font-semibold">'{inputVal}'</span>
+              {searchResults?.length === 1 ? " result" : " results"} for{" "}
+              <span className="font-semibold">'{inputVal}'</span>
               {activeCategoryFilter && (
                 <span className="text-xs opacity-75">
-                  in <Badge variant="secondary" className="text-xs">{activeCategoryFilter}</Badge>
+                  in{" "}
+                  <Badge variant="secondary" className="text-xs">
+                    {activeCategoryFilter}
+                  </Badge>
                 </span>
               )}
             </div>
@@ -380,7 +441,10 @@ export default function SearchBar({ searchList }: Props) {
           /* Loading State with Skeletons */
           <div className="space-y-4">
             {[...Array(3)].map((_, index) => (
-              <div key={index} className="p-6 rounded-xl border border-border/40 bg-card/50 backdrop-blur-sm">
+              <div
+                key={index}
+                className="p-6 rounded-xl border border-border/40 bg-card/50 backdrop-blur-sm"
+              >
                 <Skeleton className="h-6 w-3/4 mb-3" />
                 <Skeleton className="h-4 w-1/2 mb-3" />
                 <Skeleton className="h-4 w-full mb-2" />
@@ -396,26 +460,41 @@ export default function SearchBar({ searchList }: Props) {
           /* No Results State */
           <div className="text-center py-16 animate-in slide-in-from-bottom-2 duration-300">
             <div className="w-24 h-24 mx-auto mb-6 bg-muted/50 rounded-full flex items-center justify-center">
-              <svg className="w-12 h-12 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg
+                className="w-12 h-12 text-muted-foreground"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
             </div>
             <h3 className="text-xl font-semibold mb-2">No articles found</h3>
             <p className="text-muted-foreground mb-6">
-              We couldn't find any articles matching "<span className="font-medium">{inputVal}</span>"
+              We couldn't find any articles matching "
+              <span className="font-medium">{inputVal}</span>"
               {activeCategoryFilter && (
-                <span> in category "<span className="font-medium">{activeCategoryFilter}</span>"</span>
+                <span>
+                  {" "}
+                  in category "
+                  <span className="font-medium">{activeCategoryFilter}</span>"
+                </span>
               )}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-              <button 
-                onClick={() => setInputVal('')}
+              <button
+                onClick={() => setInputVal("")}
                 className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
               >
                 Clear search
               </button>
               {activeCategoryFilter && (
-                <button 
+                <button
                   onClick={() => setActiveCategoryFilter(null)}
                   className="px-4 py-2 border border-border rounded-lg hover:bg-muted/50 transition-colors"
                 >
@@ -425,7 +504,9 @@ export default function SearchBar({ searchList }: Props) {
             </div>
             {recentSearches.length > 0 && (
               <div className="mt-8 pt-6 border-t border-border/40">
-                <p className="text-sm text-muted-foreground mb-3">Try one of your recent searches:</p>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Try one of your recent searches:
+                </p>
                 <div className="flex flex-wrap gap-2 justify-center">
                   {recentSearches.slice(0, 3).map(search => (
                     <button
@@ -461,16 +542,16 @@ export default function SearchBar({ searchList }: Props) {
                           {highlightSearchTerm(item.description, inputVal)}
                         </p>
                       </a>
-                      
+
                       {/* Tags */}
                       {item.data.tags && item.data.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2 mt-3">
                           {item.data.tags.slice(0, 4).map(tag => (
-                            <Badge 
-                              key={tag} 
-                              variant="secondary" 
+                            <Badge
+                              key={tag}
+                              variant="secondary"
                               className="text-xs cursor-pointer hover:bg-primary/20 transition-colors"
-                              onClick={(e) => {
+                              onClick={e => {
                                 e.preventDefault();
                                 handleCategoryFilter(tag);
                               }}
@@ -485,9 +566,9 @@ export default function SearchBar({ searchList }: Props) {
                           )}
                         </div>
                       )}
-                      
+
                       {/* Read more link */}
-                      <a 
+                      <a
                         href={`/posts/${item.slug}/`}
                         className="inline-flex items-center text-sm text-primary mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
                       >
@@ -513,6 +594,6 @@ export default function SearchBar({ searchList }: Props) {
           </ul>
         )}
       </div>
-    </>
+    </div>
   );
 }
