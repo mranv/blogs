@@ -1,5 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, X, Send, Search, Bot, User } from "lucide-react";
+import {
+  MessageCircle,
+  X,
+  Send,
+  Search,
+  Bot,
+  User,
+  Sun,
+  Moon,
+} from "lucide-react";
 import Fuse from "fuse.js";
 import type { SearchItem } from "./SearchReact";
 
@@ -20,6 +29,7 @@ export default function Chatbot({ searchList }: ChatbotProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const fuse = new Fuse(searchList, {
@@ -36,6 +46,36 @@ export default function Chatbot({ searchList }: ChatbotProps) {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Theme detection and management
+  useEffect(() => {
+    const checkTheme = () => {
+      const theme = document.documentElement.getAttribute("data-theme");
+      setIsDarkMode(theme === "dark");
+    };
+
+    // Initial theme check
+    checkTheme();
+
+    // Listen for theme changes
+    const observer = new MutationObserver(() => {
+      checkTheme();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = isDarkMode ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    setIsDarkMode(!isDarkMode);
+  };
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -163,12 +203,23 @@ export default function Chatbot({ searchList }: ChatbotProps) {
             <div className="bg-skin-inverted/20 rounded-full p-2">
               <Bot className="h-5 w-5" />
             </div>
-            <div>
+            <div className="flex-1">
               <h3 className="font-semibold">Blog Assistant</h3>
               <p className="text-sm opacity-90">
                 Here to help you find articles
               </p>
             </div>
+            <button
+              onClick={toggleTheme}
+              className="bg-skin-inverted/20 hover:bg-skin-inverted/30 rounded-full p-2 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDarkMode ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
+            </button>
           </div>
 
           {/* Messages */}
