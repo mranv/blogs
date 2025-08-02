@@ -7,6 +7,7 @@ import LinkButton from "@components/LinkButton.astro";
 import Hr from "@components/Hr.astro";
 import LazyCard from "@components/LazyCard.astro";
 import Socials from "@components/Socials.astro";
+import Chatbot from "@components/Chatbot";
 import getSortedPosts from "@utils/getSortedPosts";
 import { SOCIALS } from "@config";
 
@@ -15,6 +16,14 @@ const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 const socialCount = SOCIALS.filter(social => social.active).length;
+
+// List of items to search in for chatbot
+const searchList = sortedPosts.map(({ data, slug }) => ({
+  title: data.title,
+  description: data.description,
+  data,
+  slug,
+}));
 ---
 
 <Layout>
@@ -145,6 +154,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   </main>
 
   <Footer />
+  <Chatbot client:load searchList={searchList} />
 </Layout>
 
 <style>
