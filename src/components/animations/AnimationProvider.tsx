@@ -398,7 +398,21 @@ export const useAnimation = (): AnimationContextType => {
   const context = useContext(AnimationContext);
 
   if (!context) {
-    throw new Error("useAnimation must be used within an AnimationProvider");
+    // Return a safe default context for SSR or when provider is not available
+    return {
+      config: defaultConfig,
+      prefersReducedMotion: false,
+      isScrolling: false,
+      scrollProgress: 0,
+      viewportSize: { width: 0, height: 0 },
+      activeAnimations: 0,
+      performanceMetrics: { fps: 60, droppedFrames: 0 },
+      updateConfig: () => {},
+      registerAnimation: () => () => {},
+      shouldAnimateElement: () => false,
+      getOptimalDuration: (duration: number) => duration,
+      reportPerformanceIssue: () => {},
+    };
   }
 
   return context;

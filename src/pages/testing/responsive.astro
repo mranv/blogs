@@ -1,0 +1,664 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import { SITE } from "@config";
+
+export const prerender = true;
+
+const pageTitle = "Responsive Design Testing - Breakpoint Validation";
+const pageDescription = "Interactive responsive design testing tool for validating component behavior across all device breakpoints";
+---
+
+<Layout 
+  title={pageTitle}
+  author={SITE.author}
+  description={pageDescription}
+  ogImage={SITE.ogImage}
+>
+  <Header activeNav="testing" />
+  <Main
+    pageTitle="Responsive Design Testing"
+    titleTransition="responsive"
+    pageDesc="Comprehensive responsive design validation across all device breakpoints and orientations"
+  >
+    
+    <!-- Testing Controls -->
+    <section class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6 mb-8">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            Responsive Testing Controls
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            Test component responsiveness across different screen sizes and orientations
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <button 
+            id="test-mobile"
+            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+          >
+            Mobile View
+          </button>
+          <button 
+            id="test-tablet"
+            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition-colors"
+          >
+            Tablet View
+          </button>
+          <button 
+            id="test-desktop"
+            class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+          >
+            Desktop View
+          </button>
+          <button 
+            id="test-all-breakpoints"
+            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          >
+            Test All Breakpoints
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Breakpoint Information -->
+    <section class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        Breakpoint Reference
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-4 bg-white dark:bg-gray-900 rounded border">
+          <div class="text-sm font-medium text-red-600">Mobile</div>
+          <div class="text-xs text-gray-600 dark:text-gray-400">320px - 767px</div>
+          <div class="text-xs text-gray-500">Phones, small devices</div>
+        </div>
+        <div class="p-4 bg-white dark:bg-gray-900 rounded border">
+          <div class="text-sm font-medium text-yellow-600">Tablet</div>
+          <div class="text-xs text-gray-600 dark:text-gray-400">768px - 1023px</div>
+          <div class="text-xs text-gray-500">Tablets, small laptops</div>
+        </div>
+        <div class="p-4 bg-white dark:bg-gray-900 rounded border">
+          <div class="text-sm font-medium text-green-600">Desktop</div>
+          <div class="text-xs text-gray-600 dark:text-gray-400">1024px - 1279px</div>
+          <div class="text-xs text-gray-500">Laptops, desktops</div>
+        </div>
+        <div class="p-4 bg-white dark:bg-gray-900 rounded border">
+          <div class="text-sm font-medium text-blue-600">Large Desktop</div>
+          <div class="text-xs text-gray-600 dark:text-gray-400">1280px+</div>
+          <div class="text-xs text-gray-500">Large screens, 4K</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Responsive Design Checker Component -->
+    <section id="responsive-checker-container" class="mb-8">
+      <!-- React component will be mounted here -->
+    </section>
+
+    <!-- Sample Components for Testing -->
+    <section class="space-y-8">
+      
+      <!-- Sample Blog Layout -->
+      <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Sample Blog Layout
+          </h3>
+        </div>
+        <div id="sample-blog-layout" class="responsive-test-content">
+          <!-- Blog Header -->
+          <header class="p-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+            <div class="max-w-4xl mx-auto">
+              <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
+                Sample Blog Post Title
+              </h1>
+              <p class="text-blue-100 text-sm md:text-base">
+                Published on January 1, 2024 • 5 min read
+              </p>
+            </div>
+          </header>
+
+          <!-- Blog Content -->
+          <main class="max-w-4xl mx-auto p-4 md:p-6 lg:p-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              
+              <!-- Main Content -->
+              <article class="lg:col-span-2 space-y-6">
+                <div class="prose dark:prose-invert max-w-none">
+                  <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    This is a sample blog post content that demonstrates responsive typography and layout. 
+                    The text should remain readable across all device sizes with proper line height and spacing.
+                  </p>
+                  
+                  <!-- Sample Image -->
+                  <div class="my-6">
+                    <img 
+                      src="/assets/sample-image.jpg" 
+                      alt="Sample responsive image"
+                      class="w-full h-48 md:h-64 lg:h-72 object-cover rounded-lg border border-gray-200 dark:border-gray-700"
+                      loading="lazy"
+                    />
+                    <figcaption class="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">
+                      Sample image with responsive sizing
+                    </figcaption>
+                  </div>
+
+                  <!-- Sample Code Block -->
+                  <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                    <pre class="text-green-400 text-sm"><code>// Sample code block
+function responsiveComponent() {
+  const [viewport, setViewport] = useState('desktop');
+  
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setViewport('mobile');
+      } else if (window.innerWidth < 1024) {
+        setViewport('tablet');
+      } else {
+        setViewport('desktop');
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  return viewport;
+}</code></pre>
+                  </div>
+
+                  <!-- Action Buttons -->
+                  <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                    <button class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                      Primary Action
+                    </button>
+                    <button class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      Secondary Action
+                    </button>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Sidebar -->
+              <aside class="space-y-6">
+                
+                <!-- Author Card -->
+                <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                    About the Author
+                  </h3>
+                  <div class="flex items-center space-x-3">
+                    <img 
+                      src="/assets/anubhavgain.webp" 
+                      alt="Author avatar"
+                      class="w-12 h-12 rounded-full object-cover"
+                    />
+                    <div>
+                      <div class="font-medium text-gray-900 dark:text-white">Anubhav Gain</div>
+                      <div class="text-sm text-gray-600 dark:text-gray-400">Security Engineer</div>
+                    </div>
+                  </div>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">
+                    Senior Security Engineer passionate about DevSecOps and cloud technologies.
+                  </p>
+                </div>
+
+                <!-- Tags -->
+                <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                    Tags
+                  </h3>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm rounded-full">
+                      responsive
+                    </span>
+                    <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 text-sm rounded-full">
+                      design
+                    </span>
+                    <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200 text-sm rounded-full">
+                      testing
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Related Posts -->
+                <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                    Related Posts
+                  </h3>
+                  <div class="space-y-3">
+                    <a href="#" class="block p-3 bg-white dark:bg-gray-900 rounded border hover:shadow-sm transition-shadow">
+                      <div class="font-medium text-gray-900 dark:text-white text-sm mb-1">
+                        Building Responsive Components
+                      </div>
+                      <div class="text-xs text-gray-600 dark:text-gray-400">
+                        5 min read
+                      </div>
+                    </a>
+                    <a href="#" class="block p-3 bg-white dark:bg-gray-900 rounded border hover:shadow-sm transition-shadow">
+                      <div class="font-medium text-gray-900 dark:text-white text-sm mb-1">
+                        Mobile-First Design Principles
+                      </div>
+                      <div class="text-xs text-gray-600 dark:text-gray-400">
+                        3 min read
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <!-- Navigation Component Testing -->
+      <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Navigation Component
+          </h3>
+        </div>
+        <div id="sample-navigation" class="responsive-test-content">
+          <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="flex justify-between items-center h-16">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                  <img src="/assets/logo.svg" alt="Logo" class="h-8 w-8" />
+                  <span class="ml-2 text-xl font-bold text-gray-900 dark:text-white hidden sm:block">
+                    Blog
+                  </span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                  <div class="ml-10 flex items-baseline space-x-4">
+                    <a href="/" class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                      Home
+                    </a>
+                    <a href="/posts" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                      Posts
+                    </a>
+                    <a href="/tags" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                      Tags
+                    </a>
+                    <a href="/about" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                      About
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Right side actions -->
+                <div class="flex items-center space-x-4">
+                  <!-- Search -->
+                  <button class="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                  </button>
+                  
+                  <!-- Theme Toggle -->
+                  <button class="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                  </button>
+
+                  <!-- Mobile menu button -->
+                  <button class="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="md:hidden border-t border-gray-200 dark:border-gray-700">
+              <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/" class="block px-3 py-2 text-base font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  Home
+                </a>
+                <a href="/posts" class="block px-3 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  Posts
+                </a>
+                <a href="/tags" class="block px-3 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  Tags
+                </a>
+                <a href="/about" class="block px-3 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  About
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Card Grid Testing -->
+      <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Card Grid Layout
+          </h3>
+        </div>
+        <div id="sample-card-grid" class="responsive-test-content p-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            
+            <!-- Sample Cards -->
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <img src="/assets/sample-image.jpg" alt="Card image" class="w-full h-48 object-cover" />
+              <div class="p-4">
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+                  Responsive Design Principles
+                </h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  Learn the fundamentals of creating responsive layouts that work across all devices.
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-gray-500">5 min read</span>
+                  <button class="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <img src="/assets/sample-image.jpg" alt="Card image" class="w-full h-48 object-cover" />
+              <div class="p-4">
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+                  Mobile-First Development
+                </h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  Why starting with mobile design leads to better responsive websites.
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-gray-500">3 min read</span>
+                  <button class="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <img src="/assets/sample-image.jpg" alt="Card image" class="w-full h-48 object-cover" />
+              <div class="p-4">
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+                  CSS Grid vs Flexbox
+                </h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  Understanding when to use CSS Grid and when to use Flexbox for layouts.
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-gray-500">7 min read</span>
+                  <button class="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <img src="/assets/sample-image.jpg" alt="Card image" class="w-full h-48 object-cover" />
+              <div class="p-4">
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+                  Responsive Typography
+                </h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  Creating scalable typography that looks great on all screen sizes.
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-gray-500">4 min read</span>
+                  <button class="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testing Results -->
+    <section id="testing-results" class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        Testing Results
+      </h3>
+      <div id="results-content">
+        <p class="text-gray-600 dark:text-gray-400">
+          Use the testing controls above to run responsive design tests and see results here.
+        </p>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="text-center">
+      <div class="space-y-4">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/testing/suite" 
+            class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Full Testing Suite
+          </a>
+          <a 
+            href="/testing/showcase" 
+            class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          >
+            Component Showcase
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </Main>
+  <Footer />
+</Layout>
+
+<script>
+  import React from 'react';
+  import { createRoot } from 'react-dom/client';
+  import { ResponsiveDesignChecker } from '@components/testing';
+
+  // Initialize responsive design checker
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // Mount ResponsiveDesignChecker
+    const responsiveContainer = document.getElementById('responsive-checker-container');
+    if (responsiveContainer) {
+      const root = createRoot(responsiveContainer);
+      
+      // Create sample content for testing
+      const testContent = React.createElement('div', { className: 'space-y-6 p-6' }, [
+        React.createElement('h2', { 
+          key: 'title', 
+          className: 'text-2xl font-bold text-gray-900 dark:text-white mb-4' 
+        }, 'Responsive Test Content'),
+        
+        React.createElement('div', { 
+          key: 'grid', 
+          className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' 
+        }, [
+          React.createElement('div', { 
+            key: 'card1', 
+            className: 'p-4 bg-blue-100 dark:bg-blue-900/30 rounded-lg' 
+          }, 'Card 1'),
+          React.createElement('div', { 
+            key: 'card2', 
+            className: 'p-4 bg-green-100 dark:bg-green-900/30 rounded-lg' 
+          }, 'Card 2'),
+          React.createElement('div', { 
+            key: 'card3', 
+            className: 'p-4 bg-purple-100 dark:bg-purple-900/30 rounded-lg' 
+          }, 'Card 3')
+        ]),
+        
+        React.createElement('div', { 
+          key: 'nav', 
+          className: 'flex flex-col sm:flex-row gap-3' 
+        }, [
+          React.createElement('button', { 
+            key: 'btn1', 
+            className: 'px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors' 
+          }, 'Primary Button'),
+          React.createElement('button', { 
+            key: 'btn2', 
+            className: 'px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors' 
+          }, 'Secondary Button')
+        ])
+      ]);
+
+      root.render(
+        React.createElement(ResponsiveDesignChecker, {
+          children: testContent,
+          testInteractions: true
+        })
+      );
+    }
+
+    // Viewport testing controls
+    const testMobile = document.getElementById('test-mobile');
+    const testTablet = document.getElementById('test-tablet');
+    const testDesktop = document.getElementById('test-desktop');
+    const testAll = document.getElementById('test-all-breakpoints');
+
+    if (testMobile) {
+      testMobile.addEventListener('click', () => {
+        simulateViewport(375, 667, 'Mobile');
+      });
+    }
+
+    if (testTablet) {
+      testTablet.addEventListener('click', () => {
+        simulateViewport(768, 1024, 'Tablet');
+      });
+    }
+
+    if (testDesktop) {
+      testDesktop.addEventListener('click', () => {
+        simulateViewport(1280, 720, 'Desktop');
+      });
+    }
+
+    if (testAll) {
+      testAll.addEventListener('click', () => {
+        runAllBreakpointTests();
+      });
+    }
+
+    function simulateViewport(width: number, height: number, name: string) {
+      const resultsContent = document.getElementById('results-content');
+      if (resultsContent) {
+        resultsContent.innerHTML = `
+          <div class="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+            <h4 class="font-semibold text-blue-800 dark:text-blue-200 mb-2">
+              Testing ${name} Viewport
+            </h4>
+            <p class="text-blue-600 dark:text-blue-300 text-sm">
+              Simulating ${width}x${height}px viewport. Check the ResponsiveDesignChecker above for detailed results.
+            </p>
+          </div>
+        `;
+      }
+    }
+
+    function runAllBreakpointTests() {
+      const resultsContent = document.getElementById('results-content');
+      if (resultsContent) {
+        resultsContent.innerHTML = `
+          <div class="space-y-4">
+            <div class="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+              <h4 class="font-semibold text-green-800 dark:text-green-200 mb-2">
+                Running Comprehensive Breakpoint Tests
+              </h4>
+              <p class="text-green-600 dark:text-green-300 text-sm">
+                Testing all breakpoints: Mobile, Tablet, Desktop, and Large Desktop. 
+                Check the ResponsiveDesignChecker component above for detailed results.
+              </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="text-center p-3 bg-red-100 dark:bg-red-900/20 rounded">
+                <div class="text-lg font-bold text-red-600">Mobile</div>
+                <div class="text-xs text-red-500">375×667</div>
+              </div>
+              <div class="text-center p-3 bg-yellow-100 dark:bg-yellow-900/20 rounded">
+                <div class="text-lg font-bold text-yellow-600">Tablet</div>
+                <div class="text-xs text-yellow-500">768×1024</div>
+              </div>
+              <div class="text-center p-3 bg-green-100 dark:bg-green-900/20 rounded">
+                <div class="text-lg font-bold text-green-600">Desktop</div>
+                <div class="text-xs text-green-500">1280×720</div>
+              </div>
+              <div class="text-center p-3 bg-blue-100 dark:bg-blue-900/20 rounded">
+                <div class="text-lg font-bold text-blue-600">Large</div>
+                <div class="text-xs text-blue-500">1920×1080</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+  });
+</script>
+
+<style>
+  /* Responsive testing specific styles */
+  .responsive-test-content {
+    min-height: 300px;
+  }
+  
+  /* Breakpoint indicators for testing */
+  .responsive-test-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 8px;
+    background: rgba(59, 130, 246, 0.1);
+    font-size: 12px;
+    color: #3b82f6;
+    border-radius: 0 0 0 4px;
+  }
+  
+  /* Mobile indicator */
+  @media (max-width: 767px) {
+    .responsive-test-content::before {
+      content: 'Mobile';
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+    }
+  }
+  
+  /* Tablet indicator */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .responsive-test-content::before {
+      content: 'Tablet';
+      background: rgba(245, 158, 11, 0.1);
+      color: #f59e0b;
+    }
+  }
+  
+  /* Desktop indicator */
+  @media (min-width: 1024px) {
+    .responsive-test-content::before {
+      content: 'Desktop';
+      background: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+    }
+  }
+  
+  /* Enhanced focus states for responsive testing */
+  button:focus,
+  a:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+</style>
