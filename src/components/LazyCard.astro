@@ -22,7 +22,28 @@ const isLazy = index >= 4;
   data-frontmatter={JSON.stringify(frontmatter)}
   data-sec-heading={secHeading}
 >
-  {!isLazy && <div class="card-content" />}
+  {
+    !isLazy && (
+      <a
+        href={href}
+        class="inline-block w-full hover:scale-105 transition-transform duration-300"
+      >
+        <div class="card bg-skin-card rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+          <h3 class="text-lg font-semibold mb-2">{frontmatter.title}</h3>
+          {frontmatter.description && (
+            <p class="text-sm opacity-80 mb-3">{frontmatter.description}</p>
+          )}
+          <time class="text-xs opacity-60">
+            {new Date(frontmatter.pubDatetime).toLocaleDateString("en-us", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </time>
+        </div>
+      </a>
+    )
+  }
 </li>
 
 <script>
