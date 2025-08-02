@@ -51,8 +51,7 @@ const SearchButton: React.FC<SearchButtonProps> = ({
           "text-primary bg-primary/15 shadow-md border-primary/30 scale-105",
         className
       )}
-      aria-label="Open search"
-      title={`Search (${shortcut})`}
+      aria-label={`Open search (${shortcut})`}
     >
       <Search className="h-5 w-5" aria-hidden="true" />
       <span className="sr-only">Search</span>

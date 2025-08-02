@@ -387,19 +387,19 @@ nav button svg {
 /* ===== MAIN LAYOUT STYLES ===== */
 
 #main-content {
-  @apply mx-auto w-full px-4 pb-4;
+  @apply mx-auto w-full px-0 pb-4;
   max-width: 100%;
 }
 
 @media (min-width: 640px) {
   #main-content {
-    @apply px-6;
+    @apply px-0;
   }
 }
 
 @media (min-width: 768px) {
   #main-content {
-    @apply px-8;
+    @apply px-0;
   }
 }
 
@@ -424,7 +424,7 @@ footer p {
 /* ===== BREADCRUMBS COMPONENT STYLES ===== */
 
 .breadcrumbs {
-  @apply mx-auto mb-4 w-full max-w-3xl px-4;
+  @apply mx-auto mb-4 w-full px-4;
 }
 
 /* ===== TAG COMPONENT STYLES ===== */
