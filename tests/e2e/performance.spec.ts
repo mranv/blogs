@@ -130,9 +130,14 @@ test.describe('Performance Tests', () => {
           }).observe({ entryTypes: ['navigation'] });
         }
         
-        // Fallback measurement
+        // Fallback measurement using modern Performance API
         setTimeout(() => {
-          resolve(performance.timing.domInteractive - performance.timing.navigationStart);
+          const navigationEntry = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+          if (navigationEntry) {
+            resolve(navigationEntry.domInteractive - navigationEntry.fetchStart);
+          } else {
+            resolve(0);
+          }
         }, 100);
       });
     });
