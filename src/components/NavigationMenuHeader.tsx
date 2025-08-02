@@ -20,14 +20,7 @@ import {
 import { cn } from "@utils/cn";
 
 interface NavigationMenuHeaderProps {
-  activeNav?:
-    | "posts"
-    | "tags"
-    | "about"
-    | "search"
-    | "security"
-    | "devops"
-    | "tools";
+  activeNav?: "posts" | "tags" | "about" | "search";
   posts?: any[];
   tags?: any[];
   socialLinks?: any[];
@@ -340,61 +333,6 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = props => {
                   </div>
                 </div>
               </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            {/* Direct Navigation Links */}
-            <NavigationMenuItem>
-              <a
-                href="/security/"
-                className={cn(
-                  "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
-                  "hover:bg-primary/15 hover:text-primary hover:shadow-md hover:scale-105",
-                  "focus:bg-primary/15 focus:text-primary focus:outline-none",
-                  "border border-transparent hover:border-primary/20",
-                  "relative overflow-hidden cursor-pointer",
-                  activeNav === "security" &&
-                    "text-primary bg-primary/15 shadow-md border-primary/30 scale-105"
-                )}
-              >
-                <span className="relative z-10">Security</span>
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              </a>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <a
-                href="/devops/"
-                className={cn(
-                  "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
-                  "hover:bg-primary/15 hover:text-primary hover:shadow-md hover:scale-105",
-                  "focus:bg-primary/15 focus:text-primary focus:outline-none",
-                  "border border-transparent hover:border-primary/20",
-                  "relative overflow-hidden cursor-pointer",
-                  activeNav === "devops" &&
-                    "text-primary bg-primary/15 shadow-md border-primary/30 scale-105"
-                )}
-              >
-                <span className="relative z-10">DevOps</span>
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              </a>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <a
-                href="/tools/"
-                className={cn(
-                  "group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-300",
-                  "hover:bg-primary/15 hover:text-primary hover:shadow-md hover:scale-105",
-                  "focus:bg-primary/15 focus:text-primary focus:outline-none",
-                  "border border-transparent hover:border-primary/20",
-                  "relative overflow-hidden cursor-pointer",
-                  activeNav === "tools" &&
-                    "text-primary bg-primary/15 shadow-md border-primary/30 scale-105"
-                )}
-              >
-                <span className="relative z-10">Tools</span>
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              </a>
             </NavigationMenuItem>
 
             {/* Search Button */}
