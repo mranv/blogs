@@ -74,6 +74,30 @@ const featuredTechnologies = [
     }
   </script>
 
+  <!-- Loading State -->
+  <div
+    id="loadingState"
+    class="fixed inset-0 bg-slate-900 flex items-center justify-center z-50"
+  >
+    <div class="text-center">
+      <div
+        class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"
+      >
+      </div>
+      <p class="text-white text-lg">Loading...</p>
+    </div>
+  </div>
+
+  <script>
+    // Hide loading state once page is loaded
+    window.addEventListener("load", () => {
+      const loadingState = document.getElementById("loadingState");
+      if (loadingState) {
+        loadingState.style.display = "none";
+      }
+    });
+  </script>
+
   <main id="main-content">
     <section
       id="hero"
@@ -287,7 +311,7 @@ const featuredTechnologies = [
                 href={`/posts/${slug}/`}
                 frontmatter={data}
                 secHeading={false}
-                index={index}
+                index={_index}
               />
             ))}
           </ul>
@@ -331,7 +355,7 @@ const featuredTechnologies = [
                 href={`/posts/${slug}/`}
                 frontmatter={data}
                 secHeading={false}
-                index={index + featuredPosts.length}
+                index={_index + featuredPosts.length}
               />
             ))}
           </ul>
