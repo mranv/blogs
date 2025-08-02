@@ -236,9 +236,9 @@ export const animationUtils = {
    * Calculate bezier curve value at time t
    */
   bezier: (
-    x1: number,
+    // x1: number,
     y1: number,
-    x2: number,
+    // x2: number,
     y2: number,
     t: number
   ): number => {

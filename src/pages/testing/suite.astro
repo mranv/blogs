@@ -261,7 +261,7 @@ const pageDescription =
               description: "BlogCard should have proper link attributes",
               test: (element: HTMLElement) => {
                 const link = element.querySelector("a");
-                return link && link.href.includes("/posts/test-post");
+                return Boolean(link && link.href.includes("/posts/test-post"));
               },
               expectation: "Card should contain a link to the post",
             },
@@ -273,7 +273,7 @@ const pageDescription =
                 const description = element.textContent?.includes(
                   "This is a test blog post"
                 );
-                return title && description;
+                return Boolean(title && description);
               },
               expectation: "Card should show title and description",
             },
@@ -296,7 +296,7 @@ const pageDescription =
               name: "Renders",
               description: "Search should render without errors",
               test: (element: HTMLElement) => {
-                return element !== null;
+                return Boolean(element !== null);
               },
               expectation: "Component should render successfully",
             },
@@ -307,7 +307,7 @@ const pageDescription =
                 const input = element.querySelector(
                   'input[type="text"], input[type="search"]'
                 );
-                return input !== null;
+                return Boolean(input !== null);
               },
               expectation: "Search should have an input field",
             },
@@ -316,7 +316,9 @@ const pageDescription =
               description: "Search should support keyboard navigation",
               test: (element: HTMLElement) => {
                 const input = element.querySelector("input");
-                return input && input.getAttribute("aria-label") !== null;
+                return Boolean(
+                  input && input.getAttribute("aria-label") !== null
+                );
               },
               expectation: "Search input should have proper ARIA labels",
             },
