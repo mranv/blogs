@@ -30,24 +30,48 @@ const pageDescription =
 // Sample data
 const sampleAuthor = {
   name: "Anubhav Gain",
+  title: "Senior Security Engineer",
   bio: "Senior Security Engineer and Cloud Architect passionate about DevSecOps, automation, and emerging technologies. Sharing insights on cybersecurity, cloud infrastructure, and development best practices.",
   avatar: "/assets/anubhavgain.webp",
-  social: {
-    twitter: "@anubhavgain",
-    github: "mranv",
-    linkedin: "anubhavgain",
-  },
+  location: "San Francisco, CA",
+  company: "Tech Corp",
+  email: "anubhav@example.com",
+  socials: [
+    {
+      name: "Twitter" as const,
+      href: "https://twitter.com/anubhavgain",
+      active: true,
+      linkTitle: "Follow on Twitter",
+    },
+    {
+      name: "Github" as const,
+      href: "https://github.com/mranv",
+      active: true,
+      linkTitle: "Follow on GitHub",
+    },
+    {
+      name: "LinkedIn" as const,
+      href: "https://linkedin.com/in/anubhavgain",
+      active: true,
+      linkTitle: "Connect on LinkedIn",
+    },
+  ],
 };
 
 const sampleTags = [
-  { name: "cybersecurity", count: 25 },
-  { name: "cloud", count: 20 },
-  { name: "devops", count: 18 },
-  { name: "automation", count: 15 },
-  { name: "kubernetes", count: 12 },
-  { name: "aws", count: 10 },
-  { name: "docker", count: 8 },
-  { name: "security", count: 22 },
+  {
+    tag: "cybersecurity",
+    tagName: "cybersecurity",
+    count: 25,
+    popularity: 0.9,
+  },
+  { tag: "cloud", tagName: "cloud", count: 20, popularity: 0.8 },
+  { tag: "devops", tagName: "devops", count: 18, popularity: 0.7 },
+  { tag: "automation", tagName: "automation", count: 15, popularity: 0.6 },
+  { tag: "kubernetes", tagName: "kubernetes", count: 12, popularity: 0.5 },
+  { tag: "aws", tagName: "aws", count: 10, popularity: 0.4 },
+  { tag: "docker", tagName: "docker", count: 8, popularity: 0.3 },
+  { tag: "security", tagName: "security", count: 22, popularity: 0.85 },
 ];
 ---
 
