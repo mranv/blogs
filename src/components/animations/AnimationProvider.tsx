@@ -14,7 +14,7 @@ import {
   globalReducedMotionManager,
   type ReducedMotionConfig,
 } from "@utils/animations/reducedMotion";
-import { globalIntersectionManager } from "@utils/animations/intersectionObserver";
+
 import {
   globalParallaxManager,
   globalScrollTracker,
