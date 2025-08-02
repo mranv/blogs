@@ -83,39 +83,56 @@ export default function SearchBar({ searchList }: Props) {
           <span className="sr-only">Search</span>
         </span>
         <input
-          className="block w-full rounded border border-skin-fill 
-        border-opacity-40 bg-skin-fill py-3 pl-10
-        pr-3 placeholder:italic placeholder:text-opacity-75 
-        focus:border-skin-accent focus:outline-none"
-          placeholder="Search for anything..."
+          className="block w-full rounded-xl border border-border/40 bg-card/60 backdrop-blur-sm py-4 pl-10 pr-3 
+                   placeholder:italic placeholder:text-muted-foreground/60 text-foreground
+                   focus:border-primary/50 focus:bg-card/80 focus:outline-none focus:ring-2 focus:ring-primary/20
+                   transition-all duration-300 hover:border-border/60 hover:bg-card/70
+                   shadow-sm hover:shadow-md focus:shadow-lg"
+          placeholder="Search articles, topics, technologies..."
           type="text"
           name="search"
           value={inputVal}
           onChange={handleChange}
           autoComplete="off"
-          // autoFocus
           ref={inputRef}
         />
       </label>
 
       {inputVal.length > 1 && (
-        <div className="mt-8">
-          Found {searchResults?.length}
-          {searchResults?.length && searchResults?.length === 1
-            ? " result"
-            : " results"}{" "}
-          for '{inputVal}'
+        <div className="mt-8 animate-in slide-in-from-top-2 duration-300">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            Found {searchResults?.length}
+            {searchResults?.length && searchResults?.length === 1
+              ? " result"
+              : " results"}{" "}
+            for <span className="font-semibold">'{inputVal}'</span>
+          </div>
         </div>
       )}
 
-      <ul>
+      <ul className="space-y-4 mt-6">
         {searchResults &&
-          searchResults.map(({ item, refIndex }) => (
-            <Card
-              href={`/posts/${item.slug}/`}
-              frontmatter={item.data}
+          searchResults.map(({ item, refIndex }, index) => (
+            <div
               key={`${refIndex}-${item.slug}`}
-            />
+              className="animate-in slide-in-from-bottom-2 duration-300"
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
+              <Card href={`/posts/${item.slug}/`} frontmatter={item.data} />
+            </div>
           ))}
       </ul>
     </>

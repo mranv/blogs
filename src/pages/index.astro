@@ -36,12 +36,22 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
     >
       <h1
         id="hero-heading"
-        class="mb-4 text-center text-4xl font-bold text-reveal"
+        class="mb-6 text-center text-4xl sm:text-5xl lg:text-6xl font-bold text-reveal bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient-text"
       >
-        Anubhav Gain - DevSecOps Engineer &amp; Technical Writer
+        Anubhav Gain
       </h1>
-      <p class="mb-8 text-center text-xl text-opacity-90 animate-on-scroll">
+      <h2
+        class="mb-4 text-center text-xl sm:text-2xl font-semibold text-muted-foreground animate-fade-in-up"
+        style="animation-delay: 0.2s"
+      >
+        DevSecOps Engineer &amp; Cybersecurity Expert
+      </h2>
+      <p
+        class="mb-8 text-center text-lg sm:text-xl text-muted-foreground/90 animate-fade-in-up max-w-3xl mx-auto"
+        style="animation-delay: 0.4s"
+      >
         Dive beneath the surface of technology—where real innovation happens.
+        Exploring the depths of security, automation, and modern infrastructure.
       </p>
 
       <div class="video-container relative mx-auto max-w-3xl animate-scale-in">
@@ -68,12 +78,51 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
         </button>
       </div>
 
-      <p
-        class="mx-auto mt-8 max-w-2xl text-center text-opacity-90 animate-on-scroll"
+      <!-- Stats Section -->
+      <div
+        class="mx-auto mt-12 max-w-4xl animate-fade-in-up"
+        style="animation-delay: 0.8s"
       >
-        Welcome to Anubhav Gain's technical blog. Discover in-depth articles on
-        DevSecOps, cybersecurity, cloud security, and modern infrastructure by
-        Anubhav Gain.
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div
+            class="p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30 hover:border-primary/30 transition-all duration-300 hover:scale-105"
+          >
+            <div class="text-2xl font-bold text-primary">
+              {sortedPosts.length}+
+            </div>
+            <div class="text-sm text-muted-foreground">Articles</div>
+          </div>
+          <div
+            class="p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30 hover:border-primary/30 transition-all duration-300 hover:scale-105"
+          >
+            <div class="text-2xl font-bold text-primary">10+</div>
+            <div class="text-sm text-muted-foreground">Technologies</div>
+          </div>
+          <div
+            class="p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30 hover:border-primary/30 transition-all duration-300 hover:scale-105"
+          >
+            <div class="text-2xl font-bold text-primary">5+</div>
+            <div class="text-sm text-muted-foreground">Years Experience</div>
+          </div>
+          <div
+            class="p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30 hover:border-primary/30 transition-all duration-300 hover:scale-105"
+          >
+            <div class="text-2xl font-bold text-primary">24/7</div>
+            <div class="text-sm text-muted-foreground">Security Focus</div>
+          </div>
+        </div>
+      </div>
+
+      <p
+        class="mx-auto mt-12 max-w-3xl text-center text-muted-foreground/90 animate-fade-in-up"
+        style="animation-delay: 1s"
+      >
+        Welcome to my technical exploration space. Here you'll find in-depth
+        articles on
+        <span class="text-primary font-semibold">DevSecOps</span>,
+        <span class="text-primary font-semibold">cybersecurity</span>,
+        <span class="text-primary font-semibold">cloud security</span>, and
+        <span class="text-primary font-semibold">modern infrastructure</span> practices.
       </p>
 
       {
@@ -92,10 +141,19 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
 
     {
       featuredPosts.length > 0 && (
-        <section id="featured" class="py-12">
-          <h2 class="mb-6 text-center text-2xl font-semibold animate-on-scroll">
-            Featured
-          </h2>
+        <section id="featured" class="py-16">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-primary mb-4 animate-fade-in-up">
+              Featured Articles
+            </h2>
+            <p
+              class="text-muted-foreground max-w-2xl mx-auto animate-fade-in-up"
+              style="animation-delay: 0.1s"
+            >
+              Handpicked articles showcasing cutting-edge security practices and
+              innovative solutions
+            </p>
+          </div>
           <ul class="mx-auto grid max-w-4xl gap-6 px-4 sm:grid-cols-2 stagger-children">
             {featuredPosts.map(({ data, slug }, index) => (
               <LazyCard
@@ -114,10 +172,19 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
 
     {
       recentPosts.length > 0 && (
-        <section id="recent-posts" class="py-12">
-          <h2 class="mb-6 text-center text-2xl font-semibold animate-on-scroll">
-            Recent Posts
-          </h2>
+        <section id="recent-posts" class="py-16">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-primary mb-4 animate-fade-in-up">
+              Latest Insights
+            </h2>
+            <p
+              class="text-muted-foreground max-w-2xl mx-auto animate-fade-in-up"
+              style="animation-delay: 0.1s"
+            >
+              Fresh perspectives on emerging security challenges and technology
+              trends
+            </p>
+          </div>
           <ul class="mx-auto grid max-w-4xl gap-6 px-4 sm:grid-cols-2 stagger-children">
             {recentPosts.slice(0, 8).map(({ data, slug }, index) => (
               <LazyCard
@@ -161,17 +228,90 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
   #main-content {
     @apply bg-skin-fill text-skin-base;
   }
-  #hero h1 {
-    @apply text-skin-accent;
+
+  .animate-gradient-text {
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease-in-out infinite;
   }
-  #hero p {
-    @apply text-skin-base;
+
+  @keyframes gradientShift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
   }
+
+  .animate-fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stagger-children > * {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .stagger-children > *:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .stagger-children > *:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .stagger-children > *:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .stagger-children > *:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .stagger-children > *:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .stagger-children > *:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+  .stagger-children > *:nth-child(7) {
+    animation-delay: 0.7s;
+  }
+  .stagger-children > *:nth-child(8) {
+    animation-delay: 0.8s;
+  }
+
   .link-button {
-    @apply bg-skin-accent text-skin-inverted transition-colors hover:opacity-80;
+    @apply bg-skin-accent text-skin-inverted transition-all duration-300 hover:opacity-90 hover:scale-105 hover:shadow-lg;
   }
+
   #unmuteBtn {
-    @apply bg-skin-fill text-skin-base hover:bg-skin-accent hover:text-skin-inverted;
+    @apply bg-skin-fill text-skin-base hover:bg-skin-accent hover:text-skin-inverted transition-all duration-300 hover:scale-105;
+  }
+
+  .video-container {
+    @apply relative overflow-hidden rounded-2xl shadow-2xl;
+  }
+
+  .video-container::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none z-10;
+  }
+
+  /* Hover effects for stats cards */
+  .stats-card {
+    @apply transition-all duration-300 hover:shadow-xl hover:border-primary/50;
+  }
+
+  .stats-card:hover .stats-number {
+    @apply scale-110;
   }
 </style>
 

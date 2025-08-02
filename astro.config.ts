@@ -52,6 +52,13 @@ export default defineConfig({
             // Split vendor chunks for better caching
             "react-vendor": ["react", "react-dom"],
             "search-vendor": ["fuse.js"],
+            "ui-vendor": ["lucide-react", "class-variance-authority"],
+            "radix-vendor": [
+              "@radix-ui/react-avatar",
+              "@radix-ui/react-dropdown-menu",
+              "@radix-ui/react-navigation-menu",
+            ],
+            utils: ["clsx", "tailwind-merge"],
           },
         },
       },
@@ -59,9 +66,11 @@ export default defineConfig({
       cssCodeSplit: true,
       // Minify CSS
       cssMinify: true,
-      // Memory optimization
-      minify: false, // Disable minification to save memory
+      // Memory optimization - enable minification for production
+      minify: "terser",
       sourcemap: false,
+      // Optimize asset inlining
+      assetsInlineLimit: 4096,
     },
   },
   // Enable compression
@@ -78,4 +87,13 @@ export default defineConfig({
     },
   },
   scopedStyleStrategy: "where",
+  // Performance optimizations
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "viewport",
+  },
+  experimental: {
+    clientPrerender: true,
+    directRenderScript: true,
+  },
 });
