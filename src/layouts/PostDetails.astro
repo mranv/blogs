@@ -51,6 +51,14 @@ const layoutProps = {
 <Layout {...layoutProps}>
   <Header />
 
+  <!-- Authentication Check -->
+  <script>
+    // Check if user is authenticated
+    if (localStorage.getItem("isAuthenticated") !== "true") {
+      window.location.href = "/login";
+    }
+  </script>
+
   <!-- Progress bar added dynamically on scroll -->
 
   <div class="mx-auto flex w-full justify-start px-2">

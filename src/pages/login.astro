@@ -1,0 +1,203 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout>
+  <div
+    class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
+  >
+    <div class="max-w-md w-full space-y-8 p-8">
+      <!-- Logo/Title Section -->
+      <div class="text-center">
+        <h1 class="text-4xl font-bold text-white mb-2">Welcome Back</h1>
+        <p class="text-gray-300">Sign in to access your dashboard</p>
+      </div>
+
+      <!-- Login Form -->
+      <div
+        id="loginForm"
+        class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20"
+      >
+        <form id="authForm" class="space-y-6">
+          <div>
+            <label
+              for="email"
+              class="block text-sm font-medium text-gray-300 mb-2"
+            >
+              Email Address
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-300 mb-2"
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter your password"
+            />
+          </div>
+
+          <div id="confirmPasswordDiv" class="hidden">
+            <label
+              for="confirmPassword"
+              class="block text-sm font-medium text-gray-300 mb-2"
+            >
+              Confirm Password
+            </label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+              placeholder="Confirm your password"
+            />
+          </div>
+
+          <button
+            type="submit"
+            id="submitBtn"
+            class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-4 rounded-lg font-medium hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 transform hover:scale-105"
+          >
+            Sign In
+          </button>
+        </form>
+
+        <!-- Toggle between Login and Signup -->
+        <div class="mt-6 text-center">
+          <p class="text-gray-300">
+            <span id="toggleText">Don't have an account?</span>
+            <button
+              id="toggleBtn"
+              class="ml-2 text-purple-400 hover:text-purple-300 font-medium transition-colors duration-200"
+            >
+              Sign Up
+            </button>
+          </p>
+        </div>
+
+        <!-- Demo Credentials -->
+        <div class="mt-6 p-4 bg-white/5 rounded-lg border border-white/10">
+          <p class="text-sm text-gray-300 mb-2">Demo Credentials:</p>
+          <p class="text-xs text-gray-400">Email: demo@example.com</p>
+          <p class="text-xs text-gray-400">Password: demo123</p>
+        </div>
+      </div>
+
+      <!-- Error/Success Message -->
+      <div id="message" class="hidden text-center p-4 rounded-lg"></div>
+    </div>
+  </div>
+
+  <script>
+    let isLoginMode = true;
+    const loginForm = document.getElementById("loginForm");
+    const authForm = document.getElementById("authForm");
+    const toggleBtn = document.getElementById("toggleBtn");
+    const toggleText = document.getElementById("toggleText");
+    const submitBtn = document.getElementById("submitBtn");
+    const confirmPasswordDiv = document.getElementById("confirmPasswordDiv");
+    const confirmPasswordInput = document.getElementById("confirmPassword");
+    const messageDiv = document.getElementById("message");
+
+    // Check if user is already logged in
+    if (localStorage.getItem("isAuthenticated") === "true") {
+      window.location.href = "/";
+    }
+
+    // Toggle between login and signup
+    toggleBtn.addEventListener("click", () => {
+      isLoginMode = !isLoginMode;
+
+      if (isLoginMode) {
+        toggleText.textContent = "Don't have an account?";
+        toggleBtn.textContent = "Sign Up";
+        submitBtn.textContent = "Sign In";
+        confirmPasswordDiv.classList.add("hidden");
+        confirmPasswordInput.removeAttribute("required");
+      } else {
+        toggleText.textContent = "Already have an account?";
+        toggleBtn.textContent = "Sign In";
+        submitBtn.textContent = "Sign Up";
+        confirmPasswordDiv.classList.remove("hidden");
+        confirmPasswordInput.setAttribute("required", "required");
+      }
+
+      // Clear any previous messages
+      showMessage("", "");
+    });
+
+    // Handle form submission
+    authForm.addEventListener("submit", e => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (isLoginMode) {
+        // Login logic
+        if (email === "demo@example.com" && password === "demo123") {
+          localStorage.setItem("isAuthenticated", "true");
+          localStorage.setItem("userEmail", email);
+          showMessage("Login successful! Redirecting...", "success");
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 1000);
+        } else {
+          showMessage(
+            "Invalid email or password. Try demo@example.com / demo123",
+            "error"
+          );
+        }
+      } else {
+        // Signup logic
+        if (password !== confirmPassword) {
+          showMessage("Passwords do not match!", "error");
+          return;
+        }
+
+        if (password.length < 6) {
+          showMessage("Password must be at least 6 characters long!", "error");
+          return;
+        }
+
+        // For demo purposes, we'll just log them in
+        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("userEmail", email);
+        showMessage("Account created successfully! Redirecting...", "success");
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 1000);
+      }
+    });
+
+    function showMessage(text, type) {
+      messageDiv.textContent = text;
+      messageDiv.className = `text-center p-4 rounded-lg ${type === "error" ? "bg-red-500/20 text-red-300 border border-red-500/30" : "bg-green-500/20 text-green-300 border border-green-500/30"}`;
+      messageDiv.classList.remove("hidden");
+
+      if (text) {
+        setTimeout(() => {
+          messageDiv.classList.add("hidden");
+        }, 5000);
+      }
+    }
+  </script>
+</Layout>
+

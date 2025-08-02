@@ -17,6 +17,15 @@ const { frontmatter } = Astro.props;
 
 <Layout title={`${frontmatter.title} | ${SITE.title}`}>
   <Header activeNav="about" />
+
+  <!-- Authentication Check -->
+  <script>
+    // Check if user is authenticated
+    if (localStorage.getItem("isAuthenticated") !== "true") {
+      window.location.href = "/login";
+    }
+  </script>
+
   <Breadcrumbs />
   <main id="main-content" class="about-page w-full">
     <section

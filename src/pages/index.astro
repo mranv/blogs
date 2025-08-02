@@ -65,6 +65,15 @@ const featuredTechnologies = [
 
 <Layout>
   <Header />
+
+  <!-- Authentication Check -->
+  <script>
+    // Check if user is authenticated
+    if (localStorage.getItem("isAuthenticated") !== "true") {
+      window.location.href = "/login";
+    }
+  </script>
+
   <main id="main-content">
     <section
       id="hero"

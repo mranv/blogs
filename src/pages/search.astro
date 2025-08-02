@@ -23,6 +23,15 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
 
 <Layout title={`Search | ${SITE.title}`}>
   <Header activeNav="search" />
+
+  <!-- Authentication Check -->
+  <script>
+    // Check if user is authenticated
+    if (localStorage.getItem("isAuthenticated") !== "true") {
+      window.location.href = "/login";
+    }
+  </script>
+
   <Main pageTitle="Search" pageDesc="Search any article ...">
     <SearchBar client:load searchList={searchList} />
   </Main>
