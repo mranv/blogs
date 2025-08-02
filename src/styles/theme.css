@@ -269,6 +269,7 @@ html[data-theme="light"] {
   @apply w-full border-collapse my-8;
   @apply bg-card border border-border rounded-lg overflow-hidden;
   @apply shadow-md;
+  @apply max-w-full;
 }
 
 .about-table th {
