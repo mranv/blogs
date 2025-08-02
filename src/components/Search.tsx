@@ -559,7 +559,7 @@ export default function SearchBar({
             pattern="sequential"
           >
             {searchResults &&
-              searchResults.map(({ item, refIndex }, index) => (
+              searchResults.map(({ item, refIndex }) => (
                 <div key={`${refIndex}-${item.slug}`}>
                   <div className="search-result-item group block p-6 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
