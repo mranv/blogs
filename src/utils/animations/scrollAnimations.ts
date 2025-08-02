@@ -435,7 +435,7 @@ export const scrollAnimations = {
     distance: number = 50,
     direction: "up" | "down" | "left" | "right" = "up"
   ): (() => void) => {
-    const callback: ProgressCallback = progress => {
+    const callback: ProgressCallback = () => {
       const rect = element.getBoundingClientRect();
       const elementTop = rect.top + window.pageYOffset;
       const windowHeight = window.innerHeight;
