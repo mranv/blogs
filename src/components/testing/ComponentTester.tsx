@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import type { Component } from "react";
 
 export interface TestResult {
@@ -227,7 +227,7 @@ export const commonTests = {
   },
 
   // Performance tests
-  rendersQuickly: async (element: HTMLElement) => {
+  rendersQuickly: async () => {
     const start = performance.now();
     await new Promise(resolve => requestAnimationFrame(resolve));
     const end = performance.now();
@@ -253,7 +253,7 @@ export const commonTests = {
 };
 
 // Default test suite for components
-export const createDefaultTests = (componentName: string): ComponentTest[] => [
+export const createDefaultTests = (): ComponentTest[] => [
   {
     name: "Accessibility",
     description:

@@ -233,7 +233,7 @@ export const MouseParallax = forwardRef<HTMLDivElement, MouseParallaxProps>(
     const mouseParallaxRef =
       (ref as React.RefObject<HTMLDivElement>) || elementRef;
     const animationRef = useRef<number>();
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
     const [targetPosition, setTargetPosition] = useState({ x: 0, y: 0 });
 
     // Get animation context

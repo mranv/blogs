@@ -287,8 +287,6 @@ const accessibilityRules: AccessibilityRule[] = [
 
       // Check for missing landmarks
       const hasMain = container.querySelector("main");
-      const hasNav = container.querySelector("nav");
-      const hasHeader = container.querySelector("header");
 
       if (!hasMain && container.children.length > 0) {
         issues.push({

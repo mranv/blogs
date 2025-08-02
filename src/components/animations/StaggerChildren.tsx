@@ -150,7 +150,6 @@ export const StaggerChildren = forwardRef<HTMLDivElement, StaggerChildrenProps>(
 
     // Convert children to array
     const childrenArray = Children.toArray(children);
-    const childCount = childrenArray.length;
 
     // Setup intersection observer
     const [observerRef, { isIntersecting, hasIntersected }] =
