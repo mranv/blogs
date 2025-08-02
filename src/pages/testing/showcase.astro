@@ -23,6 +23,14 @@ export const prerender = true;
 const posts = await getCollection("blog");
 const samplePosts = posts.slice(0, 6);
 
+// Create searchList for Search component
+const searchList = posts.map(({ data, slug }) => ({
+  title: data.title,
+  description: data.description,
+  data,
+  slug,
+}));
+
 const pageTitle = "Component Showcase - Visual Demo";
 const pageDescription =
   "Visual showcase of all enhanced blog components demonstrating design, animations, and interactive features";
@@ -175,13 +183,6 @@ const sampleTags = [
                   client:load
                   href={`/posts/${post.slug}`}
                   frontmatter={post.data}
-                  variant={
-                    index % 3 === 0
-                      ? "featured"
-                      : index % 3 === 1
-                        ? "compact"
-                        : "default"
-                  }
                 />
               </div>
             ))
@@ -270,18 +271,14 @@ const sampleTags = [
                       client:load
                       tag={tag}
                       size={
-                        index % 3 === 0
-                          ? "large"
-                          : index % 3 === 1
-                            ? "medium"
-                            : "small"
+                        index % 3 === 0 ? "lg" : index % 3 === 1 ? "md" : "sm"
                       }
                       variant={
                         index % 3 === 0
-                          ? "primary"
+                          ? "cybersecurity"
                           : index % 3 === 1
-                            ? "secondary"
-                            : "outline"
+                            ? "professional"
+                            : "default"
                       }
                     />
                   ))
@@ -398,7 +395,7 @@ const sampleTags = [
             <div
               class="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg"
             >
-              <Search client:load />
+              <Search client:load searchList={searchList} />
               <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">
                 Interactive search with real-time filtering and keyboard
                 navigation.

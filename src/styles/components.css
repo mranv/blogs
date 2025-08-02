@@ -5,6 +5,88 @@
  * Updated to align with Claude Theme from theme.json
  */
 
+/* ===== THEME ALIGNMENT UTILITIES ===== */
+/* Additional theme utilities to ensure complete alignment with theme.json */
+
+/* Theme color utilities for components */
+.theme-bg-primary { background-color: hsl(var(--primary)); }
+.theme-bg-secondary { background-color: hsl(var(--secondary)); }
+.theme-bg-accent { background-color: hsl(var(--accent)); }
+.theme-bg-muted { background-color: hsl(var(--muted)); }
+.theme-bg-card { background-color: hsl(var(--card)); }
+.theme-bg-popover { background-color: hsl(var(--popover)); }
+.theme-bg-destructive { background-color: hsl(var(--destructive)); }
+
+.theme-text-primary { color: hsl(var(--primary)); }
+.theme-text-secondary { color: hsl(var(--secondary-foreground)); }
+.theme-text-accent { color: hsl(var(--accent-foreground)); }
+.theme-text-muted { color: hsl(var(--muted-foreground)); }
+.theme-text-card { color: hsl(var(--card-foreground)); }
+.theme-text-popover { color: hsl(var(--popover-foreground)); }
+.theme-text-destructive { color: hsl(var(--destructive-foreground)); }
+
+.theme-border-primary { border-color: hsl(var(--primary)); }
+.theme-border-secondary { border-color: hsl(var(--secondary)); }
+.theme-border-accent { border-color: hsl(var(--accent)); }
+.theme-border-muted { border-color: hsl(var(--muted)); }
+.theme-border-input { border-color: hsl(var(--input)); }
+.theme-border-ring { border-color: hsl(var(--ring)); }
+
+/* Theme shadow utilities */
+.theme-shadow-xs { box-shadow: var(--shadow-xs); }
+.theme-shadow-sm { box-shadow: var(--shadow-sm); }
+.theme-shadow-md { box-shadow: var(--shadow-md); }
+.theme-shadow-lg { box-shadow: var(--shadow-lg); }
+.theme-shadow-xl { box-shadow: var(--shadow-xl); }
+.theme-shadow-2xl { box-shadow: var(--shadow-2xl); }
+
+/* Theme radius utilities */
+.theme-radius { border-radius: var(--radius); }
+.theme-radius-sm { border-radius: calc(var(--radius) - 0.125rem); }
+.theme-radius-lg { border-radius: calc(var(--radius) + 0.125rem); }
+.theme-radius-xl { border-radius: calc(var(--radius) + 0.25rem); }
+
+/* ===== THEME ALIGNMENT UTILITIES ===== */
+/* Additional theme utilities to ensure complete alignment with theme.json */
+
+/* Theme color utilities for components */
+.theme-bg-primary { background-color: hsl(var(--primary)); }
+.theme-bg-secondary { background-color: hsl(var(--secondary)); }
+.theme-bg-accent { background-color: hsl(var(--accent)); }
+.theme-bg-muted { background-color: hsl(var(--muted)); }
+.theme-bg-card { background-color: hsl(var(--card)); }
+.theme-bg-popover { background-color: hsl(var(--popover)); }
+.theme-bg-destructive { background-color: hsl(var(--destructive)); }
+
+.theme-text-primary { color: hsl(var(--primary)); }
+.theme-text-secondary { color: hsl(var(--secondary-foreground)); }
+.theme-text-accent { color: hsl(var(--accent-foreground)); }
+.theme-text-muted { color: hsl(var(--muted-foreground)); }
+.theme-text-card { color: hsl(var(--card-foreground)); }
+.theme-text-popover { color: hsl(var(--popover-foreground)); }
+.theme-text-destructive { color: hsl(var(--destructive-foreground)); }
+
+.theme-border-primary { border-color: hsl(var(--primary)); }
+.theme-border-secondary { border-color: hsl(var(--secondary)); }
+.theme-border-accent { border-color: hsl(var(--accent)); }
+.theme-border-muted { border-color: hsl(var(--muted)); }
+.theme-border-input { border-color: hsl(var(--input)); }
+.theme-border-ring { border-color: hsl(var(--ring)); }
+
+/* Theme shadow utilities */
+.theme-shadow-xs { box-shadow: var(--shadow-xs); }
+.theme-shadow-sm { box-shadow: var(--shadow-sm); }
+.theme-shadow-md { box-shadow: var(--shadow-md); }
+.theme-shadow-lg { box-shadow: var(--shadow-lg); }
+.theme-shadow-xl { box-shadow: var(--shadow-xl); }
+.theme-shadow-2xl { box-shadow: var(--shadow-2xl); }
+
+/* Theme radius utilities */
+.theme-radius { border-radius: var(--radius); }
+.theme-radius-sm { border-radius: calc(var(--radius) - 0.125rem); }
+.theme-radius-lg { border-radius: calc(var(--radius) + 0.125rem); }
+.theme-radius-xl { border-radius: calc(var(--radius) + 0.25rem); }
+
 /* ===== INDEX PAGE STYLES ===== */
 
 #main-content {
