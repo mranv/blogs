@@ -43,7 +43,7 @@ export default function Chatbot({ searchList }: ChatbotProps) {
       // Add welcome message when chatbot is first opened
       const welcomeMessage: Message = {
         id: Date.now().toString(),
-        text: `Hi! I'm your blog assistant. I can help you find articles by topic.
+        text: `Hi! I'm your Static Tag Assistant. I can help you find articles by topic.
 
 Popular topics include: ${allTags.slice(0, 10).join(", ")}${allTags.length > 10 ? "..." : ""}
 
@@ -98,6 +98,100 @@ What topic are you interested in?`,
     userMessage: string
   ): { text: string; searchResults?: SearchItem[] } => {
     const lowerMessage = userMessage.toLowerCase();
+
+    // Check for slash commands
+    if (userMessage.startsWith("/")) {
+      const command = userMessage.slice(1).toLowerCase().split(" ")[0];
+      const args = userMessage.slice(command.length + 2).trim();
+
+      switch (command) {
+        case "help":
+          return {
+            text: `Available commands:
+
+/help - Show this help message
+/tags - List all available tags
+/recent - Show recent articles
+/featured - Show featured articles
+/search <query> - Search for articles by tags
+/clear - Clear chat history
+/about - About this Static Tag Assistant
+
+Or just type any topic to search!`,
+          };
+
+        case "tags":
+          return {
+            text: `Available tags (${allTags.length} total):
+
+${allTags.map(tag => `• ${tag}`).join("\n")}`,
+          };
+
+        case "recent":
+          const recentPosts = searchList
+            .sort((a, b) => {
+              const dateA = new Date(a.data.pubDatetime).getTime();
+              const dateB = new Date(b.data.pubDatetime).getTime();
+              return dateB - dateA;
+            })
+            .slice(0, 5);
+          return {
+            text: "Here are the most recent articles:",
+            searchResults: recentPosts,
+          };
+
+        case "featured":
+          const featuredPosts = searchList.filter(post => post.data.featured);
+          if (featuredPosts.length > 0) {
+            return {
+              text: "Here are the featured articles:",
+              searchResults: featuredPosts.slice(0, 5),
+            };
+          } else {
+            return {
+              text: "No featured articles found.",
+            };
+          }
+
+        case "search":
+          if (!args) {
+            return {
+              text: "Please provide a search query. Usage: /search <topic>",
+            };
+          }
+          const searchResults = searchArticlesByTags(args);
+          if (searchResults.length > 0) {
+            return {
+              text: `Search results for "${args}":`,
+              searchResults,
+            };
+          } else {
+            return {
+              text: `No articles found for "${args}". Try /tags to see available topics.`,
+            };
+          }
+
+        case "clear":
+          // Clear will be handled in handleSendMessage
+          return {
+            text: "Chat history cleared!",
+          };
+
+        case "about":
+          return {
+            text: `I'm your Static Tag Assistant! I help you find articles using tag-based search.
+
+I can search through ${searchList.length} articles across ${allTags.length} different topics.
+
+Type /help to see available commands or just type any topic to search!`,
+          };
+
+        default:
+          return {
+            text: `Unknown command: /${command}. Type /help for available commands.`,
+          };
+      }
+    }
 
     // Check if it's a greeting
     if (
@@ -218,7 +312,7 @@ Just type any topic you're interested in!`,
               <Bot className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="font-semibold">Blog Assistant</h3>
+              <h3 className="font-semibold">Static Tag Assistant</h3>
               <p className="text-sm opacity-90">
                 Here to help you find articles
               </p>
