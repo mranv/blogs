@@ -210,8 +210,8 @@ export class ParallaxManager {
 
         // Check if element is in viewport bounds
         if (
-          elementBottom < scrollY - config.boundary ||
-          elementTop > scrollY + windowHeight + config.boundary
+          elementBottom < scrollY - (config.boundary || 0) ||
+          elementTop > scrollY + windowHeight + (config.boundary || 0)
         ) {
           return;
         }
@@ -223,20 +223,20 @@ export class ParallaxManager {
 
         switch (config.direction) {
           case "up":
-            offset = -(scrollY * config.speed);
+            offset = -(scrollY * (config.speed || 0.5));
             break;
           case "down":
-            offset = scrollY * config.speed;
+            offset = scrollY * (config.speed || 0.5);
             break;
           case "left":
-            offset = -(scrollY * config.speed);
+            offset = -(scrollY * (config.speed || 0.5));
             break;
           case "right":
-            offset = scrollY * config.speed;
+            offset = scrollY * (config.speed || 0.5);
             break;
         }
 
-        offset += config.offset;
+        offset += config.offset || 0;
 
         // Apply transform based on axis
         let transform = "";
