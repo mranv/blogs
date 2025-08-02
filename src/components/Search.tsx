@@ -5,6 +5,7 @@ import { Input } from "@components/ui/input";
 import { Badge } from "@components/ui/badge";
 import { Skeleton } from "@components/ui/skeleton";
 import SearchSkeleton from "@components/skeletons/SearchSkeleton";
+import { FadeIn, ScaleIn, StaggerChildren, SlideIn } from "@components/animations";
 import type { CollectionEntry } from "astro:content";
 
 export type SearchItem = {
@@ -29,6 +30,7 @@ interface Props {
   searchList: SearchItem[];
   isLoading?: boolean;
   className?: string;
+  disableAnimations?: boolean;
 }
 
 interface SearchResult {
@@ -40,6 +42,7 @@ export default function SearchBar({
   searchList,
   isLoading = false,
   className,
+  disableAnimations = false,
 }: Props) {
   // Show skeleton while loading
   if (isLoading || !searchList || searchList.length === 0) {
@@ -271,9 +274,19 @@ export default function SearchBar({
   };
 
   return (
-    <div className={className}>
+    <FadeIn 
+      direction="up" 
+      duration={600}
+      disabled={disableAnimations}
+      className={className}
+    >
       {/* Command Palette Style Search Interface */}
-      <div className="relative">
+      <ScaleIn 
+        variant="subtle" 
+        duration={500}
+        disabled={disableAnimations}
+        className="relative"
+      >
         <label className="relative block">
           <span className="absolute inset-y-0 left-0 flex items-center pl-4 opacity-75 z-10">
             <svg
@@ -324,7 +337,12 @@ export default function SearchBar({
 
         {/* Search Suggestions Dropdown */}
         {showSuggestions && getSuggestions().length > 0 && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border/40 rounded-xl shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-y-auto">
+          <SlideIn 
+            direction="down" 
+            duration={300}
+            disabled={disableAnimations}
+            className="absolute top-full left-0 right-0 mt-2 bg-card border border-border/40 rounded-xl shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-y-auto"
+          >
             <div className="p-2">
               <div className="text-xs font-medium text-muted-foreground px-3 py-2 mb-1">
                 {inputVal.length === 0 ? "Recent Searches" : "Suggestions"}
@@ -362,13 +380,18 @@ export default function SearchBar({
                 </button>
               ))}
             </div>
-          </div>
+          </SlideIn>
         )}
-      </div>
+      </ScaleIn>
 
       {/* Category Filters */}
       {inputVal.length > 0 && categoryFilters.length > 0 && (
-        <div className="mt-6 animate-in slide-in-from-top-2 duration-300">
+        <SlideIn 
+          direction="up" 
+          delay={200}
+          disabled={disableAnimations}
+          className="mt-6"
+        >
           <div className="flex flex-wrap gap-2 mb-4">
             <span className="text-sm text-muted-foreground mr-2">
               Filter by category:
@@ -393,12 +416,17 @@ export default function SearchBar({
               </Badge>
             ))}
           </div>
-        </div>
+        </SlideIn>
       )}
 
       {/* Search Results Header */}
       {inputVal.length > 1 && (
-        <div className="mt-6 animate-in slide-in-from-top-2 duration-300">
+        <FadeIn 
+          direction="up" 
+          delay={300}
+          disabled={disableAnimations}
+          className="mt-6"
+        >
           {isLoading ? (
             <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-full text-sm">
               <div className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
@@ -432,7 +460,7 @@ export default function SearchBar({
               )}
             </div>
           )}
-        </div>
+        </FadeIn>
       )}
 
       {/* Search Results */}
@@ -523,14 +551,16 @@ export default function SearchBar({
           </div>
         ) : (
           /* Search Results */
-          <ul className="space-y-4">
+          <StaggerChildren 
+            animation="slide-up"
+            staggerDelay={100}
+            duration={500}
+            disabled={disableAnimations}
+            pattern="sequential"
+          >
             {searchResults &&
               searchResults.map(({ item, refIndex }, index) => (
-                <div
-                  key={`${refIndex}-${item.slug}`}
-                  className="animate-in slide-in-from-bottom-2 duration-300"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
+                <div key={`${refIndex}-${item.slug}`}>
                   <div className="group block p-6 rounded-xl border border-border/40 bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-primary/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="relative">
@@ -591,9 +621,9 @@ export default function SearchBar({
                   </div>
                 </div>
               ))}
-          </ul>
+          </StaggerChildren>
         )}
       </div>
-    </div>
+    </FadeIn>
   );
 }

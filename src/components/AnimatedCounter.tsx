@@ -6,7 +6,7 @@ interface AnimatedCounterProps {
   className?: string;
 }
 
-export default function AnimatedCounter({
+export function AnimatedCounter({
   end,
   duration = 2000,
   className,
@@ -41,3 +41,5 @@ export default function AnimatedCounter({
 
   return <span className={className}>{count.toLocaleString()}</span>;
 }
+
+export default AnimatedCounter;

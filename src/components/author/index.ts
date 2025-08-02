@@ -17,7 +17,7 @@ export type {
 } from "./types";
 
 // Author data utilities
-import { SITE, SOCIALS } from "@/config";
+import { SITE, SOCIALS } from "@config";
 import type { AuthorInfo, AuthorStats } from "./types";
 
 /**

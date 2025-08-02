@@ -11,6 +11,7 @@ import {
 import NotificationBadge from "./NotificationBadge.tsx";
 import SearchButton from "./SearchButton.tsx";
 import NavigationSkeleton from "./skeletons/NavigationSkeleton.tsx";
+import { FadeIn, SlideIn, StaggerChildren, ScaleIn } from "@components/animations";
 import { cn } from "@/utils/cn";
 
 interface NavigationMenuHeaderProps {
@@ -21,6 +22,7 @@ interface NavigationMenuHeaderProps {
   className?: string;
   hasNewPosts?: boolean;
   isLoading?: boolean;
+  disableAnimations?: boolean;
 }
 
 const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
@@ -31,6 +33,7 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
   className,
   hasNewPosts = false,
   isLoading = false,
+  disableAnimations = false,
 }) => {
   // Show skeleton while loading
   if (isLoading) {
@@ -132,9 +135,21 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
   const popularTags = tags.slice(0, 8);
 
   return (
-    <div className={cn("relative", className)}>
+    <FadeIn 
+      direction="down" 
+      duration={600}
+      disabled={disableAnimations}
+      className={cn("relative", className)}
+    >
       {/* Desktop Navigation */}
-      <NavigationMenu className="hidden md:flex">
+      <StaggerChildren
+        animation="slide-down"
+        staggerDelay={100}
+        duration={400}
+        disabled={disableAnimations}
+        pattern="sequential"
+      >
+        <NavigationMenu className="hidden md:flex">
         <NavigationMenuList className="space-x-2">
           {/* Posts Menu */}
           <NavigationMenuItem>
@@ -332,35 +347,53 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
             </button>
           </NavigationMenuItem>
         </NavigationMenuList>
-      </NavigationMenu>
+        </NavigationMenu>
 
-      {/* Mobile Menu Button */}
-      <button
-        ref={menuButtonRef}
-        onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden p-2 rounded-lg border border-transparent hover:border-skin-accent/20 hover:bg-skin-accent/15 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50"
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-        aria-expanded={isOpen}
-        aria-controls="mobile-navigation-menu"
-      >
-        {isOpen ? (
-          <X className="h-6 w-6 transform transition-transform duration-300 rotate-90" />
-        ) : (
-          <Menu className="h-6 w-6 transform transition-transform duration-300" />
-        )}
-      </button>
+        {/* Mobile Menu Button */}
+        <ScaleIn 
+          variant="pop" 
+          hoverScale={1.1}
+          disabled={disableAnimations}
+        >
+          <button
+            ref={menuButtonRef}
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 rounded-lg border border-transparent hover:border-skin-accent/20 hover:bg-skin-accent/15 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation-menu"
+          >
+            {isOpen ? (
+              <X className="h-6 w-6 transform transition-transform duration-300 rotate-90" />
+            ) : (
+              <Menu className="h-6 w-6 transform transition-transform duration-300" />
+            )}
+          </button>
+        </ScaleIn>
+      </StaggerChildren>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div
-          ref={mobileMenuRef}
-          id="mobile-navigation-menu"
-          className="absolute top-full left-0 right-0 z-50 md:hidden bg-skin-fill/95 backdrop-blur-md border-t border-skin-accent/20 shadow-lg animate-in slide-in-from-top-2 duration-300"
-          role="navigation"
-          aria-label="Mobile navigation menu"
+        <SlideIn 
+          direction="down" 
+          duration={300}
+          disabled={disableAnimations}
         >
-          <div className="p-4 space-y-4">
-            <a
+          <div
+            ref={mobileMenuRef}
+            id="mobile-navigation-menu"
+            className="absolute top-full left-0 right-0 z-50 md:hidden bg-skin-fill/95 backdrop-blur-md border-t border-skin-accent/20 shadow-lg"
+            role="navigation"
+            aria-label="Mobile navigation menu"
+          >
+            <StaggerChildren
+              animation="slide-left"
+              staggerDelay={80}
+              duration={300}
+              disabled={disableAnimations}
+              className="p-4 space-y-4"
+            >
+              <a
               href="/posts/"
               className={cn(
                 "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-skin-accent/50",
@@ -429,10 +462,11 @@ const NavigationMenuHeader: React.FC<NavigationMenuHeaderProps> = ({
                 </>
               )}
             </button>
+            </StaggerChildren>
           </div>
-        </div>
+        </SlideIn>
       )}
-    </div>
+    </FadeIn>
   );
 };
 
