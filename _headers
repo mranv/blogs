@@ -36,9 +36,29 @@
 /*.mp4
   Cache-Control: public, max-age=86400
 
+# Security headers
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
 # HTML pages - shorter cache
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
   
+# Homepage with preload hints
 /
   Cache-Control: public, max-age=0, must-revalidate
+  Link: </assets/logo.svg.svg>; rel=preload; as=image; type=image/svg+xml; fetchpriority=high
+  Link: <https://fonts.googleapis.com>; rel=preconnect
+  Link: <https://fonts.gstatic.com>; rel=preconnect; crossorigin
+  Link: </theme-toggle-handler.js>; rel=preload; as=script
+
+# Service worker
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Offline page
+/offline.html
+  Cache-Control: public, max-age=3600
