@@ -248,7 +248,14 @@ const pageDescription =
             },
           },
           tests: [
-            ...createDefaultTests("BlogCard"),
+            {
+              name: "Renders",
+              description: "BlogCard should render without errors",
+              test: (element: HTMLElement) => {
+                return element !== null;
+              },
+              expectation: "Component should render successfully",
+            },
             {
               name: "Link Functionality",
               description: "BlogCard should have proper link attributes",
@@ -285,7 +292,14 @@ const pageDescription =
           testComponent: Search,
           testProps: {},
           tests: [
-            ...createDefaultTests("Search"),
+            {
+              name: "Renders",
+              description: "Search should render without errors",
+              test: (element: HTMLElement) => {
+                return element !== null;
+              },
+              expectation: "Component should render successfully",
+            },
             {
               name: "Input Functionality",
               description: "Search input should accept text",
