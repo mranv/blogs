@@ -61,7 +61,7 @@ const isLazy = false;
         entries => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              const wrapper = entry.target;
+              const wrapper = entry.target as HTMLElement;
               const href = wrapper.dataset.href;
               const frontmatter = JSON.parse(
                 wrapper.dataset.frontmatter || "{}"

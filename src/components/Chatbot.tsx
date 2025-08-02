@@ -233,11 +233,12 @@ Just type any topic you're interested in!`,
       };
     } else {
       // Suggest similar tags if no exact match
+      const queryLower = userMessage.toLowerCase();
       const suggestedTags = allTags
         .filter(
           tag =>
             tag.includes(queryLower.split(/\s+/)[0]) ||
-            queryLower.split(/\s+/).some(word => tag.includes(word))
+            queryLower.split(/\s+/).some((word: string) => tag.includes(word))
         )
         .slice(0, 5);
 
