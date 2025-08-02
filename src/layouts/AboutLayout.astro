@@ -4,6 +4,7 @@ import Breadcrumbs from "@components/Breadcrumbs.astro";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import Layout from "./Layout.astro";
+import AppHero from "@components/AppHero";
 
 export interface Props {
   frontmatter: {
@@ -25,6 +26,9 @@ const { frontmatter } = Astro.props;
       window.location.href = "/login";
     }
   </script>
+
+  <!-- Hero Section -->
+  <AppHero client:load />
 
   <Breadcrumbs />
   <main id="main-content" class="about-page w-full">
