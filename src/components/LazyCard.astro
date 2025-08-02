@@ -11,8 +11,8 @@ export interface Props {
 const { href, frontmatter, secHeading = true, index } = Astro.props;
 const { title } = frontmatter;
 
-// Only load first 4 cards immediately, lazy load the rest
-const isLazy = index >= 4;
+// Show all cards immediately for better UX
+const isLazy = false;
 ---
 
 <li
@@ -53,47 +53,51 @@ const isLazy = index >= 4;
 </li>
 
 <script>
-  // Lazy load cards when they come into viewport
-  if ("IntersectionObserver" in window) {
-    const lazyCards = document.querySelectorAll('[data-lazy="true"]');
+  document.addEventListener("DOMContentLoaded", function () {
+    if ("IntersectionObserver" in window) {
+      const lazyCards = document.querySelectorAll('[data-lazy="true"]');
 
-    const cardObserver = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const wrapper = entry.target as HTMLElement;
-            const href = wrapper.dataset.href;
-            const frontmatter = JSON.parse(wrapper.dataset.frontmatter || "{}");
-            const secHeading = wrapper.dataset.secHeading === "true";
+      const cardObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const wrapper = entry.target;
+              const href = wrapper.dataset.href;
+              const frontmatter = JSON.parse(
+                wrapper.dataset.frontmatter || "{}"
+              );
 
-            // Load the card content dynamically
-            const cardHtml = `
-              <a href="${href}" class="inline-block w-full hover:scale-105 transition-transform duration-300">
-                <div class="card bg-skin-card rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-                  <h3 class="text-lg font-semibold mb-2">${frontmatter.title}</h3>
-                  ${frontmatter.description ? `<p class="text-sm opacity-80 mb-3">${frontmatter.description}</p>` : ""}
-                  <time class="text-xs opacity-60">${new Date(
-                    frontmatter.pubDatetime
-                  ).toLocaleDateString("en-us", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}</time>
-                </div>
-              </a>
-            `;
-            wrapper.innerHTML = cardHtml;
-            wrapper.classList.add("animate-fade-in");
-            wrapper.removeAttribute("data-lazy");
-            cardObserver.unobserve(wrapper);
-          }
-        });
-      },
-      {
-        rootMargin: "50px",
-      }
-    );
+              // Create the card content
+              const cardHtml = `
+                <a href="${href}" class="inline-block w-full hover:scale-105 transition-transform duration-300">
+                  <div class="card bg-skin-card rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-lg font-semibold mb-2">${frontmatter.title}</h3>
+                    ${frontmatter.description ? `<p class="text-sm opacity-80 mb-3">${frontmatter.description}</p>` : ""}
+                    <time class="text-xs opacity-60">${new Date(
+                      frontmatter.pubDatetime
+                    ).toLocaleDateString("en-us", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}</time>
+                  </div>
+                </a>
+              `;
 
-    lazyCards.forEach(card => cardObserver.observe(card));
-  }
+              wrapper.innerHTML = cardHtml;
+              wrapper.classList.add("animate-fade-in");
+              wrapper.removeAttribute("data-lazy");
+              cardObserver.unobserve(wrapper);
+            }
+          });
+        },
+        {
+          rootMargin: "100px",
+          threshold: 0.1,
+        }
+      );
+
+      lazyCards.forEach(card => cardObserver.observe(card));
+    }
+  });
 </script>
