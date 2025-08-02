@@ -24,6 +24,19 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
   data,
   slug,
 }));
+
+// Extract unique tags from all posts for filter section
+const allTags = [...new Set(sortedPosts.flatMap(post => post.data.tags || []))];
+
+// Featured technologies/skills
+const featuredTechnologies = [
+  { name: "Kubernetes", icon: "🚢", description: "Container orchestration and management" },
+  { name: "eBPF", icon: "🔬", description: "Kernel-level observability and security" },
+  { name: "Rust", icon: "🦀", description: "Systems programming and performance" },
+  { name: "DevSecOps", icon: "🔒", description: "Security-integrated development practices" },
+  { name: "Cloud Security", icon: "☁️", description: "Multi-cloud security architecture" },
+  { name: "Terraform", icon: "🏗️", description: "Infrastructure as Code automation" }
+];
 ---
 
 <Layout>
@@ -78,36 +91,28 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
         </button>
       </div>
 
-      <!-- Stats Section -->
+      <!-- Stats Section with shadcn Cards -->
       <div
         class="mx-auto mt-12 max-w-4xl animate-fade-in-up"
         style="animation-delay: 0.8s"
       >
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div
-            class="p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30 hover:border-primary/30 transition-all duration-300 hover:scale-105"
-          >
-            <div class="text-2xl font-bold text-primary">
+          <div class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30">
+            <div class="text-2xl font-bold text-primary stats-number">
               {sortedPosts.length}+
             </div>
             <div class="text-sm text-muted-foreground">Articles</div>
           </div>
-          <div
-            class="p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30 hover:border-primary/30 transition-all duration-300 hover:scale-105"
-          >
-            <div class="text-2xl font-bold text-primary">10+</div>
+          <div class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30">
+            <div class="text-2xl font-bold text-primary stats-number">10+</div>
             <div class="text-sm text-muted-foreground">Technologies</div>
           </div>
-          <div
-            class="p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30 hover:border-primary/30 transition-all duration-300 hover:scale-105"
-          >
-            <div class="text-2xl font-bold text-primary">5+</div>
+          <div class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30">
+            <div class="text-2xl font-bold text-primary stats-number">5+</div>
             <div class="text-sm text-muted-foreground">Years Experience</div>
           </div>
-          <div
-            class="p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30 hover:border-primary/30 transition-all duration-300 hover:scale-105"
-          >
-            <div class="text-2xl font-bold text-primary">24/7</div>
+          <div class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 p-4 hover:border-primary/30">
+            <div class="text-2xl font-bold text-primary stats-number">24/7</div>
             <div class="text-sm text-muted-foreground">Security Focus</div>
           </div>
         </div>
@@ -135,6 +140,46 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
           </div>
         )
       }
+    </section>
+
+    <Hr />
+
+    <!-- Featured Technologies Section -->
+    <section id="technologies" class="py-16">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-primary mb-4 animate-fade-in-up">
+          Core Technologies
+        </h2>
+        <p
+          class="text-muted-foreground max-w-2xl mx-auto animate-fade-in-up"
+          style="animation-delay: 0.1s"
+        >
+          The cutting-edge tools and technologies I work with to build secure, scalable solutions
+        </p>
+      </div>
+      <div class="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+        {featuredTechnologies.map((tech, index) => (
+          <div 
+            class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 backdrop-blur-sm bg-card/90 group tech-card"
+          >
+            <div class="flex flex-col space-y-1.5 p-6">
+              <div class="flex items-center space-x-3">
+                <span class="text-2xl group-hover:scale-110 transition-transform duration-300">
+                  {tech.icon}
+                </span>
+                <h3 class="text-xl font-semibold leading-none tracking-tight">
+                  {tech.name}
+                </h3>
+              </div>
+            </div>
+            <div class="p-6 pt-0">
+              <p class="text-sm text-muted-foreground">
+                {tech.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
 
     <Hr />
@@ -185,6 +230,18 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
               trends
             </p>
           </div>
+          <!-- Category Filters -->
+          <div class="text-center mb-8">
+            <h3 class="text-lg font-semibold text-primary mb-4">Explore by Topic</h3>
+            <div class="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
+              {allTags.slice(0, 12).map((tag) => (
+                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 cursor-pointer hover:scale-105 transition-transform duration-200">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
           <ul class="mx-auto grid max-w-4xl gap-6 px-4 sm:grid-cols-2 stagger-children">
             {recentPosts.slice(0, 8).map(({ data, slug }, index) => (
               <LazyCard
@@ -200,9 +257,9 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
     }
 
     <div class="py-8 text-center">
-      <LinkButton
+      <a 
         href="/posts/"
-        className="inline-flex items-center rounded px-4 py-2 font-bold transition-colors"
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0 before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700 h-10 px-5 py-2"
       >
         All Posts
         <svg
@@ -216,8 +273,42 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
             d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
             clip-rule="evenodd"></path>
         </svg>
-      </LinkButton>
+      </a>
     </div>
+
+    <Hr />
+
+    <!-- Newsletter Signup Section -->
+    <section id="newsletter" class="py-16">
+      <div class="mx-auto max-w-2xl text-center">
+        <div class="rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-lg backdrop-blur-sm bg-card/90 p-8">
+          <div class="flex flex-col space-y-1.5 mb-6">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight text-primary">
+              Stay Updated
+            </h3>
+            <p class="text-sm text-muted-foreground">
+              Get the latest insights on cybersecurity, DevSecOps, and cutting-edge technology delivered to your inbox.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex-1"
+            />
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0 before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700 h-10 px-5 py-2 sm:w-auto"
+            >
+              Subscribe
+            </button>
+          </div>
+          <p class="text-xs text-muted-foreground mt-3">
+            No spam, unsubscribe at any time. Your privacy is important to us.
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <Footer />
@@ -302,16 +393,82 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
 
   .video-container::before {
     content: "";
-    @apply absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none z-10;
+    @apply absolute inset-0 pointer-events-none z-10;
+    background: linear-gradient(to bottom right, rgb(var(--color-primary) / 0.1), transparent, rgb(var(--color-accent) / 0.1));
   }
 
   /* Hover effects for stats cards */
   .stats-card {
-    @apply transition-all duration-300 hover:shadow-xl hover:border-primary/50;
+    @apply transition-all duration-300 hover:shadow-xl;
+  }
+  
+  .stats-card:hover {
+    border-color: rgb(var(--color-primary) / 0.5);
   }
 
   .stats-card:hover .stats-number {
     @apply scale-110;
+  }
+
+  /* Enhanced animations for new components */
+  .tech-card {
+    @apply opacity-0 transform translate-y-4;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .tech-card:nth-child(1) { animation-delay: 0.1s; }
+  .tech-card:nth-child(2) { animation-delay: 0.2s; }
+  .tech-card:nth-child(3) { animation-delay: 0.3s; }
+  .tech-card:nth-child(4) { animation-delay: 0.4s; }
+  .tech-card:nth-child(5) { animation-delay: 0.5s; }
+  .tech-card:nth-child(6) { animation-delay: 0.6s; }
+
+  /* Newsletter section animations */
+  #newsletter .rounded-xl {
+    @apply animate-fade-in-up;
+    animation-delay: 0.2s;
+  }
+
+  /* Category badge hover effects */
+  .category-badge {
+    @apply transform transition-all duration-200 hover:scale-105 hover:shadow-md;
+  }
+
+  /* Enhanced button animations */
+  .enhanced-button {
+    @apply relative overflow-hidden;
+  }
+
+  .enhanced-button::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform translate-x-[-200%] transition-transform duration-700;
+  }
+
+  .enhanced-button:hover::before {
+    @apply translate-x-[200%];
+  }
+
+  /* Loading skeleton animations */
+  .skeleton-loader {
+    background: linear-gradient(90deg, rgb(var(--color-muted)) 0%, rgb(var(--color-muted) / 0.5) 50%, rgb(var(--color-muted)) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Smooth scroll behavior for category navigation */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus styles for accessibility */
+  .focus-visible:focus-visible {
+    @apply outline-none ring-2 ring-offset-2;
+    --tw-ring-color: rgb(var(--color-primary));
   }
 </style>
 
@@ -319,34 +476,107 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
   // Defer video interaction setup to avoid blocking main thread
   if ("requestIdleCallback" in window) {
     requestIdleCallback(() => {
-      const video = document.getElementById(
-        "myVideo"
-      ) as HTMLVideoElement | null;
-      const unmuteBtn = document.getElementById("unmuteBtn");
-
-      if (video && unmuteBtn) {
-        unmuteBtn.addEventListener("click", function () {
-          video.muted = false;
-          video.play().catch(err => console.log("Video play failed:", err));
-          unmuteBtn.style.display = "none";
-        });
-      }
+      setupVideoControls();
+      setupNewsletterForm();
+      setupCategoryFilters();
     });
   } else {
     // Fallback for browsers without requestIdleCallback
     setTimeout(() => {
-      const video = document.getElementById(
-        "myVideo"
-      ) as HTMLVideoElement | null;
-      const unmuteBtn = document.getElementById("unmuteBtn");
-
-      if (video && unmuteBtn) {
-        unmuteBtn.addEventListener("click", function () {
-          video.muted = false;
-          video.play().catch(err => console.log("Video play failed:", err));
-          unmuteBtn.style.display = "none";
-        });
-      }
+      setupVideoControls();
+      setupNewsletterForm();
+      setupCategoryFilters();
     }, 1);
   }
+
+  function setupVideoControls() {
+    const video = document.getElementById("myVideo") as HTMLVideoElement | null;
+    const unmuteBtn = document.getElementById("unmuteBtn");
+
+    if (video && unmuteBtn) {
+      unmuteBtn.addEventListener("click", function () {
+        video.muted = false;
+        video.play().catch(err => console.log("Video play failed:", err));
+        unmuteBtn.style.display = "none";
+      });
+    }
+  }
+
+  function setupNewsletterForm() {
+    const newsletterForm = document.querySelector('#newsletter form, #newsletter button[type="submit"]');
+    if (newsletterForm) {
+      newsletterForm.addEventListener("click", function (e) {
+        e.preventDefault();
+        const emailInput = document.querySelector('#newsletter input[type="email"]') as HTMLInputElement;
+        if (emailInput && emailInput.value) {
+          // Simple email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (emailRegex.test(emailInput.value)) {
+            // In a real implementation, you would send this to your backend
+            alert("Thanks for subscribing! We'll send you updates soon.");
+            emailInput.value = "";
+          } else {
+            alert("Please enter a valid email address.");
+          }
+        } else {
+          alert("Please enter your email address.");
+        }
+      });
+    }
+  }
+
+  function setupCategoryFilters() {
+    const categoryBadges = document.querySelectorAll('#recent-posts .inline-flex[class*="cursor-pointer"]');
+    
+    categoryBadges.forEach(badge => {
+      badge.addEventListener("click", function () {
+        const tag = this.textContent?.trim();
+        if (tag) {
+          // Navigate to posts page with tag filter
+          window.location.href = `/tags/${tag.toLowerCase().replace(/\s+/g, '-')}/`;
+        }
+      });
+    });
+  }
+
+  // Loading states with skeleton components
+  function showLoadingStates() {
+    const contentSections = document.querySelectorAll('[data-loading-section]');
+    contentSections.forEach(section => {
+      const skeletonHTML = `
+        <div class="animate-pulse rounded-md bg-muted h-6 mb-4"></div>
+        <div class="animate-pulse rounded-md bg-muted h-4 mb-2 w-3/4"></div>
+        <div class="animate-pulse rounded-md bg-muted h-4 w-1/2"></div>
+      `;
+      section.innerHTML = skeletonHTML;
+    });
+  }
+
+  // Enhanced accessibility
+  document.addEventListener("DOMContentLoaded", function () {
+    // Add ARIA labels for interactive elements
+    const interactiveElements = document.querySelectorAll('[class*="cursor-pointer"], button, a');
+    interactiveElements.forEach(element => {
+      if (!element.getAttribute('aria-label') && !element.getAttribute('aria-labelledby')) {
+        const text = element.textContent?.trim();
+        if (text) {
+          element.setAttribute('aria-label', text);
+        }
+      }
+    });
+
+    // Keyboard navigation for category badges
+    const categoryBadges = document.querySelectorAll('#recent-posts .inline-flex[class*="cursor-pointer"]');
+    categoryBadges.forEach(badge => {
+      badge.setAttribute('tabindex', '0');
+      badge.setAttribute('role', 'button');
+      
+      badge.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          badge.click();
+        }
+      });
+    });
+  });
 </script>
