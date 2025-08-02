@@ -271,7 +271,6 @@ const sampleTags = [
                   .slice(0, 6)
                   .map((tag, index) => (
                     <EnhancedTag
-                      key={index}
                       client:load
                       tag={tag}
                       size={
@@ -363,10 +362,7 @@ const sampleTags = [
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             {
               Array.from({ length: 8 }, (_, i) => (
-                <div
-                  key={i}
-                  class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-center"
-                >
+                <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-center">
                   <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-violet-500 rounded-full mx-auto mb-2" />
                   <span class="text-sm text-gray-600 dark:text-gray-400">
                     Item {i + 1}
