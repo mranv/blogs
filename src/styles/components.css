@@ -605,7 +605,7 @@ footer p {
 
 /* Enhanced prose styles for better markdown alignment */
 .post-content .prose {
-  @apply text-foreground;
+  color: hsl(var(--foreground));
 }
 
 .post-content .prose h1,
