@@ -186,7 +186,7 @@ export function PopularTags({
                       </div>
                       <EnhancedTag
                         tag={tag}
-                        variant={variant}
+                        variant="default"
                         showCount={false}
                         interactive={false}
                         size="sm"
