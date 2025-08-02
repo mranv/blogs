@@ -50,7 +50,7 @@ export default function SearchBar({
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(
     null
   );
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>([]);
   const [categoryFilters, setCategoryFilters] = useState<CategoryFilter[]>([]);
@@ -195,11 +195,11 @@ export default function SearchBar({
     const performSearch = async () => {
       if (inputVal.length <= 1) {
         setSearchResults([]);
-        setIsLoading(false);
+        setIsSearching(false);
         return;
       }
 
-      setIsLoading(true);
+      setIsSearching(true);
 
       // Simulate a small delay for better UX
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -214,7 +214,7 @@ export default function SearchBar({
       }
 
       setSearchResults(inputResult);
-      setIsLoading(false);
+      setIsSearching(false);
 
       // Save to recent searches if we have results
       if (inputResult.length > 0) {
@@ -437,7 +437,7 @@ export default function SearchBar({
 
       {/* Search Results */}
       <div className="mt-6">
-        {isLoading ? (
+        {isSearching ? (
           /* Loading State with Skeletons */
           <div className="space-y-4">
             {[...Array(3)].map((_, index) => (
