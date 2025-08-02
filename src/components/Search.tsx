@@ -313,11 +313,7 @@ export default function SearchBar({
 
           <Input
             ref={inputRef}
-            className="w-full h-14 pl-12 pr-20 text-base rounded-xl border-border/40 bg-card/60 backdrop-blur-sm 
-                     placeholder:italic placeholder:text-muted-foreground/60 text-foreground
-                     focus:border-primary/50 focus:bg-card/80 focus:ring-2 focus:ring-primary
-                     transition-all duration-300 hover:border-border/60 hover:bg-card/70
-                     shadow-sm hover:shadow-md focus:shadow-lg"
+            className="search-input-enhanced"
             placeholder="Search articles, topics, technologies... (Ctrl+K)"
             type="text"
             name="search"
@@ -334,7 +330,7 @@ export default function SearchBar({
 
           {/* Keyboard shortcut hint */}
           <div className="absolute inset-y-0 right-0 flex items-center pr-4">
-            <kbd className="hidden sm:inline-flex items-center px-2 py-1 text-xs font-semibold text-muted-foreground bg-muted border border-border rounded">
+            <kbd className="search-kbd hidden sm:inline-flex items-center">
               ⌘K
             </kbd>
           </div>
@@ -346,7 +342,7 @@ export default function SearchBar({
             direction="down"
             duration={300}
             disabled={disableAnimations}
-            className="absolute top-full left-0 right-0 mt-2 bg-card border border-border/40 rounded-xl shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-y-auto"
+            className="search-suggestions absolute top-full left-0 right-0 mt-2 z-50 max-h-60 overflow-y-auto"
           >
             <div className="p-2">
               <div className="text-xs font-medium text-muted-foreground px-3 py-2 mb-1">
@@ -491,7 +487,7 @@ export default function SearchBar({
           </div>
         ) : inputVal.length > 1 && searchResults?.length === 0 ? (
           /* No Results State */
-          <div className="text-center py-16 animate-in slide-in-from-bottom-2 duration-300">
+          <div className="search-no-results text-center py-16 animate-in slide-in-from-bottom-2 duration-300">
             <div className="w-24 h-24 mx-auto mb-6 bg-muted/50 rounded-full flex items-center justify-center">
               <svg
                 className="w-12 h-12 text-muted-foreground"
@@ -566,14 +562,14 @@ export default function SearchBar({
             {searchResults &&
               searchResults.map(({ item, refIndex }, index) => (
                 <div key={`${refIndex}-${item.slug}`}>
-                  <div className="group block p-6 rounded-xl border border-border/40 bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-primary/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                  <div className="search-result-item group block p-6 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="relative">
                       <a href={`/posts/${item.slug}/`} className="block">
-                        <h3 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors duration-300">
+                        <h3 className="search-result-title text-lg font-medium mb-2 group-hover:text-primary transition-colors duration-300">
                           {highlightSearchTerm(item.title, inputVal)}
                         </h3>
-                        <p className="text-muted-foreground mb-3 line-clamp-2">
+                        <p className="search-result-description mb-3 line-clamp-2">
                           {highlightSearchTerm(item.description, inputVal)}
                         </p>
                       </a>

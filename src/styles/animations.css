@@ -974,16 +974,25 @@
   width: 100%;
 }
 
-/* Search input focus animation */
-.search-input {
+/* Search input focus animation - Claude Theme Aligned */
+.search-input,
+.search-input-enhanced {
   transition: 
     border-color var(--duration-fast) var(--ease-smooth),
-    box-shadow var(--duration-fast) var(--ease-smooth);
+    box-shadow var(--duration-fast) var(--ease-smooth),
+    background-color var(--duration-fast) var(--ease-smooth);
 }
 
-.search-input:focus {
-  border-color: var(--color-cyber-green);
-  box-shadow: 0 0 0 3px rgba(var(--color-cyber-green), 0.1);
+.search-input:focus,
+.search-input-enhanced:focus {
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 2px hsl(var(--ring));
+}
+
+.search-input-enhanced:hover {
+  border-color: hsl(var(--border) / 0.6);
+  background-color: hsl(var(--card) / 0.7);
+  box-shadow: var(--shadow-md);
 }
 
 /* Tag hover animation */

@@ -57,7 +57,7 @@ export default function SearchReact({ searchList }: Props) {
           <Search className="h-5 w-5 search-icon" />
         </span>
         <input
-          className="search-input block w-full rounded-md py-3 pl-12 pr-12 text-sm focus:outline-none focus:ring-2 transition-all duration-300"
+          className="search-input-enhanced block w-full"
           placeholder="Search for anything..."
           type="text"
           name="search"
@@ -78,14 +78,14 @@ export default function SearchReact({ searchList }: Props) {
       </label>
 
       {inputVal.length > 1 && (
-        <div className="search-results absolute top-full left-0 right-0 z-10 mt-2 max-h-80 overflow-auto rounded-md shadow-lg">
+        <div className="search-results absolute top-full left-0 right-0 z-10 mt-2 max-h-80 overflow-auto">
           {searchResults && searchResults.length > 0 ? (
             <ul className="py-2">
               {searchResults.map(({ slug, title, description }) => (
                 <li key={slug}>
                   <a
                     href={`/posts/${slug}/`}
-                    className="search-result-item block px-4 py-3 focus:outline-none transition-colors duration-200"
+                    className="search-result-item block px-4 py-3 focus:outline-none"
                   >
                     <h3 className="search-result-title text-sm font-medium mb-1">
                       {title}
