@@ -387,17 +387,17 @@ nav button svg {
 }
 
 :global([data-radix-navigation-menu-content]::-webkit-scrollbar-track) {
-  background: hsl(var(--border) / 0.1);
+  background: hsl(var(--muted));
   border-radius: 3px;
 }
 
 :global([data-radix-navigation-menu-content]::-webkit-scrollbar-thumb) {
-  background: hsl(var(--primary) / 0.3);
+  background: hsl(var(--muted-foreground) / 0.3);
   border-radius: 3px;
 }
 
 :global([data-radix-navigation-menu-content]::-webkit-scrollbar-thumb:hover) {
-  background: hsl(var(--primary) / 0.5);
+  background: hsl(var(--muted-foreground) / 0.5);
 }
 
 /* ===== MAIN LAYOUT STYLES ===== */
