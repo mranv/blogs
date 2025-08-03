@@ -299,8 +299,8 @@ export default function SignInPage() {
                   <span className="auth-divider-text">Or continue with</span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <button type="button" className="auth-button-outline">
+                <div className="auth-oauth-grid">
+                  <button type="button" className="auth-button-oauth">
                     <img
                       src="https://www.svgrepo.com/show/475656/google-color.svg"
                       className="h-5 w-5"
@@ -308,7 +308,7 @@ export default function SignInPage() {
                     />
                     <span className="ml-2">Google</span>
                   </button>
-                  <button type="button" className="auth-button-outline">
+                  <button type="button" className="auth-button-oauth">
                     <Github className="h-5 w-5" />
                     <span className="ml-2">GitHub</span>
                   </button>

@@ -327,12 +327,15 @@ header {
 }
 
 .nav-container {
-  @apply mx-auto flex w-full flex-col items-center justify-between sm:flex-row px-4 sm:px-6 md:px-8;
+  @apply flex w-full flex-col items-center justify-between sm:flex-row;
+  width: 100%;
   max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .top-nav-wrap {
-  @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
+  @apply relative flex w-full items-start justify-between sm:items-center py-4 sm:py-6;
 }
 
 .logo {

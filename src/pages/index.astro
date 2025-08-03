@@ -99,7 +99,7 @@ const featuredTechnologies = [
       class="w-full py-16 animate-fade-up bg-background"
       aria-labelledby="hero-heading"
     >
-      <div class="w-full px-4 sm:px-6 lg:px-8">
+      <div class="container">
         <h1
           id="hero-heading"
           class="mb-6 text-center text-4xl sm:text-5xl lg:text-6xl font-bold text-reveal gradient-text-primary animate-gradient-text"
@@ -112,7 +112,7 @@ const featuredTechnologies = [
           DevSecOps Engineer &amp; Cybersecurity Expert
         </h2>
         <p
-          class="mb-8 text-center text-lg sm:text-xl text-muted-foreground/90 animate-fade-in-up animate-delay-400 max-w-4xl mx-auto"
+          class="mb-8 text-center text-lg sm:text-xl text-muted-foreground/90 animate-fade-in-up animate-delay-400"
         >
           Dive beneath the surface of technology—where real innovation happens.
           Exploring the depths of security, automation, and modern
@@ -120,9 +120,7 @@ const featuredTechnologies = [
         </p>
 
         <!-- Interactive Globe Section -->
-        <div
-          class="globe-container relative flex flex-col items-center animate-scale-in"
-        >
+        <div class="globe-container relative flex flex-col items-center">
           <div class="mb-6 text-center">
             <h3
               class="text-lg font-semibold text-primary mb-2 animate-fade-in-up animate-delay-600"
@@ -180,9 +178,7 @@ const featuredTechnologies = [
 
         <!-- Stats Section with theme-aware Cards -->
         <div class="mt-12 animate-fade-in-up animate-delay-800">
-          <div
-            class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-4xl mx-auto"
-          >
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div class="stats-card">
               <div class="stats-number">
                 {sortedPosts.length}+
@@ -205,7 +201,7 @@ const featuredTechnologies = [
         </div>
 
         <p
-          class="mx-auto mt-12 text-center text-muted-foreground/90 animate-fade-in-up animate-delay-1000 max-w-3xl"
+          class="mt-12 text-center text-muted-foreground/90 animate-fade-in-up animate-delay-1000"
         >
           Welcome to my technical exploration space. Here you'll find in-depth
           articles on
@@ -232,7 +228,7 @@ const featuredTechnologies = [
 
     <!-- Featured Technologies Section - Full Width -->
     <section id="technologies" class="section-home w-full bg-background">
-      <div class="w-full px-4 sm:px-6 lg:px-8">
+      <div class="container">
         <div class="text-center mb-12">
           <h2 class="section-title">Core Technologies</h2>
           <p class="section-description animate-delay-100">
@@ -241,7 +237,7 @@ const featuredTechnologies = [
           </p>
         </div>
         <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6"
         >
           {
             featuredTechnologies.map((tech, _index) => (
@@ -271,7 +267,7 @@ const featuredTechnologies = [
     {
       featuredPosts.length > 0 && (
         <section id="featured" class="section-home w-full bg-background">
-          <div class="w-full px-4 sm:px-6 lg:px-8">
+          <div class="container">
             <div class="text-center mb-12">
               <h2 class="section-title">Featured Articles</h2>
               <p class="section-description" style="animation-delay: 0.1s">
@@ -279,7 +275,7 @@ const featuredTechnologies = [
                 and innovative solutions
               </p>
             </div>
-            <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 stagger-children max-w-7xl mx-auto">
+            <ul class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 stagger-children">
               {featuredPosts.map(({ data, slug }, _index) => (
                 <LazyCard
                   href={`/posts/${slug}/`}
@@ -299,7 +295,7 @@ const featuredTechnologies = [
     {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="section-home w-full bg-background">
-          <div class="w-full px-4 sm:px-6 lg:px-8">
+          <div class="container">
             <div class="text-center mb-12">
               <h2 class="section-title">Latest Insights</h2>
               <p class="section-description" style="animation-delay: 0.1s">
@@ -311,14 +307,14 @@ const featuredTechnologies = [
               <h3 class="text-lg font-semibold text-primary mb-4">
                 Explore by Topic
               </h3>
-              <div class="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
+              <div class="flex flex-wrap justify-center gap-2">
                 {allTags.slice(0, 12).map(tag => (
                   <span class="tag-filter-badge">{tag}</span>
                 ))}
               </div>
             </div>
 
-            <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 stagger-children max-w-7xl mx-auto">
+            <ul class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 stagger-children">
               {recentPosts.slice(0, 8).map(({ data, slug }, _index) => (
                 <LazyCard
                   href={`/posts/${slug}/`}
@@ -354,8 +350,8 @@ const featuredTechnologies = [
 
     <!-- Newsletter Signup Section - Full Width -->
     <section id="newsletter" class="section-home w-full bg-background">
-      <div class="w-full px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto">
+      <div class="container">
+        <div class="text-center">
           <div class="newsletter-card">
             <div class="flex flex-col space-y-1.5 mb-6">
               <h3

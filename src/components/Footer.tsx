@@ -1,88 +1,82 @@
-import {
-  Dribbble,
-  Facebook,
-  Github,
-  Instagram,
-  Mail,
-  MapPin,
-  Phone,
-  Twitter,
-} from "lucide-react";
+import { Github, Linkedin, Mail, Rss, Twitter } from "lucide-react";
 
 const data = {
-  facebookLink: "https://facebook.com/mvpblocks",
-  instaLink: "https://instagram.com/mvpblocks",
-  twitterLink: "https://twitter.com/mvpblocks",
-  githubLink: "https://github.com/mvpblocks",
-  dribbbleLink: "https://dribbble.com/mvpblocks",
-  services: {
-    webdev: "/web-development",
-    webdesign: "/web-design",
-    marketing: "/marketing",
-    googleads: "/google-ads",
+  facebookLink: "#",
+  instaLink: "#",
+  twitterLink: "https://twitter.com/yourusername",
+  githubLink: "https://github.com/yourusername",
+  linkedinLink: "https://linkedin.com/in/yourusername",
+  navigation: {
+    posts: "/posts/",
+    tags: "/tags/",
+    search: "/search/",
+    about: "/about/",
   },
-  about: {
-    history: "/company-history",
-    team: "/meet-the-team",
-    handbook: "/employee-handbook",
-    careers: "/careers",
+  categories: {
+    security: "/tags/security/",
+    ebpf: "/tags/ebpf/",
+    rust: "/tags/rust/",
+    kubernetes: "/tags/kubernetes/",
   },
-  help: {
-    faqs: "/faqs",
-    support: "/support",
-    livechat: "/live-chat",
+  resources: {
+    posts: "/posts/",
+    tags: "/tags/",
+    search: "/search/",
   },
   contact: {
-    email: "hello@mvpblocks.com",
-    phone: "+91 8637373116",
-    address: "Kolkata, West Bengal, India",
+    email: "contact@yourdomain.com",
+    github: "https://github.com/yourusername",
+    twitter: "https://twitter.com/yourusername",
   },
   company: {
-    name: "Mvpblocks",
+    name: "Anubhav Gain",
     description:
-      "Building beautiful and functional web experiences with modern technologies. We help startups and businesses create their digital presence.",
+      "Exploring cybersecurity, eBPF, Rust, and modern security engineering. Deep technical insights on system security, observability, and cloud-native technologies.",
     logo: "/favicon.svg",
   },
 };
 
 const socialLinks = [
-  { icon: Facebook, label: "Facebook", href: data.facebookLink },
-  { icon: Instagram, label: "Instagram", href: data.instaLink },
-  { icon: Twitter, label: "Twitter", href: data.twitterLink },
   { icon: Github, label: "GitHub", href: data.githubLink },
-  { icon: Dribbble, label: "Dribbble", href: data.dribbbleLink },
+  { icon: Twitter, label: "Twitter", href: data.twitterLink },
+  { icon: Linkedin, label: "LinkedIn", href: data.linkedinLink },
+  { icon: Rss, label: "RSS Feed", href: "/rss.xml" },
 ];
 
-const aboutLinks = [
-  { text: "Company History", href: data.about.history },
-  { text: "Meet the Team", href: data.about.team },
-  { text: "Employee Handbook", href: data.about.handbook },
-  { text: "Careers", href: data.about.careers },
+const navigationLinks = [
+  { text: "All Posts", href: data.navigation.posts },
+  { text: "Browse Tags", href: data.navigation.tags },
+  { text: "About", href: data.navigation.about },
+  { text: "Search", href: data.navigation.search },
 ];
 
-const serviceLinks = [
-  { text: "Web Development", href: data.services.webdev },
-  { text: "Web Design", href: data.services.webdesign },
-  { text: "Marketing", href: data.services.marketing },
-  { text: "Google Ads", href: data.services.googleads },
+const categoryLinks = [
+  { text: "Security", href: data.categories.security },
+  { text: "eBPF", href: data.categories.ebpf },
+  { text: "Rust", href: data.categories.rust },
+  { text: "Kubernetes", href: data.categories.kubernetes },
 ];
 
-const helpfulLinks = [
-  { text: "FAQs", href: data.help.faqs },
-  { text: "Support", href: data.help.support },
-  { text: "Live Chat", href: data.help.livechat, hasIndicator: true },
+const resourceLinks = [
+  { text: "Latest Posts", href: data.resources.posts },
+  { text: "Tag Cloud", href: data.resources.tags },
+  { text: "Search Articles", href: data.resources.search },
 ];
 
 const contactInfo = [
-  { icon: Mail, text: data.contact.email },
-  { icon: Phone, text: data.contact.phone },
-  { icon: MapPin, text: data.contact.address, isAddress: true },
+  {
+    icon: Mail,
+    text: data.contact.email,
+    href: `mailto:${data.contact.email}`,
+  },
+  { icon: Github, text: "GitHub", href: data.contact.github },
+  { icon: Twitter, text: "Twitter", href: data.contact.twitter },
 ];
 
 export default function Footer4Col() {
   return (
     <footer className="bg-secondary dark:bg-secondary/20 mt-16 w-full place-self-end rounded-t-xl">
-      <div className="mx-auto max-w-screen-xl px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-24">
+      <div className="w-full px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-24">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div className="text-primary flex justify-center gap-2 sm:justify-start">
@@ -119,9 +113,9 @@ export default function Footer4Col() {
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2">
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-foreground">About Us</p>
+              <p className="text-lg font-medium text-foreground">Navigation</p>
               <ul className="mt-8 space-y-4 text-sm">
-                {aboutLinks.map(({ text, href }) => (
+                {navigationLinks.map(({ text, href }) => (
                   <li key={text}>
                     <a
                       className="text-muted-foreground transition hover:text-foreground"
@@ -135,11 +129,9 @@ export default function Footer4Col() {
             </div>
 
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-foreground">
-                Our Services
-              </p>
+              <p className="text-lg font-medium text-foreground">Categories</p>
               <ul className="mt-8 space-y-4 text-sm">
-                {serviceLinks.map(({ text, href }) => (
+                {categoryLinks.map(({ text, href }) => (
                   <li key={text}>
                     <a
                       className="text-muted-foreground transition hover:text-foreground"
@@ -153,29 +145,15 @@ export default function Footer4Col() {
             </div>
 
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-foreground">
-                Helpful Links
-              </p>
+              <p className="text-lg font-medium text-foreground">Resources</p>
               <ul className="mt-8 space-y-4 text-sm">
-                {helpfulLinks.map(({ text, href, hasIndicator }) => (
+                {resourceLinks.map(({ text, href }) => (
                   <li key={text}>
                     <a
                       href={href}
-                      className={`${
-                        hasIndicator
-                          ? "group flex justify-center gap-1.5 sm:justify-start"
-                          : "text-muted-foreground transition hover:text-foreground"
-                      }`}
+                      className="text-muted-foreground transition hover:text-foreground"
                     >
-                      <span className="text-muted-foreground transition hover:text-foreground">
-                        {text}
-                      </span>
-                      {hasIndicator && (
-                        <span className="relative flex size-2">
-                          <span className="bg-primary absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" />
-                          <span className="bg-primary relative inline-flex size-2 rounded-full" />
-                        </span>
-                      )}
+                      {text}
                     </a>
                   </li>
                 ))}
@@ -185,22 +163,16 @@ export default function Footer4Col() {
             <div className="text-center sm:text-left">
               <p className="text-lg font-medium text-foreground">Contact Us</p>
               <ul className="mt-8 space-y-4 text-sm">
-                {contactInfo.map(({ icon: Icon, text, isAddress }) => (
+                {contactInfo.map(({ icon: Icon, text, href }) => (
                   <li key={text}>
                     <a
-                      className="flex items-center justify-center gap-1.5 sm:justify-start"
-                      href="#"
+                      className="flex items-center justify-center gap-1.5 sm:justify-start text-muted-foreground transition hover:text-foreground"
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <Icon className="text-primary size-5 shrink-0 shadow-sm" />
-                      {isAddress ? (
-                        <address className="text-muted-foreground -mt-0.5 flex-1 not-italic transition hover:text-foreground">
-                          {text}
-                        </address>
-                      ) : (
-                        <span className="text-muted-foreground flex-1 transition hover:text-foreground">
-                          {text}
-                        </span>
-                      )}
+                      <Icon className="text-primary size-5 shrink-0" />
+                      <span className="flex-1">{text}</span>
                     </a>
                   </li>
                 ))}
@@ -211,12 +183,14 @@ export default function Footer4Col() {
 
         <div className="mt-12 border-t border-border pt-6">
           <div className="text-center sm:flex sm:justify-between sm:text-left">
-            <p className="text-sm text-foreground">
-              <span className="block sm:inline">All rights reserved.</span>
+            <p className="text-sm text-muted-foreground">
+              &copy; {new Date().getFullYear()} {data.company.name}. All rights
+              reserved.
             </p>
 
-            <p className="text-muted-foreground mt-4 text-sm transition sm:order-first sm:mt-0">
-              &copy; 2025 {data.company.name}
+            <p className="text-muted-foreground mt-4 text-sm sm:mt-0">
+              Built with <span className="text-primary">♥</span> using Astro &
+              React
             </p>
           </div>
         </div>
