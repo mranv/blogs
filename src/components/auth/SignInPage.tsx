@@ -94,254 +94,250 @@ export default function SignInPage() {
       {/* Background gradient using theme colors */}
       <div className="auth-background-gradient"></div>
 
-      <div className="z-10 w-full max-w-6xl">
-        <div className="auth-card">
-          <div className="grid min-h-[700px] lg:grid-cols-2">
-            {/* Left Side - Brand Section */}
-            <div className="auth-brand-side">
-              <div>
-                <div className="mb-12 text-lg font-semibold uppercase text-theme-primary">
-                  PixelForge Studio
-                </div>
-                <h1 className="mb-4 text-6xl font-medium text-theme-foreground">
-                  Create, Design, and Innovate
-                </h1>
-                <p className="mb-12 text-xl text-theme-muted-foreground">
-                  Join thousands of creators who trust PixelForge Studio to
-                  bring their vision to life
-                </p>
+      <div className="auth-card">
+        <div className="grid min-h-[700px] lg:grid-cols-2">
+          {/* Left Side - Brand Section */}
+          <div className="auth-brand-side">
+            <div>
+              <div className="mb-12 text-lg font-semibold uppercase text-primary">
+                PixelForge Studio
+              </div>
+              <h1 className="mb-4 text-6xl font-medium text-foreground">
+                Create, Design, and Innovate
+              </h1>
+              <p className="mb-12 text-xl text-muted-foreground">
+                Join thousands of creators who trust PixelForge Studio to bring
+                their vision to life
+              </p>
 
-                <div className="space-y-6">
-                  {[
-                    {
-                      icon: <Palette size={16} />,
-                      title: "Advanced Design Tools",
-                      desc: "Professional-grade tools for every project",
-                    },
-                    {
-                      icon: <Users size={16} />,
-                      title: "Team Collaboration",
-                      desc: "Work together seamlessly in real-time",
-                    },
-                    {
-                      icon: <Cloud size={16} />,
-                      title: "Cloud Storage",
-                      desc: "Access your projects from anywhere",
-                    },
-                    {
-                      icon: <ShieldCheck size={16} />,
-                      title: "Enterprise Security",
-                      desc: "Bank-level security for your data",
-                    },
-                  ].map(({ icon, title, desc }, i) => (
-                    <div
-                      key={i}
-                      className="feature-item animate-fadeInUp flex items-center"
-                      style={{ animationDelay: `${0.2 * (i + 1)}s` }}
-                    >
-                      <div className="mr-4 flex h-8 w-8 items-center justify-center rounded-lg bg-theme-primary/20 text-theme-primary backdrop-blur-sm">
-                        {icon}
+              <div className="space-y-6">
+                {[
+                  {
+                    icon: <Palette size={16} />,
+                    title: "Advanced Design Tools",
+                    desc: "Professional-grade tools for every project",
+                  },
+                  {
+                    icon: <Users size={16} />,
+                    title: "Team Collaboration",
+                    desc: "Work together seamlessly in real-time",
+                  },
+                  {
+                    icon: <Cloud size={16} />,
+                    title: "Cloud Storage",
+                    desc: "Access your projects from anywhere",
+                  },
+                  {
+                    icon: <ShieldCheck size={16} />,
+                    title: "Enterprise Security",
+                    desc: "Bank-level security for your data",
+                  },
+                ].map(({ icon, title, desc }, i) => (
+                  <div
+                    key={i}
+                    className="feature-item animate-fadeInUp flex items-center"
+                    style={{ animationDelay: `${0.2 * (i + 1)}s` }}
+                  >
+                    <div className="mr-4 flex h-8 w-8 items-center justify-center rounded-lg bg-primary/20 text-primary backdrop-blur-sm">
+                      {icon}
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground">
+                        {title}
                       </div>
-                      <div>
-                        <div className="font-semibold text-theme-foreground">
-                          {title}
-                        </div>
-                        <div className="text-sm text-theme-muted-foreground">
-                          {desc}
-                        </div>
+                      <div className="text-sm text-muted-foreground">
+                        {desc}
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
+          </div>
 
-            {/* Right Side - Authentication Form */}
-            <div className="auth-form-side">
-              <div className="mx-auto w-full max-w-md">
-                <div className="mb-8 text-center">
-                  <h2 className="text-3xl font-light uppercase text-theme-foreground">
-                    {isLoginMode ? "Welcome back" : "Create account"}
-                  </h2>
-                  <p className="mt-2 text-sm text-theme-muted-foreground">
-                    {isLoginMode
-                      ? "Sign in to continue your creative journey"
-                      : "Join us and start creating amazing content"}
-                  </p>
+          {/* Right Side - Authentication Form */}
+          <div className="auth-form-side">
+            <div className="mx-auto w-full max-w-md">
+              <div className="mb-8 text-center">
+                <h2 className="text-3xl font-light uppercase text-foreground">
+                  {isLoginMode ? "Welcome back" : "Create account"}
+                </h2>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {isLoginMode
+                    ? "Sign in to continue your creative journey"
+                    : "Join us and start creating amazing content"}
+                </p>
+              </div>
+
+              {message.text && (
+                <div
+                  className={cn(
+                    "auth-message",
+                    message.type === "success" ? "success" : "error"
+                  )}
+                >
+                  {message.text}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block text-sm font-medium uppercase text-foreground"
+                  >
+                    Email address
+                  </label>
+                  <div className="auth-input-group">
+                    <div className="auth-input-icon">
+                      <Mail className="h-5 w-5" />
+                    </div>
+                    <input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      required
+                      className="auth-input"
+                      placeholder="Enter your email"
+                    />
+                  </div>
                 </div>
 
-                {message.text && (
-                  <div
-                    className={cn(
-                      "auth-message",
-                      message.type === "success" ? "success" : "error"
-                    )}
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="mb-2 block text-sm font-medium uppercase text-foreground"
                   >
-                    {message.text}
-                  </div>
-                )}
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="mb-2 block text-sm font-medium uppercase text-theme-foreground"
-                    >
-                      Email address
-                    </label>
-                    <div className="auth-input-group">
-                      <div className="auth-input-icon">
-                        <Mail className="h-5 w-5" />
-                      </div>
-                      <input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        required
-                        className="auth-input pr-3 pl-10"
-                        placeholder="Enter your email"
-                      />
+                    Password
+                  </label>
+                  <div className="auth-input-group">
+                    <div className="auth-input-icon">
+                      <Lock className="h-5 w-5" />
                     </div>
+                    <input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      required
+                      className="auth-input pr-12"
+                      placeholder="Enter your password"
+                    />
+                    <button
+                      type="button"
+                      className="auth-toggle-icon"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <EyeOff className="h-5 w-5" />
+                      ) : (
+                        <Eye className="h-5 w-5" />
+                      )}
+                    </button>
                   </div>
+                </div>
 
+                {!isLoginMode && (
                   <div>
                     <label
-                      htmlFor="password"
-                      className="mb-2 block text-sm font-medium uppercase text-theme-foreground"
+                      htmlFor="confirmPassword"
+                      className="mb-2 block text-sm font-medium uppercase text-foreground"
                     >
-                      Password
+                      Confirm Password
                     </label>
                     <div className="auth-input-group">
                       <div className="auth-input-icon">
                         <Lock className="h-5 w-5" />
                       </div>
                       <input
-                        id="password"
+                        id="confirmPassword"
                         type={showPassword ? "text" : "password"}
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
+                        value={confirmPassword}
+                        onChange={e => setConfirmPassword(e.target.value)}
                         required
-                        className="auth-input pr-12 pl-10"
-                        placeholder="Enter your password"
+                        className="auth-input pr-12"
+                        placeholder="Confirm your password"
                       />
-                      <button
-                        type="button"
-                        className="auth-toggle-icon"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? (
-                          <EyeOff className="h-5 w-5" />
-                        ) : (
-                          <Eye className="h-5 w-5" />
-                        )}
-                      </button>
                     </div>
                   </div>
+                )}
 
-                  {!isLoginMode && (
-                    <div>
-                      <label
-                        htmlFor="confirmPassword"
-                        className="mb-2 block text-sm font-medium uppercase text-theme-foreground"
-                      >
-                        Confirm Password
-                      </label>
-                      <div className="auth-input-group">
-                        <div className="auth-input-icon">
-                          <Lock className="h-5 w-5" />
-                        </div>
-                        <input
-                          id="confirmPassword"
-                          type={showPassword ? "text" : "password"}
-                          value={confirmPassword}
-                          onChange={e => setConfirmPassword(e.target.value)}
-                          required
-                          className="auth-input pr-12 pl-10"
-                          placeholder="Confirm your password"
-                        />
-                      </div>
-                    </div>
+                <div className="flex items-center justify-between">
+                  <label className="flex items-center text-sm text-muted-foreground">
+                    <input type="checkbox" className="auth-checkbox" />
+                    <span className="ml-2">Remember me</span>
+                  </label>
+                  <a
+                    href="#"
+                    className="text-primary hover:text-primary/80 text-sm transition-colors"
+                  >
+                    Forgot password?
+                  </a>
+                </div>
+
+                <button
+                  type="submit"
+                  className="auth-button-primary"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      <span className="ml-2">
+                        {isLoginMode ? "Signing in..." : "Creating account..."}
+                      </span>
+                    </>
+                  ) : isLoginMode ? (
+                    "Sign in to your account"
+                  ) : (
+                    "Create account"
                   )}
+                </button>
 
-                  <div className="flex items-center justify-between">
-                    <label className="flex items-center text-sm text-theme-muted-foreground">
-                      <input type="checkbox" className="auth-checkbox" />
-                      <span className="ml-2">Remember me</span>
-                    </label>
-                    <a
-                      href="#"
-                      className="text-theme-primary hover:text-theme-primary/80 text-sm transition-colors"
-                    >
-                      Forgot password?
-                    </a>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="auth-button-primary"
-                    disabled={loading}
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="h-5 w-5 animate-spin" />
-                        <span className="ml-2">
-                          {isLoginMode
-                            ? "Signing in..."
-                            : "Creating account..."}
-                        </span>
-                      </>
-                    ) : isLoginMode ? (
-                      "Sign in to your account"
-                    ) : (
-                      "Create account"
-                    )}
-                  </button>
-
-                  <div className="auth-divider">
-                    <span className="auth-divider-text">Or continue with</span>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <button type="button" className="auth-button-outline">
-                      <img
-                        src="https://www.svgrepo.com/show/475656/google-color.svg"
-                        className="h-5 w-5"
-                        alt="Google"
-                      />
-                      <span className="ml-2">Google</span>
-                    </button>
-                    <button type="button" className="auth-button-outline">
-                      <Github className="h-5 w-5" />
-                      <span className="ml-2">GitHub</span>
-                    </button>
-                  </div>
-                </form>
-
-                <div className="mt-8 text-center text-sm text-theme-muted-foreground">
-                  {isLoginMode
-                    ? "Don't have an account?"
-                    : "Already have an account?"}{" "}
-                  <button
-                    onClick={toggleMode}
-                    className="text-theme-primary hover:text-theme-primary/80 transition-colors font-medium"
-                  >
-                    {isLoginMode ? "Sign up for free" : "Sign in"}
-                  </button>
+                <div className="auth-divider">
+                  <span className="auth-divider-text">Or continue with</span>
                 </div>
 
-                {/* Demo Credentials */}
-                <div className="auth-demo-credentials">
-                  <p className="text-sm text-theme-foreground mb-2 font-medium">
-                    Demo Credentials:
-                  </p>
-                  <p className="text-xs text-theme-muted-foreground">
-                    Email: demo@example.com
-                  </p>
-                  <p className="text-xs text-theme-muted-foreground">
-                    Password: demo123
-                  </p>
+                <div className="grid grid-cols-2 gap-3">
+                  <button type="button" className="auth-button-outline">
+                    <img
+                      src="https://www.svgrepo.com/show/475656/google-color.svg"
+                      className="h-5 w-5"
+                      alt="Google"
+                    />
+                    <span className="ml-2">Google</span>
+                  </button>
+                  <button type="button" className="auth-button-outline">
+                    <Github className="h-5 w-5" />
+                    <span className="ml-2">GitHub</span>
+                  </button>
                 </div>
+              </form>
+
+              <div className="mt-8 text-center text-sm text-muted-foreground">
+                {isLoginMode
+                  ? "Don't have an account?"
+                  : "Already have an account?"}{" "}
+                <button
+                  onClick={toggleMode}
+                  className="text-primary hover:text-primary/80 transition-colors font-medium"
+                >
+                  {isLoginMode ? "Sign up for free" : "Sign in"}
+                </button>
+              </div>
+
+              {/* Demo Credentials */}
+              <div className="auth-demo-credentials">
+                <p className="text-sm text-foreground mb-2 font-medium">
+                  Demo Credentials:
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Email: demo@example.com
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Password: demo123
+                </p>
               </div>
             </div>
           </div>

@@ -628,10 +628,11 @@ html[data-theme="dark"] .chatbot-window {
 .auth-card {
   @apply bg-card/80 backdrop-blur-lg overflow-hidden rounded-[40px] shadow-2xl border;
   border-color: hsl(var(--border) / 0.2);
+  @apply w-full max-w-6xl mx-auto;
 }
 
 .auth-brand-side {
-  @apply relative m-4 rounded-3xl p-12 border;
+  @apply relative m-4 rounded-3xl p-12 border flex flex-col justify-center;
   background: linear-gradient(
     135deg,
     hsl(var(--primary) / 0.1) 0%,
@@ -639,11 +640,13 @@ html[data-theme="dark"] .chatbot-window {
     hsl(var(--accent) / 0.1) 100%
   );
   border-color: hsl(var(--border) / 0.2);
+  @apply min-h-[600px];
 }
 
 .auth-form-side {
   @apply flex flex-col justify-center p-12;
   background-color: hsl(var(--card));
+  @apply min-h-[600px];
 }
 
 .auth-input-group {
@@ -655,6 +658,7 @@ html[data-theme="dark"] .chatbot-window {
   background-color: hsl(var(--background));
   border: 1px solid hsl(var(--input));
   color: hsl(var(--foreground));
+  @apply pl-10 pr-3;
 }
 
 .auth-input:focus {
@@ -670,11 +674,13 @@ html[data-theme="dark"] .chatbot-window {
 .auth-input-icon {
   @apply pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3;
   color: hsl(var(--muted-foreground));
+  @apply z-10;
 }
 
 .auth-toggle-icon {
   @apply absolute inset-y-0 right-0 flex items-center pr-3 transition-colors;
   color: hsl(var(--muted-foreground));
+  @apply z-10;
 }
 
 .auth-toggle-icon:hover {
@@ -685,6 +691,7 @@ html[data-theme="dark"] .chatbot-window {
   @apply relative flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-medium transition-all duration-300;
   background-color: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
+  @apply hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
 }
 
 .auth-button-primary:hover {
@@ -707,6 +714,7 @@ html[data-theme="dark"] .chatbot-window {
   background-color: hsl(var(--background));
   border: 1px solid hsl(var(--input));
   color: hsl(var(--foreground));
+  @apply hover:bg-accent hover:text-accent-foreground;
 }
 
 .auth-button-outline:hover {
@@ -728,6 +736,7 @@ html[data-theme="dark"] .chatbot-window {
 .auth-divider {
   @apply relative text-center text-sm;
   color: hsl(var(--muted-foreground));
+  @apply my-6;
 }
 
 .auth-divider::before {
@@ -761,6 +770,96 @@ html[data-theme="dark"] .chatbot-window {
   background-color: hsl(var(--destructive) / 0.1);
   border-color: hsl(var(--destructive) / 0.2);
   color: hsl(var(--destructive));
+}
+
+/* Fix for overlapping elements */
+.auth-container > div {
+  @apply relative z-10;
+}
+
+.auth-card > div {
+  @apply relative;
+}
+
+/* Ensure proper layering */
+.auth-background-gradient {
+  @apply absolute inset-0 opacity-50 z-0;
+}
+
+.auth-card {
+  @apply relative z-20;
+}
+
+.auth-input-group {
+  @apply relative z-10;
+}
+
+.auth-input-icon,
+.auth-toggle-icon {
+  @apply z-20;
+}
+
+/* Prevent text overlap */
+.auth-brand-side h1 {
+  @apply break-words;
+}
+
+.auth-form-side {
+  @apply overflow-hidden;
+}
+
+/* Ensure proper spacing */
+.auth-input-group {
+  @apply mb-4;
+}
+
+.auth-button-primary,
+.auth-button-outline {
+  @apply relative z-10;
+}
+
+/* Responsive fixes */
+@media (max-width: 1024px) {
+  .auth-card {
+    @apply rounded-2xl;
+  }
+  
+  .auth-brand-side,
+  .auth-form-side {
+    @apply min-h-[500px] p-8;
+  }
+  
+  .auth-brand-side h1 {
+    @apply text-4xl;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    @apply p-2;
+  }
+  
+  .auth-card {
+    @apply rounded-xl;
+  }
+  
+  .auth-brand-side,
+  .auth-form-side {
+    @apply min-h-[400px] p-6;
+  }
+  
+  .auth-brand-side h1 {
+    @apply text-3xl;
+  }
+  
+  .auth-input {
+    @apply py-2.5;
+  }
+  
+  .auth-button-primary,
+  .auth-button-outline {
+    @apply py-2.5;
+  }
 }
 
 /* Feature item animations */
