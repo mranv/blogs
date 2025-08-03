@@ -1,0 +1,189 @@
+---
+import { profileConfig, siteConfig } from "@/config";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  articleData?: {
+    published?: Date;
+    modified?: Date;
+    tags?: string[];
+    category?: string;
+    wordCount?: number;
+    readingTime?: number;
+  };
+}
+
+const { title, description, image, articleData } = Astro.props;
+
+// Enhanced breadcrumb structured data
+const breadcrumbLD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": Astro.site?.toString()
+    },
+    ...(title ? [{
+      "@type": "ListItem",
+      "position": 2,
+      "name": title,
+      "item": Astro.url.toString()
+    }] : [])
+  ]
+};
+
+// FAQ Schema for better search visibility
+const faqLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is Anubhav Gain?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anubhav Gain is a Software Engineer at Infopercept Consulting and CEO at TechAnv Consulting, specializing in DevSecOps, XDR/OXDR Platforms, Rust Programming, and eBPF Development with 222+ research citations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What expertise does Anubhav Gain offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anubhav Gain offers expertise in DevSecOps, XDR/OXDR Platform Architecture, Cloud-Native Security, Kubernetes, Container Security, Zero Trust Architecture, SIEM Implementation, and Rust-based security tool development."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What companies does Anubhav Gain work with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anubhav Gain currently works as a Software Engineer at Infopercept Consulting and is the CEO & Founder of TechAnv Consulting, providing enterprise security consulting and XDR platform development services."
+      }
+    }
+  ]
+};
+
+// Professional Service Schema
+const serviceLD = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Anubhav Gain - Security Consulting Services",
+  "provider": {
+    "@type": "Person",
+    "name": "Anubhav Gain"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "India"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Security Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "XDR/OXDR Platform Development",
+          "description": "Custom development and architecture of Extended Detection and Response platforms"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "DevSecOps Implementation",
+          "description": "Integration of security practices into CI/CD pipelines and development workflows"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cloud Security Architecture",
+          "description": "Design and implementation of secure cloud infrastructure on AWS, Azure, and multi-cloud environments"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Security Research & Development",
+          "description": "Research on emerging threats and development of custom security tools using Rust and eBPF"
+        }
+      }
+    ]
+  }
+};
+---
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbLD)} />
+
+<!-- FAQ Schema (only on home and about pages) -->
+{(Astro.url.pathname === '/' || Astro.url.pathname === '/about/') && 
+  <script type="application/ld+json" set:html={JSON.stringify(faqLD)} />
+}
+
+<!-- Professional Service Schema (only on home page) -->
+{Astro.url.pathname === '/' && 
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLD)} />
+}
+
+<!-- Additional SEO Meta Tags -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="bingbot" content="index, follow">
+
+<!-- Geographic Meta Tags -->
+<meta name="geo.region" content="IN-GJ">
+<meta name="geo.placename" content="Ahmedabad, Gujarat, India">
+<meta name="geo.position" content="23.022505;72.571365">
+<meta name="ICBM" content="23.022505, 72.571365">
+
+<!-- Dublin Core Metadata -->
+<meta name="DC.title" content={title || siteConfig.title}>
+<meta name="DC.creator" content="Anubhav Gain">
+<meta name="DC.subject" content="Cybersecurity, DevSecOps, XDR, OXDR, Rust Programming, eBPF, Cloud Security">
+<meta name="DC.description" content={description || siteConfig.subtitle}>
+<meta name="DC.publisher" content="Anubhav Gain">
+<meta name="DC.contributor" content="Anubhav Gain">
+<meta name="DC.type" content="Text">
+<meta name="DC.format" content="text/html">
+<meta name="DC.language" content={siteConfig.lang}>
+<meta name="DC.coverage" content="India">
+<meta name="DC.rights" content="Copyright © Anubhav Gain. All rights reserved.">
+
+<!-- Apple Mobile Web App Meta Tags -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Anubhav Gain">
+
+<!-- Microsoft Specific Tags -->
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+<!-- Verification Tags (Add your actual verification codes) -->
+<!-- <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE"> -->
+<!-- <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE"> -->
+<!-- <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE"> -->
+
+<!-- Preconnect to External Domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- DNS Prefetch for Performance -->
+<link rel="dns-prefetch" href="https://github.com">
+<link rel="dns-prefetch" href="https://linkedin.com">
+
+<!-- Additional Link Relations -->
+<link rel="author" href="/about/">
+<link rel="index" href="/">
+<link rel="search" type="application/opensearchdescription+xml" title="Anubhav Gain Blog Search" href="/opensearch.xml">
