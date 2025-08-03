@@ -2,7 +2,7 @@
 
 แม่แบบสำหรับเว็บบล็อกแบบ static สร้างด้วย [Astro](https://astro.build)
 
-[**🖥️ ตัวอย่างการใช้งานจริง (Vercel)**](https://fuwari.vercel.app)
+[**🖥️ ตัวอย่างการใช้งานจริง (Vercel)**](https://mranv.pages.dev)
 
 ![ภาพตัวอย่าง](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
 
@@ -55,9 +55,9 @@ lang: jp      # เขียนค่านี้เมื่อภาษาข�
 
 เดิมที Astro มีการสนับสนุน[ภาษามาร์กดาวน์แบบของ GitHub](https://github.github.com/gfm/) ไว้อยู่แล้ว แต่ Fuwari ได้เพิ่มเติมคุณสมบัติพิเศษอื่นๆ เข้าไปอีก:
 
-- Admonitions หรือ กล่องข้อมูลพิเศษ ([ดูตัวอย่างและการใช้งาน](https://fuwari.vercel.app/posts/markdown-extended/#admonitions))
-- การ์ด GitHub Repository ([ดูตัวอย่างและการใช้งาน](https://fuwari.vercel.app/posts/markdown-extended/#github-repository-cards))
-- บล็อกโค้ดขั้นสูง ด้วย Expressive Code ([ดูตัวอย่าง](https://fuwari.vercel.app/posts/expressive-code/) / [เอกสารประกอบ](https://expressive-code.com/))
+- Admonitions หรือ กล่องข้อมูลพิเศษ ([ดูตัวอย่างและการใช้งาน](https://mranv.pages.dev/posts/markdown-extended/#admonitions))
+- การ์ด GitHub Repository ([ดูตัวอย่างและการใช้งาน](https://mranv.pages.dev/posts/markdown-extended/#github-repository-cards))
+- บล็อกโค้ดขั้นสูง ด้วย Expressive Code ([ดูตัวอย่าง](https://mranv.pages.dev/posts/expressive-code/) / [เอกสารประกอบ](https://expressive-code.com/))
 
 ## ⚡ คำสั่ง
 
