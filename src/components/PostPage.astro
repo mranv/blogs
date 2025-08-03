@@ -15,12 +15,14 @@ const interval = 50;
                 title={entry.data.title}
                 tags={entry.data.tags}
                 category={entry.data.category}
-                published={entry.data.published}
-                updated={entry.data.updated}
+                published={entry.data.pubDatetime || entry.data.published}
+                updated={entry.data.modDatetime || entry.data.updated}
                 url={getPostUrlBySlug(entry.slug)}
                 image={entry.data.image}
                 description={entry.data.description}
                 draft={entry.data.draft}
+                featured={entry.data.featured}
+                author={entry.data.author}
                 class:list="onload-animation"
                 style={`animation-delay: calc(var(--content-delay) + ${delay++ * interval}ms);`}
         ></PostCard>
