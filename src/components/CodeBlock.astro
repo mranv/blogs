@@ -1,0 +1,63 @@
+---
+export interface Props {
+  filename?: string;
+  language?: string;
+  class?: string;
+}
+
+const {
+  filename = "app.tsx",
+  language = "typescript",
+  class: className = "",
+} = Astro.props;
+---
+
+<div class={`code-block-container ${className}`}>
+  <div class="code-border-anim"></div>
+  <div class="code-block-content">
+    <div class="code-block-header">
+      <span class="code-block-title">{filename}</span>
+      <button
+        class="code-block-copy-btn"
+        onclick="copyCode(this)"
+        aria-label="Copy code"
+      >
+        Copy
+      </button>
+    </div>
+    <pre
+      class="code-block-pre">
+      <code class="code-block-code">
+        <slot />
+      </code>
+    </pre>
+  </div>
+</div>
+
+<script>
+  function copyCode(button: HTMLButtonElement) {
+    const codeBlock = button.closest(".code-block-container");
+    const codeElement = codeBlock?.querySelector("code");
+
+    if (codeElement) {
+      const textContent = codeElement.textContent || "";
+
+      navigator.clipboard
+        .writeText(textContent)
+        .then(() => {
+          const originalText = button.textContent;
+          button.textContent = "Copied!";
+          button.style.backgroundColor = "#10b981"; // green color
+
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.backgroundColor = "#1fcdfc"; // original color
+          }, 2000);
+        })
+        .catch(err => {
+          console.error("Failed to copy code:", err);
+        });
+    }
+  }
+</script>
+

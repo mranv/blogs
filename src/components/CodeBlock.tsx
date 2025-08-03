@@ -65,14 +65,10 @@ export default function CodeBlock({
   );
 }
 
-// Syntax highlighting helper component
-export function SyntaxHighlightedCode({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// Example usage component with syntax highlighting
+export function ExampleCodeBlock() {
   return (
-    <>
+    <CodeBlock filename="app.tsx">
       <span className="code-keyword">import</span>{" "}
       <span className="code-operator">{"{"}</span>useState
       <span className="code-operator">{"}"}</span>{" "}
@@ -103,6 +99,6 @@ export function SyntaxHighlightedCode({
       &nbsp;&nbsp;);
       <br />
       {"}"}
-    </>
+    </CodeBlock>
   );
 }

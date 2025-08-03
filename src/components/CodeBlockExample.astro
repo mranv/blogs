@@ -1,0 +1,136 @@
+---
+import CodeBlock from "./CodeBlock.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CodeBlock Examples</title>
+  </head>
+  <body class="bg-gray-900 text-white min-h-screen p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+      <h1 class="text-4xl font-bold text-center mb-12">
+        Beautiful Code Blocks
+      </h1>
+
+      <!-- React TypeScript Example -->
+      <CodeBlock filename="Counter.tsx">
+        <span class="code-keyword">import</span>
+        <span class="code-operator">{"{"}</span>useState<span
+          class="code-operator">{"}"}</span
+        >
+        <span class="code-keyword">from</span>
+        <span class="code-string">'react'</span>;<br />
+        <br />
+        <span class="code-keyword">function</span>
+        <span class="code-function">Counter</span>() {"{"}
+        <br />
+        &nbsp;&nbsp;<span class="code-keyword">const</span> [count, setCount] = useState(<span
+          class="code-number">0</span
+        >);
+        <br />
+        <br />
+        &nbsp;&nbsp;<span class="code-keyword">return</span> (<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">&lt;button</span>
+        <span class="code-property">onClick</span>=<span class="code-string"
+          >{"{"}</span
+        >() =&gt; setCount(count + <span class="code-number">1</span>)<span
+          class="code-string">{"}"}</span
+        ><span class="code-function">&gt;</span>
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clicked {"{"}count{"}"} times
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function"
+          >&lt;/button&gt;</span
+        >
+        <br />
+        &nbsp;&nbsp;);
+        <br />
+        {"}"}
+      </CodeBlock>
+
+      <!-- JavaScript Example -->
+      <CodeBlock filename="utils.js">
+        <span class="code-keyword">const</span>
+        <span class="code-function">formatDate</span> = (<span
+          class="code-property">date</span
+        >) =&gt; {"{"}
+        <br />
+        &nbsp;&nbsp;<span class="code-keyword">const</span>
+        <span class="code-property">options</span> = {"{"}
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;year: <span class="code-string">'numeric'</span
+        >,
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;month: <span class="code-string">'long'</span>,
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;day: <span class="code-string">'numeric'</span>
+        <br />
+        &nbsp;&nbsp;{"}"};
+        <br />
+        <br />
+        &nbsp;&nbsp;<span class="code-keyword">return</span> date.toLocaleDateString(<span
+          class="code-string">'en-US'</span
+        >, options);
+        <br />
+        {"}"};
+        <br />
+        <br />
+        <span class="code-keyword">export</span>
+        <span class="code-keyword">default</span> formatDate;
+      </CodeBlock>
+
+      <!-- CSS Example -->
+      <CodeBlock filename="styles.css">
+        <span class="code-function">.gradient-button</span>
+        {"{"}
+        <br />
+        &nbsp;&nbsp;background: <span class="code-function"
+          >linear-gradient</span
+        >(<span class="code-number">45deg</span>, <span class="code-string"
+          >#667eea</span
+        >, <span class="code-string">#764ba2</span>);
+        <br />
+        &nbsp;&nbsp;border: <span class="code-number">none</span>;
+        <br />
+        &nbsp;&nbsp;border-radius: <span class="code-number">8px</span>;
+        <br />
+        &nbsp;&nbsp;color: <span class="code-string">white</span>;
+        <br />
+        &nbsp;&nbsp;padding: <span class="code-number">12px</span>
+        <span class="code-number">24px</span>;
+        <br />
+        &nbsp;&nbsp;font-weight: <span class="code-number">600</span>;
+        <br />
+        &nbsp;&nbsp;transition: <span class="code-string">all 0.3s ease</span>;
+        <br />
+        {"}"}
+        <br />
+        <br />
+        <span class="code-function">.gradient-button:hover</span>
+        {"{"}
+        <br />
+        &nbsp;&nbsp;transform: <span class="code-function">translateY</span
+        >(<span class="code-number">-2px</span>);
+        <br />
+        &nbsp;&nbsp;box-shadow: <span class="code-number">0</span>
+        <span class="code-number">8px</span>
+        <span class="code-number">25px</span>
+        <span class="code-function">rgba</span>(<span class="code-number"
+          >0</span
+        >, <span class="code-number">0</span>, <span class="code-number">0</span
+        >, <span class="code-number">0.2</span>);
+        <br />
+        {"}"}
+      </CodeBlock>
+
+      <!-- Simple text example -->
+      <CodeBlock filename="example.txt">
+        This is a simple text example. You can put any content here. The
+        component will handle the styling automatically.
+      </CodeBlock>
+    </div>
+  </body>
+</html>
+
