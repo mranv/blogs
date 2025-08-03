@@ -3,11 +3,15 @@ import { LOCALE, SITE } from "@config";
 import { ViewTransitions } from "astro:transitions";
 import SEO from "@components/SEO.astro";
 import AnimationWrapper from "@components/AnimationWrapper.tsx";
-import "@styles/critical.css";
-import "@styles/theme.css";
+import RightClickPopup from "@components/h6t9k3_RightClickPopup.astro";
+import "@styles/claude-theme-complete.css";
 import "@styles/base.css";
-import "@styles/animations.css";
 import "@styles/components.css";
+import "@styles/animations.css";
+import "@styles/auth-toggle.css";
+import "@styles/homepage-fixes.css";
+import "@styles/q9n5d8_popup.css";
+import "@styles/r4m7b1_notifications.css";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -90,153 +94,9 @@ const {
       type="image/svg+xml"
     />
 
-    <!-- Inline critical CSS to prevent render blocking -->
+    <!-- Minimal critical CSS for above-the-fold content -->
     <style>
-      /* Critical CSS for above-the-fold content */
-      :root,
-      html[data-theme="light"] {
-        /* Legacy color variables for Tailwind compatibility */
-        --color-fill: 250, 250, 252;
-        --color-text-base: 17, 24, 39;
-        --color-accent: 37, 99, 235;
-        --color-card: 255, 255, 255;
-        --color-card-muted: 249, 250, 251;
-        --color-border: 229, 231, 235;
-
-        /* New OKLCH color variables */
-        --background: oklch(0.9818 0.0054 95.0986);
-        --foreground: oklch(0.3438 0.0269 95.7226);
-        --card: oklch(0.9818 0.0054 95.0986);
-        --card-foreground: oklch(0.1908 0.002 106.5859);
-        --popover: oklch(1 0 0);
-        --popover-foreground: oklch(0.2671 0.0196 98.939);
-        --primary: oklch(0.6171 0.1375 39.0427);
-        --primary-foreground: oklch(1 0 0);
-        --secondary: oklch(0.9245 0.0138 92.9892);
-        --secondary-foreground: oklch(0.4334 0.0177 98.6048);
-        --muted: oklch(0.9341 0.0153 90.239);
-        --muted-foreground: oklch(0.6059 0.0075 97.4233);
-        --accent: oklch(0.9245 0.0138 92.9892);
-        --accent-foreground: oklch(0.2671 0.0196 98.939);
-        --destructive: oklch(0.1908 0.002 106.5859);
-        --destructive-foreground: oklch(1 0 0);
-        --border: oklch(0.8847 0.0069 97.3627);
-        --input: oklch(0.7621 0.0156 98.3528);
-        --ring: oklch(0.6171 0.1375 39.0427);
-        --chart-1: oklch(0.5583 0.1276 42.9956);
-        --chart-2: oklch(0.6898 0.1581 290.4107);
-        --chart-3: oklch(0.8816 0.0276 93.128);
-        --chart-4: oklch(0.8822 0.0403 298.1792);
-        --chart-5: oklch(0.5608 0.1348 42.0584);
-        --sidebar: oklch(0.9663 0.008 98.8792);
-        --sidebar-foreground: oklch(0.359 0.0051 106.6524);
-        --sidebar-primary: oklch(0.6171 0.1375 39.0427);
-        --sidebar-primary-foreground: oklch(0.9881 0 0);
-        --sidebar-accent: oklch(0.9245 0.0138 92.9892);
-        --sidebar-accent-foreground: oklch(0.325 0 0);
-        --sidebar-border: oklch(0.9401 0 0);
-        --sidebar-ring: oklch(0.7731 0 0);
-        --font-sans:
-          ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-          "Noto Color Emoji";
-        --font-serif:
-          ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-        --font-mono:
-          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-        --radius: 0.5rem;
-        --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-        --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-        --shadow-sm:
-          0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-        --shadow:
-          0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-        --shadow-md:
-          0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
-        --shadow-lg:
-          0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
-        --shadow-xl:
-          0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
-        --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-        --tracking-normal: 0em;
-        --spacing: 0.25rem;
-      }
-      html[data-theme="dark"] {
-        /* Legacy color variables for Tailwind compatibility */
-        --color-fill: 17, 24, 39;
-        --color-text-base: 243, 244, 246;
-        --color-accent: 96, 165, 250;
-        --color-card: 31, 41, 55;
-        --color-card-muted: 55, 65, 81;
-        --color-border: 75, 85, 99;
-        --color-gradient-start: 96, 165, 250;
-        --color-gradient-end: 59, 130, 246;
-        --color-secondary: 156, 163, 175;
-        --color-success: 52, 211, 153;
-        --color-warning: 252, 211, 77;
-        --color-glow: 96, 165, 250;
-        --color-shadow: 0, 0, 0;
-
-        /* New OKLCH color variables */
-        --background: oklch(0.2679 0.0036 106.6427);
-        --foreground: oklch(0.8074 0.0142 93.0137);
-        --card: oklch(0.2679 0.0036 106.6427);
-        --card-foreground: oklch(0.9818 0.0054 95.0986);
-        --popover: oklch(0.3085 0.0035 106.6039);
-        --popover-foreground: oklch(0.9211 0.004 106.4781);
-        --primary: oklch(0.6724 0.1308 38.7559);
-        --primary-foreground: oklch(1 0 0);
-        --secondary: oklch(0.9818 0.0054 95.0986);
-        --secondary-foreground: oklch(0.3085 0.0035 106.6039);
-        --muted: oklch(0.2213 0.0038 106.707);
-        --muted-foreground: oklch(0.7713 0.0169 99.0657);
-        --accent: oklch(0.213 0.0078 95.4245);
-        --accent-foreground: oklch(0.9663 0.008 98.8792);
-        --destructive: oklch(0.6368 0.2078 25.3313);
-        --destructive-foreground: oklch(1 0 0);
-        --border: oklch(0.3618 0.0101 106.8928);
-        --input: oklch(0.4336 0.0113 100.2195);
-        --ring: oklch(0.6724 0.1308 38.7559);
-        --chart-1: oklch(0.5583 0.1276 42.9956);
-        --chart-2: oklch(0.6898 0.1581 290.4107);
-        --chart-3: oklch(0.213 0.0078 95.4245);
-        --chart-4: oklch(0.3074 0.0516 289.323);
-        --chart-5: oklch(0.5608 0.1348 42.0584);
-        --sidebar: oklch(0.2357 0.0024 67.7077);
-        --sidebar-foreground: oklch(0.8074 0.0142 93.0137);
-        --sidebar-primary: oklch(0.325 0 0);
-        --sidebar-primary-foreground: oklch(0.9881 0 0);
-        --sidebar-accent: oklch(0.168 0.002 106.6177);
-        --sidebar-accent-foreground: oklch(0.8074 0.0142 93.0137);
-        --sidebar-border: oklch(0.9401 0 0);
-        --sidebar-ring: oklch(0.7731 0 0);
-        --font-sans:
-          ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-          "Noto Color Emoji";
-        --font-serif:
-          ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-        --font-mono:
-          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-        --radius: 0.5rem;
-        --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-        --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-        --shadow-sm:
-          0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-        --shadow:
-          0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-        --shadow-md:
-          0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
-        --shadow-lg:
-          0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
-        --shadow-xl:
-          0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
-        --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-      }
+      /* Critical CSS - only the most essential styles */
       * {
         box-sizing: border-box;
       }
@@ -249,8 +109,8 @@ const {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        background-color: var(--background);
-        color: var(--foreground);
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
         font-family: var(--font-sans);
         font-size: 16px;
         line-height: 1.75;
@@ -261,117 +121,8 @@ const {
         flex: 1;
         width: 100%;
       }
-      section,
-      footer {
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
-        max-width: 100%;
-        padding-left: 0;
-        padding-right: 0;
-      }
-      .container {
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-      @media (min-width: 640px) {
-        body {
-          font-size: 17px;
-        }
-        .container {
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-        }
-      }
-      @media (min-width: 768px) {
-        .container {
-          padding-left: 2rem;
-          padding-right: 2rem;
-        }
-      }
-      @media (min-width: 1024px) {
-        .container {
-          padding-left: 3rem;
-          padding-right: 3rem;
-        }
-      }
-      @media (min-width: 1280px) {
-        .container {
-          padding-left: 4rem;
-          padding-right: 4rem;
-        }
-      }
-      @media (min-width: 1536px) {
-        .container {
-          padding-left: 6rem;
-          padding-right: 6rem;
-        }
-      }
-      h1,
-      h2,
-      h3 {
-        margin: 0;
-        font-weight: 600;
-        line-height: 1.2;
-      }
-      a {
-        color: var(--primary);
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .animate-on-scroll,
-      .animate-fade-up,
-      .animate-fade-in,
-      .animate-slide-in,
-      .animate-scale-in {
-        opacity: 0;
-      }
-      img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-      .video-container {
-        position: relative;
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
-      }
-      .video-container video {
-        width: 100%;
-        border-radius: 0.5rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      }
-      .text-center {
-        text-align: center;
-      }
-      .mx-auto {
-        margin-left: auto;
-        margin-right: auto;
-      }
       .hidden {
         display: none;
-      }
-      .bg-background {
-        background-color: var(--background);
-      }
-      .text-foreground {
-        color: var(--foreground);
-      }
-      .text-primary {
-        color: var(--primary);
-      }
-      .grid {
-        display: grid;
-        gap: 1.5rem;
-      }
-      @media (min-width: 640px) {
-        .sm\\:grid-cols-2 {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
       }
     </style>
 
@@ -536,8 +287,12 @@ const {
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
 
+    <RightClickPopup />
+
     <AnimationWrapper client:load>
       <slot />
     </AnimationWrapper>
+
+    <script is:inline src="/src/scripts/xk7p2m_protection.js"></script>
   </body>
 </html>

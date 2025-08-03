@@ -24,9 +24,9 @@ const data = {
     search: "/search/",
   },
   contact: {
-    email: "contact@yourdomain.com",
-    github: "https://github.com/yourusername",
-    twitter: "https://twitter.com/yourusername",
+    email: "iamanubhavgain@gmail.com",
+    github: "https://github.com/mranv",
+    twitter: "https://twitter.com/anubhavgain",
   },
   company: {
     name: "Anubhav Gain",

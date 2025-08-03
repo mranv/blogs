@@ -392,7 +392,7 @@ export default function AnimatedAIChat({ searchList }: Props) {
                   onKeyDown={handleKeyDown}
                   onFocus={() => setInputFocused(true)}
                   onBlur={() => setInputFocused(false)}
-                  placeholder="Ask mvp.ai a question..."
+                  placeholder="Ask me a question..."
                   containerClassName="w-full"
                   className={cn(
                     "w-full px-4 py-3",

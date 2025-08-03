@@ -1,0 +1,242 @@
+/* Complete Claude Theme Implementation */
+/* Based on theme.json - Full OKLCH color space implementation */
+
+/* Core Theme Variables - Directly from theme.json */
+:root,
+html[data-theme="light"] {
+  /* Claude Theme OKLCH colors - Light Mode */
+  --background: oklch(0.9818 0.0054 95.0986);
+  --foreground: oklch(0.3438 0.0269 95.7226);
+  --card: oklch(0.9818 0.0054 95.0986);
+  --card-foreground: oklch(0.1908 0.0020 106.5859);
+  --popover: oklch(1.0000 0 0);
+  --popover-foreground: oklch(0.2671 0.0196 98.9390);
+  --primary: oklch(0.6171 0.1375 39.0427);
+  --primary-foreground: oklch(1.0000 0 0);
+  --secondary: oklch(0.9245 0.0138 92.9892);
+  --secondary-foreground: oklch(0.4334 0.0177 98.6048);
+  --muted: oklch(0.9341 0.0153 90.2390);
+  --muted-foreground: oklch(0.6059 0.0075 97.4233);
+  --accent: oklch(0.9245 0.0138 92.9892);
+  --accent-foreground: oklch(0.2671 0.0196 98.9390);
+  --destructive: oklch(0.1908 0.0020 106.5859);
+  --destructive-foreground: oklch(1.0000 0 0);
+  --border: oklch(0.8847 0.0069 97.3627);
+  --input: oklch(0.7621 0.0156 98.3528);
+  --ring: oklch(0.6171 0.1375 39.0427);
+  
+  /* Claude Sidebar Colors */
+  --sidebar: oklch(0.9663 0.0080 98.8792);
+  --sidebar-foreground: oklch(0.3590 0.0051 106.6524);
+  --sidebar-primary: oklch(0.6171 0.1375 39.0427);
+  --sidebar-primary-foreground: oklch(0.9881 0 0);
+  --sidebar-accent: oklch(0.9245 0.0138 92.9892);
+  --sidebar-accent-foreground: oklch(0.3250 0 0);
+  --sidebar-border: oklch(0.9401 0 0);
+  --sidebar-ring: oklch(0.7731 0 0);
+  
+  /* Claude Chart Colors */
+  --chart-1: oklch(0.5583 0.1276 42.9956);
+  --chart-2: oklch(0.6898 0.1581 290.4107);
+  --chart-3: oklch(0.8816 0.0276 93.1280);
+  --chart-4: oklch(0.8822 0.0403 298.1792);
+  --chart-5: oklch(0.5608 0.1348 42.0584);
+  
+  /* Claude Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  
+  /* Claude Radius and Shadows */
+  --radius: 0.5rem;
+  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+}
+
+html[data-theme="dark"] {
+  /* Claude Theme OKLCH colors - Dark Mode */
+  --background: oklch(0.2679 0.0036 106.6427);
+  --foreground: oklch(0.8074 0.0142 93.0137);
+  --card: oklch(0.2679 0.0036 106.6427);
+  --card-foreground: oklch(0.9818 0.0054 95.0986);
+  --popover: oklch(0.3085 0.0035 106.6039);
+  --popover-foreground: oklch(0.9211 0.0040 106.4781);
+  --primary: oklch(0.6724 0.1308 38.7559);
+  --primary-foreground: oklch(1.0000 0 0);
+  --secondary: oklch(0.9818 0.0054 95.0986);
+  --secondary-foreground: oklch(0.3085 0.0035 106.6039);
+  --muted: oklch(0.2213 0.0038 106.7070);
+  --muted-foreground: oklch(0.7713 0.0169 99.0657);
+  --accent: oklch(0.2130 0.0078 95.4245);
+  --accent-foreground: oklch(0.9663 0.0080 98.8792);
+  --destructive: oklch(0.6368 0.2078 25.3313);
+  --destructive-foreground: oklch(1.0000 0 0);
+  --border: oklch(0.3618 0.0101 106.8928);
+  --input: oklch(0.4336 0.0113 100.2195);
+  --ring: oklch(0.6724 0.1308 38.7559);
+  
+  /* Claude Sidebar Colors - Dark */
+  --sidebar: oklch(0.2357 0.0024 67.7077);
+  --sidebar-foreground: oklch(0.8074 0.0142 93.0137);
+  --sidebar-primary: oklch(0.3250 0 0);
+  --sidebar-primary-foreground: oklch(0.9881 0 0);
+  --sidebar-accent: oklch(0.1680 0.0020 106.6177);
+  --sidebar-accent-foreground: oklch(0.8074 0.0142 93.0137);
+  --sidebar-border: oklch(0.9401 0 0);
+  --sidebar-ring: oklch(0.7731 0 0);
+  
+  /* Claude Chart Colors - Dark */
+  --chart-1: oklch(0.5583 0.1276 42.9956);
+  --chart-2: oklch(0.6898 0.1581 290.4107);
+  --chart-3: oklch(0.2130 0.0078 95.4245);
+  --chart-4: oklch(0.3074 0.0516 289.3230);
+  --chart-5: oklch(0.5608 0.1348 42.0584);
+}
+
+/* Claude Component Utilities */
+.claude-bg-primary { background-color: hsl(var(--background)); }
+.claude-bg-card { background-color: hsl(var(--card)); }
+.claude-bg-accent { background-color: hsl(var(--accent)); }
+.claude-bg-muted { background-color: hsl(var(--muted)); }
+.claude-bg-sidebar { background-color: hsl(var(--sidebar)); }
+
+.claude-text-primary { color: hsl(var(--foreground)); }
+.claude-text-muted { color: hsl(var(--muted-foreground)); }
+.claude-text-accent { color: hsl(var(--accent-foreground)); }
+.claude-text-sidebar { color: hsl(var(--sidebar-foreground)); }
+
+.claude-border { border-color: hsl(var(--border)); }
+.claude-border-sidebar { border-color: hsl(var(--sidebar-border)); }
+
+/* Override any conflicting styles */
+.bg-background { background-color: hsl(var(--background)) !important; }
+.bg-card { background-color: hsl(var(--card)) !important; }
+.bg-primary { background-color: hsl(var(--primary)) !important; }
+.bg-secondary { background-color: hsl(var(--secondary)) !important; }
+.bg-accent { background-color: hsl(var(--accent)) !important; }
+.bg-muted { background-color: hsl(var(--muted)) !important; }
+
+.text-foreground { color: hsl(var(--foreground)) !important; }
+.text-primary { color: hsl(var(--primary)) !important; }
+.text-secondary { color: hsl(var(--secondary-foreground)) !important; }
+.text-muted-foreground { color: hsl(var(--muted-foreground)) !important; }
+.text-accent-foreground { color: hsl(var(--accent-foreground)) !important; }
+
+.border-border { border-color: hsl(var(--border)) !important; }
+.border-primary { border-color: hsl(var(--primary)) !important; }
+
+/* Claude Metric Card Pattern */
+.claude-metric-card {
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+}
+
+.claude-metric-card-title {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.claude-metric-card-value {
+  color: hsl(var(--foreground));
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+/* Claude Chart Card Pattern */
+.claude-chart-card {
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.claude-chart-card-header {
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.claude-chart-card-title {
+  color: hsl(var(--foreground));
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.claude-chart-card-content {
+  padding: 1.5rem;
+}
+
+/* Claude Button Patterns */
+.claude-btn-primary {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border: 1px solid hsl(var(--primary));
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.claude-btn-primary:hover {
+  background: hsl(var(--primary) / 0.9);
+}
+
+.claude-btn-secondary {
+  background: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.claude-btn-secondary:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+/* Ensure full Claude theme compliance */
+* {
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+}
+
+p, span, div {
+  color: hsl(var(--foreground));
+}
+
+a {
+  color: hsl(var(--primary));
+}
+
+a:hover {
+  color: hsl(var(--primary) / 0.8);
+}
+
+/* Ensure chart colors are used */
+.chart-color-1 { color: hsl(var(--chart-1)); }
+.chart-color-2 { color: hsl(var(--chart-2)); }
+.chart-color-3 { color: hsl(var(--chart-3)); }
+.chart-color-4 { color: hsl(var(--chart-4)); }
+.chart-color-5 { color: hsl(var(--chart-5)); }
+
+.bg-chart-1 { background-color: hsl(var(--chart-1)); }
+.bg-chart-2 { background-color: hsl(var(--chart-2)); }
+.bg-chart-3 { background-color: hsl(var(--chart-3)); }
+.bg-chart-4 { background-color: hsl(var(--chart-4)); }
+.bg-chart-5 { background-color: hsl(var(--chart-5)); }

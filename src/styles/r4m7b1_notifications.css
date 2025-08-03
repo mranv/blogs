@@ -1,0 +1,114 @@
+/* Sarcastic notification styles */
+/* Filename: r4m7b1_notifications.css */
+
+.sarcastic-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10002;
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideInNotification 0.5s ease-out forwards, 
+             slideOutNotification 0.5s ease-in 3.5s forwards;
+}
+
+.notification-content {
+  background: linear-gradient(135deg, hsl(var(--destructive)), hsl(var(--destructive) / 0.8));
+  color: hsl(var(--destructive-foreground));
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.2),
+    0 0 30px hsl(var(--destructive) / 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 300px;
+  max-width: 400px;
+  border: 1px solid hsl(var(--destructive) / 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.notification-content span {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.notification-content button {
+  background: none;
+  border: none;
+  color: hsl(var(--destructive-foreground));
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-content button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideInNotification {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutNotification {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Special Rick Roll notification styles */
+.rick-roll-notification {
+  animation: slideInNotification 0.5s ease-out forwards, 
+             rickRollPulse 1s ease-in-out 0.5s 3,
+             slideOutNotification 0.5s ease-in 4.5s forwards;
+}
+
+.rick-roll-content {
+  background: linear-gradient(135deg, 
+    hsl(var(--destructive)) 0%, 
+    hsl(var(--destructive) / 0.8) 25%,
+    hsl(var(--chart-1)) 50%,
+    hsl(var(--destructive) / 0.8) 75%,
+    hsl(var(--destructive)) 100%) !important;
+  background-size: 200% 200%;
+  animation: rickRollGradient 2s ease infinite;
+  border: 2px solid hsl(var(--destructive));
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.3),
+    0 0 40px hsl(var(--destructive) / 0.5),
+    0 0 60px hsl(var(--chart-1) / 0.3);
+}
+
+@keyframes rickRollPulse {
+  0%, 100% { transform: scale(1) translateX(0); }
+  50% { transform: scale(1.05) translateX(-5px); }
+}
+
+@keyframes rickRollGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

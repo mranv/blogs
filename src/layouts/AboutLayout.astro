@@ -39,13 +39,6 @@ const { frontmatter } = Astro.props;
       id="about"
       class="prose mb-28 prose-img:border-0 markdown-content w-full max-w-6xl mx-auto"
     >
-      <div
-        class="text-center mb-12 bg-card border border-border rounded-xl p-8 shadow-lg mx-auto"
-      >
-        <h1 class="text-4xl font-bold text-foreground mb-4">
-          {frontmatter.title}
-        </h1>
-      </div>
       <slot />
     </section>
   </main>

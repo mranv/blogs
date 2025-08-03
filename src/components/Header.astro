@@ -3,8 +3,6 @@ import { LOGO_IMAGE, SITE, SOCIALS } from "@config";
 import Hr from "./Hr.astro";
 import NavigationMenuHeader from "./NavigationMenuHeader.tsx";
 import { getCollection } from "astro:content";
-import getSortedPosts from "@utils/getSortedPosts";
-import getUniqueTags from "@utils/getUniqueTags";
 
 export interface Props {
   activeNav?: "posts" | "tags" | "about" | "search";
@@ -12,15 +10,11 @@ export interface Props {
 
 const { activeNav } = Astro.props;
 
-// Get posts and tags data for navigation menus
+// Check for new posts (posts from last 7 days) for notification badge
 const posts = await getCollection("blog");
-const sortedPosts = getSortedPosts(posts);
-const uniqueTags = getUniqueTags(posts);
-
-// Check for new posts (posts from last 7 days)
 const oneWeekAgo = new Date();
 oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-const hasNewPosts = sortedPosts.some(
+const hasNewPosts = posts.some(
   post => new Date(post.data.pubDatetime) > oneWeekAgo
 );
 ---
@@ -50,8 +44,6 @@ const hasNewPosts = sortedPosts.some(
         <NavigationMenuHeader
           client:load
           activeNav={activeNav}
-          posts={sortedPosts.slice(0, 5)}
-          tags={uniqueTags.slice(0, 8)}
           socialLinks={SOCIALS}
           hasNewPosts={hasNewPosts}
         />
