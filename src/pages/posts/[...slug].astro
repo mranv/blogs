@@ -35,10 +35,10 @@ const jsonLd = {
 	keywords: entry.data.tags,
 	author: {
 		"@type": "Person",
-		name: profileConfig.name,
+		name: entry.data.author || profileConfig.name,
 		url: Astro.site,
 	},
-	datePublished: formatDateToYYYYMMDD(entry.data.published),
+	datePublished: formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published),
 	inLanguage: entry.data.lang
 		? entry.data.lang.replace("_", "-")
 		: siteConfig.lang.replace("_", "-"),
@@ -87,10 +87,11 @@ const jsonLd = {
             <div class="onload-animation">
                 <PostMetadata
                         class="mb-5"
-                        published={entry.data.published}
-                        updated={entry.data.updated}
+                        published={entry.data.pubDatetime || entry.data.published}
+                        updated={entry.data.modDatetime || entry.data.updated}
                         tags={entry.data.tags}
                         category={entry.data.category}
+                        author={entry.data.author}
                 ></PostMetadata>
                 {!entry.data.image && <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5"></div>}
             </div>
@@ -106,7 +107,7 @@ const jsonLd = {
                 <Content />
             </Markdown>
 
-            {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
+            {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.pubDatetime || entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
         </div>
     </div>

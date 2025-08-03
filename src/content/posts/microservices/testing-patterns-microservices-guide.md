@@ -17,9 +17,7 @@ tags:
     "integration-testing",
     "contract-testing",
   ]
-image:
-  src: "./microservices-testing-patterns.jpg"
-  alt: "Microservices Testing Patterns Architecture Diagram"
+image: "./microservices-testing-patterns.jpg"
 category: "Testing"
 draft: false
 ---

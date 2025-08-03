@@ -28,7 +28,7 @@ export async function GET(context: APIContext) {
 			const cleanedContent = stripInvalidXmlChars(content);
 			return {
 				title: post.data.title,
-				pubDate: post.data.published,
+				pubDate: post.data.pubDatetime || post.data.published,
 				description: post.data.description || "",
 				link: `/posts/${post.slug}/`,
 				content: sanitizeHtml(parser.render(cleanedContent), {
