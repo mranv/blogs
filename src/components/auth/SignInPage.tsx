@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Mail,
   Lock,
@@ -12,6 +12,8 @@ import {
   Cloud,
   ShieldCheck,
   Github,
+  Moon,
+  Sun,
 } from "lucide-react";
 import { cn } from "@utils/cn";
 
@@ -23,6 +25,26 @@ export default function SignInPage() {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState({ text: "", type: "" });
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    // Check for saved theme preference or default to light
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+
+    setTheme(initialTheme);
+    document.documentElement.setAttribute("data-theme", initialTheme);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,6 +113,19 @@ export default function SignInPage() {
 
   return (
     <div className="auth-container">
+      {/* Theme toggle button */}
+      <button
+        onClick={toggleTheme}
+        className="auth-theme-toggle"
+        aria-label="Toggle theme"
+      >
+        {theme === "light" ? (
+          <Moon className="h-5 w-5" />
+        ) : (
+          <Sun className="h-5 w-5" />
+        )}
+      </button>
+
       {/* Background gradient using theme colors */}
       <div className="auth-background-gradient"></div>
 
@@ -99,33 +134,33 @@ export default function SignInPage() {
           {/* Left Side - Brand Section */}
           <div className="auth-brand-side">
             <div>
-              <div className="mb-12 text-lg font-semibold uppercase text-primary">
-                PixelForge Studio
+              <div className="mb-12 text-lg font-semibold uppercase auth-brand-name">
+                Anubhav Gain
               </div>
               <h1 className="mb-4 text-6xl font-medium text-foreground">
-                Create, Design, and Innovate
+                Oh Look, Another Blog
               </h1>
               <p className="mb-12 text-xl text-muted-foreground">
-                Join thousands of creators who trust PixelForge Studio to bring
-                their vision to life
+                Because the internet desperately needed one more developer's hot
+                takes
               </p>
 
               <div className="space-y-6">
                 {[
                   {
                     icon: <Palette size={16} />,
-                    title: "Advanced Design Tools",
-                    desc: "Professional-grade tools for every project",
+                    title: "Thoughtful Content",
+                    desc: "In-depth articles on technology and development",
                   },
                   {
                     icon: <Users size={16} />,
-                    title: "Team Collaboration",
-                    desc: "Work together seamlessly in real-time",
+                    title: "Community Engagement",
+                    desc: "Connect and discuss ideas with fellow readers",
                   },
                   {
                     icon: <Cloud size={16} />,
-                    title: "Cloud Storage",
-                    desc: "Access your projects from anywhere",
+                    title: "Regular Updates",
+                    desc: "Fresh content delivered consistently",
                   },
                   {
                     icon: <ShieldCheck size={16} />,
