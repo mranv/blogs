@@ -47,11 +47,11 @@ const {
         .then(() => {
           const originalText = button.textContent;
           button.textContent = "Copied!";
-          button.style.backgroundColor = "#10b981"; // green color
+          button.style.backgroundColor = "hsl(var(--chart-3))"; // success color
 
           setTimeout(() => {
             button.textContent = originalText;
-            button.style.backgroundColor = "#1fcdfc"; // original color
+            button.style.backgroundColor = "hsl(var(--primary))"; // original color
           }, 2000);
         })
         .catch(err => {
@@ -60,4 +60,3 @@ const {
     }
   }
 </script>
-

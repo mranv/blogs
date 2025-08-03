@@ -81,8 +81,8 @@ export default function CodeBlockDemo() {
         &nbsp;&nbsp;background:{" "}
         <span className="code-function">linear-gradient</span>(
         <span className="code-number">45deg</span>,{" "}
-        <span className="code-string">#667eea</span>,{" "}
-        <span className="code-string">#764ba2</span>);
+        <span className="code-string">hsl(var(--chart-2))</span>,{" "}
+        <span className="code-string">hsl(var(--chart-1))</span>);
         <br />
         &nbsp;&nbsp;border: <span className="code-number">none</span>;
         <br />

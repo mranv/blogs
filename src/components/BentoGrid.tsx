@@ -62,7 +62,7 @@ const itemsSample: BentoItem[] = [
     icon: <Cloud className="text-primary h-4 w-4" />,
     status: "Essential",
     tags: ["IaC", "Multi-Cloud", "Automation"],
-    gradient: "from-blue-500/20 to-purple-500/20",
+    gradient: "from-primary/20 to-chart-2/20",
   },
   {
     title: "DevOps Automation",
@@ -80,7 +80,7 @@ const itemsSample: BentoItem[] = [
     icon: <Container className="text-primary h-4 w-4" />,
     meta: "Production Ready",
     tags: ["K8s", "Security", "Operators"],
-    gradient: "from-indigo-500/20 to-blue-500/20",
+    gradient: "from-chart-3/20 to-primary/20",
   },
   {
     title: "eBPF Monitoring",

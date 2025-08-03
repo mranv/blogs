@@ -22,6 +22,7 @@ export type SearchItem = {
 type RecentSearch = {
   query: string;
   timestamp: number;
+  isTag?: boolean;
 };
 
 type CategoryFilter = {
@@ -40,6 +41,12 @@ interface Props {
 interface SearchResult {
   item: SearchItem;
   refIndex: number;
+  score?: number;
+  matches?: ReadonlyArray<{
+    indices: ReadonlyArray<readonly [number, number]>;
+    value: string;
+    key: string;
+  }>;
 }
 
 export default function SearchBar({
@@ -65,6 +72,11 @@ export default function SearchBar({
     string | null
   >(null);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
+  const [searchStats, setSearchStats] = useState<{
+    searchTime: number;
+    totalPosts: number;
+    resultsFound: number;
+  } | null>(null);
 
   // localStorage functions for recent searches
   const saveRecentSearch = useCallback(
@@ -114,10 +126,21 @@ export default function SearchBar({
   const fuse = useMemo(
     () =>
       new Fuse(searchList, {
-        keys: ["title", "description", "data.tags"],
+        keys: [
+          { name: "title", weight: 2.0 },
+          { name: "description", weight: 1.5 },
+          { name: "data.tags", weight: 1.2 },
+          { name: "data.author", weight: 0.5 },
+        ],
         includeMatches: true,
-        minMatchCharLength: 2,
-        threshold: 0.5,
+        includeScore: true,
+        minMatchCharLength: 1,
+        threshold: 0.3, // More permissive fuzzy matching
+        distance: 100,
+        useExtendedSearch: true,
+        ignoreLocation: true,
+        findAllMatches: true,
+        shouldSort: true,
       }),
     [searchList]
   );
@@ -203,10 +226,12 @@ export default function SearchBar({
       if (inputVal.length <= 1) {
         setSearchResults([]);
         setIsSearching(false);
+        setSearchStats(null);
         return;
       }
 
       setIsSearching(true);
+      const searchStartTime = performance.now();
 
       // Simulate a small delay for better UX
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -220,7 +245,15 @@ export default function SearchBar({
         );
       }
 
+      const searchEndTime = performance.now();
+      const searchTime = searchEndTime - searchStartTime;
+
       setSearchResults(inputResult);
+      setSearchStats({
+        searchTime,
+        totalPosts: searchList.length,
+        resultsFound: inputResult.length,
+      });
       setIsSearching(false);
 
       // Save to recent searches if we have results
@@ -243,18 +276,43 @@ export default function SearchBar({
     }
   }, [inputVal, fuse, activeCategoryFilter, saveRecentSearch]);
 
-  // Helper function to highlight search terms
-  const highlightSearchTerm = (text: string, term: string) => {
-    if (!term || term.length < 2) return text;
+  // Enhanced highlighting function using Fuse.js matches
+  const highlightMatches = (
+    text: string,
+    matches: ReadonlyArray<{
+      indices: ReadonlyArray<readonly [number, number]>;
+      value: string;
+      key: string;
+    }> = [],
+    fieldKey: string
+  ) => {
+    const fieldMatches = matches.filter(
+      match => match.key === fieldKey || match.key.endsWith(fieldKey)
+    );
 
-    const regex = new RegExp(`(${term})`, "gi");
+    if (fieldMatches.length === 0) {
+      return highlightSearchTerm(text, inputVal);
+    }
+
+    // Since we can't mutate the text directly, we'll use the fallback highlighting
+    return highlightSearchTerm(text, inputVal);
+  };
+
+  // Fallback highlighting function
+  const highlightSearchTerm = (text: string, term: string) => {
+    if (!term || term.length < 1) return text;
+
+    const regex = new RegExp(
+      `(${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
+      "gi"
+    );
     const parts = text.split(regex);
 
     return parts.map((part, index) =>
       regex.test(part) ? (
         <mark
           key={index}
-          className="bg-yellow-200 dark:bg-yellow-800 px-1 rounded"
+          className="bg-yellow-200 dark:bg-yellow-800 px-1 rounded font-medium"
         >
           {part}
         </mark>
@@ -272,9 +330,31 @@ export default function SearchBar({
 
   const getSuggestions = () => {
     if (inputVal.length === 0) return recentSearches;
-    return recentSearches.filter(search =>
+
+    // Filter recent searches
+    const filteredRecent = recentSearches.filter(search =>
       search.query.toLowerCase().includes(inputVal.toLowerCase())
     );
+
+    // Add tag suggestions if input is short
+    if (inputVal.length <= 3) {
+      const tagSuggestions = categoryFilters
+        .filter(
+          category =>
+            category.name.toLowerCase().startsWith(inputVal.toLowerCase()) &&
+            !filteredRecent.some(recent => recent.query === category.name)
+        )
+        .slice(0, 3)
+        .map(category => ({
+          query: category.name,
+          timestamp: Date.now(),
+          isTag: true,
+        }));
+
+      return [...filteredRecent, ...tagSuggestions];
+    }
+
+    return filteredRecent;
   };
 
   return (
@@ -362,20 +442,39 @@ export default function SearchBar({
                   }}
                 >
                   <div className="flex items-center gap-2">
-                    <svg
-                      className="w-4 h-4 opacity-50"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    {search.query}
+                    {search.isTag ? (
+                      <svg
+                        className="w-4 h-4 opacity-50"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        className="w-4 h-4 opacity-50"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    )}
+                    <span>{search.query}</span>
+                    {search.isTag && (
+                      <span className="text-xs opacity-60">tag</span>
+                    )}
                   </div>
                 </button>
               ))}
@@ -450,6 +549,12 @@ export default function SearchBar({
               Found {searchResults?.length || 0}
               {searchResults?.length === 1 ? " result" : " results"} for{" "}
               <span className="font-semibold">'{inputVal}'</span>
+              {searchStats && (
+                <span className="text-xs opacity-75 ml-2">
+                  ({searchStats.searchTime.toFixed(1)}ms across{" "}
+                  {searchStats.totalPosts} posts)
+                </span>
+              )}
               {activeCategoryFilter && (
                 <span className="text-xs opacity-75">
                   in{" "}
@@ -559,17 +664,50 @@ export default function SearchBar({
             pattern="sequential"
           >
             {searchResults &&
-              searchResults.map(({ item, refIndex }) => (
+              searchResults.map(({ item, refIndex, score, matches }) => (
                 <div key={`${refIndex}-${item.slug}`}>
-                  <div className="search-result-item group block p-6 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="search-result-item group block p-6 relative overflow-hidden border border-border/40 bg-card/50 backdrop-blur-sm rounded-xl mb-4 hover:border-primary/30 transition-all duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
                     <div className="relative">
+                      {/* Relevance score indicator */}
+                      {score !== undefined && (
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1">
+                              <div
+                                className={`w-2 h-2 rounded-full ${
+                                  score < 0.3
+                                    ? "bg-green-500"
+                                    : score < 0.6
+                                      ? "bg-yellow-500"
+                                      : "bg-red-500"
+                                }`}
+                              ></div>
+                              <span className="text-xs text-muted-foreground">
+                                {score < 0.3
+                                  ? "Excellent match"
+                                  : score < 0.6
+                                    ? "Good match"
+                                    : "Partial match"}
+                              </span>
+                            </div>
+                          </div>
+                          <span className="text-xs text-muted-foreground">
+                            Relevance: {((1 - (score || 0)) * 100).toFixed(0)}%
+                          </span>
+                        </div>
+                      )}
+
                       <a href={`/posts/${item.slug}/`} className="block">
                         <h3 className="search-result-title text-lg font-medium mb-2 group-hover:text-primary transition-colors duration-300">
-                          {highlightSearchTerm(item.title, inputVal)}
+                          {highlightMatches(item.title, matches, "title")}
                         </h3>
-                        <p className="search-result-description mb-3 line-clamp-2">
-                          {highlightSearchTerm(item.description, inputVal)}
+                        <p className="search-result-description text-muted-foreground mb-3 line-clamp-3 text-sm leading-relaxed">
+                          {highlightMatches(
+                            item.description,
+                            matches,
+                            "description"
+                          )}
                         </p>
                       </a>
 

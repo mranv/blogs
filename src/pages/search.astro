@@ -4,7 +4,7 @@ import { SITE } from "@config";
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
-import SearchBar from "@components/SearchReact";
+import SearchBar from "@components/Search";
 import getSortedPosts from "@utils/getSortedPosts";
 
 // Retrieve all published articles
@@ -31,10 +31,15 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
     }
   </script>
 
-  <!-- Custom full-screen layout for animated chat -->
-  <div class="min-h-screen">
-    <SearchBar client:load searchList={searchList} />
-  </div>
+  <!-- Search interface -->
+  <main class="main-wrapper">
+    <div class="container mx-auto px-4 py-8">
+      <div class="prose max-w-none">
+        <h1 class="text-3xl font-bold mb-6">Search Articles</h1>
+        <SearchBar client:load searchList={searchList} />
+      </div>
+    </div>
+  </main>
 
   <Footer />
 </Layout>

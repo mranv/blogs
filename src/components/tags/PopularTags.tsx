@@ -124,7 +124,7 @@ export function PopularTags({
                     <span className="text-muted-foreground">{tag.count}</span>
                     <button
                       onClick={() => handleTagClick(tag)}
-                      className="text-orange-600 hover:text-orange-700 font-medium transition-colors"
+                      className="text-chart-1 hover:text-chart-1/80 font-medium transition-colors"
                       title={`View ${tag.tagName} posts`}
                     >
                       →

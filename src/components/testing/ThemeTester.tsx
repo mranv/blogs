@@ -29,8 +29,8 @@ const defaultThemes: ThemeVariant[] = [
     className: "",
     description: "Default light theme with bright backgrounds",
     expectedStyles: {
-      backgroundColor: "rgb(255, 255, 255)",
-      color: "rgb(0, 0, 0)",
+      backgroundColor: "hsl(var(--background))",
+      color: "hsl(var(--foreground))",
     },
   },
   {
@@ -38,8 +38,8 @@ const defaultThemes: ThemeVariant[] = [
     className: "dark",
     description: "Dark theme with dark backgrounds and light text",
     expectedStyles: {
-      backgroundColor: "rgb(17, 24, 39)",
-      color: "rgb(255, 255, 255)",
+      backgroundColor: "hsl(var(--background))",
+      color: "hsl(var(--foreground))",
     },
   },
 ];
@@ -329,28 +329,28 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
   const getSeverityColor = (severity: ThemeIssue["severity"]) => {
     switch (severity) {
       case "error":
-        return "bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-200";
+        return "bg-destructive/10 border-destructive/20 text-destructive";
       case "warning":
-        return "bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-200";
+        return "bg-chart-1/10 border-chart-1/20 text-chart-1";
       case "info":
-        return "bg-primary/10 border-primary/20 text-primary dark:bg-primary/20 dark:border-primary/40 dark:text-primary/80";
+        return "bg-primary/10 border-primary/20 text-primary";
       default:
-        return "bg-gray-50 border-gray-200 text-gray-800 dark:bg-gray-900/20 dark:border-gray-800 dark:text-gray-200";
+        return "bg-muted border-border text-muted-foreground";
     }
   };
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return "text-green-600";
-    if (score >= 60) return "text-yellow-600";
-    return "text-red-600";
+    if (score >= 80) return "text-chart-3";
+    if (score >= 60) return "text-chart-1";
+    return "text-destructive";
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+    <div className="bg-background border border-border rounded-lg overflow-hidden">
       {/* Header */}
-      <div className="bg-gray-50 dark:bg-gray-800 px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-muted px-6 py-4 border-b border-border">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="text-lg font-semibold text-foreground">
             Theme Tester
           </h3>
           <div className="flex items-center space-x-3">
@@ -359,7 +359,7 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
               onChange={e =>
                 setPreviewMode(e.target.value as "split" | "single")
               }
-              className="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              className="px-3 py-1 text-sm border border-border rounded bg-background text-foreground"
             >
               <option value="single">Single Theme</option>
               <option value="split">Split View</option>
@@ -373,7 +373,7 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
             <button
               onClick={runAllThemeTests}
               disabled={isTestingAll}
-              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
+              className="px-4 py-2 bg-chart-3 text-white rounded hover:bg-chart-3/90 disabled:opacity-50"
             >
               {isTestingAll ? "Testing..." : "Test All Themes"}
             </button>
@@ -382,7 +382,7 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
       </div>
 
       {/* Theme Selector */}
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="px-6 py-4 border-b border-border">
         <div className="flex flex-wrap gap-2">
           {themes.map((theme, index) => (
             <button
@@ -390,8 +390,8 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
               onClick={() => setCurrentTheme(theme)}
               className={`px-4 py-2 text-sm rounded-md border transition-colors ${
                 currentTheme.name === theme.name
-                  ? "bg-primary/10 border-primary/30 text-primary dark:bg-primary/30 dark:border-primary/60 dark:text-primary/80"
-                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                  ? "bg-primary/10 border-primary/30 text-primary"
+                  : "bg-background text-muted-foreground border-border hover:bg-muted"
               }`}
             >
               <div className="font-medium">{theme.name}</div>
@@ -403,31 +403,25 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
 
       {/* Test Results Summary */}
       {testResults.length > 0 && (
-        <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="px-6 py-4 border-b border-border">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div>
               <div className="text-2xl font-bold text-primary">
                 {testResults.length}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Themes Tested
-              </div>
+              <div className="text-sm text-muted-foreground">Themes Tested</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-chart-3">
                 {testResults.filter(r => r.passed).length}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Passed
-              </div>
+              <div className="text-sm text-muted-foreground">Passed</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-red-600">
+              <div className="text-2xl font-bold text-destructive">
                 {testResults.filter(r => !r.passed).length}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Failed
-              </div>
+              <div className="text-sm text-muted-foreground">Failed</div>
             </div>
             <div>
               <div
@@ -441,9 +435,7 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
                     testResults.length
                 )}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Avg Score
-              </div>
+              <div className="text-sm text-muted-foreground">Avg Score</div>
             </div>
           </div>
         </div>
@@ -451,14 +443,14 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
 
       {/* Theme Preview */}
       <div className="p-6">
-        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+        <h4 className="text-sm font-medium text-muted-foreground mb-3">
           Theme Preview
         </h4>
 
         {previewMode === "single" ? (
           <div
             ref={containerRef}
-            className={`theme-test-container bg-gray-50 dark:bg-gray-800 p-6 rounded border transition-all duration-300 ${currentTheme.className}`}
+            className={`theme-test-container bg-muted p-6 rounded border transition-all duration-300 ${currentTheme.className}`}
           >
             {children}
           </div>
@@ -466,11 +458,11 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {themes.map((theme, index) => (
               <div key={index} className="space-y-2">
-                <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                <div className="text-sm font-medium text-muted-foreground">
                   {theme.name}
                 </div>
                 <div
-                  className={`theme-test-container bg-gray-50 dark:bg-gray-800 p-4 rounded border transition-all duration-300 ${theme.className}`}
+                  className={`theme-test-container bg-muted p-4 rounded border transition-all duration-300 ${theme.className}`}
                 >
                   {children}
                 </div>
@@ -482,27 +474,24 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
 
       {/* Detailed Results */}
       {testResults.length > 0 && (
-        <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
-          <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+        <div className="px-6 py-4 border-t border-border">
+          <h4 className="text-lg font-medium text-foreground mb-4">
             Test Results
           </h4>
 
           <div className="space-y-6">
             {testResults.map((result, index) => (
-              <div
-                key={index}
-                className="border border-gray-200 dark:border-gray-700 rounded-lg p-4"
-              >
+              <div key={index} className="border border-border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-4">
-                  <h5 className="text-md font-medium text-gray-900 dark:text-white">
+                  <h5 className="text-md font-medium text-foreground">
                     {result.theme}
                   </h5>
                   <div className="flex items-center space-x-3">
                     <span
                       className={`px-3 py-1 text-sm rounded-full font-medium ${
                         result.passed
-                          ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
-                          : "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100"
+                          ? "bg-chart-3/20 text-chart-3"
+                          : "bg-destructive/20 text-destructive"
                       }`}
                     >
                       {result.passed ? "PASS" : "FAIL"}
@@ -525,7 +514,7 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
 
                       return (
                         <div key={severity}>
-                          <h6 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2 capitalize">
+                          <h6 className="text-sm font-medium text-foreground mb-2 capitalize">
                             {severity}s ({severityIssues.length})
                           </h6>
                           <div className="space-y-2">
@@ -538,7 +527,7 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
                                   <span className="font-medium">
                                     {issue.category}
                                   </span>
-                                  <span className="text-xs px-2 py-1 rounded bg-white/50 dark:bg-black/20">
+                                  <span className="text-xs px-2 py-1 rounded bg-background/50">
                                     {issue.element}
                                   </span>
                                 </div>
@@ -556,7 +545,7 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
                     })}
                   </div>
                 ) : (
-                  <div className="text-center py-4 text-green-600 dark:text-green-400">
+                  <div className="text-center py-4 text-chart-3">
                     <div className="text-2xl mb-2">✓</div>
                     <p>All theme tests passed successfully!</p>
                   </div>
@@ -568,12 +557,12 @@ const ThemeTester: React.FC<ThemeTesterProps> = ({
       )}
 
       {/* Configuration */}
-      <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+      <div className="px-6 py-4 border-t border-border bg-muted">
         <details className="text-sm">
-          <summary className="font-medium text-gray-700 dark:text-gray-300 cursor-pointer">
+          <summary className="font-medium text-muted-foreground cursor-pointer">
             Test Configuration
           </summary>
-          <div className="mt-3 space-y-2 text-gray-600 dark:text-gray-400">
+          <div className="mt-3 space-y-2 text-muted-foreground">
             <p>
               • Color Contrast Testing:{" "}
               {testColorContrast ? "Enabled" : "Disabled"}

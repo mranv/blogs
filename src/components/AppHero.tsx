@@ -126,7 +126,13 @@ export default function AppHero() {
 
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center overflow-hidden bg-black py-16 text-white sm:px-6 lg:px-8 lg:py-2">
-      <div className="absolute inset-0 z-0 h-full w-full rotate-180 items-center px-5 py-24 opacity-80 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
+      <div
+        className="absolute inset-0 z-0 h-full w-full rotate-180 items-center px-5 py-24 opacity-80"
+        style={{
+          background:
+            "radial-gradient(125% 125% at 50% 10%, hsl(var(--background)) 40%, hsl(var(--primary)) 100%)",
+        }}
+      ></div>
       <svg
         id="noice"
         className="absolute inset-0 z-10 h-full w-full opacity-30"
@@ -165,7 +171,10 @@ export default function AppHero() {
 
         {/* Enhanced glow spots */}
         <div className="absolute top-20 -left-20 h-60 w-60 rounded-full bg-purple-600/20 blur-[100px]"></div>
-        <div className="absolute -right-20 bottom-20 h-60 w-60 rounded-full bg-blue-600/20 blur-[100px]"></div>
+        <div
+          className="absolute -right-20 bottom-20 h-60 w-60 rounded-full blur-[100px]"
+          style={{ backgroundColor: "hsl(var(--primary) / 0.2)" }}
+        ></div>
         <motion.div
           animate={glowAnimation}
           className="absolute top-1/3 left-1/4 h-40 w-40 rounded-full bg-indigo-500/10 blur-[80px]"
@@ -204,7 +213,8 @@ export default function AppHero() {
         <img
           src="https://blocks.mvp-subha.me/Adobe Express - file(1).png"
           alt="Nexus Platform 3D Visualization"
-          className="h-full w-full object-contain drop-shadow-[0_0_35px_#3358ea85] transition-all duration-1000 hover:scale-110"
+          className="h-full w-full object-contain transition-all duration-1000 hover:scale-110"
+          style={{ filter: "drop-shadow(0 0 35px hsl(var(--primary) / 0.5))" }}
         />
         <motion.div
           variants={tooltipVariants}
@@ -220,11 +230,18 @@ export default function AppHero() {
 
         <motion.div
           variants={tooltipVariants}
-          className="absolute top-1/2 -right-4 rounded-lg border border-blue-500/30 bg-black/80 p-2 backdrop-blur-md lg:-right-24"
+          className="absolute top-1/2 -right-4 rounded-lg border bg-black/80 p-2 backdrop-blur-md lg:-right-24"
+          style={{ borderColor: "hsl(var(--primary) / 0.3)" }}
         >
           <div className="flex items-center gap-2">
-            <Database className="h-4 w-4 text-blue-400" />
-            <span className="text-xs font-medium text-blue-200">
+            <Database
+              className="h-4 w-4"
+              style={{ color: "hsl(var(--primary))" }}
+            />
+            <span
+              className="text-xs font-medium"
+              style={{ color: "hsl(var(--primary) / 0.8)" }}
+            >
               Decentralized Storage
             </span>
           </div>
@@ -267,7 +284,16 @@ export default function AppHero() {
               className="mb-6 bg-gradient-to-r from-white/70 via-white to-slate-500/80 bg-clip-text text-3xl leading-tight text-transparent sm:text-4xl md:text-5xl lg:text-6xl"
             >
               The Bridge Between <br className="hidden sm:inline" />
-              <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <span
+                className="bg-gradient-to-r from-primary via-primary to-chart-2 bg-clip-text text-transparent"
+                style={{
+                  background:
+                    "linear-gradient(to right, hsl(var(--primary)), hsl(var(--chart-2)), hsl(var(--primary)))",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
                 AI and Web3
               </span>
             </motion.h1>
@@ -283,7 +309,10 @@ export default function AppHero() {
                 </p>
                 <p className="text-xs text-gray-400">Active Users</p>
               </div>
-              <div className="rounded-lg border border-blue-500/20 bg-black/40 px-4 py-2 backdrop-blur-sm">
+              <div
+                className="rounded-lg border bg-black/40 px-4 py-2 backdrop-blur-sm"
+                style={{ borderColor: "hsl(var(--primary) / 0.2)" }}
+              >
                 <p className="text-2xl font-bold text-white">
                   {stats.transactions.toLocaleString()}+
                 </p>
@@ -306,7 +335,10 @@ export default function AppHero() {
                 Integrates with:
               </span>
               <div className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all hover:bg-purple-950">
-                <div className="h-2 w-2 rounded-full bg-blue-400"></div>
+                <div
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: "hsl(var(--primary))" }}
+                ></div>
                 Ethereum
               </div>
               <div className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all hover:bg-purple-950">
@@ -365,7 +397,13 @@ export default function AppHero() {
                     key={i}
                     className="h-6 w-6 overflow-hidden rounded-full border-2 border-slate-900 bg-slate-800"
                   >
-                    <div className="h-full w-full bg-gradient-to-br from-purple-500 to-blue-600 opacity-80"></div>
+                    <div
+                      className="h-full w-full opacity-80"
+                      style={{
+                        background:
+                          "linear-gradient(to bottom right, hsl(var(--chart-2)), hsl(var(--primary)))",
+                      }}
+                    ></div>
                   </div>
                 ))}
               </div>

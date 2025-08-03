@@ -20,7 +20,7 @@ export const SparklesCore: React.FC<SparklesCoreProps> = ({
   maxSize = 1.4,
   particleDensity = 500,
   className = "",
-  particleColor = "#e60a64",
+  particleColor = "hsl(var(--primary))",
 }) => {
   const { theme } = useTheme();
 

@@ -181,9 +181,9 @@ export const tagCloudStyles = `
   
   .tag-cloud--professional {
     background: linear-gradient(135deg, 
-      rgba(37, 99, 235, 0.05) 0%, 
-      rgba(59, 130, 246, 0.03) 50%, 
-      rgba(96, 165, 250, 0.02) 100%);
+      hsl(var(--primary) / 0.05) 0%, 
+      hsl(var(--primary) / 0.03) 50%, 
+      hsl(var(--primary) / 0.02) 100%);
   }
   
     .tag-cloud--rainbow .rainbow-tag-0 { --tag-color: hsl(var(--destructive)); }

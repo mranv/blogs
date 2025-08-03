@@ -21,8 +21,8 @@ import SignInPage from "@components/auth/SignInPage";
     height: 48px !important;
     border-radius: 50% !important;
     background: rgba(255, 255, 255, 0.95) !important;
-    border: 2px solid #e97435 !important;
-    color: #e97435 !important;
+    border: 2px solid hsl(var(--primary)) !important;
+    color: hsl(var(--primary)) !important;
     cursor: pointer !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     box-shadow:
@@ -34,7 +34,7 @@ import SignInPage from "@components/auth/SignInPage";
   .auth-theme-toggle:hover {
     transform: scale(1.1) !important;
     background: rgba(233, 116, 53, 0.1) !important;
-    border-color: #e97435 !important;
+    border-color: hsl(var(--primary)) !important;
     box-shadow:
       0 6px 20px rgba(233, 116, 53, 0.4),
       0 0 0 3px rgba(233, 116, 53, 0.2) !important;
@@ -42,8 +42,8 @@ import SignInPage from "@components/auth/SignInPage";
 
   html[data-theme="dark"] .auth-theme-toggle {
     background: rgba(0, 0, 0, 0.8) !important;
-    border-color: #f5935b !important;
-    color: #f5935b !important;
+    border-color: hsl(var(--primary) / 0.8) !important;
+    color: hsl(var(--primary) / 0.8) !important;
     box-shadow:
       0 4px 12px rgba(0, 0, 0, 0.4),
       0 0 0 1px rgba(245, 147, 91, 0.2) !important;
@@ -51,7 +51,7 @@ import SignInPage from "@components/auth/SignInPage";
 
   html[data-theme="dark"] .auth-theme-toggle:hover {
     background: rgba(245, 147, 91, 0.2) !important;
-    border-color: #f5935b !important;
+    border-color: hsl(var(--primary) / 0.8) !important;
     box-shadow:
       0 6px 20px rgba(245, 147, 91, 0.5),
       0 0 0 3px rgba(245, 147, 91, 0.3) !important;

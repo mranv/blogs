@@ -80,21 +80,21 @@ const TAG_CATEGORIES: Record<string, TagCategory> = {
   "artificial-intelligence": "ai-ml",
 };
 
-// Cybersecurity color scheme
+// Claude theme color scheme
 const CYBERSECURITY_COLORS: Record<TagCategory, string> = {
-  security: "#dc2626", // Red
-  compliance: "#7c3aed", // Purple
-  technology: "hsl(var(--primary))", // Primary theme color
-  tools: "#059669", // Green
-  infrastructure: "#ea580c", // Orange
-  development: "#0891b2", // Cyan
-  rust: "#f97316", // Orange
-  kubernetes: "hsl(var(--primary))", // Primary theme color
-  monitoring: "#84cc16", // Lime
-  automation: "#8b5cf6", // Violet
-  networking: "#06b6d4", // Cyan
-  "ai-ml": "#ec4899", // Pink
-  general: "#6b7280", // Gray
+  security: "hsl(var(--destructive))",
+  compliance: "hsl(var(--chart-2))",
+  technology: "hsl(var(--primary))",
+  tools: "hsl(var(--chart-3))",
+  infrastructure: "hsl(var(--chart-1))",
+  development: "hsl(var(--primary))",
+  rust: "hsl(var(--chart-1))",
+  kubernetes: "hsl(var(--primary))",
+  monitoring: "hsl(var(--chart-4))",
+  automation: "hsl(var(--chart-2))",
+  networking: "hsl(var(--primary))",
+  "ai-ml": "hsl(var(--chart-5))",
+  general: "hsl(var(--muted-foreground))",
 };
 
 export function categorizeTag(tagName: string): TagCategory {

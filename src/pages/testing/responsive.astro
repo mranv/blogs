@@ -25,15 +25,13 @@ const pageDescription =
     pageDesc="Comprehensive responsive design validation across all device breakpoints and orientations"
   >
     <!-- Testing Controls -->
-    <section
-      class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6 mb-8"
-    >
+    <section class="bg-background rounded-lg border border-border p-6 mb-8">
       <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
         <div>
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+          <h2 class="text-xl font-semibold text-foreground mb-2">
             Responsive Testing Controls
           </h2>
-          <p class="text-gray-600 dark:text-gray-400">
+          <p class="text-muted-foreground">
             Test component responsiveness across different screen sizes and
             orientations
           </p>
@@ -41,19 +39,19 @@ const pageDescription =
         <div class="flex flex-wrap gap-3">
           <button
             id="test-mobile"
-            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+            class="px-4 py-2 bg-destructive text-white rounded hover:bg-destructive/90 transition-colors"
           >
             Mobile View
           </button>
           <button
             id="test-tablet"
-            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition-colors"
+            class="px-4 py-2 bg-chart-1 text-white rounded hover:bg-chart-1/90 transition-colors"
           >
             Tablet View
           </button>
           <button
             id="test-desktop"
-            class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+            class="px-4 py-2 bg-chart-3 text-white rounded hover:bg-chart-3/90 transition-colors"
           >
             Desktop View
           </button>
@@ -74,21 +72,21 @@ const pageDescription =
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="p-4 bg-white dark:bg-gray-900 rounded border">
-          <div class="text-sm font-medium text-red-600">Mobile</div>
+          <div class="text-sm font-medium text-destructive">Mobile</div>
           <div class="text-xs text-gray-600 dark:text-gray-400">
             320px - 767px
           </div>
           <div class="text-xs text-gray-500">Phones, small devices</div>
         </div>
         <div class="p-4 bg-white dark:bg-gray-900 rounded border">
-          <div class="text-sm font-medium text-yellow-600">Tablet</div>
+          <div class="text-sm font-medium text-chart-1">Tablet</div>
           <div class="text-xs text-gray-600 dark:text-gray-400">
             768px - 1023px
           </div>
           <div class="text-xs text-gray-500">Tablets, small laptops</div>
         </div>
         <div class="p-4 bg-white dark:bg-gray-900 rounded border">
-          <div class="text-sm font-medium text-green-600">Desktop</div>
+          <div class="text-sm font-medium text-chart-3">Desktop</div>
           <div class="text-xs text-gray-600 dark:text-gray-400">
             1024px - 1279px
           </div>
@@ -164,7 +162,7 @@ const pageDescription =
                   <!-- Sample Code Block -->
                   <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
                     <pre
-                      class="text-green-400 text-sm"><code>{`// Sample code block
+                      class="text-chart-3 text-sm"><code>{`// Sample code block
 function responsiveComponent() {
   const [viewport, setViewport] = useState('desktop');
   
@@ -247,7 +245,7 @@ function responsiveComponent() {
                       responsive
                     </span>
                     <span
-                      class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 text-sm rounded-full"
+                      class="px-3 py-1 bg-chart-3/10 text-chart-3 text-sm rounded-full"
                     >
                       design
                     </span>
@@ -664,7 +662,7 @@ function responsiveComponent() {
                 "div",
                 {
                   key: "card2",
-                  className: "p-4 bg-green-100 dark:bg-green-900/30 rounded-lg",
+                  className: "p-4 bg-chart-3/10 rounded-lg",
                 },
                 "Card 2"
               ),
@@ -769,27 +767,27 @@ function responsiveComponent() {
       if (resultsContent) {
         resultsContent.innerHTML = `
           <div class="space-y-4">
-            <div class="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-              <h4 class="font-semibold text-green-800 dark:text-green-200 mb-2">
+            <div class="p-4 bg-chart-3/10 border border-chart-3/20 rounded-lg">
+              <h4 class="font-semibold text-chart-3 mb-2">
                 Running Comprehensive Breakpoint Tests
               </h4>
-              <p class="text-green-600 dark:text-green-300 text-sm">
+              <p class="text-chart-3/80 text-sm">
                 Testing all breakpoints: Mobile, Tablet, Desktop, and Large Desktop. 
                 Check the ResponsiveDesignChecker component above for detailed results.
               </p>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div class="text-center p-3 bg-red-100 dark:bg-red-900/20 rounded">
-                <div class="text-lg font-bold text-red-600">Mobile</div>
-                <div class="text-xs text-red-500">375×667</div>
+              <div class="text-center p-3 bg-destructive/10 rounded">
+                <div class="text-lg font-bold text-destructive">Mobile</div>
+                <div class="text-xs text-destructive/80">375×667</div>
               </div>
-              <div class="text-center p-3 bg-yellow-100 dark:bg-yellow-900/20 rounded">
-                <div class="text-lg font-bold text-yellow-600">Tablet</div>
-                <div class="text-xs text-yellow-500">768×1024</div>
+              <div class="text-center p-3 bg-chart-1/10 rounded">
+                <div class="text-lg font-bold text-chart-1">Tablet</div>
+                <div class="text-xs text-chart-1/80">768×1024</div>
               </div>
-              <div class="text-center p-3 bg-green-100 dark:bg-green-900/20 rounded">
-                <div class="text-lg font-bold text-green-600">Desktop</div>
-                <div class="text-xs text-green-500">1280×720</div>
+              <div class="text-center p-3 bg-chart-3/10 rounded">
+                <div class="text-lg font-bold text-chart-3">Desktop</div>
+                <div class="text-xs text-chart-3/80">1280×720</div>
               </div>
               <div class="text-center p-3 bg-primary/10 dark:bg-primary/20 rounded">
 <div class="text-lg font-bold text-primary">Large</div>
@@ -816,7 +814,7 @@ function responsiveComponent() {
     top: 0;
     right: 0;
     padding: 4px 8px;
-    background: rgba(59, 130, 246, 0.1);
+    background: hsl(var(--primary) / 0.1);
     font-size: 12px;
     color: hsl(var(--primary));
     border-radius: 0 0 0 4px;
@@ -826,8 +824,8 @@ function responsiveComponent() {
   @media (max-width: 767px) {
     .responsive-test-content::before {
       content: "Mobile";
-      background: rgba(239, 68, 68, 0.1);
-      color: #ef4444;
+      background: hsl(var(--destructive) / 0.1);
+      color: hsl(var(--destructive));
     }
   }
 
@@ -835,8 +833,8 @@ function responsiveComponent() {
   @media (min-width: 768px) and (max-width: 1023px) {
     .responsive-test-content::before {
       content: "Tablet";
-      background: rgba(245, 158, 11, 0.1);
-      color: #f59e0b;
+      background: hsl(var(--chart-1) / 0.1);
+      color: hsl(var(--chart-1));
     }
   }
 
@@ -844,8 +842,8 @@ function responsiveComponent() {
   @media (min-width: 1024px) {
     .responsive-test-content::before {
       content: "Desktop";
-      background: rgba(34, 197, 94, 0.1);
-      color: #22c55e;
+      background: hsl(var(--chart-3) / 0.1);
+      color: hsl(var(--chart-3));
     }
   }
 

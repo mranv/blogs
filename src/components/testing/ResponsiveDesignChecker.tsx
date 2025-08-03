@@ -96,7 +96,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
               margin: 0; 
               padding: 16px; 
               font-family: system-ui, -apple-system, sans-serif;
-              background: #f3f4f6;
+              background: hsl(var(--muted));
             }
             .dark body { background: #111827; }
             * { box-sizing: border-box; }
@@ -238,10 +238,11 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
   };
 
   const getBreakpointColor = (breakpoint: BreakpointTest) => {
-    if (breakpoint.width < 768) return "bg-red-100 text-red-800 border-red-300";
+    if (breakpoint.width < 768)
+      return "bg-destructive/10 text-destructive border-destructive/20";
     if (breakpoint.width < 1024)
-      return "bg-yellow-100 text-yellow-800 border-yellow-300";
-    return "bg-green-100 text-green-800 border-green-300";
+      return "bg-chart-1/10 text-chart-1 border-chart-1/20";
+    return "bg-chart-3/10 text-chart-3 border-chart-3/20";
   };
 
   const toggleOverlay = () => {
@@ -249,11 +250,11 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+    <div className="bg-background border border-border rounded-lg overflow-hidden">
       {/* Header */}
-      <div className="bg-gray-50 dark:bg-gray-800 px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-muted px-6 py-4 border-b border-border">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="text-lg font-semibold text-foreground">
             Responsive Design Checker
           </h3>
           <div className="flex items-center space-x-3">
@@ -262,7 +263,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
               className={`px-3 py-1 text-sm rounded ${
                 showOverlay
                   ? "bg-primary text-primary-foreground"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
               Grid Overlay
@@ -279,7 +280,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
       </div>
 
       {/* Breakpoint Selector */}
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="px-6 py-4 border-b border-border">
         <div className="flex flex-wrap gap-2">
           {customBreakpoints.map((breakpoint, index) => (
             <button
@@ -288,7 +289,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
               className={`px-3 py-2 text-sm rounded-md border transition-colors ${
                 currentBreakpoint.name === breakpoint.name
                   ? getBreakpointColor(breakpoint)
-                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                  : "bg-background text-muted-foreground border-border hover:bg-muted"
               }`}
             >
               <div className="font-medium">{breakpoint.name}</div>
@@ -301,16 +302,16 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
       </div>
 
       {/* Viewport Info */}
-      <div className="px-6 py-3 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <div className="px-6 py-3 bg-muted border-b border-border">
         <div className="flex items-center justify-between text-sm">
-          <div className="text-gray-600 dark:text-gray-400">
+          <div className="text-muted-foreground">
             Current:{" "}
-            <span className="font-medium text-gray-900 dark:text-white">
+            <span className="font-medium text-foreground">
               {currentBreakpoint.name}
             </span>{" "}
             - {currentBreakpoint.description}
           </div>
-          <div className="text-gray-600 dark:text-gray-400">
+          <div className="text-muted-foreground">
             {currentBreakpoint.width} × {currentBreakpoint.height} px
           </div>
         </div>
@@ -318,23 +319,19 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
 
       {/* Test Results Summary */}
       {testResults.length > 0 && (
-        <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="px-6 py-4 border-b border-border">
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-chart-3">
                 {testResults.filter(r => r.passed).length}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Passed
-              </div>
+              <div className="text-sm text-muted-foreground">Passed</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-red-600">
+              <div className="text-2xl font-bold text-destructive">
                 {testResults.filter(r => !r.passed).length}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Failed
-              </div>
+              <div className="text-sm text-muted-foreground">Failed</div>
             </div>
             <div>
               <div className="text-2xl font-bold text-primary">
@@ -345,9 +342,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
                 )}
                 %
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Success Rate
-              </div>
+              <div className="text-sm text-muted-foreground">Success Rate</div>
             </div>
           </div>
         </div>
@@ -360,8 +355,8 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
             className="absolute inset-0 pointer-events-none z-10"
             style={{
               backgroundImage: `
-                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+                linear-gradient(hsl(var(--primary)/0.1) 1px, transparent 1px),
+                linear-gradient(90deg, hsl(var(--primary)/0.1) 1px, transparent 1px)
               `,
               backgroundSize: "20px 20px",
             }}
@@ -370,7 +365,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
         <div className="p-6">
           <iframe
             ref={iframeRef}
-            className="border border-gray-300 dark:border-gray-600 rounded transition-all duration-300"
+            className="border border-border rounded transition-all duration-300"
             style={{
               width: `${currentBreakpoint.width}px`,
               height: `${currentBreakpoint.height}px`,
@@ -384,8 +379,8 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
 
       {/* Detailed Test Results */}
       {testResults.length > 0 && (
-        <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
-          <h4 className="text-md font-medium text-gray-900 dark:text-white mb-4">
+        <div className="px-6 py-4 border-t border-border">
+          <h4 className="text-md font-medium text-foreground mb-4">
             Detailed Results
           </h4>
           <div className="space-y-3">
@@ -394,19 +389,19 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
                 key={index}
                 className={`p-4 rounded-lg border ${
                   result.passed
-                    ? "bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800"
-                    : "bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-800"
+                    ? "bg-chart-3/10 border-chart-3/20"
+                    : "bg-destructive/10 border-destructive/20"
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <h5 className="font-medium text-gray-900 dark:text-white">
+                  <h5 className="font-medium text-foreground">
                     {result.breakpoint} ({result.width} × {result.height})
                   </h5>
                   <span
                     className={`px-2 py-1 text-xs rounded-full font-medium ${
                       result.passed
-                        ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
-                        : "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100"
+                        ? "bg-chart-3/20 text-chart-3"
+                        : "bg-destructive/20 text-destructive"
                     }`}
                   >
                     {result.passed ? "PASS" : "FAIL"}
@@ -417,7 +412,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
                     {result.issues.map((issue, issueIndex) => (
                       <li
                         key={issueIndex}
-                        className="text-sm text-gray-600 dark:text-gray-400"
+                        className="text-sm text-muted-foreground"
                       >
                         • {issue}
                       </li>
@@ -425,7 +420,7 @@ const ResponsiveDesignChecker: React.FC<ResponsiveDesignCheckerProps> = ({
                   </ul>
                 )}
                 {result.passed && (
-                  <p className="text-sm text-green-600 dark:text-green-400">
+                  <p className="text-sm text-chart-3">
                     All responsive design checks passed for this breakpoint.
                   </p>
                 )}

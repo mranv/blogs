@@ -116,8 +116,8 @@ export default function AuthorStatsCard({
           />
         </svg>
       ),
-      color: "text-orange-600",
-      bgColor: "bg-orange-100 dark:bg-orange-900/20",
+      color: "text-chart-1",
+      bgColor: "bg-chart-1/10",
     });
   }
 
