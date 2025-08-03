@@ -598,25 +598,17 @@ html[data-theme="dark"] .chatbot-window {
 .auth-container {
   @apply relative flex min-h-screen w-full items-center justify-center overflow-hidden p-4;
   background-color: hsl(var(--background));
+  position: relative;
 }
 
-/* Authentication page specific theme utilities */
-.auth-text-primary { color: hsl(var(--primary)); }
-.auth-text-foreground { color: hsl(var(--foreground)); }
-.auth-text-muted { color: hsl(var(--muted-foreground)); }
-.auth-text-card { color: hsl(var(--card-foreground)); }
-
-.auth-bg-primary { background-color: hsl(var(--primary)); }
-.auth-bg-card { background-color: hsl(var(--card)); }
-.auth-bg-muted { background-color: hsl(var(--muted)); }
-.auth-bg-background { background-color: hsl(var(--background)); }
-
-.auth-border-primary { border-color: hsl(var(--primary)); }
-.auth-border-input { border-color: hsl(var(--input)); }
-.auth-border-border { border-color: hsl(var(--border)); }
-
 .auth-background-gradient {
-  @apply absolute inset-0 opacity-50;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.5;
+  z-index: 1;
   background: linear-gradient(
     135deg,
     hsl(var(--background)) 0%,
@@ -626,43 +618,71 @@ html[data-theme="dark"] .chatbot-window {
 }
 
 .auth-card {
-  @apply bg-card/80 backdrop-blur-lg overflow-hidden rounded-[40px] shadow-2xl border;
-  border-color: hsl(var(--border) / 0.2);
-  @apply w-full max-w-6xl mx-auto;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  background-color: hsl(var(--card) / 0.8);
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+  border-radius: 40px;
+  box-shadow: 0 25px 50px -12px hsl(var(--shadow) / 0.25);
+  border: 1px solid hsl(var(--border) / 0.2);
+}
+
+.auth-card > div {
+  position: relative;
+  z-index: 1;
 }
 
 .auth-brand-side {
-  @apply relative m-4 rounded-3xl p-12 border flex flex-col justify-center;
+  position: relative;
+  margin: 1rem;
+  border-radius: 24px;
+  padding: 3rem;
+  border: 1px solid hsl(var(--border) / 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 600px;
   background: linear-gradient(
     135deg,
     hsl(var(--primary) / 0.1) 0%,
     hsl(var(--secondary) / 0.05) 50%,
     hsl(var(--accent) / 0.1) 100%
   );
-  border-color: hsl(var(--border) / 0.2);
-  @apply min-h-[600px];
 }
 
 .auth-form-side {
-  @apply flex flex-col justify-center p-12;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
   background-color: hsl(var(--card));
-  @apply min-h-[600px];
+  min-height: 600px;
+  overflow: hidden;
 }
 
 .auth-input-group {
-  @apply relative;
+  position: relative;
+  margin-bottom: 1rem;
 }
 
 .auth-input {
-  @apply block w-full rounded-lg py-3 text-sm transition-all duration-200;
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  padding: 12px 12px 12px 40px;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
   background-color: hsl(var(--background));
   border: 1px solid hsl(var(--input));
   color: hsl(var(--foreground));
-  @apply pl-10 pr-3;
 }
 
 .auth-input:focus {
-  @apply outline-none ring-2 border-transparent;
+  outline: none;
   border-color: hsl(var(--ring));
   box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
 }
@@ -672,15 +692,30 @@ html[data-theme="dark"] .chatbot-window {
 }
 
 .auth-input-icon {
-  @apply pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
   color: hsl(var(--muted-foreground));
-  @apply z-10;
+  pointer-events: none;
+  z-index: 5;
 }
 
 .auth-toggle-icon {
-  @apply absolute inset-y-0 right-0 flex items-center pr-3 transition-colors;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding-right: 12px;
   color: hsl(var(--muted-foreground));
-  @apply z-10;
+  transition: color 0.2s ease-in-out;
+  z-index: 5;
+  cursor: pointer;
 }
 
 .auth-toggle-icon:hover {
@@ -688,10 +723,21 @@ html[data-theme="dark"] .chatbot-window {
 }
 
 .auth-button-primary {
-  @apply relative flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-medium transition-all duration-300;
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
   background-color: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
-  @apply hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
 }
 
 .auth-button-primary:hover {
@@ -700,21 +746,29 @@ html[data-theme="dark"] .chatbot-window {
 }
 
 .auth-button-primary:focus {
-  @apply outline-none ring-2 ring-offset-2;
-  border-color: hsl(var(--ring));
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--ring));
 }
 
 .auth-button-primary:disabled {
-  @apply opacity-50 cursor-not-allowed;
+  opacity: 0.5;
+  cursor: not-allowed;
   transform: scale(1);
 }
 
 .auth-button-outline {
-  @apply flex items-center justify-center rounded-lg px-4 py-2.5 text-sm shadow-sm transition-all duration-200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  box-shadow: 0 1px 2px 0 hsl(var(--shadow) / 0.05);
+  transition: all 0.2s ease-in-out;
   background-color: hsl(var(--background));
   border: 1px solid hsl(var(--input));
   color: hsl(var(--foreground));
-  @apply hover:bg-accent hover:text-accent-foreground;
+  cursor: pointer;
 }
 
 .auth-button-outline:hover {
@@ -724,40 +778,55 @@ html[data-theme="dark"] .chatbot-window {
 }
 
 .auth-checkbox {
-  @apply h-4 w-4 rounded focus:ring-2;
-  border-color: hsl(var(--input));
+  height: 16px;
+  width: 16px;
+  border-radius: 4px;
+  border: 1px solid hsl(var(--input));
   color: hsl(var(--primary));
 }
 
 .auth-checkbox:focus {
   border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
 }
 
 .auth-divider {
-  @apply relative text-center text-sm;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
   color: hsl(var(--muted-foreground));
-  @apply my-6;
+  margin: 24px 0;
 }
 
 .auth-divider::before {
-  @apply absolute inset-0 flex items-center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
   content: '';
   border-top: 1px solid hsl(var(--border));
 }
 
 .auth-divider-text {
-  @apply relative px-2;
+  position: relative;
+  padding: 0 8px;
   background-color: hsl(var(--card));
 }
 
 .auth-demo-credentials {
-  @apply mt-6 p-4 rounded-lg border;
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid hsl(var(--border) / 0.2);
   background-color: hsl(var(--muted) / 0.2);
-  border-color: hsl(var(--border) / 0.2);
 }
 
 .auth-message {
-  @apply mb-6 p-4 rounded-lg text-sm border;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid transparent;
 }
 
 .auth-message.success {
@@ -772,50 +841,56 @@ html[data-theme="dark"] .chatbot-window {
   color: hsl(var(--destructive));
 }
 
-/* Fix for overlapping elements */
-.auth-container > div {
-  @apply relative z-10;
-}
-
-.auth-card > div {
-  @apply relative;
-}
-
-/* Ensure proper layering */
-.auth-background-gradient {
-  @apply absolute inset-0 opacity-50 z-0;
-}
-
-.auth-card {
-  @apply relative z-20;
-}
-
-.auth-input-group {
-  @apply relative z-10;
-}
-
-.auth-input-icon,
-.auth-toggle-icon {
-  @apply z-20;
-}
-
 /* Prevent text overlap */
 .auth-brand-side h1 {
-  @apply break-words;
+  word-break: break-words;
+  overflow-wrap: break-word;
 }
 
-.auth-form-side {
-  @apply overflow-hidden;
+/* Responsive fixes */
+@media (max-width: 1024px) {
+  .auth-card {
+    border-radius: 24px;
+  }
+  
+  .auth-brand-side,
+  .auth-form-side {
+    min-height: 500px;
+    padding: 2rem;
+  }
+  
+  .auth-brand-side h1 {
+    font-size: 2.25rem;
+  }
 }
 
-/* Ensure proper spacing */
-.auth-input-group {
-  @apply mb-4;
-}
-
-.auth-button-primary,
-.auth-button-outline {
-  @apply relative z-10;
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 0.5rem;
+  }
+  
+  .auth-card {
+    border-radius: 16px;
+  }
+  
+  .auth-brand-side,
+  .auth-form-side {
+    min-height: 400px;
+    padding: 1.5rem;
+  }
+  
+  .auth-brand-side h1 {
+    font-size: 1.875rem;
+  }
+  
+  .auth-input {
+    padding: 10px 10px 10px 36px;
+  }
+  
+  .auth-button-primary,
+  .auth-button-outline {
+    padding: 10px 16px;
+  }
 }
 
 /* Responsive fixes */
