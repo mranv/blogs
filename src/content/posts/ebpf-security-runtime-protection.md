@@ -13,6 +13,7 @@ tags:
   - kernel
   - runtime-protection
   - threat-detection
+category: eBPF
 description: A deep dive into how eBPF is transforming security monitoring, runtime protection, and threat detection in modern Linux systems. Learn about security tools, best practices, and real-world implementations.
 ---
 

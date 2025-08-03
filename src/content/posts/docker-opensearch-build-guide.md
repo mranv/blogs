@@ -11,6 +11,7 @@ tags:
   - devops
   - containerization
   - elasticsearch
+category: DevOps
 description: "A comprehensive guide to building custom OpenSearch Docker images, setting up development environments, and deploying production-ready OpenSearch clusters with Docker."
 ---
 

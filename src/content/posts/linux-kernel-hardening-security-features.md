@@ -14,6 +14,7 @@ tags:
   - kaslr
   - kpti
   - mitigation
+category: Linux
 description: Comprehensive guide to Linux kernel hardening techniques including KASLR, KPTI, Control Flow Integrity, and modern CPU vulnerability mitigations. Learn how to configure and implement kernel security features for maximum protection.
 ---
 

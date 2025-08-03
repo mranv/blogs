@@ -16,6 +16,7 @@ tags:
   - linux
   - tracing
   - observability
+category: eBPF
 description: Comprehensive tutorial on writing eBPF Kprobe programs using Rust Aya framework, including kernel function tracing, argument handling, and production deployment strategies.
 ---
 

@@ -13,6 +13,7 @@ tags:
   - monitoring
   - observability
   - visualization
+category: Monitoring
 description: Guide to set up a data pipeline for visualizing log files on multiple machines using Netdata and Fluent Bit.
 ---
 

@@ -11,6 +11,7 @@ tags:
   - configuration
   - security
   - performance
+category: Database
 description: "A detailed guide to configuring OpenSearch for production environments, covering memory settings, security, performance tuning, and cluster optimization."
 ---
 

@@ -19,6 +19,7 @@ tags:
     "ebpf",
     "falco",
   ]
+category: Cloud Native
 ---
 
 Kubernetes operators automate complex operational tasks, but security operators take this further by enforcing policies, detecting threats, and maintaining compliance automatically. This guide demonstrates building production-ready security operators in Rust that protect clusters at scale.

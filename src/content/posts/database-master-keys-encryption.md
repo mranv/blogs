@@ -11,6 +11,7 @@ tags:
   - encryption
   - master-keys
   - enterprise
+category: Database
 description: "An in-depth exploration of master key architecture in enterprise databases, covering two-tier encryption, key management, and implementation across major database systems."
 ---
 

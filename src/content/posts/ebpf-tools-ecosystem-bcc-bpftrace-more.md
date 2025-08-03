@@ -13,6 +13,7 @@ tags:
   - bpftrace
   - cilium
   - observability
+category: eBPF
 description: Comprehensive guide to the eBPF ecosystem covering tools like BCC, bpftrace, libbpf, and production solutions for networking, security, and observability.
 ---
 

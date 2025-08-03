@@ -12,6 +12,7 @@ tags:
   - networking
   - observability
   - linux
+category: eBPF
 description: Explore real-world eBPF use cases in security, networking, and observability with practical examples and production deployments.
 ---
 

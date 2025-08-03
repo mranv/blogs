@@ -11,6 +11,7 @@ tags:
   - siem
   - architecture
   - monitoring
+category: Security
 description: "A comprehensive guide to Wazuh security platform architecture (v4.11.2), including component relationships, data flows, codebase organization, and implementation details."
 ---
 

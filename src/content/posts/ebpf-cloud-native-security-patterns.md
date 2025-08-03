@@ -14,6 +14,7 @@ tags:
   - observability
   - cilium
   - service-mesh
+category: eBPF
 description: Explore advanced eBPF security patterns for cloud-native Kubernetes environments. Learn how to implement zero-trust networking, runtime security, and deep observability using eBPF in production.
 ---
 

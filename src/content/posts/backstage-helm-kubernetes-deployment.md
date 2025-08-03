@@ -12,6 +12,7 @@ tags:
   - devops
   - platform-engineering
   - developer-portal
+category: Platform Development
 description: "A comprehensive guide to deploying Spotify's Backstage developer portal on Kubernetes using Helm charts, including architecture diagrams, security configurations, and production best practices."
 ---
 

@@ -13,6 +13,7 @@ tags:
   - ssh
   - networking
   - hardening
+category: Security
 description: "Comprehensive guide to implementing secure OpenSSH containers with Docker, covering security hardening, key management, network isolation, and enterprise deployment strategies."
 ---
 

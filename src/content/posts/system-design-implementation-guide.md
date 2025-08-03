@@ -11,6 +11,7 @@ tags:
   - architecture
   - scalability
   - microservices
+category: Architecture
 description: "A comprehensive guide to implementing scalable distributed systems, covering architecture patterns, technology choices, and practical implementation strategies."
 ---
 

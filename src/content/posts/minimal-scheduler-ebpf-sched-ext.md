@@ -13,6 +13,7 @@ tags:
   - kernel
   - sched_ext
   - systems-programming
+category: eBPF
 description: A comprehensive tutorial for creating a minimal Linux scheduler using eBPF and sched_ext, implementing a round-robin scheduling algorithm with practical examples and visualization.
 ---
 

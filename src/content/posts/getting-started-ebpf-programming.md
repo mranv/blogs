@@ -12,6 +12,7 @@ tags:
   - tutorial
   - linux
   - kernel
+category: eBPF
 description: A practical guide to eBPF programming with hands-on examples, from hello world to production-ready programs using modern tools and frameworks.
 ---
 

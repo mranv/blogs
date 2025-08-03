@@ -14,6 +14,7 @@ tags:
   - homelab
   - networking
   - certificates
+category: Networking
 description: Complete guide to serving local VMs over HTTPS using custom domain names with CoreDNS, NGINX, and Smallstep certificates.
 ---
 

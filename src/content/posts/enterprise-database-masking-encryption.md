@@ -11,6 +11,7 @@ tags:
   - encryption
   - data-masking
   - enterprise
+category: Database
 description: "A comprehensive guide to data masking, subsetting, and encryption capabilities in enterprise databases including Oracle, SQL Server, PostgreSQL, MongoDB, and more."
 ---
 

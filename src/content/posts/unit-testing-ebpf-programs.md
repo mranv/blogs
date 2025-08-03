@@ -13,6 +13,7 @@ tags:
   - development
   - quality-assurance
   - linux
+category: Testing
 description: Learn how to effectively unit test eBPF programs using BPF_PROG_RUN and libbpf. Complete guide with XDP examples, best practices, and troubleshooting tips.
 ---
 

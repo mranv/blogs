@@ -13,6 +13,7 @@ tags:
   - orchestration
   - windows
   - linux
+category: Cloud Native
 description: "Comprehensive guide to understanding the differences between pods and containers in Kubernetes and Podman, including setup, orchestration patterns, and Windows deployment strategies."
 ---
 

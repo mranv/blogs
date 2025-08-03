@@ -16,6 +16,7 @@ tags:
   - networking
   - cloud-native
   - performance
+category: eBPF
 description: Comprehensive guide to how eBPF is transforming observability for DevOps and SRE teams, enabling advanced monitoring, network analysis, and performance insights without manual instrumentation.
 ---
 

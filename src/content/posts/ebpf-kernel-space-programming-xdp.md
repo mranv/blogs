@@ -14,6 +14,7 @@ tags:
   - go
   - systems-programming
   - packet-capture
+category: eBPF
 description: Comprehensive guide to running code in kernel space using eBPF, featuring a complete XDP packet capture implementation with Go integration and practical examples.
 ---
 

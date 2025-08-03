@@ -13,6 +13,7 @@ tags:
   - vulnerabilities
   - best-practices
   - application-security
+category: Security
 description: "Comprehensive guide to secure Java coding practices with code examples addressing OWASP Top 10 vulnerabilities including injection attacks, authentication flaws, and data exposure."
 ---
 

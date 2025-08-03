@@ -13,6 +13,7 @@ tags:
   - jasmin
   - kannel
   - security
+category: Architecture
 description: "A production-grade architecture for building an open-source SMS gateway using Jasmin or Kannel, designed to handle ~2000 SMS/second with robust security and monitoring."
 ---
 

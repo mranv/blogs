@@ -13,6 +13,7 @@ tags:
   - threat-modeling
   - compliance
   - best-practices
+category: Security
 description: "Comprehensive enterprise-grade Java secure coding framework covering threat modeling, advanced security patterns, AI/LLM considerations, and compliance requirements for production systems."
 ---
 

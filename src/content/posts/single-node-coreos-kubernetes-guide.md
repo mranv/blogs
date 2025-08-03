@@ -13,6 +13,7 @@ tags:
   - single-node
   - cluster-setup
   - devops
+category: Cloud Native
 description: "Comprehensive guide to setting up a single-node Kubernetes cluster on CoreOS, covering installation, configuration, networking, and production-ready optimizations."
 ---
 

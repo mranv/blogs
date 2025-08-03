@@ -13,6 +13,7 @@ tags:
   - production
   - infrastructure
   - devops
+category: Cloud Native
 description: "Comprehensive guide to deploying production-ready multi-node Kubernetes clusters on CoreOS, covering high availability, networking, storage, security, and operational best practices."
 ---
 

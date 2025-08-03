@@ -14,6 +14,7 @@ tags:
   - selinux
   - apparmor
   - smack
+category: Security
 description: Comprehensive guide to Linux Security Modules (LSM) framework, exploring SELinux, AppArmor, SMACK, and modern LSM implementations. Learn how to implement custom security modules and integrate with the kernel security subsystem.
 ---
 

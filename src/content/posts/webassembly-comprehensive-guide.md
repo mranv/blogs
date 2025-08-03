@@ -14,6 +14,7 @@ tags:
   - ffmpeg
   - assemblyscript
   - react
+category: Platform Development
 description: "Complete guide to WebAssembly covering fundamentals, React integration, FFmpeg usage, AssemblyScript development, performance testing, and production deployment strategies."
 ---
 

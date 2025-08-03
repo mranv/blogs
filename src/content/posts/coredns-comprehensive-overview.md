@@ -13,6 +13,7 @@ tags:
   - devops
   - infrastructure
   - golang
+category: Networking
 description: Complete guide to CoreDNS - a flexible, extensible DNS server with plugin-based architecture, covering installation, configuration, and custom plugin development.
 ---
 

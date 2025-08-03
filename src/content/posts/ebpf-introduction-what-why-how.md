@@ -11,6 +11,7 @@ tags:
   - linux
   - kernel
   - programming
+category: eBPF
 description: A comprehensive introduction to eBPF technology, covering its architecture, core concepts, and why it's revolutionizing Linux kernel programming.
 ---
 
