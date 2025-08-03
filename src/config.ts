@@ -8,8 +8,8 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "Fuwari",
-	subtitle: "Demo Site",
+	title: "Anubhav Gain",
+	subtitle: "Software Engineer at Infopercept | CEO at TechAnv Consulting",
 	lang: "en", // Language code, e.g. 'en', 'zh-CN', 'ja', etc.
 	banner: {
 		enable: false,
@@ -42,7 +42,7 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.About,
 		{
 			name: "GitHub",
-			url: "https://github.com/saicaca/fuwari", // Internal links should not include the base path, as it is automatically added
+			url: "https://github.com/mranv", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 	],
@@ -50,25 +50,28 @@ export const navBarConfig: NavBarConfig = {
 
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/demo-avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "Lorem Ipsum",
-	bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	name: "Anubhav Gain",
+	bio: "Software Engineer at Infopercept Consulting | CEO at TechAnv Consulting | DevSecOps Expert | XDR/OXDR Platform Architect | Rust & eBPF Specialist | 222+ Research Citations",
 	links: [
-		{
-			name: "Twitter",
-			icon: "fa6-brands:twitter", // Visit https://icones.js.org/ for icon codes
-			// You will need to install the corresponding icon set if it's not already included
-			// `pnpm add @iconify-json/<icon-set-name>`
-			url: "https://twitter.com",
-		},
-		{
-			name: "Steam",
-			icon: "fa6-brands:steam",
-			url: "https://store.steampowered.com",
-		},
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/saicaca/fuwari",
+			url: "https://github.com/mranv",
+		},
+		{
+			name: "LinkedIn",
+			icon: "fa6-brands:linkedin",
+			url: "https://in.linkedin.com/in/anubhavgain",
+		},
+		{
+			name: "Portfolio",
+			icon: "fa6-solid:globe",
+			url: "https://mranv.pages.dev/",
+		},
+		{
+			name: "Instagram",
+			icon: "fa6-brands:instagram",
+			url: "https://www.instagram.com/anubhavgain/",
 		},
 	],
 };
