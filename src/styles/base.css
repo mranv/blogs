@@ -61,17 +61,17 @@
     --secondary-foreground: oklch(0.4334 0.0177 98.6048);
     --muted: oklch(0.9341 0.0153 90.2390);
     --muted-foreground: oklch(0.6059 0.0075 97.4233);
-    --accent: oklch(0.9245 0.0138 92.9892);
+    --accent: oklch(0.8245 0.0638 45.9892);
     --accent-foreground: oklch(0.2671 0.0196 98.9390);
-    --destructive: oklch(0.1908 0.0020 106.5859);
+    --destructive: oklch(0.5908 0.1820 15.5859);
     --destructive-foreground: oklch(1.0000 0 0);
     --border: oklch(0.8847 0.0069 97.3627);
     --input: oklch(0.7621 0.0156 98.3528);
     --ring: oklch(0.6171 0.1375 39.0427);
     --chart-1: oklch(0.5583 0.1276 42.9956);
-    --chart-2: oklch(0.6898 0.1581 290.4107);
+    --chart-2: oklch(0.7898 0.0981 25.4107);
     --chart-3: oklch(0.8816 0.0276 93.1280);
-    --chart-4: oklch(0.8822 0.0403 298.1792);
+    --chart-4: oklch(0.8822 0.0803 45.1792);
     --chart-5: oklch(0.5608 0.1348 42.0584);
     --sidebar: oklch(0.9663 0.0080 98.8792);
     --sidebar-foreground: oklch(0.3590 0.0051 106.6524);
@@ -119,9 +119,9 @@
     --input: oklch(0.4336 0.0113 100.2195);
     --ring: oklch(0.6724 0.1308 38.7559);
     --chart-1: oklch(0.5583 0.1276 42.9956);
-    --chart-2: oklch(0.6898 0.1581 290.4107);
+    --chart-2: oklch(0.7898 0.0981 25.4107);
     --chart-3: oklch(0.2130 0.0078 95.4245);
-    --chart-4: oklch(0.3074 0.0516 289.3230);
+    --chart-4: oklch(0.4074 0.0716 55.3230);
     --chart-5: oklch(0.5608 0.1348 42.0584);
     --sidebar: oklch(0.2357 0.0024 67.7077);
     --sidebar-foreground: oklch(0.8074 0.0142 93.0137);
@@ -503,188 +503,13 @@
   }
 }
 
-/* Ensure Tailwind classes work with CSS variables */
+/* Component-specific utilities are now in claude-theme-bridge.css */
 @layer utilities {
-  /* Gradient utilities */
-  .from-primary {
-    --tw-gradient-from: hsl(var(--primary)) var(--tw-gradient-from-position);
-    --tw-gradient-to: hsl(var(--primary) / 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-  }
+  /* All color utilities have been moved to claude-theme-bridge.css for proper OKLCH support */
   
-  .to-primary {
-    --tw-gradient-to: hsl(var(--primary)) var(--tw-gradient-to-position);
-  }
-  
-  .via-primary {
-    --tw-gradient-to: hsl(var(--primary) / 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), hsl(var(--primary)) var(--tw-gradient-via-position), var(--tw-gradient-to);
-  }
-
-  /* Background color utilities with opacity */
-  .bg-primary {
-    background-color: hsl(var(--primary));
-  }
-  
-  .bg-primary\/10 {
-    background-color: hsl(var(--primary) / 0.1);
-  }
-  
-  .bg-primary\/20 {
-    background-color: hsl(var(--primary) / 0.2);
-  }
-  
-  .bg-primary\/50 {
-    background-color: hsl(var(--primary) / 0.5);
-  }
-  
-  .bg-primary\/70 {
-    background-color: hsl(var(--primary) / 0.7);
-  }
-  
-  .bg-primary\/80 {
-    background-color: hsl(var(--primary) / 0.8);
-  }
-  
-  .bg-primary\/90 {
-    background-color: hsl(var(--primary) / 0.9);
-  }
-
-  /* Hover background color utilities */
-  .hover\:bg-primary:hover {
-    background-color: hsl(var(--primary));
-  }
-  
-  .hover\:bg-primary\/10:hover {
-    background-color: hsl(var(--primary) / 0.1);
-  }
-  
-  .hover\:bg-primary\/20:hover {
-    background-color: hsl(var(--primary) / 0.2);
-  }
-  
-  .hover\:bg-primary\/50:hover {
-    background-color: hsl(var(--primary) / 0.5);
-  }
-  
-  .hover\:bg-primary\/70:hover {
-    background-color: hsl(var(--primary) / 0.7);
-  }
-  
-  .hover\:bg-primary\/80:hover {
-    background-color: hsl(var(--primary) / 0.8);
-  }
-  
-  .hover\:bg-primary\/90:hover {
-    background-color: hsl(var(--primary) / 0.9);
-  }
-
-  /* Text color utilities */
-  .text-primary {
-    color: hsl(var(--primary));
-  }
-  
-  .text-primary\/80 {
-    color: hsl(var(--primary) / 0.8);
-  }
-  
-  .hover\:text-primary:hover {
-    color: hsl(var(--primary));
-  }
-  
-  .hover\:text-primary\/80:hover {
-    color: hsl(var(--primary) / 0.8);
-  }
-
-  /* Border color utilities */
-  .border-primary {
-    border-color: hsl(var(--primary));
-  }
-  
-  .border-primary\/20 {
-    border-color: hsl(var(--primary) / 0.2);
-  }
-  
-  .border-primary\/30 {
-    border-color: hsl(var(--primary) / 0.3);
-  }
-  
-  .hover\:border-primary\/30:hover {
-    border-color: hsl(var(--primary) / 0.3);
-  }
-
-  /* Primary utilities with opacity */
-  .bg-primary\/10 {
-    background-color: hsl(var(--primary) / 0.1);
-  }
-  
-  .bg-primary\/20 {
-    background-color: hsl(var(--primary) / 0.2);
-  }
-  
-  .hover\:bg-primary\/10:hover {
-    background-color: hsl(var(--primary) / 0.1);
-  }
-  
-  .hover\:text-primary:hover {
-    color: hsl(var(--primary));
-  }
-
-  /* Additional utilities for chatbot theme support */
-  .bg-foreground {
-    background-color: hsl(var(--foreground));
-  }
-
-  .text-background {
-    color: hsl(var(--background));
-  }
-
-  .bg-foreground\/20 {
-    background-color: hsl(var(--foreground) / 0.2);
-  }
-
-  .bg-foreground\/30 {
-    background-color: hsl(var(--foreground) / 0.3);
-  }
-
-  .bg-foreground\/40 {
-    background-color: hsl(var(--foreground) / 0.4);
-  }
-
-  .text-foreground\/70 {
-    color: hsl(var(--foreground) / 0.7);
-  }
-
-  .border-border {
-    border-color: hsl(var(--border));
-  }
-
-  .border-primary\/30 {
-    border-color: hsl(var(--primary) / 0.3);
-  }
-
-  .hover\:border-primary\/30:hover {
-    border-color: hsl(var(--primary) / 0.3);
-  }
-
+  /* Focus ring utility */
   .focus\:ring-primary:focus {
-    --tw-ring-color: hsl(var(--primary));
-  }
-
-  .bg-primary\/90 {
-    background-color: hsl(var(--primary) / 0.9);
-  }
-
-  .hover\:bg-primary\/90:hover {
-    background-color: hsl(var(--primary) / 0.9);
-  }
-
-  .bg-foreground\/30 {
-    background-color: hsl(var(--foreground) / 0.3);
-  }
-
-  .hover\:bg-foreground\/30:hover {
-    background-color: hsl(var(--foreground) / 0.3);
+    --tw-ring-color: oklch(var(--primary));
   }
 }
 
@@ -869,54 +694,33 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:brightness-110 focus:outline-none focus:outline-2 focus:outline-offset-2 focus:outline-primary;
+    @apply bg-primary text-primary-foreground px-4 py-2 rounded-md font-medium transition-all duration-200 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
   }
 
   .btn-secondary {
-    @apply bg-card border border-border text-foreground px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-muted focus:outline-none focus:outline-2 focus:outline-offset-2 focus:outline-primary;
+    @apply bg-secondary text-secondary-foreground px-4 py-2 rounded-md font-medium border border-border transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
   }
 
   .card {
-    @apply bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300;
-    @apply hover:shadow-xl hover:-translate-y-1;
-    @apply backdrop-blur-md bg-opacity-80;
-    background: hsl(var(--card) / 0.8);
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
-    border: 1px solid hsl(var(--border) / 0.3);
+    @apply bg-card border border-border rounded-lg p-6 shadow-sm transition-all duration-200;
+    @apply hover:shadow-md;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
     position: relative;
     overflow: hidden;
   }
 
-  .card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(var(--primary) / 0.5),
-      hsl(var(--secondary) / 0.5),
-      transparent
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .card:hover::before {
-    opacity: 1;
+  .card:hover {
+    border-color: hsl(var(--border) / 0.6);
   }
 
   .card-glass {
-    @apply rounded-xl p-6 shadow-lg transition-all duration-300;
-    @apply hover:shadow-2xl hover:-translate-y-1;
-    background: hsl(var(--card) / 0.4);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid hsl(var(--border) / 0.2);
+    @apply rounded-lg p-6 shadow-sm transition-all duration-200;
+    @apply hover:shadow-md;
+    background: hsl(var(--card) / 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--border));
     position: relative;
   }
 

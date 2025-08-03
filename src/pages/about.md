@@ -7,14 +7,16 @@ canonicalURL: "https://mranv.pages.dev/about/"
 ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
 ---
 
-<div class="text-center mb-12 bg-card border border-border rounded-xl p-8 shadow-lg max-w-4xl mx-auto">
+<div class="w-full max-w-full overflow-x-hidden">
+
+<div class="text-center mb-12 bg-card border border-border rounded-xl p-8 shadow-lg">
   <img src="/assets/gainsaheb.jpg" width="280" height="280" alt="Anubhav Gain - Cybersecurity Expert and Security Engineer" class="rounded-full border-4 border-primary/20 shadow-xl transition-all duration-300 hover:border-primary/40 hover:scale-105 mb-6 mx-auto">
   <h1 class="text-4xl font-bold text-foreground mb-4">Anubhav Gain</h1>
   <p class="text-xl font-semibold text-foreground mb-2">Security Engineer | Cybersecurity Consultant | Technology Leader</p>
   <p class="text-lg text-muted-foreground">Delivering enterprise-grade security solutions and strategic cybersecurity consulting</p>
 </div>
 
-<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20 max-w-4xl mx-auto">
+<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20">
   <h2 class="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/30 pb-2">Executive Summary</h2>
   <div class="text-foreground/90 leading-relaxed space-y-4">
     <p class="text-lg mb-4">Anubhav Gain is a distinguished cybersecurity professional with extensive experience in enterprise security architecture, threat detection systems, and security operations. Currently serving as Security Engineer at Infopercept Consulting, he leads the development of advanced XDR/OXDR cybersecurity platforms and provides strategic security consulting to organizations worldwide.</p>
@@ -22,7 +24,7 @@ ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
   </div>
 </div>
 
-<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20 max-w-4xl mx-auto">
+<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20">
   <h2 class="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/30 pb-2">Current Position</h2>
   <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">Security Engineer | Infopercept Consulting</h3>
   <p class="text-lg mb-4"><strong>July 2024 - Present | Ahmedabad, Gujarat, India</strong></p>
@@ -46,7 +48,7 @@ ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
   </ul>
 </div>
 
-<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20 max-w-4xl mx-auto">
+<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20">
   <h2 class="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/30 pb-2">Professional Experience</h2>
   
   <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">DevSecOps Engineer | Atcults Private Limited</h3>
@@ -98,7 +100,7 @@ ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
   </ul>
 </div>
 
-<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20 max-w-4xl mx-auto">
+<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20">
   <h2 class="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/30 pb-2">Education & Certifications</h2>
   
   <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">Academic Credentials</h3>
@@ -120,7 +122,7 @@ ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
   </ul>
 </div>
 
-<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20 max-w-4xl mx-auto">
+<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20">
   <h2 class="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/30 pb-2">Enterprise Consulting Experience</h2>
   <p class="text-lg mb-4">Anubhav has provided cybersecurity consulting services to major organizations across various industries:</p>
   
@@ -179,38 +181,46 @@ ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
   </div>
 </div>
 
-<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20 max-w-4xl mx-auto">
+<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20">
   <h2 class="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/30 pb-2">Core Technical Competencies</h2>
   
-  <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">Security Technologies</h3>
-  <ul class="text-foreground/90 space-y-2 mb-6 pl-6">
-    <li class="mb-2"><strong>SIEM/SOAR Platforms</strong>: OpenSearch, Wazuh, Splunk, ELK Stack</li>
-    <li class="mb-2"><strong>Cloud Security</strong>: AWS Security Services, Container Security</li>
-    <li class="mb-2"><strong>Network Security</strong>: Firewall Management, IDS/IPS, Network Monitoring</li>
-    <li class="mb-2"><strong>Vulnerability Management</strong>: Automated scanning, penetration testing</li>
-    <li class="mb-2"><strong>Incident Response</strong>: Digital forensics, malware analysis, threat hunting</li>
-  </ul>
-  
-  <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">Development & Automation</h3>
-  <ul class="text-foreground/90 space-y-2 mb-6 pl-6">
-    <li class="mb-2"><strong>Programming</strong>: Rust, Python, PowerShell, Bash</li>
-    <li class="mb-2"><strong>DevSecOps</strong>: CI/CD security integration, Infrastructure as Code</li>
-    <li class="mb-2"><strong>Container Technologies</strong>: Docker, Kubernetes security</li>
-    <li class="mb-2"><strong>Cloud Platforms</strong>: AWS infrastructure and security services</li>
-    <li class="mb-2"><strong>Monitoring</strong>: Real-time security monitoring and alerting</li>
-  </ul>
-  
-  <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">Enterprise Security Services</h3>
-  <ul class="text-foreground/90 space-y-2 mb-6 pl-6">
-    <li class="mb-2">Security architecture design and implementation</li>
-    <li class="mb-2">Compliance framework development (ISO 27001, NIST, SOC 2)</li>
-    <li class="mb-2">Risk assessment and management</li>
-    <li class="mb-2">Security awareness training and simulation</li>
-    <li class="mb-2">Business continuity and disaster recovery planning</li>
-  </ul>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div>
+      <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">Security Technologies</h3>
+      <ul class="text-foreground/90 space-y-2 pl-6">
+        <li class="mb-2"><strong>SIEM/SOAR Platforms</strong>: OpenSearch, Wazuh, Splunk, ELK Stack</li>
+        <li class="mb-2"><strong>Cloud Security</strong>: AWS Security Services, Container Security</li>
+        <li class="mb-2"><strong>Network Security</strong>: Firewall Management, IDS/IPS, Network Monitoring</li>
+        <li class="mb-2"><strong>Vulnerability Management</strong>: Automated scanning, penetration testing</li>
+        <li class="mb-2"><strong>Incident Response</strong>: Digital forensics, malware analysis, threat hunting</li>
+      </ul>
+    </div>
+    
+    <div>
+      <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">Development & Automation</h3>
+      <ul class="text-foreground/90 space-y-2 pl-6">
+        <li class="mb-2"><strong>Programming</strong>: Rust, Python, PowerShell, Bash</li>
+        <li class="mb-2"><strong>DevSecOps</strong>: CI/CD security integration, Infrastructure as Code</li>
+        <li class="mb-2"><strong>Container Technologies</strong>: Docker, Kubernetes security</li>
+        <li class="mb-2"><strong>Cloud Platforms</strong>: AWS infrastructure and security services</li>
+        <li class="mb-2"><strong>Monitoring</strong>: Real-time security monitoring and alerting</li>
+      </ul>
+    </div>
+    
+    <div>
+      <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">Enterprise Security Services</h3>
+      <ul class="text-foreground/90 space-y-2 pl-6">
+        <li class="mb-2">Security architecture design and implementation</li>
+        <li class="mb-2">Compliance framework development (ISO 27001, NIST, SOC 2)</li>
+        <li class="mb-2">Risk assessment and management</li>
+        <li class="mb-2">Security awareness training and simulation</li>
+        <li class="mb-2">Business continuity and disaster recovery planning</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
-<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20 max-w-4xl mx-auto">
+<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20">
   <h2 class="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/30 pb-2">Industry Recognition & Thought Leadership</h2>
   
   <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">Open Source Contributions</h3>
@@ -239,7 +249,7 @@ ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
   </ul>
 </div>
 
-<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20 max-w-4xl mx-auto">
+<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20">
   <h2 class="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/30 pb-2">Service Offerings</h2>
   
   <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">Cybersecurity Consulting</h3>
@@ -259,7 +269,7 @@ ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
   </ul>
 </div>
 
-<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20 max-w-4xl mx-auto">
+<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20">
   <h2 class="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/30 pb-2">Client Success Stories</h2>
   
   <h3 class="text-2xl font-semibold text-foreground mb-4 text-primary">Enterprise Security Transformation</h3>
@@ -275,7 +285,7 @@ ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
   <p class="text-lg mb-4">Designed and implemented enterprise-wide cybersecurity solutions across multiple geographic regions, ensuring consistent security posture and regulatory compliance.</p>
 </div>
 
-<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20 max-w-4xl mx-auto">
+<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20">
   <h2 class="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/30 pb-2">Professional Contact Information</h2>
   <ul class="text-foreground/90 space-y-2 mb-6 pl-6">
     <li class="mb-2"><strong>Business Inquiries</strong>: <a href="mailto:iamanubhavgain@gmail.com" class="text-primary hover:text-primary/80 underline underline-offset-2 transition-all duration-200">iamanubhavgain@gmail.com</a></li>
@@ -288,7 +298,7 @@ ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
   <strong>Availability</strong>: Available for enterprise consulting and strategic security partnerships</p>
 </div>
 
-<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20 max-w-4xl mx-auto">
+<div class="mb-12 bg-card border border-border rounded-xl p-8 shadow-md transition-all duration-300 hover:shadow-lg hover:border-primary/20">
   <h2 class="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/30 pb-2">Strategic Vision</h2>
   <div class="text-foreground/90 leading-relaxed space-y-4">
     <p class="text-lg mb-4">In today's rapidly evolving cybersecurity landscape, organizations require sophisticated, adaptive security solutions that can scale with business growth while maintaining robust protection against emerging threats. Anubhav's approach combines cutting-edge technology implementation with strategic business alignment, ensuring that cybersecurity investments deliver measurable business value.</p>
@@ -296,7 +306,7 @@ ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
   </div>
 </div>
 
-<div class="text-center mt-12 bg-gradient-to-r from-primary to-secondary border border-primary/20 rounded-xl p-8 shadow-lg max-w-4xl mx-auto">
+<div class="text-center mt-12 bg-gradient-to-r from-primary to-secondary border border-primary/20 rounded-xl p-8 shadow-lg">
   <h3 class="text-2xl font-bold text-foreground mb-4">Ready to Strengthen Your Organization's Security Posture?</h3>
   <p class="text-lg text-muted-foreground mb-6"><strong>Contact Anubhav Gain for strategic cybersecurity consulting and enterprise security solutions.</strong></p>
   <div class="flex flex-wrap justify-center gap-4">
@@ -304,4 +314,6 @@ ogImage: "https://mranv.pages.dev/assets/gainsaheb.jpg"
     <a href="https://linkedin.com/in/anubhavgain" target="_blank" rel="noopener" class="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg no-underline hover:scale-105">View Professional Profile</a>
     <a href="https://github.com/mranv" target="_blank" rel="noopener" class="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg no-underline hover:scale-105">Technical Portfolio</a>
   </div>
+</div>
+
 </div>

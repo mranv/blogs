@@ -67,8 +67,8 @@ export default function AuthorStatsCard({
           />
         </svg>
       ),
-      color: "text-green-600",
-      bgColor: "bg-green-100 dark:bg-green-900/20",
+      color: "text-chart-3",
+      bgColor: "bg-chart-3/10",
     },
     {
       id: "projects",
@@ -90,8 +90,8 @@ export default function AuthorStatsCard({
           />
         </svg>
       ),
-      color: "text-purple-600",
-      bgColor: "bg-purple-100 dark:bg-purple-900/20",
+      color: "text-chart-2",
+      bgColor: "bg-chart-2/10",
     },
   ];
 
@@ -142,8 +142,8 @@ export default function AuthorStatsCard({
           />
         </svg>
       ),
-      color: "text-indigo-600",
-      bgColor: "bg-indigo-100 dark:bg-indigo-900/20",
+      color: "text-primary",
+      bgColor: "bg-primary/10",
     });
   }
 

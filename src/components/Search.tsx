@@ -312,7 +312,7 @@ export default function SearchBar({
       regex.test(part) ? (
         <mark
           key={index}
-          className="bg-yellow-200 dark:bg-yellow-800 px-1 rounded font-medium"
+          className="bg-primary/20 dark:bg-primary/30 px-1 rounded font-medium"
         >
           {part}
         </mark>
@@ -677,10 +677,10 @@ export default function SearchBar({
                               <div
                                 className={`w-2 h-2 rounded-full ${
                                   score < 0.3
-                                    ? "bg-green-500"
+                                    ? "bg-primary"
                                     : score < 0.6
-                                      ? "bg-yellow-500"
-                                      : "bg-red-500"
+                                      ? "bg-chart-1"
+                                      : "bg-destructive"
                                 }`}
                               ></div>
                               <span className="text-xs text-muted-foreground">

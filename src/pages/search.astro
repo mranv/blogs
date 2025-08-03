@@ -4,8 +4,9 @@ import { SITE } from "@config";
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
-import SearchBar from "@components/Search";
+import SearchSimple from "@components/SearchSimple";
 import getSortedPosts from "@utils/getSortedPosts";
+import Main from "@layouts/Main.astro";
 
 // Retrieve all published articles
 const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -26,20 +27,412 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
   <!-- Authentication Check -->
   <script>
     // Check if user is authenticated
-    if (localStorage.getItem("isAuthenticated") !== "true") {
-      window.location.href = "/login";
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("isAuthenticated") !== "true"
+    ) {
+      window.location.href = "/auth";
     }
   </script>
 
   <!-- Search interface -->
-  <main class="main-wrapper">
-    <div class="container mx-auto px-4 py-8">
-      <div class="prose max-w-none">
-        <h1 class="text-3xl font-bold mb-6">Search Articles</h1>
-        <SearchBar client:load searchList={searchList} />
+  <Main
+    pageTitle="Search Articles"
+    titleTransition="search"
+    pageDesc="Find articles, tutorials, and insights from our collection"
+  >
+    <div class="search-page-container">
+      <!-- Hero Section -->
+      <div class="search-hero-section">
+        <div class="search-hero-gradient"></div>
+        <div class="search-hero-content">
+          <h1 class="search-hero-title">
+            <span class="search-hero-icon">
+              <svg
+                width="48"
+                height="48"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </span>
+            Discover Amazing Content
+          </h1>
+          <p class="search-hero-description">
+            Search through {searchList.length} articles covering technology, security,
+            development, and more. Use keywords, tags, or topics to find exactly
+            what you need.
+          </p>
+
+          <!-- Quick Stats -->
+          <div class="search-stats-grid">
+            <div class="search-stat-card">
+              <div class="search-stat-number">{searchList.length}</div>
+              <div class="search-stat-label">Total Articles</div>
+            </div>
+            <div class="search-stat-card">
+              <div class="search-stat-number">
+                {
+                  [...new Set(searchList.flatMap(item => item.data.tags || []))]
+                    .length
+                }
+              </div>
+              <div class="search-stat-label">Unique Tags</div>
+            </div>
+            <div class="search-stat-card">
+              <div class="search-stat-number">
+                {
+                  [...new Set(searchList.map(item => item.data.author || ""))]
+                    .length
+                }
+              </div>
+              <div class="search-stat-label">Contributors</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Component -->
+      <div class="search-component-wrapper">
+        <SearchSimple client:load searchList={searchList} />
+      </div>
+
+      <!-- Search Tips -->
+      <div class="search-tips-section">
+        <h2 class="search-tips-title">Search Tips</h2>
+        <div class="search-tips-grid">
+          <div class="search-tip-card">
+            <div class="search-tip-icon">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="search-tip-title">Use Tags</h3>
+            <p class="search-tip-description">
+              Click on any tag to filter results by category
+            </p>
+          </div>
+          <div class="search-tip-card">
+            <div class="search-tip-icon">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="search-tip-title">Recent Searches</h3>
+            <p class="search-tip-description">
+              Your search history is saved for quick access
+            </p>
+          </div>
+          <div class="search-tip-card">
+            <div class="search-tip-icon">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="search-tip-title">Keyboard Shortcut</h3>
+            <p class="search-tip-description">
+              Press <kbd>Ctrl+K</kbd> or <kbd>⌘K</kbd> to focus search
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </main>
+  </Main>
 
   <Footer />
 </Layout>
+
+<style>
+  /* Search Page Container */
+  .search-page-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Hero Section */
+  .search-hero-section {
+    position: relative;
+    margin-bottom: 3rem;
+    padding: 4rem 2rem;
+    background: oklch(var(--card));
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow:
+      0 20px 40px oklch(var(--foreground) / 0.1),
+      0 0 0 1px oklch(var(--border) / 0.5);
+  }
+
+  .search-hero-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        circle at 20% 50%,
+        oklch(var(--primary) / 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 50%,
+        oklch(var(--chart-2) / 0.1) 0%,
+        transparent 50%
+      );
+    opacity: 0.6;
+  }
+
+  .search-hero-content {
+    position: relative;
+    text-align: center;
+  }
+
+  .search-hero-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: oklch(var(--foreground));
+    margin-bottom: 1rem;
+    animation: fadeInScale 0.6s ease-out;
+  }
+
+  .search-hero-icon {
+    display: inline-flex;
+    padding: 1rem;
+    background: oklch(var(--primary) / 0.1);
+    border-radius: 16px;
+    color: oklch(var(--primary));
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .search-hero-description {
+    font-size: 1.125rem;
+    color: oklch(var(--muted-foreground));
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+
+  /* Stats Grid */
+  .search-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .search-stat-card {
+    padding: 1.5rem;
+    background: oklch(var(--background) / 0.5);
+    border: 1px solid oklch(var(--border) / 0.5);
+    border-radius: 12px;
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+  }
+
+  .search-stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: oklch(var(--primary));
+    margin-bottom: 0.25rem;
+  }
+
+  .search-stat-label {
+    font-size: 0.875rem;
+    color: oklch(var(--muted-foreground));
+  }
+
+  /* Search Component Wrapper */
+  .search-component-wrapper {
+    margin-bottom: 4rem;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+  }
+
+  /* Tips Section */
+  .search-tips-section {
+    margin: 4rem 0;
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+  }
+
+  .search-tips-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: oklch(var(--foreground));
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .search-tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .search-tip-card {
+    padding: 2rem;
+    background: oklch(var(--card));
+    border: 1px solid oklch(var(--border) / 0.5);
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .search-tip-card:hover {
+    transform: translateY(-4px);
+    border-color: oklch(var(--primary) / 0.3);
+    box-shadow:
+      0 12px 24px oklch(var(--foreground) / 0.1),
+      0 0 0 1px oklch(var(--primary) / 0.2);
+  }
+
+  .search-tip-icon {
+    display: inline-flex;
+    padding: 1rem;
+    background: oklch(var(--primary) / 0.1);
+    border-radius: 12px;
+    color: oklch(var(--primary));
+    margin-bottom: 1rem;
+  }
+
+  .search-tip-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: oklch(var(--foreground));
+    margin-bottom: 0.5rem;
+  }
+
+  .search-tip-description {
+    font-size: 0.875rem;
+    color: oklch(var(--muted-foreground));
+    line-height: 1.5;
+  }
+
+  /* Keyboard hint */
+  kbd {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.375rem;
+    font-size: 0.75rem;
+    font-family: monospace;
+    background: oklch(var(--muted) / 0.5);
+    border: 1px solid oklch(var(--border));
+    border-radius: 4px;
+    box-shadow: 0 1px 2px oklch(var(--foreground) / 0.1);
+  }
+
+  /* Animations */
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .search-hero-section {
+      padding: 2rem 1rem;
+    }
+
+    .search-hero-title {
+      font-size: 1.875rem;
+      flex-direction: column;
+    }
+
+    .search-hero-description {
+      font-size: 1rem;
+    }
+
+    .search-stats-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .search-tips-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Dark mode adjustments */
+  [data-theme="dark"] .search-hero-section {
+    background: oklch(var(--card) / 0.8);
+  }
+
+  [data-theme="dark"] .search-stat-card {
+    background: oklch(var(--background) / 0.3);
+  }
+
+  [data-theme="dark"] .search-tip-card {
+    background: oklch(var(--card) / 0.8);
+  }
+</style>

@@ -52,7 +52,7 @@ const itemsSample: BentoItem[] = [
     tags: ["Memory Safety", "Performance", "Security"],
     colSpan: 2,
     hasPersistentHover: true,
-    gradient: "from-orange-500/20 to-red-500/20",
+    gradient: "from-primary/20 to-destructive/20",
   },
   {
     title: "Terraform IaC",
@@ -71,7 +71,7 @@ const itemsSample: BentoItem[] = [
     icon: <GitBranch className="text-primary h-4 w-4" />,
     status: "Popular",
     tags: ["CI/CD", "GitOps", "Monitoring"],
-    gradient: "from-green-500/20 to-teal-500/20",
+    gradient: "from-chart-3/20 to-chart-5/20",
   },
   {
     title: "Kubernetes Security",
@@ -89,7 +89,7 @@ const itemsSample: BentoItem[] = [
     icon: <Monitor className="text-primary h-4 w-4" />,
     meta: "Kernel Level",
     tags: ["eBPF", "Rust", "Monitoring"],
-    gradient: "from-purple-500/20 to-pink-500/20",
+    gradient: "from-primary/20 to-chart-2/20",
   },
   {
     title: "Zero Trust Architecture",
@@ -100,7 +100,7 @@ const itemsSample: BentoItem[] = [
     status: "Advanced",
     tags: ["Zero Trust", "Network", "Security"],
     colSpan: 2,
-    gradient: "from-red-500/20 to-orange-500/20",
+    gradient: "from-destructive/20 to-primary/20",
   },
   {
     title: "Post-Quantum Crypto",
@@ -109,7 +109,7 @@ const itemsSample: BentoItem[] = [
     icon: <Cpu className="text-primary h-4 w-4" />,
     meta: "Quantum Resistant",
     tags: ["PQC", "ML-KEM", "Cryptography"],
-    gradient: "from-yellow-500/20 to-orange-500/20",
+    gradient: "from-chart-1/20 to-primary/20",
   },
   {
     title: "Confidential Computing",
@@ -118,7 +118,7 @@ const itemsSample: BentoItem[] = [
     icon: <Server className="text-primary h-4 w-4" />,
     status: "Cutting Edge",
     tags: ["TEE", "SGX", "Enclaves"],
-    gradient: "from-emerald-500/20 to-green-500/20",
+    gradient: "from-chart-3/20 to-chart-5/20",
   },
 ];
 

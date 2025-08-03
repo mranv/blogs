@@ -162,7 +162,7 @@ export default function AppHero() {
       {/* Background effects */}
       <div className="absolute inset-0 z-0">
         {/* Radial gradient */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/30 via-black/70 to-gray-950 blur-3xl"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/30 via-black/70 to-gray-950 blur-3xl"></div>
 
         {/* Grid pattern */}
         <div className="absolute inset-0 opacity-10">
@@ -170,18 +170,18 @@ export default function AppHero() {
         </div>
 
         {/* Enhanced glow spots */}
-        <div className="absolute top-20 -left-20 h-60 w-60 rounded-full bg-purple-600/20 blur-[100px]"></div>
+        <div className="absolute top-20 -left-20 h-60 w-60 rounded-full bg-primary/20 blur-[100px]"></div>
         <div
           className="absolute -right-20 bottom-20 h-60 w-60 rounded-full blur-[100px]"
           style={{ backgroundColor: "hsl(var(--primary) / 0.2)" }}
         ></div>
         <motion.div
           animate={glowAnimation}
-          className="absolute top-1/3 left-1/4 h-40 w-40 rounded-full bg-indigo-500/10 blur-[80px]"
+          className="absolute top-1/3 left-1/4 h-40 w-40 rounded-full bg-primary/10 blur-[80px]"
         ></motion.div>
         <motion.div
           animate={glowAnimation}
-          className="absolute right-1/4 bottom-1/3 h-40 w-40 rounded-full bg-purple-500/10 blur-[80px]"
+          className="absolute right-1/4 bottom-1/3 h-40 w-40 rounded-full bg-chart-2/10 blur-[80px]"
         ></motion.div>
 
         {/* Particle effects - subtle dots */}
@@ -218,11 +218,11 @@ export default function AppHero() {
         />
         <motion.div
           variants={tooltipVariants}
-          className="absolute top-4 -left-4 rounded-lg border border-purple-500/30 bg-black/80 p-2 backdrop-blur-md lg:top-1/4 lg:-left-20"
+          className="absolute top-4 -left-4 rounded-lg border border-primary/30 bg-black/80 p-2 backdrop-blur-md lg:top-1/4 lg:-left-20"
         >
           <div className="flex items-center gap-2">
-            <Zap className="h-4 w-4 text-purple-400" />
-            <span className="text-xs font-medium text-purple-200">
+            <Zap className="h-4 w-4 text-primary" />
+            <span className="text-xs font-medium text-primary/80">
               High Performance
             </span>
           </div>
@@ -249,11 +249,11 @@ export default function AppHero() {
 
         <motion.div
           variants={tooltipVariants}
-          className="absolute bottom-4 left-4 rounded-lg border border-indigo-500/30 bg-black/80 p-2 backdrop-blur-md lg:bottom-1/4 lg:left-8"
+          className="absolute bottom-4 left-4 rounded-lg border border-chart-3/30 bg-black/80 p-2 backdrop-blur-md lg:bottom-1/4 lg:left-8"
         >
           <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-indigo-400" />
-            <span className="text-xs font-medium text-indigo-200">
+            <Sparkles className="h-4 w-4 text-chart-3" />
+            <span className="text-xs font-medium text-chart-3/80">
               AI-Powered
             </span>
           </div>
@@ -271,9 +271,9 @@ export default function AppHero() {
           <div className="w-full lg:w-auto">
             <motion.div
               variants={itemVariants}
-              className="mb-4 inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-sm text-purple-300"
+              className="mb-4 inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm text-primary/80"
             >
-              <span className="mr-2 rounded-full bg-purple-500 px-2 py-0.5 text-xs font-semibold text-white">
+              <span className="mr-2 rounded-full bg-primary px-2 py-0.5 text-xs font-semibold text-white">
                 New
               </span>
               Introducing Nexus Platform
@@ -303,7 +303,7 @@ export default function AppHero() {
               variants={itemVariants}
               className="mb-6 flex flex-wrap justify-center gap-4 md:gap-6 lg:justify-start"
             >
-              <div className="rounded-lg border border-purple-500/20 bg-black/40 px-4 py-2 backdrop-blur-sm">
+              <div className="rounded-lg border border-primary/20 bg-black/40 px-4 py-2 backdrop-blur-sm">
                 <p className="text-2xl font-bold text-white">
                   {stats.users.toLocaleString()}+
                 </p>
@@ -318,7 +318,7 @@ export default function AppHero() {
                 </p>
                 <p className="text-xs text-gray-400">Transactions</p>
               </div>
-              <div className="rounded-lg border border-indigo-500/20 bg-black/40 px-4 py-2 backdrop-blur-sm">
+              <div className="rounded-lg border border-chart-1/20 bg-black/40 px-4 py-2 backdrop-blur-sm">
                 <p className="text-2xl font-bold text-white">
                   {stats.networks}+
                 </p>
@@ -334,22 +334,22 @@ export default function AppHero() {
               <span className="text-xs font-medium text-gray-400">
                 Integrates with:
               </span>
-              <div className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all hover:bg-purple-950">
+              <div className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all hover:bg-primary/20">
                 <div
                   className="h-2 w-2 rounded-full"
                   style={{ backgroundColor: "hsl(var(--primary))" }}
                 ></div>
                 Ethereum
               </div>
-              <div className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all hover:bg-purple-950">
-                <div className="h-2 w-2 rounded-full bg-purple-400"></div>
+              <div className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all hover:bg-primary/20">
+                <div className="h-2 w-2 rounded-full bg-chart-2"></div>
                 Solana
               </div>
-              <div className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all hover:bg-purple-950">
+              <div className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all hover:bg-primary/20">
                 <div className="h-2 w-2 rounded-full bg-green-400"></div>
                 OpenAI
               </div>
-              <div className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all hover:bg-purple-950">
+              <div className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all hover:bg-primary/20">
                 <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
                 +5 more
               </div>
@@ -370,7 +370,7 @@ export default function AppHero() {
               className="mb-8 flex flex-col flex-wrap gap-4 sm:flex-row lg:justify-end"
             >
               <Button
-                className="group rounded-full border-t border-purple-400 bg-gradient-to-b from-purple-700 to-slate-950/80 px-6 py-6 text-white shadow-lg shadow-purple-600/20 transition-all hover:shadow-purple-600/40"
+                className="group rounded-full border-t border-primary bg-gradient-to-b from-primary to-slate-950/80 px-6 py-6 text-white shadow-lg shadow-primary/20 transition-all hover:shadow-primary/40"
                 size="lg"
               >
                 Start Building
@@ -379,7 +379,7 @@ export default function AppHero() {
 
               <Button
                 variant="outline"
-                className="rounded-full border-purple-500/30 bg-transparent text-white hover:bg-purple-500/10 hover:text-white"
+                className="rounded-full border-primary/30 bg-transparent text-white hover:bg-primary/10 hover:text-white"
                 size="lg"
               >
                 View Demo
@@ -411,7 +411,7 @@ export default function AppHero() {
                 <span className="font-semibold text-white">500+</span>{" "}
                 developers already building
               </span>
-              <ArrowUpRight className="h-3 w-3 text-purple-400" />
+              <ArrowUpRight className="h-3 w-3 text-primary" />
             </motion.div>
           </div>
         </motion.div>

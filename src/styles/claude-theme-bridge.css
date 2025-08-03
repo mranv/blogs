@@ -1,0 +1,463 @@
+/* Claude Theme Bridge - Proper OKLCH to CSS Utilities Bridge */
+/* This file ensures all components properly use Claude theme colors */
+
+/* Primary conversions for HSL usage */
+:root {
+  --primary-h: 39;
+  --primary-s: 82%;
+  --primary-l: 55%;
+  --primary-hsl: 39 82% 55%;
+  
+  /* Chart color conversions */
+  --chart-1-hsl: 43 76% 50%;
+  --chart-2-hsl: 290 71% 60%;
+  --chart-3-hsl: 93 48% 85%;
+  --chart-4-hsl: 298 30% 85%;
+  
+  /* Destructive conversions */
+  --destructive-hsl: 0 84% 60%;
+}
+
+[data-theme="dark"] {
+  /* Dark mode primary conversions */
+  --primary-h: 38;
+  --primary-s: 85%;
+  --primary-l: 58%;
+  --primary-hsl: 38 85% 58%;
+  
+  /* Dark mode chart colors */
+  --destructive-hsl: 25 85% 56%;
+}
+
+/* Utility classes for Claude theme */
+  /* Background utilities with proper OKLCH support */
+  .bg-background {
+    background-color: oklch(var(--background));
+  }
+  
+  .bg-foreground {
+    background-color: oklch(var(--foreground));
+  }
+  
+  .bg-card {
+    background-color: oklch(var(--card));
+  }
+  
+  .bg-popover {
+    background-color: oklch(var(--popover));
+  }
+  
+  .bg-primary {
+    background-color: oklch(var(--primary));
+  }
+  
+  .bg-secondary {
+    background-color: oklch(var(--secondary));
+  }
+  
+  .bg-muted {
+    background-color: oklch(var(--muted));
+  }
+  
+  .bg-accent {
+    background-color: oklch(var(--accent));
+  }
+  
+  .bg-destructive {
+    background-color: oklch(var(--destructive));
+  }
+  
+  /* Text color utilities */
+  .text-foreground {
+    color: oklch(var(--foreground));
+  }
+  
+  .text-card-foreground {
+    color: oklch(var(--card-foreground));
+  }
+  
+  .text-popover-foreground {
+    color: oklch(var(--popover-foreground));
+  }
+  
+  .text-primary {
+    color: oklch(var(--primary));
+  }
+  
+  .text-primary-foreground {
+    color: oklch(var(--primary-foreground));
+  }
+  
+  .text-secondary {
+    color: oklch(var(--secondary));
+  }
+  
+  .text-secondary-foreground {
+    color: oklch(var(--secondary-foreground));
+  }
+  
+  .text-muted {
+    color: oklch(var(--muted));
+  }
+  
+  .text-muted-foreground {
+    color: oklch(var(--muted-foreground));
+  }
+  
+  .text-accent {
+    color: oklch(var(--accent));
+  }
+  
+  .text-accent-foreground {
+    color: oklch(var(--accent-foreground));
+  }
+  
+  .text-destructive {
+    color: oklch(var(--destructive));
+  }
+  
+  .text-destructive-foreground {
+    color: oklch(var(--destructive-foreground));
+  }
+  
+  /* Border utilities */
+  .border-border {
+    border-color: oklch(var(--border));
+  }
+  
+  .border-input {
+    border-color: oklch(var(--input));
+  }
+  
+  .border-primary {
+    border-color: oklch(var(--primary));
+  }
+  
+  .border-secondary {
+    border-color: oklch(var(--secondary));
+  }
+  
+  .border-muted {
+    border-color: oklch(var(--muted));
+  }
+  
+  .border-accent {
+    border-color: oklch(var(--accent));
+  }
+  
+  .border-destructive {
+    border-color: oklch(var(--destructive));
+  }
+  
+  /* Ring utilities */
+  .ring-ring {
+    --tw-ring-color: oklch(var(--ring));
+  }
+  
+  .ring-primary {
+    --tw-ring-color: oklch(var(--primary));
+  }
+  
+  /* Chart color utilities */
+  .bg-chart-1 {
+    background-color: oklch(var(--chart-1));
+  }
+  
+  .bg-chart-2 {
+    background-color: oklch(var(--chart-2));
+  }
+  
+  .bg-chart-3 {
+    background-color: oklch(var(--chart-3));
+  }
+  
+  .bg-chart-4 {
+    background-color: oklch(var(--chart-4));
+  }
+  
+  .bg-chart-5 {
+    background-color: oklch(var(--chart-5));
+  }
+  
+  .text-chart-1 {
+    color: oklch(var(--chart-1));
+  }
+  
+  .text-chart-2 {
+    color: oklch(var(--chart-2));
+  }
+  
+  .text-chart-3 {
+    color: oklch(var(--chart-3));
+  }
+  
+  .text-chart-4 {
+    color: oklch(var(--chart-4));
+  }
+  
+  .text-chart-5 {
+    color: oklch(var(--chart-5));
+  }
+  
+  /* Opacity variants for primary */
+  .bg-primary\/10 {
+    background-color: oklch(var(--primary) / 0.1);
+  }
+  
+  .bg-primary\/20 {
+    background-color: oklch(var(--primary) / 0.2);
+  }
+  
+  .bg-primary\/30 {
+    background-color: oklch(var(--primary) / 0.3);
+  }
+  
+  .bg-primary\/50 {
+    background-color: oklch(var(--primary) / 0.5);
+  }
+  
+  .bg-primary\/80 {
+    background-color: oklch(var(--primary) / 0.8);
+  }
+  
+  .bg-primary\/90 {
+    background-color: oklch(var(--primary) / 0.9);
+  }
+  
+  /* Opacity variants for other colors */
+  .bg-muted\/50 {
+    background-color: oklch(var(--muted) / 0.5);
+  }
+  
+  .bg-muted\/80 {
+    background-color: oklch(var(--muted) / 0.8);
+  }
+  
+  .bg-accent\/10 {
+    background-color: oklch(var(--accent) / 0.1);
+  }
+  
+  .bg-accent\/20 {
+    background-color: oklch(var(--accent) / 0.2);
+  }
+  
+  .bg-destructive\/10 {
+    background-color: oklch(var(--destructive) / 0.1);
+  }
+  
+  .bg-destructive\/20 {
+    background-color: oklch(var(--destructive) / 0.2);
+  }
+  
+  /* Chart color opacity variants */
+  .bg-chart-1\/10 {
+    background-color: oklch(var(--chart-1) / 0.1);
+  }
+  
+  .bg-chart-2\/10 {
+    background-color: oklch(var(--chart-2) / 0.1);
+  }
+  
+  .bg-chart-3\/10 {
+    background-color: oklch(var(--chart-3) / 0.1);
+  }
+  
+  /* Text opacity variants */
+  .text-primary\/80 {
+    color: oklch(var(--primary) / 0.8);
+  }
+  
+  .text-muted-foreground\/80 {
+    color: oklch(var(--muted-foreground) / 0.8);
+  }
+  
+  .text-destructive\/80 {
+    color: oklch(var(--destructive) / 0.8);
+  }
+  
+  .text-chart-1\/80 {
+    color: oklch(var(--chart-1) / 0.8);
+  }
+  
+  .text-chart-3\/80 {
+    color: oklch(var(--chart-3) / 0.8);
+  }
+  
+  /* Border opacity variants */
+  .border-primary\/20 {
+    border-color: oklch(var(--primary) / 0.2);
+  }
+  
+  .border-primary\/30 {
+    border-color: oklch(var(--primary) / 0.3);
+  }
+  
+  .border-destructive\/20 {
+    border-color: oklch(var(--destructive) / 0.2);
+  }
+  
+  .border-chart-1\/20 {
+    border-color: oklch(var(--chart-1) / 0.2);
+  }
+  
+  .border-chart-3\/20 {
+    border-color: oklch(var(--chart-3) / 0.2);
+  }
+  
+  /* Hover states */
+  .hover\:bg-primary:hover {
+    background-color: oklch(var(--primary));
+  }
+  
+  .hover\:bg-primary\/90:hover {
+    background-color: oklch(var(--primary) / 0.9);
+  }
+  
+  .hover\:bg-muted:hover {
+    background-color: oklch(var(--muted));
+  }
+  
+  .hover\:bg-muted\/80:hover {
+    background-color: oklch(var(--muted) / 0.8);
+  }
+  
+  .hover\:bg-accent:hover {
+    background-color: oklch(var(--accent));
+  }
+  
+  .hover\:bg-destructive\/90:hover {
+    background-color: oklch(var(--destructive) / 0.9);
+  }
+  
+  .hover\:bg-chart-1\/90:hover {
+    background-color: oklch(var(--chart-1) / 0.9);
+  }
+  
+  .hover\:bg-chart-3\/90:hover {
+    background-color: oklch(var(--chart-3) / 0.9);
+  }
+  
+  .hover\:text-primary:hover {
+    color: oklch(var(--primary));
+  }
+  
+  .hover\:text-primary\/80:hover {
+    color: oklch(var(--primary) / 0.8);
+  }
+  
+  .hover\:text-chart-1\/80:hover {
+    color: oklch(var(--chart-1) / 0.8);
+  }
+  
+  /* Gradient utilities with OKLCH */
+  .from-primary {
+    --tw-gradient-from: oklch(var(--primary)) var(--tw-gradient-from-position);
+    --tw-gradient-to: oklch(var(--primary) / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+  
+  .to-primary {
+    --tw-gradient-to: oklch(var(--primary)) var(--tw-gradient-to-position);
+  }
+  
+  .via-primary {
+    --tw-gradient-to: oklch(var(--primary) / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), oklch(var(--primary)) var(--tw-gradient-via-position), var(--tw-gradient-to);
+  }
+  
+  .from-chart-1 {
+    --tw-gradient-from: oklch(var(--chart-1)) var(--tw-gradient-from-position);
+    --tw-gradient-to: oklch(var(--chart-1) / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+  
+  .from-chart-2 {
+    --tw-gradient-from: oklch(var(--chart-2)) var(--tw-gradient-from-position);
+    --tw-gradient-to: oklch(var(--chart-2) / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+  
+  .from-chart-3 {
+    --tw-gradient-from: oklch(var(--chart-3)) var(--tw-gradient-from-position);
+    --tw-gradient-to: oklch(var(--chart-3) / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+  
+  .to-chart-1 {
+    --tw-gradient-to: oklch(var(--chart-1)) var(--tw-gradient-to-position);
+  }
+  
+  .to-chart-2 {
+    --tw-gradient-to: oklch(var(--chart-2)) var(--tw-gradient-to-position);
+  }
+  
+  .to-chart-3 {
+    --tw-gradient-to: oklch(var(--chart-3)) var(--tw-gradient-to-position);
+  }
+
+/* Ensure OKLCH colors work in all contexts */
+@supports (color: oklch(0 0 0)) {
+  /* Browser supports OKLCH - use it directly */
+  .supports-oklch {
+    --color-mode: oklch;
+  }
+}
+
+/* Fallback for browsers without OKLCH support */
+@supports not (color: oklch(0 0 0)) {
+  :root {
+    --primary: 39 82% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 93 12% 91%;
+    --secondary-foreground: 99 4% 41%;
+    --muted: 90 14% 92%;
+    --muted-foreground: 97 1% 58%;
+    --accent: 93 12% 91%;
+    --accent-foreground: 99 9% 25%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 97 5% 87%;
+    --input: 98 7% 75%;
+    --ring: 39 82% 55%;
+    --chart-1: 43 76% 50%;
+    --chart-2: 290 71% 60%;
+    --chart-3: 93 48% 85%;
+    --chart-4: 298 30% 85%;
+    --chart-5: 42 77% 50%;
+  }
+  
+  [data-theme="dark"] {
+    --primary: 38 85% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 95 50% 98%;
+    --secondary-foreground: 107 3% 30%;
+    --muted: 107 8% 21%;
+    --muted-foreground: 99 8% 76%;
+    --accent: 95 4% 20%;
+    --accent-foreground: 99 5% 96%;
+    --destructive: 25 85% 56%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 107 10% 35%;
+    --input: 100 11% 43%;
+    --ring: 38 85% 58%;
+    --chart-1: 43 76% 50%;
+    --chart-2: 290 71% 60%;
+    --chart-3: 95 4% 20%;
+    --chart-4: 289 23% 30%;
+    --chart-5: 42 77% 50%;
+  }
+  
+  /* Apply HSL function in fallback mode */
+  .bg-background { background-color: hsl(var(--background)); }
+  .bg-foreground { background-color: hsl(var(--foreground)); }
+  .bg-card { background-color: hsl(var(--card)); }
+  .bg-primary { background-color: hsl(var(--primary)); }
+  .bg-secondary { background-color: hsl(var(--secondary)); }
+  .bg-muted { background-color: hsl(var(--muted)); }
+  .bg-accent { background-color: hsl(var(--accent)); }
+  .bg-destructive { background-color: hsl(var(--destructive)); }
+  .text-foreground { color: hsl(var(--foreground)); }
+  .text-primary { color: hsl(var(--primary)); }
+  .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+  .border-border { border-color: hsl(var(--border)); }
+}

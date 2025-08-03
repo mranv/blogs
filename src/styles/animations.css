@@ -832,7 +832,7 @@
   animation: hologram 3s ease-in-out infinite;
   background: linear-gradient(45deg, 
     rgba(0, 255, 65, 0.1) 0%,
-    rgba(0, 153, 255, 0.1) 50%,
+    oklch(var(--primary) / 0.1) 50%,
     rgba(255, 0, 64, 0.1) 100%);
 }
 

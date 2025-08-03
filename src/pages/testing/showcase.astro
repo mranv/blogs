@@ -152,7 +152,7 @@ const sampleTags = [
       <div class="space-y-8">
         <!-- Author Hero -->
         <div
-          class="bg-gradient-to-r from-primary to-purple-600 rounded-lg overflow-hidden"
+          class="bg-gradient-to-r from-primary to-chart-2 rounded-lg overflow-hidden"
         >
           <AuthorHero
             client:load
@@ -340,9 +340,8 @@ const sampleTags = [
             Scale In
           </h3>
           <ScaleIn client:load>
-            <div class="p-6 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
-              <div class="w-16 h-16 bg-purple-500 rounded-full mx-auto mb-4">
-              </div>
+            <div class="p-6 bg-chart-2/10 rounded-lg">
+              <div class="w-16 h-16 bg-chart-2 rounded-full mx-auto mb-4"></div>
               <p class="text-gray-700 dark:text-gray-300">
                 Content scales in with bounce
               </p>
@@ -505,10 +504,10 @@ const sampleTags = [
         <!-- Responsive -->
         <ScaleIn client:load delay={200}>
           <div
-            class="p-6 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg text-center"
+            class="p-6 bg-chart-2/10 border border-chart-2/20 rounded-lg text-center"
           >
             <div
-              class="w-12 h-12 bg-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center"
+              class="w-12 h-12 bg-chart-2 rounded-full mx-auto mb-4 flex items-center justify-center"
             >
               <svg
                 class="w-6 h-6 text-white"
@@ -524,12 +523,10 @@ const sampleTags = [
                 ></path>
               </svg>
             </div>
-            <h3
-              class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2"
-            >
+            <h3 class="text-lg font-semibold text-chart-2 mb-2">
               Fully Responsive
             </h3>
-            <p class="text-sm text-purple-600 dark:text-purple-400">
+            <p class="text-sm text-chart-2/80">
               Responsive design tested across all device sizes and orientations.
             </p>
           </div>
@@ -541,7 +538,7 @@ const sampleTags = [
     <section class="text-center">
       <FadeIn client:load>
         <div
-          class="bg-gradient-to-r from-primary to-purple-600 rounded-lg p-8 text-white"
+          class="bg-gradient-to-r from-primary to-chart-2 rounded-lg p-8 text-white"
         >
           <h2 class="text-2xl font-bold mb-4">Ready to Test?</h2>
           <p class="text-primary-foreground/80 mb-6">

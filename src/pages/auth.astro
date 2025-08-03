@@ -1,59 +1,9 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import SignInPage from "@components/auth/SignInPage";
+import "@styles/auth-ui.css";
 ---
 
 <Layout>
   <SignInPage client:load />
 </Layout>
-
-<style>
-  /* Fixed Theme Toggle CSS with Claude Orange */
-  .auth-theme-toggle {
-    position: fixed !important;
-    top: 32px !important;
-    right: 32px !important;
-    z-index: 99999 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 48px !important;
-    height: 48px !important;
-    border-radius: 50% !important;
-    background: rgba(255, 255, 255, 0.95) !important;
-    border: 2px solid hsl(var(--primary)) !important;
-    color: hsl(var(--primary)) !important;
-    cursor: pointer !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(233, 116, 53, 0.1) !important;
-    backdrop-filter: blur(10px) !important;
-  }
-
-  .auth-theme-toggle:hover {
-    transform: scale(1.1) !important;
-    background: rgba(233, 116, 53, 0.1) !important;
-    border-color: hsl(var(--primary)) !important;
-    box-shadow:
-      0 6px 20px rgba(233, 116, 53, 0.4),
-      0 0 0 3px rgba(233, 116, 53, 0.2) !important;
-  }
-
-  html[data-theme="dark"] .auth-theme-toggle {
-    background: rgba(0, 0, 0, 0.8) !important;
-    border-color: hsl(var(--primary) / 0.8) !important;
-    color: hsl(var(--primary) / 0.8) !important;
-    box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.4),
-      0 0 0 1px rgba(245, 147, 91, 0.2) !important;
-  }
-
-  html[data-theme="dark"] .auth-theme-toggle:hover {
-    background: rgba(245, 147, 91, 0.2) !important;
-    border-color: hsl(var(--primary) / 0.8) !important;
-    box-shadow:
-      0 6px 20px rgba(245, 147, 91, 0.5),
-      0 0 0 3px rgba(245, 147, 91, 0.3) !important;
-  }
-</style>
