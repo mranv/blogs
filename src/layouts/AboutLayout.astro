@@ -31,13 +31,20 @@ const { frontmatter } = Astro.props;
   <AppHero client:load />
 
   <Breadcrumbs />
-  <main id="main-content" class="about-page w-full">
+  <main
+    id="main-content"
+    class="w-full px-4 py-8 bg-background text-foreground"
+  >
     <section
       id="about"
-      class="prose mb-28 prose-img:border-0 about-content w-full"
+      class="prose mb-28 prose-img:border-0 markdown-content w-full max-w-6xl mx-auto"
     >
-      <div class="about-header">
-        <h1 class="text-2xl tracking-wider sm:text-3xl">{frontmatter.title}</h1>
+      <div
+        class="text-center mb-12 bg-card border border-border rounded-xl p-8 shadow-lg mx-auto"
+      >
+        <h1 class="text-4xl font-bold text-foreground mb-4">
+          {frontmatter.title}
+        </h1>
       </div>
       <slot />
     </section>
