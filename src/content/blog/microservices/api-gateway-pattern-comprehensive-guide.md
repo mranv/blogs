@@ -1379,13 +1379,11 @@ Uber implements domain-specific gateways:
 ### Open Source Options
 
 1. **Kong**
-
    - Pros: Extensive plugin ecosystem, high performance
    - Cons: Lua-based plugins, database dependency
    - Best for: Organizations needing flexibility
 
 2. **Traefik**
-
    - Pros: Native Kubernetes support, automatic service discovery
    - Cons: Limited built-in features
    - Best for: Container-based deployments
@@ -1398,13 +1396,11 @@ Uber implements domain-specific gateways:
 ### Commercial Solutions
 
 1. **AWS API Gateway**
-
    - Pros: Fully managed, AWS integration
    - Cons: Vendor lock-in, cost at scale
    - Best for: AWS-native applications
 
 2. **Google Apigee**
-
    - Pros: Advanced analytics, developer portal
    - Cons: Complex pricing, steep learning curve
    - Best for: API monetization scenarios

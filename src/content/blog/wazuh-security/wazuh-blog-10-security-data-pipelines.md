@@ -916,19 +916,16 @@ class PipelineCostCalculator:
 ### Pipeline Design Principles
 
 1. **Schema-First Design**
-
    - Define schemas before implementation
    - Version all schema changes
    - Maintain backward compatibility
 
 2. **Failure Handling**
-
    - Implement circuit breakers
    - Use dead letter queues
    - Maintain audit trails
 
 3. **Performance Optimization**
-
    - Batch where possible
    - Parallelize processing
    - Cache enrichment data

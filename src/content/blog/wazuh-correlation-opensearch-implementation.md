@@ -351,14 +351,12 @@ python3 dashboard_manager.py \
 ### Custom Visualizations
 
 1. **Security Overview Dashboard**
-
    - Alert trends over time
    - Top attack sources
    - MITRE ATT&CK mapping
    - Agent status overview
 
 2. **Correlation Analysis Dashboard**
-
    - Multi-stage attack timelines
    - User behavior analytics
    - Network traffic patterns

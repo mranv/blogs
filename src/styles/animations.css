@@ -6,24 +6,24 @@
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  --ease-cyber: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+  --ease-cyber: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-matrix: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-hack: cubic-bezier(0.77, 0, 0.175, 1);
-  
+
   /* Animation durations */
   --duration-instant: 50ms;
   --duration-fast: 150ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
   --duration-slower: 750ms;
-  
+
   /* Claude Theme colors from theme.json */
   --color-cyber-green: hsl(var(--primary));
   --color-cyber-blue: hsl(var(--primary));
   --color-cyber-red: hsl(var(--destructive));
   --color-cyber-orange: hsl(var(--chart-1));
   --color-matrix-green: hsl(var(--chart-3));
-  
+
   /* Animation system variables */
   --animation-scale: 1;
   --animation-duration-multiplier: 1;
@@ -35,7 +35,7 @@
     --animation-scale: 0;
     --animation-duration-multiplier: 0.01;
   }
-  
+
   *,
   *::before,
   *::after {
@@ -437,7 +437,9 @@
 .animate-scale-in {
   opacity: 0;
   transform: scale(0.95);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
   transform-origin: center center;
   will-change: opacity, transform;
 }
@@ -567,7 +569,7 @@
 .fade-in-container {
   opacity: 0;
   transform: var(--fade-transform);
-  transition: 
+  transition:
     opacity var(--fade-duration) var(--fade-easing) var(--fade-delay),
     transform var(--fade-duration) var(--fade-easing) var(--fade-delay);
   will-change: opacity, transform;
@@ -583,7 +585,7 @@
 .fade-in-cascade .fade-in-char {
   opacity: 0;
   transform: var(--fade-transform);
-  transition: 
+  transition:
     opacity var(--fade-duration) var(--fade-easing),
     transform var(--fade-duration) var(--fade-easing);
 }
@@ -592,7 +594,7 @@
 .slide-in-container {
   opacity: 0;
   transform: var(--slide-transform);
-  transition: 
+  transition:
     opacity var(--slide-duration) var(--slide-easing) var(--slide-delay),
     transform var(--slide-duration) var(--slide-easing) var(--slide-delay);
   will-change: opacity, transform;
@@ -605,21 +607,46 @@
 }
 
 /* Slide direction specific styles */
-.slide-in-up { --slide-transform: translateY(var(--slide-distance)); }
-.slide-in-down { --slide-transform: translateY(calc(-1 * var(--slide-distance))); }
-.slide-in-left { --slide-transform: translateX(var(--slide-distance)); }
-.slide-in-right { --slide-transform: translateX(calc(-1 * var(--slide-distance))); }
-.slide-in-up-left { --slide-transform: translate(var(--slide-distance), var(--slide-distance)); }
-.slide-in-up-right { --slide-transform: translate(calc(-1 * var(--slide-distance)), var(--slide-distance)); }
-.slide-in-down-left { --slide-transform: translate(var(--slide-distance), calc(-1 * var(--slide-distance))); }
-.slide-in-down-right { --slide-transform: translate(calc(-1 * var(--slide-distance)), calc(-1 * var(--slide-distance))); }
+.slide-in-up {
+  --slide-transform: translateY(var(--slide-distance));
+}
+.slide-in-down {
+  --slide-transform: translateY(calc(-1 * var(--slide-distance)));
+}
+.slide-in-left {
+  --slide-transform: translateX(var(--slide-distance));
+}
+.slide-in-right {
+  --slide-transform: translateX(calc(-1 * var(--slide-distance)));
+}
+.slide-in-up-left {
+  --slide-transform: translate(var(--slide-distance), var(--slide-distance));
+}
+.slide-in-up-right {
+  --slide-transform: translate(
+    calc(-1 * var(--slide-distance)),
+    var(--slide-distance)
+  );
+}
+.slide-in-down-left {
+  --slide-transform: translate(
+    var(--slide-distance),
+    calc(-1 * var(--slide-distance))
+  );
+}
+.slide-in-down-right {
+  --slide-transform: translate(
+    calc(-1 * var(--slide-distance)),
+    calc(-1 * var(--slide-distance))
+  );
+}
 
 /* ScaleIn Component Styles */
 .scale-in-container {
   opacity: 0;
   transform: var(--scale-transform-initial);
   transform-origin: var(--scale-origin);
-  transition: 
+  transition:
     opacity var(--scale-duration) var(--scale-easing) var(--scale-delay),
     transform var(--scale-duration) var(--scale-easing) var(--scale-delay);
   will-change: opacity, transform;
@@ -647,7 +674,7 @@
 .stagger-child {
   opacity: 0;
   transform: var(--stagger-transform);
-  transition: 
+  transition:
     opacity var(--stagger-duration) var(--stagger-easing),
     transform var(--stagger-duration) var(--stagger-easing);
   will-change: opacity, transform;
@@ -659,13 +686,27 @@
 }
 
 /* Stagger animation variants */
-.stagger-child-slide-up { --stagger-transform: translateY(var(--stagger-distance)); }
-.stagger-child-slide-down { --stagger-transform: translateY(calc(-1 * var(--stagger-distance))); }
-.stagger-child-slide-left { --stagger-transform: translateX(var(--stagger-distance)); }
-.stagger-child-slide-right { --stagger-transform: translateX(calc(-1 * var(--stagger-distance))); }
-.stagger-child-scale { --stagger-transform: scale(0.8); }
-.stagger-child-rotate { --stagger-transform: rotate(-10deg) scale(0.9); }
-.stagger-child-flip { --stagger-transform: rotateY(90deg); }
+.stagger-child-slide-up {
+  --stagger-transform: translateY(var(--stagger-distance));
+}
+.stagger-child-slide-down {
+  --stagger-transform: translateY(calc(-1 * var(--stagger-distance)));
+}
+.stagger-child-slide-left {
+  --stagger-transform: translateX(var(--stagger-distance));
+}
+.stagger-child-slide-right {
+  --stagger-transform: translateX(calc(-1 * var(--stagger-distance)));
+}
+.stagger-child-scale {
+  --stagger-transform: scale(0.8);
+}
+.stagger-child-rotate {
+  --stagger-transform: rotate(-10deg) scale(0.9);
+}
+.stagger-child-flip {
+  --stagger-transform: rotateY(90deg);
+}
 
 /* ParallaxScroll Component Styles */
 .parallax-scroll-container {
@@ -683,47 +724,69 @@
 
 /* PageTransition Component Styles */
 .page-transition-container {
-  transition: 
-    opacity var(--transition-duration) var(--transition-easing) var(--transition-delay),
-    transform var(--transition-duration) var(--transition-easing) var(--transition-delay);
+  transition:
+    opacity var(--transition-duration) var(--transition-easing)
+      var(--transition-delay),
+    transform var(--transition-duration) var(--transition-easing)
+      var(--transition-delay);
   will-change: opacity, transform;
 }
 
 /* Page transition variants */
 .page-transition-fade.page-transition-in {
-  animation: pageTransitionFadeIn var(--transition-duration) var(--transition-easing) var(--transition-delay) both;
+  animation: pageTransitionFadeIn var(--transition-duration)
+    var(--transition-easing) var(--transition-delay) both;
 }
 
 .page-transition-fade.page-transition-out {
-  animation: pageTransitionFadeOut var(--transition-duration) var(--transition-easing) var(--transition-delay) both;
+  animation: pageTransitionFadeOut var(--transition-duration)
+    var(--transition-easing) var(--transition-delay) both;
 }
 
 @keyframes pageTransitionFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes pageTransitionFadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .page-transition-slide-left.page-transition-in {
-  animation: pageTransitionSlideInLeft var(--transition-duration) var(--transition-easing) var(--transition-delay) both;
+  animation: pageTransitionSlideInLeft var(--transition-duration)
+    var(--transition-easing) var(--transition-delay) both;
 }
 
 .page-transition-slide-left.page-transition-out {
-  animation: pageTransitionSlideOutLeft var(--transition-duration) var(--transition-easing) var(--transition-delay) both;
+  animation: pageTransitionSlideOutLeft var(--transition-duration)
+    var(--transition-easing) var(--transition-delay) both;
 }
 
 @keyframes pageTransitionSlideInLeft {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes pageTransitionSlideOutLeft {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 /* ==============================================
@@ -732,8 +795,14 @@
 
 /* Matrix rain effect */
 @keyframes matrixRain {
-  0% { transform: translateY(-100vh); opacity: 1; }
-  100% { transform: translateY(100vh); opacity: 0; }
+  0% {
+    transform: translateY(-100vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
 }
 
 .matrix-char {
@@ -744,12 +813,25 @@
 
 /* Cyber glitch effect */
 @keyframes cyberGlitch {
-  0%, 100% { transform: translateX(0); }
-  10% { transform: translateX(-2px) skewX(-5deg); }
-  20% { transform: translateX(2px) skewX(5deg); }
-  30% { transform: translateX(-1px) skewX(-2deg); }
-  40% { transform: translateX(1px) skewX(2deg); }
-  50% { transform: translateX(0) skewX(0deg); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-2px) skewX(-5deg);
+  }
+  20% {
+    transform: translateX(2px) skewX(5deg);
+  }
+  30% {
+    transform: translateX(-1px) skewX(-2deg);
+  }
+  40% {
+    transform: translateX(1px) skewX(2deg);
+  }
+  50% {
+    transform: translateX(0) skewX(0deg);
+  }
 }
 
 .cyber-glitch {
@@ -776,13 +858,23 @@
 
 /* Terminal typing effect */
 @keyframes terminalTyping {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes terminalCursor {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .terminal-text {
@@ -792,15 +884,19 @@
 }
 
 .terminal-cursor::after {
-  content: '|';
+  content: "|";
   color: var(--color-cyber-green);
   animation: terminalCursor 1s infinite;
 }
 
 /* Scan line effect */
 @keyframes scanLine {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
 }
 
 .scan-line {
@@ -809,20 +905,23 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--color-cyber-green) 50%, 
-    transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-cyber-green) 50%,
+    transparent 100%
+  );
   animation: scanLine 2s linear infinite;
 }
 
 /* Hologram effect */
 @keyframes hologram {
-  0%, 100% { 
+  0%,
+  100% {
     opacity: 0.8;
     filter: hue-rotate(0deg);
   }
-  50% { 
+  50% {
     opacity: 1;
     filter: hue-rotate(90deg);
   }
@@ -830,10 +929,12 @@
 
 .hologram {
   animation: hologram 3s ease-in-out infinite;
-  background: linear-gradient(45deg, 
+  background: linear-gradient(
+    45deg,
     rgba(0, 255, 65, 0.1) 0%,
     oklch(var(--primary) / 0.1) 50%,
-    rgba(255, 0, 64, 0.1) 100%);
+    rgba(255, 0, 64, 0.1) 100%
+  );
 }
 
 /* ==============================================
@@ -868,7 +969,7 @@
 }
 
 .ripple-effect::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -877,7 +978,9 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.4);
   transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.6s, opacity 0.6s;
+  transition:
+    transform 0.6s,
+    opacity 0.6s;
 }
 
 .ripple-effect:active::before {
@@ -886,14 +989,15 @@
 
 /* Glow pulse for cybersecurity elements */
 @keyframes cyberGlow {
-  0%, 100% {
-    box-shadow: 
+  0%,
+  100% {
+    box-shadow:
       0 0 5px var(--color-cyber-green),
       0 0 10px var(--color-cyber-green),
       0 0 15px var(--color-cyber-green);
   }
   50% {
-    box-shadow: 
+    box-shadow:
       0 0 10px var(--color-cyber-green),
       0 0 20px var(--color-cyber-green),
       0 0 30px var(--color-cyber-green);
@@ -906,9 +1010,15 @@
 
 /* Security badge animation */
 @keyframes securityBadge {
-  0% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.1); }
-  100% { transform: rotate(360deg) scale(1); }
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
 
 .security-badge {
@@ -942,14 +1052,14 @@
 
 /* Blog card hover animation */
 .blog-card {
-  transition: 
+  transition:
     transform var(--duration-normal) var(--ease-smooth),
     box-shadow var(--duration-normal) var(--ease-smooth);
 }
 
 .blog-card:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.1),
     0 0 20px rgba(var(--color-cyber-green), 0.1);
 }
@@ -961,7 +1071,7 @@
 }
 
 .nav-menu-item::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -979,7 +1089,7 @@
 /* Search input focus animation - Claude Theme Aligned */
 .search-input,
 .search-input-enhanced {
-  transition: 
+  transition:
     border-color var(--duration-fast) var(--ease-smooth),
     box-shadow var(--duration-fast) var(--ease-smooth),
     background-color var(--duration-fast) var(--ease-smooth);
@@ -999,7 +1109,7 @@
 
 /* Tag hover animation */
 .tag {
-  transition: 
+  transition:
     background-color var(--duration-fast) var(--ease-smooth),
     transform var(--duration-fast) var(--ease-smooth);
 }
@@ -1014,40 +1124,97 @@
    ============================================== */
 
 /* Quick animation utilities */
-.animate-pulse-slow { animation: pulse 3s ease-in-out infinite; }
-.animate-bounce-subtle { animation: bounce 2s ease-in-out infinite; transform: translateY(-2px); }
-.animate-glow { animation: cyberGlow 2s ease-in-out infinite; }
-.animate-typing { animation: terminalTyping 2s steps(40) both; }
-.animate-glitch { animation: cyberGlitch 0.5s ease-in-out; }
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+.animate-bounce-subtle {
+  animation: bounce 2s ease-in-out infinite;
+  transform: translateY(-2px);
+}
+.animate-glow {
+  animation: cyberGlow 2s ease-in-out infinite;
+}
+.animate-typing {
+  animation: terminalTyping 2s steps(40) both;
+}
+.animate-glitch {
+  animation: cyberGlitch 0.5s ease-in-out;
+}
 
 /* Animation delay utilities */
-.animate-delay-100 { animation-delay: 0.1s; }
-.animate-delay-200 { animation-delay: 0.2s; }
-.animate-delay-300 { animation-delay: 0.3s; }
-.animate-delay-400 { animation-delay: 0.4s; }
-.animate-delay-500 { animation-delay: 0.5s; }
-.animate-delay-600 { animation-delay: 0.6s; }
-.animate-delay-700 { animation-delay: 0.7s; }
-.animate-delay-800 { animation-delay: 0.8s; }
-.animate-delay-900 { animation-delay: 0.9s; }
-.animate-delay-1000 { animation-delay: 1s; }
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+.animate-delay-500 {
+  animation-delay: 0.5s;
+}
+.animate-delay-600 {
+  animation-delay: 0.6s;
+}
+.animate-delay-700 {
+  animation-delay: 0.7s;
+}
+.animate-delay-800 {
+  animation-delay: 0.8s;
+}
+.animate-delay-900 {
+  animation-delay: 0.9s;
+}
+.animate-delay-1000 {
+  animation-delay: 1s;
+}
 
 /* Stagger animation delays */
-.stagger-delay-50 { animation-delay: 50ms; }
-.stagger-delay-100 { animation-delay: 100ms; }
-.stagger-delay-150 { animation-delay: 150ms; }
-.stagger-delay-200 { animation-delay: 200ms; }
-.stagger-delay-250 { animation-delay: 250ms; }
-.stagger-delay-300 { animation-delay: 300ms; }
-.stagger-delay-350 { animation-delay: 350ms; }
-.stagger-delay-400 { animation-delay: 400ms; }
-.stagger-delay-450 { animation-delay: 450ms; }
-.stagger-delay-500 { animation-delay: 500ms; }
+.stagger-delay-50 {
+  animation-delay: 50ms;
+}
+.stagger-delay-100 {
+  animation-delay: 100ms;
+}
+.stagger-delay-150 {
+  animation-delay: 150ms;
+}
+.stagger-delay-200 {
+  animation-delay: 200ms;
+}
+.stagger-delay-250 {
+  animation-delay: 250ms;
+}
+.stagger-delay-300 {
+  animation-delay: 300ms;
+}
+.stagger-delay-350 {
+  animation-delay: 350ms;
+}
+.stagger-delay-400 {
+  animation-delay: 400ms;
+}
+.stagger-delay-450 {
+  animation-delay: 450ms;
+}
+.stagger-delay-500 {
+  animation-delay: 500ms;
+}
 
 /* Hover utilities */
-.hover-lift:hover { transform: translateY(-4px); }
-.hover-glow:hover { box-shadow: 0 0 20px rgba(var(--color-cyber-green), 0.3); }
-.hover-scale:hover { transform: scale(1.05); }
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(var(--color-cyber-green), 0.3);
+}
+.hover-scale:hover {
+  transform: scale(1.05);
+}
 
 /* Focus utilities */
 .focus-ring:focus {

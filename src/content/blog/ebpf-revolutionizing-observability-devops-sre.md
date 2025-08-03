@@ -49,7 +49,7 @@ graph TB
         A2 --> OS1
         A3 --> OS1
         A4 --> OS1
-        
+
         OS3 --> H1
         OS3 --> H2
         OS3 --> H3
@@ -195,7 +195,7 @@ sequenceDiagram
     eBPF->>Kernel: Hook system events
     eBPF->>eBPF: Process data in kernel
     eBPF->>Monitor: Send processed metrics (low overhead)
-    
+
     rect rgb(255, 205, 210)
         Note over App: No code changes required
     end
@@ -303,19 +303,19 @@ SEC("tp/sock/inet_sock_set_state")
 int trace_tcp_state_change(struct trace_event_raw_inet_sock_set_state *ctx) {
     if (ctx->protocol != IPPROTO_TCP)
         return 0;
-    
+
     struct network_flow *flow;
     flow = bpf_ringbuf_reserve(&flow_events, sizeof(*flow), 0);
     if (!flow)
         return 0;
-    
+
     flow->src_ip = ctx->saddr;
     flow->dst_ip = ctx->daddr;
     flow->src_port = ctx->sport;
     flow->dst_port = ctx->dport;
     flow->protocol = ctx->protocol;
     flow->timestamp = bpf_ktime_get_ns();
-    
+
     bpf_ringbuf_submit(flow, 0);
     return 0;
 }
@@ -324,20 +324,20 @@ int trace_tcp_state_change(struct trace_event_raw_inet_sock_set_state *ctx) {
 SEC("uprobe/http_request_handler")
 int trace_http_request(struct pt_regs *ctx) {
     __u64 pid_tgid = bpf_get_current_pid_tgid();
-    
+
     // Extract HTTP method, path, and headers
     char *method = (char *)PT_REGS_PARM1(ctx);
     char *path = (char *)PT_REGS_PARM2(ctx);
-    
+
     struct network_flow *flow;
     flow = bpf_ringbuf_reserve(&flow_events, sizeof(*flow), 0);
     if (!flow)
         return 0;
-    
+
     // Populate HTTP-specific metrics
     bpf_probe_read_str(&flow->src_ip, 4, method); // Store method in src_ip for demo
     flow->timestamp = bpf_ktime_get_ns();
-    
+
     bpf_ringbuf_submit(flow, 0);
     return 0;
 }
@@ -347,15 +347,15 @@ SEC("uprobe/mongo_operation_start")
 int trace_mongo_operation(struct pt_regs *ctx) {
     __u32 operation_type = (int)PT_REGS_PARM1(ctx);
     char *collection = (char *)PT_REGS_PARM2(ctx);
-    
+
     struct network_flow *flow;
     flow = bpf_ringbuf_reserve(&flow_events, sizeof(*flow), 0);
     if (!flow)
         return 0;
-    
+
     flow->protocol = 27017; // MongoDB default port
     flow->timestamp = bpf_ktime_get_ns();
-    
+
     bpf_ringbuf_submit(flow, 0);
     return 0;
 }
@@ -401,7 +401,7 @@ int inject_trace_headers(struct __sk_buff *skb) {
     // Extract existing trace context
     struct trace_context *ctx;
     __u64 trace_id = extract_trace_id(skb);
-    
+
     ctx = bpf_map_lookup_elem(&distributed_traces, &trace_id);
     if (!ctx) {
         // Create new trace context
@@ -410,11 +410,11 @@ int inject_trace_headers(struct __sk_buff *skb) {
             .span_id = bpf_get_prandom_u32(),
             .timestamp = bpf_ktime_get_ns(),
         };
-        
+
         bpf_probe_read_str(new_ctx.cluster_id, sizeof(new_ctx.cluster_id), "cluster-1");
         bpf_map_update_elem(&distributed_traces, &new_ctx.trace_id, &new_ctx, BPF_ANY);
     }
-    
+
     // Modify packet headers to include trace information
     return TC_ACT_OK;
 }
@@ -423,16 +423,16 @@ int inject_trace_headers(struct __sk_buff *skb) {
 SEC("kprobe/tcp_sendmsg")
 int correlate_cross_cluster(struct pt_regs *ctx) {
     struct sock *sk = (struct sock *)PT_REGS_PARM1(ctx);
-    
+
     // Extract destination information
     __u32 dst_ip = BPF_CORE_READ(sk, __sk_common.skc_daddr);
-    
+
     // Check if this is cross-cluster communication
     if (is_cross_cluster_ip(dst_ip)) {
         // Enhance trace context with cluster boundary information
         update_cross_cluster_metrics(sk);
     }
-    
+
     return 0;
 }
 
@@ -553,23 +553,23 @@ struct {
 SEC("uprobe/handle_http_request")
 int trace_http_request_start(struct pt_regs *ctx) {
     struct http_request *req = (struct http_request *)PT_REGS_PARM1(ctx);
-    
+
     struct http_metrics *metrics;
     metrics = bpf_ringbuf_reserve(&http_events, sizeof(*metrics), 0);
     if (!metrics)
         return 0;
-    
+
     // Extract HTTP request details
-    bpf_probe_read_str(metrics->method, sizeof(metrics->method), 
+    bpf_probe_read_str(metrics->method, sizeof(metrics->method),
                        BPF_CORE_READ(req, method));
-    bpf_probe_read_str(metrics->path, sizeof(metrics->path), 
+    bpf_probe_read_str(metrics->path, sizeof(metrics->path),
                        BPF_CORE_READ(req, path));
-    bpf_probe_read_str(metrics->user_agent, sizeof(metrics->user_agent), 
+    bpf_probe_read_str(metrics->user_agent, sizeof(metrics->user_agent),
                        BPF_CORE_READ(req, user_agent));
-    
+
     metrics->request_time = bpf_ktime_get_ns();
     metrics->request_size = BPF_CORE_READ(req, content_length);
-    
+
     bpf_ringbuf_submit(metrics, 0);
     return 0;
 }
@@ -577,16 +577,16 @@ int trace_http_request_start(struct pt_regs *ctx) {
 SEC("uretprobe/handle_http_request")
 int trace_http_request_end(struct pt_regs *ctx) {
     struct http_response *resp = (struct http_response *)PT_REGS_RC(ctx);
-    
+
     struct http_metrics *metrics;
     metrics = bpf_ringbuf_reserve(&http_events, sizeof(*metrics), 0);
     if (!metrics)
         return 0;
-    
+
     metrics->status_code = BPF_CORE_READ(resp, status_code);
     metrics->response_size = BPF_CORE_READ(resp, content_length);
     metrics->response_time = bpf_ktime_get_ns();
-    
+
     bpf_ringbuf_submit(metrics, 0);
     return 0;
 }
@@ -618,12 +618,12 @@ SEC("uprobe/mysql_execute_query")
 int trace_mysql_query_start(struct pt_regs *ctx) {
     void *connection = (void *)PT_REGS_PARM1(ctx);
     char *query = (char *)PT_REGS_PARM2(ctx);
-    
+
     struct db_operation *op;
     op = bpf_ringbuf_reserve(&db_events, sizeof(*op), 0);
     if (!op)
         return 0;
-    
+
     // Extract query type
     if (bpf_strncmp(query, "SELECT", 6) == 0) {
         bpf_probe_read_str(op->operation, sizeof(op->operation), "SELECT");
@@ -634,13 +634,13 @@ int trace_mysql_query_start(struct pt_regs *ctx) {
     } else if (bpf_strncmp(query, "DELETE", 6) == 0) {
         bpf_probe_read_str(op->operation, sizeof(op->operation), "DELETE");
     }
-    
+
     op->execution_time = bpf_ktime_get_ns();
     op->connection_id = (__u32)(long)connection;
-    
+
     // Generate query hash for grouping similar queries
     op->query_hash[0] = bpf_get_prandom_u32() % 256;
-    
+
     bpf_ringbuf_submit(op, 0);
     return 0;
 }
@@ -650,14 +650,14 @@ SEC("uprobe/mongodb_collection_operation")
 int trace_mongodb_operation(struct pt_regs *ctx) {
     char *collection = (char *)PT_REGS_PARM1(ctx);
     int operation_type = (int)PT_REGS_PARM2(ctx);
-    
+
     struct db_operation *op;
     op = bpf_ringbuf_reserve(&db_events, sizeof(*op), 0);
     if (!op)
         return 0;
-    
+
     bpf_probe_read_str(op->table_name, sizeof(op->table_name), collection);
-    
+
     switch (operation_type) {
         case 1:
             bpf_probe_read_str(op->operation, sizeof(op->operation), "FIND");
@@ -672,9 +672,9 @@ int trace_mongodb_operation(struct pt_regs *ctx) {
             bpf_probe_read_str(op->operation, sizeof(op->operation), "DELETE");
             break;
     }
-    
+
     op->execution_time = bpf_ktime_get_ns();
-    
+
     bpf_ringbuf_submit(op, 0);
     return 0;
 }
@@ -717,38 +717,38 @@ static struct metrics_aggregator aggregator = {0};
 // Process HTTP events from eBPF
 static int handle_http_event(void *ctx, void *data, size_t data_sz) {
     struct http_metrics *event = data;
-    
+
     // Find or create service metrics
     struct service_metrics *service = find_or_create_service(event->path);
     if (!service) {
         return 0;
     }
-    
+
     // Update metrics
     service->request_count++;
-    
+
     if (event->status_code >= 400) {
         service->error_count++;
     }
-    
+
     uint64_t latency = event->response_time - event->request_time;
     service->total_latency += latency;
-    
+
     if (latency < service->min_latency || service->min_latency == 0) {
         service->min_latency = latency;
     }
-    
+
     if (latency > service->max_latency) {
         service->max_latency = latency;
     }
-    
+
     service->last_updated = time(NULL);
-    
+
     // Generate real-time insights
     if (should_generate_alert(service, event)) {
         generate_performance_alert(service, event);
     }
-    
+
     return 0;
 }
 
@@ -756,14 +756,14 @@ static struct service_metrics *find_or_create_service(const char *path) {
     // Extract service name from path
     char service_name[64];
     extract_service_name(path, service_name, sizeof(service_name));
-    
+
     // Find existing service
     for (int i = 0; i < aggregator.service_count; i++) {
         if (strcmp(aggregator.services[i].service_name, service_name) == 0) {
             return &aggregator.services[i];
         }
     }
-    
+
     // Create new service entry
     if (aggregator.service_count < 1000) {
         struct service_metrics *service = &aggregator.services[aggregator.service_count++];
@@ -771,7 +771,7 @@ static struct service_metrics *find_or_create_service(const char *path) {
         service->last_updated = time(NULL);
         return service;
     }
-    
+
     return NULL;
 }
 
@@ -796,13 +796,13 @@ static int should_generate_alert(struct service_metrics *service, struct http_me
             return 1;
         }
     }
-    
+
     // Latency threshold
     uint64_t current_latency = event->response_time - event->request_time;
     if (current_latency > 5000000000ULL) { // 5 seconds
         return 1;
     }
-    
+
     return 0;
 }
 
@@ -810,20 +810,20 @@ static void generate_performance_alert(struct service_metrics *service, struct h
     time_t now = time(NULL);
     char *timestamp = ctime(&now);
     timestamp[strlen(timestamp) - 1] = '\0'; // Remove newline
-    
-    double error_rate = service->request_count > 0 ? 
+
+    double error_rate = service->request_count > 0 ?
                        (double)service->error_count / service->request_count * 100.0 : 0.0;
-    
-    double avg_latency = service->request_count > 0 ? 
+
+    double avg_latency = service->request_count > 0 ?
                         (double)service->total_latency / service->request_count / 1000000.0 : 0.0;
-    
+
     printf("ALERT [%s] Service: %s\n", timestamp, service->service_name);
-    printf("  Error Rate: %.2f%% (%lu/%lu requests)\n", 
+    printf("  Error Rate: %.2f%% (%lu/%lu requests)\n",
            error_rate, service->error_count, service->request_count);
     printf("  Average Latency: %.2f ms\n", avg_latency);
-    printf("  Min/Max Latency: %.2f/%.2f ms\n", 
+    printf("  Min/Max Latency: %.2f/%.2f ms\n",
            service->min_latency / 1000000.0, service->max_latency / 1000000.0);
-    printf("  Recent Request: %s %s -> %d\n", 
+    printf("  Recent Request: %s %s -> %d\n",
            event->method, event->path, event->status_code);
     printf("\n");
 }
@@ -832,21 +832,21 @@ static void generate_performance_alert(struct service_metrics *service, struct h
 static void export_prometheus_metrics() {
     printf("# HELP http_requests_total Total number of HTTP requests\n");
     printf("# TYPE http_requests_total counter\n");
-    
+
     printf("# HELP http_request_duration_seconds HTTP request latency\n");
     printf("# TYPE http_request_duration_seconds histogram\n");
-    
+
     for (int i = 0; i < aggregator.service_count; i++) {
         struct service_metrics *service = &aggregator.services[i];
-        
-        printf("http_requests_total{service=\"%s\",status=\"success\"} %lu\n", 
+
+        printf("http_requests_total{service=\"%s\",status=\"success\"} %lu\n",
                service->service_name, service->request_count - service->error_count);
-        printf("http_requests_total{service=\"%s\",status=\"error\"} %lu\n", 
+        printf("http_requests_total{service=\"%s\",status=\"error\"} %lu\n",
                service->service_name, service->error_count);
-        
+
         if (service->request_count > 0) {
             double avg_latency = (double)service->total_latency / service->request_count / 1e9;
-            printf("http_request_duration_seconds{service=\"%s\",quantile=\"0.5\"} %.6f\n", 
+            printf("http_request_duration_seconds{service=\"%s\",quantile=\"0.5\"} %.6f\n",
                    service->service_name, avg_latency);
         }
     }
@@ -856,26 +856,26 @@ int main() {
     struct bpf_object *obj;
     struct ring_buffer *rb;
     int err;
-    
+
     printf("Starting eBPF-based observability processor...\n");
-    
+
     // Load eBPF programs
     obj = bpf_object__open_file("http_service_monitor.bpf.o", NULL);
     if (libbpf_get_error(obj)) {
         fprintf(stderr, "Failed to open eBPF object\n");
         return 1;
     }
-    
+
     err = bpf_object__load(obj);
     if (err) {
         fprintf(stderr, "Failed to load eBPF object\n");
         return 1;
     }
-    
+
     // Attach programs
     struct bpf_link *links[10];
     int link_count = 0;
-    
+
     struct bpf_program *prog;
     bpf_object__for_each_program(prog, obj) {
         links[link_count] = bpf_program__attach(prog);
@@ -886,25 +886,25 @@ int main() {
         printf("Attached eBPF program: %s\n", bpf_program__name(prog));
         link_count++;
     }
-    
+
     // Set up ring buffer
     int map_fd = bpf_object__find_map_fd_by_name(obj, "http_events");
     if (map_fd < 0) {
         fprintf(stderr, "Failed to find http_events map\n");
         return 1;
     }
-    
+
     rb = ring_buffer__new(map_fd, handle_http_event, NULL, NULL);
     if (!rb) {
         fprintf(stderr, "Failed to create ring buffer\n");
         return 1;
     }
-    
+
     aggregator.collection_start = time(NULL);
-    
+
     printf("eBPF observability system started. Monitoring HTTP traffic...\n");
     printf("Press Ctrl-C to export metrics and exit.\n\n");
-    
+
     // Process events
     while (1) {
         err = ring_buffer__poll(rb, 1000);
@@ -912,7 +912,7 @@ int main() {
             printf("Error polling ring buffer: %d\n", err);
             break;
         }
-        
+
         // Periodic metrics export
         static time_t last_export = 0;
         time_t now = time(NULL);
@@ -923,14 +923,14 @@ int main() {
             last_export = now;
         }
     }
-    
+
     // Cleanup
     ring_buffer__free(rb);
     for (int i = 0; i < link_count; i++) {
         bpf_link__destroy(links[i]);
     }
     bpf_object__close(obj);
-    
+
     return 0;
 }
 ```
@@ -965,7 +965,7 @@ graph TB
         TA2 --> OB1
         TA4 --> OB3
         TA6 --> OB5
-        
+
         OB2 --> BI1
         OB4 --> BI3
         OB6 --> BI5
@@ -1013,28 +1013,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Install eBPF dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y clang libbpf-dev bpftool
-      
+
       - name: Compile eBPF programs
         run: |
           make -C src/ebpf all
-          
+
       - name: Test eBPF programs
         run: |
           sudo make -C src/ebpf test
-          
+
       - name: Build user-space components
         run: |
           make -C src/userspace all
-          
+
       - name: Package observability suite
         run: |
           tar -czf ebpf-observability.tar.gz src/ebpf/*.o src/userspace/processor
-          
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -1050,12 +1050,12 @@ jobs:
         run: |
           # Deploy eBPF observability to staging environment
           kubectl apply -f k8s/staging/
-          
+
       - name: Run integration tests
         run: |
           # Test observability functionality
           ./tests/integration-tests.sh staging
-          
+
   deploy-production:
     needs: [build-ebpf, deploy-staging]
     runs-on: ubuntu-latest
@@ -1089,46 +1089,46 @@ spec:
       hostNetwork: true
       hostPID: true
       containers:
-      - name: ebpf-agent
-        image: ebpf-observability:latest
-        securityContext:
-          privileged: true
-          capabilities:
-            add: ["SYS_ADMIN", "NET_ADMIN", "BPF"]
-        volumeMounts:
-        - name: proc
-          mountPath: /host/proc
-          readOnly: true
-        - name: sys
-          mountPath: /host/sys
-          readOnly: true
-        - name: debugfs
-          mountPath: /sys/kernel/debug
-        env:
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: CLUSTER_NAME
-          value: "production-cluster"
-        ports:
-        - containerPort: 8080
-          name: metrics
-        - containerPort: 8081
-          name: health
+        - name: ebpf-agent
+          image: ebpf-observability:latest
+          securityContext:
+            privileged: true
+            capabilities:
+              add: ["SYS_ADMIN", "NET_ADMIN", "BPF"]
+          volumeMounts:
+            - name: proc
+              mountPath: /host/proc
+              readOnly: true
+            - name: sys
+              mountPath: /host/sys
+              readOnly: true
+            - name: debugfs
+              mountPath: /sys/kernel/debug
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: CLUSTER_NAME
+              value: "production-cluster"
+          ports:
+            - containerPort: 8080
+              name: metrics
+            - containerPort: 8081
+              name: health
       volumes:
-      - name: proc
-        hostPath:
-          path: /proc
-      - name: sys
-        hostPath:
-          path: /sys
-      - name: debugfs
-        hostPath:
-          path: /sys/kernel/debug
+        - name: proc
+          hostPath:
+            path: /proc
+        - name: sys
+          hostPath:
+            path: /sys
+        - name: debugfs
+          hostPath:
+            path: /sys/kernel/debug
       tolerations:
-      - operator: Exists
-        effect: NoSchedule
+        - operator: Exists
+          effect: NoSchedule
 ---
 apiVersion: v1
 kind: Service
@@ -1139,12 +1139,12 @@ spec:
   selector:
     app: ebpf-observability
   ports:
-  - name: metrics
-    port: 8080
-    targetPort: 8080
-  - name: health
-    port: 8081
-    targetPort: 8081
+    - name: metrics
+      port: 8080
+      targetPort: 8080
+    - name: health
+      port: 8081
+      targetPort: 8081
 ```
 
 ## Conclusion

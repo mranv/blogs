@@ -29,7 +29,6 @@ Here are multiple methods to block the PowerShell engine and execution:
 2. Right-click Executable Rules → Create New Rule.
 
 3. Set the following:
-
    - **Action**: Deny
    - **User or Group**: Everyone
    - **Condition**: Path

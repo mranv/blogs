@@ -202,7 +202,6 @@ Create a documentation file for managing conflicts:
 ````
 
 2. Standard resolution process:
-
    - Keep upstream changes for core functionality
    - Preserve local modifications for enterprise features
    - Document all conflict resolutions

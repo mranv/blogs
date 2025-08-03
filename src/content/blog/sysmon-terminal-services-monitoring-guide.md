@@ -1776,19 +1776,16 @@ if __name__ == "__main__":
 ### Sysmon Configuration Best Practices
 
 1. **Event Selection**
-
    - Focus on high-value events (1, 3, 7, 10, 11, 13)
    - Use targeted filtering to reduce noise
    - Regular review and tuning of rules
 
 2. **Performance Optimization**
-
    - Monitor Sysmon overhead
    - Use exclude rules for known-good processes
    - Implement log rotation and archival
 
 3. **Detection Engineering**
-
    - Develop use-case specific rules
    - Test detection rules thoroughly
    - Implement alerting thresholds
@@ -1801,21 +1798,18 @@ if __name__ == "__main__":
 ### Terminal Services Security Hardening
 
 1. **Configuration Security**
-
    - Enable Network Level Authentication
    - Use strong encryption levels
    - Implement session timeouts
    - Disable unused features (clipboard, drive redirection)
 
 2. **Access Controls**
-
    - Implement least privilege principles
    - Use certificate-based authentication
    - Regular access reviews
    - Monitor privileged accounts
 
 3. **Network Security**
-
    - Change default RDP port
    - Implement network segmentation
    - Use VPN for external access

@@ -63,24 +63,20 @@ First, make sure OpenVPN GUI is properly installed and configured:
 Windows Task Scheduler will launch OpenVPN GUI with the appropriate parameters when you log in:
 
 1. **Open Task Scheduler**:
-
    - Press `Win + R` to open the Run dialog
    - Type `taskschd.msc` and press Enter
 
 2. **Create a new task**:
-
    - In the right panel, click "Create Basic Task"
    - Name: `OpenVPN Auto-Connect`
    - Description: `Automatically connects OpenVPN GUI at Windows startup`
    - Click "Next"
 
 3. **Configure the trigger**:
-
    - Select "When I log on"
    - Click "Next"
 
 4. **Set the action**:
-
    - Select "Start a program"
    - Click "Next"
    - Program/script: Browse to the OpenVPN GUI executable (typically `C:\Program Files\OpenVPN\bin\openvpn-gui.exe`)
@@ -98,17 +94,14 @@ Windows Task Scheduler will launch OpenVPN GUI with the appropriate parameters w
 After completing the basic setup, you'll need to configure additional properties:
 
 1. **General tab**:
-
    - Check "Run with highest privileges" (required for network configuration)
    - Verify "Configure for:" shows your Windows version
 
 2. **Conditions tab**:
-
    - Uncheck "Start the task only if the computer is on AC power" (important for laptop users)
    - Optionally check "Wake the computer to run this task" if needed
 
 3. **Settings tab**:
-
    - Check "Allow task to be run on demand"
    - Check "Run task as soon as possible after a scheduled start is missed"
    - Set "Stop the task if it runs longer than:" to `3 days` or another appropriate duration
@@ -121,17 +114,14 @@ After completing the basic setup, you'll need to configure additional properties
 To ensure everything works as expected:
 
 1. **Disable the task temporarily**:
-
    - Right-click the task and select "Disable"
 
 2. **Test run**:
-
    - Right-click the task and select "Run"
    - Verify OpenVPN GUI launches and attempts to connect
    - Check that the VPN connection is established successfully
 
 3. **Enable the task**:
-
    - Right-click the task and select "Enable"
 
 4. **Restart your computer**:
@@ -185,13 +175,11 @@ You can combine multiple command-line options:
 If the VPN doesn't connect automatically:
 
 1. **Check Windows Event Viewer**:
-
    - Open Event Viewer (search for "Event Viewer" in the Start menu)
    - Navigate to Windows Logs > Application
    - Look for errors related to OpenVPN
 
 2. **Verify service status**:
-
    - Press `Win + R`, type `services.msc` and press Enter
    - Locate "OpenVPNService" and ensure it's running
    - Set startup type to "Automatic" if it isn't already
@@ -205,13 +193,11 @@ If the VPN doesn't connect automatically:
 If the scheduler doesn't start OpenVPN:
 
 1. **Check task history**:
-
    - In Task Scheduler, select your task
    - Go to the History tab to view execution history
    - Look for error codes or messages
 
 2. **Verify executable path**:
-
    - Confirm the path to `openvpn-gui.exe` is correct
    - Try using the full path in quotes: `"C:\Program Files\OpenVPN\bin\openvpn-gui.exe"`
 
@@ -223,7 +209,6 @@ If the scheduler doesn't start OpenVPN:
 Windows updates occasionally affect network configurations:
 
 1. **Reinstall TAP adapter**:
-
    - Open Control Panel > Programs > Programs and Features
    - Find "TAP-Windows" adapter
    - Uninstall and then reinstall via OpenVPN installer
@@ -239,7 +224,6 @@ Windows updates occasionally affect network configurations:
 Automating VPN connections involves security trade-offs:
 
 1. **Password storage**:
-
    - Saved passwords in OpenVPN are encrypted but not impenetrable
    - Consider using certificate-based authentication instead of passwords
    - Regularly update your VPN credentials
@@ -254,7 +238,6 @@ Automating VPN connections involves security trade-offs:
 For enhanced security:
 
 1. **Certificate-based authentication**:
-
    - Use client certificates instead of passwords
    - Certificates can still be used with auto-connect functionality
 
@@ -267,12 +250,10 @@ For enhanced security:
 Organizations managing multiple VPN users should consider:
 
 1. **Group Policy deployment**:
-
    - Use Group Policy to deploy OpenVPN settings and auto-connect tasks
    - Configure consistent security policies across devices
 
 2. **Centralized management**:
-
    - Consider an enterprise VPN solution with central management
    - Deploy configuration updates automatically
 

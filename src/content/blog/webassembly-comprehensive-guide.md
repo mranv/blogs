@@ -86,12 +86,10 @@ Extensive GitHub repository listing:
 ### Key Learning Resources
 
 1. **YouTube Channel**: Tsoding Daily
-
    - 500+ technical videos
    - WASM and JS tutorials
 
 2. **Live Coding Sessions**: [Twitch.tv/tsoding](https://twitch.tv/tsoding)
-
    - Real-time coding
    - Interactive Q&A
 

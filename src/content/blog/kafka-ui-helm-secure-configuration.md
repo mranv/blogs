@@ -293,13 +293,11 @@ ingress:
 ### Common Issues
 
 1. **Connection to Kafka Failed**
-
    - Verify network policy allows traffic
    - Check SASL credentials
    - Ensure Kafka service is accessible
 
 2. **Authentication Issues**
-
    - Verify environment variables are set
    - Check secret mounting
    - Review pod logs for errors

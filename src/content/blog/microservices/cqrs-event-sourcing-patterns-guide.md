@@ -1489,7 +1489,6 @@ graph TB
 ### Best Practices
 
 1. **Event Design**
-
    - Make events immutable
    - Include all necessary information
    - Use past tense for event names
@@ -1497,7 +1496,6 @@ graph TB
    - Keep events small and focused
 
 2. **Projection Design**
-
    - Make projections idempotent
    - Design for eventual consistency
    - Use appropriate data stores for each projection
@@ -1505,7 +1503,6 @@ graph TB
    - Implement catch-up mechanisms
 
 3. **Performance Optimization**
-
    - Use snapshots for long event streams
    - Implement proper indexing strategies
    - Cache frequently accessed read models
@@ -1522,25 +1519,21 @@ graph TB
 ### Common Pitfalls
 
 1. **Over-Engineering**
-
    - Not every system needs CQRS + Event Sourcing
    - Start simple and evolve
    - Consider complexity vs benefits
 
 2. **Event Granularity**
-
    - Too fine-grained events create noise
    - Too coarse-grained events lose information
    - Find the right balance
 
 3. **Projection Complexity**
-
    - Avoid complex business logic in projections
    - Keep projections simple and focused
    - Don't try to maintain consistency across projections
 
 4. **Storage Costs**
-
    - Event stores can grow large
    - Plan for data retention policies
    - Consider archiving old events

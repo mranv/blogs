@@ -133,20 +133,17 @@ Write-Host 'powershell -ExecutionPolicy Bypass -NoExit -Command ". $PROFILE"' -F
 ### Key Features of the PowerShell Profile
 
 1. **Enhanced Security Prompt**:
-
    - Shows current time for audit trails
    - Displays admin status clearly
    - Indicates last command success/failure
    - Updates window title with context
 
 2. **Security Utility Functions**:
-
    - `Test-Port`: Quick port scanning capability
    - `Get-SystemInfo`: System security auditing
    - Custom aliases for common tasks
 
 3. **Professional Appearance**:
-
    - Dark theme optimized for long sessions
    - Color-coded output for different message types
    - Clean, organized welcome banner
@@ -234,14 +231,12 @@ Save this as `SetupAutoRun.bat` and run it as administrator.
 ### CMD Console Features
 
 1. **Security Commands**:
-
    - `sysinfo`: Quick OS information
    - `ports`: Show listening ports
    - `netinfo`: Network configuration
    - `scan`: Ping utility wrapper
 
 2. **Enhanced Prompt**:
-
    - Shows current time
    - Indicates admin privileges
    - Color-coded for visibility

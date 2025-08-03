@@ -1291,14 +1291,12 @@ openssl verify -CAfile ca.pem cert.pem
 ### Deployment Checklist
 
 - [ ] **Infrastructure Requirements**
-
   - [ ] Adequate CPU and memory resources
   - [ ] SSD storage for hot data
   - [ ] Network bandwidth for replication
   - [ ] Backup storage capacity
 
 - [ ] **Security Hardening**
-
   - [ ] TLS encryption enabled everywhere
   - [ ] Strong authentication configured
   - [ ] Role-based access control implemented
@@ -1306,7 +1304,6 @@ openssl verify -CAfile ca.pem cert.pem
   - [ ] Regular security updates
 
 - [ ] **Performance Optimization**
-
   - [ ] Appropriate shard sizing (20-50GB)
   - [ ] Index lifecycle policies configured
   - [ ] Query optimization implemented

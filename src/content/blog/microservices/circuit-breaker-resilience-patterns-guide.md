@@ -1262,7 +1262,6 @@ public class ResilienceMetricsCollector {
 ### Best Practices
 
 1. **Start with Timeouts**
-
    - Always set timeouts before adding other patterns
    - Use realistic values based on performance data
    - Consider network latency in timeout calculations
@@ -1274,13 +1273,11 @@ public class ResilienceMetricsCollector {
    ```
 
 3. **Design Meaningful Fallbacks**
-
    - Return cached data when possible
    - Provide degraded but useful responses
    - Clear error messages for complete failures
 
 4. **Monitor Everything**
-
    - Track all state transitions
    - Alert on anomalies, not just failures
    - Use metrics for continuous tuning
@@ -1322,7 +1319,6 @@ public class ResilienceMetricsCollector {
    ```
 
 2. **Cascade Circuit Breaking**
-
    - Don't chain circuit breakers without careful thought
    - Consider the impact on downstream services
    - Use different thresholds for different failure types
@@ -1340,7 +1336,6 @@ public class ResilienceMetricsCollector {
    ```
 
 4. **Shared Bulkheads**
-
    - Don't use one bulkhead for unrelated services
    - Size bulkheads based on downstream capacity
    - Monitor and adjust based on usage patterns

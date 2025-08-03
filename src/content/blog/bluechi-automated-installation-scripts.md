@@ -1886,21 +1886,18 @@ bluechictl status $(hostname) httpd.service
 ## Best Practices
 
 1. **Security First**
-
    - Always use TLS in production
    - Implement proper firewall rules
    - Enable SELinux where possible
    - Regular security audits
 
 2. **Monitoring**
-
    - Deploy monitoring from day one
    - Set up alerting for critical events
    - Regular health checks
    - Capacity planning
 
 3. **Backup and Recovery**
-
    - Automate daily backups
    - Test recovery procedures
    - Document recovery steps

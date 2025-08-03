@@ -1892,7 +1892,6 @@ main "$@"
 ### Security Checklist
 
 1. **Container Security**
-
    - [ ] Use minimal base image (Alpine Linux)
    - [ ] Run as non-root user where possible
    - [ ] Implement read-only filesystem
@@ -1900,7 +1899,6 @@ main "$@"
    - [ ] Enable AppArmor/SELinux profiles
 
 2. **SSH Configuration**
-
    - [ ] Disable root login
    - [ ] Use key-based authentication only
    - [ ] Implement strong ciphers and MACs
@@ -1908,7 +1906,6 @@ main "$@"
    - [ ] Enable comprehensive logging
 
 3. **Network Security**
-
    - [ ] Use non-standard SSH ports
    - [ ] Implement network segmentation
    - [ ] Configure firewall rules
@@ -1916,7 +1913,6 @@ main "$@"
    - [ ] Monitor network traffic
 
 4. **Key Management**
-
    - [ ] Implement automated key rotation
    - [ ] Use certificate-based authentication
    - [ ] Secure key distribution
@@ -1933,7 +1929,6 @@ main "$@"
 ### Performance Optimization
 
 1. **Container Performance**
-
    - Use multi-stage builds to reduce image size
    - Optimize resource limits and requests
    - Implement proper health checks

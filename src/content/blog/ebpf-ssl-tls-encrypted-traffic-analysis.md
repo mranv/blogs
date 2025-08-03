@@ -32,7 +32,7 @@ graph TB
         T1[Network Packets] --> T2[Packet Capture Tools]
         T2 --> T3[Plaintext Analysis]
         T3 --> T4[Application Insights]
-        
+
         style T3 fill:#c8e6c9
         style T4 fill:#c8e6c9
     end
@@ -41,7 +41,7 @@ graph TB
         E1[Encrypted Packets] --> E2[Packet Capture Tools]
         E2 --> E3[Gibberish Data]
         E3 --> E4[No Insights]
-        
+
         style E3 fill:#ffcdd2
         style E4 fill:#ffcdd2
     end
@@ -50,7 +50,7 @@ graph TB
         S1[Application Layer] --> S2[eBPF uprobes]
         S2 --> S3[Pre-encryption Data]
         S3 --> S4[Complete Insights]
-        
+
         style S3 fill:#c8e6c9
         style S4 fill:#c8e6c9
     end
@@ -80,13 +80,13 @@ sequenceDiagram
     participant Network as Network
 
     Note over Dev,Network: Traditional Instrumentation Problems
-    
+
     Dev->>App: Add logging code
     Dev->>App: Add metrics collection
     App->>App: Application restart required
     App->>TLS: Encrypt data
     TLS->>Network: Send encrypted data
-    
+
     rect rgb(255, 205, 210)
         Note over Dev,App: Code maintenance burden
         Note over App: Deployment delays
@@ -128,7 +128,7 @@ graph LR
         T4 --> A3
 
         subgraph "eBPF Interception Points"
-            U1[uprobe/SSL_write] 
+            U1[uprobe/SSL_write]
             U2[uretprobe/SSL_read]
         end
 
@@ -267,16 +267,16 @@ int trace_ssl_write_entry(struct pt_regs *ctx) {
     __u64 pid_tgid = bpf_get_current_pid_tgid();
     __u32 pid = pid_tgid >> 32;
     __u32 tid = (__u32)pid_tgid;
-    
+
     // Get function arguments
     void *ssl = (void *)PT_REGS_PARM1(ctx);
     void *buf = (void *)PT_REGS_PARM2(ctx);
     int num = (int)PT_REGS_PARM3(ctx);
-    
+
     if (!ssl || !buf || num <= 0 || num > MAX_DATA_SIZE) {
         return 0;
     }
-    
+
     // Create event structure
     struct ssl_event event = {0};
     event.pid = pid;
@@ -285,18 +285,18 @@ int trace_ssl_write_entry(struct pt_regs *ctx) {
     event.connection_id = generate_connection_id((__u64)ssl, pid);
     event.is_read = 0;
     event.data_len = num > MAX_DATA_SIZE ? MAX_DATA_SIZE : num;
-    
+
     // Copy process name
     bpf_get_current_comm(event.comm, sizeof(event.comm));
-    
+
     // Copy data before encryption
     if (bpf_probe_read(event.data, event.data_len, buf) != 0) {
         return 0;
     }
-    
+
     // Store pending write for completion tracking
     bpf_map_update_elem(&pending_writes, &pid_tgid, &event, BPF_ANY);
-    
+
     // Track connection
     struct connection_info conn_info = {
         .ssl_ptr = (__u64)ssl,
@@ -305,7 +305,7 @@ int trace_ssl_write_entry(struct pt_regs *ctx) {
         .start_time = event.timestamp,
     };
     bpf_map_update_elem(&active_connections, &event.connection_id, &conn_info, BPF_ANY);
-    
+
     return 0;
 }
 
@@ -314,35 +314,35 @@ SEC("uretprobe/SSL_write")
 int trace_ssl_write_return(struct pt_regs *ctx) {
     __u64 pid_tgid = bpf_get_current_pid_tgid();
     int ret = (int)PT_REGS_RC(ctx);
-    
+
     // Get pending write event
     struct ssl_event *event = bpf_map_lookup_elem(&pending_writes, &pid_tgid);
     if (!event) {
         return 0;
     }
-    
+
     // Update event with actual bytes written
     if (ret > 0) {
         event->data_len = ret > MAX_DATA_SIZE ? MAX_DATA_SIZE : ret;
-        
+
         // Submit event to user space
         struct ssl_event *ring_event = bpf_ringbuf_reserve(&ssl_events, sizeof(*ring_event), 0);
         if (ring_event) {
             *ring_event = *event;
             bpf_ringbuf_submit(ring_event, 0);
         }
-        
+
         // Update statistics
         update_stat(STAT_TOTAL_WRITES, 1);
         update_stat(STAT_BYTES_WRITTEN, ret);
-        
+
         // Update connection info
         struct connection_info *conn = bpf_map_lookup_elem(&active_connections, &event->connection_id);
         if (conn) {
             conn->bytes_written += ret;
         }
     }
-    
+
     // Clean up pending write
     bpf_map_delete_elem(&pending_writes, &pid_tgid);
     return 0;
@@ -353,16 +353,16 @@ SEC("uprobe/SSL_read")
 int trace_ssl_read_entry(struct pt_regs *ctx) {
     __u64 pid_tgid = bpf_get_current_pid_tgid();
     __u32 pid = pid_tgid >> 32;
-    
+
     // Get function arguments
     void *ssl = (void *)PT_REGS_PARM1(ctx);
     void *buf = (void *)PT_REGS_PARM2(ctx);
     int num = (int)PT_REGS_PARM3(ctx);
-    
+
     if (!ssl || !buf || num <= 0) {
         return 0;
     }
-    
+
     // Store read context for return probe
     struct ssl_event event = {0};
     event.pid = pid;
@@ -370,10 +370,10 @@ int trace_ssl_read_entry(struct pt_regs *ctx) {
     event.timestamp = bpf_ktime_get_ns();
     event.connection_id = generate_connection_id((__u64)ssl, pid);
     event.is_read = 1;
-    
+
     bpf_get_current_comm(event.comm, sizeof(event.comm));
     bpf_map_update_elem(&pending_writes, &pid_tgid, &event, BPF_ANY);
-    
+
     return 0;
 }
 
@@ -382,18 +382,18 @@ SEC("uretprobe/SSL_read")
 int trace_ssl_read_return(struct pt_regs *ctx) {
     __u64 pid_tgid = bpf_get_current_pid_tgid();
     int ret = (int)PT_REGS_RC(ctx);
-    
+
     // Get pending read event
     struct ssl_event *event = bpf_map_lookup_elem(&pending_writes, &pid_tgid);
     if (!event) {
         return 0;
     }
-    
+
     if (ret > 0) {
         // Get the buffer that was read into
         void *buf = (void *)PT_REGS_PARM2(ctx);
         event->data_len = ret > MAX_DATA_SIZE ? MAX_DATA_SIZE : ret;
-        
+
         // Copy decrypted data
         if (bpf_probe_read(event->data, event->data_len, buf) == 0) {
             // Submit event to user space
@@ -403,18 +403,18 @@ int trace_ssl_read_return(struct pt_regs *ctx) {
                 bpf_ringbuf_submit(ring_event, 0);
             }
         }
-        
+
         // Update statistics
         update_stat(STAT_TOTAL_READS, 1);
         update_stat(STAT_BYTES_READ, ret);
-        
+
         // Update connection info
         struct connection_info *conn = bpf_map_lookup_elem(&active_connections, &event->connection_id);
         if (conn) {
             conn->bytes_read += ret;
         }
     }
-    
+
     // Clean up pending read
     bpf_map_delete_elem(&pending_writes, &pid_tgid);
     return 0;
@@ -476,7 +476,7 @@ static void sig_handler(int sig) {
 // Check if data contains HTTP request
 static int is_http_request(const char *data, int len) {
     if (len < 4) return 0;
-    
+
     return (strncmp(data, "GET ", 4) == 0 ||
             strncmp(data, "POST ", 5) == 0 ||
             strncmp(data, "PUT ", 4) == 0 ||
@@ -497,7 +497,7 @@ static void parse_http_request(struct ssl_event *event) {
     char method[16] = {0};
     char path[256] = {0};
     char version[16] = {0};
-    
+
     // Parse request line
     if (sscanf(data, "%15s %255s %15s", method, path, version) == 3) {
         printf("[%u.%06u] HTTP Request (PID: %u, Conn: %u):\n",
@@ -505,7 +505,7 @@ static void parse_http_request(struct ssl_event *event) {
                (uint32_t)((event->timestamp % 1000000000) / 1000),
                event->pid, event->connection_id);
         printf("  %s %s %s\n", method, path, version);
-        
+
         // Look for Host header
         char *host_start = strstr(data, "\r\nHost: ");
         if (host_start) {
@@ -520,7 +520,7 @@ static void parse_http_request(struct ssl_event *event) {
                 }
             }
         }
-        
+
         // Store transaction info
         if (transaction_count < MAX_TRANSACTIONS) {
             struct http_transaction *tx = &transactions[transaction_count++];
@@ -530,7 +530,7 @@ static void parse_http_request(struct ssl_event *event) {
             tx->request_time = event->timestamp;
             tx->request_size = event->data_len;
         }
-        
+
         stats.http_requests++;
     }
 }
@@ -541,7 +541,7 @@ static void parse_http_response(struct ssl_event *event) {
     char version[16] = {0};
     int status_code = 0;
     char status_text[64] = {0};
-    
+
     // Parse status line
     if (sscanf(data, "%15s %d %63[^\r\n]", version, &status_code, status_text) >= 2) {
         printf("[%u.%06u] HTTP Response (PID: %u, Conn: %u):\n",
@@ -549,24 +549,24 @@ static void parse_http_response(struct ssl_event *event) {
                (uint32_t)((event->timestamp % 1000000000) / 1000),
                event->pid, event->connection_id);
         printf("  %s %d %s\n", version, status_code, status_text);
-        
+
         // Find matching request
         for (int i = 0; i < transaction_count; i++) {
             if (transactions[i].connection_id == event->connection_id &&
                 transactions[i].response_time == 0) {
-                
+
                 transactions[i].status_code = status_code;
                 transactions[i].response_time = event->timestamp;
                 transactions[i].response_size = event->data_len;
-                
+
                 uint64_t latency = (event->timestamp - transactions[i].request_time) / 1000000; // ms
                 printf("  Request: %s %s\n", transactions[i].method, transactions[i].path);
                 printf("  Latency: %lu ms\n", latency);
-                
+
                 break;
             }
         }
-        
+
         stats.http_responses++;
     }
 }
@@ -589,10 +589,10 @@ static void print_hex_dump(const uint8_t *data, int len, const char *prefix) {
 // Process SSL events from eBPF
 static int handle_ssl_event(void *ctx, void *data, size_t data_sz) {
     struct ssl_event *event = data;
-    
+
     stats.total_events++;
     stats.bytes_processed += event->data_len;
-    
+
     // Determine if this is HTTP traffic
     if (is_http_request((char *)event->data, event->data_len)) {
         parse_http_request(event);
@@ -606,13 +606,13 @@ static int handle_ssl_event(void *ctx, void *data, size_t data_sz) {
                event->is_read ? "READ" : "WRITE",
                event->pid, event->connection_id, event->comm,
                event->data_len);
-        
+
         // Print first few bytes as hex for debugging
         if (event->data_len > 0) {
             print_hex_dump(event->data, event->data_len, "  ");
         }
     }
-    
+
     printf("\n");
     return 0;
 }
@@ -621,19 +621,19 @@ static int handle_ssl_event(void *ctx, void *data, size_t data_sz) {
 static void print_statistics() {
     time_t now = time(NULL);
     uint64_t runtime = now - stats.start_time;
-    
+
     printf("\n=== SSL Traffic Monitor Statistics ===\n");
     printf("Runtime: %lu seconds\n", runtime);
     printf("Total events: %lu\n", stats.total_events);
     printf("HTTP requests: %lu\n", stats.http_requests);
     printf("HTTP responses: %lu\n", stats.http_responses);
     printf("Bytes processed: %lu\n", stats.bytes_processed);
-    
+
     if (runtime > 0) {
         printf("Events per second: %.2f\n", (double)stats.total_events / runtime);
         printf("Bytes per second: %.2f\n", (double)stats.bytes_processed / runtime);
     }
-    
+
     printf("Active transactions: %d\n", transaction_count);
     printf("=====================================\n\n");
 }
@@ -645,16 +645,16 @@ static int load_ebpf_program() {
         fprintf(stderr, "Failed to open eBPF object file\n");
         return -1;
     }
-    
+
     int err = bpf_object__load(obj);
     if (err) {
         fprintf(stderr, "Failed to load eBPF object: %d\n", err);
         return -1;
     }
-    
+
     // Attach uprobes to OpenSSL functions
     struct bpf_link *links[4];
-    
+
     // Attach SSL_write entry and return probes
     struct bpf_program *prog = bpf_object__find_program_by_name(obj, "trace_ssl_write_entry");
     if (prog) {
@@ -665,7 +665,7 @@ static int load_ebpf_program() {
             printf("Attached uprobe to SSL_write\n");
         }
     }
-    
+
     prog = bpf_object__find_program_by_name(obj, "trace_ssl_write_return");
     if (prog) {
         links[1] = bpf_program__attach_uprobe(prog, true, -1, "/usr/lib/x86_64-linux-gnu/libssl.so.3", 0);
@@ -675,7 +675,7 @@ static int load_ebpf_program() {
             printf("Attached uretprobe to SSL_write\n");
         }
     }
-    
+
     // Attach SSL_read entry and return probes
     prog = bpf_object__find_program_by_name(obj, "trace_ssl_read_entry");
     if (prog) {
@@ -686,7 +686,7 @@ static int load_ebpf_program() {
             printf("Attached uprobe to SSL_read\n");
         }
     }
-    
+
     prog = bpf_object__find_program_by_name(obj, "trace_ssl_read_return");
     if (prog) {
         links[3] = bpf_program__attach_uprobe(prog, true, -1, "/usr/lib/x86_64-linux-gnu/libssl.so.3", 0);
@@ -696,38 +696,38 @@ static int load_ebpf_program() {
             printf("Attached uretprobe to SSL_read\n");
         }
     }
-    
+
     // Set up ring buffer
     int map_fd = bpf_object__find_map_fd_by_name(obj, "ssl_events");
     if (map_fd < 0) {
         fprintf(stderr, "Failed to find ssl_events map\n");
         return -1;
     }
-    
+
     rb = ring_buffer__new(map_fd, handle_ssl_event, NULL, NULL);
     if (!rb) {
         fprintf(stderr, "Failed to create ring buffer\n");
         return -1;
     }
-    
+
     return 0;
 }
 
 int main(int argc, char **argv) {
     signal(SIGINT, sig_handler);
     signal(SIGTERM, sig_handler);
-    
+
     printf("SSL/TLS Traffic Monitor with eBPF\n");
     printf("==================================\n");
-    
+
     stats.start_time = time(NULL);
-    
+
     if (load_ebpf_program() < 0) {
         return 1;
     }
-    
+
     printf("Monitoring SSL/TLS traffic... Press Ctrl-C to exit.\n\n");
-    
+
     // Main event loop
     while (running) {
         int err = ring_buffer__poll(rb, 1000);
@@ -737,7 +737,7 @@ int main(int argc, char **argv) {
                 break;
             }
         }
-        
+
         // Print statistics every 30 seconds
         static time_t last_stats = 0;
         time_t now = time(NULL);
@@ -746,13 +746,13 @@ int main(int argc, char **argv) {
             last_stats = now;
         }
     }
-    
+
     print_statistics();
-    
+
     // Cleanup
     if (rb) ring_buffer__free(rb);
     if (obj) bpf_object__close(obj);
-    
+
     return 0;
 }
 ```
@@ -795,17 +795,20 @@ graph TB
 Testing conducted across 1,000 requests for each HTTP method type revealed:
 
 #### Latency Analysis
+
 - **Average Additional Latency**: 0.2μs (microseconds)
 - **99th Percentile Impact**: <1μs
 - **Method Consistency**: Similar performance across GET, POST, PUT, DELETE operations
 
 #### CPU Load Analysis
+
 - **uprobe/SSL_write**: 0.1% average CPU usage
-- **uprobe/SSL_read**: 0.007% average CPU usage  
+- **uprobe/SSL_read**: 0.007% average CPU usage
 - **uretprobe/SSL_read**: 0.3% average CPU usage
 - **Total Overhead**: <0.5% CPU impact under normal load
 
 #### Memory Footprint
+
 - **Ring Buffer**: 4MB default allocation
 - **Connection Tracking**: Typically <1MB for 1000+ concurrent connections
 - **Event Processing**: Minimal heap allocation
@@ -827,15 +830,15 @@ SEC("uprobe/SSL_write")
 int optimized_ssl_write_entry(struct pt_regs *ctx) {
     __u32 pid = bpf_get_current_pid_tgid() >> 32;
     __u64 now = bpf_ktime_get_ns();
-    
+
     // Rate limiting: max 100 events per second per process
     __u64 *last_event = bpf_map_lookup_elem(&rate_limit_map, &pid);
     if (last_event && (now - *last_event) < 10000000) { // 10ms
         return 0; // Skip this event
     }
-    
+
     bpf_map_update_elem(&rate_limit_map, &pid, &now, BPF_ANY);
-    
+
     // Continue with normal processing...
     return trace_ssl_write_entry(ctx);
 }
@@ -845,14 +848,14 @@ SEC("uprobe/SSL_write")
 int selective_ssl_write_entry(struct pt_regs *ctx) {
     char comm[16];
     bpf_get_current_comm(comm, sizeof(comm));
-    
+
     // Only monitor specific applications
     if (bpf_strncmp(comm, "nginx", 5) != 0 &&
         bpf_strncmp(comm, "apache", 6) != 0 &&
         bpf_strncmp(comm, "node", 4) != 0) {
         return 0;
     }
-    
+
     return trace_ssl_write_entry(ctx);
 }
 ```
@@ -875,29 +878,29 @@ enum protocol_type {
 
 static enum protocol_type detect_protocol(const char *data, int len) {
     if (len < 4) return PROTO_UNKNOWN;
-    
+
     // HTTP detection
     if (strncmp(data, "GET ", 4) == 0 || strncmp(data, "POST ", 5) == 0 ||
         strncmp(data, "HTTP/", 5) == 0) {
         return PROTO_HTTP;
     }
-    
+
     // SMTP detection
     if (strncmp(data, "EHLO ", 5) == 0 || strncmp(data, "MAIL FROM:", 10) == 0 ||
         strncmp(data, "220 ", 4) == 0) {
         return PROTO_SMTP;
     }
-    
+
     // IMAP detection
     if (strstr(data, "IMAP") || strncmp(data, "* OK", 4) == 0) {
         return PROTO_IMAP;
     }
-    
+
     // MQTT detection (simplified)
     if (len > 2 && (data[0] & 0xF0) == 0x10) { // CONNECT packet
         return PROTO_MQTT;
     }
-    
+
     return PROTO_UNKNOWN;
 }
 ```
@@ -912,36 +915,36 @@ static enum protocol_type detect_protocol(const char *data, int len) {
 // Send events to analytics platform
 static int send_to_analytics(struct ssl_event *event, const char *parsed_data) {
     json_object *analytics_event = json_object_new_object();
-    
-    json_object_object_add(analytics_event, "timestamp", 
+
+    json_object_object_add(analytics_event, "timestamp",
                           json_object_new_int64(event->timestamp));
-    json_object_object_add(analytics_event, "pid", 
+    json_object_object_add(analytics_event, "pid",
                           json_object_new_int(event->pid));
-    json_object_object_add(analytics_event, "connection_id", 
+    json_object_object_add(analytics_event, "connection_id",
                           json_object_new_int(event->connection_id));
-    json_object_object_add(analytics_event, "is_read", 
+    json_object_object_add(analytics_event, "is_read",
                           json_object_new_boolean(event->is_read));
-    json_object_object_add(analytics_event, "data_length", 
+    json_object_object_add(analytics_event, "data_length",
                           json_object_new_int(event->data_len));
-    json_object_object_add(analytics_event, "parsed_content", 
+    json_object_object_add(analytics_event, "parsed_content",
                           json_object_new_string(parsed_data));
-    
+
     // Send to analytics endpoint
     CURL *curl = curl_easy_init();
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_URL, "https://analytics.example.com/api/events");
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, 
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS,
                         json_object_to_json_string(analytics_event));
-        
+
         struct curl_slist *headers = NULL;
         headers = curl_slist_append(headers, "Content-Type: application/json");
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-        
+
         CURLcode res = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         curl_slist_free_all(headers);
     }
-    
+
     json_object_put(analytics_event);
     return 0;
 }
@@ -956,7 +959,7 @@ static int send_to_analytics(struct ssl_event *event, const char *parsed_data) {
 static int analyze_security_threats(struct ssl_event *event) {
     char *data = (char *)event->data;
     int threats_detected = 0;
-    
+
     // SQL injection attempts
     if (strstr(data, "' OR '1'='1") || strstr(data, "UNION SELECT") ||
         strstr(data, "DROP TABLE")) {
@@ -965,7 +968,7 @@ static int analyze_security_threats(struct ssl_event *event) {
         printf("  Data: %.*s\n", 50, data);
         threats_detected++;
     }
-    
+
     // XSS attempts
     if (strstr(data, "<script>") || strstr(data, "javascript:") ||
         strstr(data, "onerror=")) {
@@ -973,14 +976,14 @@ static int analyze_security_threats(struct ssl_event *event) {
         printf("  PID: %u, Connection: %u\n", event->pid, event->connection_id);
         threats_detected++;
     }
-    
+
     // Directory traversal
     if (strstr(data, "../") || strstr(data, "..\\")) {
         printf("SECURITY ALERT: Possible directory traversal attempt\n");
         printf("  PID: %u, Connection: %u\n", event->pid, event->connection_id);
         threats_detected++;
     }
-    
+
     // Command injection
     if (strstr(data, "; cat ") || strstr(data, "| nc ") ||
         strstr(data, "&& wget")) {
@@ -988,7 +991,7 @@ static int analyze_security_threats(struct ssl_event *event) {
         printf("  PID: %u, Connection: %u\n", event->pid, event->connection_id);
         threats_detected++;
     }
-    
+
     return threats_detected;
 }
 ```
@@ -1053,39 +1056,39 @@ spec:
       hostNetwork: true
       hostPID: true
       containers:
-      - name: ssl-monitor
-        image: ssl-traffic-monitor:latest
-        securityContext:
-          privileged: true
-          capabilities:
-            add: ["SYS_ADMIN", "BPF"]
-        volumeMounts:
-        - name: debugfs
-          mountPath: /sys/kernel/debug
-        - name: tracefs
-          mountPath: /sys/kernel/tracing
-        env:
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 500m
-            memory: 512Mi
+        - name: ssl-monitor
+          image: ssl-traffic-monitor:latest
+          securityContext:
+            privileged: true
+            capabilities:
+              add: ["SYS_ADMIN", "BPF"]
+          volumeMounts:
+            - name: debugfs
+              mountPath: /sys/kernel/debug
+            - name: tracefs
+              mountPath: /sys/kernel/tracing
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
       volumes:
-      - name: debugfs
-        hostPath:
-          path: /sys/kernel/debug
-      - name: tracefs
-        hostPath:
-          path: /sys/kernel/tracing
+        - name: debugfs
+          hostPath:
+            path: /sys/kernel/debug
+        - name: tracefs
+          hostPath:
+            path: /sys/kernel/tracing
       tolerations:
-      - operator: Exists
-        effect: NoSchedule
+        - operator: Exists
+          effect: NoSchedule
 ```
 
 ### Production Configuration

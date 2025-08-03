@@ -992,28 +992,24 @@ deploy:
 ## Advantages of Cloudflare Tunnel Integration
 
 1. **Enhanced Security**
-
    - No exposed ports on your server
    - Built-in DDoS protection
    - Web Application Firewall (WAF)
    - Bot protection
 
 2. **Global Performance**
-
    - Content delivered from edge locations
    - Automatic HTTPS with managed certificates
    - HTTP/3 and QUIC support
    - Smart routing optimization
 
 3. **Simplified Management**
-
    - No firewall configuration needed
    - Automatic SSL/TLS certificate management
    - Built-in analytics and monitoring
    - Easy DNS management
 
 4. **Cost Efficiency**
-
    - Free tier includes generous bandwidth
    - No need for external load balancers
    - Reduced infrastructure complexity

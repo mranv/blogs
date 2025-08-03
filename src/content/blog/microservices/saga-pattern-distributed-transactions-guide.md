@@ -1561,7 +1561,6 @@ class RideBookingSaga {
 ### Best Practices
 
 1. **Design for Idempotency**
-
    - All operations should be idempotent
    - Use unique identifiers for deduplication
    - Store operation results for repeated requests
@@ -1640,7 +1639,6 @@ class RideBookingSaga {
    ```
 
 4. **Handle Partial Failures Gracefully**
-
    - Design compensations that can handle partial state
    - Log all compensation attempts
    - Alert on compensation failures
@@ -1670,22 +1668,18 @@ class RideBookingSaga {
 ### Common Pitfalls to Avoid
 
 1. **Synchronous Choreography**
-
    - Don't make services wait for responses in choreography
    - Use asynchronous events for loose coupling
 
 2. **Missing Timeout Handling**
-
    - Always set timeouts for external calls
    - Implement timeout-based compensations
 
 3. **Ignoring Duplicate Events**
-
    - Events can be delivered multiple times
    - Implement deduplication logic
 
 4. **Complex Compensation Logic**
-
    - Keep compensations simple and focused
    - Avoid compensations that can fail
 
@@ -1724,7 +1718,6 @@ class RideBookingSaga {
    ```
 
 2. **Caching and Memoization**
-
    - Cache frequently accessed data
    - Memoize expensive calculations
    - Use read replicas for queries

@@ -38,20 +38,17 @@ NeuVector provides:
 ### System Requirements
 
 1. **Kubernetes Cluster**:
-
    - Version 1.19+ (1.24+ recommended)
    - RBAC enabled
    - CNI plugin supporting NetworkPolicy (Calico, Cilium, etc.)
 
 2. **Hardware Requirements**:
-
    - Controller: 1 CPU, 1GB RAM minimum
    - Enforcer: 1 CPU, 1GB RAM per node
    - Scanner: 1 CPU, 1GB RAM minimum
    - Manager (UI): 1 CPU, 1GB RAM minimum
 
 3. **Storage**:
-
    - 10GB persistent volume for database
    - 5GB for scanner registry cache
 

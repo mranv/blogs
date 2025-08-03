@@ -21,39 +21,33 @@ An excellent overview of the modern software development pipeline, including top
 To summarize:
 
 1. Automation benefits:
-
    - Faster time to market
    - Release confidence
    - Reduced human errors
    - Consistency in the codebase
 
 2. Key components:
-
    - Source Code Management (e.g., GitHub, Bitbucket)
    - Build Automation (Jenkins, GitLab CI, CircleCI, Travis CI, etc.)
    - Integrated automated testing
    - Version Control (Git, SVN, Mercurial, etc.)
 
 3. Continuous Deployment vs. Continuous Delivery:
-
    - Continuous Deployment: Automatic deployment of changes to the production environment after they have been tested in a staging or integration environment.
    - Continuous Delivery: Enables rapid and automated delivery of software changes to any environment, but deployment can be manual or triggered by a human.
 
 4. Security Concerns:
-
    - Implement Infrastructure as Code (IaC) tools like Terraform, CloudFormation, etc.
    - Adopt security technologies for deployment like Chef, Ansible, etc.
    - Use secret management tools (Vault, AWS Secrets Manager, HashiCorp's Vault)
 
 5. Monitoring and Logging:
-
    - Proactive issue detection
    - Scalability with application growth
    - Implement automatic logging and real-time alerts
    - Tools like Prometheus, ELK Stack (Elasticsearch, Logstash, Kibana), Grafana, Datadog, etc.
 
 6. Containerization and Orchestration:
-
    - Container orchestration tools (Kubernetes, Docker Swarm, Rancher, etc.)
    - Serverless architectures provided by main cloud providers like AWS Lambda, Google Cloud Functions, Azure Functions, etc.
 

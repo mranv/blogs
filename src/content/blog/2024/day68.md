@@ -50,7 +50,6 @@ Best practices for using a service mesh include:
 The main topic is a service mesh architecture, which consists of two components: data plane (Eno proxy) and control plane (Stod).
 
 1. **Data Plane (Eno Proxy)**:
-
    - Open-source project
    - Layer 7 proxy that moves networking logic into a reusable container
    - Runs as a sidecar alongside microservices

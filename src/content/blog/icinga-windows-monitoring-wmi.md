@@ -157,7 +157,6 @@ Here is an example of the modules and the desired versions:
 3. **Adjust the Plugin Configuration:**
 
    Edit the main Perl script `check_wmi_plus.pl` and update:
-
    - **Location of utils.pm:** Adjust the path if it is not in `/usr/lib/nagios/plugins`.
    - **Base Directory:** Set the `$base_dir` variable to the installation directory of `check_wmi_plus.pl`.
    - **WMIC Binary Path:** Update `$wmic_command` with the full path to your WMIC executable.
@@ -168,7 +167,6 @@ Here is an example of the modules and the desired versions:
 To allow remote monitoring, configure WMI on the Windows server:
 
 1. **Create a Dedicated User:**
-
    - Open the WMI Control console:
      Press Start → Run, type `wmimgmt.msc`, and click OK.
 

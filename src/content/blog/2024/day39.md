@@ -21,7 +21,6 @@ In summary, during this presentation, we discussed how Transport Layer Security 
 1. Certificate Authority (CA): An organization that issues certificates for secure connections, ensuring the authenticity of certificates and establishing trust during a connection. Examples include Let's Encrypt, DigiCert, and GoDaddy.
 
 2. Types of Certificates:
-
    - Root Certificates: Issued by CAs and used to identify their digital signature.
    - Server Certificates: Assigned to servers in the cluster (such as the API server, HD server, or Cubelet server) for secure communication between them and clients.
    - Client Certificates: Assigned to clients (such as admins, proxies, or control plane components) for secure communication with servers.

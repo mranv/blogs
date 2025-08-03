@@ -313,7 +313,6 @@ stateDiagram-v2
    ```
 
 2. **TCP Health Checks**
-
    - Simple connection test
    - Lower overhead than HTTP
    - Good for non-HTTP services
@@ -370,7 +369,6 @@ graph TD
    ```
 
 2. **Adaptive Load Balancing**
-
    - Monitors response times
    - Adjusts traffic based on performance
    - Prevents overloading slow instances

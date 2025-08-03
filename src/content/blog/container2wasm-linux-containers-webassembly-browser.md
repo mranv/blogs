@@ -70,13 +70,11 @@ The converter creates a WASM image containing:
 #### Runtime Components
 
 - **CPU Emulation**:
-
   - Bochs for x86_64 containers (since v0.3.0)
   - TinyEMU for RISC-V containers
   - QEMU for additional architectures (with performance penalty)
 
 - **Filesystem Access**:
-
   - WASI filesystem API for host directory mapping
   - virtio-9p for guest Linux mounting
   - Full read/write capabilities
@@ -199,12 +197,10 @@ Performance varies significantly by architecture:
 ### Optimization Strategies
 
 1. **Choose appropriate base images**:
-
    - Prefer x86_64 or RISC-V base images
    - Use minimal distributions (Alpine, distroless)
 
 2. **Pre-initialization with wizer**:
-
    - Reduces startup time
    - Available for WASI targets only
 
@@ -303,13 +299,11 @@ container2wasm provides multiple security boundaries:
 ### Planned Improvements
 
 1. **Performance optimizations**:
-
    - JIT compilation for emulators
    - Improved memory management
    - Faster startup times
 
 2. **Feature additions**:
-
    - GPU acceleration support
    - Advanced networking features
    - Persistent storage options
@@ -378,13 +372,11 @@ $ c2w microservice:latest function.wasm
 ### Best Practices
 
 1. **Container optimization**:
-
    - Use minimal base images
    - Remove unnecessary services
    - Optimize for single-process containers
 
 2. **Architecture selection**:
-
    - Prefer x86_64 or RISC-V
    - Avoid multi-architecture builds
 

@@ -575,19 +575,16 @@ gitlab:
 ## Migration Strategy
 
 1. **Assessment Phase**:
-
    - Audit current usage patterns
    - Identify required enterprise features
    - Plan resource requirements
 
 2. **Preparation Phase**:
-
    - Set up external databases and object storage
    - Configure authentication providers
    - Prepare monitoring infrastructure
 
 3. **Migration Phase**:
-
    - Backup existing data
    - Test migration in staging environment
    - Perform rolling upgrade to EE

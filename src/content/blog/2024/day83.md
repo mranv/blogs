@@ -19,13 +19,11 @@ description: Add your description here.
 Explaining how to use KR, a tool for providing resource optimization recommendations in a Kubernetes cluster. Here's a summary of the steps and key points:
 
 1. To install and use KR, the following prerequisites are needed:
-
    - Prometheus and Cube State metrics (if you have these, KR should work fine)
    - If using Linux or Mac with Brew, you can directly install KR. For Windows users, WSL is recommended.
    - Clone the KR repository and install dependencies using a Python virtual environment.
 
 2. Run KR on the cluster to analyze the past 14-day history of applications and provide recommendations based on a simple algorithm. The output will include:
-
    - Namespaces and types of Kubernetes objects (e.g., pods)
    - Container names, with separate recommendations for each container within a pod
    - CPU requests, CPU limits, memory requests, memory limits, and the difference in suggested values

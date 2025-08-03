@@ -19,31 +19,25 @@ description: Add your description here.
 To summarize the challenges faced in Test Automation and proposals to address these issues:
 
 1. Frequent Updates and Limited Time/Resources:
-
    - Encourage early QA involvement
    - Continuously maintain test cases to adapt to changes
 
 2. Instabilities:
-
    - Improve test robustness by handling different actual results
    - Collaborate with development teams to improve testability
    - Prepare simulation environments for hardware dependencies or AI components
 
 3. Testability Issues:
-
    - Explore various ways to improve testability with the development team
    - Set up test harness and environment when necessary
 
 4. Non-Functional Aspects (usability, performance, maintainability, recoverability):
-
    - Perform chaos testing for ensuring responsiveness of the product
 
 5. Implementation Challenges:
-
    - Minimize duplication and encourage reusability in test automation frameworks
 
 6. Maintenance, Reproduction, and Execution Durations:
-
    - Reduce execution time by introducing parallel executions and eliminating unnecessary steps
    - Collect evidence during test runs for accurate bug reporting and reproduction
 

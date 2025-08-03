@@ -3374,20 +3374,17 @@ module.exports = TestDataManager;
 ### ✅ Best Practices
 
 1. **Test Pyramid Balance**
-
    - Focus on unit tests (70-80%)
    - Moderate integration tests (15-25%)
    - Minimal E2E tests (5-10%)
    - Strong contract test coverage
 
 2. **Service Independence**
-
    - Each service should have its own test suite
    - Use test doubles for external dependencies
    - Test in isolation first, integration second
 
 3. **Test Data Management**
-
    - Use factories for consistent test data
    - Implement proper cleanup mechanisms
    - Isolate test data between test runs

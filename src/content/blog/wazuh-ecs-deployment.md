@@ -73,7 +73,6 @@ sequenceDiagram
 Before starting, ensure you have:
 
 1. **AWS Account** with the following permissions:
-
    - ECS Full Access
    - EC2 (for networking)
    - EFS Access
@@ -90,7 +89,6 @@ Before starting, ensure you have:
    ```
 
 3. **Required AWS Resources**:
-
    - VPC with public and private subnets
    - Internet Gateway attached to VPC
    - NAT Gateway for private subnets (if using private deployment)

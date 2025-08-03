@@ -37,7 +37,6 @@ Begin by mapping the company structure in units, sub-units, and groups within Ac
 <img alt="Windows Server 2019" src="/assets/images/Windows_Server_2019_03-b2a668be47e958881859e7d65fd403db.png" width="1086" height="572">
 
 1. Create Organization Units:
-
    - When creating an OU, consider protecting it from accidental deletion. If protection is enabled, PowerShell commands are required to remove it.
    - Example PowerShell command to remove protection and delete an OU:
      ```powershell

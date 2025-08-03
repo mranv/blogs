@@ -350,19 +350,16 @@ The script generates a structured JSON output:
 ## Best Practices and Recommendations
 
 1. **Error Handling**:
-
    - Use strict mode (`set -euo pipefail`)
    - Implement proper logging
    - Handle edge cases gracefully
 
 2. **Security**:
-
    - Run with appropriate permissions
    - Protect sensitive information in logs
    - Use secure temporary files
 
 3. **Performance**:
-
    - Implement appropriate timeouts
    - Use efficient file operations
    - Minimize external command calls

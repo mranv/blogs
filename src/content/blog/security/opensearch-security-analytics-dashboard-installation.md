@@ -37,13 +37,11 @@ The Security Analytics Dashboard plugin transforms OpenSearch into a powerful se
 Before installing the Security Analytics Dashboard plugin, ensure you have:
 
 1. **OpenSearch cluster with Dashboards installed**
-
    - OpenSearch version 2.x or later
    - OpenSearch Dashboards version matching your OpenSearch version
    - Cluster properly configured and running
 
 2. **System Requirements**
-
    - Root or sudo access to the server
    - Sufficient disk space (at least 1GB free)
    - Network connectivity to download plugins

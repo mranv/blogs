@@ -8,16 +8,21 @@
   z-index: 10002;
   opacity: 0;
   transform: translateX(100%);
-  animation: slideInNotification 0.5s ease-out forwards, 
-             slideOutNotification 0.5s ease-in 3.5s forwards;
+  animation:
+    slideInNotification 0.5s ease-out forwards,
+    slideOutNotification 0.5s ease-in 3.5s forwards;
 }
 
 .notification-content {
-  background: linear-gradient(135deg, hsl(var(--destructive)), hsl(var(--destructive) / 0.8));
+  background: linear-gradient(
+    135deg,
+    hsl(var(--destructive)),
+    hsl(var(--destructive) / 0.8)
+  );
   color: hsl(var(--destructive-foreground));
   padding: 16px 20px;
   border-radius: 12px;
-  box-shadow: 
+  box-shadow:
     0 20px 25px -5px rgba(0, 0, 0, 0.2),
     0 0 30px hsl(var(--destructive) / 0.3);
   display: flex;
@@ -81,34 +86,48 @@
 
 /* Special Rick Roll notification styles */
 .rick-roll-notification {
-  animation: slideInNotification 0.5s ease-out forwards, 
-             rickRollPulse 1s ease-in-out 0.5s 3,
-             slideOutNotification 0.5s ease-in 4.5s forwards;
+  animation:
+    slideInNotification 0.5s ease-out forwards,
+    rickRollPulse 1s ease-in-out 0.5s 3,
+    slideOutNotification 0.5s ease-in 4.5s forwards;
 }
 
 .rick-roll-content {
-  background: linear-gradient(135deg, 
-    hsl(var(--destructive)) 0%, 
+  background: linear-gradient(
+    135deg,
+    hsl(var(--destructive)) 0%,
     hsl(var(--destructive) / 0.8) 25%,
     hsl(var(--chart-1)) 50%,
     hsl(var(--destructive) / 0.8) 75%,
-    hsl(var(--destructive)) 100%) !important;
+    hsl(var(--destructive)) 100%
+  ) !important;
   background-size: 200% 200%;
   animation: rickRollGradient 2s ease infinite;
   border: 2px solid hsl(var(--destructive));
-  box-shadow: 
+  box-shadow:
     0 20px 25px -5px rgba(0, 0, 0, 0.3),
     0 0 40px hsl(var(--destructive) / 0.5),
     0 0 60px hsl(var(--chart-1) / 0.3);
 }
 
 @keyframes rickRollPulse {
-  0%, 100% { transform: scale(1) translateX(0); }
-  50% { transform: scale(1.05) translateX(-5px); }
+  0%,
+  100% {
+    transform: scale(1) translateX(0);
+  }
+  50% {
+    transform: scale(1.05) translateX(-5px);
+  }
 }
 
 @keyframes rickRollGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

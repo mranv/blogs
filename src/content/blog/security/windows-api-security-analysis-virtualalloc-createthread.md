@@ -588,18 +588,15 @@ By following secure coding practices and implementing comprehensive monitoring, 
 ## References
 
 1. Microsoft Documentation:
-
    - [VirtualAlloc function](https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc)
    - [CreateThread function](https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createthread)
    - [WaitForSingleObject function](https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject)
 
 2. MITRE ATT&CK:
-
    - [T1055: Process Injection](https://attack.mitre.org/techniques/T1055/)
    - [T1106: Native API](https://attack.mitre.org/techniques/T1106/)
 
 3. Rust Documentation:
-
    - [winapi crate](https://docs.rs/winapi/)
    - [std::thread module](https://doc.rust-lang.org/std/thread/)
 

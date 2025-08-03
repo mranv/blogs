@@ -37,13 +37,11 @@ Wazuh 4.3+ officially supports OpenSearch as its primary indexer, moving away fr
 ### System Requirements
 
 1. **Wazuh Components**:
-
    - Wazuh Manager 4.3+
    - Wazuh Dashboard 4.3+
    - Wazuh Indexer (OpenSearch) 2.x
 
 2. **Current Environment**:
-
    - Running Elasticsearch cluster (6.x, 7.x, or Open Distro)
    - Sufficient storage for data migration
    - Backup of all configurations

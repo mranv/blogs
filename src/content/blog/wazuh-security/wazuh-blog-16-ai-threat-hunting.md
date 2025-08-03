@@ -984,14 +984,12 @@ class AIThreatHuntingDeployment:
 ### Hunt Team Organization
 
 1. **Hybrid Team Structure**
-
    - Data scientists for model development
    - Threat analysts for hypothesis generation
    - Security engineers for integration
    - Domain experts for validation
 
 2. **Continuous Learning Culture**
-
    - Regular model performance reviews
    - Threat intelligence integration
    - Adversary tactic evolution tracking

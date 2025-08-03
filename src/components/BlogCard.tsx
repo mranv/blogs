@@ -48,8 +48,8 @@ export default function BlogCard({
   const cardContent = (
     <li className="my-4">
       <a href={href} className="block no-underline">
-        <ScaleIn 
-          variant="pop" 
+        <ScaleIn
+          variant="pop"
           hoverScale={1.02}
           delay={animationDelay}
           disabled={disableAnimations}
@@ -68,67 +68,70 @@ export default function BlogCard({
               className
             )}
           >
-          {/* Enhanced gradient overlays */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-accent/4 to-secondary/6 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            {/* Enhanced gradient overlays */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-accent/4 to-secondary/6 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-          <CardHeader className="relative pb-3">
-            <FadeIn 
-              direction="up" 
-              delay={animationDelay + 100}
-              disabled={disableAnimations}
-            >
-              {secHeading ? (
-                <CardTitle
-                  className={cn(
-                    headerProps.className,
-                    "line-clamp-2 group-hover:scale-[1.02] transition-transform duration-300"
-                  )}
-                  style={headerProps.style}
-                >
-                  {title}
-                </CardTitle>
-              ) : (
-                <CardTitle asChild>
-                  <h3
-                    className={cn(headerProps.className, "line-clamp-2")}
+            <CardHeader className="relative pb-3">
+              <FadeIn
+                direction="up"
+                delay={animationDelay + 100}
+                disabled={disableAnimations}
+              >
+                {secHeading ? (
+                  <CardTitle
+                    className={cn(
+                      headerProps.className,
+                      "line-clamp-2 group-hover:scale-[1.02] transition-transform duration-300"
+                    )}
                     style={headerProps.style}
                   >
                     {title}
-                  </h3>
-                </CardTitle>
-              )}
-              <CardDescription className="text-muted-foreground/70 text-sm mt-2">
-                <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
-              </CardDescription>
-            </FadeIn>
-          </CardHeader>
+                  </CardTitle>
+                ) : (
+                  <CardTitle asChild>
+                    <h3
+                      className={cn(headerProps.className, "line-clamp-2")}
+                      style={headerProps.style}
+                    >
+                      {title}
+                    </h3>
+                  </CardTitle>
+                )}
+                <CardDescription className="text-muted-foreground/70 text-sm mt-2">
+                  <Datetime
+                    pubDatetime={pubDatetime}
+                    modDatetime={modDatetime}
+                  />
+                </CardDescription>
+              </FadeIn>
+            </CardHeader>
 
-          <CardContent className="relative pt-0">
-            <FadeIn 
-              direction="up" 
-              delay={animationDelay + 200}
-              disabled={disableAnimations}
-              className="space-y-4"
-            >
-              <p className="text-muted-foreground/80 group-hover:text-muted-foreground transition-all duration-300 line-clamp-2 text-sm leading-relaxed group-hover:leading-normal">
-                {description}
-              </p>
-              <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                <span className="relative overflow-hidden">
-                  <span className="block transition-transform duration-300 group-hover:-translate-y-full">
-                    Read article
+            <CardContent className="relative pt-0">
+              <FadeIn
+                direction="up"
+                delay={animationDelay + 200}
+                disabled={disableAnimations}
+                className="space-y-4"
+              >
+                <p className="text-muted-foreground/80 group-hover:text-muted-foreground transition-all duration-300 line-clamp-2 text-sm leading-relaxed group-hover:leading-normal">
+                  {description}
+                </p>
+                <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                  <span className="relative overflow-hidden">
+                    <span className="block transition-transform duration-300 group-hover:-translate-y-full">
+                      Read article
+                    </span>
+                    <span className="absolute top-full left-0 transition-transform duration-300 group-hover:-translate-y-full text-accent">
+                      Read article →
+                    </span>
                   </span>
-                  <span className="absolute top-full left-0 transition-transform duration-300 group-hover:-translate-y-full text-accent">
-                    Read article →
-                  </span>
-                </span>
-                <ChevronRight className="w-4 h-4 transform group-hover:translate-x-2 group-hover:scale-110 transition-all duration-300" />
-              </div>
-            </FadeIn>
-          </CardContent>
-        </Card>
+                  <ChevronRight className="w-4 h-4 transform group-hover:translate-x-2 group-hover:scale-110 transition-all duration-300" />
+                </div>
+              </FadeIn>
+            </CardContent>
+          </Card>
         </ScaleIn>
       </a>
     </li>

@@ -115,13 +115,13 @@ sequenceDiagram
     Note over App,Network: Unencrypted Application
     App->>Kernel: send(socket, plaintext_data)
     Kernel->>Network: plaintext_data
-    
+
     Note over App,Network: TLS-Encrypted Application
     App->>TLS: SSL_write(ssl, plaintext_data)
     TLS->>TLS: Encrypt data
     TLS->>Kernel: send(socket, encrypted_data)
     Kernel->>Network: encrypted_data
-    
+
     Note over App,Network: eBPF Tracing Points
     rect rgb(200, 230, 200)
         Note over TLS: Hook SSL_write/SSL_read for plaintext
@@ -221,14 +221,14 @@ struct bio_st {
 SEC("uprobe/SSL_write")
 int trace_ssl_write(struct pt_regs *ctx) {
     SSL *ssl = (SSL *)PT_REGS_PARM1(ctx);
-    
+
     // These offsets change between versions!
     BIO *rbio;
     bpf_probe_read(&rbio, sizeof(rbio), ssl + RBIO_OFFSET);
-    
+
     int socket_fd;
     bpf_probe_read(&socket_fd, sizeof(socket_fd), rbio + NUM_OFFSET);
-    
+
     // Use socket_fd for connection correlation
     return 0;
 }
@@ -314,36 +314,36 @@ static int extract_socket_fd(void *ssl_ptr, __u32 pid) {
     if (!version) {
         return -1; // Unknown version
     }
-    
+
     void *rbio_ptr;
     int socket_fd;
-    
+
     switch (*version) {
         case 0x10100000: // OpenSSL 1.1.0
-            bpf_probe_read(&rbio_ptr, sizeof(rbio_ptr), 
+            bpf_probe_read(&rbio_ptr, sizeof(rbio_ptr),
                           ssl_ptr + OPENSSL_1_1_0_RBIO_OFFSET);
-            bpf_probe_read(&socket_fd, sizeof(socket_fd), 
+            bpf_probe_read(&socket_fd, sizeof(socket_fd),
                           rbio_ptr + OPENSSL_1_1_0_BIO_NUM_OFFSET);
             break;
-            
+
         case 0x10101000: // OpenSSL 1.1.1
-            bpf_probe_read(&rbio_ptr, sizeof(rbio_ptr), 
+            bpf_probe_read(&rbio_ptr, sizeof(rbio_ptr),
                           ssl_ptr + OPENSSL_1_1_1_RBIO_OFFSET);
-            bpf_probe_read(&socket_fd, sizeof(socket_fd), 
+            bpf_probe_read(&socket_fd, sizeof(socket_fd),
                           rbio_ptr + OPENSSL_1_1_1_BIO_NUM_OFFSET);
             break;
-            
+
         case 0x30000000: // OpenSSL 3.0.0
-            bpf_probe_read(&rbio_ptr, sizeof(rbio_ptr), 
+            bpf_probe_read(&rbio_ptr, sizeof(rbio_ptr),
                           ssl_ptr + OPENSSL_3_0_0_RBIO_OFFSET);
-            bpf_probe_read(&socket_fd, sizeof(socket_fd), 
+            bpf_probe_read(&socket_fd, sizeof(socket_fd),
                           rbio_ptr + OPENSSL_3_0_0_BIO_NUM_OFFSET);
             break;
-            
+
         default:
             return -1; // Unsupported version
     }
-    
+
     return socket_fd;
 }
 
@@ -352,32 +352,32 @@ int trace_ssl_write_entry(struct pt_regs *ctx) {
     void *ssl = (void *)PT_REGS_PARM1(ctx);
     void *data = (void *)PT_REGS_PARM2(ctx);
     int len = (int)PT_REGS_PARM3(ctx);
-    
+
     __u64 pid_tgid = bpf_get_current_pid_tgid();
     __u32 pid = pid_tgid >> 32;
     __u32 tid = (__u32)pid_tgid;
-    
+
     // Extract socket FD using memory offsets
     int socket_fd = extract_socket_fd(ssl, pid);
     if (socket_fd < 0) {
         return 0; // Failed to extract
     }
-    
+
     struct tls_data *event = bpf_ringbuf_reserve(&tls_events, sizeof(*event), 0);
     if (!event) {
         return 0;
     }
-    
+
     event->pid = pid;
     event->tid = tid;
     event->socket_fd = socket_fd;
     event->timestamp = bpf_ktime_get_ns();
-    
+
     // Copy plaintext data
     int copy_len = len > 255 ? 255 : len;
     bpf_probe_read(event->data, copy_len, data);
     event->data[copy_len] = '\0';
-    
+
     bpf_ringbuf_submit(event, 0);
     return 0;
 }
@@ -408,7 +408,7 @@ graph TB
         BN2 --> BN3[TLS Library manages IO]
         BN3 --> BN4[send/recv syscalls]
         BN4 --> BN5[Network]
-        
+
         style BN3 fill:#c8e6c9
         style BN4 fill:#c8e6c9
     end
@@ -418,7 +418,7 @@ graph TB
         CB2 --> CB3[send/recv syscalls]
         CB1 --> CB4[SSL_write]
         CB4 --> CB5[TLS Library (encryption only)]
-        
+
         style CB2 fill:#fff3e0
         style CB5 fill:#fff3e0
     end
@@ -467,7 +467,7 @@ struct {
 SEC("uprobe/SSL_write")
 int trace_ssl_write_entry(struct pt_regs *ctx) {
     __u64 pid_tgid = bpf_get_current_pid_tgid();
-    
+
     struct tls_context tls_ctx = {
         .pid = pid_tgid >> 32,
         .tid = (__u32)pid_tgid,
@@ -476,17 +476,17 @@ int trace_ssl_write_entry(struct pt_regs *ctx) {
         .data_len = (int)PT_REGS_PARM3(ctx),
         .timestamp = bpf_ktime_get_ns(),
     };
-    
+
     // Store context for syscall correlation
     bpf_map_update_elem(&active_tls_calls, &pid_tgid, &tls_ctx, BPF_ANY);
-    
+
     return 0;
 }
 
 SEC("uprobe/SSL_read")
 int trace_ssl_read_entry(struct pt_regs *ctx) {
     __u64 pid_tgid = bpf_get_current_pid_tgid();
-    
+
     struct tls_context tls_ctx = {
         .pid = pid_tgid >> 32,
         .tid = (__u32)pid_tgid,
@@ -495,9 +495,9 @@ int trace_ssl_read_entry(struct pt_regs *ctx) {
         .data_len = (int)PT_REGS_PARM3(ctx),
         .timestamp = bpf_ktime_get_ns(),
     };
-    
+
     bpf_map_update_elem(&active_tls_calls, &pid_tgid, &tls_ctx, BPF_ANY);
-    
+
     return 0;
 }
 
@@ -505,47 +505,47 @@ int trace_ssl_read_entry(struct pt_regs *ctx) {
 SEC("tracepoint/syscalls/sys_enter_sendto")
 int trace_sendto_enter(struct trace_event_raw_sys_enter *ctx) {
     __u64 pid_tgid = bpf_get_current_pid_tgid();
-    
+
     // Check if this syscall is related to an active TLS call
     struct tls_context *tls_ctx = bpf_map_lookup_elem(&active_tls_calls, &pid_tgid);
     if (!tls_ctx) {
         return 0; // Not a TLS-related syscall
     }
-    
+
     int socket_fd = (int)ctx->args[0];
-    
+
     struct connection_data *event = bpf_ringbuf_reserve(&tls_data_events, sizeof(*event), 0);
     if (!event) {
         return 0;
     }
-    
+
     event->socket_fd = socket_fd;
     event->timestamp = tls_ctx->timestamp;
     event->is_read = 0; // This is a write operation
-    
+
     // Copy plaintext data
     __u32 copy_len = tls_ctx->data_len > 511 ? 511 : tls_ctx->data_len;
     bpf_probe_read(event->data, copy_len, tls_ctx->data_ptr);
     event->data[copy_len] = '\0';
     event->data_len = copy_len;
-    
+
     bpf_ringbuf_submit(event, 0);
-    
+
     // Clean up the context
     bpf_map_delete_elem(&active_tls_calls, &pid_tgid);
-    
+
     return 0;
 }
 
 SEC("tracepoint/syscalls/sys_exit_recvfrom")
 int trace_recvfrom_exit(struct trace_event_raw_sys_exit *ctx) {
     __u64 pid_tgid = bpf_get_current_pid_tgid();
-    
+
     struct tls_context *tls_ctx = bpf_map_lookup_elem(&active_tls_calls, &pid_tgid);
     if (!tls_ctx) {
         return 0;
     }
-    
+
     // Handle read completion in SSL_read return probe
     return 0;
 }
@@ -553,39 +553,39 @@ int trace_recvfrom_exit(struct trace_event_raw_sys_exit *ctx) {
 SEC("uretprobe/SSL_read")
 int trace_ssl_read_return(struct pt_regs *ctx) {
     __u64 pid_tgid = bpf_get_current_pid_tgid();
-    
+
     struct tls_context *tls_ctx = bpf_map_lookup_elem(&active_tls_calls, &pid_tgid);
     if (!tls_ctx) {
         return 0;
     }
-    
+
     int bytes_read = (int)PT_REGS_RC(ctx);
     if (bytes_read <= 0) {
         bpf_map_delete_elem(&active_tls_calls, &pid_tgid);
         return 0;
     }
-    
+
     struct connection_data *event = bpf_ringbuf_reserve(&tls_data_events, sizeof(*event), 0);
     if (!event) {
         bpf_map_delete_elem(&active_tls_calls, &pid_tgid);
         return 0;
     }
-    
+
     // For reads, we need to get the socket FD differently
     // This is a simplified approach - real implementation would be more sophisticated
     event->socket_fd = 0; // Would need additional logic
     event->timestamp = tls_ctx->timestamp;
     event->is_read = 1;
-    
+
     // Copy decrypted data
     __u32 copy_len = bytes_read > 511 ? 511 : bytes_read;
     bpf_probe_read(event->data, copy_len, tls_ctx->data_ptr);
     event->data[copy_len] = '\0';
     event->data_len = copy_len;
-    
+
     bpf_ringbuf_submit(event, 0);
     bpf_map_delete_elem(&active_tls_calls, &pid_tgid);
-    
+
     return 0;
 }
 
@@ -635,39 +635,39 @@ static int analyze_call_stack(struct call_context *ctx) {
         sizeof(ctx->stack.ip),
         BPF_F_USER_STACK
     ) / sizeof(__u64);
-    
+
     if (ctx->stack.depth <= 0) {
         return -1;
     }
-    
+
     // Analyze stack for syscall patterns
     for (int i = 0; i < ctx->stack.depth && i < MAX_STACK_DEPTH; i++) {
         // Check if send/recv syscalls are in the call stack
         // This would require symbol resolution in user space
         // or pattern matching on known function addresses
     }
-    
+
     return 0;
 }
 
 SEC("uprobe/SSL_write")
 int enhanced_ssl_write_entry(struct pt_regs *ctx) {
     __u64 pid_tgid = bpf_get_current_pid_tgid();
-    
+
     struct call_context call_ctx = {
         .timestamp = bpf_ktime_get_ns(),
         .ssl_ptr = (void *)PT_REGS_PARM1(ctx),
         .data_ptr = (void *)PT_REGS_PARM2(ctx),
         .data_len = (int)PT_REGS_PARM3(ctx),
     };
-    
+
     // Analyze call stack for BIO native detection
     if (analyze_call_stack(&call_ctx) < 0) {
         return 0;
     }
-    
+
     bpf_map_update_elem(&enhanced_tls_calls, &pid_tgid, &call_ctx, BPF_ANY);
-    
+
     return 0;
 }
 
@@ -700,9 +700,9 @@ static void update_integrity_stats(int success) {
     if (!stats) {
         return;
     }
-    
+
     __sync_fetch_and_add(&stats->total_correlations, 1);
-    
+
     if (success) {
         __sync_fetch_and_add(&stats->successful_correlations, 1);
     } else {
@@ -714,11 +714,11 @@ static void update_integrity_stats(int success) {
 SEC("tracepoint/syscalls/sys_enter_sendto")
 int validated_sendto_enter(struct trace_event_raw_sys_enter *ctx) {
     // ... correlation logic ...
-    
+
     // Validate correlation accuracy
     int correlation_success = validate_correlation(tls_ctx, socket_fd);
     update_integrity_stats(correlation_success);
-    
+
     return 0;
 }
 ```
@@ -810,44 +810,44 @@ static struct connection_tracker tracker = {0};
 // Process TLS events from eBPF
 static int handle_tls_event(void *ctx, void *data, size_t data_sz) {
     struct connection_data *event = data;
-    
-    printf("TLS Event: FD=%u, Len=%u, Read=%u, Time=%lu\n", 
+
+    printf("TLS Event: FD=%u, Len=%u, Read=%u, Time=%lu\n",
            event->socket_fd, event->data_len, event->is_read, event->timestamp);
-    
+
     // Reconstruct HTTP requests/responses
-    if (strncmp(event->data, "GET ", 4) == 0 || 
+    if (strncmp(event->data, "GET ", 4) == 0 ||
         strncmp(event->data, "POST ", 5) == 0 ||
         strncmp(event->data, "PUT ", 4) == 0 ||
         strncmp(event->data, "DELETE ", 7) == 0) {
-        
+
         // This is an HTTP request
         process_http_request(event);
-        
+
     } else if (strncmp(event->data, "HTTP/", 5) == 0) {
-        
+
         // This is an HTTP response
         process_http_response(event);
-        
+
     } else {
-        
+
         // Unknown protocol or partial data
         printf("Unknown protocol data: %.*s\n", 50, event->data);
     }
-    
+
     return 0;
 }
 
 static void process_http_request(struct connection_data *event) {
     char method[16], path[256], version[16];
-    
+
     // Parse HTTP request line
     if (sscanf(event->data, "%15s %255s %15s", method, path, version) == 3) {
-        printf("HTTP Request: %s %s %s (FD: %u)\n", 
+        printf("HTTP Request: %s %s %s (FD: %u)\n",
                method, path, version, event->socket_fd);
-        
+
         // Create or update span
         create_request_span(event->socket_fd, method, path, event->timestamp);
-        
+
         // Extract service information
         update_service_metrics(path, event->timestamp);
     }
@@ -857,45 +857,45 @@ static void process_http_response(struct connection_data *event) {
     char version[16];
     int status_code;
     char status_text[64];
-    
+
     // Parse HTTP response line
     if (sscanf(event->data, "%15s %d %63s", version, &status_code, status_text) == 3) {
-        printf("HTTP Response: %s %d %s (FD: %u)\n", 
+        printf("HTTP Response: %s %d %s (FD: %u)\n",
                version, status_code, status_text, event->socket_fd);
-        
+
         // Complete the span
         complete_response_span(event->socket_fd, status_code, event->timestamp);
     }
 }
 
-static void create_request_span(uint32_t socket_fd, const char *method, 
+static void create_request_span(uint32_t socket_fd, const char *method,
                               const char *path, uint64_t timestamp) {
     if (tracker.span_count >= 10240) {
         return; // Buffer full
     }
-    
+
     struct tls_span *span = &tracker.spans[tracker.span_count++];
     span->socket_fd = socket_fd;
     span->start_time = timestamp;
     span->request_data = strdup(method);
     span->request_len = strlen(method);
-    
+
     printf("Created span for %s %s on FD %u\n", method, path, socket_fd);
 }
 
-static void complete_response_span(uint32_t socket_fd, int status_code, 
+static void complete_response_span(uint32_t socket_fd, int status_code,
                                  uint64_t timestamp) {
     // Find matching request span
     for (int i = 0; i < tracker.span_count; i++) {
-        if (tracker.spans[i].socket_fd == socket_fd && 
+        if (tracker.spans[i].socket_fd == socket_fd &&
             tracker.spans[i].end_time == 0) {
-            
+
             tracker.spans[i].end_time = timestamp;
             uint64_t latency = timestamp - tracker.spans[i].start_time;
-            
-            printf("Completed span on FD %u: latency=%lu ns, status=%d\n", 
+
+            printf("Completed span on FD %u: latency=%lu ns, status=%d\n",
                    socket_fd, latency, status_code);
-            
+
             // Generate observability metrics
             export_span_metrics(&tracker.spans[i], status_code, latency);
             break;
@@ -904,16 +904,16 @@ static void complete_response_span(uint32_t socket_fd, int status_code,
 }
 
 // Export metrics in OpenTelemetry or Prometheus format
-static void export_span_metrics(struct tls_span *span, int status_code, 
+static void export_span_metrics(struct tls_span *span, int status_code,
                                uint64_t latency) {
     // OpenTelemetry span export
     printf("OTEL Span: start=%lu, end=%lu, duration=%lu, status=%d\n",
            span->start_time, span->end_time, latency, status_code);
-    
+
     // Prometheus metrics
     printf("http_request_duration_seconds{method=\"%s\",status=\"%d\"} %.6f\n",
            span->request_data, status_code, latency / 1e9);
-    
+
     printf("http_requests_total{method=\"%s\",status=\"%d\"} 1\n",
            span->request_data, status_code);
 }
@@ -922,35 +922,35 @@ int main() {
     struct bpf_object *obj;
     struct ring_buffer *rb;
     int err;
-    
+
     // Load eBPF program
     obj = bpf_object__open_file("modern_tls_tracing.bpf.o", NULL);
     if (libbpf_get_error(obj)) {
         fprintf(stderr, "Failed to open eBPF object\n");
         return 1;
     }
-    
+
     err = bpf_object__load(obj);
     if (err) {
         fprintf(stderr, "Failed to load eBPF object\n");
         return 1;
     }
-    
+
     // Attach programs
     struct bpf_link *links[10];
     int link_count = 0;
-    
+
     struct bpf_program *prog;
     bpf_object__for_each_program(prog, obj) {
         links[link_count] = bpf_program__attach(prog);
         if (libbpf_get_error(links[link_count])) {
-            fprintf(stderr, "Failed to attach program %s\n", 
+            fprintf(stderr, "Failed to attach program %s\n",
                    bpf_program__name(prog));
             continue;
         }
         link_count++;
     }
-    
+
     // Set up ring buffer
     int map_fd = bpf_object__find_map_fd_by_name(obj, "tls_data_events");
     rb = ring_buffer__new(map_fd, handle_tls_event, NULL, NULL);
@@ -958,9 +958,9 @@ int main() {
         fprintf(stderr, "Failed to create ring buffer\n");
         return 1;
     }
-    
+
     printf("TLS tracing started. Press Ctrl-C to exit.\n");
-    
+
     // Process events
     while (1) {
         err = ring_buffer__poll(rb, 100);
@@ -969,14 +969,14 @@ int main() {
             break;
         }
     }
-    
+
     // Cleanup
     ring_buffer__free(rb);
     for (int i = 0; i < link_count; i++) {
         bpf_link__destroy(links[i]);
     }
     bpf_object__close(obj);
-    
+
     return 0;
 }
 ```
@@ -1033,7 +1033,7 @@ SEC("uprobe/crypto_tls_Conn_Write")
 int trace_go_tls_write(struct pt_regs *ctx) {
     // Go calling convention is different from C
     // Need to handle Go's stack-based parameter passing
-    
+
     return 0;
 }
 
@@ -1042,7 +1042,7 @@ SEC("uprobe/javax_net_ssl_SSLSocket_write")
 int trace_java_tls_write(struct pt_regs *ctx) {
     // JVM integration requires understanding Java object layout
     // and garbage collector interactions
-    
+
     return 0;
 }
 
@@ -1063,7 +1063,7 @@ SEC("tp/net/tls_device_tx_resync")
 int trace_ktls_tx(struct trace_event_raw_tls_device_tx_resync *ctx) {
     // Access TLS data at kernel level without library dependency
     __u32 socket_fd = ctx->sk->sk_socket->file->f_inode->i_ino;
-    
+
     // Process TLS record data directly from kernel
     return 0;
 }
@@ -1098,16 +1098,16 @@ struct {
 SEC("tc")
 int extract_protocol_features(struct __sk_buff *skb) {
     struct protocol_features *features;
-    
+
     features = bpf_ringbuf_reserve(&ml_features, sizeof(*features), 0);
     if (!features) {
         return TC_ACT_OK;
     }
-    
+
     // Extract features for ML model
     bpf_skb_load_bytes(skb, 0, features->first_bytes, 16);
     features->entropy_score = calculate_entropy(features->first_bytes, 16);
-    
+
     bpf_ringbuf_submit(features, 0);
     return TC_ACT_OK;
 }
@@ -1115,11 +1115,11 @@ int extract_protocol_features(struct __sk_buff *skb) {
 static __u8 calculate_entropy(__u8 *data, int len) {
     // Simplified entropy calculation
     __u32 counts[256] = {0};
-    
+
     for (int i = 0; i < len; i++) {
         counts[data[i]]++;
     }
-    
+
     // Shannon entropy calculation (simplified)
     return 128; // Placeholder
 }
@@ -1146,7 +1146,7 @@ SEC("tp/crypto/qat_aead_encrypt")
 int trace_hw_encryption(struct trace_event_raw_qat_aead_encrypt *ctx) {
     // Hook into hardware crypto operations
     // Correlate with TLS sessions
-    
+
     return 0;
 }
 
@@ -1178,13 +1178,13 @@ SEC("uprobe/SSL_write")
 int selective_ssl_write(struct pt_regs *ctx) {
     __u32 key = 0;
     struct instrumentation_config *config = bpf_map_lookup_elem(&config_map, &key);
-    
+
     if (!config || !config->trace_writes) {
         return 0;
     }
-    
+
     __u32 pid = bpf_get_current_pid_tgid() >> 32;
-    
+
     // Check if this PID should be traced
     int should_trace = 0;
     for (int i = 0; i < config->target_count && i < 100; i++) {
@@ -1193,17 +1193,17 @@ int selective_ssl_write(struct pt_regs *ctx) {
             break;
         }
     }
-    
+
     if (!should_trace) {
         return 0;
     }
-    
+
     // Apply sampling
     __u32 random = bpf_get_prandom_u32();
     if ((random % 100) >= config->sample_rate) {
         return 0;
     }
-    
+
     // Proceed with instrumentation
     return trace_ssl_operation(ctx);
 }
@@ -1254,22 +1254,22 @@ int efficient_ssl_write(struct pt_regs *ctx) {
     if (!index) {
         return 0;
     }
-    
+
     __u32 current_index = (*index) % CIRCULAR_BUFFER_SIZE;
-    
+
     struct circular_event *event = bpf_map_lookup_elem(&circular_buffer, &current_index);
     if (!event) {
         return 0;
     }
-    
+
     // Update event data
     event->timestamp = bpf_ktime_get_ns();
     // ... populate other fields
-    
+
     // Increment index
     *index = current_index + 1;
     bpf_map_update_elem(&buffer_index, &key, index, BPF_ANY);
-    
+
     return 0;
 }
 

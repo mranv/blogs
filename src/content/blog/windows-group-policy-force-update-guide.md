@@ -175,7 +175,6 @@ New-NetFirewallRule -Name "FPS-SMB-In-TCP" -DisplayName "File and Printer Sharin
    ```
 
 2. **Initiate force update**
-
    - Right-click on target OU
    - Select "Group Policy Update"
    - Choose update options:

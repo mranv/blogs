@@ -13,7 +13,7 @@
       "@pages/*": ["pages/*"],
       "@scripts/*": ["scripts/*"],
       "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"],
-    },
-  },
+      "@utils/*": ["utils/*"]
+    }
+  }
 }

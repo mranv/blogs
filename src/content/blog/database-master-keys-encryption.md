@@ -57,14 +57,12 @@ SQL Server employs a **three-tier key hierarchy** as part of its encryption fram
 #### Key Hierarchy Structure
 
 1. **Service Master Key (SMK)**
-
    - Symmetric root key generated at the instance level
    - Created automatically upon installation
    - Protected by Windows OS (DPAPI)
    - Secures all subordinate keys
 
 2. **Database Master Key (DMK)**
-
    - Symmetric key created at the database level
    - Usually stored in the master database
    - Used to protect certificates or asymmetric keys
@@ -101,7 +99,6 @@ Oracle's TDE uses a **two-tier key architecture**:
 #### Key Components
 
 1. **TDE Master Encryption Key (MEK)**
-
    - Top-level key stored in Oracle Wallet/Keystore
    - Never stored in database files
    - Required to open the wallet/keystore
@@ -139,7 +136,6 @@ Db2 uses **native encryption** with a two-tier approach:
 #### Encryption Architecture
 
 1. **Master Key (MK)**
-
    - Stored externally in a keystore
    - Can use ICSF, PKCS#12, or KMIP-compliant key managers
    - Not stored in plaintext in database files
@@ -169,7 +165,6 @@ MySQL's TDE uses a **two-tier key architecture**:
 #### Key Management Structure
 
 1. **Master Encryption Key**
-
    - Managed by keyring plugin/component
    - Can integrate with external KMS (HashiCorp Vault, AWS KMS)
    - Not stored in database files
@@ -204,7 +199,6 @@ MongoDB's encrypted storage engine uses a similar master key concept:
 #### Encryption Components
 
 1. **Master Key**
-
    - External key via KMIP server or local keyfile
    - Never stored on disk
    - Loaded into memory when needed
@@ -257,7 +251,6 @@ PostgreSQL currently lacks built-in TDE, but several solutions exist:
    ```
 
 2. **pg_tde Extension (Experimental)**
-
    - Community-driven TDE implementation
    - Provides transparent encryption
    - Supports external key management

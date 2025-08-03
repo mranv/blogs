@@ -60,6 +60,7 @@ graph TB
 Whenever you're working on an eBPF program or any other user-space application, there's always a strong desire to monitor and understand its behavior once it's running in production.
 
 While tools like Netflix's `bpftop` help address questions about eBPF program performance:
+
 - How much CPU load does my eBPF program impose on the host?
 - What is the average runtime of my eBPF program?
 - How many times is my eBPF program triggered?
@@ -80,12 +81,12 @@ sequenceDiagram
     participant User as User Space
 
     Note over Map: Map reaches capacity
-    
+
     App->>eBPF: New event occurs
     eBPF->>Map: Try to insert new entry
     Map->>eBPF: Map full - insertion fails
     eBPF->>User: Event dropped/lost
-    
+
     rect rgb(255, 205, 210)
         Note over App,User: Data loss and performance impact
     end
@@ -119,28 +120,28 @@ An ideal eBPF Map Monitoring solution should:
 SEC("fentry/htab_map_update_elem")
 int track_map_update(struct bpf_map *map, void *key, void *value, u64 map_flags) {
     u32 map_id = map->id;
-    
+
     // Increment counter for this map
     u64 *count = bpf_map_lookup_elem(&map_counters, &map_id);
     if (count) {
         (*count)++;
         bpf_map_update_elem(&map_counters, &map_id, count, BPF_ANY);
     }
-    
+
     return 0;
 }
 
 SEC("fentry/htab_map_delete_elem")
 int track_map_delete(struct bpf_map *map, void *key) {
     u32 map_id = map->id;
-    
+
     // Decrement counter for this map
     u64 *count = bpf_map_lookup_elem(&map_counters, &map_id);
     if (count && *count > 0) {
         (*count)--;
         bpf_map_update_elem(&map_counters, &map_id, count, BPF_ANY);
     }
-    
+
     return 0;
 }
 ```
@@ -159,12 +160,12 @@ int track_map_delete(struct bpf_map *map, void *key) {
 int scan_pinned_maps() {
     DIR *bpf_dir = opendir("/sys/fs/bpf");
     struct dirent *entry;
-    
+
     while ((entry = readdir(bpf_dir)) != NULL) {
         if (entry->d_type == DT_REG) {
             char path[256];
             snprintf(path, sizeof(path), "/sys/fs/bpf/%s", entry->d_name);
-            
+
             // Try to open as BPF map
             int map_fd = bpf_obj_get(path);
             if (map_fd >= 0) {
@@ -173,7 +174,7 @@ int scan_pinned_maps() {
             }
         }
     }
-    
+
     closedir(bpf_dir);
     return 0;
 }
@@ -199,14 +200,14 @@ int monitor_application_maps(struct bpf_object *obj) {
     bpf_object__for_each_map(map, obj) {
         int fd = bpf_map__fd(map);
         uint32_t max_entries = bpf_map__max_entries(map);
-        
+
         // Count current elements (requires iteration)
         uint64_t count = count_map_elements_slow(fd);
-        
-        printf("Map: %s, Elements: %lu/%u\n", 
+
+        printf("Map: %s, Elements: %lu/%u\n",
                bpf_map__name(map), count, max_entries);
     }
-    
+
     return 0;
 }
 ```
@@ -329,7 +330,7 @@ int collect_map_metrics(struct bpf_iter__bpf_map *ctx) {
 
     // Calculate utilization ratio
     if (metrics->max_entries > 0) {
-        metrics->utilization_ratio = 
+        metrics->utilization_ratio =
             (float)metrics->current_entries / (float)metrics->max_entries;
     } else {
         metrics->utilization_ratio = 0.0;
@@ -349,13 +350,13 @@ int collect_map_metrics(struct bpf_iter__bpf_map *ctx) {
 static __u32 get_map_element_count(struct bpf_map *map) {
     // This is a simplified version - real implementation would
     // traverse the map structure to count actual elements
-    
+
     __u32 map_type = BPF_CORE_READ(map, map_type);
     __u32 max_entries = BPF_CORE_READ(map, max_entries);
-    
+
     // For demonstration - in reality, this requires more complex logic
     // to traverse hash tables, arrays, etc.
-    
+
     switch (map_type) {
         case BPF_MAP_TYPE_ARRAY:
             return get_array_element_count(map);
@@ -443,7 +444,7 @@ static void sig_handler(int sig) {
 // Process map metrics from eBPF
 static int handle_map_metrics(void *ctx, void *data, size_t data_sz) {
     struct map_metrics *metrics = data;
-    
+
     // Find existing map or create new entry
     struct map_info *info = NULL;
     for (int i = 0; i < store.count; i++) {
@@ -452,15 +453,15 @@ static int handle_map_metrics(void *ctx, void *data, size_t data_sz) {
             break;
         }
     }
-    
+
     if (!info && store.count < 1024) {
         info = &store.maps[store.count++];
     }
-    
+
     if (!info) {
         return 0; // Storage full
     }
-    
+
     // Update map information
     info->map_id = metrics->map_id;
     info->map_type = metrics->map_type;
@@ -470,7 +471,7 @@ static int handle_map_metrics(void *ctx, void *data, size_t data_sz) {
     info->utilization_ratio = metrics->utilization_ratio;
     strncpy(info->name, metrics->name, sizeof(info->name));
     info->last_updated = time(NULL);
-    
+
     // Determine alert level
     if (info->utilization_ratio >= ALERT_THRESHOLD) {
         info->alert_level = 2; // Critical
@@ -479,7 +480,7 @@ static int handle_map_metrics(void *ctx, void *data, size_t data_sz) {
     } else {
         info->alert_level = 0; // Normal
     }
-    
+
     // Print alerts for critical conditions
     if (info->alert_level == 2) {
         printf("CRITICAL: Map '%s' (ID: %u) is %.1f%% full (%u/%u entries)\n",
@@ -490,7 +491,7 @@ static int handle_map_metrics(void *ctx, void *data, size_t data_sz) {
                info->name, info->map_id, info->utilization_ratio * 100,
                info->current_entries, info->max_entries);
     }
-    
+
     store.last_collection = time(NULL);
     return 0;
 }
@@ -500,60 +501,60 @@ static void generate_prometheus_metrics(char *buffer, size_t size) {
     char *p = buffer;
     size_t remaining = size;
     int written;
-    
+
     // Clear buffer
     memset(buffer, 0, size);
-    
+
     // Prometheus headers
     written = snprintf(p, remaining,
         "# HELP ebpf_map_entries Current number of entries in eBPF maps\n"
         "# TYPE ebpf_map_entries gauge\n");
     p += written; remaining -= written;
-    
+
     written = snprintf(p, remaining,
         "# HELP ebpf_map_utilization_ratio Utilization ratio of eBPF maps (0.0-1.0)\n"
         "# TYPE ebpf_map_utilization_ratio gauge\n");
     p += written; remaining -= written;
-    
+
     written = snprintf(p, remaining,
         "# HELP ebpf_map_memory_bytes Memory usage of eBPF maps in bytes\n"
         "# TYPE ebpf_map_memory_bytes gauge\n");
     p += written; remaining -= written;
-    
+
     written = snprintf(p, remaining,
         "# HELP ebpf_map_alert_level Alert level of eBPF maps (0=normal, 1=warning, 2=critical)\n"
         "# TYPE ebpf_map_alert_level gauge\n");
     p += written; remaining -= written;
-    
+
     // Generate metrics for each map
     for (int i = 0; i < store.count && remaining > 0; i++) {
         struct map_info *info = &store.maps[i];
-        
+
         // Map entry count
         written = snprintf(p, remaining,
             "ebpf_map_entries{map_id=\"%u\",name=\"%s\",type=\"%u\"} %u\n",
             info->map_id, info->name, info->map_type, info->current_entries);
         p += written; remaining -= written;
-        
+
         // Utilization ratio
         written = snprintf(p, remaining,
             "ebpf_map_utilization_ratio{map_id=\"%u\",name=\"%s\"} %.3f\n",
             info->map_id, info->name, info->utilization_ratio);
         p += written; remaining -= written;
-        
+
         // Memory usage
         written = snprintf(p, remaining,
             "ebpf_map_memory_bytes{map_id=\"%u\",name=\"%s\"} %lu\n",
             info->map_id, info->name, info->memory_usage);
         p += written; remaining -= written;
-        
+
         // Alert level
         written = snprintf(p, remaining,
             "ebpf_map_alert_level{map_id=\"%u\",name=\"%s\"} %d\n",
             info->map_id, info->name, info->alert_level);
         p += written; remaining -= written;
     }
-    
+
     // Add collection timestamp
     written = snprintf(p, remaining,
         "# HELP ebpf_map_last_collection_timestamp_seconds Last collection timestamp\n"
@@ -574,18 +575,18 @@ static enum MHD_Result handle_metrics_request(void *cls, struct MHD_Connection *
         MHD_destroy_response(response);
         return ret;
     }
-    
+
     // Generate metrics
     char metrics_buffer[65536];
     generate_prometheus_metrics(metrics_buffer, sizeof(metrics_buffer));
-    
+
     struct MHD_Response *response = MHD_create_response_from_buffer(
         strlen(metrics_buffer), metrics_buffer, MHD_RESPMEM_MUST_COPY);
-    
+
     MHD_add_response_header(response, "Content-Type", "text/plain; charset=utf-8");
     enum MHD_Result ret = MHD_queue_response(connection, MHD_HTTP_OK, response);
     MHD_destroy_response(response);
-    
+
     return ret;
 }
 
@@ -597,40 +598,40 @@ static int init_ebpf() {
         fprintf(stderr, "Failed to open eBPF object file\n");
         return -1;
     }
-    
+
     // Load program
     int err = bpf_object__load(obj);
     if (err) {
         fprintf(stderr, "Failed to load eBPF object: %d\n", err);
         return -1;
     }
-    
+
     // Find and attach iterator
     struct bpf_program *prog = bpf_object__find_program_by_name(obj, "collect_map_metrics");
     if (!prog) {
         fprintf(stderr, "Failed to find iterator program\n");
         return -1;
     }
-    
+
     struct bpf_link *link = bpf_program__attach(prog);
     if (libbpf_get_error(link)) {
         fprintf(stderr, "Failed to attach iterator program\n");
         return -1;
     }
-    
+
     // Set up ring buffer
     int map_fd = bpf_object__find_map_fd_by_name(obj, "map_metrics_events");
     if (map_fd < 0) {
         fprintf(stderr, "Failed to find metrics events map\n");
         return -1;
     }
-    
+
     rb = ring_buffer__new(map_fd, handle_map_metrics, NULL, NULL);
     if (!rb) {
         fprintf(stderr, "Failed to create ring buffer\n");
         return -1;
     }
-    
+
     printf("eBPF map pressure monitor initialized\n");
     return 0;
 }
@@ -647,14 +648,14 @@ static void trigger_collection() {
 int main(int argc, char **argv) {
     signal(SIGINT, sig_handler);
     signal(SIGTERM, sig_handler);
-    
+
     printf("Starting eBPF Map Pressure Monitor...\n");
-    
+
     // Initialize eBPF
     if (init_ebpf() < 0) {
         return 1;
     }
-    
+
     // Start HTTP server for metrics
     struct MHD_Daemon *daemon = MHD_start_daemon(
         MHD_USE_INTERNAL_POLLING_THREAD,
@@ -662,26 +663,26 @@ int main(int argc, char **argv) {
         NULL, NULL,
         &handle_metrics_request, NULL,
         MHD_OPTION_END);
-    
+
     if (!daemon) {
         fprintf(stderr, "Failed to start HTTP server\n");
         return 1;
     }
-    
+
     printf("Metrics server started on port %d\n", METRICS_PORT);
     printf("Metrics available at http://localhost:%d/metrics\n", METRICS_PORT);
-    
+
     // Main monitoring loop
     while (running) {
         trigger_collection();
-        
+
         // Print summary every 30 seconds
         static time_t last_summary = 0;
         time_t now = time(NULL);
         if (now - last_summary >= 30) {
             printf("\n=== eBPF Map Status Summary ===\n");
             printf("Total maps monitored: %d\n", store.count);
-            
+
             int critical = 0, warning = 0, normal = 0;
             for (int i = 0; i < store.count; i++) {
                 switch (store.maps[i].alert_level) {
@@ -690,25 +691,25 @@ int main(int argc, char **argv) {
                     default: normal++; break;
                 }
             }
-            
-            printf("Status: %d normal, %d warning, %d critical\n", 
+
+            printf("Status: %d normal, %d warning, %d critical\n",
                    normal, warning, critical);
             printf("Last collection: %s", ctime(&store.last_collection));
             printf("==============================\n\n");
-            
+
             last_summary = now;
         }
-        
+
         sleep(5);
     }
-    
+
     printf("Shutting down...\n");
-    
+
     // Cleanup
     MHD_stop_daemon(daemon);
     if (rb) ring_buffer__free(rb);
     if (obj) bpf_object__close(obj);
-    
+
     return 0;
 }
 ```
@@ -816,32 +817,32 @@ static struct alert_config config = {
 static int send_alert(struct map_info *info, const char *level) {
     CURL *curl;
     CURLcode res;
-    
+
     json_object *alert = json_object_new_object();
     json_object *text = json_object_new_string_fmt(
         "eBPF Map Alert: %s\nMap: %s (ID: %u)\nUtilization: %.1f%%\nEntries: %u/%u",
         level, info->name, info->map_id, info->utilization_ratio * 100,
         info->current_entries, info->max_entries
     );
-    
+
     json_object_object_add(alert, "text", text);
-    
+
     const char *json_string = json_object_to_json_string(alert);
-    
+
     curl = curl_easy_init();
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_URL, config.webhook_url);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, json_string);
-        
+
         struct curl_slist *headers = NULL;
         headers = curl_slist_append(headers, "Content-Type: application/json");
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-        
+
         res = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         curl_slist_free_all(headers);
     }
-    
+
     json_object_put(alert);
     return (res == CURLE_OK) ? 0 : -1;
 }
@@ -867,9 +868,9 @@ static int send_alert(struct map_info *info, const char *level) {
           "defaults": {
             "thresholds": {
               "steps": [
-                {"color": "green", "value": 0},
-                {"color": "yellow", "value": 0.7},
-                {"color": "red", "value": 0.8}
+                { "color": "green", "value": 0 },
+                { "color": "yellow", "value": 0.7 },
+                { "color": "red", "value": 0.8 }
               ]
             }
           }
@@ -907,18 +908,18 @@ static int send_alert(struct map_info *info, const char *level) {
 The eBPF iterator approach introduces minimal overhead:
 
 - **CPU Usage**: < 0.1% on average
-- **Memory Footprint**: ~2MB for monitoring 1000+ maps  
+- **Memory Footprint**: ~2MB for monitoring 1000+ maps
 - **Collection Latency**: ~50μs per map
 - **Network Overhead**: Minimal (only Prometheus scraping)
 
 ### Comparison with Alternatives
 
-| Approach | CPU Overhead | Memory Usage | Coverage | Reliability |
-|----------|-------------|--------------|----------|-------------|
-| Kernel Hooks | High (5-10%) | Low | Partial | Poor |
-| Pinned Maps Only | Low (0.5%) | Low | Limited | Good |
-| Application Integration | Medium (2%) | Medium | Application-specific | Good |
-| **eBPF Iterators** | **Very Low (0.1%)** | **Low** | **Complete** | **Excellent** |
+| Approach                | CPU Overhead        | Memory Usage | Coverage             | Reliability   |
+| ----------------------- | ------------------- | ------------ | -------------------- | ------------- |
+| Kernel Hooks            | High (5-10%)        | Low          | Partial              | Poor          |
+| Pinned Maps Only        | Low (0.5%)          | Low          | Limited              | Good          |
+| Application Integration | Medium (2%)         | Medium       | Application-specific | Good          |
+| **eBPF Iterators**      | **Very Low (0.1%)** | **Low**      | **Complete**         | **Excellent** |
 
 ## Conclusion
 
@@ -927,7 +928,7 @@ eBPF Map pressure monitoring using iterators provides a robust, efficient soluti
 ### Key Benefits
 
 - **Complete Coverage**: Monitors all eBPF maps on the host
-- **Independence**: Works regardless of program reloads or restarts  
+- **Independence**: Works regardless of program reloads or restarts
 - **Minimal Overhead**: < 0.1% CPU impact
 - **Real-time Insights**: Immediate visibility into map pressure
 - **Production Ready**: Prometheus integration and alerting support

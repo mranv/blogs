@@ -75,7 +75,6 @@ The WMIC tool (WMI client for Linux) is needed to query Windows systems. You can
    ```
 
 3. **Troubleshooting Compilation Issues:**
-
    - If you encounter an error like:
 
      ```
@@ -160,7 +159,6 @@ Here is an example of the modules and the desired versions:
 3. **Adjust the Plugin Configuration:**
 
    Edit the main Perl script check_wmi_plus.pl and update:
-
    - Location of utils.pm: Adjust the path if it is not in /usr/lib/nagios/plugins.
    - Base Directory: Set the $base_dir variable to the installation directory of check_wmi_plus.pl.
    - WMIC Binary Path: Update $wmic_command with the full path to your WMIC executable.
@@ -173,7 +171,6 @@ To allow remote monitoring, configure WMI on the Windows server:
 ### Create a Dedicated User
 
 1. Open the WMI Control console:
-
    - Press Start → Run, type `wmimgmt.msc`, and click OK.
 
 2. In the console tree, right-click WMI Control and select Properties.

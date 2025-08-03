@@ -2146,18 +2146,15 @@ mod security_tests {
 ### Emerging Post-Quantum Algorithms
 
 1. **Code-Based Cryptography**
-
    - Classic McEliece (NIST finalist)
    - BIKE (Bit Flipping Key Encapsulation)
    - HQC (Hamming Quasi-Cyclic)
 
 2. **Multivariate Cryptography**
-
    - Rainbow (signatures)
    - GeMSS (Multivariate signatures)
 
 3. **Isogeny-Based Cryptography**
-
    - SIKE (compromised in 2022, but research continues)
    - CSIDH (Commutative Supersingular Isogeny Diffie-Hellman)
 

@@ -358,7 +358,6 @@ int Read_NATS(XML_NODE node, void *configp, __attribute__((unused)) void *mailp)
 ### Phase 1: Core Integration Setup (4-5 hours)
 
 1. **Build System Integration**
-
    - Modify src/Makefile to include NATS client library
    - Add NATS library dependencies to configure scripts
    - Update CMake/autotools configuration
@@ -371,7 +370,6 @@ int Read_NATS(XML_NODE node, void *configp, __attribute__((unused)) void *mailp)
 ### Phase 2: Core Daemon Modifications (5-6 hours)
 
 1. **remoted Daemon Changes**
-
    - Modify agent connection handling functions
    - Add NATS publishing calls at key decision points
    - Implement connection state change detection
@@ -384,7 +382,6 @@ int Read_NATS(XML_NODE node, void *configp, __attribute__((unused)) void *mailp)
 ### Phase 3: Configuration & Security (3-4 hours)
 
 1. **Configuration Parser**
-
    - Extend ossec.conf XML parser for NATS section
    - Add configuration validation
    - Implement secure credential handling
@@ -397,7 +394,6 @@ int Read_NATS(XML_NODE node, void *configp, __attribute__((unused)) void *mailp)
 ### Phase 4: Testing & Integration (2-3 hours)
 
 1. **Unit Testing**
-
    - Create tests for NATS integration functions
    - Test configuration parsing
    - Validate message formatting
@@ -543,20 +539,17 @@ Subject: `wazuh.security.alerts.high`
 ## Deliverables
 
 1. **Modified Source Code**
-
    - Updated remoted daemon with NATS integration
    - Modified wazuh-db with status publishing
    - New NATS integration module
    - Updated build configuration
 
 2. **Configuration Files**
-
    - Extended ossec.conf schema
    - Example configuration files
    - Security credential templates
 
 3. **Documentation**
-
    - Integration guide for developers
    - Configuration reference
    - Troubleshooting guide

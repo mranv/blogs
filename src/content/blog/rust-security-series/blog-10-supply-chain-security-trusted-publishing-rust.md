@@ -1583,19 +1583,16 @@ Our platform implements comprehensive zero-trust principles:
 ### Planned Features (Q2-Q4 2025)
 
 1. **Hardware Security Module (HSM) Integration**
-
    - FIPS 140-2 Level 3 certified signing
    - Hardware-backed key storage
    - Quantum-resistant key algorithms
 
 2. **Machine Learning Threat Detection**
-
    - Behavioral analysis of publishing patterns
    - Anomaly detection for supply chain attacks
    - Automated response to detected threats
 
 3. **Multi-Cloud Federation**
-
    - Cross-cloud artifact replication
    - Distributed trust consensus
    - Geographic compliance support

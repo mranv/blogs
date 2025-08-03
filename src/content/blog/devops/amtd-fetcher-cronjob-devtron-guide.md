@@ -199,13 +199,11 @@ git push origin main
 ### 2.2 Configure Devtron Application
 
 1. **Navigate to Devtron UI**:
-
    - Go to Applications → Create New Application
    - Select your Git repository
    - Choose the appropriate environment
 
 2. **Select Base Deployment Template**:
-
    - Go to App Configuration → Base Deployment Template
    - Select "Job and Cronjob" template
    - You'll see `cronjobConfigs` and `jobConfigs` sections
@@ -269,13 +267,11 @@ kubectl logs -n your-namespace -l job-name=amtd-fetcher-xxxxx
 ### Common Issues and Solutions
 
 1. **NATS Connection Failures**:
-
    - Verify NATS credentials are correctly formatted
    - Check network connectivity to NATS server
    - Ensure TLS is properly configured
 
 2. **API Authentication Errors**:
-
    - Verify Morphisec API credentials
    - Check API endpoint URLs
    - Ensure network access to Morphisec cloud
@@ -295,19 +291,16 @@ The fetcher writes health check files to `/app/data/health/`:
 ## Security Best Practices
 
 1. **Credential Management**:
-
    - Never hardcode sensitive credentials
    - Use Kubernetes Secrets for all sensitive data
    - Rotate credentials regularly
 
 2. **Network Security**:
-
    - Use TLS for all external connections
    - Implement network policies if needed
    - Monitor outbound connections
 
 3. **Resource Limits**:
-
    - Set appropriate CPU and memory limits
    - Configure resource requests for scheduling
    - Monitor resource usage patterns

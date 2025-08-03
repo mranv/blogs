@@ -32,11 +32,11 @@ The Linux kernel has evolved significantly in response to sophisticated attacks 
 static long vulnerable_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
     char buffer[64];
-    
+
     // Vulnerable: No bounds checking
     if (copy_from_user(buffer, (void __user *)arg, 128))
         return -EFAULT;
-    
+
     return 0;
 }
 
@@ -50,7 +50,7 @@ static void vulnerable_free(struct my_data *data)
 {
     kfree(data);
     // Vulnerable: Use after free
-    data->callback();  
+    data->callback();
 }
 
 // 3. Race condition vulnerability
@@ -59,10 +59,10 @@ static int vulnerable_open(struct inode *inode, struct file *file)
     // Vulnerable: TOCTOU race condition
     if (!capable(CAP_SYS_ADMIN))
         return -EPERM;
-    
+
     // Time window for privilege change
     msleep(10);
-    
+
     // Assumes capability still valid
     file->private_data = sensitive_data;
     return 0;
@@ -87,15 +87,15 @@ CONFIG_RANDOMIZE_KSTACK_OFFSET_DEFAULT=y
 void __init kaslr_early_init(void)
 {
     unsigned long entropy;
-    
+
     /* Gather entropy from various sources */
     entropy = get_boot_seed();
     entropy ^= rdtsc();
     entropy ^= read_cr3();
-    
+
     /* Calculate random offset */
     kernel_offset = (entropy % KERNEL_IMAGE_SIZE_MAX) & ~(KERNEL_ALIGN - 1);
-    
+
     /* Apply offset to kernel mappings */
     __START_KERNEL_map += kernel_offset;
     phys_base -= kernel_offset;
@@ -128,7 +128,7 @@ KPTI mitigates Meltdown by separating user and kernel page tables.
 static inline void switch_to_kernel_pt(void)
 {
     unsigned long cr3 = __read_cr3();
-    
+
     if (cr3 & PTI_USER_PGTABLE_BIT) {
         cr3 &= ~PTI_USER_PGTABLE_BIT;
         native_write_cr3(cr3);
@@ -155,13 +155,13 @@ static int setup_kpti_ctl(void)
 {
     if (cpu_mitigations_off())
         return 0;
-    
+
     /* Disable KPTI for trusted processes */
     if (current->flags & PF_KPTI_EXEMPT) {
         current->mm->context.pti_disabled = 1;
         return 0;
     }
-    
+
     return 1;
 }
 
@@ -188,9 +188,9 @@ void protected_function(char *input)
 {
     char buffer[64];
     unsigned long canary = __stack_chk_guard;
-    
+
     strcpy(buffer, input);  // Potentially unsafe
-    
+
     if (canary != __stack_chk_guard)
         __stack_chk_fail();
 }
@@ -203,15 +203,15 @@ void protected_function(char *input)
 static void enable_shadow_stack(void)
 {
     u64 msr_val;
-    
+
     if (!cpu_feature_enabled(X86_FEATURE_SHSTK))
         return;
-    
+
     /* Enable shadow stack */
     rdmsrl(MSR_IA32_U_CET, msr_val);
     msr_val |= CET_SHSTK_EN;
     wrmsrl(MSR_IA32_U_CET, msr_val);
-    
+
     /* Set up shadow stack pointer */
     wrmsrl(MSR_IA32_PL3_SSP, current->thread.shstk_base);
 }
@@ -238,10 +238,10 @@ struct file_operations {
 static int cfi_safe_open(struct inode *inode, struct file *file)
 {
     const struct file_operations *fops = file->f_op;
-    
+
     /* CFI check before indirect call */
     cfi_check_fn(fops->open, file_operations_open);
-    
+
     return fops->open(inode, file);
 }
 ```
@@ -253,10 +253,10 @@ static int cfi_safe_open(struct inode *inode, struct file *file)
 static void enable_ibt(void)
 {
     u64 msr_val;
-    
+
     if (!cpu_feature_enabled(X86_FEATURE_IBT))
         return;
-    
+
     /* Enable indirect branch tracking */
     rdmsrl(MSR_IA32_S_CET, msr_val);
     msr_val |= CET_ENDBR_EN;
@@ -306,19 +306,19 @@ extern void __x86_indirect_thunk_rax(void);
 static void enable_spectre_v2_protection(void)
 {
     u64 msr_val;
-    
+
     /* Enable IBRS */
     if (boot_cpu_has(X86_FEATURE_IBRS)) {
         rdmsrl(MSR_IA32_SPEC_CTRL, msr_val);
         msr_val |= SPEC_CTRL_IBRS;
         wrmsrl(MSR_IA32_SPEC_CTRL, msr_val);
     }
-    
+
     /* Issue IBPB on context switch */
     if (boot_cpu_has(X86_FEATURE_IBPB)) {
         wrmsrl(MSR_IA32_PRED_CMD, PRED_CMD_IBPB);
     }
-    
+
     /* Enable STIBP for user threads */
     if (boot_cpu_has(X86_FEATURE_STIBP)) {
         rdmsrl(MSR_IA32_SPEC_CTRL, msr_val);
@@ -342,7 +342,7 @@ static void l1d_flush(void)
 {
     int size = PAGE_SIZE << L1D_CACHE_ORDER;
     void *buffer = this_cpu_ptr(&l1d_flush_pages);
-    
+
     /* Fill L1D with safe data */
     asm volatile(
         "xorl   %%eax, %%eax\n"
@@ -366,7 +366,7 @@ static void l1d_flush(void)
 static inline void mds_clear_cpu_buffers(void)
 {
     static const u16 ds = __KERNEL_DS;
-    
+
     /*
      * Clear CPU buffers by performing a dummy verw instruction
      * with the kernel data segment
@@ -379,7 +379,7 @@ static void mds_user_clear_cpu_buffers(void)
 {
     if (!static_branch_likely(&mds_user_clear))
         return;
-    
+
     mds_clear_cpu_buffers();
 }
 ```
@@ -395,26 +395,26 @@ static int check_wx_pages(void)
     struct page *page;
     unsigned long pfn;
     int failed = 0;
-    
+
     for_each_online_pgdat(pgdat) {
-        for (pfn = pgdat->node_start_pfn; 
+        for (pfn = pgdat->node_start_pfn;
              pfn < pgdat->node_start_pfn + pgdat->node_spanned_pages;
              pfn++) {
-            
+
             page = pfn_to_page(pfn);
-            
+
             if (!page_is_ram(pfn))
                 continue;
-            
+
             /* Check for W+X mappings */
             if (page_is_writable(page) && page_is_executable(page)) {
-                pr_warn("Found W+X page at 0x%lx\n", 
+                pr_warn("Found W+X page at 0x%lx\n",
                         pfn << PAGE_SHIFT);
                 failed++;
             }
         }
     }
-    
+
     return failed;
 }
 
@@ -423,11 +423,11 @@ static void set_memory_protection(void *addr, size_t size, pgprot_t prot)
 {
     unsigned long start = (unsigned long)addr;
     unsigned long end = start + size;
-    
+
     /* Round to page boundaries */
     start = round_down(start, PAGE_SIZE);
     end = round_up(end, PAGE_SIZE);
-    
+
     /* Apply protection */
     if (pgprot_val(prot) & _PAGE_NX) {
         set_memory_nx(start, (end - start) >> PAGE_SHIFT);
@@ -462,7 +462,7 @@ static void set_memory_protection(void *addr, size_t size, pgprot_t prot)
 void safe_copy(void *dst, const void *src, size_t len)
 {
     char buffer[64];
-    
+
     /* Compile-time check if len > 64 */
     __fortify_memcpy(buffer, src, len);
 }
@@ -476,19 +476,19 @@ static int setup_stack_guard_page(struct task_struct *tsk)
 {
     struct page *page;
     unsigned long addr;
-    
+
     /* Allocate stack with guard page */
     addr = __get_free_pages(GFP_KERNEL, THREAD_SIZE_ORDER);
     if (!addr)
         return -ENOMEM;
-    
+
     /* Set up guard page at bottom of stack */
     page = virt_to_page(addr);
     set_page_guard(page);
-    
+
     /* Mark guard page as non-present */
     __set_page_prot(page, __pgprot(0));
-    
+
     tsk->stack = (void *)(addr + PAGE_SIZE);
     return 0;
 }
@@ -625,13 +625,13 @@ done
 static int hardening_task_create(unsigned long clone_flags)
 {
     const struct cred *cred = current_cred();
-    
+
     /* Restrict unprivileged user namespaces */
     if ((clone_flags & CLONE_NEWUSER) && !capable(CAP_SYS_ADMIN)) {
         pr_warn("Blocked unprivileged user namespace creation\n");
         return -EPERM;
     }
-    
+
     /* Restrict ptrace */
     if (clone_flags & CLONE_PTRACE) {
         if (!has_capability(current, CAP_SYS_PTRACE)) {
@@ -639,7 +639,7 @@ static int hardening_task_create(unsigned long clone_flags)
             return -EPERM;
         }
     }
-    
+
     return 0;
 }
 
@@ -650,7 +650,7 @@ static struct security_hook_list hardening_hooks[] __lsm_ro_after_init = {
 static int __init hardening_init(void)
 {
     pr_info("Kernel hardening module loaded\n");
-    security_add_hooks(hardening_hooks, ARRAY_SIZE(hardening_hooks), 
+    security_add_hooks(hardening_hooks, ARRAY_SIZE(hardening_hooks),
                       "hardening");
     return 0;
 }
@@ -726,7 +726,7 @@ static int lockdown_is_locked_down(enum lockdown_reason what)
                 lockdown_reasons[what]);
         return -EPERM;
     }
-    
+
     return 0;
 }
 ```
@@ -785,7 +785,7 @@ grep Speculation /proc/self/status
 # Speculation_Indirect_Branch: conditional force disabled
 
 # Disable mitigations for specific process
-prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS, 
+prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS,
       PR_SPEC_FORCE_DISABLE, 0, 0);
 ```
 
@@ -804,26 +804,26 @@ prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS,
 int test_nx_protection(void)
 {
     void *exec_page;
-    
+
     /* Allocate writable page */
     exec_page = mmap(NULL, 4096, PROT_READ | PROT_WRITE,
                      MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-    
+
     if (exec_page == MAP_FAILED) {
         perror("mmap");
         return -1;
     }
-    
+
     /* Write shellcode */
     unsigned char shellcode[] = "\xc3"; /* ret */
     memcpy(exec_page, shellcode, sizeof(shellcode));
-    
+
     /* Try to execute - should fail with NX */
     if (mprotect(exec_page, 4096, PROT_READ | PROT_EXEC) == 0) {
         printf("FAIL: NX protection not working\n");
         return -1;
     }
-    
+
     printf("PASS: NX protection working\n");
     return 0;
 }
@@ -832,23 +832,23 @@ int test_kaslr(void)
 {
     FILE *f;
     unsigned long addr1, addr2;
-    
+
     /* Read kernel symbol address */
     f = fopen("/proc/kallsyms", "r");
     if (!f) {
         printf("SKIP: Cannot read /proc/kallsyms\n");
         return 0;
     }
-    
+
     fscanf(f, "%lx", &addr1);
     fclose(f);
-    
+
     /* Check if address looks randomized */
     if ((addr1 & 0xFFFFFF) == 0) {
         printf("FAIL: KASLR might be disabled\n");
         return -1;
     }
-    
+
     printf("PASS: KASLR appears enabled\n");
     return 0;
 }
@@ -857,11 +857,11 @@ int main(void)
 {
     printf("Kernel Hardening Test Suite\n");
     printf("===========================\n");
-    
+
     test_nx_protection();
     test_kaslr();
     /* Add more tests */
-    
+
     return 0;
 }
 ```
@@ -880,7 +880,7 @@ import mmap
 class KernelMitigationTester:
     def __init__(self):
         self.results = {}
-    
+
     def test_kaslr(self):
         """Test KASLR effectiveness"""
         try:
@@ -889,23 +889,23 @@ class KernelMitigationTester:
                 cmdline = f.read()
                 if 'nokaslr' in cmdline:
                     return False, "KASLR disabled in boot parameters"
-            
+
             # Check kernel offset
             with open('/proc/kallsyms', 'r') as f:
                 first_symbol = f.readline().split()[0]
                 if first_symbol == '0000000000000000':
                     return False, "kallsyms not available"
-                
+
                 # Check for randomization
                 addr = int(first_symbol, 16)
                 if (addr & 0xFFFFFF) != 0:
                     return True, "KASLR active"
-                    
+
         except Exception as e:
             return False, f"Error: {e}"
-        
+
         return False, "KASLR status unknown"
-    
+
     def test_nx(self):
         """Test NX bit enforcement"""
         try:
@@ -913,23 +913,23 @@ class KernelMitigationTester:
             with open('/proc/cpuinfo', 'r') as f:
                 if 'nx' not in f.read():
                     return False, "CPU doesn't support NX"
-            
+
             # Test actual enforcement
             shellcode = b"\x31\xc0\xc3"  # xor eax,eax; ret
-            
+
             # Create executable mapping
-            buf = mmap.mmap(-1, len(shellcode), 
+            buf = mmap.mmap(-1, len(shellcode),
                            prot=mmap.PROT_READ | mmap.PROT_WRITE | mmap.PROT_EXEC)
             buf.write(shellcode)
-            
+
             # This should work
             cfunc = ctypes.CFUNCTYPE(ctypes.c_int)(ctypes.addressof(ctypes.c_char.from_buffer(buf)))
-            
+
             # Create non-executable mapping
-            buf2 = mmap.mmap(-1, len(shellcode), 
+            buf2 = mmap.mmap(-1, len(shellcode),
                             prot=mmap.PROT_READ | mmap.PROT_WRITE)
             buf2.write(shellcode)
-            
+
             # This should fail
             try:
                 cfunc2 = ctypes.CFUNCTYPE(ctypes.c_int)(ctypes.addressof(ctypes.c_char.from_buffer(buf2)))
@@ -937,10 +937,10 @@ class KernelMitigationTester:
                 return False, "NX not enforced"
             except:
                 return True, "NX properly enforced"
-                
+
         except Exception as e:
             return False, f"Error testing NX: {e}"
-    
+
     def test_smep(self):
         """Test SMEP (Supervisor Mode Execution Prevention)"""
         try:
@@ -951,7 +951,7 @@ class KernelMitigationTester:
                     return False, "SMEP not supported by CPU"
         except:
             return False, "Could not determine SMEP status"
-    
+
     def test_smap(self):
         """Test SMAP (Supervisor Mode Access Prevention)"""
         try:
@@ -962,7 +962,7 @@ class KernelMitigationTester:
                     return False, "SMAP not supported by CPU"
         except:
             return False, "Could not determine SMAP status"
-    
+
     def test_kpti(self):
         """Test KPTI (Kernel Page Table Isolation)"""
         try:
@@ -976,7 +976,7 @@ class KernelMitigationTester:
                     return True, f"Status: {status}"
         except:
             return False, "Could not determine KPTI status"
-    
+
     def run_all_tests(self):
         """Run all mitigation tests"""
         tests = [
@@ -986,16 +986,16 @@ class KernelMitigationTester:
             ('SMAP', self.test_smap),
             ('KPTI', self.test_kpti),
         ]
-        
+
         print("Kernel Security Mitigation Tests")
         print("=" * 40)
-        
+
         for name, test_func in tests:
             passed, message = test_func()
             status = "PASS" if passed else "FAIL"
             print(f"{name:.<30} [{status}] {message}")
             self.results[name] = passed
-        
+
         print("=" * 40)
         passed = sum(self.results.values())
         total = len(self.results)
@@ -1028,7 +1028,7 @@ echo "kernel.kexec_load_disabled=1" >> /etc/sysctl.conf
 check_kernel_updates() {
     current=$(uname -r)
     echo "Current kernel: $current"
-    
+
     # Check for CVEs
     echo "Checking for known vulnerabilities..."
     for cve in /sys/devices/system/cpu/vulnerabilities/*; do
@@ -1036,7 +1036,7 @@ check_kernel_updates() {
         status=$(cat $cve)
         echo "$vuln: $status"
     done
-    
+
     # Check for available updates
     if command -v apt-get >/dev/null; then
         apt-get update
@@ -1065,7 +1065,7 @@ static int security_event_notify(struct notifier_block *nb,
         pr_warn("Lockdown violation\n");
         break;
     }
-    
+
     return NOTIFY_OK;
 }
 ```
@@ -1075,6 +1075,7 @@ static int security_event_notify(struct notifier_block *nb,
 Linux kernel hardening is an ongoing process that requires balancing security with performance and compatibility. Modern kernels provide extensive hardening options, from architectural features like KASLR and KPTI to advanced mitigations for CPU vulnerabilities.
 
 Key takeaways:
+
 - Enable all relevant hardening options for your threat model
 - Keep kernels updated to get the latest security fixes
 - Monitor performance impact and tune accordingly

@@ -497,20 +497,17 @@ multipass shell $INSTANCE_NAME
 ## Best Practices
 
 1. **Resource Management**:
-
    - Always set appropriate CPU and memory limits
    - Monitor disk usage regularly
    - Use snapshots for important states
 
 2. **Security**:
-
    - Keep AppArmor enabled and configured
    - Use SSH keys instead of passwords
    - Regularly update both host and guest systems
    - Implement network segmentation when needed
 
 3. **Maintenance**:
-
    - Regular backups of important instances
    - Clean up unused instances and images
    - Monitor system logs for issues

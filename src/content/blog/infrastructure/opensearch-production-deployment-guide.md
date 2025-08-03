@@ -619,14 +619,12 @@ curl -k -X GET "https://localhost:9200/_nodes?pretty" -u admin:admin
 ### Security Best Practices
 
 1. **Certificate Management**:
-
    - Rotate certificates every 12 months
    - Use strong key sizes (minimum 2048 bits for RSA)
    - Implement proper certificate revocation procedures
    - Store private keys securely
 
 2. **Network Security**:
-
    - Use firewalls to restrict access to OpenSearch ports
    - Implement VPC or network segmentation
    - Use TLS 1.2 or higher for all communications
@@ -641,14 +639,12 @@ curl -k -X GET "https://localhost:9200/_nodes?pretty" -u admin:admin
 ### Performance Best Practices
 
 1. **Hardware Recommendations**:
-
    - Use SSDs for data nodes
    - Provide adequate RAM (minimum 4GB per node)
    - Use multiple CPUs/cores for better concurrent processing
    - Ensure network bandwidth is sufficient
 
 2. **Indexing Best Practices**:
-
    - Use bulk indexing when possible
    - Optimize refresh intervals based on workload
    - Use appropriate shard sizes (10-50GB per shard)
@@ -663,7 +659,6 @@ curl -k -X GET "https://localhost:9200/_nodes?pretty" -u admin:admin
 ### Monitoring Best Practices
 
 1. **Key Metrics to Monitor**:
-
    - Cluster health status
    - Node status and resource usage
    - Index performance metrics
@@ -672,7 +667,6 @@ curl -k -X GET "https://localhost:9200/_nodes?pretty" -u admin:admin
    - Disk usage and I/O statistics
 
 2. **Logging**:
-
    - Implement log rotation
    - Monitor error logs regularly
    - Set appropriate log levels

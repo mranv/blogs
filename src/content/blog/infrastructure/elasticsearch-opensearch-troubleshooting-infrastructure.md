@@ -323,19 +323,16 @@ curl -k -X PUT "https://<elasticsearch-host>:9200/_snapshot/my_backup/snapshot_1
 ## Best Practices for Maintaining Cluster Health
 
 1. **Index Management**:
-
    - Use Index Lifecycle Management (ILM) or Index State Management (ISM)
    - Set appropriate shard counts (not too many, not too few)
    - Regularly delete or archive old indices
 
 2. **Resource Planning**:
-
    - Plan for adequate disk space (with room for growth)
    - Allocate sufficient memory for JVM heap (typically 50% of RAM, not exceeding 32GB)
    - Monitor and adjust resources based on usage patterns
 
 3. **Configuration Tuning**:
-
    - Optimize refresh intervals for write-heavy workloads
    - Configure merge policies appropriate for your use case
    - Set appropriate replica counts based on your availability requirements

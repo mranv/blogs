@@ -896,21 +896,18 @@ curl -XPUT "https://localhost:9200/_cluster/settings" \
 ## Best Practices
 
 1. **Hardware Recommendations**
-
    - Use SSDs for data storage
    - Minimum 64GB RAM for production
    - Dedicate 50% of RAM to JVM heap (max 32GB)
    - Use multiple data paths for better I/O
 
 2. **Index Design**
-
    - Use time-based indices for logs
    - Implement proper mapping before indexing
    - Use index templates for consistent settings
    - Consider hot-warm-cold architecture
 
 3. **Security**
-
    - Always use TLS/SSL in production
    - Implement strong authentication
    - Regular security audits

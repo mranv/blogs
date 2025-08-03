@@ -894,21 +894,18 @@ services:
 ## Best Practices
 
 1. **Security**
-
    - Always use TLS/SSL in production
    - Change default passwords immediately
    - Use strong certificates
    - Enable audit logging
 
 2. **Performance**
-
    - Set heap size to 50% of available RAM (max 32GB)
    - Use SSDs for data volumes
    - Monitor and tune thread pools
    - Implement proper index lifecycle management
 
 3. **High Availability**
-
    - Use at least 3 master-eligible nodes
    - Distribute nodes across availability zones
    - Implement proper backup strategies

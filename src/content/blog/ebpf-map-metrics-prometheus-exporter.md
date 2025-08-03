@@ -137,16 +137,19 @@ graph TB
 ### Practical Applications
 
 **System Monitoring**:
+
 - CPU runtime analysis across all system tasks
 - Memory usage patterns and allocation tracking
 - Process lifecycle management and monitoring
 
 **Network Analysis**:
+
 - Connection state monitoring and analysis
 - Traffic pattern identification and classification
 - Socket resource usage and optimization
 
 **BPF Program Observability**:
+
 - Map utilization and performance metrics
 - Program execution statistics and profiling
 - Resource consumption analysis and optimization
@@ -204,7 +207,7 @@ SEC("iter/bpf_map")
 int collect_map_metrics(struct bpf_iter__bpf_map *ctx) {
     struct bpf_map *map = ctx->map;
     struct bpf_map_metrics *metrics;
-    
+
     if (!map)
         return 0;
 
@@ -219,11 +222,11 @@ int collect_map_metrics(struct bpf_iter__bpf_map *ctx) {
     metrics->key_size = BPF_CORE_READ(map, key_size);
     metrics->value_size = BPF_CORE_READ(map, value_size);
     metrics->max_entries = BPF_CORE_READ(map, max_entries);
-    
+
     // Calculate memory usage (approximate)
     __u32 entry_size = metrics->key_size + metrics->value_size;
     metrics->memory_usage = (__u64)entry_size * metrics->max_entries;
-    
+
     // Get map name if available
     const char *name = BPF_CORE_READ(map, name);
     if (name) {
@@ -231,14 +234,14 @@ int collect_map_metrics(struct bpf_iter__bpf_map *ctx) {
     } else {
         __builtin_memcpy(metrics->name, "unknown", 8);
     }
-    
+
     // For demonstration, we'll use a simple counter
     // In a real implementation, you'd track actual operations
     metrics->ops_count = metrics->map_id * 100; // Placeholder
-    
+
     // Submit metrics to user space
     bpf_ringbuf_submit(metrics, 0);
-    
+
     return 0;
 }
 
@@ -248,16 +251,16 @@ int collect_map_element_metrics(struct bpf_iter__bpf_map_elem *ctx) {
     struct bpf_map *map = ctx->map;
     void *key = ctx->key;
     void *value = ctx->value;
-    
+
     if (!map || !key || !value)
         return 0;
-    
+
     // Here you could collect per-element statistics
     // For example: key distribution, value patterns, access frequency
-    
+
     // This is a simplified example - real implementation would
     // collect more sophisticated metrics
-    
+
     return 0;
 }
 
@@ -265,13 +268,13 @@ int collect_map_element_metrics(struct bpf_iter__bpf_map_elem *ctx) {
 SEC("iter/bpf_prog")
 int collect_prog_metrics(struct bpf_iter__bpf_prog *ctx) {
     struct bpf_prog *prog = ctx->prog;
-    
+
     if (!prog)
         return 0;
-    
+
     // Collect program-related metrics that correlate with map usage
     // This could include execution statistics, memory usage, etc.
-    
+
     return 0;
 }
 
@@ -351,12 +354,12 @@ int collect_advanced_map_metrics(struct bpf_iter__bpf_map *ctx) {
     struct advanced_map_metrics *metrics;
     struct map_op_stats *op_stats;
     __u32 map_id;
-    
+
     if (!map)
         return 0;
 
     map_id = BPF_CORE_READ(map, id);
-    
+
     // Reserve space for advanced metrics
     metrics = bpf_ringbuf_reserve(&advanced_metrics_buffer, sizeof(*metrics), 0);
     if (!metrics)
@@ -368,18 +371,18 @@ int collect_advanced_map_metrics(struct bpf_iter__bpf_map *ctx) {
     metrics->key_size = BPF_CORE_READ(map, key_size);
     metrics->value_size = BPF_CORE_READ(map, value_size);
     metrics->max_entries = BPF_CORE_READ(map, max_entries);
-    
+
     // Estimate current entries (in real implementation, this would be more accurate)
     metrics->current_entries = estimate_current_entries(map);
-    
+
     // Memory calculations
     __u32 entry_size = metrics->key_size + metrics->value_size;
     metrics->total_memory = (__u64)entry_size * metrics->max_entries;
     metrics->used_memory = (__u64)entry_size * metrics->current_entries;
-    
+
     // Calculate utilization ratio
     metrics->utilization_ratio = calculate_utilization(metrics->current_entries, metrics->max_entries);
-    
+
     // Get operation statistics
     op_stats = bpf_map_lookup_elem(&map_op_tracker, &map_id);
     if (op_stats) {
@@ -394,10 +397,10 @@ int collect_advanced_map_metrics(struct bpf_iter__bpf_map *ctx) {
         metrics->delete_count = 0;
         metrics->last_access_time = 0;
     }
-    
+
     // Timestamp
     metrics->creation_time = bpf_ktime_get_ns();
-    
+
     // Extract map name
     const char *name = BPF_CORE_READ(map, name);
     if (name) {
@@ -405,13 +408,13 @@ int collect_advanced_map_metrics(struct bpf_iter__bpf_map *ctx) {
     } else {
         __builtin_memcpy(metrics->name, "unnamed", 8);
     }
-    
+
     // Get associated program name (if available)
     __builtin_memcpy(metrics->prog_name, "unknown", 8);
-    
+
     // Submit advanced metrics
     bpf_ringbuf_submit(metrics, 0);
-    
+
     return 0;
 }
 
@@ -421,17 +424,17 @@ int track_map_lookup(struct bpf_map *map, void *key) {
     __u32 map_id = BPF_CORE_READ(map, id);
     struct map_op_stats *stats;
     struct map_op_stats new_stats = {0};
-    
+
     stats = bpf_map_lookup_elem(&map_op_tracker, &map_id);
     if (!stats) {
         stats = &new_stats;
     }
-    
+
     stats->lookups++;
     stats->last_op_time = bpf_ktime_get_ns();
-    
+
     bpf_map_update_elem(&map_op_tracker, &map_id, stats, BPF_ANY);
-    
+
     return 0;
 }
 
@@ -440,17 +443,17 @@ int track_map_update(struct bpf_map *map, void *key, void *value, __u64 flags) {
     __u32 map_id = BPF_CORE_READ(map, id);
     struct map_op_stats *stats;
     struct map_op_stats new_stats = {0};
-    
+
     stats = bpf_map_lookup_elem(&map_op_tracker, &map_id);
     if (!stats) {
         stats = &new_stats;
     }
-    
+
     stats->updates++;
     stats->last_op_time = bpf_ktime_get_ns();
-    
+
     bpf_map_update_elem(&map_op_tracker, &map_id, stats, BPF_ANY);
-    
+
     return 0;
 }
 
@@ -459,17 +462,17 @@ int track_map_delete(struct bpf_map *map, void *key) {
     __u32 map_id = BPF_CORE_READ(map, id);
     struct map_op_stats *stats;
     struct map_op_stats new_stats = {0};
-    
+
     stats = bpf_map_lookup_elem(&map_op_tracker, &map_id);
     if (!stats) {
         stats = &new_stats;
     }
-    
+
     stats->deletes++;
     stats->last_op_time = bpf_ktime_get_ns();
-    
+
     bpf_map_update_elem(&map_op_tracker, &map_id, stats, BPF_ANY);
-    
+
     return 0;
 }
 
@@ -521,13 +524,13 @@ static void sig_handler(int sig) {
 // Ring buffer callback for processing metrics
 static int handle_metrics(void *ctx, void *data, size_t data_sz) {
     struct advanced_map_metrics *metrics = data;
-    
+
     if (metrics_store.count < 1024) {
         memcpy(&metrics_store.maps[metrics_store.count], metrics, sizeof(*metrics));
         metrics_store.count++;
         metrics_store.last_updated = time(NULL);
     }
-    
+
     return 0;
 }
 
@@ -537,92 +540,92 @@ static void generate_prometheus_metrics() {
     size_t remaining = MAX_METRICS_SIZE;
     int written;
     time_t now = time(NULL);
-    
+
     // Clear previous metrics
     memset(metrics_output, 0, MAX_METRICS_SIZE);
-    
+
     // Prometheus headers
     written = snprintf(p, remaining,
         "# HELP ebpf_map_info Information about eBPF maps\n"
         "# TYPE ebpf_map_info gauge\n");
     p += written;
     remaining -= written;
-    
+
     written = snprintf(p, remaining,
         "# HELP ebpf_map_memory_bytes Memory usage of eBPF maps in bytes\n"
         "# TYPE ebpf_map_memory_bytes gauge\n");
     p += written;
     remaining -= written;
-    
+
     written = snprintf(p, remaining,
         "# HELP ebpf_map_utilization_ratio Current utilization ratio of eBPF maps\n"
         "# TYPE ebpf_map_utilization_ratio gauge\n");
     p += written;
     remaining -= written;
-    
+
     written = snprintf(p, remaining,
         "# HELP ebpf_map_operations_total Total operations performed on eBPF maps\n"
         "# TYPE ebpf_map_operations_total counter\n");
     p += written;
     remaining -= written;
-    
+
     // Generate metrics for each map
     for (int i = 0; i < metrics_store.count && remaining > 0; i++) {
         struct advanced_map_metrics *m = &metrics_store.maps[i];
-        
+
         // Map info metric
         written = snprintf(p, remaining,
             "ebpf_map_info{map_id=\"%u\",name=\"%s\",type=\"%u\",key_size=\"%u\",value_size=\"%u\",max_entries=\"%u\"} 1\n",
             m->map_id, m->name, m->map_type, m->key_size, m->value_size, m->max_entries);
         p += written;
         remaining -= written;
-        
+
         // Memory usage metrics
         written = snprintf(p, remaining,
             "ebpf_map_memory_bytes{map_id=\"%u\",name=\"%s\",type=\"total\"} %lu\n",
             m->map_id, m->name, m->total_memory);
         p += written;
         remaining -= written;
-        
+
         written = snprintf(p, remaining,
             "ebpf_map_memory_bytes{map_id=\"%u\",name=\"%s\",type=\"used\"} %lu\n",
             m->map_id, m->name, m->used_memory);
         p += written;
         remaining -= written;
-        
+
         // Utilization ratio
         written = snprintf(p, remaining,
             "ebpf_map_utilization_ratio{map_id=\"%u\",name=\"%s\"} %.2f\n",
             m->map_id, m->name, m->utilization_ratio);
         p += written;
         remaining -= written;
-        
+
         // Operation counters
         written = snprintf(p, remaining,
             "ebpf_map_operations_total{map_id=\"%u\",name=\"%s\",operation=\"lookup\"} %lu\n",
             m->map_id, m->name, m->lookup_count);
         p += written;
         remaining -= written;
-        
+
         written = snprintf(p, remaining,
             "ebpf_map_operations_total{map_id=\"%u\",name=\"%s\",operation=\"update\"} %lu\n",
             m->map_id, m->name, m->update_count);
         p += written;
         remaining -= written;
-        
+
         written = snprintf(p, remaining,
             "ebpf_map_operations_total{map_id=\"%u\",name=\"%s\",operation=\"delete\"} %lu\n",
             m->map_id, m->name, m->delete_count);
         p += written;
         remaining -= written;
     }
-    
+
     // Add timestamp
     written = snprintf(p, remaining,
         "# HELP ebpf_exporter_last_update_timestamp_seconds Last update timestamp\n"
         "# TYPE ebpf_exporter_last_update_timestamp_seconds gauge\n"
         "ebpf_exporter_last_update_timestamp_seconds %ld\n", now);
-    
+
     last_update = now;
 }
 
@@ -633,7 +636,7 @@ static enum MHD_Result handle_request(void *cls, struct MHD_Connection *connecti
                                      size_t *upload_data_size, void **con_cls) {
     struct MHD_Response *response;
     enum MHD_Result ret;
-    
+
     if (strcmp(url, METRICS_PATH) != 0) {
         const char *not_found = "404 Not Found";
         response = MHD_create_response_from_buffer(strlen(not_found), (void*)not_found,
@@ -642,21 +645,21 @@ static enum MHD_Result handle_request(void *cls, struct MHD_Connection *connecti
         MHD_destroy_response(response);
         return ret;
     }
-    
+
     // Generate fresh metrics if needed
     time_t now = time(NULL);
     if (now - last_update > 5) { // Update every 5 seconds
         generate_prometheus_metrics();
     }
-    
+
     response = MHD_create_response_from_buffer(strlen(metrics_output),
                                               (void*)metrics_output,
                                               MHD_RESPMEM_MUST_COPY);
-    
+
     MHD_add_response_header(response, "Content-Type", "text/plain; charset=utf-8");
     ret = MHD_queue_response(connection, MHD_HTTP_OK, response);
     MHD_destroy_response(response);
-    
+
     return ret;
 }
 
@@ -664,46 +667,46 @@ static enum MHD_Result handle_request(void *cls, struct MHD_Connection *connecti
 static int init_ebpf() {
     int err;
     struct bpf_link *link;
-    
+
     // Open and load eBPF object
     obj = bpf_object__open_file("advanced_iterator.bpf.o", NULL);
     if (libbpf_get_error(obj)) {
         fprintf(stderr, "Failed to open eBPF object\n");
         return -1;
     }
-    
+
     err = bpf_object__load(obj);
     if (err) {
         fprintf(stderr, "Failed to load eBPF object: %d\n", err);
         return -1;
     }
-    
+
     // Find and attach iterator program
     struct bpf_program *prog = bpf_object__find_program_by_name(obj, "collect_advanced_map_metrics");
     if (!prog) {
         fprintf(stderr, "Failed to find iterator program\n");
         return -1;
     }
-    
+
     link = bpf_program__attach(prog);
     if (libbpf_get_error(link)) {
         fprintf(stderr, "Failed to attach iterator program\n");
         return -1;
     }
-    
+
     // Set up ring buffer
     int map_fd = bpf_object__find_map_fd_by_name(obj, "advanced_metrics_buffer");
     if (map_fd < 0) {
         fprintf(stderr, "Failed to find metrics buffer map\n");
         return -1;
     }
-    
+
     rb = ring_buffer__new(map_fd, handle_metrics, NULL, NULL);
     if (!rb) {
         fprintf(stderr, "Failed to create ring buffer\n");
         return -1;
     }
-    
+
     printf("eBPF map metrics exporter initialized successfully\n");
     return 0;
 }
@@ -713,7 +716,7 @@ static void *metrics_collector(void *arg) {
     while (running) {
         // Poll ring buffer for new metrics
         ring_buffer__poll(rb, 1000); // 1 second timeout
-        
+
         // Periodically trigger iterator execution
         // This would typically be done through iterator attachment
         usleep(100000); // 100ms
@@ -724,51 +727,51 @@ static void *metrics_collector(void *arg) {
 int main(int argc, char **argv) {
     struct MHD_Daemon *daemon;
     pthread_t collector_thread;
-    
+
     // Set up signal handlers
     signal(SIGINT, sig_handler);
     signal(SIGTERM, sig_handler);
-    
+
     // Initialize eBPF components
     if (init_ebpf() < 0) {
         fprintf(stderr, "Failed to initialize eBPF components\n");
         return 1;
     }
-    
+
     // Start metrics collection thread
     if (pthread_create(&collector_thread, NULL, metrics_collector, NULL) != 0) {
         fprintf(stderr, "Failed to create collector thread\n");
         return 1;
     }
-    
+
     // Start HTTP server
     daemon = MHD_start_daemon(MHD_USE_INTERNAL_POLLING_THREAD,
                              METRICS_PORT,
                              NULL, NULL,
                              &handle_request, NULL,
                              MHD_OPTION_END);
-    
+
     if (!daemon) {
         fprintf(stderr, "Failed to start HTTP server\n");
         return 1;
     }
-    
+
     printf("eBPF Map Metrics Prometheus Exporter started on port %d\n", METRICS_PORT);
     printf("Metrics available at http://localhost:%d%s\n", METRICS_PORT, METRICS_PATH);
-    
+
     // Main loop
     while (running) {
         sleep(1);
     }
-    
+
     // Cleanup
     printf("\nShutting down...\n");
     MHD_stop_daemon(daemon);
     pthread_join(collector_thread, NULL);
-    
+
     if (rb) ring_buffer__free(rb);
     if (obj) bpf_object__close(obj);
-    
+
     return 0;
 }
 ```
@@ -991,29 +994,29 @@ SEC("iter/task")
 int collect_task_cpu_metrics(struct bpf_iter__task *ctx) {
     struct task_struct *task = ctx->task;
     struct task_cpu_metrics *metrics;
-    
+
     if (!task)
         return 0;
-    
+
     metrics = bpf_ringbuf_reserve(&task_metrics_buffer, sizeof(*metrics), 0);
     if (!metrics)
         return 0;
-    
+
     // Extract task information
     metrics->pid = BPF_CORE_READ(task, pid);
     metrics->tgid = BPF_CORE_READ(task, tgid);
-    
+
     // Get CPU usage statistics
     metrics->utime = BPF_CORE_READ(task, utime);
     metrics->stime = BPF_CORE_READ(task, stime);
-    
+
     // Calculate total runtime
     metrics->runtime = metrics->utime + metrics->stime;
-    
+
     // Get process name
-    bpf_probe_read_str(metrics->comm, sizeof(metrics->comm), 
+    bpf_probe_read_str(metrics->comm, sizeof(metrics->comm),
                        BPF_CORE_READ(task, comm));
-    
+
     bpf_ringbuf_submit(metrics, 0);
     return 0;
 }
@@ -1050,31 +1053,31 @@ SEC("iter/tcp")
 int collect_tcp_connection_metrics(struct bpf_iter__tcp *ctx) {
     struct sock *sk = ctx->sk;
     struct connection_metrics *metrics;
-    
+
     if (!sk)
         return 0;
-    
+
     metrics = bpf_ringbuf_reserve(&connection_metrics_buffer, sizeof(*metrics), 0);
     if (!metrics)
         return 0;
-    
+
     // Extract connection information
     struct inet_sock *inet = (struct inet_sock *)sk;
-    
+
     metrics->src_addr = BPF_CORE_READ(inet, inet_saddr);
     metrics->dst_addr = BPF_CORE_READ(inet, inet_daddr);
     metrics->src_port = BPF_CORE_READ(inet, inet_sport);
     metrics->dst_port = BPF_CORE_READ(inet, inet_dport);
-    
+
     // Get connection state
     metrics->state = BPF_CORE_READ(sk, __sk_common.skc_state);
-    
+
     // Extract traffic statistics (simplified)
     metrics->rx_bytes = BPF_CORE_READ(sk, sk_napi_id); // Placeholder
     metrics->tx_bytes = BPF_CORE_READ(sk, sk_napi_id); // Placeholder
     metrics->rx_packets = 0; // Would need more complex extraction
     metrics->tx_packets = 0; // Would need more complex extraction
-    
+
     bpf_ringbuf_submit(metrics, 0);
     return 0;
 }
@@ -1093,9 +1096,9 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'ebpf-map-exporter'
+  - job_name: "ebpf-map-exporter"
     static_configs:
-      - targets: ['localhost:8080']
+      - targets: ["localhost:8080"]
     scrape_interval: 10s
     metrics_path: /metrics
 ```
@@ -1159,22 +1162,22 @@ SEC("iter/bpf_map")
 int optimized_collect_metrics(struct bpf_iter__bpf_map *ctx) {
     static struct metrics_batch batch = {0};
     struct bpf_map *map = ctx->map;
-    
+
     if (!map)
         return 0;
-    
+
     // Collect metrics in batch
     if (batch.count < METRICS_BATCH_SIZE) {
         collect_single_map_metrics(map, &batch.metrics[batch.count]);
         batch.count++;
     }
-    
+
     // Submit when batch is full
     if (batch.count >= METRICS_BATCH_SIZE) {
         submit_metrics_batch(&batch);
         batch.count = 0;
     }
-    
+
     return 0;
 }
 ```
@@ -1196,15 +1199,15 @@ int rate_limited_collect_metrics(struct bpf_iter__bpf_map *ctx) {
     __u64 *last_time;
     __u64 current_time = bpf_ktime_get_ns();
     __u64 collection_interval = 1000000000; // 1 second in nanoseconds
-    
+
     last_time = bpf_map_lookup_elem(&last_collection_time, &key);
     if (last_time && (current_time - *last_time) < collection_interval) {
         return 0; // Skip collection if too soon
     }
-    
+
     // Update last collection time
     bpf_map_update_elem(&last_collection_time, &key, &current_time, BPF_ANY);
-    
+
     // Proceed with metrics collection
     return collect_map_metrics(ctx);
 }
@@ -1259,15 +1262,15 @@ mount | grep bpf
 SEC("iter/bpf_map")
 int debug_collect_metrics(struct bpf_iter__bpf_map *ctx) {
     struct bpf_map *map = ctx->map;
-    
+
     if (!map) {
         DEBUG_PRINT("No map found\n");
         return 0;
     }
-    
+
     __u32 map_id = BPF_CORE_READ(map, id);
     DEBUG_PRINT("Processing map ID: %u\n", map_id);
-    
+
     // Continue with metrics collection...
     return collect_map_metrics(ctx);
 }

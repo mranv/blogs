@@ -237,7 +237,6 @@ class XDRAgentClient {
 ### Phase 1: Infrastructure Setup (Weeks 1-2)
 
 1. **MDM Server Configuration**
-
    - Install and configure MicroMDM
    - Set up APNS certificates
    - Configure network connectivity
@@ -252,14 +251,12 @@ class XDRAgentClient {
 ### Phase 2: Client Development (Weeks 3-5)
 
 1. **System Extension Development**
-
    - Implement EndpointSecurity framework integration
    - Develop USB monitoring capabilities
    - Create policy enforcement engine
    - Build event logging system
 
 2. **XDR Agent Development**
-
    - Create communication protocols
    - Implement health monitoring
    - Build reporting mechanisms
@@ -274,14 +271,12 @@ class XDRAgentClient {
 ### Phase 3: Server Development (Weeks 6-8)
 
 1. **Management Console**
-
    - Develop policy management interface
    - Create device inventory views
    - Build reporting dashboards
    - Implement user management
 
 2. **MDM Profile Templates**
-
    - Create DiskManagement profiles
    - Develop deployment workflows
    - Build testing procedures
@@ -296,14 +291,12 @@ class XDRAgentClient {
 ### Phase 4: Testing & Validation (Weeks 9-10)
 
 1. **Functionality Testing**
-
    - Test on macOS versions (11.x, 12.x, 13.x, 14.x)
    - Validate USB blocking effectiveness
    - Test various storage device types
    - Verify policy enforcement
 
 2. **Performance Testing**
-
    - Measure system impact
    - Test under load conditions
    - Validate response times
@@ -318,7 +311,6 @@ class XDRAgentClient {
 ### Phase 5: Deployment (Weeks 11-12)
 
 1. **Pilot Deployment**
-
    - Select pilot group
    - Deploy to test users
    - Monitor for issues
@@ -337,14 +329,12 @@ class XDRAgentClient {
 #### Server Resources
 
 - **MDM Server**:
-
   - CPU: 4+ cores
   - RAM: 8GB minimum
   - Storage: 100GB+ SSD
   - Network: Gigabit connection
 
 - **XDR Platform**:
-
   - CPU: 8+ cores (scalable)
   - RAM: 16GB minimum (scalable)
   - Storage: 500GB+ SSD (scalable)
@@ -359,13 +349,11 @@ class XDRAgentClient {
 #### Network Requirements
 
 - **APNS Connectivity**:
-
   - Outbound TCP ports: 443, 2195, 2196
   - Stable internet connection
   - Low latency preferred
 
 - **Client-Server Communication**:
-
   - TLS 1.3 encryption
   - Certificate-based authentication
   - API rate limiting
@@ -382,7 +370,6 @@ class XDRAgentClient {
 #### Encryption
 
 - **Data in Transit**:
-
   - TLS 1.3 for all communications
   - Certificate pinning for critical connections
   - Perfect forward secrecy
@@ -397,7 +384,6 @@ class XDRAgentClient {
 #### Authentication & Authorization
 
 - **Device Authentication**:
-
   - Certificate-based enrollment
   - Device identity verification
   - Regular re-authentication
@@ -412,14 +398,12 @@ class XDRAgentClient {
 #### Compliance Features
 
 - **Logging Requirements**:
-
   - All USB/storage access attempts
   - Policy changes
   - Administrative actions
   - System events
 
 - **Reporting Capabilities**:
-
   - Compliance dashboards
   - Audit reports
   - Export functionality
@@ -464,14 +448,12 @@ sequenceDiagram
 ### Regular Updates
 
 1. **System Extension Updates**
-
    - Quarterly security updates
    - Bug fixes as needed
    - Feature enhancements
    - Compatibility updates
 
 2. **Policy Template Updates**
-
    - Review and update policies
    - Add new device types
    - Adjust restrictions
@@ -486,14 +468,12 @@ sequenceDiagram
 ### Monitoring Requirements
 
 1. **Real-time Monitoring**
-
    - Circumvention attempt alerts
    - System health checks
    - Performance metrics
    - Error tracking
 
 2. **Dashboards**
-
    - Compliance metrics
    - Device status
    - Policy effectiveness
@@ -508,7 +488,6 @@ sequenceDiagram
 ### Backup & Recovery
 
 1. **Backup Strategy**
-
    - Daily configuration backups
    - Weekly full backups
    - Offsite backup storage
@@ -525,7 +504,6 @@ sequenceDiagram
 ### Protection Against Tampering
 
 - **System Extension Protection**:
-
   - Code signing requirements
   - System Integrity Protection (SIP)
   - Secure boot chain
@@ -540,7 +518,6 @@ sequenceDiagram
 ### Policy Enforcement
 
 - **Local Bypass Prevention**:
-
   - Kernel-level enforcement
   - Multiple check points
   - Fail-secure defaults
@@ -555,7 +532,6 @@ sequenceDiagram
 ### Monitoring & Detection
 
 - **Bypass Attempt Detection**:
-
   - Multiple detection methods
   - Behavioral analysis
   - Anomaly detection

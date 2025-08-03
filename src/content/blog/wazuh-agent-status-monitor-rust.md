@@ -220,7 +220,6 @@ impl EncryptionHandler {
 ### Phase 1: Database Integration (3-4 hours)
 
 1. **SQLite Connection Management**
-
    - Implement connection pooling for `/var/ossec/queue/db/global.db`
    - Handle database locks and read-only access
    - Create agent status query functions
@@ -233,7 +232,6 @@ impl EncryptionHandler {
 ### Phase 2: NATS Integration (2-3 hours)
 
 1. **NATS Client Setup**
-
    - Configure connection with authentication (JWT/NKeys)
    - Implement TLS encryption for transport security
    - Handle connection failures and auto-reconnection
@@ -246,7 +244,6 @@ impl EncryptionHandler {
 ### Phase 3: Security & Reliability (2-3 hours)
 
 1. **Message Integrity**
-
    - Implement HMAC signing for message authenticity
    - Add optional message encryption for sensitive data
    - Create message versioning scheme
@@ -259,7 +256,6 @@ impl EncryptionHandler {
 ### Phase 4: Testing & Documentation (1-2 hours)
 
 1. **Unit Tests**
-
    - Mock SQLite database interactions
    - Test NATS message publishing scenarios
    - Validate security implementations

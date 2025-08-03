@@ -442,19 +442,16 @@ stateDiagram-v2
 ## Best Practices Summary
 
 1. **Use Centralized CA Management**
-
    - Implement Smallstep CA or similar solution
    - Automate certificate distribution
    - Enable automatic renewal
 
 2. **Secure Certificate Handling**
-
    - Never expose private keys
    - Use encrypted channels for distribution
    - Implement proper access controls
 
 3. **Monitor and Maintain**
-
    - Set up expiration alerts
    - Regular security audits
    - Document certificate locations

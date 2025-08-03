@@ -17,7 +17,7 @@
   border-radius: 16px !important;
   font-size: 1.125rem !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  box-shadow: 
+  box-shadow:
     0 4px 12px oklch(var(--foreground) / 0.05),
     inset 0 1px 0 oklch(var(--background));
 }
@@ -25,7 +25,7 @@
 .search-input-enhanced:hover {
   border-color: oklch(var(--primary) / 0.3) !important;
   background: oklch(var(--card)) !important;
-  box-shadow: 
+  box-shadow:
     0 6px 16px oklch(var(--foreground) / 0.08),
     inset 0 1px 0 oklch(var(--background));
 }
@@ -34,7 +34,7 @@
   outline: none !important;
   border-color: oklch(var(--primary)) !important;
   background: oklch(var(--background)) !important;
-  box-shadow: 
+  box-shadow:
     0 0 0 4px oklch(var(--primary) / 0.1),
     0 8px 20px oklch(var(--primary) / 0.15),
     inset 0 1px 0 oklch(var(--background)) !important;
@@ -56,7 +56,7 @@
   border: 1px solid oklch(var(--border));
   border-radius: 6px;
   color: oklch(var(--muted-foreground));
-  box-shadow: 
+  box-shadow:
     0 1px 2px oklch(var(--foreground) / 0.1),
     inset 0 -1px 0 oklch(var(--border));
 }
@@ -66,7 +66,7 @@
   background: oklch(var(--card));
   border: 1px solid oklch(var(--border) / 0.5);
   border-radius: 12px;
-  box-shadow: 
+  box-shadow:
     0 10px 30px oklch(var(--foreground) / 0.15),
     0 0 0 1px oklch(var(--border) / 0.2);
   backdrop-filter: blur(20px);
@@ -83,7 +83,7 @@
 }
 
 .search-result-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -105,7 +105,7 @@
 .search-result-item:hover {
   transform: translateY(-2px);
   border-color: oklch(var(--primary) / 0.5) !important;
-  box-shadow: 
+  box-shadow:
     0 12px 24px oklch(var(--foreground) / 0.1),
     0 0 0 1px oklch(var(--primary) / 0.2);
 }
@@ -196,7 +196,7 @@ mark {
 
 [data-theme="dark"] .search-suggestions {
   background: oklch(var(--card) / 0.95);
-  box-shadow: 
+  box-shadow:
     0 10px 30px oklch(0 0% 0% / 0.3),
     0 0 0 1px oklch(var(--border) / 0.3);
 }
@@ -221,7 +221,7 @@ mark {
     font-size: 1rem !important;
     padding: 1rem 1rem 1rem 3rem !important;
   }
-  
+
   .search-kbd {
     display: none;
   }
