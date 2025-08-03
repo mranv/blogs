@@ -17,7 +17,7 @@ tags:
     "integration-testing",
     "contract-testing",
   ]
-image: "./microservices-testing-patterns.jpg"
+# image: "./microservices-testing-patterns.jpg"
 category: "Testing"
 draft: false
 ---
