@@ -197,7 +197,7 @@ import {
 	// SizeObserverPlugin,
 	// ClickScrollPlugin
 } from 'overlayscrollbars';
-import {getHue, getStoredTheme, setHue, setTheme} from "../utils/setting-utils";
+import {getStoredTheme, setTheme} from "../utils/setting-utils";
 import {pathsEqual, url} from "../utils/url-utils";
 import {
 	BANNER_HEIGHT,
@@ -277,9 +277,6 @@ function loadTheme() {
 	setTheme(theme)
 }
 
-function loadHue() {
-	setHue(getHue())
-}
 
 function initCustomScrollbar() {
 	const bodyElement = document.querySelector('body');
@@ -361,7 +358,6 @@ function showBanner() {
 function init() {
 	// disableAnimation()()		// TODO
 	loadTheme();
-	loadHue();
 	initCustomScrollbar();
 	showBanner();
 }
