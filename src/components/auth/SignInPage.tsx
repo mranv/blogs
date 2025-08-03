@@ -90,20 +90,23 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden p-4 bg-gradient-to-br from-background via-secondary to-background">
+    <div className="auth-container">
+      {/* Background gradient using theme colors */}
+      <div className="auth-background-gradient"></div>
+
       <div className="z-10 w-full max-w-6xl">
-        <div className="bg-card/50 backdrop-blur-lg overflow-hidden rounded-[40px] shadow-2xl border border-border/20">
+        <div className="auth-card">
           <div className="grid min-h-[700px] lg:grid-cols-2">
-            {/* Left Side */}
-            <div className="brand-side relative m-4 rounded-3xl bg-gradient-to-br from-primary/20 via-primary/10 to-secondary/20 p-12 text-foreground border border-border/20">
+            {/* Left Side - Brand Section */}
+            <div className="auth-brand-side">
               <div>
-                <div className="mb-12 text-lg font-semibold uppercase text-primary">
+                <div className="mb-12 text-lg font-semibold uppercase text-theme-primary">
                   PixelForge Studio
                 </div>
-                <h1 className="mb-4 text-6xl font-medium text-foreground">
+                <h1 className="mb-4 text-6xl font-medium text-theme-foreground">
                   Create, Design, and Innovate
                 </h1>
-                <p className="mb-12 text-xl text-muted-foreground">
+                <p className="mb-12 text-xl text-theme-muted-foreground">
                   Join thousands of creators who trust PixelForge Studio to
                   bring their vision to life
                 </p>
@@ -136,14 +139,14 @@ export default function SignInPage() {
                       className="feature-item animate-fadeInUp flex items-center"
                       style={{ animationDelay: `${0.2 * (i + 1)}s` }}
                     >
-                      <div className="mr-4 flex h-8 w-8 items-center justify-center rounded-lg bg-primary/20 text-primary backdrop-blur-sm">
+                      <div className="mr-4 flex h-8 w-8 items-center justify-center rounded-lg bg-theme-primary/20 text-theme-primary backdrop-blur-sm">
                         {icon}
                       </div>
                       <div>
-                        <div className="font-semibold text-foreground">
+                        <div className="font-semibold text-theme-foreground">
                           {title}
                         </div>
-                        <div className="text-sm text-muted-foreground">
+                        <div className="text-sm text-theme-muted-foreground">
                           {desc}
                         </div>
                       </div>
@@ -153,14 +156,14 @@ export default function SignInPage() {
               </div>
             </div>
 
-            {/* Right Side */}
-            <div className="flex flex-col justify-center p-12">
+            {/* Right Side - Authentication Form */}
+            <div className="auth-form-side">
               <div className="mx-auto w-full max-w-md">
                 <div className="mb-8 text-center">
-                  <h2 className="text-3xl font-light uppercase text-foreground">
+                  <h2 className="text-3xl font-light uppercase text-theme-foreground">
                     {isLoginMode ? "Welcome back" : "Create account"}
                   </h2>
-                  <p className="mt-2 text-sm text-muted-foreground">
+                  <p className="mt-2 text-sm text-theme-muted-foreground">
                     {isLoginMode
                       ? "Sign in to continue your creative journey"
                       : "Join us and start creating amazing content"}
@@ -170,10 +173,8 @@ export default function SignInPage() {
                 {message.text && (
                   <div
                     className={cn(
-                      "mb-6 p-4 rounded-lg text-sm",
-                      message.type === "success"
-                        ? "bg-green-500/10 border border-green-500/20 text-green-600"
-                        : "bg-red-500/10 border border-red-500/20 text-red-600"
+                      "auth-message",
+                      message.type === "success" ? "success" : "error"
                     )}
                   >
                     {message.text}
@@ -184,13 +185,13 @@ export default function SignInPage() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="mb-2 block text-sm font-medium uppercase text-foreground"
+                      className="mb-2 block text-sm font-medium uppercase text-theme-foreground"
                     >
                       Email address
                     </label>
-                    <div className="relative">
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <Mail className="h-5 w-5 text-muted-foreground" />
+                    <div className="auth-input-group">
+                      <div className="auth-input-icon">
+                        <Mail className="h-5 w-5" />
                       </div>
                       <input
                         id="email"
@@ -198,7 +199,7 @@ export default function SignInPage() {
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         required
-                        className="border-border bg-input block w-full rounded-lg border py-3 pr-3 pl-10 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                        className="auth-input pr-3 pl-10"
                         placeholder="Enter your email"
                       />
                     </div>
@@ -207,13 +208,13 @@ export default function SignInPage() {
                   <div>
                     <label
                       htmlFor="password"
-                      className="mb-2 block text-sm font-medium uppercase text-foreground"
+                      className="mb-2 block text-sm font-medium uppercase text-theme-foreground"
                     >
                       Password
                     </label>
-                    <div className="relative">
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <Lock className="h-5 w-5 text-muted-foreground" />
+                    <div className="auth-input-group">
+                      <div className="auth-input-icon">
+                        <Lock className="h-5 w-5" />
                       </div>
                       <input
                         id="password"
@@ -221,18 +222,18 @@ export default function SignInPage() {
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                         required
-                        className="border-border bg-input block w-full rounded-lg border py-3 pr-12 pl-10 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                        className="auth-input pr-12 pl-10"
                         placeholder="Enter your password"
                       />
                       <button
                         type="button"
-                        className="absolute inset-y-0 right-0 flex items-center pr-3"
+                        className="auth-toggle-icon"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? (
-                          <EyeOff className="h-5 w-5 text-muted-foreground" />
+                          <EyeOff className="h-5 w-5" />
                         ) : (
-                          <Eye className="h-5 w-5 text-muted-foreground" />
+                          <Eye className="h-5 w-5" />
                         )}
                       </button>
                     </div>
@@ -242,13 +243,13 @@ export default function SignInPage() {
                     <div>
                       <label
                         htmlFor="confirmPassword"
-                        className="mb-2 block text-sm font-medium uppercase text-foreground"
+                        className="mb-2 block text-sm font-medium uppercase text-theme-foreground"
                       >
                         Confirm Password
                       </label>
-                      <div className="relative">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                          <Lock className="h-5 w-5 text-muted-foreground" />
+                      <div className="auth-input-group">
+                        <div className="auth-input-icon">
+                          <Lock className="h-5 w-5" />
                         </div>
                         <input
                           id="confirmPassword"
@@ -256,7 +257,7 @@ export default function SignInPage() {
                           value={confirmPassword}
                           onChange={e => setConfirmPassword(e.target.value)}
                           required
-                          className="border-border bg-input block w-full rounded-lg border py-3 pr-12 pl-10 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                          className="auth-input pr-12 pl-10"
                           placeholder="Confirm your password"
                         />
                       </div>
@@ -264,16 +265,13 @@ export default function SignInPage() {
                   )}
 
                   <div className="flex items-center justify-between">
-                    <label className="text-muted-foreground flex items-center text-sm">
-                      <input
-                        type="checkbox"
-                        className="border-border text-primary h-4 w-4 rounded focus:ring-2 focus:ring-primary"
-                      />
+                    <label className="flex items-center text-sm text-theme-muted-foreground">
+                      <input type="checkbox" className="auth-checkbox" />
                       <span className="ml-2">Remember me</span>
                     </label>
                     <a
                       href="#"
-                      className="text-primary hover:text-primary/80 text-sm transition-colors"
+                      className="text-theme-primary hover:text-theme-primary/80 text-sm transition-colors"
                     >
                       Forgot password?
                     </a>
@@ -281,7 +279,7 @@ export default function SignInPage() {
 
                   <button
                     type="submit"
-                    className="relative flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-medium text-primary-foreground transition-all duration-300 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="auth-button-primary"
                     disabled={loading}
                   >
                     {loading ? (
@@ -300,20 +298,12 @@ export default function SignInPage() {
                     )}
                   </button>
 
-                  <div className="relative text-center text-sm text-muted-foreground">
-                    <div className="absolute inset-0 flex items-center">
-                      <div className="border-border w-full border-t"></div>
-                    </div>
-                    <span className="relative px-2 bg-card">
-                      Or continue with
-                    </span>
+                  <div className="auth-divider">
+                    <span className="auth-divider-text">Or continue with</span>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
-                    <button
-                      type="button"
-                      className="border-border bg-secondary text-foreground hover:bg-secondary/80 flex items-center justify-center rounded-lg border px-4 py-2.5 text-sm shadow-sm transition-colors"
-                    >
+                    <button type="button" className="auth-button-outline">
                       <img
                         src="https://www.svgrepo.com/show/475656/google-color.svg"
                         className="h-5 w-5"
@@ -321,37 +311,34 @@ export default function SignInPage() {
                       />
                       <span className="ml-2">Google</span>
                     </button>
-                    <button
-                      type="button"
-                      className="border-border bg-secondary text-foreground hover:bg-secondary/80 flex items-center justify-center rounded-lg border px-4 py-2.5 text-sm shadow-sm transition-colors"
-                    >
+                    <button type="button" className="auth-button-outline">
                       <Github className="h-5 w-5" />
                       <span className="ml-2">GitHub</span>
                     </button>
                   </div>
                 </form>
 
-                <div className="text-muted-foreground mt-8 text-center text-sm">
+                <div className="mt-8 text-center text-sm text-theme-muted-foreground">
                   {isLoginMode
                     ? "Don't have an account?"
                     : "Already have an account?"}{" "}
                   <button
                     onClick={toggleMode}
-                    className="text-primary hover:text-primary/80 transition-colors"
+                    className="text-theme-primary hover:text-theme-primary/80 transition-colors font-medium"
                   >
                     {isLoginMode ? "Sign up for free" : "Sign in"}
                   </button>
                 </div>
 
                 {/* Demo Credentials */}
-                <div className="mt-6 p-4 bg-secondary/20 rounded-lg border border-border/20">
-                  <p className="text-sm text-foreground mb-2">
+                <div className="auth-demo-credentials">
+                  <p className="text-sm text-theme-foreground mb-2 font-medium">
                     Demo Credentials:
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-theme-muted-foreground">
                     Email: demo@example.com
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-theme-muted-foreground">
                     Password: demo123
                   </p>
                 </div>
