@@ -18,6 +18,7 @@ tags:
   - file-integrity-monitoring
   - cybersecurity
   - attack-patterns
+category: SIEM
 description: "Complete guide to SIEM correlation rules covering XML syntax, multi-step attack detection, Wazuh implementation, eBPF integration for TCP monitoring, and File Integrity Monitoring with 30+ real-world rule examples."
 ---
 

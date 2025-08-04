@@ -22,6 +22,7 @@ tags:
   - authentication-security
   - network-security
   - SOC
+category: SIEM
 description: "A comprehensive guide to understanding, simulating, and detecting brute-force attacks using Hydra and defending against them with Wazuh SIEM. Includes hands-on labs, detection rules, active response configurations, and real-world incident response strategies for 2025."
 ---
 

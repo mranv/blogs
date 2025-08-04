@@ -22,6 +22,7 @@ tags:
   - cyber-threats
   - compliance
   - risk-management
+category: SIEM
 description: "A comprehensive analysis of security challenges facing IT infrastructure and e-payment systems from 2020 to 2030, exploring the evolving threat landscape, emerging technologies, regulatory compliance, and strategic defense mechanisms in our increasingly digital economy."
 ---
 

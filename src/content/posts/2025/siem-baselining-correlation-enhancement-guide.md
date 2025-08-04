@@ -17,6 +17,7 @@ tags:
   - machine-learning
   - statistical-analysis
   - SOC
+category: SIEM
 description: "Master the art of SIEM baselining to enhance correlation rules with statistical analysis, anomaly detection, and dynamic baseline updating techniques. Learn three approaches to baseline management and implement production-ready detection systems."
 ---
 

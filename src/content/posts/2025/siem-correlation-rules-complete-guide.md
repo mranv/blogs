@@ -17,6 +17,7 @@ tags:
   - cybersecurity
   - security-operations
   - soc
+category: SIEM
 description: Master SIEM correlation rules with this comprehensive guide covering attack detection patterns, custom decoders, real-world examples, and implementation strategies for Wazuh and other SIEM platforms.
 ---
 

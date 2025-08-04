@@ -15,6 +15,7 @@ tags:
   - incident-response
   - log-management
   - security-operations
+category: SIEM
 description: "A comprehensive 27-module guide to Security Information and Event Management (SIEM) systems, covering fundamentals, architecture, deployment models, and advanced implementation strategies for modern security operations."
 ---
 

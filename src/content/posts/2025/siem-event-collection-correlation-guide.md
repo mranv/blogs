@@ -17,6 +17,7 @@ tags:
   - incident-response
   - cybersecurity
   - log-analysis
+category: SIEM
 description: "Master SIEM event collection and correlation with this in-depth technical guide covering Wazuh implementation, correlation rules, real-world use cases, and advanced threat detection techniques for modern Security Operations Centers."
 ---
 

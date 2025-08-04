@@ -22,6 +22,7 @@ tags:
   - security-monitoring
   - incident-response
   - resilience
+category: SIEM
 description: "Master SIEM-integrated intrusion detection and prevention systems with this comprehensive guide covering IDS/IPS fundamentals, Snort and Suricata deployment, Wazuh integration, tolerance mechanisms, and real-world attack detection scenarios with complete implementation examples."
 ---
 

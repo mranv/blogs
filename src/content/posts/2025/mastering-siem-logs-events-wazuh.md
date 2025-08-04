@@ -22,6 +22,7 @@ tags:
   - security-operations
   - compliance
   - forensics
+category: SIEM
 description: "An exhaustive guide to understanding SIEM logs and events, featuring deep dives into Wazuh implementation, EPS/APS metrics, log collection mechanisms, analysis engines, and real-world deployment scenarios with practical examples and advanced configurations."
 ---
 
