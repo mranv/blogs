@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-01-04T19:00:00+05:30
-modDatetime: 2025-01-04T19:00:00+05:30
+pubDatetime: 2024-12-27T15:45:00+05:30
+modDatetime: 2024-12-27T15:45:00+05:30
 title: "Mastering SIEM Correlation Rules: From Fundamentals to Advanced Threat Detection"
 slug: siem-correlation-rules-mastery-guide
 featured: true

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-01-04T18:30:00+05:30
-modDatetime: 2025-01-04T18:30:00+05:30
+pubDatetime: 2024-12-24T09:15:00+05:30
+modDatetime: 2024-12-24T09:15:00+05:30
 title: "Mastering SIEM Logs and Events: The Complete Guide to Log Management with Wazuh"
 slug: mastering-siem-logs-events-wazuh-2025
 featured: true

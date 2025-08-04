@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-01-04T20:00:00+05:30
-modDatetime: 2025-01-04T20:00:00+05:30
+pubDatetime: 2025-01-04T11:45:00+05:30
+modDatetime: 2025-01-04T11:45:00+05:30
 title: "Security Challenges in IT and E-Payment Systems: A Decade of Digital Transformation (2020-2030)"
 slug: security-challenges-it-epayment-systems-2020-2030
 featured: true

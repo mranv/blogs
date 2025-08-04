@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-01-04T10:30:00+05:30
-modDatetime: 2025-01-04T10:30:00+05:30
+pubDatetime: 2024-12-18T14:00:00+05:30
+modDatetime: 2024-12-18T14:00:00+05:30
 title: "SIEM Correlation Rules: The Complete Guide to Advanced Threat Detection"
 slug: siem-correlation-rules-complete-guide
 featured: true

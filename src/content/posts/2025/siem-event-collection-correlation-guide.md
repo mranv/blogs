@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-01-04T18:00:00+05:30
-modDatetime: 2025-01-04T18:00:00+05:30
+pubDatetime: 2024-12-21T11:30:00+05:30
+modDatetime: 2024-12-21T11:30:00+05:30
 title: "SIEM Event Collection and Correlation: A Comprehensive Technical Guide"
 slug: siem-event-collection-correlation-guide
 featured: true

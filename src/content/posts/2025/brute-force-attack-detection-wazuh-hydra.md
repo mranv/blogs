@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-01-04T19:15:00+05:30
-modDatetime: 2025-01-04T19:15:00+05:30
+pubDatetime: 2025-01-02T10:30:00+05:30
+modDatetime: 2025-01-02T10:30:00+05:30
 title: "Mastering Brute-Force Attack Detection: Complete Guide to Hydra Attacks and Wazuh SIEM Defense"
 slug: brute-force-attack-detection-wazuh-hydra-2025
 featured: true

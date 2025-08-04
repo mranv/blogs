@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-01-04T19:00:00+05:30
-modDatetime: 2025-01-04T19:00:00+05:30
+pubDatetime: 2024-12-30T13:20:00+05:30
+modDatetime: 2024-12-30T13:20:00+05:30
 title: "Enhancing SIEM Correlation Rules Through Baselining: A Comprehensive Implementation Guide"
 slug: siem-baselining-correlation-enhancement-guide
 featured: true

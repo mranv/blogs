@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-01-04T20:00:00+05:30
-modDatetime: 2025-01-04T20:00:00+05:30
+pubDatetime: 2025-01-03T16:00:00+05:30
+modDatetime: 2025-01-03T16:00:00+05:30
 title: "Complete Guide to SIEM Intrusion Detection, Prevention, and Tolerance: Building Resilient Security Operations"
 slug: siem-ids-ips-complete-guide
 featured: true
