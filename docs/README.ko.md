@@ -1,10 +1,10 @@
-# 🍥Fuwari
+# 🍥gainsaheb
 
 [Astro](https://astro.build)로 구축된 정적 블로그 템플릿입니다.
 
 [**🖥️미리보기 (Vercel)**](https://mranv.pages.dev)
 
-![Preview Image](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
+![Preview Image](https://raw.githubusercontent.com/saicaca/resource/main/gainsaheb/home.png)
 
 ## ✨ 특징
 
@@ -14,20 +14,20 @@
 - [x] 사용자 정의 가능한 테마 색상 및 배너
 - [x] 반응형 디자인
 - [x] [Pagefind](https://pagefind.app/)를 이용한 검색 기능
-- [x] [Markdown 확장 기능](https://github.com/saicaca/fuwari?tab=readme-ov-file#-markdown-extended-syntax)
+- [x] [Markdown 확장 기능](https://github.com/saicaca/gainsaheb?tab=readme-ov-file#-markdown-extended-syntax)
 - [x] 목차
 - [x] RSS 피드
 
 ## 🚀 시작하기
 1. 블로그 저장소를 생성하세요:
-   - 이 템플릿에서 [새 저장소를 생성](https://github.com/saicaca/fuwari/generate)하거나 이 저장소를 포크하세요.
+   - 이 템플릿에서 [새 저장소를 생성](https://github.com/saicaca/gainsaheb/generate)하거나 이 저장소를 포크하세요.
    - 또는 다음 명령어 중 하나를 실행하세요:
    ```sh
-       npm create fuwari@latest
-       yarn create fuwari
-       pnpm create fuwari@latest
-       bun create fuwari@latest
-       deno run -A npm:create-fuwari@latest
+       npm create gainsaheb@latest
+       yarn create gainsaheb
+       pnpm create gainsaheb@latest
+       bun create gainsaheb@latest
+       deno run -A npm:create-gainsaheb@latest
    ```
 2. 로컬에서 블로그를 수정하려면, 저장소를 복제하고 `pnpm install`을 실행하여 종속성을 설치하세요.
    - [pnpm](https://pnpm.io)이 설치되어 있지 않다면 `npm install -g pnpm`을 실행하여 설치하세요.
@@ -74,9 +74,9 @@ Astro의 기본 [GitHub Flavored Markdown](https://github.github.com/gfm/) 지�
 | `pnpm astro --help`                 | Astro CLI를 사용하여 도움 받기                     |
 
 ## ✏️ 기여
-이 프로젝트에 기여하는 방법에 대한 자세한 내용은 [기여 가이드](https://github.com/saicaca/fuwari/blob/main/CONTRIBUTING.md)를 확인하세요.
+이 프로젝트에 기여하는 방법에 대한 자세한 내용은 [기여 가이드](https://github.com/saicaca/gainsaheb/blob/main/CONTRIBUTING.md)를 확인하세요.
 
 ## 📄 라이선스
 이 프로젝트는 MIT 라이선스에 따라 라이선스가 부여됩니다.
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari?ref=badge_large&issueType=license)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsaicaca%2Fgainsaheb.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsaicaca%2Fgainsaheb?ref=badge_large&issueType=license)

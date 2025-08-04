@@ -1,7 +1,7 @@
 # Anubhav Gain's Security Blog
 
 [![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-BC52EE.svg)](https://astro.build)
-[![Powered by Fuwari](https://img.shields.io/badge/Powered%20by-Fuwari-blue.svg)](https://github.com/saicaca/fuwari)
+[![Powered by gainsaheb](https://img.shields.io/badge/Powered%20by-gainsaheb-blue.svg)](https://github.com/saicaca/gainsaheb)
 ![Security Focus](https://img.shields.io/badge/Focus-Cybersecurity-red.svg)
 ![Rust](https://img.shields.io/badge/Language-Rust-orange.svg)
 ![Citations](https://img.shields.io/badge/Research%20Citations-222+-green.svg)
@@ -126,7 +126,7 @@ This blog covers cutting-edge security topics including:
 - 💼 **LinkedIn**: [in.linkedin.com/in/anubhavgain](https://in.linkedin.com/in/anubhavgain)
 - 🐙 **GitHub**: [@mranv](https://github.com/mranv) & [@anubhavg-icpl](https://github.com/anubhavg-icpl)
 - 📚 **Google Scholar**: [Research Profile](https://scholar.google.com/citations?user=yhcz3TkAAAAJ&hl=en)
-- 🌐 **Websites**: 
+- 🌐 **Websites**:
   - [mranv.pages.dev](https://mranv.pages.dev)
   - [mranv.github.io](https://mranv.github.io)
   - [anubhavg-icpl.github.io](https://anubhavg-icpl.github.io)

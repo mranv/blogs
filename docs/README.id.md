@@ -1,18 +1,18 @@
-# 🍥 Fuwari
+# 🍥 gainsaheb
 
 Template blog statis yang dibangun dengan [Astro](https://astro.build).
 
 [**🖥️ Demo Langsung (Vercel)**](https://mranv.pages.dev)
 
-![Gambar Pratinjau](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
+![Gambar Pratinjau](https://raw.githubusercontent.com/saicaca/resource/main/gainsaheb/home.png)
 
 🌏 README dalam
-[**中文**](https://github.com/saicaca/fuwari/blob/main/docs/README.zh-CN.md) /
-[**日本語**](https://github.com/saicaca/fuwari/blob/main/docs/README.ja.md) /
-[**한국어**](https://github.com/saicaca/fuwari/blob/main/docs/README.ko.md) /
-[**Español**](https://github.com/saicaca/fuwari/blob/main/docs/README.es.md) /
-[**ไทย**](https://github.com/saicaca/fuwari/blob/main/docs/README.th.md) /
-[**Tiếng Việt**](https://github.com/saicaca/fuwari/blob/main/docs/README.vi.md) /
+[**中文**](https://github.com/saicaca/gainsaheb/blob/main/docs/README.zh-CN.md) /
+[**日本語**](https://github.com/saicaca/gainsaheb/blob/main/docs/README.ja.md) /
+[**한국어**](https://github.com/saicaca/gainsaheb/blob/main/docs/README.ko.md) /
+[**Español**](https://github.com/saicaca/gainsaheb/blob/main/docs/README.es.md) /
+[**ไทย**](https://github.com/saicaca/gainsaheb/blob/main/docs/README.th.md) /
+[**Tiếng Việt**](https://github.com/saicaca/gainsaheb/blob/main/docs/README.vi.md) /
 **Bahasa Indonesia (ini)** (Disediakan oleh komunitas, mungkin tidak selalu paling mutakhir)
 
 ## ✨ Fitur
@@ -30,23 +30,23 @@ Template blog statis yang dibangun dengan [Astro](https://astro.build).
 ## 🚀 Memulai
 
 1. Buat repositori blog kamu:
-    - [Generate repositori baru](https://github.com/saicaca/fuwari/generate) dari template ini atau fork repositori ini.
+    - [Generate repositori baru](https://github.com/saicaca/gainsaheb/generate) dari template ini atau fork repositori ini.
     - Atau jalankan salah satu perintah berikut:
        ```sh
         # npm
-        npm create fuwari@latest.
+        npm create gainsaheb@latest.
 
         # yarn
-        yarn create fuwari.
+        yarn create gainsaheb.
 
         # pnpm
-        pnpm create fuwari@latest
+        pnpm create gainsaheb@latest
 
         # bun
-        bun create fuwari@latest
+        bun create gainsaheb@latest
 
         # deno
-        deno run -A npm:create-fuwari@latest
+        deno run -A npm:create-gainsaheb@latest
         ```
 2. Untuk mengedit blog secara lokal, klon repositori kamu, jalankan `pnpm install` untuk instalasi dependensi.
     - Install [pnpm](https://pnpm.io) `npm install -g pnpm` jika belum punya.
@@ -95,7 +95,7 @@ Semua perintah dijalankan dari root proyek, via terminal:
 
 ## ✏️ Kontribusi
 
-Lihat [Panduan Kontribusi](https://github.com/saicaca/fuwari/blob/main/CONTRIBUTING.md) untuk detail tentang cara berkontribusi ke proyek ini.
+Lihat [Panduan Kontribusi](https://github.com/saicaca/gainsaheb/blob/main/CONTRIBUTING.md) untuk detail tentang cara berkontribusi ke proyek ini.
 
 ## 📄 Lisensi
 

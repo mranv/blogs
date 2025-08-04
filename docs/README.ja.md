@@ -1,10 +1,10 @@
-# 🍥Fuwari
+# 🍥gainsaheb
 
 [Astro](https://astro.build) で構築された静的ブログテンプレート
 
 [**🖥️ライブデモ (Vercel)**](https://mranv.pages.dev)
 
-![Preview Image](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
+![Preview Image](https://raw.githubusercontent.com/saicaca/resource/main/gainsaheb/home.png)
 
 ## ✨ 特徴
 
@@ -24,23 +24,23 @@
 
 ## 🚀 使用方法 1
 
-[create-fuwari](https://github.com/L4Ph/create-fuwari)を使用して、ローカルにプロジェクトを初期化します。
+[create-gainsaheb](https://github.com/L4Ph/create-gainsaheb)を使用して、ローカルにプロジェクトを初期化します。
 
 ```sh
 # npm
-npm create fuwari@latest
+npm create gainsaheb@latest
 
 # yarn
-yarn create fuwari
+yarn create gainsaheb
 
 # pnpm
-pnpm create fuwari@latest
+pnpm create gainsaheb@latest
 
 # bun
-bun create fuwari@latest
+bun create gainsaheb@latest
 
 # deno
-deno run -A npm:create-fuwari@latest
+deno run -A npm:create-gainsaheb@latest
 ```
 
 1. `src/config.ts` ファイルを編集する事でブログを自分好みにカスタマイズ出来ます。
@@ -49,7 +49,7 @@ deno run -A npm:create-fuwari@latest
 
 ## 🚀 使用方法 2
 
-1. [テンプレート](https://github.com/saicaca/fuwari/generate)から新しいリポジトリを作成するかCloneをします。
+1. [テンプレート](https://github.com/saicaca/gainsaheb/generate)から新しいリポジトリを作成するかCloneをします。
 2. ブログをローカルで編集するには、リポジトリをクローンした後、`pnpm install` と `pnpm add sharp` を実行して依存関係をインストールします。
    - [pnpm](https://pnpm.io) がインストールされていない場合は `npm install -g pnpm` で導入可能です。
 3. `src/config.ts` ファイルを編集する事でブログを自分好みにカスタマイズ出来ます。

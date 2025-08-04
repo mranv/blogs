@@ -1,10 +1,10 @@
-# 🍥Fuwari
+# 🍥gainsaheb
 
 Un tema estático para blogs construido con [Astro](https://astro.build).
 
 [**🖥️ Demostración en Vivo (Vercel)**](https://mranv.pages.dev)
 
-![Imagen de Vista Previa](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
+![Imagen de Vista Previa](https://raw.githubusercontent.com/saicaca/resource/main/gainsaheb/home.png)
 
 ## ✨ Características
 
@@ -24,23 +24,23 @@ Un tema estático para blogs construido con [Astro](https://astro.build).
 
 ## 🚀 Cómo Usar 1
 
-Inicializa el proyecto localmente usando [create-fuwari](https://github.com/L4Ph/create-fuwari).
+Inicializa el proyecto localmente usando [create-gainsaheb](https://github.com/L4Ph/create-gainsaheb).
 
 ```sh
 # npm
-npm create fuwari@latest.
+npm create gainsaheb@latest.
 
 # yarn
-yarn create fuwari.
+yarn create gainsaheb.
 
 # pnpm
-pnpm create fuwari@latest
+pnpm create gainsaheb@latest
 
 # bun
-bun create fuwari@latest
+bun create gainsaheb@latest
 
 # deno
-deno run -A npm:create-fuwari@latest
+deno run -A npm:create-gainsaheb@latest
 ```
 
 1. Edita el archivo de configuración `src/config.ts` para personalizar tu blog.
@@ -49,7 +49,7 @@ deno run -A npm:create-fuwari@latest
 
 ## 🚀 Cómo Usar 2
 
-1. [Genera un nuevo repositorio](https://github.com/saicaca/fuwari/generate) desde esta plantilla o haz un fork de este repositorio.
+1. [Genera un nuevo repositorio](https://github.com/saicaca/gainsaheb/generate) desde esta plantilla o haz un fork de este repositorio.
 2. Para editar tu blog localmente, clona tu repositorio, ejecuta `pnpm install` y `pnpm add sharp` para instalar las dependencias.
    - Instala [pnpm](https://pnpm.io) `npm install -g pnpm` si aún no lo tienes.
 3. Edita el archivo de configuración `src/config.ts` para personalizar tu blog.

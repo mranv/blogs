@@ -1,10 +1,10 @@
-# 🍥Fuwari
+# 🍥gainsaheb
 
 แม่แบบสำหรับเว็บบล็อกแบบ static สร้างด้วย [Astro](https://astro.build)
 
 [**🖥️ ตัวอย่างการใช้งานจริง (Vercel)**](https://mranv.pages.dev)
 
-![ภาพตัวอย่าง](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
+![ภาพตัวอย่าง](https://raw.githubusercontent.com/saicaca/resource/main/gainsaheb/home.png)
 
 ## ✨ คุณสมบัติ
 
@@ -14,21 +14,21 @@
 - [x] ปรับแต่งสีธีมและแบนเนอร์ได้
 - [x] Responsive design (หน้าตาเว็บปรับเปลี่ยนตามขนาดจอ)
 - [x] ฟังก์ชันการค้นหา ขับเคลื่อนด้วย [Pagefind](https://pagefind.app/)
-- [x] [คุณสมบัติเพิ่มเติมสำหรับมาร์กดาวน์](https://github.com/saicaca/fuwari/blob/main/docs/README.th.md#-markdown-extended-syntax)
+- [x] [คุณสมบัติเพิ่มเติมสำหรับมาร์กดาวน์](https://github.com/saicaca/gainsaheb/blob/main/docs/README.th.md#-markdown-extended-syntax)
 - [x] สารบัญ
 - [x] RSS feed
 
 ## 🚀 เริ่มต้นใช้งาน
 
 1. สร้าง repository ใหม่สำหรับบล็อกของคุณ:
-    - [Generate repository ใหม่](https://github.com/saicaca/fuwari/generate) ขึ้นมาจากแม่แบบนี้ หรือจะ fork repository นี้ก็ได้
+    - [Generate repository ใหม่](https://github.com/saicaca/gainsaheb/generate) ขึ้นมาจากแม่แบบนี้ หรือจะ fork repository นี้ก็ได้
     - หรือจะสร้างโดยการเลือกรันคำสั่งต่อไปนี้ คำสั่งใดคำสั่งหนึ่ง:
        ```sh
-       npm create fuwari@latest
-       yarn create fuwari
-       pnpm create fuwari@latest
-       bun create fuwari@latest
-       deno run -A npm:create-fuwari@latest
+       npm create gainsaheb@latest
+       yarn create gainsaheb
+       pnpm create gainsaheb@latest
+       bun create gainsaheb@latest
+       deno run -A npm:create-gainsaheb@latest
        ```
 2. เริ่มแก้ไขบล็อกของคุณแบบ local โดยการ clone repository ของคุณ (จากข้อ 1) ไว้ในเครื่องของคุณ แล้วรันคำสั่ง `pnpm install` เพื่อติดตั้ง dependencies ที่จำเป็น
     - ติดตั้ง [pnpm](https://pnpm.io) ด้วยคำสั่ง `npm install -g pnpm` ก่อน ถ้ายังไม่เคยติดตั้ง
@@ -53,7 +53,7 @@ lang: jp      # เขียนค่านี้เมื่อภาษาข�
 
 ## 🧩 Markdown Extended Syntax
 
-เดิมที Astro มีการสนับสนุน[ภาษามาร์กดาวน์แบบของ GitHub](https://github.github.com/gfm/) ไว้อยู่แล้ว แต่ Fuwari ได้เพิ่มเติมคุณสมบัติพิเศษอื่นๆ เข้าไปอีก:
+เดิมที Astro มีการสนับสนุน[ภาษามาร์กดาวน์แบบของ GitHub](https://github.github.com/gfm/) ไว้อยู่แล้ว แต่ gainsaheb ได้เพิ่มเติมคุณสมบัติพิเศษอื่นๆ เข้าไปอีก:
 
 - Admonitions หรือ กล่องข้อมูลพิเศษ ([ดูตัวอย่างและการใช้งาน](https://mranv.pages.dev/posts/markdown-extended/#admonitions))
 - การ์ด GitHub Repository ([ดูตัวอย่างและการใช้งาน](https://mranv.pages.dev/posts/markdown-extended/#github-repository-cards))
@@ -77,7 +77,7 @@ lang: jp      # เขียนค่านี้เมื่อภาษาข�
 
 ## ✏️ การมีส่วนร่วม
 
-กรุณาอ่าน [แนวทางการมีส่วนร่วม](https://github.com/saicaca/fuwari/blob/main/CONTRIBUTING.md) สำหรับรายละเอียดวิธีการมีส่วนร่วมในโปรเจกต์นี้
+กรุณาอ่าน [แนวทางการมีส่วนร่วม](https://github.com/saicaca/gainsaheb/blob/main/CONTRIBUTING.md) สำหรับรายละเอียดวิธีการมีส่วนร่วมในโปรเจกต์นี้
 
 ## 📄 สัญญาอนุญาต
 
