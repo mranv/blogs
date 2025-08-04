@@ -22,7 +22,7 @@ description: Add your description here.
 
 ## About Me
 
-I'm [Romano Roth](https://www.linkedin.com/in/romanoroth/), Chief of DevOps and Partner at [Zühlke](https://www.zuehlke.com/en). My journey with Zuhlke began 21 years ago. Over the years, I've evolved from an expert software engineer and software architect to a consultant. Throughout this journey, one question has always fueled my passion: **How can we continuously deliver value while ensuring quality and automation?**
+I'm [Romano Roth](https://www.linkedin.com/in/romanoroth/), Chief of DevOps and Partner at [Zühlke](https://www.zuehlke.com/en). My journey with Zuhlke began 21 years ago. Over the years, I've evolved from an expert Security Software Engineer and software architect to a consultant. Throughout this journey, one question has always fueled my passion: **How can we continuously deliver value while ensuring quality and automation?**
 
 When the DevOps movement began to gain momentum, I was naturally drawn to it. Today, I’m one of the organizers of the monthly [DevOps Meetup in Zürich](https://www.meetup.com/de-DE/DevOps-Meetup-Zurich/) and president of [DevOps Days Zürich](https://www.devopsdays.ch/), an annual conference part of the global DevOps movement. DevOps isn't just a professional interest; it's my passion. That’s why I’ve my own [YouTube channel](https://www.youtube.com/c/RomanoRoth), where I've curated over 100 videos centered on DevOps, architecture, and leadership.
 

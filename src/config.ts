@@ -9,7 +9,7 @@ import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
 	title: "Anubhav Gain",
-	subtitle: "Software Engineer at Infopercept | CEO at TechAnv Consulting",
+	subtitle: "Security Software Engineer at Infopercept | CEO at TechAnv Consulting",
 	lang: "en", // Language code, e.g. 'en', 'zh-CN', 'ja', etc.
 	banner: {
 		enable: false,
@@ -51,7 +51,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/gainsaheb.jpeg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "Anubhav Gain",
-	bio: "Software Engineer at Infopercept Consulting | CEO at TechAnv Consulting | DevSecOps Expert | XDR/OXDR Platform Architect | Rust & eBPF Specialist | 222+ Research Citations",
+	bio: "Security Software Engineer at Infopercept Consulting | CEO at TechAnv Consulting | DevSecOps Expert | XDR/OXDR Platform Architect | Rust & eBPF Specialist | 222+ Research Citations",
 	links: [
 		{
 			name: "GitHub",

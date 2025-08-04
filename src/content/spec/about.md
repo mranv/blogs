@@ -2,13 +2,13 @@
 
 ## Distinguished Cybersecurity Professional & Entrepreneur
 
-I'm **Anubhav Gain**, a cybersecurity professional, entrepreneur, and software engineer who has established himself as a leading figure in India's cybersecurity landscape. Currently serving as a **Software Engineer at Infopercept Consulting** while simultaneously operating as the **CEO of TechAnv Consulting**, I bridge technical expertise with business acumen to drive innovation in security.
+I'm **Anubhav Gain**, a cybersecurity professional, entrepreneur, and Security Software Engineer who has established himself as a leading figure in India's cybersecurity landscape. Currently serving as a **Security Software Engineer at Infopercept Consulting** while simultaneously operating as the **CEO of TechAnv Consulting**, I bridge technical expertise with business acumen to drive innovation in security.
 
 ## Professional Experience
 
 ### Current Positions
 
-#### Software Engineer - Infopercept Consulting (July 2024 - Present)
+#### Security Software Engineer - Infopercept Consulting (July 2024 - Present)
 *Ahmedabad, Gujarat*
 
 At Infopercept Consulting, I spearhead the development and architecture of the **Invinsense XDR/OXDR cybersecurity platform**:
@@ -113,13 +113,13 @@ With **222+ citations** on Google Scholar, my research contributions include:
 - **JPMorgan Chase & Co.** - Data Analyst for Fraud Detection (July 2023)
   - Analyzed large datasets of financial payment fraud
   - Developed effective fraud prevention strategies
-  
+
 - **PwC** - Cybersecurity Projects
   - Phishing email simulation and integrated information defense
-  
+
 - **AIG** - Zero-day Vulnerability Response
   - Specialized in ransomware bypassing techniques
-  
+
 - **Clifford Chance** - ICO Regulatory Compliance
   - Worked on data leak damages claims
 
@@ -152,7 +152,7 @@ With **222+ citations** on Google Scholar, my research contributions include:
 - **LinkedIn**: [in.linkedin.com/in/anubhavgain](https://in.linkedin.com/in/anubhavgain)
 - **GitHub**: [@mranv](https://github.com/mranv) & [@anubhavg-icpl](https://github.com/anubhavg-icpl)
 - **Google Scholar**: [Research Profile](https://scholar.google.com/citations?user=yhcz3TkAAAAJ&hl=en)
-- **Personal Websites**: 
+- **Personal Websites**:
   - [mranv.pages.dev](https://mranv.pages.dev)
   - [mranv.github.io](https://mranv.github.io)
   - [anubhavg-icpl.github.io](https://anubhavg-icpl.github.io)

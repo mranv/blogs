@@ -9,7 +9,7 @@ draft: false
 
 ## Introduction: The Genesis of Invinsense
 
-As the lead Software Engineer at Infopercept Consulting, I've had the privilege of architecting and developing **Invinsense**, our flagship XDR/OXDR cybersecurity platform. This post shares the technical journey, challenges, and innovations that went into creating an enterprise-grade security platform that now protects organizations across multiple industries.
+As the lead Security Software Engineer at Infopercept Consulting, I've had the privilege of architecting and developing **Invinsense**, our flagship XDR/OXDR cybersecurity platform. This post shares the technical journey, challenges, and innovations that went into creating an enterprise-grade security platform that now protects organizations across multiple industries.
 
 ## The Vision Behind Invinsense
 
@@ -62,7 +62,7 @@ export class ThreatVisualizationPlugin implements Plugin {
     expressions.registerFunction(threatMapVisualization);
     expressions.registerFunction(attackChainTimeline);
     expressions.registerFunction(riskScoreMatrix);
-    
+
     // Enhanced security analytics
     this.registerSecurityDashboards(core);
   }
@@ -92,32 +92,32 @@ pub struct InvinsenseAgent {
 impl InvinsenseAgent {
     pub async fn monitor(&mut self) -> Result<(), MonitorError> {
         let mut interval = interval(Duration::from_secs(5));
-        
+
         loop {
             interval.tick().await;
-            
+
             // Collect system metrics
             self.system.refresh_all();
-            
+
             // Gather security events
             let events = self.collect_security_events().await?;
-            
+
             // Apply local correlation
             let correlated = self.local_correlation(&events)?;
-            
+
             // Secure transmission to platform
             self.transmitter.send_encrypted(correlated).await?;
         }
     }
-    
+
     async fn collect_security_events(&self) -> Result<Vec<SecurityEvent>, CollectionError> {
         let mut events = Vec::new();
-        
+
         for collector in &self.collectors {
             let collected = collector.collect().await?;
             events.extend(collected);
         }
-        
+
         Ok(events)
     }
 }
@@ -136,13 +136,13 @@ impl InvinsenseAgent {
 pub struct EventPipeline {
     // Layer 1: High-speed ingestion
     ingestion: KafkaConsumer,
-    
+
     // Layer 2: Stream processing
     stream_processor: FlinkProcessor,
-    
+
     // Layer 3: Complex event correlation
     correlation: CorrelationEngine,
-    
+
     // Layer 4: ML-based analysis
     ml_analyzer: TensorFlowModel,
 }
@@ -158,7 +158,7 @@ pub struct EventPipeline {
 #[cfg(target_os = "windows")]
 mod windows_collector {
     use windows::Win32::System::EventLog;
-    
+
     pub fn collect_events() -> Vec<Event> {
         // Windows-specific event collection
     }
@@ -167,7 +167,7 @@ mod windows_collector {
 #[cfg(target_os = "linux")]
 mod linux_collector {
     use inotify::{Inotify, WatchMask};
-    
+
     pub fn collect_events() -> Vec<Event> {
         // Linux-specific event collection using inotify
     }
@@ -228,7 +228,7 @@ impl AdaptiveThreatIntel {
             self.update_models(threat);
             self.adjust_detection_thresholds(threat);
         }
-        
+
         // Generate custom IoCs
         let custom_iocs = self.generate_environment_specific_iocs();
         self.distribute_to_agents(custom_iocs);
@@ -245,12 +245,12 @@ pub struct ZeroTrustEngine {
     identity_verifier: IdentityVerifier,
     device_trust: DeviceTrustEvaluator,
     context_analyzer: ContextAnalyzer,
-    
+
     pub fn evaluate_access(&self, request: &AccessRequest) -> AccessDecision {
         let identity_score = self.identity_verifier.verify(&request.identity);
         let device_score = self.device_trust.evaluate(&request.device);
         let context_score = self.context_analyzer.analyze(&request.context);
-        
+
         // Continuous verification
         match (identity_score, device_score, context_score) {
             (score, _, _) if score < 0.5 => AccessDecision::Deny,
@@ -269,22 +269,22 @@ Invinsense doesn't just detect; it acts:
 pub struct RemediationOrchestrator {
     playbooks: HashMap<ThreatType, RemediationPlaybook>,
     executors: Vec<Box<dyn RemediationExecutor>>,
-    
+
     pub async fn remediate(&self, threat: &Threat) -> RemediationResult {
         let playbook = self.select_playbook(threat);
-        
+
         // Pre-remediation snapshot
         let snapshot = self.create_system_snapshot().await?;
-        
+
         // Execute remediation
         let result = self.execute_playbook(playbook, threat).await?;
-        
+
         // Verify success
         if !self.verify_remediation(&result).await? {
             self.rollback(snapshot).await?;
             return RemediationResult::Failed;
         }
-        
+
         RemediationResult::Success(result)
     }
 }
@@ -345,7 +345,7 @@ services:
       - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
     volumes:
       - opensearch-data:/usr/share/opensearch/data
-  
+
   invinsense-api:
     build: ./api
     environment:
@@ -353,7 +353,7 @@ services:
       - RUST_LOG=debug
     depends_on:
       - opensearch
-  
+
   invinsense-ui:
     build: ./ui
     ports:
@@ -455,6 +455,6 @@ Reach out through [LinkedIn](https://in.linkedin.com/in/anubhavgain) or explore 
 
 *"Building the future of cybersecurity, one line of code at a time."*
 
-**Anubhav Gain**  
-Software Engineer, Infopercept Consulting  
+**Anubhav Gain**
+Security Software Engineer, Infopercept Consulting
 Architect of Invinsense XDR/OXDR Platform

@@ -224,7 +224,7 @@ You can find the code used in this blog post to your own enigma machine powered 
 
 ## About the Author
 
-**André Martins** is a Software Engineer at Isovalent and a co-creator and co-maintainer of Cilium, the open-source project that leverages eBPF to enable secure, high-performance networking, observability, and enforcement in cloud native environments. His work has been central to Cilium's evolution from early prototype to a widely adopted foundation for cloud native infrastructure.
+**André Martins** is a Security Software Engineer at Isovalent and a co-creator and co-maintainer of Cilium, the open-source project that leverages eBPF to enable secure, high-performance networking, observability, and enforcement in cloud native environments. His work has been central to Cilium's evolution from early prototype to a widely adopted foundation for cloud native infrastructure.
 
 He began his open source journey through a Linux Foundation internship, contributing to the OpenDaylight project to simplify network deployment. Since then, he has contributed to key technologies such as Kubernetes and Docker, with a continued focus on containers, orchestration, and GitHub Actions.
 

@@ -1218,7 +1218,7 @@ let pid = bpf_core_read::<u32>(task as *const c_void, offset)?;
 
 ## Conclusion
 
-Rust and Aya bring modern software engineering practices to eBPF development, making it easier to build safe, efficient, and maintainable security tools. The combination of Rust's safety guarantees and eBPF's kernel-level capabilities creates a powerful platform for next-generation security monitoring.
+Rust and Aya bring modern Security Software Engineering practices to eBPF development, making it easier to build safe, efficient, and maintainable security tools. The combination of Rust's safety guarantees and eBPF's kernel-level capabilities creates a powerful platform for next-generation security monitoring.
 
 Key advantages of using Rust and Aya:
 

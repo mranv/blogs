@@ -47,7 +47,7 @@ const faqLD = {
       "name": "Who is Anubhav Gain?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Anubhav Gain is a Software Engineer at Infopercept Consulting and CEO at TechAnv Consulting, specializing in DevSecOps, XDR/OXDR Platforms, Rust Programming, and eBPF Development with 222+ research citations."
+        "text": "Anubhav Gain is a Security Software Engineer at Infopercept Consulting and CEO at TechAnv Consulting, specializing in DevSecOps, XDR/OXDR Platforms, Rust Programming, and eBPF Development with 222+ research citations."
       }
     },
     {
@@ -63,7 +63,7 @@ const faqLD = {
       "name": "What companies does Anubhav Gain work with?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Anubhav Gain currently works as a Software Engineer at Infopercept Consulting and is the CEO & Founder of TechAnv Consulting, providing enterprise security consulting and XDR platform development services."
+        "text": "Anubhav Gain currently works as a Security Software Engineer at Infopercept Consulting and is the CEO & Founder of TechAnv Consulting, providing enterprise security consulting and XDR platform development services."
       }
     }
   ]
@@ -127,12 +127,12 @@ const serviceLD = {
 <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLD)} />
 
 <!-- FAQ Schema (only on home and about pages) -->
-{(Astro.url.pathname === '/' || Astro.url.pathname === '/about/') && 
+{(Astro.url.pathname === '/' || Astro.url.pathname === '/about/') &&
   <script type="application/ld+json" set:html={JSON.stringify(faqLD)} />
 }
 
 <!-- Professional Service Schema (only on home page) -->
-{Astro.url.pathname === '/' && 
+{Astro.url.pathname === '/' &&
   <script type="application/ld+json" set:html={JSON.stringify(serviceLD)} />
 }
 

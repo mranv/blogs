@@ -10,11 +10,11 @@ Welcome to my technical blog where I share insights on cybersecurity, DevSecOps,
 
 ## About Me
 
-I'm **Anubhav Gain**, a distinguished cybersecurity professional and entrepreneur who has established himself as a leading figure in India's cybersecurity landscape. Currently serving as **Software Engineer at Infopercept Consulting** while operating as **CEO of TechAnv Consulting**.
+I'm **Anubhav Gain**, a distinguished cybersecurity professional and entrepreneur who has established himself as a leading figure in India's cybersecurity landscape. Currently serving as **Security Software Engineer at Infopercept Consulting** while operating as **CEO of TechAnv Consulting**.
 
 ### Current Roles
 
-- 🏢 **Software Engineer** at Infopercept Consulting (July 2024 - Present)
+- 🏢 **Security Software Engineer** at Infopercept Consulting (July 2024 - Present)
   - Lead architect of the **Invinsense XDR/OXDR cybersecurity platform**
   - Design single-tenant and multi-tenant security deployments
   - Develop custom OpenSearch Dashboard plugins

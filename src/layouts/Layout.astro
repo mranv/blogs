@@ -83,8 +83,8 @@ const bannerOffset =
 		<meta charset="UTF-8" />
 		<meta name="description" content={description || `${siteConfig.title} - ${siteConfig.subtitle}. Expert in DevSecOps, XDR/OXDR Platforms, Rust, eBPF, and Cloud-Native Security. 222+ Research Citations.`}>
 		<meta name="author" content={profileConfig.name}>
-		<meta name="keywords" content="Anubhav Gain, DevSecOps Expert, XDR Platform Architect, OXDR Security, Rust Programming, eBPF Development, Cloud Security, Kubernetes Security, Container Security, TechAnv Consulting, Infopercept Consulting, Software Engineer">
-		
+		<meta name="keywords" content="Anubhav Gain, DevSecOps Expert, XDR Platform Architect, OXDR Security, Rust Programming, eBPF Development, Cloud Security, Kubernetes Security, Container Security, TechAnv Consulting, Infopercept Consulting, Security Software Engineer">
+
 		<!-- Canonical URL -->
 		<link rel="canonical" href={Astro.url} />
 
@@ -95,7 +95,7 @@ const bannerOffset =
 		<meta property="og:description" content={description || `${siteConfig.title} - ${siteConfig.subtitle}. Expert in DevSecOps, XDR/OXDR Platforms, and Cloud-Native Security.`}>
 		<meta property="og:locale" content={siteLang}>
 		<meta property="og:image" content={`${Astro.site}${profileConfig.avatar.startsWith('/') ? profileConfig.avatar.slice(1) : profileConfig.avatar}`}>
-		<meta property="og:image:alt" content="Anubhav Gain - Software Engineer & Security Expert">
+		<meta property="og:image:alt" content="Anubhav Gain - Security Software Engineer & Security Expert">
 		{setOGTypeArticle ? (
         <meta property="og:type" content="article" />
         <meta property="article:author" content={profileConfig.name} />
@@ -112,18 +112,18 @@ const bannerOffset =
 		<meta name="twitter:title" content={pageTitle}>
 		<meta name="twitter:description" content={description || `${siteConfig.title} - ${siteConfig.subtitle}. Expert in DevSecOps and Cloud-Native Security.`}>
 		<meta name="twitter:image" content={`${Astro.site}${profileConfig.avatar.startsWith('/') ? profileConfig.avatar.slice(1) : profileConfig.avatar}`}>
-		<meta name="twitter:image:alt" content="Anubhav Gain - Software Engineer & Security Expert">
+		<meta name="twitter:image:alt" content="Anubhav Gain - Security Software Engineer & Security Expert">
 
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		
+
 		<!-- JSON-LD Structured Data for Anubhav Gain -->
 		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "Person",
 			"name": "Anubhav Gain",
 			"alternateName": "mranv",
-			"jobTitle": "Software Engineer & CEO",
+			"jobTitle": "Security Software Engineer & CEO",
 			"worksFor": [
 				{
 					"@type": "Organization",
@@ -136,7 +136,7 @@ const bannerOffset =
 					"description": "CEO and Founder"
 				}
 			],
-			"description": "Software Engineer at Infopercept | CEO at TechAnv Consulting | DevSecOps Expert | XDR/OXDR Platform Architect | Rust & eBPF Specialist | 222+ Research Citations",
+			"description": "Security Software Engineer at Infopercept | CEO at TechAnv Consulting | DevSecOps Expert | XDR/OXDR Platform Architect | Rust & eBPF Specialist | 222+ Research Citations",
 			"knowsAbout": [
 				"DevSecOps",
 				"XDR Platforms",
@@ -168,7 +168,7 @@ const bannerOffset =
 			"award": "222+ Research Citations",
 			"knowsLanguage": ["English", "Hindi"]
 		})} />
-		
+
 		<!-- Website Schema -->
 		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
@@ -194,7 +194,7 @@ const bannerOffset =
 				"query-input": "required name=search_term_string"
 			}
 		})} />
-		
+
 		{favicons.map(favicon => (
 			<link rel="icon"
 				  href={favicon.src.startsWith('/') ? url(favicon.src) : favicon.src}
