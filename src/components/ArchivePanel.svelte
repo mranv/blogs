@@ -10,8 +10,8 @@ export let categories: string[];
 export let sortedPosts: Post[] = [];
 
 const params = new URLSearchParams(window.location.search);
-tags = params.has("tag") ? params.getAll("tag") : [];
-categories = params.has("category") ? params.getAll("category") : [];
+const selectedTags = params.has("tag") ? params.getAll("tag") : [];
+const selectedCategories = params.has("category") ? params.getAll("category") : [];
 const uncategorized = params.get("uncategorized");
 
 interface Post {
@@ -44,17 +44,17 @@ function formatTag(tagList: string[]) {
 onMount(async () => {
 	let filteredPosts: Post[] = sortedPosts;
 
-	if (tags.length > 0) {
+	if (selectedTags.length > 0) {
 		filteredPosts = filteredPosts.filter(
 			(post) =>
 				Array.isArray(post.data.tags) &&
-				post.data.tags.some((tag) => tags.includes(tag)),
+				post.data.tags.some((tag) => selectedTags.includes(tag)),
 		);
 	}
 
-	if (categories.length > 0) {
+	if (selectedCategories.length > 0) {
 		filteredPosts = filteredPosts.filter(
-			(post) => post.data.category && categories.includes(post.data.category),
+			(post) => post.data.category && selectedCategories.includes(post.data.category),
 		);
 	}
 
