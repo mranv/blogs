@@ -20,7 +20,8 @@ interface Post {
 		title: string;
 		tags: string[];
 		category?: string;
-		published: Date;
+		published?: Date;
+		pubDatetime?: Date;
 	};
 }
 
@@ -64,7 +65,8 @@ onMount(async () => {
 
 	const grouped = filteredPosts.reduce(
 		(acc, post) => {
-			const year = post.data.published.getFullYear();
+			const date = post.data.pubDatetime || post.data.published;
+			const year = date.getFullYear();
 			if (!acc[year]) {
 				acc[year] = [];
 			}
@@ -112,7 +114,7 @@ onMount(async () => {
                     <div class="flex flex-row justify-start items-center h-full">
                         <!-- date -->
                         <div class="w-[15%] md:w-[10%] transition text-sm text-right text-50">
-                            {formatDate(post.data.published)}
+                            {formatDate(post.data.pubDatetime || post.data.published)}
                         </div>
 
                         <!-- dot and line -->
