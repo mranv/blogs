@@ -65,7 +65,7 @@ onMount(async () => {
 
 	const grouped = filteredPosts.reduce(
 		(acc, post) => {
-			const date = post.data.pubDatetime || post.data.published;
+			const date = post.data.pubDatetime || post.data.published || new Date('2023-01-01');
 			const year = date.getFullYear();
 			if (!acc[year]) {
 				acc[year] = [];
@@ -114,7 +114,7 @@ onMount(async () => {
                     <div class="flex flex-row justify-start items-center h-full">
                         <!-- date -->
                         <div class="w-[15%] md:w-[10%] transition text-sm text-right text-50">
-                            {formatDate(post.data.pubDatetime || post.data.published)}
+                            {formatDate(post.data.pubDatetime || post.data.published || new Date('2023-01-01'))}
                         </div>
 
                         <!-- dot and line -->
