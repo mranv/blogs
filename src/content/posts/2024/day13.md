@@ -5,7 +5,7 @@ modDatetime: 2024-09-27T21:22:03+05:30
 title: Day13
 slug: day13
 featured: false
-draft: true
+draft: false
 tags:
   - tag1
   - tag2

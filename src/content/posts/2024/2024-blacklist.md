@@ -5,7 +5,7 @@ modDatetime: 2024-09-27T21:22:03+05:30
 title: 2024 Blacklist
 slug: 2024-blacklist
 featured: false
-draft: true
+draft: false
 tags:
   - tag1
   - tag2

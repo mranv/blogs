@@ -5,7 +5,7 @@ modDatetime: 2024-09-27T21:22:03+05:30
 title: Day54
 slug: day54
 featured: false
-draft: true
+draft: false
 tags:
   - tag1
   - tag2

@@ -5,7 +5,7 @@ modDatetime: 2024-09-27T21:22:03+05:30
 title: Day84
 slug: day84
 featured: false
-draft: true
+draft: false
 tags:
   - tag1
   - tag2
