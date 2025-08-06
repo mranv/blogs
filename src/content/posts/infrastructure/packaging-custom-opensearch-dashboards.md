@@ -19,28 +19,28 @@ description: A step-by-step guide to creating custom Debian packages for OpenSea
 
 # Creating Custom Debian Packages for OpenSearch Dashboards
 
-When deploying OpenSearch Dashboards in enterprise environments, you often need customizations like specific plugins, custom themes, or specialized configurations. Creating a custom Debian package lets you standardize these modifications across your infrastructure while maintaining the benefits of package management.
+Oh, you're deploying OpenSearch Dashboards in enterprise environments? How delightfully original. Of course you need customizations—because heaven forbid you use anything "as is." Well, since you insist on making your life complicated with specific plugins, custom themes, and specialized configurations, I suppose creating a custom Debian package is the least painful way to standardize your special snowflake modifications across your infrastructure.
 
-This guide walks you through building a custom Debian package for OpenSearch Dashboards 2.18.0 with your own plugins and configurations.
+This guide begrudgingly walks you through building a custom Debian package for OpenSearch Dashboards 2.18.0 with your inevitably over-engineered plugins and configurations.
 
 ## Why Package Custom OpenSearch Dashboards?
 
-Before diving into the technical steps, let's consider why packaging is better than manual installation:
+Before diving into the technical steps, let me enlighten you on why packaging is supposedly "better" than manual installation—as if you hadn't already convinced yourself of this brilliant idea:
 
-1. **Standardized deployments** across multiple environments
-2. **Simplified upgrades** through package management
-3. **Dependency management** handled by the package manager
-4. **Configuration consistency** across your infrastructure
-5. **Easier integration** with CI/CD pipelines and configuration management tools
+1. **Standardized deployments** across multiple environments (because consistency is apparently too much to ask for otherwise)
+2. **Simplified upgrades** through package management (shocking that a package manager would manage packages)
+3. **Dependency management** handled by the package manager (revolutionary concept, truly)
+4. **Configuration consistency** across your infrastructure (imagine that!)
+5. **Easier integration** with CI/CD pipelines and configuration management tools (because making simple things complicated is the enterprise way)
 
 ## Prerequisites
 
-Before starting, ensure your build system has:
+Before starting this adventure in overcomplication, ensure your build system has:
 
-- A Debian-based Linux distribution (Ubuntu 20.04+ recommended)
-- Sufficient RAM (at least 8GB) and disk space (20GB free)
-- Internet connection to download dependencies
-- Root or sudo access
+- A Debian-based Linux distribution (Ubuntu 20.04+ recommended—because apparently we're picky about our suffering)
+- Sufficient RAM (at least 8GB) and disk space (20GB free)—yes, that's right, this simple dashboard needs more resources than some entire operating systems
+- Internet connection to download dependencies (shocking requirement, I know)
+- Root or sudo access (because we're about to break things systemically)
 
 ## Step 1: Setting Up the Build Environment
 
@@ -100,7 +100,7 @@ yarn osd bootstrap
 yarn build --skip-os-packages
 ```
 
-This process might take some time depending on your system resources.
+This process might take some time depending on your system resources—or more accurately, it will take forever because JavaScript build processes are apparently designed by people who have never heard of efficiency.
 
 ## Step 5: Create the Debian Package Structure
 
@@ -258,7 +258,3 @@ sudo dpkg -i opensearch-dashboards-2.18.0.deb
 # If there are dependency issues
 sudo apt-get install -f
 ```
-
-## Final Package Structure
-
-Your final package will have the following structure:

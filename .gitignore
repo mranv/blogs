@@ -30,3 +30,4 @@ yarn.lock
 .claude-flow/metrics/system-metrics.json
 .claude-flow/metrics/task-metrics.json
 .hive-mind/*
+.swarm/*
