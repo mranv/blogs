@@ -140,7 +140,7 @@ systemctl restart wazuh-manager
 
 Navigate to **Modules > Vulnerabilities** and use:
 
-```wql
+```sql
 name ~ busybox and severity < High
 ```
 
@@ -179,7 +179,7 @@ flowchart LR
 
 #### Complex Query Construction
 
-```wql
+```sql
 ( group = default and name != Windows10 ) and node_name = node01
 ```
 
@@ -220,7 +220,7 @@ flowchart TB
 
 Navigate to **Modules > MITRE ATT&CK > Intelligence > Software**:
 
-```wql
+```sql
 description ~ "Active Directory" and description ~ "command-line"
 ```
 
@@ -261,12 +261,12 @@ python3 -m http.server 8888
 #### Multi-Aspect Queries
 
 **1. Find Python 3 Packages**:
-```wql
+```sql
 name ~ python3 and version > 3.10
 ```
 
 **2. Locate Open Ports**:
-```wql
+```sql
 (local.port > 8000 and local.port < 9000) and state=listening
 ```
 
@@ -297,7 +297,7 @@ GET /rules/files?search=docker&status=enabled
 
 ### Combining Multiple Conditions
 
-```wql
+```sql
 # Find high-severity vulnerabilities in web packages
 (name ~ apache or name ~ nginx) and severity < Medium and status = Active
 
@@ -307,7 +307,7 @@ status = disconnected and last_keepalive < 24h and os.platform = linux
 
 ### Using Wildcards and Patterns
 
-```wql
+```sql
 # Find all log4j related packages
 name ~ log4j*
 
@@ -317,7 +317,7 @@ ip ~ 192.168.1.*
 
 ### Time-Based Queries
 
-```wql
+```sql
 # Find recent authentication failures
 rule.id = 5503 and timestamp > now-1h
 
@@ -359,7 +359,7 @@ flowchart LR
 
 Create reusable query templates for common scenarios:
 
-```wql
+```sql
 # Template: Find authentication anomalies
 rule.groups ~ authentication and rule.level > 10 and agent.name = $AGENT_NAME
 
@@ -374,7 +374,7 @@ rule.groups ~ network and (data.dstport < 1024 or data.srcip ~ 10.*)
 
 Start broad and narrow down:
 
-```wql
+```sql
 # Step 1: All vulnerabilities
 severity = Critical
 
@@ -391,7 +391,7 @@ severity = Critical and name ~ kernel and detection_time > now-24h
 
 #### Issue 1: No Results Returned
 
-```wql
+```sql
 # Problem: Using wrong operator
 name = *python*  # Won't work
 
@@ -401,7 +401,7 @@ name ~ python
 
 #### Issue 2: Case Sensitivity
 
-```wql
+```sql
 # Problem: Case mismatch
 status = Active  # May not match "active"
 
@@ -411,7 +411,7 @@ status = active
 
 #### Issue 3: Complex Logic Errors
 
-```wql
+```sql
 # Problem: Incorrect grouping
 group = default and name != Windows or node = node01
 
@@ -501,7 +501,7 @@ curl -u wazuh:wazuh -k \
 
 ### Incident Response Query Set
 
-```wql
+```sql
 # 1. Find compromised user accounts
 rule.groups ~ authentication_failed and data.srcuser = $SUSPECTED_USER
 
@@ -517,7 +517,7 @@ rule.groups ~ privilege_escalation or rule.mitre.technique ~ T1548
 
 ### Compliance Monitoring
 
-```wql
+```sql
 # PCI DSS violations
 rule.pci_dss ~ 10.* and rule.level > 7
 

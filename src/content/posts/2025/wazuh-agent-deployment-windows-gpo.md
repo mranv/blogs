@@ -307,7 +307,7 @@ $prodParams = @{
 
 Use WMI filters for granular deployment:
 
-```wql
+```sql
 -- Deploy only to Windows 11 workstations
 SELECT * FROM Win32_OperatingSystem
 WHERE Version LIKE "10.0.22%"

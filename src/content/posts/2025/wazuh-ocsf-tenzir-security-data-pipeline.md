@@ -329,7 +329,7 @@ Tenzir provides three main OCSF operators:
 
 Create `/etc/tenzir/pipelines/wazuh-ocsf.tql`:
 
-```tql
+```sql
 // Wazuh to OCSF Pipeline
 // This pipeline transforms Wazuh alerts to OCSF format
 
@@ -399,7 +399,7 @@ read_json file=/var/ossec/logs/alerts/alerts.json
 
 Create `/etc/tenzir/pipelines/wazuh-ocsf-enriched.tql`:
 
-```tql
+```sql
 // Advanced Wazuh to OCSF Pipeline with Enrichment
 
 // Define lookup tables
@@ -469,7 +469,7 @@ subscribe "wazuh-raw"
 
 ### Authentication Events (Class 3002)
 
-```tql
+```sql
 // OCSF Class 3002: Authentication Activity
 export auth_mapper = function(event) {
   return {
@@ -534,7 +534,7 @@ export auth_mapper = function(event) {
 
 ### Network Activity Events (Class 4001)
 
-```tql
+```sql
 // OCSF Class 4001: Network Activity
 export network_mapper = function(event) {
   return {
@@ -589,7 +589,7 @@ export network_mapper = function(event) {
 
 ### File Activity Events (Class 1001)
 
-```tql
+```sql
 // OCSF Class 1001: File Activity
 export file_mapper = function(event) {
   return {
@@ -746,7 +746,7 @@ networks:
 
 ### Performance Optimization
 
-```tql
+```sql
 // Optimized pipeline with parallel processing
 export optimized_pipeline = (
   // Use parallel processing for high-volume streams
@@ -828,7 +828,7 @@ groups:
 
 ### Amazon Security Lake Integration
 
-```tql
+```sql
 // Direct integration with Amazon Security Lake
 export asl_publisher = (
   subscribe "ocsf-events"
@@ -853,7 +853,7 @@ export asl_publisher = (
 
 ### Splunk Integration
 
-```tql
+```sql
 // Send OCSF events to Splunk
 export splunk_forwarder = (
   subscribe "ocsf-events"
@@ -867,7 +867,7 @@ export splunk_forwarder = (
 
 ### OpenSearch Integration
 
-```tql
+```sql
 // Index OCSF events in OpenSearch
 export opensearch_indexer = (
   subscribe "ocsf-events"
@@ -945,7 +945,7 @@ performance_settings:
 
 ### 3. Error Handling and Recovery
 
-```tql
+```sql
 // Robust pipeline with error handling
 export resilient_pipeline = (
   read_json file=/var/ossec/logs/alerts/alerts.json
@@ -1044,7 +1044,7 @@ GROUP BY class_name;
 - Events taking longer to process
 
 **Solutions:**
-```tql
+```sql
 // Diagnose bottlenecks
 show pipeline metrics
 | where name == "wazuh-ocsf"
@@ -1067,7 +1067,7 @@ read_json
 - Errors in transformation logs
 
 **Solutions:**
-```tql
+```sql
 // Debug validation issues
 read_json
 | transform_to_ocsf
@@ -1121,7 +1121,7 @@ watch -n 1 'tenzir show system | grep memory'
 
 ### 1. Data Privacy and Compliance
 
-```tql
+```sql
 // Implement data masking for PII
 export privacy_pipeline = (
   read_json
@@ -1171,7 +1171,7 @@ rbac:
 
 ### 3. Encryption
 
-```tql
+```sql
 // Enable encryption for sensitive pipelines
 export encrypted_pipeline = (
   read_json
@@ -1201,7 +1201,7 @@ export encrypted_pipeline = (
 
 ### 1. Intelligent Sampling
 
-```tql
+```sql
 // Adaptive sampling based on event value
 export cost_optimized_pipeline = (
   read_json
@@ -1229,7 +1229,7 @@ export cost_optimized_pipeline = (
 
 ### 2. Storage Tiering
 
-```tql
+```sql
 // Implement storage tiering
 export tiered_storage = (
   subscribe "ocsf-events"
@@ -1298,7 +1298,7 @@ class OCSFMLEnricher:
 
 ### 2. Advanced Correlation
 
-```tql
+```sql
 // Cross-event correlation pipeline
 export correlation_pipeline = (
   subscribe "ocsf-events"
@@ -1331,7 +1331,7 @@ export correlation_pipeline = (
 
 ### 3. Automated Response
 
-```tql
+```sql
 // SOAR integration pipeline
 export soar_pipeline = (
   subscribe "ocsf-correlations"
