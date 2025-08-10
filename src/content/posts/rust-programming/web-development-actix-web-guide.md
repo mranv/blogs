@@ -1,0 +1,1414 @@
+---
+author: Anubhav Gain
+pubDatetime: 2025-01-10T14:00:00+05:30
+modDatetime: 2025-01-10T14:00:00+05:30
+title: Building High-Performance Web APIs with Actix-web - Complete Guide
+slug: web-development-actix-web-guide
+featured: true
+draft: false
+tags:
+  - rust
+  - web-development
+  - actix-web
+  - rest-api
+  - backend
+description: Learn to build fast, secure REST APIs with Actix-web, including authentication, database integration, middleware, and production deployment
+---
+
+# Building High-Performance Web APIs with Actix-web: Complete Guide
+
+Actix-web is one of the fastest web frameworks available in any programming language. Built on top of the Actor framework, it leverages Rust's performance and safety features to create highly concurrent web applications. In this comprehensive guide, we'll build a complete REST API from basic routes to production-ready features.
+
+## Table of Contents
+
+1. [Why Actix-web?](#why-actix-web)
+2. [Setting Up Your First Server](#setting-up-your-first-server)
+3. [Routing and Handlers](#routing-and-handlers)
+4. [Request and Response Handling](#request-and-response-handling)
+5. [Middleware and Application State](#middleware-and-application-state)
+6. [Database Integration with SQLx](#database-integration-with-sqlx)
+7. [Authentication and Security](#authentication-and-security)
+8. [Testing Your API](#testing-your-api)
+9. [Production Deployment](#production-deployment)
+10. [Real-World Example: Todo API](#real-world-example-todo-api)
+
+## Why Actix-web?
+
+Actix-web stands out for several reasons:
+
+- **Performance**: Consistently ranks as one of the fastest web frameworks
+- **Type Safety**: Leverages Rust's type system for compile-time guarantees
+- **Async by Default**: Built on top of Tokio for excellent concurrency
+- **Rich Ecosystem**: Extensive middleware and extension support
+- **Production Ready**: Used by many companies in production
+
+### Performance Comparison
+
+```rust
+// Actix-web can handle hundreds of thousands of requests per second
+// with minimal resource usage compared to frameworks in other languages:
+// 
+// Framework       | Requests/sec | Memory Usage
+// ----------------|--------------|-------------
+// Actix-web (Rust)| 500,000+     | ~50MB
+// Express (Node)  | 50,000       | ~200MB
+// Django (Python) | 5,000        | ~300MB
+// Spring (Java)   | 100,000      | ~500MB
+```
+
+## Setting Up Your First Server
+
+Let's start with a basic Actix-web server.
+
+### Dependencies
+
+```toml
+# Cargo.toml
+[package]
+name = "actix-web-tutorial"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web = "4.4"
+tokio = { version = "1.35", features = ["macros", "rt-multi-thread"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+env_logger = "0.10"
+log = "0.4"
+```
+
+### Basic Server
+
+```rust
+use actix_web::{web, App, HttpServer, HttpResponse, Result, middleware::Logger};
+use log::info;
+
+async fn hello() -> Result<HttpResponse> {
+    Ok(HttpResponse::Ok().json("Hello, Actix-web!"))
+}
+
+async fn health() -> Result<HttpResponse> {
+    Ok(HttpResponse::Ok().json(serde_json::json!({
+        "status": "healthy",
+        "timestamp": chrono::Utc::now().to_rfc3339()
+    })))
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    env_logger::init();
+    
+    info!("Starting server at http://localhost:8080");
+    
+    HttpServer::new(|| {
+        App::new()
+            .wrap(Logger::default())
+            .route("/", web::get().to(hello))
+            .route("/health", web::get().to(health))
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
+}
+```
+
+## Routing and Handlers
+
+Actix-web provides flexible routing with support for path parameters, query parameters, and various HTTP methods.
+
+### Basic Routing
+
+```rust
+use actix_web::{web, App, HttpServer, HttpResponse, Result};
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize)]
+struct User {
+    id: u32,
+    name: String,
+    email: String,
+}
+
+// GET /users
+async fn get_users() -> Result<HttpResponse> {
+    let users = vec![
+        User {
+            id: 1,
+            name: "Alice".to_string(),
+            email: "alice@example.com".to_string(),
+        },
+        User {
+            id: 2,
+            name: "Bob".to_string(),
+            email: "bob@example.com".to_string(),
+        },
+    ];
+    
+    Ok(HttpResponse::Ok().json(users))
+}
+
+// GET /users/{id}
+async fn get_user(path: web::Path<u32>) -> Result<HttpResponse> {
+    let user_id = path.into_inner();
+    
+    let user = User {
+        id: user_id,
+        name: format!("User {}", user_id),
+        email: format!("user{}@example.com", user_id),
+    };
+    
+    Ok(HttpResponse::Ok().json(user))
+}
+
+// POST /users
+#[derive(Deserialize)]
+struct CreateUser {
+    name: String,
+    email: String,
+}
+
+async fn create_user(user_data: web::Json<CreateUser>) -> Result<HttpResponse> {
+    let new_user = User {
+        id: 999, // In real app, this would be generated by database
+        name: user_data.name.clone(),
+        email: user_data.email.clone(),
+    };
+    
+    Ok(HttpResponse::Created().json(new_user))
+}
+
+// PUT /users/{id}
+async fn update_user(
+    path: web::Path<u32>,
+    user_data: web::Json<CreateUser>
+) -> Result<HttpResponse> {
+    let user_id = path.into_inner();
+    
+    let updated_user = User {
+        id: user_id,
+        name: user_data.name.clone(),
+        email: user_data.email.clone(),
+    };
+    
+    Ok(HttpResponse::Ok().json(updated_user))
+}
+
+// DELETE /users/{id}
+async fn delete_user(path: web::Path<u32>) -> Result<HttpResponse> {
+    let user_id = path.into_inner();
+    Ok(HttpResponse::Ok().json(serde_json::json!({
+        "message": format!("User {} deleted", user_id)
+    })))
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| {
+        App::new()
+            .route("/users", web::get().to(get_users))
+            .route("/users", web::post().to(create_user))
+            .route("/users/{id}", web::get().to(get_user))
+            .route("/users/{id}", web::put().to(update_user))
+            .route("/users/{id}", web::delete().to(delete_user))
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
+}
+```
+
+### Advanced Routing with Services
+
+```rust
+use actix_web::{web, App, HttpServer, HttpResponse, Result, Scope};
+
+// Group related routes using services
+fn user_service() -> Scope {
+    web::scope("/users")
+        .route("", web::get().to(get_users))
+        .route("", web::post().to(create_user))
+        .route("/{id}", web::get().to(get_user))
+        .route("/{id}", web::put().to(update_user))
+        .route("/{id}", web::delete().to(delete_user))
+        .service(
+            web::scope("/{id}/posts")
+                .route("", web::get().to(get_user_posts))
+                .route("", web::post().to(create_user_post))
+        )
+}
+
+async fn get_user_posts(path: web::Path<u32>) -> Result<HttpResponse> {
+    let user_id = path.into_inner();
+    Ok(HttpResponse::Ok().json(serde_json::json!({
+        "user_id": user_id,
+        "posts": []
+    })))
+}
+
+async fn create_user_post(path: web::Path<u32>) -> Result<HttpResponse> {
+    let user_id = path.into_inner();
+    Ok(HttpResponse::Created().json(serde_json::json!({
+        "user_id": user_id,
+        "message": "Post created"
+    })))
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| {
+        App::new()
+            .service(user_service())
+            .service(
+                web::scope("/api/v1")
+                    .service(user_service())
+            )
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
+}
+```
+
+## Request and Response Handling
+
+### Query Parameters and Headers
+
+```rust
+use actix_web::{web, HttpRequest, HttpResponse, Result};
+use serde::Deserialize;
+
+#[derive(Deserialize)]
+struct SearchQuery {
+    q: String,
+    page: Option<u32>,
+    limit: Option<u32>,
+}
+
+async fn search(
+    query: web::Query<SearchQuery>,
+    req: HttpRequest,
+) -> Result<HttpResponse> {
+    // Access query parameters
+    let search_term = &query.q;
+    let page = query.page.unwrap_or(1);
+    let limit = query.limit.unwrap_or(10);
+    
+    // Access headers
+    let user_agent = req.headers()
+        .get("user-agent")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("unknown");
+    
+    Ok(HttpResponse::Ok().json(serde_json::json!({
+        "query": search_term,
+        "page": page,
+        "limit": limit,
+        "user_agent": user_agent,
+        "results": []
+    })))
+}
+
+// Form handling
+#[derive(Deserialize)]
+struct LoginForm {
+    username: String,
+    password: String,
+}
+
+async fn login(form: web::Form<LoginForm>) -> Result<HttpResponse> {
+    // In a real application, validate credentials against database
+    if form.username == "admin" && form.password == "secret" {
+        Ok(HttpResponse::Ok().json(serde_json::json!({
+            "message": "Login successful",
+            "token": "fake-jwt-token"
+        })))
+    } else {
+        Ok(HttpResponse::Unauthorized().json(serde_json::json!({
+            "error": "Invalid credentials"
+        })))
+    }
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| {
+        App::new()
+            .route("/search", web::get().to(search))
+            .route("/login", web::post().to(login))
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
+}
+```
+
+### File Uploads
+
+```rust
+use actix_multipart::Multipart;
+use actix_web::{web, HttpResponse, Result, Error};
+use futures_util::TryStreamExt as _;
+use std::io::Write;
+
+async fn upload_file(mut payload: Multipart) -> Result<HttpResponse, Error> {
+    let mut files_saved = Vec::new();
+    
+    // Iterate over multipart stream
+    while let Ok(Some(mut field)) = payload.try_next().await {
+        let content_disposition = field.content_disposition();
+        
+        if let Some(filename) = content_disposition.get_filename() {
+            let filepath = format!("./uploads/{}", sanitize_filename::sanitize(&filename));
+            
+            // Create file
+            let mut f = web::block(move || std::fs::File::create(filepath))
+                .await??;
+            
+            // Write file chunks
+            while let Ok(Some(chunk)) = field.try_next().await {
+                f = web::block(move || f.write_all(&chunk).map(|_| f)).await??;
+            }
+            
+            files_saved.push(filename.to_string());
+        }
+    }
+    
+    Ok(HttpResponse::Ok().json(serde_json::json!({
+        "message": "Files uploaded successfully",
+        "files": files_saved
+    })))
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    // Create uploads directory
+    std::fs::create_dir_all("./uploads").ok();
+    
+    HttpServer::new(|| {
+        App::new()
+            .route("/upload", web::post().to(upload_file))
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
+}
+```
+
+## Middleware and Application State
+
+### Custom Middleware
+
+```rust
+use actix_web::{
+    dev::{forward_ready, Service, ServiceRequest, ServiceResponse, Transform},
+    Error, HttpMessage,
+};
+use futures_util::future::LocalBoxFuture;
+use std::future::{ready, Ready};
+use std::rc::Rc;
+
+// Request ID middleware
+pub struct RequestId;
+
+impl<S, B> Transform<S, ServiceRequest> for RequestId
+where
+    S: Service<ServiceRequest, Response = ServiceResponse<B>, Error = Error> + 'static,
+    S::Future: 'static,
+    B: 'static,
+{
+    type Response = ServiceResponse<B>;
+    type Error = Error;
+    type InitError = ();
+    type Transform = RequestIdMiddleware<S>;
+    type Future = Ready<Result<Self::Transform, Self::InitError>>;
+
+    fn new_transform(&self, service: S) -> Self::Future {
+        ready(Ok(RequestIdMiddleware {
+            service: Rc::new(service),
+        }))
+    }
+}
+
+pub struct RequestIdMiddleware<S> {
+    service: Rc<S>,
+}
+
+impl<S, B> Service<ServiceRequest> for RequestIdMiddleware<S>
+where
+    S: Service<ServiceRequest, Response = ServiceResponse<B>, Error = Error> + 'static,
+    S::Future: 'static,
+    B: 'static,
+{
+    type Response = ServiceResponse<B>;
+    type Error = Error;
+    type Future = LocalBoxFuture<'static, Result<Self::Response, Self::Error>>;
+
+    forward_ready!(service);
+
+    fn call(&self, mut req: ServiceRequest) -> Self::Future {
+        let request_id = uuid::Uuid::new_v4().to_string();
+        req.extensions_mut().insert(request_id.clone());
+        
+        let svc = self.service.clone();
+        
+        Box::pin(async move {
+            let mut res = svc.call(req).await?;
+            res.headers_mut().insert(
+                actix_web::http::header::HeaderName::from_static("x-request-id"),
+                actix_web::http::HeaderValue::from_str(&request_id).unwrap(),
+            );
+            Ok(res)
+        })
+    }
+}
+
+// Usage in handler
+async fn get_request_id(req: HttpRequest) -> HttpResponse {
+    let request_id = req.extensions().get::<String>().unwrap();
+    HttpResponse::Ok().json(serde_json::json!({
+        "request_id": request_id
+    }))
+}
+```
+
+### Application State
+
+```rust
+use actix_web::{web, App, HttpServer, HttpResponse, Result};
+use std::sync::atomic::{AtomicUsize, Ordering};
+use std::sync::Arc;
+
+// Application state
+struct AppState {
+    request_count: AtomicUsize,
+    app_name: String,
+}
+
+async fn get_stats(data: web::Data<AppState>) -> Result<HttpResponse> {
+    let count = data.request_count.fetch_add(1, Ordering::Relaxed);
+    
+    Ok(HttpResponse::Ok().json(serde_json::json!({
+        "app_name": data.app_name,
+        "request_count": count + 1
+    })))
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    let app_state = web::Data::new(AppState {
+        request_count: AtomicUsize::new(0),
+        app_name: String::from("My Actix Web App"),
+    });
+    
+    HttpServer::new(move || {
+        App::new()
+            .app_data(app_state.clone())
+            .wrap(RequestId)
+            .route("/stats", web::get().to(get_stats))
+            .route("/request-id", web::get().to(get_request_id))
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
+}
+```
+
+## Database Integration with SQLx
+
+### Setting Up SQLx
+
+```toml
+# Add to Cargo.toml
+[dependencies]
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "chrono", "uuid"] }
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+```
+
+### Database Models and Connection
+
+```rust
+use sqlx::{PgPool, FromRow};
+use serde::{Deserialize, Serialize};
+use uuid::Uuid;
+use chrono::{DateTime, Utc};
+
+#[derive(Debug, Serialize, FromRow)]
+struct User {
+    id: Uuid,
+    username: String,
+    email: String,
+    created_at: DateTime<Utc>,
+}
+
+#[derive(Debug, Deserialize)]
+struct CreateUser {
+    username: String,
+    email: String,
+}
+
+// Database operations
+impl User {
+    async fn create(pool: &PgPool, user_data: CreateUser) -> Result<User, sqlx::Error> {
+        let user = sqlx::query_as!(
+            User,
+            r#"
+            INSERT INTO users (id, username, email, created_at)
+            VALUES ($1, $2, $3, $4)
+            RETURNING id, username, email, created_at
+            "#,
+            Uuid::new_v4(),
+            user_data.username,
+            user_data.email,
+            Utc::now()
+        )
+        .fetch_one(pool)
+        .await?;
+        
+        Ok(user)
+    }
+    
+    async fn find_by_id(pool: &PgPool, user_id: Uuid) -> Result<Option<User>, sqlx::Error> {
+        let user = sqlx::query_as!(
+            User,
+            "SELECT id, username, email, created_at FROM users WHERE id = $1",
+            user_id
+        )
+        .fetch_optional(pool)
+        .await?;
+        
+        Ok(user)
+    }
+    
+    async fn list_all(pool: &PgPool) -> Result<Vec<User>, sqlx::Error> {
+        let users = sqlx::query_as!(
+            User,
+            "SELECT id, username, email, created_at FROM users ORDER BY created_at DESC"
+        )
+        .fetch_all(pool)
+        .await?;
+        
+        Ok(users)
+    }
+    
+    async fn delete(pool: &PgPool, user_id: Uuid) -> Result<bool, sqlx::Error> {
+        let result = sqlx::query!("DELETE FROM users WHERE id = $1", user_id)
+            .execute(pool)
+            .await?;
+        
+        Ok(result.rows_affected() > 0)
+    }
+}
+
+// Handler functions
+async fn create_user_handler(
+    pool: web::Data<PgPool>,
+    user_data: web::Json<CreateUser>,
+) -> Result<HttpResponse> {
+    match User::create(&pool, user_data.into_inner()).await {
+        Ok(user) => Ok(HttpResponse::Created().json(user)),
+        Err(e) => Ok(HttpResponse::BadRequest().json(serde_json::json!({
+            "error": format!("Failed to create user: {}", e)
+        }))),
+    }
+}
+
+async fn get_user_handler(
+    pool: web::Data<PgPool>,
+    path: web::Path<Uuid>,
+) -> Result<HttpResponse> {
+    let user_id = path.into_inner();
+    
+    match User::find_by_id(&pool, user_id).await {
+        Ok(Some(user)) => Ok(HttpResponse::Ok().json(user)),
+        Ok(None) => Ok(HttpResponse::NotFound().json(serde_json::json!({
+            "error": "User not found"
+        }))),
+        Err(e) => Ok(HttpResponse::InternalServerError().json(serde_json::json!({
+            "error": format!("Database error: {}", e)
+        }))),
+    }
+}
+
+async fn list_users_handler(pool: web::Data<PgPool>) -> Result<HttpResponse> {
+    match User::list_all(&pool).await {
+        Ok(users) => Ok(HttpResponse::Ok().json(users)),
+        Err(e) => Ok(HttpResponse::InternalServerError().json(serde_json::json!({
+            "error": format!("Failed to fetch users: {}", e)
+        }))),
+    }
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    // Database connection
+    let database_url = std::env::var("DATABASE_URL")
+        .expect("DATABASE_URL must be set");
+    
+    let pool = PgPool::connect(&database_url)
+        .await
+        .expect("Failed to connect to database");
+    
+    // Run migrations
+    sqlx::migrate!("./migrations")
+        .run(&pool)
+        .await
+        .expect("Failed to run migrations");
+    
+    HttpServer::new(move || {
+        App::new()
+            .app_data(web::Data::new(pool.clone()))
+            .service(
+                web::scope("/api/v1/users")
+                    .route("", web::get().to(list_users_handler))
+                    .route("", web::post().to(create_user_handler))
+                    .route("/{id}", web::get().to(get_user_handler))
+            )
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
+}
+```
+
+## Authentication and Security
+
+### JWT Authentication
+
+```rust
+use actix_web::{web, HttpRequest, HttpResponse, Result, Error};
+use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
+use serde::{Deserialize, Serialize};
+use chrono::{Duration, Utc};
+
+#[derive(Debug, Serialize, Deserialize)]
+struct Claims {
+    sub: String, // Subject (user ID)
+    exp: usize,  // Expiration time
+    iat: usize,  // Issued at
+}
+
+#[derive(Deserialize)]
+struct LoginRequest {
+    username: String,
+    password: String,
+}
+
+#[derive(Serialize)]
+struct LoginResponse {
+    token: String,
+    expires_in: i64,
+}
+
+const JWT_SECRET: &[u8] = b"your-secret-key"; // Use environment variable in production
+
+// Create JWT token
+fn create_token(user_id: &str) -> Result<String, jsonwebtoken::errors::Error> {
+    let expiration = Utc::now()
+        .checked_add_signed(Duration::hours(24))
+        .expect("valid timestamp")
+        .timestamp();
+    
+    let claims = Claims {
+        sub: user_id.to_owned(),
+        exp: expiration as usize,
+        iat: Utc::now().timestamp() as usize,
+    };
+    
+    encode(&Header::default(), &claims, &EncodingKey::from_secret(JWT_SECRET))
+}
+
+// Verify JWT token
+fn verify_token(token: &str) -> Result<Claims, jsonwebtoken::errors::Error> {
+    decode::<Claims>(
+        token,
+        &DecodingKey::from_secret(JWT_SECRET),
+        &Validation::default(),
+    ).map(|data| data.claims)
+}
+
+// Authentication middleware
+async fn auth_middleware(req: HttpRequest) -> Result<String, Error> {
+    let auth_header = req.headers()
+        .get("Authorization")
+        .and_then(|h| h.to_str().ok())
+        .ok_or_else(|| actix_web::error::ErrorUnauthorized("Missing Authorization header"))?;
+    
+    if !auth_header.starts_with("Bearer ") {
+        return Err(actix_web::error::ErrorUnauthorized("Invalid token format"));
+    }
+    
+    let token = &auth_header[7..];
+    let claims = verify_token(token)
+        .map_err(|_| actix_web::error::ErrorUnauthorized("Invalid token"))?;
+    
+    Ok(claims.sub)
+}
+
+// Handlers
+async fn login(credentials: web::Json<LoginRequest>) -> Result<HttpResponse> {
+    // In real application, verify credentials against database
+    if credentials.username == "admin" && credentials.password == "password" {
+        let token = create_token(&credentials.username)
+            .map_err(|_| actix_web::error::ErrorInternalServerError("Failed to create token"))?;
+        
+        let response = LoginResponse {
+            token,
+            expires_in: 24 * 3600, // 24 hours
+        };
+        
+        Ok(HttpResponse::Ok().json(response))
+    } else {
+        Ok(HttpResponse::Unauthorized().json(serde_json::json!({
+            "error": "Invalid credentials"
+        })))
+    }
+}
+
+async fn protected_route(req: HttpRequest) -> Result<HttpResponse> {
+    let user_id = auth_middleware(req).await?;
+    
+    Ok(HttpResponse::Ok().json(serde_json::json!({
+        "message": "Access granted",
+        "user_id": user_id
+    })))
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| {
+        App::new()
+            .route("/login", web::post().to(login))
+            .route("/protected", web::get().to(protected_route))
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
+}
+```
+
+### CORS and Security Headers
+
+```rust
+use actix_cors::Cors;
+use actix_web::http::header;
+use actix_web::{web, App, HttpServer, HttpResponse, Result, middleware::DefaultHeaders};
+
+async fn api_handler() -> Result<HttpResponse> {
+    Ok(HttpResponse::Ok().json(serde_json::json!({
+        "message": "API response with CORS enabled"
+    })))
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| {
+        let cors = Cors::default()
+            .allowed_origin("http://localhost:3000")
+            .allowed_origin("https://mydomain.com")
+            .allowed_methods(vec!["GET", "POST", "PUT", "DELETE"])
+            .allowed_headers(vec![header::AUTHORIZATION, header::ACCEPT])
+            .allowed_header(header::CONTENT_TYPE)
+            .max_age(3600);
+        
+        App::new()
+            .wrap(cors)
+            .wrap(DefaultHeaders::new()
+                .add(("X-Content-Type-Options", "nosniff"))
+                .add(("X-Frame-Options", "DENY"))
+                .add(("X-XSS-Protection", "1; mode=block"))
+                .add(("Strict-Transport-Security", "max-age=31536000; includeSubDomains"))
+            )
+            .route("/api/data", web::get().to(api_handler))
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
+}
+```
+
+## Testing Your API
+
+### Unit Tests
+
+```rust
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use actix_web::{test, web, App};
+
+    #[actix_web::test]
+    async fn test_hello_endpoint() {
+        let app = test::init_service(
+            App::new().route("/hello", web::get().to(hello))
+        ).await;
+        
+        let req = test::TestRequest::with_uri("/hello").to_request();
+        let resp = test::call_service(&app, req).await;
+        
+        assert!(resp.status().is_success());
+        
+        let body = test::read_body(resp).await;
+        assert_eq!(body, "\"Hello, Actix-web!\"");
+    }
+    
+    #[actix_web::test]
+    async fn test_create_user() {
+        let app = test::init_service(
+            App::new().route("/users", web::post().to(create_user))
+        ).await;
+        
+        let new_user = CreateUser {
+            name: "Test User".to_string(),
+            email: "test@example.com".to_string(),
+        };
+        
+        let req = test::TestRequest::post()
+            .uri("/users")
+            .set_json(&new_user)
+            .to_request();
+        
+        let resp = test::call_service(&app, req).await;
+        assert_eq!(resp.status(), 201);
+        
+        let user: User = test::read_body_json(resp).await;
+        assert_eq!(user.name, "Test User");
+        assert_eq!(user.email, "test@example.com");
+    }
+}
+```
+
+### Integration Tests
+
+```rust
+// tests/integration_test.rs
+use actix_web::{test, web, App};
+use serde_json::Value;
+
+#[actix_web::test]
+async fn test_full_user_workflow() {
+    let app = test::init_service(
+        App::new()
+            .route("/users", web::post().to(create_user))
+            .route("/users/{id}", web::get().to(get_user))
+            .route("/users/{id}", web::delete().to(delete_user))
+    ).await;
+    
+    // Create user
+    let new_user = serde_json::json!({
+        "name": "Integration Test User",
+        "email": "integration@test.com"
+    });
+    
+    let req = test::TestRequest::post()
+        .uri("/users")
+        .set_json(&new_user)
+        .to_request();
+    
+    let resp = test::call_service(&app, req).await;
+    assert_eq!(resp.status(), 201);
+    
+    let created_user: Value = test::read_body_json(resp).await;
+    let user_id = created_user["id"].as_u64().unwrap();
+    
+    // Get user
+    let req = test::TestRequest::get()
+        .uri(&format!("/users/{}", user_id))
+        .to_request();
+    
+    let resp = test::call_service(&app, req).await;
+    assert!(resp.status().is_success());
+    
+    // Delete user
+    let req = test::TestRequest::delete()
+        .uri(&format!("/users/{}", user_id))
+        .to_request();
+    
+    let resp = test::call_service(&app, req).await;
+    assert!(resp.status().is_success());
+}
+```
+
+## Production Deployment
+
+### Docker Configuration
+
+```dockerfile
+# Dockerfile
+FROM rust:1.75 as builder
+
+WORKDIR /app
+COPY Cargo.toml Cargo.lock ./
+RUN mkdir src && echo "fn main() {}" > src/main.rs
+RUN cargo build --release
+RUN rm src/main.rs
+
+COPY src ./src
+RUN cargo build --release
+
+FROM debian:bookworm-slim
+
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY --from=builder /app/target/release/actix-web-tutorial .
+
+EXPOSE 8080
+
+CMD ["./actix-web-tutorial"]
+```
+
+### Environment Configuration
+
+```rust
+use serde::Deserialize;
+
+#[derive(Debug, Deserialize)]
+struct Config {
+    host: String,
+    port: u16,
+    database_url: String,
+    jwt_secret: String,
+    log_level: String,
+}
+
+impl Config {
+    fn from_env() -> Result<Self, envy::Error> {
+        envy::from_env::<Config>()
+    }
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    let config = Config::from_env().expect("Failed to load configuration");
+    
+    env_logger::Builder::from_env(
+        env_logger::Env::default().default_filter_or(&config.log_level)
+    ).init();
+    
+    let database_pool = PgPool::connect(&config.database_url)
+        .await
+        .expect("Failed to connect to database");
+    
+    log::info!("Starting server at {}:{}", config.host, config.port);
+    
+    HttpServer::new(move || {
+        App::new()
+            .app_data(web::Data::new(database_pool.clone()))
+            .wrap(Logger::default())
+            // ... routes
+    })
+    .bind(format!("{}:{}", config.host, config.port))?
+    .run()
+    .await
+}
+```
+
+### Docker Compose for Development
+
+```yaml
+# docker-compose.yml
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8080
+      - DATABASE_URL=postgres://user:password@db:5432/myapp
+      - JWT_SECRET=your-secret-key
+      - LOG_LEVEL=info
+    depends_on:
+      - db
+    
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=myapp
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+```
+
+## Real-World Example: Todo API
+
+Let's build a complete Todo API with all the features we've covered.
+
+```rust
+use actix_web::{web, App, HttpServer, HttpResponse, Result, middleware::Logger};
+use serde::{Deserialize, Serialize};
+use sqlx::{PgPool, FromRow};
+use uuid::Uuid;
+use chrono::{DateTime, Utc};
+use std::collections::HashMap;
+
+// Models
+#[derive(Debug, Serialize, FromRow)]
+struct Todo {
+    id: Uuid,
+    title: String,
+    description: Option<String>,
+    completed: bool,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+    user_id: Uuid,
+}
+
+#[derive(Debug, Deserialize)]
+struct CreateTodo {
+    title: String,
+    description: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+struct UpdateTodo {
+    title: Option<String>,
+    description: Option<String>,
+    completed: Option<bool>,
+}
+
+#[derive(Debug, Deserialize)]
+struct TodoQuery {
+    completed: Option<bool>,
+    page: Option<u32>,
+    limit: Option<u32>,
+}
+
+// Database operations
+impl Todo {
+    async fn create(
+        pool: &PgPool,
+        user_id: Uuid,
+        todo_data: CreateTodo,
+    ) -> Result<Todo, sqlx::Error> {
+        let todo = sqlx::query_as!(
+            Todo,
+            r#"
+            INSERT INTO todos (id, title, description, completed, created_at, updated_at, user_id)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            RETURNING id, title, description, completed, created_at, updated_at, user_id
+            "#,
+            Uuid::new_v4(),
+            todo_data.title,
+            todo_data.description,
+            false,
+            Utc::now(),
+            Utc::now(),
+            user_id
+        )
+        .fetch_one(pool)
+        .await?;
+        
+        Ok(todo)
+    }
+    
+    async fn find_by_user(
+        pool: &PgPool,
+        user_id: Uuid,
+        query: &TodoQuery,
+    ) -> Result<Vec<Todo>, sqlx::Error> {
+        let page = query.page.unwrap_or(1);
+        let limit = query.limit.unwrap_or(10).min(100) as i64;
+        let offset = ((page - 1) * limit as u32) as i64;
+        
+        let mut sql = "SELECT id, title, description, completed, created_at, updated_at, user_id FROM todos WHERE user_id = $1".to_string();
+        let mut params = vec![user_id.to_string()];
+        
+        if let Some(completed) = query.completed {
+            sql.push_str(&format!(" AND completed = ${}", params.len() + 1));
+            params.push(completed.to_string());
+        }
+        
+        sql.push_str(" ORDER BY created_at DESC");
+        sql.push_str(&format!(" LIMIT ${} OFFSET ${}", params.len() + 1, params.len() + 2));
+        params.push(limit.to_string());
+        params.push(offset.to_string());
+        
+        // For simplicity, using a basic query - in production, use a proper query builder
+        let todos = sqlx::query_as!(
+            Todo,
+            "SELECT id, title, description, completed, created_at, updated_at, user_id 
+             FROM todos 
+             WHERE user_id = $1 
+             ORDER BY created_at DESC 
+             LIMIT $2 OFFSET $3",
+            user_id,
+            limit,
+            offset
+        )
+        .fetch_all(pool)
+        .await?;
+        
+        Ok(todos)
+    }
+    
+    async fn find_by_id(
+        pool: &PgPool,
+        user_id: Uuid,
+        todo_id: Uuid,
+    ) -> Result<Option<Todo>, sqlx::Error> {
+        let todo = sqlx::query_as!(
+            Todo,
+            "SELECT id, title, description, completed, created_at, updated_at, user_id 
+             FROM todos 
+             WHERE id = $1 AND user_id = $2",
+            todo_id,
+            user_id
+        )
+        .fetch_optional(pool)
+        .await?;
+        
+        Ok(todo)
+    }
+    
+    async fn update(
+        pool: &PgPool,
+        user_id: Uuid,
+        todo_id: Uuid,
+        update_data: UpdateTodo,
+    ) -> Result<Option<Todo>, sqlx::Error> {
+        // Build dynamic update query
+        let mut fields = Vec::new();
+        let mut values: Vec<String> = vec![user_id.to_string(), todo_id.to_string()];
+        
+        if let Some(title) = &update_data.title {
+            fields.push(format!("title = ${}", values.len() + 1));
+            values.push(title.clone());
+        }
+        
+        if let Some(description) = &update_data.description {
+            fields.push(format!("description = ${}", values.len() + 1));
+            values.push(description.clone());
+        }
+        
+        if let Some(completed) = update_data.completed {
+            fields.push(format!("completed = ${}", values.len() + 1));
+            values.push(completed.to_string());
+        }
+        
+        if fields.is_empty() {
+            // If no fields to update, just return the existing todo
+            return Self::find_by_id(pool, user_id, todo_id).await;
+        }
+        
+        fields.push(format!("updated_at = ${}", values.len() + 1));
+        values.push(Utc::now().to_rfc3339());
+        
+        // For simplicity, using a basic update
+        let todo = sqlx::query_as!(
+            Todo,
+            "UPDATE todos 
+             SET title = COALESCE($3, title),
+                 description = COALESCE($4, description),
+                 completed = COALESCE($5, completed),
+                 updated_at = $6
+             WHERE user_id = $1 AND id = $2
+             RETURNING id, title, description, completed, created_at, updated_at, user_id",
+            user_id,
+            todo_id,
+            update_data.title,
+            update_data.description,
+            update_data.completed,
+            Utc::now()
+        )
+        .fetch_optional(pool)
+        .await?;
+        
+        Ok(todo)
+    }
+    
+    async fn delete(
+        pool: &PgPool,
+        user_id: Uuid,
+        todo_id: Uuid,
+    ) -> Result<bool, sqlx::Error> {
+        let result = sqlx::query!(
+            "DELETE FROM todos WHERE id = $1 AND user_id = $2",
+            todo_id,
+            user_id
+        )
+        .execute(pool)
+        .await?;
+        
+        Ok(result.rows_affected() > 0)
+    }
+}
+
+// Handlers
+async fn create_todo(
+    pool: web::Data<PgPool>,
+    req: HttpRequest,
+    todo_data: web::Json<CreateTodo>,
+) -> Result<HttpResponse> {
+    let user_id = get_user_id_from_token(&req)?;
+    
+    match Todo::create(&pool, user_id, todo_data.into_inner()).await {
+        Ok(todo) => Ok(HttpResponse::Created().json(todo)),
+        Err(e) => {
+            log::error!("Failed to create todo: {}", e);
+            Ok(HttpResponse::BadRequest().json(serde_json::json!({
+                "error": "Failed to create todo"
+            })))
+        }
+    }
+}
+
+async fn list_todos(
+    pool: web::Data<PgPool>,
+    req: HttpRequest,
+    query: web::Query<TodoQuery>,
+) -> Result<HttpResponse> {
+    let user_id = get_user_id_from_token(&req)?;
+    
+    match Todo::find_by_user(&pool, user_id, &query).await {
+        Ok(todos) => Ok(HttpResponse::Ok().json(todos)),
+        Err(e) => {
+            log::error!("Failed to fetch todos: {}", e);
+            Ok(HttpResponse::InternalServerError().json(serde_json::json!({
+                "error": "Failed to fetch todos"
+            })))
+        }
+    }
+}
+
+async fn get_todo(
+    pool: web::Data<PgPool>,
+    req: HttpRequest,
+    path: web::Path<Uuid>,
+) -> Result<HttpResponse> {
+    let user_id = get_user_id_from_token(&req)?;
+    let todo_id = path.into_inner();
+    
+    match Todo::find_by_id(&pool, user_id, todo_id).await {
+        Ok(Some(todo)) => Ok(HttpResponse::Ok().json(todo)),
+        Ok(None) => Ok(HttpResponse::NotFound().json(serde_json::json!({
+            "error": "Todo not found"
+        }))),
+        Err(e) => {
+            log::error!("Failed to fetch todo: {}", e);
+            Ok(HttpResponse::InternalServerError().json(serde_json::json!({
+                "error": "Failed to fetch todo"
+            })))
+        }
+    }
+}
+
+async fn update_todo(
+    pool: web::Data<PgPool>,
+    req: HttpRequest,
+    path: web::Path<Uuid>,
+    update_data: web::Json<UpdateTodo>,
+) -> Result<HttpResponse> {
+    let user_id = get_user_id_from_token(&req)?;
+    let todo_id = path.into_inner();
+    
+    match Todo::update(&pool, user_id, todo_id, update_data.into_inner()).await {
+        Ok(Some(todo)) => Ok(HttpResponse::Ok().json(todo)),
+        Ok(None) => Ok(HttpResponse::NotFound().json(serde_json::json!({
+            "error": "Todo not found"
+        }))),
+        Err(e) => {
+            log::error!("Failed to update todo: {}", e);
+            Ok(HttpResponse::BadRequest().json(serde_json::json!({
+                "error": "Failed to update todo"
+            })))
+        }
+    }
+}
+
+async fn delete_todo(
+    pool: web::Data<PgPool>,
+    req: HttpRequest,
+    path: web::Path<Uuid>,
+) -> Result<HttpResponse> {
+    let user_id = get_user_id_from_token(&req)?;
+    let todo_id = path.into_inner();
+    
+    match Todo::delete(&pool, user_id, todo_id).await {
+        Ok(true) => Ok(HttpResponse::Ok().json(serde_json::json!({
+            "message": "Todo deleted successfully"
+        }))),
+        Ok(false) => Ok(HttpResponse::NotFound().json(serde_json::json!({
+            "error": "Todo not found"
+        }))),
+        Err(e) => {
+            log::error!("Failed to delete todo: {}", e);
+            Ok(HttpResponse::InternalServerError().json(serde_json::json!({
+                "error": "Failed to delete todo"
+            })))
+        }
+    }
+}
+
+// Helper function to extract user ID from JWT token
+fn get_user_id_from_token(req: &HttpRequest) -> Result<Uuid, actix_web::Error> {
+    // Implementation would verify JWT and extract user ID
+    // For this example, we'll use a dummy user ID
+    Ok(Uuid::new_v4())
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    env_logger::init();
+    
+    let database_url = std::env::var("DATABASE_URL")
+        .unwrap_or_else(|_| "postgres://localhost/todoapp".to_string());
+    
+    let pool = PgPool::connect(&database_url)
+        .await
+        .expect("Failed to connect to database");
+    
+    log::info!("Starting Todo API server at http://localhost:8080");
+    
+    HttpServer::new(move || {
+        App::new()
+            .app_data(web::Data::new(pool.clone()))
+            .wrap(Logger::default())
+            .service(
+                web::scope("/api/v1/todos")
+                    .route("", web::get().to(list_todos))
+                    .route("", web::post().to(create_todo))
+                    .route("/{id}", web::get().to(get_todo))
+                    .route("/{id}", web::put().to(update_todo))
+                    .route("/{id}", web::delete().to(delete_todo))
+            )
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
+}
+```
+
+## Conclusion
+
+Actix-web provides a powerful foundation for building high-performance web APIs in Rust. With its rich ecosystem, excellent performance, and type safety, it's an excellent choice for modern web development.
+
+Key takeaways:
+
+- **Performance**: Actix-web is one of the fastest web frameworks available
+- **Safety**: Rust's type system prevents many common web security issues
+- **Ecosystem**: Rich middleware and extension support
+- **Async**: Built-in support for asynchronous operations
+- **Testing**: Excellent testing support with built-in test utilities
+- **Production Ready**: Used successfully in production by many companies
+
+## Next Steps
+
+- Explore [Actix-web documentation](https://actix.rs/)
+- Learn about [SQLx](https://github.com/launchbadge/sqlx) for database operations
+- Check out [Diesel](http://diesel.rs/) as an alternative ORM
+- Study production deployment with [Docker](https://www.docker.com/) and [Kubernetes](https://kubernetes.io/)
+
+Start building fast, safe web APIs with Actix-web today!
