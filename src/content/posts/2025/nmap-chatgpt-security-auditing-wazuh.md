@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-07T10:00:00+05:30
-modDatetime: 2025-10-07T10:00:00+05:30
+pubDatetime: 2025-08-13T13:15:00+05:30
+modDatetime: 2025-08-14T13:15:00+05:30
 title: "Nmap and ChatGPT Security Auditing with Wazuh"
 slug: nmap-chatgpt-security-auditing-wazuh
 featured: true

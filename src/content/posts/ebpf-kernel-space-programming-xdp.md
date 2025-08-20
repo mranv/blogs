@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-22T10:00:00+05:30
-modDatetime: 2025-10-22T10:00:00+05:30
+pubDatetime: 2025-08-15T18:15:00+05:30
+modDatetime: 2025-08-22T18:15:00+05:30
 title: "How to Run Code in Kernel Space? eBPF! Complete Guide with XDP Packet Capture"
 slug: ebpf-kernel-space-programming-xdp
 featured: true

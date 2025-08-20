@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-09-18T14:00:00+05:30
-modDatetime: 2025-09-18T14:00:00+05:30
+pubDatetime: 2025-08-12T10:30:00+05:30
+modDatetime: 2025-08-20T10:30:00+05:30
 title: "Netflix eBPF Infrastructure Observability: Detecting Noisy Neighbors at Scale"
 slug: netflix-ebpf-infrastructure-observability-noisy-neighbors
 featured: true

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-25T15:00:00+05:30
-modDatetime: 2025-10-25T15:00:00+05:30
+pubDatetime: 2025-08-17T11:15:00+05:30
+modDatetime: 2025-08-26T11:15:00+05:30
 title: "eBPF for Security: Evolution or Revolution?"
 slug: ebpf-security-evolution-or-revolution
 featured: true

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-09-16T12:00:00+05:30
-modDatetime: 2025-09-16T12:00:00+05:30
+pubDatetime: 2025-08-12T09:00:00+05:30
+modDatetime: 2025-08-24T09:00:00+05:30
 title: "Introducing The eBPF Agent: A No-Code Approach for Cloud-Native Observability"
 slug: broadcom-ebpf-agent-cloud-native-observability
 featured: true

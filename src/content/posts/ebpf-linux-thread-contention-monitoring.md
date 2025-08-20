@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-25T12:00:00+05:30
-modDatetime: 2025-10-25T12:00:00+05:30
+pubDatetime: 2025-08-16T09:30:00+05:30
+modDatetime: 2025-08-28T09:30:00+05:30
 title: "How to Use eBPF for Monitoring Linux Thread Contention"
 slug: ebpf-linux-thread-contention-monitoring
 featured: true

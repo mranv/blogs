@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-25T11:00:00+05:30
-modDatetime: 2025-10-25T11:00:00+05:30
+pubDatetime: 2025-08-16T08:15:00+05:30
+modDatetime: 2025-08-22T08:15:00+05:30
 title: "Unit Testing eBPF Programs: A Comprehensive Guide with XDP Examples"
 slug: unit-testing-ebpf-programs
 featured: true

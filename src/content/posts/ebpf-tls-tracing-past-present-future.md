@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-25T17:00:00+05:30
-modDatetime: 2025-10-25T17:00:00+05:30
+pubDatetime: 2025-08-18T13:30:00+05:30
+modDatetime: 2025-08-31T13:30:00+05:30
 title: "eBPF TLS Tracing: The Past, Present and Future of Encrypted Traffic Observability"
 slug: ebpf-tls-tracing-past-present-future
 featured: true

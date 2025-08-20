@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-25T10:00:00+05:30
-modDatetime: 2025-10-25T10:00:00+05:30
+pubDatetime: 2025-08-16T19:15:00+05:30
+modDatetime: 2025-08-23T19:15:00+05:30
 title: "A Minimal Scheduler with eBPF, sched_ext and C"
 slug: minimal-scheduler-ebpf-sched-ext
 featured: true

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-25T18:00:00+05:30
-modDatetime: 2025-10-25T18:00:00+05:30
+pubDatetime: 2025-08-18T14:15:00+05:30
+modDatetime: 2025-08-21T14:15:00+05:30
 title: "eBPF: Revolutionizing Observability for DevOps and SRE Teams"
 slug: ebpf-revolutionizing-observability-devops-sre
 featured: true

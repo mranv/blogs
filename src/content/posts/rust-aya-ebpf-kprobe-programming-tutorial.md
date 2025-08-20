@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-09-14T17:00:00+05:30
-modDatetime: 2025-09-14T17:00:00+05:30
+pubDatetime: 2025-08-12T08:30:00+05:30
+modDatetime: 2025-08-25T08:30:00+05:30
 title: "Writing eBPF Kprobe Programs with Rust Aya: Complete Developer Guide"
 slug: rust-aya-ebpf-kprobe-programming-tutorial
 featured: true

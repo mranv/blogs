@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-09T10:00:00+05:30
-modDatetime: 2025-10-09T10:00:00+05:30
+pubDatetime: 2025-08-14T15:15:00+05:30
+modDatetime: 2025-08-17T15:15:00+05:30
 title: "Enhancing macOS Protection with Wazuh"
 slug: enhancing-macos-protection-wazuh
 featured: true

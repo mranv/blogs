@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-08T10:00:00+05:30
-modDatetime: 2025-10-08T10:00:00+05:30
+pubDatetime: 2025-08-14T14:30:00+05:30
+modDatetime: 2025-08-22T14:30:00+05:30
 title: "Monitoring macOS Resources with Wazuh"
 slug: monitoring-macos-resources-wazuh
 featured: true

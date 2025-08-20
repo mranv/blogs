@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-11T10:00:00+05:30
-modDatetime: 2025-10-11T10:00:00+05:30
+pubDatetime: 2025-08-15T17:45:00+05:30
+modDatetime: 2025-08-23T17:45:00+05:30
 title: "Detecting Illegitimate Crypto Miners on Linux Endpoints with Wazuh"
 slug: detecting-illegitimate-crypto-miners-linux-wazuh
 featured: true

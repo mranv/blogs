@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-25T14:00:00+05:30
-modDatetime: 2025-10-25T14:00:00+05:30
+pubDatetime: 2025-08-17T10:45:00+05:30
+modDatetime: 2025-08-22T10:45:00+05:30
 title: "Tunneling over QUIC: Modern Network Protocol Implementation in Go"
 slug: quic-tunneling-go-implementation
 featured: true

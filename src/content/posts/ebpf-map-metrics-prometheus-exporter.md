@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-25T16:00:00+05:30
-modDatetime: 2025-10-25T16:00:00+05:30
+pubDatetime: 2025-08-18T12:30:00+05:30
+modDatetime: 2025-09-01T12:30:00+05:30
 title: "eBPF Map Metrics Prometheus Exporter: Advanced Observability with eBPF Iterators"
 slug: ebpf-map-metrics-prometheus-exporter
 featured: true

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-10-05T10:00:00+05:30
-modDatetime: 2025-10-05T10:00:00+05:30
+pubDatetime: 2025-08-13T11:45:00+05:30
+modDatetime: 2025-08-14T11:45:00+05:30
 title: "Extending Wazuh Detection with OpenSearch Integration"
 slug: extending-wazuh-detection-opensearch-integration
 featured: true
