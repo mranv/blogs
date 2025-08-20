@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-19T09:00:00+05:30
-modDatetime: 2023-03-30T09:00:00+05:30
+pubDatetime: 2024-03-18T19:15:00+05:30
+modDatetime: 2024-03-26T19:15:00+05:30
 title: "GraphQL and Modern APIs"
 slug: 90days-78-graphql-and-modern-apis
 featured: false

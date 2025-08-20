@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-29T09:45:00+05:30
-modDatetime: 2023-02-22T09:45:00+05:30
+pubDatetime: 2024-01-29T16:00:00+05:30
+modDatetime: 2024-02-19T16:00:00+05:30
 title: "IaC Testing and Validation"
 slug: 90days-29-iac-testing-and-validation
 featured: false

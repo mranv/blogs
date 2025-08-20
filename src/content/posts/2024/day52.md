@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-21T08:30:00+05:30
-modDatetime: 2023-03-20T08:30:00+05:30
+pubDatetime: 2024-02-21T08:15:00+05:30
+modDatetime: 2024-03-12T08:15:00+05:30
 title: "Prometheus Setup and Configuration"
 slug: 90days-52-prometheus-setup-and-configuration
 featured: false

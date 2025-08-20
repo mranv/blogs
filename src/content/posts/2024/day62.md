@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-03T20:00:00+05:30
-modDatetime: 2023-03-15T20:00:00+05:30
+pubDatetime: 2024-03-02T10:15:00+05:30
+modDatetime: 2024-03-30T10:15:00+05:30
 title: "Security Scanning in CI/CD Pipelines"
 slug: 90days-62-security-scanning-in-cicd-pipelines
 featured: false

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-01T20:15:00+05:30
-modDatetime: 2023-02-27T20:15:00+05:30
+pubDatetime: 2024-02-01T08:30:00+05:30
+modDatetime: 2024-02-23T08:30:00+05:30
 title: "Docker Images and Dockerfile Best Practices"
 slug: 90days-32-docker-images-and-dockerfile-best-practices
 featured: false

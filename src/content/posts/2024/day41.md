@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-10T09:30:00+05:30
-modDatetime: 2023-02-28T09:30:00+05:30
+pubDatetime: 2024-02-10T19:00:00+05:30
+modDatetime: 2024-02-26T19:00:00+05:30
 title: "Cloud Computing Fundamentals"
 slug: 90days-41-cloud-computing-fundamentals
 featured: false

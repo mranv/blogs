@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-09T19:00:00+05:30
-modDatetime: 2023-02-21T19:00:00+05:30
+pubDatetime: 2024-02-09T08:15:00+05:30
+modDatetime: 2024-03-05T08:15:00+05:30
 title: "Kubernetes Security and RBAC"
 slug: 90days-40-kubernetes-security-and-rbac
 featured: true

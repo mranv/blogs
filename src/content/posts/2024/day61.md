@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-02T08:00:00+05:30
-modDatetime: 2023-03-20T08:00:00+05:30
+pubDatetime: 2024-03-01T09:15:00+05:30
+modDatetime: 2024-03-17T09:15:00+05:30
 title: "DevSecOps Introduction and Principles"
 slug: 90days-61-devsecops-introduction-and-principles
 featured: false

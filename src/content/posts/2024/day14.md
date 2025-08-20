@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-14T15:30:00+05:30
-modDatetime: 2023-01-23T15:30:00+05:30
+pubDatetime: 2024-01-14T10:30:00+05:30
+modDatetime: 2024-01-24T10:30:00+05:30
 title: "Database Management in DevOps"
 slug: 90days-14-database-management-in-devops
 featured: false

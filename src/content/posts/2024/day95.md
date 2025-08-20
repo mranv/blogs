@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-04-05T15:15:00+05:30
-modDatetime: 2023-04-29T15:15:00+05:30
+pubDatetime: 2024-04-04T14:30:00+05:30
+modDatetime: 2024-05-04T14:30:00+05:30
 title: "DevOps Success Stories"
 slug: 90days-95-devops-success-stories
 featured: false

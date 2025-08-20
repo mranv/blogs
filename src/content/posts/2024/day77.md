@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-18T16:00:00+05:30
-modDatetime: 2023-04-08T16:00:00+05:30
+pubDatetime: 2024-03-17T10:45:00+05:30
+modDatetime: 2024-04-05T10:45:00+05:30
 title: "Service Mesh with Istio"
 slug: 90days-77-service-mesh-with-istio
 featured: false

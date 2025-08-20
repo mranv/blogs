@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-10T09:30:00+05:30
-modDatetime: 2023-03-17T09:30:00+05:30
+pubDatetime: 2024-03-09T20:30:00+05:30
+modDatetime: 2024-03-28T20:30:00+05:30
 title: "Zero Trust Architecture"
 slug: 90days-69-zero-trust-architecture
 featured: false

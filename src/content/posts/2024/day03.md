@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-03T19:15:00+05:30
-modDatetime: 2023-01-11T19:15:00+05:30
+pubDatetime: 2024-01-03T16:45:00+05:30
+modDatetime: 2024-01-18T16:45:00+05:30
 title: "DevOps Lifecycle and Continuous Everything"
 slug: 90days-03-devops-lifecycle-and-continuous-everything
 featured: false

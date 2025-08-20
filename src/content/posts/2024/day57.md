@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-26T10:00:00+05:30
-modDatetime: 2023-03-12T10:00:00+05:30
+pubDatetime: 2024-02-26T08:45:00+05:30
+modDatetime: 2024-03-06T08:45:00+05:30
 title: "Alerting and Incident Management"
 slug: 90days-57-alerting-and-incident-management
 featured: false

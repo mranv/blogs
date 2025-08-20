@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-25T10:15:00+05:30
-modDatetime: 2023-03-06T10:15:00+05:30
+pubDatetime: 2024-02-25T15:45:00+05:30
+modDatetime: 2024-03-22T15:45:00+05:30
 title: "Distributed Tracing with OpenTelemetry"
 slug: 90days-56-distributed-tracing-with-opentelemetry
 featured: false

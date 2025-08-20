@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-14T14:45:00+05:30
-modDatetime: 2023-04-05T14:45:00+05:30
+pubDatetime: 2024-03-13T16:30:00+05:30
+modDatetime: 2024-03-31T16:30:00+05:30
 title: "Azure Functions and Logic Apps"
 slug: 90days-73-azure-functions-and-logic-apps
 featured: false

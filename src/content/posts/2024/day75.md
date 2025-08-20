@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-16T16:45:00+05:30
-modDatetime: 2023-03-24T16:45:00+05:30
+pubDatetime: 2024-03-15T20:30:00+05:30
+modDatetime: 2024-04-01T20:30:00+05:30
 title: "Event-Driven Architecture"
 slug: 90days-75-event-driven-architecture
 featured: false

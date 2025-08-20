@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-21T14:00:00+05:30
-modDatetime: 2023-04-05T14:00:00+05:30
+pubDatetime: 2024-03-20T19:00:00+05:30
+modDatetime: 2024-04-12T19:00:00+05:30
 title: "WebAssembly and Future Tech"
 slug: 90days-80-webassembly-and-future-tech
 featured: true

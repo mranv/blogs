@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-02T08:45:00+05:30
-modDatetime: 2023-01-16T08:45:00+05:30
+pubDatetime: 2024-01-02T08:30:00+05:30
+modDatetime: 2024-01-17T08:30:00+05:30
 title: "Understanding DevOps Culture and Principles"
 slug: 90days-02-understanding-devops-culture-and-principles
 featured: false

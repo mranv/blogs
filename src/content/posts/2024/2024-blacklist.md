@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-05-01T10:00:00+05:30
-modDatetime: 2023-05-16T10:00:00+05:30
+pubDatetime: 2024-04-10T10:00:00+05:30
+modDatetime: 2024-04-25T10:00:00+05:30
 title: "2024 Security Blacklist and Threat Intelligence"
 slug: 2024-blacklist
 featured: false

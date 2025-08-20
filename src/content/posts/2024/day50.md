@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-19T09:00:00+05:30
-modDatetime: 2023-03-13T09:00:00+05:30
+pubDatetime: 2024-02-19T14:00:00+05:30
+modDatetime: 2024-03-14T14:00:00+05:30
 title: "Cloud Cost Optimization"
 slug: 90days-50-cloud-cost-optimization
 featured: true

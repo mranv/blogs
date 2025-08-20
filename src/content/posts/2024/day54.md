@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-23T14:15:00+05:30
-modDatetime: 2023-03-12T14:15:00+05:30
+pubDatetime: 2024-02-23T09:00:00+05:30
+modDatetime: 2024-03-01T09:00:00+05:30
 title: "ELK Stack for Log Management"
 slug: 90days-54-elk-stack-for-log-management
 featured: false

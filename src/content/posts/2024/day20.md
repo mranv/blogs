@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-20T08:15:00+05:30
-modDatetime: 2023-02-06T08:15:00+05:30
+pubDatetime: 2024-01-20T16:15:00+05:30
+modDatetime: 2024-02-11T16:15:00+05:30
 title: "Building Your First CI/CD Pipeline"
 slug: 90days-20-building-your-first-cicd-pipeline
 featured: true

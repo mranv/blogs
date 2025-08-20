@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-31T10:00:00+05:30
-modDatetime: 2023-04-12T10:00:00+05:30
+pubDatetime: 2024-03-30T15:15:00+05:30
+modDatetime: 2024-04-24T15:15:00+05:30
 title: "DevOps Career Path and Growth"
 slug: 90days-90-devops-career-path-and-growth
 featured: true

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-12T19:30:00+05:30
-modDatetime: 2023-03-13T19:30:00+05:30
+pubDatetime: 2024-02-12T15:00:00+05:30
+modDatetime: 2024-03-09T15:00:00+05:30
 title: "AWS EC2 and Compute Services"
 slug: 90days-43-aws-ec2-and-compute-services
 featured: false

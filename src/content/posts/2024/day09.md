@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-09T09:30:00+05:30
-modDatetime: 2023-01-31T09:30:00+05:30
+pubDatetime: 2024-01-09T20:00:00+05:30
+modDatetime: 2024-01-31T20:00:00+05:30
 title: "Creating Your DevOps Learning Environment"
 slug: 90days-09-creating-your-devops-learning-environment
 featured: false

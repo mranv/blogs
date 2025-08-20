@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-08T15:45:00+05:30
-modDatetime: 2023-01-23T15:45:00+05:30
+pubDatetime: 2024-01-08T19:15:00+05:30
+modDatetime: 2024-02-03T19:15:00+05:30
 title: "DevOps Knowledge Gap and Learning Path"
 slug: 90days-08-devops-knowledge-gap-and-learning-path
 featured: false

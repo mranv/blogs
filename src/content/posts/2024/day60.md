@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-01T20:00:00+05:30
-modDatetime: 2023-03-20T20:00:00+05:30
+pubDatetime: 2024-02-29T09:45:00+05:30
+modDatetime: 2024-03-15T09:45:00+05:30
 title: "Observability Best Practices"
 slug: 90days-60-observability-best-practices
 featured: true

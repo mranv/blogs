@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-22T15:45:00+05:30
-modDatetime: 2023-04-21T15:45:00+05:30
+pubDatetime: 2024-03-21T20:30:00+05:30
+modDatetime: 2024-04-07T20:30:00+05:30
 title: "DevOps Best Practices Compilation"
 slug: 90days-81-devops-best-practices-compilation
 featured: false

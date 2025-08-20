@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-04T20:45:00+05:30
-modDatetime: 2023-03-27T20:45:00+05:30
+pubDatetime: 2024-03-03T19:00:00+05:30
+modDatetime: 2024-03-30T19:00:00+05:30
 title: "Container Security and Image Scanning"
 slug: 90days-63-container-security-and-image-scanning
 featured: false

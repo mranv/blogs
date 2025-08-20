@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-22T16:30:00+05:30
-modDatetime: 2023-02-07T16:30:00+05:30
+pubDatetime: 2024-01-22T19:00:00+05:30
+modDatetime: 2024-02-18T19:00:00+05:30
 title: "Terraform Basics and Provider Setup"
 slug: 90days-22-terraform-basics-and-provider-setup
 featured: false

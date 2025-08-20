@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-07T10:00:00+05:30
-modDatetime: 2023-03-22T10:00:00+05:30
+pubDatetime: 2024-03-06T16:15:00+05:30
+modDatetime: 2024-03-28T16:15:00+05:30
 title: "Compliance as Code"
 slug: 90days-66-compliance-as-code
 featured: false

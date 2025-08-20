@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-17T14:15:00+05:30
-modDatetime: 2023-02-27T14:15:00+05:30
+pubDatetime: 2024-02-17T10:45:00+05:30
+modDatetime: 2024-03-18T10:45:00+05:30
 title: "Google Cloud Platform Essentials"
 slug: 90days-48-google-cloud-platform-essentials
 featured: false

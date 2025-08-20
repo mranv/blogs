@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-18T14:45:00+05:30
-modDatetime: 2023-02-05T14:45:00+05:30
+pubDatetime: 2024-01-18T15:15:00+05:30
+modDatetime: 2024-02-08T15:15:00+05:30
 title: "CI/CD Pipeline Introduction"
 slug: 90days-18-cicd-pipeline-introduction
 featured: false

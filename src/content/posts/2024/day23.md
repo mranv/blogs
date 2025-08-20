@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-23T09:00:00+05:30
-modDatetime: 2023-02-09T09:00:00+05:30
+pubDatetime: 2024-01-23T10:30:00+05:30
+modDatetime: 2024-02-20T10:30:00+05:30
 title: "Terraform Resources and State Management"
 slug: 90days-23-terraform-resources-and-state-management
 featured: false

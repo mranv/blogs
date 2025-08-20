@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-11T08:00:00+05:30
-modDatetime: 2023-03-27T08:00:00+05:30
+pubDatetime: 2024-03-10T14:00:00+05:30
+modDatetime: 2024-04-04T14:00:00+05:30
 title: "Security Incident Response"
 slug: 90days-70-security-incident-response
 featured: true

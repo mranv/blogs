@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-01T08:15:00+05:30
-modDatetime: 2023-01-22T08:15:00+05:30
+pubDatetime: 2024-01-01T09:45:00+05:30
+modDatetime: 2024-01-21T09:45:00+05:30
 title: "Introduction to 90 Days of DevOps Journey"
 slug: 90days-01-introduction-to-90-days-of-devops-journey
 featured: true

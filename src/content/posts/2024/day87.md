@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-28T16:15:00+05:30
-modDatetime: 2023-04-10T16:15:00+05:30
+pubDatetime: 2024-03-27T19:15:00+05:30
+modDatetime: 2024-04-17T19:15:00+05:30
 title: "DevOps Transformation Challenges"
 slug: 90days-87-devops-transformation-challenges
 featured: false

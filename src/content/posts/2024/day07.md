@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-07T20:15:00+05:30
-modDatetime: 2023-01-27T20:15:00+05:30
+pubDatetime: 2024-01-07T19:30:00+05:30
+modDatetime: 2024-02-05T19:30:00+05:30
 title: "The State of DevOps and Industry Trends"
 slug: 90days-07-the-state-of-devops-and-industry-trends
 featured: false

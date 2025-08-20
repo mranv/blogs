@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-28T19:00:00+05:30
-modDatetime: 2023-03-13T19:00:00+05:30
+pubDatetime: 2024-02-28T15:15:00+05:30
+modDatetime: 2024-03-10T15:15:00+05:30
 title: "Chaos Engineering and Resilience"
 slug: 90days-59-chaos-engineering-and-resilience
 featured: false

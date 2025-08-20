@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-16T08:15:00+05:30
-modDatetime: 2023-03-14T08:15:00+05:30
+pubDatetime: 2024-02-16T16:00:00+05:30
+modDatetime: 2024-03-08T16:00:00+05:30
 title: "Azure DevOps and Pipelines"
 slug: 90days-47-azure-devops-and-pipelines
 featured: false

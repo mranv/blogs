@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-04T16:15:00+05:30
-modDatetime: 2023-01-24T16:15:00+05:30
+pubDatetime: 2024-01-04T19:45:00+05:30
+modDatetime: 2024-01-29T19:45:00+05:30
 title: "Agile Development and DevOps Integration"
 slug: 90days-04-agile-development-and-devops-integration
 featured: false

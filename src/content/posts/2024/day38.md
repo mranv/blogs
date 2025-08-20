@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-07T16:45:00+05:30
-modDatetime: 2023-02-27T16:45:00+05:30
+pubDatetime: 2024-02-07T09:45:00+05:30
+modDatetime: 2024-02-26T09:45:00+05:30
 title: "Kubernetes Ingress and Load Balancing"
 slug: 90days-38-kubernetes-ingress-and-load-balancing
 featured: false

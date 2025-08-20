@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-30T08:00:00+05:30
-modDatetime: 2023-02-07T08:00:00+05:30
+pubDatetime: 2024-01-30T10:45:00+05:30
+modDatetime: 2024-02-19T10:45:00+05:30
 title: "GitOps and Declarative Infrastructure"
 slug: 90days-30-gitops-and-declarative-infrastructure
 featured: true

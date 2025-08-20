@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-21T14:15:00+05:30
-modDatetime: 2023-02-04T14:15:00+05:30
+pubDatetime: 2024-01-21T16:45:00+05:30
+modDatetime: 2024-02-10T16:45:00+05:30
 title: "Infrastructure as Code Concepts"
 slug: 90days-21-infrastructure-as-code-concepts
 featured: false

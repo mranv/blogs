@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-04T16:15:00+05:30
-modDatetime: 2023-02-25T16:15:00+05:30
+pubDatetime: 2024-02-04T15:00:00+05:30
+modDatetime: 2024-02-23T15:00:00+05:30
 title: "Kubernetes Architecture and Components"
 slug: 90days-35-kubernetes-architecture-and-components
 featured: false

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-11T09:15:00+05:30
-modDatetime: 2023-03-04T09:15:00+05:30
+pubDatetime: 2024-02-11T16:45:00+05:30
+modDatetime: 2024-03-12T16:45:00+05:30
 title: "AWS Core Services Overview"
 slug: 90days-42-aws-core-services-overview
 featured: false

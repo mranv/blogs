@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-04-03T14:15:00+05:30
-modDatetime: 2023-04-27T14:15:00+05:30
+pubDatetime: 2024-04-02T15:30:00+05:30
+modDatetime: 2024-04-10T15:30:00+05:30
 title: "DevOps Resources and References"
 slug: 90days-93-devops-resources-and-references
 featured: false

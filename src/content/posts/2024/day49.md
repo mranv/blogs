@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-18T14:00:00+05:30
-modDatetime: 2023-03-18T14:00:00+05:30
+pubDatetime: 2024-02-18T20:30:00+05:30
+modDatetime: 2024-03-16T20:30:00+05:30
 title: "Multi-Cloud Strategy and Management"
 slug: 90days-49-multi-cloud-strategy-and-management
 featured: false

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-06T10:00:00+05:30
-modDatetime: 2023-02-17T10:00:00+05:30
+pubDatetime: 2024-02-06T08:30:00+05:30
+modDatetime: 2024-03-01T08:30:00+05:30
 title: "Kubernetes ConfigMaps and Secrets"
 slug: 90days-37-kubernetes-configmaps-and-secrets
 featured: false

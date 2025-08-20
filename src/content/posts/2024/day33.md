@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-02T14:15:00+05:30
-modDatetime: 2023-02-17T14:15:00+05:30
+pubDatetime: 2024-02-02T14:00:00+05:30
+modDatetime: 2024-02-10T14:00:00+05:30
 title: "Docker Compose for Multi-Container Apps"
 slug: 90days-33-docker-compose-for-multi-container-apps
 featured: false

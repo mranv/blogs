@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-05T14:00:00+05:30
-modDatetime: 2023-01-27T14:00:00+05:30
+pubDatetime: 2024-01-05T08:30:00+05:30
+modDatetime: 2024-01-29T08:30:00+05:30
 title: "Building Cross-Functional Empathy in DevOps"
 slug: 90days-05-building-cross-functional-empathy-in-devops
 featured: false

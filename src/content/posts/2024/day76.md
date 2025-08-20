@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-17T08:45:00+05:30
-modDatetime: 2023-04-15T08:45:00+05:30
+pubDatetime: 2024-03-16T08:30:00+05:30
+modDatetime: 2024-03-30T08:30:00+05:30
 title: "API Gateway and Microservices"
 slug: 90days-76-api-gateway-and-microservices
 featured: false

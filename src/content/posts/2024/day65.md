@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-06T14:15:00+05:30
-modDatetime: 2023-03-16T14:15:00+05:30
+pubDatetime: 2024-03-05T09:45:00+05:30
+modDatetime: 2024-03-27T09:45:00+05:30
 title: "SAST and DAST Implementation"
 slug: 90days-65-sast-and-dast-implementation
 featured: false

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-24T08:45:00+05:30
-modDatetime: 2023-02-01T08:45:00+05:30
+pubDatetime: 2024-01-24T15:45:00+05:30
+modDatetime: 2024-02-16T15:45:00+05:30
 title: "Terraform Modules and Best Practices"
 slug: 90days-24-terraform-modules-and-best-practices
 featured: false

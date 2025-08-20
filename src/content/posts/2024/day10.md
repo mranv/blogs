@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-10T09:00:00+05:30
-modDatetime: 2023-02-02T09:00:00+05:30
+pubDatetime: 2024-01-10T09:00:00+05:30
+modDatetime: 2024-02-08T09:00:00+05:30
 title: "Linux Fundamentals for DevOps Engineers"
 slug: 90days-10-linux-fundamentals-for-devops-engineers
 featured: true

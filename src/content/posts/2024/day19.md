@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-19T15:30:00+05:30
-modDatetime: 2023-01-31T15:30:00+05:30
+pubDatetime: 2024-01-19T08:15:00+05:30
+modDatetime: 2024-02-15T08:15:00+05:30
 title: "Jenkins Setup and Configuration"
 slug: 90days-19-jenkins-setup-and-configuration
 featured: false

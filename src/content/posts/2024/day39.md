@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-08T09:00:00+05:30
-modDatetime: 2023-02-26T09:00:00+05:30
+pubDatetime: 2024-02-08T20:45:00+05:30
+modDatetime: 2024-02-20T20:45:00+05:30
 title: "Kubernetes StatefulSets and Persistent Storage"
 slug: 90days-39-kubernetes-statefulsets-and-persistent-storage
 featured: false

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-03-27T15:15:00+05:30
-modDatetime: 2023-04-09T15:15:00+05:30
+pubDatetime: 2024-03-26T20:00:00+05:30
+modDatetime: 2024-04-07T20:00:00+05:30
 title: "Scaling DevOps in Enterprise"
 slug: 90days-86-scaling-devops-in-enterprise
 featured: false

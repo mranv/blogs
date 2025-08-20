@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-15T19:45:00+05:30
-modDatetime: 2023-03-04T19:45:00+05:30
+pubDatetime: 2024-02-15T16:45:00+05:30
+modDatetime: 2024-03-09T16:45:00+05:30
 title: "Azure Fundamentals and Services"
 slug: 90days-46-azure-fundamentals-and-services
 featured: false

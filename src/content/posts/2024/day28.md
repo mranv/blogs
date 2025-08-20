@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-28T16:45:00+05:30
-modDatetime: 2023-02-09T16:45:00+05:30
+pubDatetime: 2024-01-28T08:45:00+05:30
+modDatetime: 2024-02-06T08:45:00+05:30
 title: "Configuration Management at Scale"
 slug: 90days-28-configuration-management-at-scale
 featured: false

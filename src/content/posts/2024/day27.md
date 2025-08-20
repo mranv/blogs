@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-27T08:00:00+05:30
-modDatetime: 2023-02-24T08:00:00+05:30
+pubDatetime: 2024-01-27T08:30:00+05:30
+modDatetime: 2024-02-10T08:30:00+05:30
 title: "Ansible Vault and Security"
 slug: 90days-27-ansible-vault-and-security
 featured: false

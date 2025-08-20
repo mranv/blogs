@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-05T09:15:00+05:30
-modDatetime: 2023-02-20T09:15:00+05:30
+pubDatetime: 2024-02-05T15:00:00+05:30
+modDatetime: 2024-02-20T15:00:00+05:30
 title: "Kubernetes Deployments and Services"
 slug: 90days-36-kubernetes-deployments-and-services
 featured: false

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-13T19:30:00+05:30
-modDatetime: 2023-03-07T19:30:00+05:30
+pubDatetime: 2024-02-13T09:15:00+05:30
+modDatetime: 2024-03-07T09:15:00+05:30
 title: "AWS Storage Solutions - S3 and EBS"
 slug: 90days-44-aws-storage-solutions---s3-and-ebs
 featured: false

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-06T08:00:00+05:30
-modDatetime: 2023-01-27T08:00:00+05:30
+pubDatetime: 2024-01-06T09:00:00+05:30
+modDatetime: 2024-01-24T09:00:00+05:30
 title: "DevOps Stories and Real-World Experiences"
 slug: 90days-06-devops-stories-and-real-world-experiences
 featured: false

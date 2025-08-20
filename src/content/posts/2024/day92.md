@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-04-02T16:15:00+05:30
-modDatetime: 2023-04-14T16:15:00+05:30
+pubDatetime: 2024-04-01T16:00:00+05:30
+modDatetime: 2024-04-29T16:00:00+05:30
 title: "DevOps Certifications and Training"
 slug: 90days-92-devops-certifications-and-training
 featured: false

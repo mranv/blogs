@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-11T08:00:00+05:30
-modDatetime: 2023-01-31T08:00:00+05:30
+pubDatetime: 2024-01-11T16:00:00+05:30
+modDatetime: 2024-01-29T16:00:00+05:30
 title: "Network Knowledge and DevOps Practices"
 slug: 90days-11-network-knowledge-and-devops-practices
 featured: false

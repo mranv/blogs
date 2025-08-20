@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-04-04T15:00:00+05:30
-modDatetime: 2023-05-04T15:00:00+05:30
+pubDatetime: 2024-04-03T09:15:00+05:30
+modDatetime: 2024-04-28T09:15:00+05:30
 title: "DevOps Future Trends"
 slug: 90days-94-devops-future-trends
 featured: false

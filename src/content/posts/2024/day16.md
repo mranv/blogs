@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-16T09:30:00+05:30
-modDatetime: 2023-01-28T09:30:00+05:30
+pubDatetime: 2024-01-16T08:15:00+05:30
+modDatetime: 2024-02-14T08:15:00+05:30
 title: "Advanced Git Workflows and Branching"
 slug: 90days-16-advanced-git-workflows-and-branching
 featured: false

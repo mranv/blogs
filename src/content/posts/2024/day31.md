@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-01-31T14:00:00+05:30
-modDatetime: 2023-02-20T14:00:00+05:30
+pubDatetime: 2024-01-31T09:00:00+05:30
+modDatetime: 2024-02-19T09:00:00+05:30
 title: "Docker Fundamentals and Containers"
 slug: 90days-31-docker-fundamentals-and-containers
 featured: false

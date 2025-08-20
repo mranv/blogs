@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2023-02-27T15:30:00+05:30
-modDatetime: 2023-03-15T15:30:00+05:30
+pubDatetime: 2024-02-27T09:45:00+05:30
+modDatetime: 2024-03-28T09:45:00+05:30
 title: "SRE Principles and Error Budgets"
 slug: 90days-58-sre-principles-and-error-budgets
 featured: false
