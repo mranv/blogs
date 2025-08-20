@@ -15,6 +15,7 @@ tags:
   - plugin
   - upgrade
   - migration
+category: Cloud
 description: Step-by-step guide for upgrading the OpenSearch repository-gcs plugin, including migration strategies, compatibility handling, and best practices for snapshot management in Google Cloud Storage
 ---
 

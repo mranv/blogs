@@ -16,6 +16,7 @@ tags:
   - encryption
   - openssl
   - pixie
+category: eBPF
 description: Comprehensive analysis of eBPF TLS tracing evolution - from fragile memory offset approaches to robust syscall-based methods, covering challenges, solutions, and future innovations in encrypted traffic observability.
 ---
 

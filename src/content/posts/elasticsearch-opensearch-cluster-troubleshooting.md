@@ -12,6 +12,7 @@ tags:
   - troubleshooting
   - siem
   - monitoring
+category: Observability
 description: "Complete troubleshooting guide for Elasticsearch and OpenSearch cluster health issues, including yellow status fixes, unassigned shards resolution, and security best practices."
 ---
 

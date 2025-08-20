@@ -11,6 +11,7 @@ tags:
   - security
   - shell
   - automation
+category: Security
 description: "A comprehensive automated script to set up a fully configured ZSH environment on Arch Linux with security-focused settings and modern CLI tools."
 ---
 

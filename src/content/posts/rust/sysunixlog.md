@@ -9,6 +9,7 @@ draft: false
 tags:
   - linux
   - log
+category: Programming
 description: This is a simple Rust program that demonstrates how to log a message to the system log on a Linux-based system using the syslog crate.
 ---
 

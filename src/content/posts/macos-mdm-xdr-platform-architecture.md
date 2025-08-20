@@ -12,6 +12,7 @@ tags:
   - security
   - endpoint-security
   - usb-control
+category: Security
 description: "A comprehensive architecture guide for implementing USB and external storage control on macOS using MDM, System Extensions, and XDR platform integration."
 ---
 

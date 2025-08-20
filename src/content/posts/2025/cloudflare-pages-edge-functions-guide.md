@@ -15,6 +15,7 @@ tags:
   - deployment
   - static-sites
   - functions
+category: Cloud
 description: Complete guide to building and deploying modern web applications using Cloudflare Pages with Edge Functions, including framework integrations, authentication, and advanced patterns.
 ---
 

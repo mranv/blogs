@@ -13,6 +13,7 @@ tags:
   - linux
   - hardening
   - server-setup
+category: Security
 description: "Complete partitioning scheme and security hardening guide for Rocky Linux 9.5 aligned with CIS Benchmark recommendations, optimized for 400GB storage."
 ---
 

@@ -5,6 +5,7 @@ description: "Master advanced APT detection using Wazuh's multi-stage correlatio
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
+category: Security
   [
     "wazuh",
     "apt-detection",

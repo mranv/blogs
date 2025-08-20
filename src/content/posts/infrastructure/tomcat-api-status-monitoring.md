@@ -14,6 +14,7 @@ tags:
   - infrastructure
   - automation
   - devops
+category: Observability
 description: A comprehensive guide to implementing automated API status monitoring for Tomcat applications using Bash scripting, with detailed explanations of script components, error handling, and best practices.
 ---
 

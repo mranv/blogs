@@ -5,6 +5,7 @@ description: "Master Kubernetes security using Wazuh's advanced container monito
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T15:45:00+05:30
 tags:
+category: Security
   [
     "wazuh",
     "kubernetes-security",

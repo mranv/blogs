@@ -12,6 +12,7 @@ tags:
   - version-control
   - development
   - security
+category: Security
 description: A comprehensive guide to managing multiple GitHub accounts on a single machine using SSH keys, Git configuration, and URL rewriting for seamless account switching.
 ---
 

@@ -13,6 +13,7 @@ tags:
   - system-maintenance
   - infrastructure
   - container-management
+category: DevOps
 description: A comprehensive guide to efficiently managing and cleaning up Podman resources including containers, images, and volumes to maintain system performance and reclaim disk space.
 ---
 

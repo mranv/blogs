@@ -12,6 +12,7 @@ tags:
   - observability
   - devops
   - infrastructure
+category: Observability
 description: "A detailed monitoring plan for containerized environments covering DNS, certificates, services, container health, resources, security, and performance metrics with implementation strategies."
 ---
 

@@ -14,6 +14,7 @@ tags:
   - automation
   - devops
   - monitoring
+category: Security
 description: A comprehensive guide to deploying Wazuh security platform using Ansible, including cluster setup, agent deployment, custom rules, and integration with external systems.
 ---
 

@@ -18,6 +18,7 @@ tags:
   - Docker
   - Infrastructure
   - Production
+category: Security
 description: A complete production-ready deployment guide for Wazuh SIEM on AWS ECS Fargate with full configurations, SSL/TLS setup, load balancing, service discovery, and troubleshooting steps.
 ---
 

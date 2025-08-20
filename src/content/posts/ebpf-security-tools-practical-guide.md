@@ -14,6 +14,7 @@ tags:
   - tetragon
   - tracee
   - security-tools
+category: eBPF
 description: A hands-on guide to implementing eBPF security tools in production. Learn to deploy Falco, Tetragon, Tracee, and build custom security solutions with real-world examples.
 ---
 

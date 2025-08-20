@@ -14,6 +14,7 @@ tags:
   - monitoring
   - devops
   - infrastructure
+category: Database
 description: A detailed technical guide for diagnosing and resolving common Elasticsearch and OpenSearch cluster health issues, including practical commands, solutions for yellow/red status, and preventive measures.
 ---
 

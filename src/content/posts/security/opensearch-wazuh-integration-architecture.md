@@ -15,6 +15,7 @@ tags:
   - monitoring
   - log-analysis
   - security-analytics
+category: Security
 description: A comprehensive architectural guide to integrating OpenSearch with Wazuh for building an enterprise-grade security analytics platform, including detailed diagrams for architecture, data flow, and certificate management.
 ---
 

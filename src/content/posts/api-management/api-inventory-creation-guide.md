@@ -13,6 +13,7 @@ tags:
   - api-management
   - discovery
   - governance
+category: Web Development
 description: A complete guide to building an automated API inventory system that discovers, documents, and manages all APIs across your organization's infrastructure.
 ---
 

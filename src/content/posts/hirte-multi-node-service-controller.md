@@ -12,6 +12,7 @@ tags:
   - rocky-linux
   - safety-critical
   - orchestration
+category: Kubernetes
 description: "A comprehensive guide to Hirte, a deterministic multi-node service controller designed for highly-regulated industries. Includes architecture diagrams, implementation steps, and comparison with Kubernetes."
 ---
 

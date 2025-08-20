@@ -5,6 +5,7 @@ author: "Anubhav Gain"
 slug: "multimodal-ai-translation-2025"
 pubDatetime: 2025-01-10T14:00:00+05:30
 tags:
+category: AI/ML
   [
     "ai-translation",
     "multimodal-ai",

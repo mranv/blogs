@@ -15,6 +15,7 @@ tags:
   - cdn
   - serverless
   - backup
+category: Cloud
 description: Complete guide to Cloudflare R2 Storage including migration from S3, direct uploads, streaming, CDN integration, and building a production-ready file storage system.
 ---
 

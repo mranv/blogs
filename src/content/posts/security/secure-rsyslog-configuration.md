@@ -14,6 +14,7 @@ tags:
   - compliance
   - linux
   - devops
+category: Security
 description: A comprehensive guide to implementing a secure, production-grade RSyslog configuration with TLS encryption, certificate authentication, queue management, and security best practices.
 ---
 

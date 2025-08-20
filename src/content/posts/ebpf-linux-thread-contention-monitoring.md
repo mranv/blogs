@@ -14,6 +14,7 @@ tags:
   - linux
   - observability
   - systems-programming
+category: eBPF
 description: Comprehensive guide to using eBPF for monitoring Linux thread contention, including practical examples with bcc, bpftrace, and custom scripts for performance analysis.
 ---
 

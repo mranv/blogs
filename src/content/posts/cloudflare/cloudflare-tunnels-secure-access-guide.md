@@ -15,6 +15,7 @@ tags:
   - zero-trust
   - networking
   - cloudflared
+category: Cloud
 description: Comprehensive guide to implementing Cloudflare Tunnels for secure remote access to internal resources, replacing traditional VPNs with zero-trust security and eliminating exposed ports.
 ---
 

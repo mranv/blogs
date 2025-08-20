@@ -11,6 +11,7 @@ tags:
   - terminal
   - productivity
   - devtools
+category: Security
 description: A comprehensive guide to installing and configuring oh-my-zsh with essential plugins for DevSecOps workflows on macOS ARM M1.
 ---
 

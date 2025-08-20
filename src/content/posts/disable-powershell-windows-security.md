@@ -11,6 +11,7 @@ tags:
   - powershell
   - hardening
   - enterprise
+category: Security
 description: Multiple methods to completely disable PowerShell including both PowerShell.exe and PowerShell 7, with options for AppLocker, Software Restriction Policies, Registry modifications, and Windows Defender ASR rules.
 ---
 

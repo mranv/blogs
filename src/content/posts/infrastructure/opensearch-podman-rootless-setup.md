@@ -14,6 +14,7 @@ tags:
   - elasticsearch
   - infrastructure
   - rootless
+category: Security
 description: A comprehensive guide to setting up and running OpenSearch in rootless Podman containers with proper security configuration and systemd integration.
 ---
 

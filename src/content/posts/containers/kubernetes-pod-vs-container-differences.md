@@ -13,6 +13,7 @@ tags:
   - microservices
   - architecture
   - devops
+category: Kubernetes
 description: A comprehensive visual guide to understanding the key differences between Kubernetes Pods and Containers, with diagrams explaining their relationships, lifecycle management, and use cases.
 ---
 

@@ -15,6 +15,7 @@ tags:
   - monitoring
   - broadcom
   - dx-operational-observability
+category: eBPF
 description: Discover how Broadcom's eBPF agent revolutionizes cloud-native monitoring with dynamic instrumentation, near-zero overhead, and language-agnostic support for modern microservices architectures.
 ---
 

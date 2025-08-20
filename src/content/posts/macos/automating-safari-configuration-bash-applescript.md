@@ -14,6 +14,7 @@ tags:
   - applescript
   - devops
   - configuration-management
+category: DevOps
 description: Learn how to automate Safari browser configuration on macOS using Bash scripts and AppleScript, perfect for fleet management, custom deployments, and organizational standardization.
 ---
 

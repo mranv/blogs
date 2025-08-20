@@ -13,6 +13,7 @@ tags:
   - malware-protection
   - ad-blocking
   - pihole
+category: Security
 description: A comprehensive guide to implementing a DNS sinkhole for blocking malicious domains, advertisements, and tracking at the network level using various technologies and approaches.
 ---
 

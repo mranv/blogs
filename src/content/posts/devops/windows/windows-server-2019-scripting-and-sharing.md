@@ -11,6 +11,7 @@ tags:
   - powershell
   - scripting
   - sharing
+category: Technology
 description: Guide for scripting tasks and setting up sharing on Windows Server 2019.
 ---
 

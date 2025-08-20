@@ -15,6 +15,7 @@ tags:
   - oidc
   - proxy
   - token-flow
+category: Security
 description: A comprehensive technical guide to implementing SCIM provisioning for OpenSearch using Keycloak as identity provider with proxy-based authentication, token flows, and security architecture considerations.
 ---
 

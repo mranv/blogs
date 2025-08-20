@@ -13,6 +13,7 @@ tags:
   - linux
   - kernel
   - exploit-prevention
+category: eBPF
 description: An in-depth analysis of eBPF security challenges, potential vulnerabilities, and defensive strategies. Learn about eBPF rootkits, verifier bypasses, and how to protect against malicious eBPF usage.
 ---
 

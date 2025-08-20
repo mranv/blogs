@@ -15,6 +15,7 @@ tags:
   - observability
   - troubleshooting
   - production
+category: eBPF
 description: Comprehensive guide to monitoring eBPF map pressure using iterators, preventing performance bottlenecks caused by full maps, with real-world solutions and code examples.
 ---
 

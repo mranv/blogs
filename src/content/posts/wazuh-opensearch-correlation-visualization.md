@@ -12,6 +12,7 @@ tags:
   - security
   - correlation
   - visualization
+category: Security
 description: A comprehensive guide for integrating Wazuh Manager 4.12.0 with OpenSearch 2.19.2 and OpenSearch Dashboards for advanced alert correlation and visualization capabilities.
 ---
 

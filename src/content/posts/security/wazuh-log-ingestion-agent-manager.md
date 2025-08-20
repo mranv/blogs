@@ -13,6 +13,7 @@ tags:
   - monitoring
   - devops
   - siem
+category: Security
 description: A comprehensive technical examination of how Wazuh collects, processes, compresses, and securely transmits logs from agents to the manager, including architecture diagrams and code-level insights.
 ---
 

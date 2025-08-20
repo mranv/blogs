@@ -12,6 +12,7 @@ tags:
   - xdr
   - index-management
   - security-monitoring
+category: Security
 description: "Comprehensive guide to Wazuh monitoring index patterns, including invinsense-monitoring configuration, data flow architecture, and enterprise security monitoring strategies."
 ---
 

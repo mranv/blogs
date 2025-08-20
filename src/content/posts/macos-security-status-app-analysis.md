@@ -12,6 +12,7 @@ tags:
   - vulnerability-analysis
   - swift
   - authorization
+category: Security
 description: "Comprehensive security analysis of a macOS SecurityStatusApp revealing critical XPC connection vulnerabilities, authentication flaws, and recommended security improvements with code examples."
 ---
 

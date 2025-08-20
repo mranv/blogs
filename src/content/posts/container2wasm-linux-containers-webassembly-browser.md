@@ -16,6 +16,7 @@ tags:
   - bochs
   - tinyemu
   - wasi
+category: DevOps
 description: "Explore container2wasm, an innovative converter that enables running unmodified Linux containers on WebAssembly by leveraging CPU emulation, supporting both x86_64 and RISC-V architectures in browsers and WASI runtimes."
 ---
 

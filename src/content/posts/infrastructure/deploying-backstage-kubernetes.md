@@ -15,6 +15,7 @@ tags:
   - developer-portals
   - infrastructure
   - postgresql
+category: Kubernetes
 description: A detailed, step-by-step guide to deploying Spotify's Backstage developer portal on Kubernetes using Docker, Terraform, and best practices for production environments.
 ---
 

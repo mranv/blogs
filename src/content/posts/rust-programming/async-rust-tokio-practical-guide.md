@@ -12,6 +12,7 @@ tags:
   - tokio
   - networking
   - web-servers
+category: Programming
 description: Master asynchronous programming in Rust using Tokio with practical examples including TCP servers, HTTP clients, and concurrent task handling
 ---
 

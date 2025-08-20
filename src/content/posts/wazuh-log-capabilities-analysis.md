@@ -12,6 +12,7 @@ tags:
   - logging
   - monitoring
   - xdr
+category: Security
 description: Wazuh agents provide enterprise-grade, multi-platform security monitoring with sophisticated log collection, parsing, and forwarding capabilities designed for XDR/OXDR platforms.
 ---
 

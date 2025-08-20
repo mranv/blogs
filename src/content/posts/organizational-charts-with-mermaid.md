@@ -12,6 +12,7 @@ tags:
   - documentation
   - diagrams
   - markdown
+category: AI/ML
 description: "Learn how to create professional organizational charts using Mermaid syntax, including enterprise hierarchies, team structures, and management flows with practical examples."
 ---
 

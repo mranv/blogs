@@ -12,6 +12,7 @@ tags:
   - borrowing
   - memory-management
   - fundamentals
+category: Programming
 description: Master Rust's ownership system with clear examples, understand borrowing rules, and learn how to write safe, efficient code without garbage collection
 ---
 

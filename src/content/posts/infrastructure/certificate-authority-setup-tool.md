@@ -12,6 +12,7 @@ tags:
   - bash
   - automation
   - infrastructure
+category: Security
 description: A comprehensive shell script for creating and managing a complete Certificate Authority infrastructure including Root CA, Intermediate CA, and server certificates with automated certificate chain generation.
 ---
 

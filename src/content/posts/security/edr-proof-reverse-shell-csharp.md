@@ -15,6 +15,7 @@ tags:
   - red-team
   - offensive-security
   - malware-analysis
+category: Security
 description: Educational guide on creating C# reverse shells that bypass EDR and antivirus protections using Windows API functions, shellcode injection, and in-memory execution techniques
 ---
 

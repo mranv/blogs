@@ -15,6 +15,7 @@ tags:
   - application-security
   - bot-management
   - rate-limiting
+category: Cloud
 description: Complete guide to implementing enterprise-grade web application security using Cloudflare WAF and DDoS protection, including OWASP Top 10 defense, advanced bot management, and custom security rules.
 ---
 

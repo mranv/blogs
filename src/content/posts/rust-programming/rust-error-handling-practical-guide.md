@@ -11,6 +11,7 @@ tags:
   - programming
   - error-handling
   - best-practices
+category: Programming
 description: Learn how to handle errors effectively in Rust using Result, Option, and pattern matching with practical examples from real-world applications
 ---
 

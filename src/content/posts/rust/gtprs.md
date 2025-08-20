@@ -9,6 +9,7 @@ draft: false
 tags:
   - gpt
   - rust
+category: Programming
 description: Developed as a successor to the original ChatGPT desktop application concept, gpt.rs brings a host of new features and improvements, ensuring a seamless and efficient user experience.
 ---
 

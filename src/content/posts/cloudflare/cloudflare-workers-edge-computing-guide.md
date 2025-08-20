@@ -15,6 +15,7 @@ tags:
   - javascript
   - performance
   - distributed-systems
+category: Cloud
 description: Complete guide to building high-performance serverless APIs using Cloudflare Workers, including KV storage, D1 database integration, and advanced caching strategies for sub-10ms response times globally.
 ---
 

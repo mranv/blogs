@@ -15,6 +15,7 @@ tags:
   - kafka
   - rabbitmq
   - api-design
+category: Microservices
 image: "/microservices-communication.jpg"
 featured: true
 ---

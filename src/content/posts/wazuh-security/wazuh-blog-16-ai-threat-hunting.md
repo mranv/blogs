@@ -5,6 +5,7 @@ description: "Master AI-powered threat hunting with Wazuh's advanced behavioral 
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:30:00+05:30
 tags:
+category: Security
   [
     "wazuh",
     "ai-threat-hunting",

@@ -12,6 +12,7 @@ tags:
   - background-services
   - system-administration
   - automation
+category: Security
 description: "Complete guide to implementing production-grade macOS Launch Agents for persistent background services, including XPC integration, lifecycle management, and security considerations."
 ---
 

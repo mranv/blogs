@@ -14,6 +14,7 @@ tags:
   - icinga
   - siem
   - security
+category: Security
 description: "Complete guide for Wazuh data analysis, rule engine configuration, snapshot migration procedures, and Windows monitoring with WMI and Icinga integration."
 ---
 

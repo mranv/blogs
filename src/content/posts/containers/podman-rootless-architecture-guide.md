@@ -15,6 +15,7 @@ tags:
   - opensearch
   - kubernetes
   - devops
+category: Security
 description: A comprehensive architectural guide to Podman rootless containers, covering container architecture, systemd integration, volume management, and production deployment patterns with detailed Mermaid diagrams.
 ---
 

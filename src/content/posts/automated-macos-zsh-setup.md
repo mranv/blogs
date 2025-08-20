@@ -13,6 +13,7 @@ tags:
   - homebrew
   - shell-configuration
   - productivity
+category: Security
 description: "A comprehensive automation script for setting up ZSH with Oh My Zsh, autosuggestions, syntax highlighting, and modern CLI tools on fresh macOS installations."
 ---
 

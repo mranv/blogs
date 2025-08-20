@@ -13,6 +13,7 @@ tags:
   - architecture
   - compression
   - analysis
+category: Security
 description: "Comprehensive guide to Wazuh's log collection and transmission architecture, covering agent-to-manager communication, compression algorithms, and real-time security analysis."
 ---
 

@@ -14,6 +14,7 @@ tags:
   - powershell
   - enterprise
   - observability
+category: Observability
 description: A comprehensive guide to implementing network performance monitoring on Windows systems, including PowerShell scripts, Performance Monitor setup, WMI queries, and integration with enterprise monitoring solutions.
 ---
 

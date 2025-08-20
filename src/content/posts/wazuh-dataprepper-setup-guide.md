@@ -12,6 +12,7 @@ tags:
   - siem
   - security
   - migration
+category: Security
 description: Complete setup guide for migrating from Logstash to Data Prepper 2.11.0 for Wazuh security event ingestion into OpenSearch, including configuration, troubleshooting, and production deployment.
 ---
 

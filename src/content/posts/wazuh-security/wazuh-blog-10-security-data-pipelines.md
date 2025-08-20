@@ -5,6 +5,7 @@ description: "Master modern security data pipeline architectures with Wazuh to a
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:00:00+05:30
 tags:
+category: Security
   [
     "wazuh",
     "data-pipelines",

@@ -14,6 +14,7 @@ tags:
   - system-administration
   - compliance
   - monitoring
+category: Observability
 description: "Comprehensive guide to implementing secure RSyslog configurations, covering advanced logging architectures, encryption, authentication, and enterprise-grade log management strategies."
 ---
 

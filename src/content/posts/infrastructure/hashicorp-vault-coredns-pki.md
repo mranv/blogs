@@ -16,6 +16,7 @@ tags:
   - nginx
   - ssl
   - infrastructure
+category: Security
 description: A comprehensive guide to implementing a secure internal PKI infrastructure using HashiCorp Vault as a certificate authority with root and intermediate CAs, integrated with CoreDNS for service discovery and Nginx for HTTPS services.
 ---
 

@@ -14,6 +14,7 @@ tags:
   - background-services
   - swift
   - devops
+category: DevOps
 description: A comprehensive guide on using macOS launchd to create robust, production-grade background services that run independently of your main application, with detailed implementation steps and best practices.
 ---
 

@@ -5,6 +5,7 @@ description: "The definitive guide to integrating all components of a modern XDR
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
+category: Programming
   [
     "rust",
     "xdr",

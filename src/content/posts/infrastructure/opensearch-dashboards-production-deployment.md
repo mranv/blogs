@@ -14,6 +14,7 @@ tags:
   - monitoring
   - devops
   - infrastructure
+category: Observability
 description: A comprehensive guide for deploying OpenSearch Dashboards as a systemd service in production environments, including configuration settings, permissions management, and common troubleshooting steps.
 ---
 

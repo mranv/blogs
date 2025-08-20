@@ -16,6 +16,7 @@ tags:
   - security
   - infrastructure
   - dns
+category: Kubernetes
 description: A comprehensive guide to deploying and configuring CoreDNS and StepCA infrastructure using Kubernetes manifests through Quadlet on Fedora CoreOS, enabling integrated DNS and certificate management.
 ---
 

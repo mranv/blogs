@@ -14,6 +14,7 @@ tags:
   - container
   - virtualization
   - tutorial
+category: Kubernetes
 description: A comprehensive step-by-step guide to setting up a single-node Kubernetes cluster on Fedora CoreOS, covering everything from VM creation to deploying your first application.
 ---
 

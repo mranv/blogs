@@ -15,6 +15,7 @@ tags:
   - xdr
   - security
   - monitoring
+category: Security
 description: Integrate NATS messaging capabilities directly into Wazuh manager codebase to publish real-time agent status events and security alerts for XDR/OXDR platforms.
 ---
 

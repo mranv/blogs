@@ -15,6 +15,7 @@ tags:
   - serverless
   - sql
   - sqlite
+category: Database
 description: Complete guide to building full-stack applications using Cloudflare Workers and D1 Database, including authentication, CRUD operations, and performance optimization.
 ---
 

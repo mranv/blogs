@@ -14,6 +14,7 @@ tags:
   - windows
   - detection
   - logging
+category: Observability
 description: "Comprehensive guide to monitoring Terminal Services and RDP activities using Sysmon, including advanced configuration, threat detection rules, and incident response strategies."
 ---
 

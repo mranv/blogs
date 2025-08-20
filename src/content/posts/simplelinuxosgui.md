@@ -27,6 +27,7 @@ tags:
   - linux development
   - linux kernel compilation
   - linux system
+category: Linux
 description: This is a simple, lightweight GUI-based Linux distribution designed to run on QEMU.
 ---
 

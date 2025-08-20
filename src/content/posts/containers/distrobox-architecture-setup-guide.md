@@ -15,6 +15,7 @@ tags:
   - security
   - architecture
   - devops
+category: Linux
 description: A comprehensive technical analysis of Distrobox architecture, including system integration patterns, container interaction workflows, and security architecture with detailed Mermaid diagrams.
 ---
 

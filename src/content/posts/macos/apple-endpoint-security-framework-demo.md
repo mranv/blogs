@@ -15,6 +15,7 @@ tags:
   - system-extension
   - edr
   - monitoring
+category: Security
 description: Comprehensive guide to Apple's Endpoint Security framework with a complete demo implementation, covering event monitoring, auth decisions, and building security tools for macOS
 ---
 

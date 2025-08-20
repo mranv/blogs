@@ -15,6 +15,7 @@ tags:
   - elasticsearch
   - infrastructure
   - search
+category: Infrastructure
 description: A step-by-step guide to deploying OpenSearch using Podman and Quadlet for a lightweight, secure, and systemd-integrated search solution without Docker or Kubernetes.
 ---
 

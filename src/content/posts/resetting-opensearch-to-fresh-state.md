@@ -9,6 +9,7 @@ tags:
   - devops
   - system-administration
   - troubleshooting
+category: DevOps
 featured: false
 draft: false
 ---

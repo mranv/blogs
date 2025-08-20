@@ -14,6 +14,7 @@ tags:
   - database
   - search
   - analytics
+category: Security
 description: A comprehensive guide to implementing multi-tenancy in OpenSearch, including security configuration, index isolation, role-based access control, and performance optimization strategies.
 ---
 

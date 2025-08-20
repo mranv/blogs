@@ -14,6 +14,7 @@ tags:
   - security
   - enterprise
   - powershell
+category: Security
 description: A comprehensive technical guide to forcing Group Policy updates across domain-joined computers, including process flows, network requirements, security implications, and troubleshooting best practices.
 ---
 

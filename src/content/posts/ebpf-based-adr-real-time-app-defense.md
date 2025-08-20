@@ -16,6 +16,7 @@ tags:
   - go
   - linux
   - runtime-protection
+category: eBPF
 description: Comprehensive guide to implementing Application Detection and Response (ADR) using eBPF for real-time threat detection and prevention in modern web applications.
 ---
 

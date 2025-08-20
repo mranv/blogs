@@ -15,6 +15,7 @@ tags:
   - multi-tenant
   - scheduler
   - infrastructure
+category: eBPF
 description: Learn how Netflix leverages eBPF to detect noisy neighbors in multi-tenant systems through continuous Linux scheduler instrumentation with minimal performance overhead.
 ---
 

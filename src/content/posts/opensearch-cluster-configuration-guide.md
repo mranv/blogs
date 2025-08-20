@@ -13,6 +13,7 @@ tags:
   - configuration
   - distributed-systems
   - search-engine
+category: Security
 description: "Complete guide for configuring a production-ready OpenSearch cluster with proper node roles, security settings, and performance optimizations for high availability deployments."
 ---
 

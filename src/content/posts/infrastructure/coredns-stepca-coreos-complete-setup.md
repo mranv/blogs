@@ -14,6 +14,7 @@ tags:
   - pki
   - dns
   - infrastructure
+category: Networking
 description: A comprehensive, production-ready guide for deploying CoreDNS and Smallstep CA on Fedora CoreOS using Podman Quadlet, providing secure DNS and certificate management without Kubernetes.
 ---
 

@@ -14,6 +14,7 @@ tags:
   - infrastructure
   - version control
   - configuration
+category: Infrastructure
 description: A step-by-step guide to effectively setting up and managing multiple GitHub accounts on a single machine using SSH keys, custom hosts, and repository-specific configurations.
 ---
 

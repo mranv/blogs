@@ -5,6 +5,7 @@ description: "Master post-quantum cryptography implementation in Rust. Learn to 
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T13:30:00+05:30
 tags:
+category: Security
   [
     "post-quantum-cryptography",
     "rust",

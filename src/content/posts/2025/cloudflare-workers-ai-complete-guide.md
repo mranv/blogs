@@ -15,6 +15,7 @@ tags:
   - computer-vision
   - nlp
   - edge-ai
+category: Cloud
 description: Complete guide to building AI-powered applications using Cloudflare Workers AI, including language models, computer vision, embeddings, and vector search.
 ---
 

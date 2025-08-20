@@ -5,6 +5,7 @@ author: "Anubhav Gain"
 slug: "circuit-breaker-resilience-patterns-guide"
 pubDatetime: 2025-01-27T11:00:00+05:30
 tags:
+category: Microservices
   [
     "microservices",
     "circuit-breaker",

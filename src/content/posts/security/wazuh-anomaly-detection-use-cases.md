@@ -15,6 +15,7 @@ tags:
   - machine-learning
   - monitoring
   - use-cases
+category: Security
 description: Comprehensive guide to implementing anomaly detection use cases in Wazuh, covering behavioral analysis, statistical anomalies, machine learning integration, and real-world security scenarios
 ---
 

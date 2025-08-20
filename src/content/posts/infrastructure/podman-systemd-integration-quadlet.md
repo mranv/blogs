@@ -15,6 +15,7 @@ tags:
   - linux
   - devops
   - container-management
+category: Infrastructure
 description: A comprehensive guide to integrating Podman containers with systemd, comparing the traditional service file approach with the modern Quadlet method, with detailed examples and best practices.
 ---
 

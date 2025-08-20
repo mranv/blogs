@@ -12,6 +12,7 @@ tags:
   - monitoring
   - management
   - software development
+category: Programming
 description: An in-depth look at invinservicedemon, a Rust application designed for monitoring and managing system services, developed by Anubhav Gain.
 ---
 

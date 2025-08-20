@@ -12,6 +12,7 @@ tags:
   - domain-driven-design
   - scalability
   - architecture-patterns
+category: Microservices
 author: "Anubhav Gain"
 authorImage: "/anubhav-gain.jpg"
 ---

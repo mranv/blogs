@@ -14,6 +14,7 @@ tags:
   - optimization
   - container-runtime
   - devops
+category: DevOps
 description: "Comprehensive analysis of Podman performance on bare metal systems, including detailed benchmarks, optimization techniques, and production deployment strategies for high-performance container workloads."
 ---
 

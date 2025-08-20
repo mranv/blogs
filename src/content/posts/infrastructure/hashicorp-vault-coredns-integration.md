@@ -13,6 +13,7 @@ tags:
   - security
   - infrastructure
   - hashicorp
+category: Networking
 description: A comprehensive guide to integrating HashiCorp Vault with CoreDNS for secure DNS resolution, dynamic secrets management, and certificate automation in modern infrastructure.
 ---
 

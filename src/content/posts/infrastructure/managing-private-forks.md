@@ -13,6 +13,7 @@ tags:
   - devops
   - infrastructure
   - repository management
+category: DevOps
 description: A comprehensive guide to managing private forks of public repositories, including maintaining upstream synchronization, handling visibility changes, and implementing best practices for enterprise environments.
 ---
 

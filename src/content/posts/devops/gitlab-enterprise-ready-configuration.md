@@ -15,6 +15,7 @@ tags:
   - high-availability
   - security
   - ci-cd
+category: DevOps
 description: Transform your GitLab Community Edition deployment into an enterprise-ready platform with high availability, security enhancements, and production-grade configurations
 ---
 

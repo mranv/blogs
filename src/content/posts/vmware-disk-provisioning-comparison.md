@@ -12,6 +12,7 @@ tags:
   - performance
   - security
   - disk-provisioning
+category: Security
 description: "Comprehensive comparison of VMware disk provisioning types: Thin Provisioned, Thick Provisioned Lazily Zeroed, and Thick Provisioned Eagerly Zeroed with performance and security considerations."
 ---
 

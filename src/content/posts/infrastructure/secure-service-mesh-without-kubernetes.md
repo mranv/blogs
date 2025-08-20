@@ -15,6 +15,7 @@ tags:
   - mtls
   - infrastructure
   - networking
+category: Kubernetes
 description: A comprehensive guide to implementing a zero-trust service mesh on Linux VMs without Kubernetes, using SPIFFE/SPIRE for identity management, Cilium for networking, and private DNS for service discovery.
 ---
 

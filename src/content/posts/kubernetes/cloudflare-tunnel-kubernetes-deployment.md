@@ -15,6 +15,7 @@ tags:
   - gitlab
   - tunnel
   - cloudflared
+category: Cloud
 description: Complete guide to deploying Cloudflare Tunnels in Kubernetes for secure, zero-trust access to applications like GitLab, including high availability configuration, security best practices, and troubleshooting
 ---
 

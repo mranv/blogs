@@ -13,6 +13,7 @@ tags:
   - ubuntu
   - devops
   - containers
+category: DevOps
 description: A comprehensive guide to installing and configuring Multipass on Arch Linux, including troubleshooting tips, security considerations, and practical usage examples.
 ---
 

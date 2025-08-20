@@ -12,6 +12,7 @@ tags:
   - xdr
   - architecture
   - ebpf
+category: Programming
 description: A comprehensive security monitoring solution leveraging Rust's memory safety and performance for enterprise-grade threat detection across Windows, macOS, and Linux environments.
 ---
 

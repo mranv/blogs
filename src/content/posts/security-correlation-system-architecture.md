@@ -13,6 +13,7 @@ tags:
   - siem
   - system-design
   - deployment
+category: Security
 description: "Comprehensive guide to designing and implementing security correlation systems with database schemas, architectural patterns, and deployment strategies for modern SIEM platforms."
 ---
 

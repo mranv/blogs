@@ -12,6 +12,7 @@ tags:
   - security
   - enterprise
   - llm
+category: Security
 description: "A comprehensive analysis of Microsoft Copilot's architecture, features, security framework, and enterprise integration strategies. Includes detailed diagrams and implementation considerations."
 ---
 

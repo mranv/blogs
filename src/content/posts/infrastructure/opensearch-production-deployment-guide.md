@@ -14,6 +14,7 @@ tags:
   - cluster
   - devops
   - infrastructure
+category: DevOps
 description: A detailed guide for deploying and configuring OpenSearch in production environments, covering single-node and cluster setups, security configuration, performance tuning, and best practices.
 ---
 

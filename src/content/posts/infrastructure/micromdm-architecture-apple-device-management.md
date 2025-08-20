@@ -16,6 +16,7 @@ tags:
   - dep
   - security
   - infrastructure
+category: Programming
 description: Comprehensive architectural overview of MicroMDM, an open-source MDM server for Apple devices, covering components, data flow, implementation details, and enterprise deployment patterns
 ---
 

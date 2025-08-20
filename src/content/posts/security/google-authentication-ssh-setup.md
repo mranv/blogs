@@ -13,6 +13,7 @@ tags:
   - linux
   - google-authenticator
   - mfa
+category: Security
 description: A comprehensive guide to implementing two-factor authentication for SSH using Google Authenticator, enhancing server security with time-based one-time passwords (TOTP).
 ---
 

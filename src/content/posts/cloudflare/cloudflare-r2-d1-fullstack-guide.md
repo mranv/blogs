@@ -15,6 +15,7 @@ tags:
   - cost-optimization
   - s3-compatible
   - sqlite
+category: Cloud
 description: Complete guide to building production-ready full-stack applications using Cloudflare R2 object storage and D1 database, with zero egress fees and 90% cost savings compared to traditional cloud providers.
 ---
 

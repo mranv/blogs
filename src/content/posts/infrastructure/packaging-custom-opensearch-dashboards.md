@@ -14,6 +14,7 @@ tags:
   - deployment
   - devops
   - customization
+category: Infrastructure
 description: A step-by-step guide to creating custom Debian packages for OpenSearch Dashboards with your own plugins and configurations, allowing for standardized deployments and easier maintenance.
 ---
 

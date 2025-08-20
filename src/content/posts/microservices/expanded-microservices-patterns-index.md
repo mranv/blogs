@@ -21,6 +21,7 @@ tags:
   - deployment
   - database
   - testing
+category: Microservices
 description: The ultimate expanded microservices patterns collection with 12 comprehensive guides, 50+ mermaid diagrams, and production-ready implementations covering security, observability, deployment, and data management.
 ---
 

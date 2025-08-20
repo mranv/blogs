@@ -15,6 +15,7 @@ tags:
   - python
   - infrastructure
   - observability
+category: Observability
 description: A detailed guide to implementing, validating, and troubleshooting metrics exporters for monitoring service performance, with practical examples using both built-in exporters and custom Python implementations.
 ---
 

@@ -15,6 +15,7 @@ tags:
   - iterators
   - linux-kernel
   - instrumentation
+category: eBPF
 description: Learn how to build a standalone eBPF Map Metrics Prometheus exporter using eBPF Iterators, enabling comprehensive observability of eBPF programs without modifying application stacks.
 ---
 

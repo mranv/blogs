@@ -14,6 +14,7 @@ tags:
   - security
   - networking
   - infrastructure
+category: Networking
 description: A comprehensive guide to setting up and configuring OpenVPN GUI to automatically connect on Windows startup, including Task Scheduler configuration, troubleshooting, and security best practices.
 ---
 

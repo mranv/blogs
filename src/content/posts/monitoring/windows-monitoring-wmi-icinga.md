@@ -13,6 +13,7 @@ tags:
   - icinga
   - check_wmi_plus
   - devops
+category: Observability
 description: A comprehensive guide to setting up remote Windows monitoring using WMI and the check_wmi_plus plugin with Icinga, without requiring an agent on the Windows servers.
 ---
 

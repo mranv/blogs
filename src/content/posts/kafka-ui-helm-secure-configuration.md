@@ -14,6 +14,7 @@ tags:
   - monitoring
   - ui
   - infrastructure
+category: Kubernetes
 description: Production-ready Helm values configuration for Kafka UI with enhanced security settings, network policies, and best practices for Kubernetes deployment.
 ---
 

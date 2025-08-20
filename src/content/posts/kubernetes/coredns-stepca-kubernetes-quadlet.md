@@ -13,6 +13,7 @@ tags:
   - containers
   - pki
   - dns
+category: Kubernetes
 description: A comprehensive guide to deploying CoreDNS and Smallstep CA on Kubernetes using Podman Quadlet, providing secure DNS and certificate management for your Kubernetes infrastructure.
 ---
 

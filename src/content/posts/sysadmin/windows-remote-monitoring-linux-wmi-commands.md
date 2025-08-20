@@ -14,6 +14,7 @@ tags:
   - winexe
   - sysadmin
   - devops
+category: Linux
 description: A comprehensive guide to remotely monitoring and managing Windows systems from Linux using winexe, wmic, and WQL queries with practical examples and troubleshooting tips.
 ---
 

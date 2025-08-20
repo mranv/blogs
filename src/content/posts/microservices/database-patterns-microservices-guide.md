@@ -5,6 +5,7 @@ author: "Anubhav Gain"
 slug: "database-patterns-microservices-guide"
 pubDatetime: 2025-01-27T16:00:00+05:30
 tags:
+category: Microservices
   [
     "microservices",
     "database",

@@ -12,6 +12,7 @@ tags:
   - automation
   - devops
   - configuration-management
+category: Infrastructure
 description: A comprehensive guide for installing and configuring Ansible and Java 8 on Ubuntu 20.04, including setup for managed nodes, security best practices, and testing procedures.
 ---
 

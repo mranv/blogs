@@ -14,6 +14,7 @@ tags:
   - networking
   - infrastructure
   - web-filtering
+category: Networking
 description: A comprehensive guide to building a secure DNS sinkhole using CoreDNS and Smallstep certificates, providing DNS-level blocking and serving custom HTTPS block pages.
 ---
 

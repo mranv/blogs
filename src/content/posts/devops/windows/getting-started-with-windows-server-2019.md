@@ -12,6 +12,7 @@ tags:
   - user accounts
   - IIS
   - FTP
+category: Technology
 description: A guide to getting started with Windows Server 2019, including setting up user accounts, an IIS web server, and adding a static website.
 ---
 

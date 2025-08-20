@@ -15,6 +15,7 @@ tags:
   - siem
   - elasticsearch
   - monitoring
+category: Security
 description: Step-by-step guide for migrating Wazuh configuration from Elasticsearch to OpenSearch, including indexer settings, dashboard migration, and performance optimization
 ---
 

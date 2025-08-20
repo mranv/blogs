@@ -13,6 +13,7 @@ tags:
   - security-commands
   - incident-response
   - system-administration
+category: Security
 description: "Comprehensive guide to network unisolation commands for Windows systems, including firewall recovery, security restoration, and proper incident response procedures."
 ---
 

@@ -5,6 +5,7 @@ description: "Master cloud security operations using Wazuh's multi-cloud correla
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
+category: Security
   [
     "wazuh",
     "cloud-security",

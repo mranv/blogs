@@ -16,6 +16,7 @@ tags:
   - lkl
   - musl
   - busybox
+category: Linux
 description: "Deep dive into WasmLinux, a groundbreaking prototype that implements a WebAssembly-native Linux system without CPU emulation, combining patched NOMMU Linux (LKL), MUSL libc, and Busybox compiled to Wasm."
 ---
 

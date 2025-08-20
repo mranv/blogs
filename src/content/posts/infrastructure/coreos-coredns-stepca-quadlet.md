@@ -16,6 +16,7 @@ tags:
   - pki
   - dns
   - infrastructure
+category: Networking
 description: A comprehensive guide to deploying and managing CoreDNS and StepCA on Fedora CoreOS using Podman Quadlet for systemd integration, providing robust DNS and certificate management services.
 ---
 

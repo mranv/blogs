@@ -13,6 +13,7 @@ tags:
   - devops
   - infrastructure
   - code management
+category: DevOps
 description: A comprehensive guide to safely updating Git repository commit history to reflect correct author information, with detailed explanations of the risks involved and best practices to follow.
 ---
 

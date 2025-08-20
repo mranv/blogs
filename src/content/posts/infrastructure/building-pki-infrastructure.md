@@ -15,6 +15,7 @@ tags:
   - infrastructure
   - cryptography
   - zero-trust
+category: Security
 description: A comprehensive guide to building a robust, multi-tier PKI infrastructure with your own Certificate Authority (CA), including detailed explanations, automation scripts, and security best practices for enterprise deployments.
 ---
 

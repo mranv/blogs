@@ -14,6 +14,7 @@ tags:
   - siem
   - monitoring
   - architecture
+category: Security
 description: "A comprehensive guide to deploying an Extended Detection and Response (XDR) security platform using Docker, OpenSearch, and microservices architecture for advanced threat detection and monitoring."
 ---
 

@@ -15,6 +15,7 @@ tags:
   - kernel
   - networking
   - cloud-security
+category: eBPF
 description: Comprehensive analysis of how eBPF is transforming cybersecurity - from its origins as a packet filter to becoming the cornerstone of modern security observability and threat detection.
 ---
 

@@ -14,6 +14,7 @@ tags:
   - installation
   - configuration
   - dba
+category: Database
 description: A comprehensive guide to installing and configuring Oracle Database 23c, including prerequisites, installation steps, post-installation configuration, and best practices for production deployments.
 ---
 

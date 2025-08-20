@@ -13,6 +13,7 @@ tags:
   - automation
   - devops
   - container-management
+category: DevOps
 description: A comprehensive guide to using Podman Quadlet for container management, enabling systemd-native container deployment with automatic updates, dependencies, and lifecycle management.
 ---
 

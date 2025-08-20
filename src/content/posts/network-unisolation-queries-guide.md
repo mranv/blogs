@@ -13,6 +13,7 @@ tags:
   - threat-hunting
   - windows-security
   - malware-analysis
+category: Security
 description: "Comprehensive guide to network unisolation queries for incident response, covering advanced forensic techniques, threat hunting methodologies, and malware analysis procedures."
 ---
 

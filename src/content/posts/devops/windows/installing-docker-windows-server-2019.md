@@ -9,6 +9,7 @@ draft: false
 tags:
   - Windows Server 2019
   - Docker
+category: DevOps
 description: Guide to installing Docker on Windows Server 2019, both via OneGet and manual download methods.
 ---
 

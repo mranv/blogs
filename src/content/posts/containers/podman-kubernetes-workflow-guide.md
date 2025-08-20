@@ -12,6 +12,7 @@ tags:
   - devops
   - container-orchestration
   - cloud-native
+category: Kubernetes
 description: A complete guide explaining how to use Podman as a Docker alternative with Kubernetes, including manifest generation, image management, and development workflows.
 ---
 

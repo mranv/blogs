@@ -5,6 +5,7 @@ author: "Anubhav Gain"
 slug: "saga-pattern-distributed-transactions-guide"
 pubDatetime: 2025-01-27T14:00:00+05:30
 tags:
+category: Microservices
   [
     "microservices",
     "saga-pattern",

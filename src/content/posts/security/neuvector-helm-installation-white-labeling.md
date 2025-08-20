@@ -15,6 +15,7 @@ tags:
   - white-labeling
   - zero-trust
   - runtime-protection
+category: Security
 description: Comprehensive guide to installing NeuVector container security platform using Helm, including advanced configuration, white-labeling customization, and enterprise deployment patterns
 ---
 

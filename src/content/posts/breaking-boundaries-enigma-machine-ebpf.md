@@ -14,6 +14,7 @@ tags:
   - programming
   - turing
   - cryptography
+category: eBPF
 description: A fascinating exploration of implementing the historic Enigma machine using eBPF, celebrating Alan Turing's legacy while showcasing the evolution of eBPF tooling over the past decade.
 ---
 

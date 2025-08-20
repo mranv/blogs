@@ -15,6 +15,7 @@ tags:
   - devops
   - infrastructure
   - linux
+category: DevOps
 description: A detailed guide on package management in Fedora CoreOS using DNF and rpm-ostree, covering system updates, layered packages, troubleshooting, and best practices for container-optimized environments.
 ---
 

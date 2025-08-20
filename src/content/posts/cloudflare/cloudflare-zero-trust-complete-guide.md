@@ -15,6 +15,7 @@ tags:
   - vpn-replacement
   - enterprise
   - authentication
+category: Cloud
 description: Comprehensive guide to implementing NIST SP 800-207 compliant Zero Trust Architecture using Cloudflare Access, replacing traditional VPNs with identity-based security and achieving 80% reduction in security incidents.
 ---
 

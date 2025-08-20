@@ -14,6 +14,7 @@ tags:
   - infrastructure
   - container-orchestration
   - k8s
+category: Kubernetes
 description: A practical guide to seamlessly integrating Podman with Kubernetes workflows, including generating Kubernetes manifests, development practices, and migration strategies.
 ---
 

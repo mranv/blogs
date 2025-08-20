@@ -11,6 +11,7 @@ tags:
   - xprotect
   - monitoring
   - automation
+category: Security
 description: Scripts and techniques for monitoring macOS XProtect status, including silent checks for automated security monitoring and JSON output for XDR integration.
 ---
 

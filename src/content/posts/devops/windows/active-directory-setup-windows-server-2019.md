@@ -9,6 +9,7 @@ draft: false
 tags:
   - Windows Server 2019
   - Active Directory
+category: Technology
 description: Guide to setting up Active Directory on Windows Server 2019, including PowerShell commands for OU management.
 ---
 

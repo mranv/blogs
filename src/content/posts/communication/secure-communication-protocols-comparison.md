@@ -16,6 +16,7 @@ tags:
   - grpc
   - websockets
   - infrastructure
+category: Security
 description: A comprehensive comparison of modern secure communication protocols for enterprise applications, including TLS, SSH, VPN technologies, gRPC, and WebSockets.
 ---
 

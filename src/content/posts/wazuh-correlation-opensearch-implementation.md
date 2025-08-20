@@ -15,6 +15,7 @@ tags:
   - xdr
   - siem
   - monitoring
+category: Security
 description: Complete setup guide for Wazuh with OpenSearch and Filebeat, implementing advanced alert correlation, custom dashboards, and real-time threat detection.
 ---
 

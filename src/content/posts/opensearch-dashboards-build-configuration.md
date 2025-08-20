@@ -12,6 +12,7 @@ tags:
   - manifest
   - xdr
   - security-platform
+category: Security
 description: "Comprehensive guide to OpenSearch Dashboards build configuration manifests, including plugin management, XDR integration, and enterprise deployment strategies."
 ---
 

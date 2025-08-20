@@ -15,6 +15,7 @@ tags:
   - udp
   - tcp
   - systems-programming
+category: Programming
 description: Comprehensive guide to implementing network tunneling using the QUIC protocol in Go, covering proxy-agent architecture, TLS integration, and practical deployment scenarios.
 ---
 

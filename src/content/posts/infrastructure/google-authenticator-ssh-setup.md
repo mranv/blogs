@@ -14,6 +14,7 @@ tags:
   - authentication
   - google-authenticator
   - infrastructure
+category: Security
 description: A comprehensive guide to implementing Google Authenticator two-factor authentication for SSH and sudo access on Linux systems, including troubleshooting and best practices.
 ---
 

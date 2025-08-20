@@ -5,6 +5,7 @@ description: "Master enterprise-grade Wazuh clustering and high availability for
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:45:00+05:30
 tags:
+category: Security
   [
     "wazuh",
     "enterprise-clustering",

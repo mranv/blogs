@@ -5,6 +5,7 @@ description: "Implement Zero Trust Network Access using Rust. Learn to build sec
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:15:00+05:30
 tags:
+category: Security
   [
     "zero-trust",
     "network-access",

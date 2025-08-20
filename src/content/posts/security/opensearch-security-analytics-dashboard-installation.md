@@ -15,6 +15,7 @@ tags:
   - monitoring
   - siem
   - installation
+category: Security
 description: Step-by-step guide to installing the Security Analytics Dashboard plugin in OpenSearch Dashboards, enhancing security monitoring capabilities with analytics-driven visualizations and alerts
 ---
 
@@ -461,6 +462,7 @@ output.opensearch:
 
 processors:
   - add_tags:
+category: Security
       tags: [security-analytics]
       target: "event.tags"
 ```

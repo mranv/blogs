@@ -14,6 +14,7 @@ tags:
   - linux
   - devops
   - automation
+category: DevOps
 description: A comprehensive guide to creating production-ready systemd services for managing Podman and Docker containers, including auto-restart, health checks, and resource limits.
 ---
 

@@ -13,6 +13,7 @@ tags:
   - messaging
   - devops
   - scalability
+category: DevOps
 description: A detailed architecture for a production-grade open-source SMS gateway capable of handling ~2000 SMS/second, using tools like Jasmin or Kannel.
 ---
 

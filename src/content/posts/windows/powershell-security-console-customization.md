@@ -15,6 +15,7 @@ tags:
   - terminal
   - productivity
   - windows-10-iot
+category: Security
 description: Build a personalized security-focused command line environment with custom PowerShell profiles and CMD configurations, including security utilities, enhanced prompts, and auto-launch capabilities for Windows environments
 ---
 

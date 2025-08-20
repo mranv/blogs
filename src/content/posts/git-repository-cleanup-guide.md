@@ -11,6 +11,7 @@ tags:
   - optimization
   - devops
   - best-practices
+category: DevOps
 description: "A comprehensive guide to cleaning up Git repositories, removing sensitive data, optimizing repository size, and maintaining clean Git history."
 ---
 

@@ -10,6 +10,7 @@ tags:
   - shell
   - zsh
   - customization
+category: Programming
 description: A detailed guide on creating a personalized Zsh theme for a professional and efficient workspace, designed by Anubhav Gain.
 ---
 

@@ -10,6 +10,7 @@ tags:
   - windows
   - windows updates
   - auto-reboot
+category: Technology
 description: Venting frustrations and providing solutions for managing Windows features.
 ---
 

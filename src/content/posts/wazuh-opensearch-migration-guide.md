@@ -13,6 +13,7 @@ tags:
   - elasticsearch
   - siem
   - security
+category: Security
 description: "Comprehensive guide for migrating from Wazuh indexer to OpenSearch, including data migration, configuration updates, and step-by-step replacement procedures."
 ---
 

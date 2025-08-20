@@ -14,6 +14,7 @@ tags:
   - podman
   - docker
   - devops
+category: Linux
 description: A comprehensive guide to Distrobox - the powerful tool that enables seamless use of any Linux distribution inside your terminal through containers, with full integration with your host system.
 ---
 

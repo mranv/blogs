@@ -14,6 +14,7 @@ tags:
   - linux
   - homelab
   - infrastructure
+category: Networking
 description: Step-by-step guide to set up CoreDNS for local network DNS resolution with SSL configuration, including client configuration and troubleshooting tips.
 ---
 

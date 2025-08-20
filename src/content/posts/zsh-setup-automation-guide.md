@@ -13,6 +13,7 @@ tags:
   - terminal
   - starship
   - configuration
+category: Linux
 description: "Complete guide to automating Zsh installation and configuration with plugins, themes, and modern terminal tools using a comprehensive setup script."
 ---
 

@@ -12,6 +12,7 @@ tags:
   - actix-web
   - rest-api
   - backend
+category: Programming
 description: Learn to build fast, secure REST APIs with Actix-web, including authentication, database integration, middleware, and production deployment
 ---
 

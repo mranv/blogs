@@ -13,6 +13,7 @@ tags:
   - devops
   - alerting
   - performance
+category: Observability
 description: A complete guide to building a robust API monitoring script with health checks, performance metrics, alerting, and comprehensive logging capabilities.
 ---
 

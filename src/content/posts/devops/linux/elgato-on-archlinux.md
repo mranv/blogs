@@ -9,6 +9,7 @@ draft: false
 tags:
   - linux
   - elgato
+category: Linux
 description: Guide on setting up the Elgato Streamdeck on Arch Linux, including installing necessary packages, configuring the environment, and accessing Elgato devices.
 ---
 

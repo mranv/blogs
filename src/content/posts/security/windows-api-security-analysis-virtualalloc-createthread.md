@@ -16,6 +16,7 @@ tags:
   - xdr
   - threat-detection
   - shellcode
+category: Security
 description: Comprehensive security analysis of critical Windows API functions used in both legitimate software and malware, with Rust implementations, threat models, and defensive patterns
 ---
 

@@ -10,6 +10,7 @@ tags:
   - neovim
   - lunarvim
   - ide
+category: Linux
 description: Guide for transitioning from NeoVim to LunarVim, an IDE layer for Neovim.
 ---
 

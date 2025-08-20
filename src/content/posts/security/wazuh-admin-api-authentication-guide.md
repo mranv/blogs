@@ -12,6 +12,7 @@ tags:
   - api
   - authentication
   - devops
+category: Security
 description: A comprehensive guide for authenticating with the Wazuh API and creating admin users with elevated privileges for effective security management.
 ---
 

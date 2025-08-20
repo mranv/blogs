@@ -13,6 +13,7 @@ tags:
   - siem
   - backup
   - monitoring
+category: Security
 description: "Complete guide for setting up, configuring, and managing an OpenSearch cluster serving as a Wazuh indexer, including backup procedures, health checks, and troubleshooting."
 ---
 

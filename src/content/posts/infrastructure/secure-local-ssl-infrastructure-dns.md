@@ -14,6 +14,7 @@ tags:
   - pki
   - infrastructure
   - certificates
+category: Networking
 description: A comprehensive guide to implementing a secure local SSL/TLS infrastructure using DNS, including certificate authority setup, DNS configuration, and automated certificate management for internal services.
 ---
 

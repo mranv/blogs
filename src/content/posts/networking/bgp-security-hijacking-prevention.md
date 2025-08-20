@@ -13,6 +13,7 @@ tags:
   - routing
   - infrastructure
   - rpki
+category: Security
 description: Comprehensive guide to BGP security vulnerabilities, attack vectors, and practical implementation of protection mechanisms including RPKI and Route Leak Detection
 ---
 

@@ -10,6 +10,7 @@ tags:
   - ubuntu
   - vsftp
   - ftp
+category: Linux
 description: Guide for setting up vsFTP on Ubuntu.
 ---
 

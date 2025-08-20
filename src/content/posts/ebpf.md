@@ -8,6 +8,7 @@ featured: true
 draft: false
 tags:
   - ebpf
+category: eBPF
 description: Dynamically programming of the Linux kernel to perform a variety of tasks efficiently.
 ---
 

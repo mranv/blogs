@@ -17,6 +17,7 @@ tags:
   - devops
   - security
   - data-fetcher
+category: Kubernetes
 description: Complete guide to deploying an AMTD (Advanced Moving Target Defense) data fetcher as a scheduled Kubernetes CronJob using Devtron's GitOps platform, including NATS integration and persistent storage configuration
 ---
 

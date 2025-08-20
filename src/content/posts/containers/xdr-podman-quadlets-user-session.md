@@ -16,6 +16,7 @@ tags:
   - monitoring
   - user-session
   - rootless
+category: Security
 description: Comprehensive guide to deploying XDR (Extended Detection and Response) agents as Podman Quadlets in user sessions, enabling rootless container security monitoring with systemd integration
 ---
 

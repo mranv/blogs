@@ -8,6 +8,7 @@ featured: true
 draft: false
 tags:
   - rust
+category: Programming
 description: installation of rust in windows/linux/mac.
 ---
 

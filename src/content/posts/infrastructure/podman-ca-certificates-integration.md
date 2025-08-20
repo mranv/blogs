@@ -12,6 +12,7 @@ tags:
   - pki
   - containers
   - infrastructure
+category: Security
 description: A comprehensive guide on adding and managing Certificate Authority (CA) certificates in Podman environments, including integration with custom PKI infrastructure and automated workflows.
 ---
 

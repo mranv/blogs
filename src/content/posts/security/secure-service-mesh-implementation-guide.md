@@ -15,6 +15,7 @@ tags:
   - microservices
   - kubernetes
   - mtls
+category: Security
 description: A comprehensive guide to implementing a secure service mesh using SPIFFE/SPIRE for identity management, including architecture diagrams, network policy enforcement, and production deployment strategies.
 ---
 

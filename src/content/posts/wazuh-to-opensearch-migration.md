@@ -11,6 +11,7 @@ tags:
   - migration
   - security
   - siem
+category: Security
 description: "A comprehensive step-by-step guide to migrate from Wazuh indexer to OpenSearch while preserving your data and configurations."
 ---
 

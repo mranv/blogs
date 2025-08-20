@@ -8,6 +8,7 @@ featured: true
 draft: false
 tags:
   - linux
+category: Linux
 description: Developed as a successor to the original Linux Kernal and Busybox based operating system.
 ---
 

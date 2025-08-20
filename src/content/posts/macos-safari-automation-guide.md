@@ -12,6 +12,7 @@ tags:
   - applescript
   - shell-scripting
   - system-administration
+category: Security
 description: "Comprehensive guide to automating Safari browser configuration on macOS using shell scripts and AppleScript, including homepage setting, preferences management, and enterprise deployment strategies."
 ---
 

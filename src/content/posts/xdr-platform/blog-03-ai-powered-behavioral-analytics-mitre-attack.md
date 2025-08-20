@@ -5,6 +5,7 @@ description: "Master advanced behavioral analytics using AI and machine learning
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
+category: Programming
   [
     "behavioral-analytics",
     "mitre-attack",

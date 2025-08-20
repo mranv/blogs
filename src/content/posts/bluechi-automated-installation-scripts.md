@@ -12,6 +12,7 @@ tags:
   - orchestration
   - rocky-linux
   - enterprise
+category: Security
 description: "Complete automation scripts for deploying BlueChI multi-node orchestration on Rocky Linux and Amazon Linux. Includes single-node, multi-node, and production-ready configurations with security hardening."
 ---
 

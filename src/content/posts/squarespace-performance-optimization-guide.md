@@ -12,6 +12,7 @@ tags:
   - site-speed
   - user-experience
   - seo
+category: Performance
 description: "Comprehensive guide to optimizing Squarespace website performance, including image optimization, code injection techniques, caching strategies, and Core Web Vitals improvements."
 ---
 

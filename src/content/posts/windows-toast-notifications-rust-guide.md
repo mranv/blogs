@@ -13,6 +13,7 @@ tags:
   - desktop-development
   - winrt
   - notifications
+category: Programming
 description: "Comprehensive guide to implementing Windows toast notifications in Rust applications, covering WinRT APIs, notification templates, interactive elements, and advanced notification management."
 ---
 

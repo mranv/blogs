@@ -14,6 +14,7 @@ tags:
   - devops
   - container
   - selinux
+category: Kubernetes
 description: A comprehensive guide for deploying a secure, production-grade Kubernetes cluster on CoreOS with CRI-O runtime, SELinux integration, and robust networking using kube-router.
 ---
 

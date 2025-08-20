@@ -14,6 +14,7 @@ tags:
   - security
   - keepalive
   - integration
+category: Security
 description: Modify Wazuh manager to send remote keep-alive messages and publish agent status events to NATS for XDR/OXDR platform integration with real-time monitoring.
 ---
 

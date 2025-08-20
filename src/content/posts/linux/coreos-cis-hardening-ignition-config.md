@@ -16,6 +16,7 @@ tags:
   - compliance
   - linux
   - infrastructure
+category: Security
 description: Comprehensive guide to hardening Fedora CoreOS using CIS Distribution Independent Linux Benchmark controls through Ignition configuration, including partitioning, kernel parameters, and security policies
 ---
 

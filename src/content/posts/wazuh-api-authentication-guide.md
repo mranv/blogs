@@ -11,6 +11,7 @@ tags:
   - authentication
   - security
   - rbac
+category: Security
 description: "A comprehensive guide to implementing secure authentication for Wazuh API, including token management, role-based access control, and practical examples."
 ---
 

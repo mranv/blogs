@@ -13,6 +13,7 @@ tags:
   - monitoring
   - linux
   - observability
+category: eBPF
 description: Master eBPF for network performance monitoring with practical examples, XDP programs, and production-ready monitoring solutions
 ---
 

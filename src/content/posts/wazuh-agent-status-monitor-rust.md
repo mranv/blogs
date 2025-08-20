@@ -14,6 +14,7 @@ tags:
   - xdr
   - security
   - real-time
+category: Security
 description: Rust-based service that monitors Wazuh agent status changes and publishes them to NATS for real-time security event distribution across XDR/OXDR platforms.
 ---
 

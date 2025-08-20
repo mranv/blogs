@@ -12,6 +12,7 @@ tags:
   - fedora-coreos
   - containers
   - devops
+category: Kubernetes
 description: A comprehensive guide to installing kubectl on Fedora CoreOS (FCOS), covering both RPM-based installation and binary installation methods with best practices.
 ---
 

@@ -12,6 +12,7 @@ tags:
   - security
   - xdr
   - architecture
+category: Security
 description: Technical documentation on Wazuh Manager's keep-alive communication system, including NATS integration for real-time agent status monitoring in XDR/OXDR platforms.
 ---
 

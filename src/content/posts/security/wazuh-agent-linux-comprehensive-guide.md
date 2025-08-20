@@ -16,6 +16,7 @@ tags:
   - malware-detection
   - file-integrity
   - vulnerability-detection
+category: Security
 description: A comprehensive guide to understanding and deploying the Wazuh agent on Linux systems for advanced security monitoring, threat detection, and automated response capabilities
 ---
 

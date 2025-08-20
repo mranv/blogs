@@ -12,6 +12,7 @@ tags:
   - terminal
   - tools
   - development
+category: Programming
 description: Learn how to build powerful command-line tools in Rust using clap, colored output, progress bars, and async operations with real-world examples
 ---
 

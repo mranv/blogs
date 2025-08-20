@@ -14,6 +14,7 @@ tags:
   - siem
   - monitoring
   - devops
+category: Security
 description: A comprehensive technical deep-dive into Wazuh's data analysis process, rule engine, and ruleset configuration, with detailed diagrams explaining how logs are collected, decoded, and matched against rules.
 ---
 

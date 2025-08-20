@@ -12,6 +12,7 @@ tags:
   - zero-trust
   - ztna
   - architecture
+category: Programming
 description: Comprehensive guide to implementing Zero Trust Network Architecture with practical examples, code snippets, and real-world deployment strategies
 ---
 

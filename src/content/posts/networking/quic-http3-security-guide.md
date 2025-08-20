@@ -13,6 +13,7 @@ tags:
   - quic
   - tls
   - performance
+category: Security
 description: Complete guide to QUIC and HTTP/3 security implications, implementation best practices, and advanced security monitoring techniques
 ---
 

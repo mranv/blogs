@@ -14,6 +14,7 @@ tags:
   - hardening
   - partitioning
   - system-administration
+category: Linux
 description: A comprehensive guide to creating a secure, CIS Benchmark-compliant partitioning scheme for Rocky Linux 9.5 installations with 400 GiB of storage.
 ---
 

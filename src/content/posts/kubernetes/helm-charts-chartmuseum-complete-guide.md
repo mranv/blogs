@@ -15,6 +15,7 @@ tags:
   - ci-cd
   - container-orchestration
   - helm-charts
+category: Kubernetes
 description: Comprehensive guide to setting up ChartMuseum, creating, packaging, signing, and publishing Helm charts with automation, security best practices, and troubleshooting tips
 ---
 

@@ -10,6 +10,7 @@ tags:
   - Windows Server 2019
   - active directory
   - installation
+category: Technology
 description: Step-by-step guide for installing Active Directory on Windows Server 2019.
 ---
 

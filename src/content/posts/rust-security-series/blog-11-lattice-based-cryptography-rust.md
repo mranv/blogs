@@ -5,6 +5,7 @@ description: "Master lattice-based cryptography implementation in Rust. Learn to
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:45:00+05:30
 tags:
+category: Security
   [
     "lattice-cryptography",
     "post-quantum-cryptography",

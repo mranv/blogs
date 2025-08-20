@@ -12,6 +12,7 @@ tags:
   - object-storage
   - containers
   - security
+category: Cloud
 description: "A comprehensive guide for deploying MinIO object storage in Podman containers with Cloudflare Tunnel integration for secure external access without exposing ports."
 ---
 

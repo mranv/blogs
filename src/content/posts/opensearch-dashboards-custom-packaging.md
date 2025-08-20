@@ -13,6 +13,7 @@ tags:
   - build
   - plugins
   - nodejs
+category: Security
 description: "Complete guide for building and packaging OpenSearch Dashboards from source with custom plugins, including manual Debian package creation and automated build processes."
 ---
 

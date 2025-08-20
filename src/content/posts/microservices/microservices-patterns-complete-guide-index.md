@@ -16,6 +16,7 @@ tags:
   - mermaid
   - index
   - reference
+category: Microservices
 description: A comprehensive index of microservices patterns with detailed guides, mermaid diagrams, and practical implementations. Your complete resource hub for modern distributed systems architecture.
 ---
 

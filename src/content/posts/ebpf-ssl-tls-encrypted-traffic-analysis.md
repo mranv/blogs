@@ -15,6 +15,7 @@ tags:
   - uprobes
   - network-security
   - performance
+category: eBPF
 description: Comprehensive guide to analyzing encrypted SSL/TLS traffic using eBPF uprobes, enabling real-time monitoring without SSL certificates or application modifications.
 ---
 

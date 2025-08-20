@@ -14,6 +14,7 @@ tags:
   - infrastructure
   - wazuh
   - devops
+category: Infrastructure
 description: A comprehensive guide for configuring NFS mounts to facilitate OpenSearch data migration across cluster nodes, including step-by-step instructions, troubleshooting tips, and security considerations.
 ---
 

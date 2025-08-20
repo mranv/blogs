@@ -15,6 +15,7 @@ tags:
   - infrastructure
   - containerization
   - TLS
+category: Security
 description: A comprehensive guide to adding and managing custom Certificate Authority (CA) certificates in Podman environments, with detailed methods for both manual certificate installation and integrated CA infrastructure using Smallstep.
 ---
 

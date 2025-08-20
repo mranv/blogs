@@ -14,6 +14,7 @@ tags:
   - monitoring
   - linux
   - kernel
+category: eBPF
 description: Learn how to build production-grade eBPF security tools using Rust and Aya. From basic monitoring to advanced threat detection, this guide covers everything you need to know about modern eBPF development.
 ---
 

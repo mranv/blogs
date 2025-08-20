@@ -15,6 +15,7 @@ tags:
   - gateway
   - warp
   - network-security
+category: Cloud
 description: Comprehensive guide to implementing Zero Trust Network Access using Cloudflare, including Access, Tunnel, Gateway, and WARP for secure enterprise networking.
 ---
 

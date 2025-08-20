@@ -5,6 +5,7 @@ description: "Discover how Open XDR transforms security operations by breaking v
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T11:00:00+05:30
 tags:
+category: Security
   [
     "xdr",
     "open-xdr",

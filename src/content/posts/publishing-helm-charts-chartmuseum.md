@@ -11,6 +11,7 @@ tags:
   - chartmuseum
   - devops
   - ci-cd
+category: Kubernetes
 description: Comprehensive guide covering ChartMuseum setup, Helm chart creation, packaging, signing, publishing, and CI/CD automation for managing private Helm chart repositories.
 ---
 

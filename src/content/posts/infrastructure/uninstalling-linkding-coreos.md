@@ -15,6 +15,7 @@ tags:
   - container-management
   - infrastructure
   - cleanup
+category: Infrastructure
 description: A comprehensive step-by-step guide for completely removing Linkding bookmark manager from CoreOS systems, including services, containers, data, and configuration files.
 ---
 

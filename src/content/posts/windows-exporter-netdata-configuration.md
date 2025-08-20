@@ -13,6 +13,7 @@ tags:
   - prometheus
   - observability
   - metrics
+category: Observability
 description: Complete guide to configuring Windows Exporter with custom log file monitoring and firewall exceptions for Netdata integration.
 ---
 

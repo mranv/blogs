@@ -13,6 +13,7 @@ tags:
   - centos
   - security
   - migration
+category: DevOps
 description: "Complete guide to containerizing legacy PHP 5.3.3 applications using Podman with CentOS 6, including security considerations, rootless containers, and migration strategies."
 ---
 

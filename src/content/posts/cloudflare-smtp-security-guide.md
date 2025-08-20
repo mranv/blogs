@@ -14,6 +14,7 @@ tags:
   - dkim
   - spf
   - dmarc
+category: Security
 description: Security-focused guide for implementing custom domain email using Cloudflare Email Routing with third-party SMTP relay services, addressing DKIM authentication and spam filtering.
 ---
 

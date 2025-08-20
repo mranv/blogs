@@ -11,6 +11,7 @@ tags:
   - development
   - security
   - devops
+category: Security
 description: A comprehensive guide to managing Git identities and rewriting commit history, including changing author information, handling multiple identities, and best practices for safe history manipulation.
 ---
 

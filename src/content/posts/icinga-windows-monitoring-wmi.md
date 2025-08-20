@@ -14,6 +14,7 @@ tags:
   - nagios
   - infrastructure
   - devops
+category: Observability
 description: Comprehensive guide to monitor Windows machines without agents using WMI (Windows Management Instrumentation) with Icinga and check_wmi_plus plugin.
 ---
 

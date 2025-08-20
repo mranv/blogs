@@ -13,6 +13,7 @@ tags:
   - performance
   - infrastructure
   - best-practices
+category: Infrastructure
 description: A detailed comparison of VMware's disk provisioning options - Thin Provisioned, Thick Provisioned Lazily Zeroed, and Thick Provisioned Eagerly Zeroed - to help you choose the right option for your workloads.
 ---
 

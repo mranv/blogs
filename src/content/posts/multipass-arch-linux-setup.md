@@ -12,6 +12,7 @@ tags:
   - ubuntu
   - qemu
   - libvirt
+category: Security
 description: "Comprehensive guide for installing and configuring Multipass on Arch Linux with security best practices, troubleshooting, and maintenance procedures."
 ---
 
