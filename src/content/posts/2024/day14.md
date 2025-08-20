@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day14
-slug: day14
+pubDatetime: 2023-01-14T15:30:00+05:30
+modDatetime: 2023-01-23T15:30:00+05:30
+title: "Database Management in DevOps"
+slug: 90days-14-database-management-in-devops
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - git
+  - cicd
+  - jenkins
+  - github-actions
+  - automation
+category: Version Control & CI/CD
+description: "Day 14 of 90 Days of DevOps - Database Management in DevOps. Part of the Version Control & CI/CD series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 14 - An introduction to API Security in Kubernetes

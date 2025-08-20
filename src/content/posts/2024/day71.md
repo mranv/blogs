@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day71
-slug: day71
+pubDatetime: 2023-03-12T09:30:00+05:30
+modDatetime: 2023-03-25T09:30:00+05:30
+title: "Serverless Computing Introduction"
+slug: 90days-71-serverless-computing-introduction
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - serverless
+  - lambda
+  - functions
+  - edge-computing
+  - advanced-devops
+category: Serverless & Advanced Topics
+description: "Day 71 of 90 Days of DevOps - Serverless Computing Introduction. Part of the Serverless & Advanced Topics series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 71 - Chatbots are going to destroy infrastructures and your cloud bills

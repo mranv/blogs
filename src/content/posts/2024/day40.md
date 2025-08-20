@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day40
-slug: day40
-featured: false
+pubDatetime: 2023-02-09T19:00:00+05:30
+modDatetime: 2023-02-21T19:00:00+05:30
+title: "Kubernetes Security and RBAC"
+slug: 90days-40-kubernetes-security-and-rbac
+featured: true
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - docker
+  - kubernetes
+  - containers
+  - orchestration
+  - microservices
+category: Containerization & Orchestration
+description: "Day 40 of 90 Days of DevOps - Kubernetes Security and RBAC. Part of the Containerization & Orchestration series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 40 - Infrastructure as Code - A look at Azure Bicep and Terraform

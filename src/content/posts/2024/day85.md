@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day85
-slug: day85
+pubDatetime: 2023-03-26T16:00:00+05:30
+modDatetime: 2023-04-02T16:00:00+05:30
+title: "DevOps Metrics and KPIs"
+slug: 90days-85-devops-metrics-and-kpis
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - best-practices
+  - devops-culture
+  - collaboration
+  - agile
+  - continuous-improvement
+category: Best Practices & Culture
+description: "Day 85 of 90 Days of DevOps - DevOps Metrics and KPIs. Part of the Best Practices & Culture series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 85 - Reuse, Don't Repeat - Creating an Infrastructure as Code Module Library

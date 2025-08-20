@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day69
-slug: day69
+pubDatetime: 2023-03-10T09:30:00+05:30
+modDatetime: 2023-03-17T09:30:00+05:30
+title: "Zero Trust Architecture"
+slug: 90days-69-zero-trust-architecture
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devsecops
+  - security
+  - compliance
+  - vulnerability-scanning
+  - secure-coding
+category: Security & Compliance
+description: "Day 69 of 90 Days of DevOps - Zero Trust Architecture. Part of the Security & Compliance series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 69 - Enhancing Kubernetes security, visibility, and networking control logic at the Linux kernel

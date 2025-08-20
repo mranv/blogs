@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day59
-slug: day59
+pubDatetime: 2023-02-28T19:00:00+05:30
+modDatetime: 2023-03-13T19:00:00+05:30
+title: "Chaos Engineering and Resilience"
+slug: 90days-59-chaos-engineering-and-resilience
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - monitoring
+  - prometheus
+  - grafana
+  - elk-stack
+  - observability
+category: Monitoring & Observability
+description: "Day 59 of 90 Days of DevOps - Chaos Engineering and Resilience. Part of the Monitoring & Observability series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 59 - Continuous Delivery pipelines for cloud infrastructure

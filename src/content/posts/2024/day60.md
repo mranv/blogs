@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day60
-slug: day60
-featured: false
+pubDatetime: 2023-03-01T20:00:00+05:30
+modDatetime: 2023-03-20T20:00:00+05:30
+title: "Observability Best Practices"
+slug: 90days-60-observability-best-practices
+featured: true
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - monitoring
+  - prometheus
+  - grafana
+  - elk-stack
+  - observability
+category: Monitoring & Observability
+description: "Day 60 of 90 Days of DevOps - Observability Best Practices. Part of the Monitoring & Observability series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 60 - Migrating a monolith to Cloud-Native and the stumbling blocks that you don’t know about

@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day20
-slug: day20
-featured: false
+pubDatetime: 2023-01-20T08:15:00+05:30
+modDatetime: 2023-02-06T08:15:00+05:30
+title: "Building Your First CI/CD Pipeline"
+slug: 90days-20-building-your-first-cicd-pipeline
+featured: true
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - git
+  - cicd
+  - jenkins
+  - github-actions
+  - automation
+category: Version Control & CI/CD
+description: "Day 20 of 90 Days of DevOps - Building Your First CI/CD Pipeline. Part of the Version Control & CI/CD series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 20 - Navigating the Vast DevOps Terrain: Strategies for Learning and Staying Current

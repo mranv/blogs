@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day34
-slug: day34
+pubDatetime: 2023-02-03T08:00:00+05:30
+modDatetime: 2023-03-04T08:00:00+05:30
+title: "Docker Networking and Storage"
+slug: 90days-34-docker-networking-and-storage
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - docker
+  - kubernetes
+  - containers
+  - orchestration
+  - microservices
+category: Containerization & Orchestration
+description: "Day 34 of 90 Days of DevOps - Docker Networking and Storage. Part of the Containerization & Orchestration series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 34 - How to Implement Automated Deployment Pipelines for Your DevOps Projects

@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day67
-slug: day67
+pubDatetime: 2023-03-08T15:30:00+05:30
+modDatetime: 2023-04-04T15:30:00+05:30
+title: "Security Policies and Governance"
+slug: 90days-67-security-policies-and-governance
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devsecops
+  - security
+  - compliance
+  - vulnerability-scanning
+  - secure-coding
+category: Security & Compliance
+description: "Day 67 of 90 Days of DevOps - Security Policies and Governance. Part of the Security & Compliance series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 67 - Art of DevOps: Harmonizing Code, Culture, and Continuous Delivery

@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day63
-slug: day63
+pubDatetime: 2023-03-04T20:45:00+05:30
+modDatetime: 2023-03-27T20:45:00+05:30
+title: "Container Security and Image Scanning"
+slug: 90days-63-container-security-and-image-scanning
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devsecops
+  - security
+  - compliance
+  - vulnerability-scanning
+  - secure-coding
+category: Security & Compliance
+description: "Day 63 of 90 Days of DevOps - Container Security and Image Scanning. Part of the Security & Compliance series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 63 - Diving into Container Network Namespaces

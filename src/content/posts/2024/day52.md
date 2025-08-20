@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day52
-slug: day52
+pubDatetime: 2023-02-21T08:30:00+05:30
+modDatetime: 2023-03-20T08:30:00+05:30
+title: "Prometheus Setup and Configuration"
+slug: 90days-52-prometheus-setup-and-configuration
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - monitoring
+  - prometheus
+  - grafana
+  - elk-stack
+  - observability
+category: Monitoring & Observability
+description: "Day 52 of 90 Days of DevOps - Prometheus Setup and Configuration. Part of the Monitoring & Observability series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 52 - Creating a custom Dev Container for your GitHub Codespace to start with Terraform on Azure

@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day84
-slug: day84
+pubDatetime: 2023-03-25T09:15:00+05:30
+modDatetime: 2023-04-20T09:15:00+05:30
+title: "Continuous Learning Culture"
+slug: 90days-84-continuous-learning-culture
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - best-practices
+  - devops-culture
+  - collaboration
+  - agile
+  - continuous-improvement
+category: Best Practices & Culture
+description: "Day 84 of 90 Days of DevOps - Continuous Learning Culture. Part of the Best Practices & Culture series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 84 - Hacking Kubernetes For Beginners

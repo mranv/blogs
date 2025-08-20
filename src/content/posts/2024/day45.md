@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day45
-slug: day45
+pubDatetime: 2023-02-14T15:00:00+05:30
+modDatetime: 2023-02-26T15:00:00+05:30
+title: "AWS Networking - VPC and Security Groups"
+slug: 90days-45-aws-networking---vpc-and-security-groups
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - aws
+  - azure
+  - gcp
+  - cloud
+  - cloud-native
+category: Cloud Platforms
+description: "Day 45 of 90 Days of DevOps - AWS Networking - VPC and Security Groups. Part of the Cloud Platforms series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 45 - Microsoft DevOps Solutions or how to integrate the best of Azure DevOps and GitHub

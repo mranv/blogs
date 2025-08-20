@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day42
-slug: day42
+pubDatetime: 2023-02-11T09:15:00+05:30
+modDatetime: 2023-03-04T09:15:00+05:30
+title: "AWS Core Services Overview"
+slug: 90days-42-aws-core-services-overview
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - aws
+  - azure
+  - gcp
+  - cloud
+  - cloud-native
+category: Cloud Platforms
+description: "Day 42 of 90 Days of DevOps - AWS Core Services Overview. Part of the Cloud Platforms series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 42 - The North Star: Risk-driven security

@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day33
-slug: day33
+pubDatetime: 2023-02-02T14:15:00+05:30
+modDatetime: 2023-02-17T14:15:00+05:30
+title: "Docker Compose for Multi-Container Apps"
+slug: 90days-33-docker-compose-for-multi-container-apps
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - docker
+  - kubernetes
+  - containers
+  - orchestration
+  - microservices
+category: Containerization & Orchestration
+description: "Day 33 of 90 Days of DevOps - Docker Compose for Multi-Container Apps. Part of the Containerization & Orchestration series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 33 - GitOps made simple with ArgoCD and GitHub Actions

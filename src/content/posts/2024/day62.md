@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day62
-slug: day62
+pubDatetime: 2023-03-03T20:00:00+05:30
+modDatetime: 2023-03-15T20:00:00+05:30
+title: "Security Scanning in CI/CD Pipelines"
+slug: 90days-62-security-scanning-in-cicd-pipelines
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devsecops
+  - security
+  - compliance
+  - vulnerability-scanning
+  - secure-coding
+category: Security & Compliance
+description: "Day 62 of 90 Days of DevOps - Security Scanning in CI/CD Pipelines. Part of the Security & Compliance series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 62 - Shifting Left for DevSecOps Using Modern Edge Platforms

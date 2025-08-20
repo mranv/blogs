@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day65
-slug: day65
+pubDatetime: 2023-03-06T14:15:00+05:30
+modDatetime: 2023-03-16T14:15:00+05:30
+title: "SAST and DAST Implementation"
+slug: 90days-65-sast-and-dast-implementation
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devsecops
+  - security
+  - compliance
+  - vulnerability-scanning
+  - secure-coding
+category: Security & Compliance
+description: "Day 65 of 90 Days of DevOps - SAST and DAST Implementation. Part of the Security & Compliance series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 65 - Azure pertinent DevOps for non-coders

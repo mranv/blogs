@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day47
-slug: day47
+pubDatetime: 2023-02-16T08:15:00+05:30
+modDatetime: 2023-03-14T08:15:00+05:30
+title: "Azure DevOps and Pipelines"
+slug: 90days-47-azure-devops-and-pipelines
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - aws
+  - azure
+  - gcp
+  - cloud
+  - cloud-native
+category: Cloud Platforms
+description: "Day 47 of 90 Days of DevOps - Azure DevOps and Pipelines. Part of the Cloud Platforms series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 47 - Azure logic app, low / no code

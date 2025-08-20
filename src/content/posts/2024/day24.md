@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day24
-slug: day24
+pubDatetime: 2023-01-24T08:45:00+05:30
+modDatetime: 2023-02-01T08:45:00+05:30
+title: "Terraform Modules and Best Practices"
+slug: 90days-24-terraform-modules-and-best-practices
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - terraform
+  - ansible
+  - iac
+  - automation
+  - infrastructure
+category: Infrastructure as Code
+description: "Day 24 of 90 Days of DevOps - Terraform Modules and Best Practices. Part of the Infrastructure as Code series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 24 - DevSecOps - Defined, Explained & Explored

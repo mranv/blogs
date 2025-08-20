@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day17
-slug: day17
+pubDatetime: 2023-01-17T10:45:00+05:30
+modDatetime: 2023-02-09T10:45:00+05:30
+title: "GitHub Collaboration and Pull Requests"
+slug: 90days-17-github-collaboration-and-pull-requests
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - git
+  - cicd
+  - jenkins
+  - github-actions
+  - automation
+category: Version Control & CI/CD
+description: "Day 17 of 90 Days of DevOps - GitHub Collaboration and Pull Requests. Part of the Version Control & CI/CD series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 17 - From Chaos to Resilience: Decoding the Secrets of Production Readiness

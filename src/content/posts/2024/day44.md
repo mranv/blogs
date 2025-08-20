@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day44
-slug: day44
+pubDatetime: 2023-02-13T19:30:00+05:30
+modDatetime: 2023-03-07T19:30:00+05:30
+title: "AWS Storage Solutions - S3 and EBS"
+slug: 90days-44-aws-storage-solutions---s3-and-ebs
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - aws
+  - azure
+  - gcp
+  - cloud
+  - cloud-native
+category: Cloud Platforms
+description: "Day 44 of 90 Days of DevOps - AWS Storage Solutions - S3 and EBS. Part of the Cloud Platforms series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 44 - Exploring Firecracker

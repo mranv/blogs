@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day86
-slug: day86
+pubDatetime: 2023-03-27T15:15:00+05:30
+modDatetime: 2023-04-09T15:15:00+05:30
+title: "Scaling DevOps in Enterprise"
+slug: 90days-86-scaling-devops-in-enterprise
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - best-practices
+  - devops-culture
+  - collaboration
+  - agile
+  - continuous-improvement
+category: Best Practices & Culture
+description: "Day 86 of 90 Days of DevOps - Scaling DevOps in Enterprise. Part of the Best Practices & Culture series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 86 - Tools To Make Your Terminal DevOps and Kubernetes Friendly

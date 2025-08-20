@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day61
-slug: day61
+pubDatetime: 2023-03-02T08:00:00+05:30
+modDatetime: 2023-03-20T08:00:00+05:30
+title: "DevSecOps Introduction and Principles"
+slug: 90days-61-devsecops-introduction-and-principles
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devsecops
+  - security
+  - compliance
+  - vulnerability-scanning
+  - secure-coding
+category: Security & Compliance
+description: "Day 61 of 90 Days of DevOps - DevSecOps Introduction and Principles. Part of the Security & Compliance series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 61 - Demystifying Modernisation: True Potential of Cloud Technology

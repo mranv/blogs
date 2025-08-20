@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day83
-slug: day83
+pubDatetime: 2023-03-24T14:00:00+05:30
+modDatetime: 2023-04-08T14:00:00+05:30
+title: "Documentation and Knowledge Sharing"
+slug: 90days-83-documentation-and-knowledge-sharing
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - best-practices
+  - devops-culture
+  - collaboration
+  - agile
+  - continuous-improvement
+category: Best Practices & Culture
+description: "Day 83 of 90 Days of DevOps - Documentation and Knowledge Sharing. Part of the Best Practices & Culture series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 83 - Saving Cloud Costs Using Existing Prometheus Metrics

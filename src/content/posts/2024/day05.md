@@ -1,15 +1,18 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day05
-slug: day05
+pubDatetime: 2023-01-05T14:00:00+05:30
+modDatetime: 2023-01-27T14:00:00+05:30
+title: "Building Cross-Functional Empathy in DevOps"
+slug: 90days-05-building-cross-functional-empathy-in-devops
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devops
+  - fundamentals
+  - introduction
+  - basics
+category: DevOps Fundamentals
+description: "Day 5 of 90 Days of DevOps - Building Cross-Functional Empathy in DevOps. Part of the DevOps Fundamentals series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 5 - Cross functional empathy

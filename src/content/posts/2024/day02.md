@@ -1,15 +1,18 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day02
-slug: day02
+pubDatetime: 2023-01-02T08:45:00+05:30
+modDatetime: 2023-01-16T08:45:00+05:30
+title: "Understanding DevOps Culture and Principles"
+slug: 90days-02-understanding-devops-culture-and-principles
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devops
+  - fundamentals
+  - introduction
+  - basics
+category: DevOps Fundamentals
+description: "Day 2 of 90 Days of DevOps - Understanding DevOps Culture and Principles. Part of the DevOps Fundamentals series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 2 - The Digital Factory

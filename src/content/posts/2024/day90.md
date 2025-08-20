@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day90
-slug: day90
-featured: false
+pubDatetime: 2023-03-31T10:00:00+05:30
+modDatetime: 2023-04-12T10:00:00+05:30
+title: "DevOps Career Path and Growth"
+slug: 90days-90-devops-career-path-and-growth
+featured: true
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - best-practices
+  - devops-culture
+  - collaboration
+  - agile
+  - continuous-improvement
+category: Best Practices & Culture
+description: "Day 90 of 90 Days of DevOps - DevOps Career Path and Growth. Part of the Best Practices & Culture series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 90 - Fighting fire with fire: Why we cannot always prevent technical issues with more tech

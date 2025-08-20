@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day19
-slug: day19
+pubDatetime: 2023-01-19T15:30:00+05:30
+modDatetime: 2023-01-31T15:30:00+05:30
+title: "Jenkins Setup and Configuration"
+slug: 90days-19-jenkins-setup-and-configuration
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - git
+  - cicd
+  - jenkins
+  - github-actions
+  - automation
+category: Version Control & CI/CD
+description: "Day 19 of 90 Days of DevOps - Jenkins Setup and Configuration. Part of the Version Control & CI/CD series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 19 - Building Efficient and Secure Docker /Images with Multi-Stage Builds

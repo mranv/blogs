@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day46
-slug: day46
+pubDatetime: 2023-02-15T19:45:00+05:30
+modDatetime: 2023-03-04T19:45:00+05:30
+title: "Azure Fundamentals and Services"
+slug: 90days-46-azure-fundamentals-and-services
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - aws
+  - azure
+  - gcp
+  - cloud
+  - cloud-native
+category: Cloud Platforms
+description: "Day 46 of 90 Days of DevOps - Azure Fundamentals and Services. Part of the Cloud Platforms series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 46 - Mastering AWS Systems Manager: Simplifying Infrastructure Management

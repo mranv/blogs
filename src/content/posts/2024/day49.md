@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day49
-slug: day49
+pubDatetime: 2023-02-18T14:00:00+05:30
+modDatetime: 2023-03-18T14:00:00+05:30
+title: "Multi-Cloud Strategy and Management"
+slug: 90days-49-multi-cloud-strategy-and-management
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - aws
+  - azure
+  - gcp
+  - cloud
+  - cloud-native
+category: Cloud Platforms
+description: "Day 49 of 90 Days of DevOps - Multi-Cloud Strategy and Management. Part of the Cloud Platforms series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 49 - From Confusion To Clarity: Gherkin & Specflow Ensures Clear Requirements and Bug-Free Apps

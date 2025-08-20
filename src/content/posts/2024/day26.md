@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day26
-slug: day26
+pubDatetime: 2023-01-26T09:30:00+05:30
+modDatetime: 2023-02-23T09:30:00+05:30
+title: "Ansible Roles and Galaxy"
+slug: 90days-26-ansible-roles-and-galaxy
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - terraform
+  - ansible
+  - iac
+  - automation
+  - infrastructure
+category: Infrastructure as Code
+description: "Day 26 of 90 Days of DevOps - Ansible Roles and Galaxy. Part of the Infrastructure as Code series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 26 - Advanced Code Coverage with Jenkins and API Mocking

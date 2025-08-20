@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day74
-slug: day74
+pubDatetime: 2023-03-15T10:45:00+05:30
+modDatetime: 2023-03-27T10:45:00+05:30
+title: "Serverless Frameworks and Tools"
+slug: 90days-74-serverless-frameworks-and-tools
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - serverless
+  - lambda
+  - functions
+  - edge-computing
+  - advanced-devops
+category: Serverless & Advanced Topics
+description: "Day 74 of 90 Days of DevOps - Serverless Frameworks and Tools. Part of the Serverless & Advanced Topics series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 74 - Workload Identity Federation with Azure DevOps and Terraform

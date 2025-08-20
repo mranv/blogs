@@ -1,15 +1,18 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day04
-slug: day04
+pubDatetime: 2023-01-04T16:15:00+05:30
+modDatetime: 2023-01-24T16:15:00+05:30
+title: "Agile Development and DevOps Integration"
+slug: 90days-04-agile-development-and-devops-integration
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devops
+  - fundamentals
+  - introduction
+  - basics
+category: DevOps Fundamentals
+description: "Day 4 of 90 Days of DevOps - Agile Development and DevOps Integration. Part of the DevOps Fundamentals series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 4 - Manage Kubernetes Add-Ons for Multiple Clusters Using Cluster Run-Time State

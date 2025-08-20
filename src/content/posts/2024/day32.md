@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day32
-slug: day32
+pubDatetime: 2023-02-01T20:15:00+05:30
+modDatetime: 2023-02-27T20:15:00+05:30
+title: "Docker Images and Dockerfile Best Practices"
+slug: 90days-32-docker-images-and-dockerfile-best-practices
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - docker
+  - kubernetes
+  - containers
+  - orchestration
+  - microservices
+category: Containerization & Orchestration
+description: "Day 32 of 90 Days of DevOps - Docker Images and Dockerfile Best Practices. Part of the Containerization & Orchestration series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 32 - Cracking Cholera’s Code: Victorian Insights for Today’s Technologist

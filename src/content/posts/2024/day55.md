@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day55
-slug: day55
+pubDatetime: 2023-02-24T20:15:00+05:30
+modDatetime: 2023-03-25T20:15:00+05:30
+title: "Application Performance Monitoring"
+slug: 90days-55-application-performance-monitoring
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - monitoring
+  - prometheus
+  - grafana
+  - elk-stack
+  - observability
+category: Monitoring & Observability
+description: "Day 55 of 90 Days of DevOps - Application Performance Monitoring. Part of the Monitoring & Observability series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 55 - Bringing Together IaC and CM with Terraform Provider for Ansible

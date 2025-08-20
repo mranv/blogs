@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day64
-slug: day64
+pubDatetime: 2023-03-05T10:45:00+05:30
+modDatetime: 2023-03-15T10:45:00+05:30
+title: "Secrets Management and Vault"
+slug: 90days-64-secrets-management-and-vault
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devsecops
+  - security
+  - compliance
+  - vulnerability-scanning
+  - secure-coding
+category: Security & Compliance
+description: "Day 64 of 90 Days of DevOps - Secrets Management and Vault. Part of the Security & Compliance series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 64 - Let’s Do DevOps: Writing a New Terraform /Tofu AzureRm Data Source — All Steps!

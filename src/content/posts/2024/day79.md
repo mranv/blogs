@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day79
-slug: day79
+pubDatetime: 2023-03-20T10:45:00+05:30
+modDatetime: 2023-04-14T10:45:00+05:30
+title: "Edge Computing and CDN"
+slug: 90days-79-edge-computing-and-cdn
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - serverless
+  - lambda
+  - functions
+  - edge-computing
+  - advanced-devops
+category: Serverless & Advanced Topics
+description: "Day 79 of 90 Days of DevOps - Edge Computing and CDN. Part of the Serverless & Advanced Topics series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 79 - DevEdOps

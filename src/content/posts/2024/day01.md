@@ -1,15 +1,18 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day01
-slug: day01
-featured: false
+pubDatetime: 2023-01-01T08:15:00+05:30
+modDatetime: 2023-01-22T08:15:00+05:30
+title: "Introduction to 90 Days of DevOps Journey"
+slug: 90days-01-introduction-to-90-days-of-devops-journey
+featured: true
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devops
+  - fundamentals
+  - introduction
+  - basics
+category: DevOps Fundamentals
+description: "Day 1 of 90 Days of DevOps - Introduction to 90 Days of DevOps Journey. Part of the DevOps Fundamentals series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 1 - 2024 - Community Edition - Introduction

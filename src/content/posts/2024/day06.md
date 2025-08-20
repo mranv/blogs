@@ -1,15 +1,18 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day06
-slug: day06
+pubDatetime: 2023-01-06T08:00:00+05:30
+modDatetime: 2023-01-27T08:00:00+05:30
+title: "DevOps Stories and Real-World Experiences"
+slug: 90days-06-devops-stories-and-real-world-experiences
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devops
+  - fundamentals
+  - introduction
+  - basics
+category: DevOps Fundamentals
+description: "Day 6 of 90 Days of DevOps - DevOps Stories and Real-World Experiences. Part of the DevOps Fundamentals series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 6 - Kubernetes RBAC with Ansible

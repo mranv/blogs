@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day50
-slug: day50
-featured: false
+pubDatetime: 2023-02-19T09:00:00+05:30
+modDatetime: 2023-03-13T09:00:00+05:30
+title: "Cloud Cost Optimization"
+slug: 90days-50-cloud-cost-optimization
+featured: true
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - aws
+  - azure
+  - gcp
+  - cloud
+  - cloud-native
+category: Cloud Platforms
+description: "Day 50 of 90 Days of DevOps - Cloud Cost Optimization. Part of the Cloud Platforms series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 50 - State of Cloud Native 2024

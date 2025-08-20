@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day29
-slug: day29
+pubDatetime: 2023-01-29T09:45:00+05:30
+modDatetime: 2023-02-22T09:45:00+05:30
+title: "IaC Testing and Validation"
+slug: 90days-29-iac-testing-and-validation
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - terraform
+  - ansible
+  - iac
+  - automation
+  - infrastructure
+category: Infrastructure as Code
+description: "Day 29 of 90 Days of DevOps - IaC Testing and Validation. Part of the Infrastructure as Code series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 29 - A Practical introduction to OpenTelemetry tracing

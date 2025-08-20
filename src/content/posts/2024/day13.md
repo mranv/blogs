@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day13
-slug: day13
+pubDatetime: 2023-01-13T20:15:00+05:30
+modDatetime: 2023-01-28T20:15:00+05:30
+title: "Web Servers and Application Deployment"
+slug: 90days-13-web-servers-and-application-deployment
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - git
+  - cicd
+  - jenkins
+  - github-actions
+  - automation
+category: Version Control & CI/CD
+description: "Day 13 of 90 Days of DevOps - Web Servers and Application Deployment. Part of the Version Control & CI/CD series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 13 - Architecting for Versatility

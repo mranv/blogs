@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day28
-slug: day28
+pubDatetime: 2023-01-28T16:45:00+05:30
+modDatetime: 2023-02-09T16:45:00+05:30
+title: "Configuration Management at Scale"
+slug: 90days-28-configuration-management-at-scale
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - terraform
+  - ansible
+  - iac
+  - automation
+  - infrastructure
+category: Infrastructure as Code
+description: "Day 28 of 90 Days of DevOps - Configuration Management at Scale. Part of the Infrastructure as Code series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 28 - Talos Linux on vSphere

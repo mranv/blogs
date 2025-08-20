@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day80
-slug: day80
-featured: false
+pubDatetime: 2023-03-21T14:00:00+05:30
+modDatetime: 2023-04-05T14:00:00+05:30
+title: "WebAssembly and Future Tech"
+slug: 90days-80-webassembly-and-future-tech
+featured: true
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - serverless
+  - lambda
+  - functions
+  - edge-computing
+  - advanced-devops
+category: Serverless & Advanced Topics
+description: "Day 80 of 90 Days of DevOps - WebAssembly and Future Tech. Part of the Serverless & Advanced Topics series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 80 - Unlocking K8s Troubleshooting Best Practices with Botkube

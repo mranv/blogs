@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: 2024 Blacklist
+pubDatetime: 2023-05-01T10:00:00+05:30
+modDatetime: 2023-05-16T10:00:00+05:30
+title: "2024 Security Blacklist and Threat Intelligence"
 slug: 2024-blacklist
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - security
+  - threat-intelligence
+  - blacklist
+  - cybersecurity
+  - malware
+category: Security
+description: "Comprehensive security blacklist and threat intelligence for 2024, covering malicious IPs, domains, and security indicators."
 ---
 
 ## Sessions Accepted but now cannot deliver

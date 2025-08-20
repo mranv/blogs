@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day51
-slug: day51
+pubDatetime: 2023-02-20T08:00:00+05:30
+modDatetime: 2023-03-10T08:00:00+05:30
+title: "Monitoring Strategy and Metrics"
+slug: 90days-51-monitoring-strategy-and-metrics
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - monitoring
+  - prometheus
+  - grafana
+  - elk-stack
+  - observability
+category: Monitoring & Observability
+description: "Day 51 of 90 Days of DevOps - Monitoring Strategy and Metrics. Part of the Monitoring & Observability series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 51 - DevOps on Windows

@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day75
-slug: day75
+pubDatetime: 2023-03-16T16:45:00+05:30
+modDatetime: 2023-03-24T16:45:00+05:30
+title: "Event-Driven Architecture"
+slug: 90days-75-event-driven-architecture
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - serverless
+  - lambda
+  - functions
+  - edge-computing
+  - advanced-devops
+category: Serverless & Advanced Topics
+description: "Day 75 of 90 Days of DevOps - Event-Driven Architecture. Part of the Serverless & Advanced Topics series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 75 - Distracted Development

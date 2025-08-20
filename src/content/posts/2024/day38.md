@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day38
-slug: day38
+pubDatetime: 2023-02-07T16:45:00+05:30
+modDatetime: 2023-02-27T16:45:00+05:30
+title: "Kubernetes Ingress and Load Balancing"
+slug: 90days-38-kubernetes-ingress-and-load-balancing
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - docker
+  - kubernetes
+  - containers
+  - orchestration
+  - microservices
+category: Containerization & Orchestration
+description: "Day 38 of 90 Days of DevOps - Kubernetes Ingress and Load Balancing. Part of the Containerization & Orchestration series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 38 - Open Standards: Empowering Cloud-Native Innovation

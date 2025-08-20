@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day16
-slug: day16
+pubDatetime: 2023-01-16T09:30:00+05:30
+modDatetime: 2023-01-28T09:30:00+05:30
+title: "Advanced Git Workflows and Branching"
+slug: 90days-16-advanced-git-workflows-and-branching
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - git
+  - cicd
+  - jenkins
+  - github-actions
+  - automation
+category: Version Control & CI/CD
+description: "Day 16 of 90 Days of DevOps - Advanced Git Workflows and Branching. Part of the Version Control & CI/CD series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 16 - Smarter, Better, Faster, Stronger - Testing at Scale

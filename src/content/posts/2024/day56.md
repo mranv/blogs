@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day56
-slug: day56
+pubDatetime: 2023-02-25T10:15:00+05:30
+modDatetime: 2023-03-06T10:15:00+05:30
+title: "Distributed Tracing with OpenTelemetry"
+slug: 90days-56-distributed-tracing-with-opentelemetry
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - monitoring
+  - prometheus
+  - grafana
+  - elk-stack
+  - observability
+category: Monitoring & Observability
+description: "Day 56 of 90 Days of DevOps - Distributed Tracing with OpenTelemetry. Part of the Monitoring & Observability series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 56 - Automated database deployment within the DevOps process

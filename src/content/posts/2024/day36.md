@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day36
-slug: day36
+pubDatetime: 2023-02-05T09:15:00+05:30
+modDatetime: 2023-02-20T09:15:00+05:30
+title: "Kubernetes Deployments and Services"
+slug: 90days-36-kubernetes-deployments-and-services
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - docker
+  - kubernetes
+  - containers
+  - orchestration
+  - microservices
+category: Containerization & Orchestration
+description: "Day 36 of 90 Days of DevOps - Kubernetes Deployments and Services. Part of the Containerization & Orchestration series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 36 - Policy-as-Code Super-Powers! Rethinking Modern IaC With Service Mesh And CNI

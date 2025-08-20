@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day11
-slug: day11
+pubDatetime: 2023-01-11T08:00:00+05:30
+modDatetime: 2023-01-31T08:00:00+05:30
+title: "Network Knowledge and DevOps Practices"
+slug: 90days-11-network-knowledge-and-devops-practices
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - git
+  - cicd
+  - jenkins
+  - github-actions
+  - automation
+category: Version Control & CI/CD
+description: "Day 11 of 90 Days of DevOps - Network Knowledge and DevOps Practices. Part of the Version Control & CI/CD series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 11: Building Resilience: A Journey of Crafting and Validating Our Disaster Recovery Plan

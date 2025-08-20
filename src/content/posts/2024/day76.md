@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day76
-slug: day76
+pubDatetime: 2023-03-17T08:45:00+05:30
+modDatetime: 2023-04-15T08:45:00+05:30
+title: "API Gateway and Microservices"
+slug: 90days-76-api-gateway-and-microservices
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - serverless
+  - lambda
+  - functions
+  - edge-computing
+  - advanced-devops
+category: Serverless & Advanced Topics
+description: "Day 76 of 90 Days of DevOps - API Gateway and Microservices. Part of the Serverless & Advanced Topics series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 76 - All you need to know about AWS CDK

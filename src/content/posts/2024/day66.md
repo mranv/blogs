@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day66
-slug: day66
+pubDatetime: 2023-03-07T10:00:00+05:30
+modDatetime: 2023-03-22T10:00:00+05:30
+title: "Compliance as Code"
+slug: 90days-66-compliance-as-code
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devsecops
+  - security
+  - compliance
+  - vulnerability-scanning
+  - secure-coding
+category: Security & Compliance
+description: "Day 66 of 90 Days of DevOps - Compliance as Code. Part of the Security & Compliance series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 66 - A Developer's Journey to the DevOps: The Synergy of Two Worlds

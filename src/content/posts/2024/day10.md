@@ -1,15 +1,18 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day10
-slug: day10
-featured: false
+pubDatetime: 2023-01-10T09:00:00+05:30
+modDatetime: 2023-02-02T09:00:00+05:30
+title: "Linux Fundamentals for DevOps Engineers"
+slug: 90days-10-linux-fundamentals-for-devops-engineers
+featured: true
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devops
+  - fundamentals
+  - introduction
+  - basics
+category: DevOps Fundamentals
+description: "Day 10 of 90 Days of DevOps - Linux Fundamentals for DevOps Engineers. Part of the DevOps Fundamentals series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 10 - Is Kubernetes Too Complicated?

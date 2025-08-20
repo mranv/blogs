@@ -1,15 +1,18 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day03
-slug: day03
+pubDatetime: 2023-01-03T19:15:00+05:30
+modDatetime: 2023-01-11T19:15:00+05:30
+title: "DevOps Lifecycle and Continuous Everything"
+slug: 90days-03-devops-lifecycle-and-continuous-everything
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devops
+  - fundamentals
+  - introduction
+  - basics
+category: DevOps Fundamentals
+description: "Day 3 of 90 Days of DevOps - DevOps Lifecycle and Continuous Everything. Part of the DevOps Fundamentals series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 3 - High-performing engineering teams and the Holy Grail

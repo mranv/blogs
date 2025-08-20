@@ -1,19 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-10-01T10:00:00+05:30
-modDatetime: 2024-10-01T10:00:00+05:30
-title: Day 95 - DevOps Excellence - Best Practices for 2025
-slug: day95
+pubDatetime: 2023-04-05T15:15:00+05:30
+modDatetime: 2023-04-29T15:15:00+05:30
+title: "DevOps Success Stories"
+slug: 90days-95-devops-success-stories
 featured: false
 draft: false
 tags:
-  - DevOps
-  - BestPractices
-  - Automation
-  - CICD
-  - CloudNative
-  - Platform Engineering
-description: Exploring cutting-edge DevOps practices, emerging trends, and essential strategies for building world-class engineering organizations in 2025.
+  - community
+  - learning
+  - career
+  - devops-journey
+  - resources
+category: Community & Learning
+description: "Day 95 of 90 Days of DevOps - DevOps Success Stories. Part of the Community & Learning series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 95 - DevOps Excellence: Best Practices for 2025

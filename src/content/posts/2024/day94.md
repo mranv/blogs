@@ -1,18 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-10-03T09:00:00+05:30
-modDatetime: 2024-10-03T09:00:00+05:30
-title: Day 94 - Zero Trust Security in Multi-Cloud Environments
-slug: day94
+pubDatetime: 2023-04-04T15:00:00+05:30
+modDatetime: 2023-05-04T15:00:00+05:30
+title: "DevOps Future Trends"
+slug: 90days-94-devops-future-trends
 featured: false
 draft: false
 tags:
-  - security
-  - zero-trust
-  - cloud
-  - multi-cloud
-  - architecture
-description: Implement Zero Trust security architecture across AWS, Azure, and GCP. Learn practical strategies for identity, network segmentation, and continuous verification in multi-cloud deployments.
+  - community
+  - learning
+  - career
+  - devops-journey
+  - resources
+category: Community & Learning
+description: "Day 94 of 90 Days of DevOps - DevOps Future Trends. Part of the Community & Learning series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 94 - Zero Trust Security in Multi-Cloud Environments

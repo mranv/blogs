@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day91
-slug: day91
+pubDatetime: 2023-04-01T15:15:00+05:30
+modDatetime: 2023-04-17T15:15:00+05:30
+title: "Community Contributions and Open Source"
+slug: 90days-91-community-contributions-and-open-source
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - community
+  - learning
+  - career
+  - devops-journey
+  - resources
+category: Community & Learning
+description: "Day 91 of 90 Days of DevOps - Community Contributions and Open Source. Part of the Community & Learning series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day91 - Team Topologies and Platform Engineering

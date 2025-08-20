@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day54
-slug: day54
+pubDatetime: 2023-02-23T14:15:00+05:30
+modDatetime: 2023-03-12T14:15:00+05:30
+title: "ELK Stack for Log Management"
+slug: 90days-54-elk-stack-for-log-management
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - monitoring
+  - prometheus
+  - grafana
+  - elk-stack
+  - observability
+category: Monitoring & Observability
+description: "Day 54 of 90 Days of DevOps - ELK Stack for Log Management. Part of the Monitoring & Observability series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 54 - Mastering AWS OpenSearch: Terraform Provisioning and Cost Efficiency Series

@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day15
-slug: day15
+pubDatetime: 2023-01-15T20:15:00+05:30
+modDatetime: 2023-02-01T20:15:00+05:30
+title: "Git Version Control Fundamentals"
+slug: 90days-15-git-version-control-fundamentals
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - git
+  - cicd
+  - jenkins
+  - github-actions
+  - automation
+category: Version Control & CI/CD
+description: "Day 15 of 90 Days of DevOps - Git Version Control Fundamentals. Part of the Version Control & CI/CD series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 15 - Using code dependency analysis to decide what to test

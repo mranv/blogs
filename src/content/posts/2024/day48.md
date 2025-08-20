@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day48
-slug: day48
+pubDatetime: 2023-02-17T14:15:00+05:30
+modDatetime: 2023-02-27T14:15:00+05:30
+title: "Google Cloud Platform Essentials"
+slug: 90days-48-google-cloud-platform-essentials
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - aws
+  - azure
+  - gcp
+  - cloud
+  - cloud-native
+category: Cloud Platforms
+description: "Day 48 of 90 Days of DevOps - Google Cloud Platform Essentials. Part of the Cloud Platforms series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 48 - From Puddings to Platforms: Bringing Ideas to life with ChatGPT

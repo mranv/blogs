@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day18
-slug: day18
+pubDatetime: 2023-01-18T14:45:00+05:30
+modDatetime: 2023-02-05T14:45:00+05:30
+title: "CI/CD Pipeline Introduction"
+slug: 90days-18-cicd-pipeline-introduction
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - git
+  - cicd
+  - jenkins
+  - github-actions
+  - automation
+category: Version Control & CI/CD
+description: "Day 18 of 90 Days of DevOps - CI/CD Pipeline Introduction. Part of the Version Control & CI/CD series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 18 - Platform Engineering Is Not About Tech

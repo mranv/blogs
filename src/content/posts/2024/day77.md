@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day77
-slug: day77
+pubDatetime: 2023-03-18T16:00:00+05:30
+modDatetime: 2023-04-08T16:00:00+05:30
+title: "Service Mesh with Istio"
+slug: 90days-77-service-mesh-with-istio
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - serverless
+  - lambda
+  - functions
+  - edge-computing
+  - advanced-devops
+category: Serverless & Advanced Topics
+description: "Day 77 of 90 Days of DevOps - Service Mesh with Istio. Part of the Serverless & Advanced Topics series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 77 - Connect to Microsoft APIs in Azure DevOps Pipelines using Workload Identity Federation

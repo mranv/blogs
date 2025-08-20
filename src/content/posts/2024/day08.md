@@ -1,15 +1,18 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day08
-slug: day08
+pubDatetime: 2023-01-08T15:45:00+05:30
+modDatetime: 2023-01-23T15:45:00+05:30
+title: "DevOps Knowledge Gap and Learning Path"
+slug: 90days-08-devops-knowledge-gap-and-learning-path
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devops
+  - fundamentals
+  - introduction
+  - basics
+category: DevOps Fundamentals
+description: "Day 8 of 90 Days of DevOps - DevOps Knowledge Gap and Learning Path. Part of the DevOps Fundamentals series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 8 - Culinary Coding: Crafting Infrastructure Recipes with OpenTofu

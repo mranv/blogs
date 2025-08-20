@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day68
-slug: day68
+pubDatetime: 2023-03-09T15:00:00+05:30
+modDatetime: 2023-03-18T15:00:00+05:30
+title: "Threat Modeling for DevOps"
+slug: 90days-68-threat-modeling-for-devops
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devsecops
+  - security
+  - compliance
+  - vulnerability-scanning
+  - secure-coding
+category: Security & Compliance
+description: "Day 68 of 90 Days of DevOps - Threat Modeling for DevOps. Part of the Security & Compliance series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 68 - Service Mesh for Kubernetes 101: The Secret Sauce to Effortless Microservices Management

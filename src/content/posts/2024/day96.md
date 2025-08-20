@@ -1,19 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-10-02T10:00:00+05:30
-modDatetime: 2024-10-02T10:00:00+05:30
-title: Day 96 - Modern Infrastructure as Code - From Terraform to Pulumi
-slug: day96
+pubDatetime: 2023-04-06T10:30:00+05:30
+modDatetime: 2023-04-26T10:30:00+05:30
+title: "90 Days Recap and Next Steps"
+slug: 90days-96-90-days-recap-and-next-steps
 featured: false
 draft: false
 tags:
-  - IaC
-  - Terraform
-  - Pulumi
-  - Infrastructure
-  - CloudNative
-  - DevOps
-description: Exploring the evolution of Infrastructure as Code, comparing modern IaC tools, and implementing advanced patterns for managing cloud infrastructure at scale.
+  - community
+  - learning
+  - career
+  - devops-journey
+  - resources
+category: Community & Learning
+description: "Day 96 of 90 Days of DevOps - 90 Days Recap and Next Steps. Part of the Community & Learning series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 96 - Modern Infrastructure as Code: From Terraform to Pulumi

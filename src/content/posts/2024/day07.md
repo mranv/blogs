@@ -1,15 +1,18 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day07
-slug: day07
+pubDatetime: 2023-01-07T20:15:00+05:30
+modDatetime: 2023-01-27T20:15:00+05:30
+title: "The State of DevOps and Industry Trends"
+slug: 90days-07-the-state-of-devops-and-industry-trends
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devops
+  - fundamentals
+  - introduction
+  - basics
+category: DevOps Fundamentals
+description: "Day 7 of 90 Days of DevOps - The State of DevOps and Industry Trends. Part of the DevOps Fundamentals series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 7 - Isn't Test Automation A Silver Bullet

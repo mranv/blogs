@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day43
-slug: day43
+pubDatetime: 2023-02-12T19:30:00+05:30
+modDatetime: 2023-03-13T19:30:00+05:30
+title: "AWS EC2 and Compute Services"
+slug: 90days-43-aws-ec2-and-compute-services
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - aws
+  - azure
+  - gcp
+  - cloud
+  - cloud-native
+category: Cloud Platforms
+description: "Day 43 of 90 Days of DevOps - AWS EC2 and Compute Services. Part of the Cloud Platforms series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 43 - Let's go sidecarless in Ambient Mesh

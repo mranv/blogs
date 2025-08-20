@@ -1,15 +1,18 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day09
-slug: day09
+pubDatetime: 2023-01-09T09:30:00+05:30
+modDatetime: 2023-01-31T09:30:00+05:30
+title: "Creating Your DevOps Learning Environment"
+slug: 90days-09-creating-your-devops-learning-environment
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - devops
+  - fundamentals
+  - introduction
+  - basics
+category: DevOps Fundamentals
+description: "Day 9 of 90 Days of DevOps - Creating Your DevOps Learning Environment. Part of the DevOps Fundamentals series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 9 - Why should developers care about container security?

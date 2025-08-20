@@ -1,18 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-10-01T09:00:00+05:30
-modDatetime: 2024-10-01T09:00:00+05:30
-title: Day 92 - Container Orchestration Beyond Kubernetes
-slug: day92
+pubDatetime: 2023-04-02T16:15:00+05:30
+modDatetime: 2023-04-14T16:15:00+05:30
+title: "DevOps Certifications and Training"
+slug: 90days-92-devops-certifications-and-training
 featured: false
 draft: false
 tags:
-  - devops
-  - containers
-  - orchestration
-  - docker
-  - cloud-native
-description: Explore container orchestration platforms beyond Kubernetes - from Docker Swarm's simplicity to Nomad's flexibility, discover alternatives that might better suit your needs.
+  - community
+  - learning
+  - career
+  - devops-journey
+  - resources
+category: Community & Learning
+description: "Day 92 of 90 Days of DevOps - DevOps Certifications and Training. Part of the Community & Learning series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 92 - Container Orchestration Beyond Kubernetes

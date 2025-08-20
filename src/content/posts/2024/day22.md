@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day22
-slug: day22
+pubDatetime: 2023-01-22T16:30:00+05:30
+modDatetime: 2023-02-07T16:30:00+05:30
+title: "Terraform Basics and Provider Setup"
+slug: 90days-22-terraform-basics-and-provider-setup
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - terraform
+  - ansible
+  - iac
+  - automation
+  - infrastructure
+category: Infrastructure as Code
+description: "Day 22 of 90 Days of DevOps - Terraform Basics and Provider Setup. Part of the Infrastructure as Code series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 22 - Test in Production with Kubernetes and Telepresence

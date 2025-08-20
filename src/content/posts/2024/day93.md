@@ -1,18 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-10-02T09:00:00+05:30
-modDatetime: 2024-10-02T09:00:00+05:30
-title: Day 93 - MLOps - Operationalizing Machine Learning at Scale
-slug: day93
+pubDatetime: 2023-04-03T14:15:00+05:30
+modDatetime: 2023-04-27T14:15:00+05:30
+title: "DevOps Resources and References"
+slug: 90days-93-devops-resources-and-references
 featured: false
 draft: false
 tags:
-  - mlops
-  - machine-learning
-  - devops
-  - ai
-  - automation
-description: Deep dive into MLOps practices for deploying, monitoring, and maintaining machine learning models in production. Learn how to build robust ML pipelines that scale.
+  - community
+  - learning
+  - career
+  - devops-journey
+  - resources
+category: Community & Learning
+description: "Day 93 of 90 Days of DevOps - DevOps Resources and References. Part of the Community & Learning series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 93 - MLOps: Operationalizing Machine Learning at Scale

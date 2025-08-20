@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day72
-slug: day72
+pubDatetime: 2023-03-13T08:00:00+05:30
+modDatetime: 2023-04-02T08:00:00+05:30
+title: "AWS Lambda and Function Development"
+slug: 90days-72-aws-lambda-and-function-development
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - serverless
+  - lambda
+  - functions
+  - edge-computing
+  - advanced-devops
+category: Serverless & Advanced Topics
+description: "Day 72 of 90 Days of DevOps - AWS Lambda and Function Development. Part of the Serverless & Advanced Topics series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 72 - Infrastructure as Code with Pulumi

@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day41
-slug: day41
+pubDatetime: 2023-02-10T09:30:00+05:30
+modDatetime: 2023-02-28T09:30:00+05:30
+title: "Cloud Computing Fundamentals"
+slug: 90days-41-cloud-computing-fundamentals
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - aws
+  - azure
+  - gcp
+  - cloud
+  - cloud-native
+category: Cloud Platforms
+description: "Day 41 of 90 Days of DevOps - Cloud Computing Fundamentals. Part of the Cloud Platforms series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 41 - My journey to reimagining DevOps: Ushering in the Second Wave

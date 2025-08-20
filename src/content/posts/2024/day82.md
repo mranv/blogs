@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day82
-slug: day82
+pubDatetime: 2023-03-23T08:15:00+05:30
+modDatetime: 2023-04-10T08:15:00+05:30
+title: "Team Collaboration and Communication"
+slug: 90days-82-team-collaboration-and-communication
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - best-practices
+  - devops-culture
+  - collaboration
+  - agile
+  - continuous-improvement
+category: Best Practices & Culture
+description: "Day 82 of 90 Days of DevOps - Team Collaboration and Communication. Part of the Best Practices & Culture series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 82 - Dev Containers in VS Code

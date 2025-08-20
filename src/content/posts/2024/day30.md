@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day30
-slug: day30
-featured: false
+pubDatetime: 2023-01-30T08:00:00+05:30
+modDatetime: 2023-02-07T08:00:00+05:30
+title: "GitOps and Declarative Infrastructure"
+slug: 90days-30-gitops-and-declarative-infrastructure
+featured: true
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - terraform
+  - ansible
+  - iac
+  - automation
+  - infrastructure
+category: Infrastructure as Code
+description: "Day 30 of 90 Days of DevOps - GitOps and Declarative Infrastructure. Part of the Infrastructure as Code series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 30 - How GitHub delivers GitHub using GitHub

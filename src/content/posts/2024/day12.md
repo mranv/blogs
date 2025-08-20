@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day12
-slug: day12
+pubDatetime: 2023-01-12T15:45:00+05:30
+modDatetime: 2023-01-20T15:45:00+05:30
+title: "SSH Keys and Secure Access Management"
+slug: 90days-12-ssh-keys-and-secure-access-management
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - git
+  - cicd
+  - jenkins
+  - github-actions
+  - automation
+category: Version Control & CI/CD
+description: "Day 12 of 90 Days of DevOps - SSH Keys and Secure Access Management. Part of the Version Control & CI/CD series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 12 - Know your data: The Stats behind the Alerts

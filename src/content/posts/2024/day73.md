@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day73
-slug: day73
+pubDatetime: 2023-03-14T14:45:00+05:30
+modDatetime: 2023-04-05T14:45:00+05:30
+title: "Azure Functions and Logic Apps"
+slug: 90days-73-azure-functions-and-logic-apps
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - serverless
+  - lambda
+  - functions
+  - edge-computing
+  - advanced-devops
+category: Serverless & Advanced Topics
+description: "Day 73 of 90 Days of DevOps - Azure Functions and Logic Apps. Part of the Serverless & Advanced Topics series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 73 - Introducing the Terraform Test Framework

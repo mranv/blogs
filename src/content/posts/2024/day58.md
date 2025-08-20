@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day58
-slug: day58
+pubDatetime: 2023-02-27T15:30:00+05:30
+modDatetime: 2023-03-15T15:30:00+05:30
+title: "SRE Principles and Error Budgets"
+slug: 90days-58-sre-principles-and-error-budgets
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - monitoring
+  - prometheus
+  - grafana
+  - elk-stack
+  - observability
+category: Monitoring & Observability
+description: "Day 58 of 90 Days of DevOps - SRE Principles and Error Budgets. Part of the Monitoring & Observability series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 58 - The Reverse Technology Thrust

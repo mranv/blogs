@@ -1,15 +1,19 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2024-09-27T21:22:03+05:30
-modDatetime: 2024-09-27T21:22:03+05:30
-title: Day25
-slug: day25
+pubDatetime: 2023-01-25T15:15:00+05:30
+modDatetime: 2023-02-06T15:15:00+05:30
+title: "Ansible Introduction and Playbooks"
+slug: 90days-25-ansible-introduction-and-playbooks
 featured: false
 draft: false
 tags:
-  - tag1
-  - tag2
-description: Add your description here.
+  - terraform
+  - ansible
+  - iac
+  - automation
+  - infrastructure
+category: Infrastructure as Code
+description: "Day 25 of 90 Days of DevOps - Ansible Introduction and Playbooks. Part of the Infrastructure as Code series covering essential DevOps concepts and hands-on practices."
 ---
 
 # Day 25 - Kube-Nation: Exploring the Land of Kubernetes
