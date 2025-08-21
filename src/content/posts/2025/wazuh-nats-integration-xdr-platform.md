@@ -2,7 +2,15 @@
 title: "Revolutionizing Wazuh with NATS: Building Real-Time XDR/OXDR Platforms"
 published: 2025-01-19
 description: "Comprehensive analysis of integrating NATS messaging into Wazuh's core for real-time agent monitoring, event streaming, and XDR platform capabilities"
-tags: ["Wazuh", "NATS", "XDR", "OXDR", "SIEM", "Real-time", "C Programming", "Security Architecture"]
+tags: 
+  - Wazuh
+  - NATS
+  - XDR
+  - OXDR
+  - SIEM
+  - Real-time
+  - C Programming
+  - Security Architecture
 category: Security
 draft: false
 ---

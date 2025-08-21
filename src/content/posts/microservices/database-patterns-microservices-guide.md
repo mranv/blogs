@@ -745,7 +745,8 @@ const productSchema = {
       date: Date,
     },
   ],
-  tags: [String],
+  tags: 
+  - String,
   createdAt: Date,
   updatedAt: Date,
 };

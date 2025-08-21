@@ -2,7 +2,12 @@
 title: "My Journey in Cybersecurity: From Code to Defense"
 published: 2025-08-03
 description: "A comprehensive look at my evolution as a cybersecurity professional, from early coding days to leading XDR platform development."
-tags: ["Career", "Cybersecurity", "DevSecOps", "Rust", "eBPF"]
+tags: 
+  - Career
+  - Cybersecurity
+  - DevSecOps
+  - Rust
+  - eBPF
 category: Personal
 draft: false
 ---

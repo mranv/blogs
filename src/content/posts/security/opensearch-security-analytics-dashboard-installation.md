@@ -463,7 +463,8 @@ output.opensearch:
 processors:
   - add_tags:
 category: Security
-      tags: [security-analytics]
+      tags: 
+  - security-analytics
       target: "event.tags"
 ```
 

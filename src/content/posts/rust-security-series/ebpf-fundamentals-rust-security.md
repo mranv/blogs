@@ -6,7 +6,14 @@ pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 heroImage: "/rust-ebpf-security.png"
 category: "Rust"
-tags: ["Rust", "eBPF", "Security", "Linux", "Kernel", "Monitoring", "Aya"]
+tags: 
+  - Rust
+  - eBPF
+  - Security
+  - Linux
+  - Kernel
+  - Monitoring
+  - Aya
 featured: true
 ---
 

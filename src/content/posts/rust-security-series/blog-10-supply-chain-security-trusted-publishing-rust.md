@@ -1469,7 +1469,8 @@ impl TrustedPublishingPlatform {
 name: Trusted Publishing
 on:
   push:
-    tags: ["v*"]
+    tags: 
+  - v*
 
 permissions:
   id-token: write

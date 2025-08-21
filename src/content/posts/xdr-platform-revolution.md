@@ -2,7 +2,12 @@
 title: "Building the Future: Open XDR Platform Development"
 published: 2025-08-02
 description: "An in-depth look at developing enterprise-grade Open XDR platforms that break vendor lock-in while providing comprehensive threat detection and response."
-tags: ["XDR", "OXDR", "Security Platform", "Enterprise Security", "DevSecOps"]
+tags: 
+  - XDR
+  - OXDR
+  - Security Platform
+  - Enterprise Security
+  - DevSecOps
 category: Security Architecture
 draft: false
 ---

@@ -1499,7 +1499,9 @@ install_falco() {
     Kubernetes client tool launched in container (user=%user.name container_id=%container.id
     image=%container.image.repository proc=%proc.cmdline)
   priority: NOTICE
-  tags: [process, mitre_execution]
+  tags: 
+  - process
+  - mitre_execution
 
 - rule: Suspicious Network Activity in Container
   desc: Detect suspicious network activity in containers
@@ -1510,7 +1512,9 @@ install_falco() {
     Suspicious network tool launched in container (user=%user.name container_id=%container.id
     image=%container.image.repository proc=%proc.cmdline)
   priority: WARNING
-  tags: [network, mitre_discovery]
+  tags: 
+  - network
+  - mitre_discovery
 EOF
 
     systemctl enable falco

@@ -1068,7 +1068,8 @@ class EventSchemaEvolution {
           // Convert string to number
           amount: parseFloat(event.eventData.amount),
           // Convert single value to array
-          tags: [event.eventData.tag],
+          tags: 
+  - event.eventData.tag,
         },
       }),
     };

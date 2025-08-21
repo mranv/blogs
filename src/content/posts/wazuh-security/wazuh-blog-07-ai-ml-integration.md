@@ -4,7 +4,12 @@ slug: "wazuh-blog-07-ai-ml-integration"
 description: "The cybersecurity landscape of 2025 demands more than incremental improvements—it requires revolutionary approaches. With traditional SIEM systems drowning in false positives and missing sophisticated threats, Wazuh's groundbreaking AI/ML integration achieves 97.2% detection accuracy while maintaining sub-100ms latency. This deep-dive explores how to implement, optimize, and scale this game-changing capability."
 pubDatetime: 2025-01-28T00:00:00Z
 author: "Anubhav Gain"
-tags: ["wazuh", "ai", "machine-learning", "security", "detection-accuracy"]
+tags: 
+  - wazuh
+  - ai
+  - machine-learning
+  - security
+  - detection-accuracy
 category: "Wazuh Security"
 draft: false
 featured: false

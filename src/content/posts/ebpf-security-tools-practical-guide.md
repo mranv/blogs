@@ -74,7 +74,9 @@ sudo systemctl start falco-modern-bpf
     Crypto mining process detected (user=%user.name user_id=%user.uid 
     command=%proc.cmdline container_id=%container.id image=%container.image.repository)
   priority: WARNING
-  tags: [cryptomining, threat]
+  tags: 
+  - cryptomining
+  - threat
 
 # Rule 2: Detect reverse shell
 - rule: Reverse Shell Detection
@@ -91,7 +93,9 @@ sudo systemctl start falco-modern-bpf
     Reverse shell detected (user=%user.name command=%proc.cmdline 
     connection=%fd.name container=%container.name)
   priority: CRITICAL
-  tags: [reverse_shell, threat]
+  tags: 
+  - reverse_shell
+  - threat
 
 # Rule 3: Sensitive file access monitoring
 - rule: Unauthorized Sensitive File Access
@@ -108,7 +112,9 @@ sudo systemctl start falco-modern-bpf
     Sensitive file accessed (user=%user.name file=%fd.name 
     command=%proc.cmdline container=%container.name)
   priority: WARNING
-  tags: [sensitive_files, configuration]
+  tags: 
+  - sensitive_files
+  - configuration
 
 # Rule 4: Container escape detection
 - rule: Container Escape Attempt
@@ -125,7 +131,9 @@ sudo systemctl start falco-modern-bpf
     Container escape attempt (user=%user.name command=%proc.cmdline 
     container=%container.name syscall=%evt.type)
   priority: CRITICAL
-  tags: [container_escape, threat]
+  tags: 
+  - container_escape
+  - threat
 ```
 
 ### Advanced Falco Configuration

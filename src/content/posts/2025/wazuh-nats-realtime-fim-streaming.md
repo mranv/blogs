@@ -2,7 +2,15 @@
 title: "Real-Time File Integrity Monitoring with Wazuh and NATS Streaming"
 published: 2025-01-19
 description: "Transform Wazuh FIM from periodic scanning to real-time streaming with NATS, enabling instant detection of file changes and advanced forensic capabilities"
-tags: ["Wazuh", "NATS", "FIM", "File Integrity", "Real-time", "Streaming", "Forensics", "Security Monitoring"]
+tags: 
+  - Wazuh
+  - NATS
+  - FIM
+  - File Integrity
+  - Real-time
+  - Streaming
+  - Forensics
+  - Security Monitoring
 category: Security
 draft: false
 ---

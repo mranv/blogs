@@ -3,7 +3,10 @@ title: Simple Guides for gainsaheb
 published: 2024-04-01
 description: "How to use this blog template."
 image: "./cover.jpeg"
-tags: ["gainsaheb", "Blogging", "Customization"]
+tags: 
+  - gainsaheb
+  - Blogging
+  - Customization
 category: Guides
 draft: false
 ---
@@ -20,7 +23,9 @@ title: My First Blog Post
 published: 2023-09-09
 description: This is the first post of my new Astro blog.
 image: ./cover.jpg
-tags: [Foo, Bar]
+tags: 
+  - Foo
+  - Bar
 category: Front-end
 draft: false
 ---

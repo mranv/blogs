@@ -5,17 +5,15 @@ author: "Anubhav Gain"
 slug: "ai-powered-blog-platforms-2025"
 pubDatetime: 2025-01-10T17:00:00+05:30
 tags:
-category: DevOps
-  [
-    "ai-integration",
-    "blog-platforms",
-    "content-automation",
-    "multilingual-blogs",
-    "seo-optimization",
-    "astro-ai",
-    "nextjs-ai",
-    "personalization",
-  ]
+  - ai-integration
+  - blog-platforms
+  - content-automation
+  - multilingual-blogs
+  - seo-optimization
+  - astro-ai
+  - nextjs-ai
+  - personalization
+category: AI/ML
 featured: true
 ---
 
