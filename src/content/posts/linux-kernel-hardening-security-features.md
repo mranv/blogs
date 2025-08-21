@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-02T17:30:00+05:30
-modDatetime: 2025-08-02T17:30:00+05:30
-title: "Linux Kernel Hardening: Modern Security Features and Mitigation Techniques"
-slug: linux-kernel-hardening-security-features
-featured: true
-draft: false
 tags:
   - linux
   - kernel
@@ -14,6 +9,11 @@ tags:
   - kaslr
   - kpti
   - mitigation
+modDatetime: 2025-08-02T17:30:00+05:30
+title: "Linux Kernel Hardening: Modern Security Features and Mitigation Techniques"
+slug: linux-kernel-hardening-security-features
+featured: true
+draft: false
 category: Linux
 description: Comprehensive guide to Linux kernel hardening techniques including KASLR, KPTI, Control Flow Integrity, and modern CPU vulnerability mitigations. Learn how to configure and implement kernel security features for maximum protection.
 ---

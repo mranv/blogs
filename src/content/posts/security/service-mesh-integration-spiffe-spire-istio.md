@@ -5,18 +5,17 @@ description: "Complete guide to integrating SPIFFE/SPIRE with Istio service mesh
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "spiffe",
-    "spire",
-    "istio",
-    "service-mesh",
-    "zero-trust",
-    "mtls",
-    "kubernetes",
-    "workload-identity",
-    "security",
-    "envoy",
-  ]
+  - general
+  - spiffe
+  - spire
+  - istio
+  - service-mesh
+  - zero-trust
+  - mtls
+  - kubernetes
+  - workload-identity
+  - security
+  - envoy
 category: "Security"
 draft: false
 featured: true

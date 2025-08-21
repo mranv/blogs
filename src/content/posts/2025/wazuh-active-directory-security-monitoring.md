@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-26T11:00:00+05:30
-modDatetime: 2025-01-26T11:00:00+05:30
-title: "Advanced Active Directory Security Monitoring with Wazuh: Detection and Forensics"
-slug: wazuh-active-directory-security-monitoring
-featured: true
-draft: false
 tags:
   - Wazuh
   - Active-Directory
@@ -17,6 +12,11 @@ tags:
   - Security-Monitoring
   - Kerberos
   - NTLM
+modDatetime: 2025-01-26T11:00:00+05:30
+title: "Advanced Active Directory Security Monitoring with Wazuh: Detection and Forensics"
+slug: wazuh-active-directory-security-monitoring
+featured: true
+draft: false
 category: SIEM
 description: Comprehensive guide to monitoring Active Directory security with Wazuh. Detect attacks like Kerberoasting, Golden Ticket, DCSync, and implement advanced forensic capabilities.
 ---

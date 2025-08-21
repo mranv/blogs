@@ -1,10 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-28T01:59:00Z
-title: "Cross-Platform Rust-Based SIEM Platform Implementation Plan"
-slug: "rust-based-siem-implementation-plan"
-featured: true
-draft: false
 tags:
   - rust
   - siem
@@ -12,6 +8,10 @@ tags:
   - xdr
   - architecture
   - ebpf
+title: "Cross-Platform Rust-Based SIEM Platform Implementation Plan"
+slug: "rust-based-siem-implementation-plan"
+featured: true
+draft: false
 category: Programming
 description: A comprehensive security monitoring solution leveraging Rust's memory safety and performance for enterprise-grade threat detection across Windows, macOS, and Linux environments.
 ---

@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-16T09:30:00+05:30
-modDatetime: 2025-08-28T09:30:00+05:30
-title: "How to Use eBPF for Monitoring Linux Thread Contention"
-slug: ebpf-linux-thread-contention-monitoring
-featured: true
-draft: false
 tags:
   - ebpf
   - performance
@@ -14,6 +9,11 @@ tags:
   - linux
   - observability
   - systems-programming
+modDatetime: 2025-08-28T09:30:00+05:30
+title: "How to Use eBPF for Monitoring Linux Thread Contention"
+slug: ebpf-linux-thread-contention-monitoring
+featured: true
+draft: false
 category: eBPF
 description: Comprehensive guide to using eBPF for monitoring Linux thread contention, including practical examples with bcc, bpftrace, and custom scripts for performance analysis.
 ---

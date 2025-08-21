@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-02T16:00:00+05:30
-modDatetime: 2025-08-02T16:00:00+05:30
-title: "Building Modern eBPF Security Tools with Rust and Aya: A Comprehensive Guide"
-slug: ebpf-rust-aya-security-monitoring
-featured: true
-draft: false
 tags:
   - ebpf
   - rust
@@ -14,6 +9,11 @@ tags:
   - monitoring
   - linux
   - kernel
+modDatetime: 2025-08-02T16:00:00+05:30
+title: "Building Modern eBPF Security Tools with Rust and Aya: A Comprehensive Guide"
+slug: ebpf-rust-aya-security-monitoring
+featured: true
+draft: false
 category: eBPF
 description: Learn how to build production-grade eBPF security tools using Rust and Aya. From basic monitoring to advanced threat detection, this guide covers everything you need to know about modern eBPF development.
 ---

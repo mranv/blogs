@@ -5,17 +5,16 @@ description: "Learn how to use SPIRE Controller Manager and Custom Resource Defi
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "spiffe",
-    "spire",
-    "kubernetes",
-    "crd",
-    "operators",
-    "controller-manager",
-    "workload-identity",
-    "zero-trust",
-    "automation",
-  ]
+  - general
+  - spiffe
+  - spire
+  - kubernetes
+  - crd
+  - operators
+  - controller-manager
+  - workload-identity
+  - zero-trust
+  - automation
 category: "Security"
 draft: false
 featured: true

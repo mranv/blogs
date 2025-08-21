@@ -5,17 +5,16 @@ description: "Build production-grade observability for SPIFFE/SPIRE with Prometh
 pubDatetime: 2025-01-31T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "spiffe",
-    "spire",
-    "observability",
-    "prometheus",
-    "grafana",
-    "monitoring",
-    "alerting",
-    "kubernetes",
-    "metrics",
-  ]
+  - general
+  - spiffe
+  - spire
+  - observability
+  - prometheus
+  - grafana
+  - monitoring
+  - alerting
+  - kubernetes
+  - metrics
 category: "Security"
 draft: false
 featured: true

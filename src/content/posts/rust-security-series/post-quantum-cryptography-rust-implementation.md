@@ -5,17 +5,16 @@ description: "Build production-ready post-quantum cryptography in Rust, focusing
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "rust",
-    "post-quantum-cryptography",
-    "ml-kem",
-    "kyber",
-    "cryptography",
-    "quantum-resistant",
-    "security",
-    "fips-203",
-    "lattice-cryptography",
-  ]
+  - general
+  - rust
+  - post-quantum-cryptography
+  - ml-kem
+  - kyber
+  - cryptography
+  - quantum-resistant
+  - security
+  - fips-203
+  - lattice-cryptography
 image: "/blog-placeholder-about.jpg"
 category: "Rust Security"
 ---

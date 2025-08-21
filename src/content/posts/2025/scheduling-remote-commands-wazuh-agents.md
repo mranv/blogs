@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-16T10:00:00+05:30
-modDatetime: 2025-01-16T10:00:00+05:30
-title: "Scheduling Remote Commands for Wazuh Agents"
-slug: scheduling-remote-commands-wazuh-agents
-featured: true
-draft: false
 tags:
   - Wazuh
   - Remote-Commands
@@ -17,6 +12,11 @@ tags:
   - Linux
   - Windows
   - SIEM
+modDatetime: 2025-01-16T10:00:00+05:30
+title: "Scheduling Remote Commands for Wazuh Agents"
+slug: scheduling-remote-commands-wazuh-agents
+featured: true
+draft: false
 category: SIEM
 description: Learn how to use Wazuh's Command module to run scheduled commands and scripts on remote agents. Monitor disk usage, automate maintenance tasks, and enhance security monitoring.
 ---

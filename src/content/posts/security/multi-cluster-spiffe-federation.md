@@ -5,18 +5,17 @@ description: "Master multi-cluster SPIFFE federation for enterprise-scale zero-t
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "spiffe",
-    "spire",
-    "federation",
-    "multi-cluster",
-    "zero-trust",
-    "kubernetes",
-    "cross-cloud",
-    "hybrid-cloud",
-    "enterprise",
-    "security",
-  ]
+  - general
+  - spiffe
+  - spire
+  - federation
+  - multi-cluster
+  - zero-trust
+  - kubernetes
+  - cross-cloud
+  - hybrid-cloud
+  - enterprise
+  - security
 category: "Security"
 draft: false
 featured: true

@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-14T14:30:00+05:30
-modDatetime: 2025-08-22T14:30:00+05:30
-title: "Monitoring macOS Resources with Wazuh"
-slug: monitoring-macos-resources-wazuh
-featured: true
-draft: false
 tags:
   - Wazuh
   - macOS
@@ -17,6 +12,11 @@ tags:
   - System-Health
   - SIEM
   - Endpoint-Monitoring
+modDatetime: 2025-08-22T14:30:00+05:30
+title: "Monitoring macOS Resources with Wazuh"
+slug: monitoring-macos-resources-wazuh
+featured: true
+draft: false
 category: SIEM
 description: Learn how to monitor macOS system resources including CPU, memory, disk usage, and network utilization using Wazuh. Implement comprehensive performance monitoring with custom dashboards.
 ---

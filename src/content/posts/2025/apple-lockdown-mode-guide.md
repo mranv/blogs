@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-10T18:00:00+05:30
-modDatetime: 2025-01-10T18:00:00+05:30
-title: "Apple Lockdown Mode: Ultimate Security for High-Risk Users - Implementation and Management Guide"
-slug: apple-lockdown-mode-security-guide-2025
-featured: true
-draft: false
 tags:
   - Apple-security
   - Lockdown-Mode
@@ -19,6 +14,11 @@ tags:
   - enterprise-security
   - privacy-protection
   - threat-modeling
+modDatetime: 2025-01-10T18:00:00+05:30
+title: "Apple Lockdown Mode: Ultimate Security for High-Risk Users - Implementation and Management Guide"
+slug: apple-lockdown-mode-security-guide-2025
+featured: true
+draft: false
 category: Apple Security
 description: "Comprehensive guide to Apple Lockdown Mode: when to use it, implementation strategies, impact analysis, and enterprise deployment for protecting against sophisticated targeted attacks like NSO Group Pegasus spyware."
 ---

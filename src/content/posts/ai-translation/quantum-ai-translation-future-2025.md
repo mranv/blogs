@@ -5,17 +5,15 @@ author: "Anubhav Gain"
 slug: "quantum-ai-translation-future-2025"
 pubDatetime: 2025-01-10T18:00:00+05:30
 tags:
-category: AI/ML
-  [
-    "quantum-computing",
-    "quantum-ai",
-    "quantum-nlp",
-    "future-translation",
-    "quantum-acceleration",
-    "quantum-algorithms",
-    "hybrid-quantum-classical",
-    "post-quantum-cryptography",
-  ]
+  - quantum-computing
+  - quantum-ai
+  - quantum-nlp
+  - future-translation
+  - quantum-acceleration
+  - quantum-algorithms
+  - hybrid-quantum-classical
+  - post-quantum-cryptography
+
 featured: true
 ---
 

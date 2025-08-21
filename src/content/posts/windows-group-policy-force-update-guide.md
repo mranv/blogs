@@ -3,8 +3,6 @@ title: "Force Group Policy Update: Complete Technical Guide for Windows Domain A
 slug: "windows-group-policy-force-update-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-31T15:17:00Z
-featured: true
-draft: false
 tags:
   - windows
   - group-policy
@@ -13,6 +11,8 @@ tags:
   - powershell
   - security
   - enterprise
+featured: true
+draft: false
 category: Security
 description: "Comprehensive technical guide to forcing Group Policy updates in Windows domain environments, including security implications, troubleshooting, and best practices for enterprise deployment."
 ---

@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-19T16:00:00+05:30
-modDatetime: 2025-08-30T16:00:00+05:30
-title: "eBPF SSL/TLS Encrypted Traffic Analysis: Real-Time Insights Without Certificates"
-slug: ebpf-ssl-tls-encrypted-traffic-analysis
-featured: true
-draft: false
 tags:
   - ebpf
   - ssl
@@ -15,6 +10,11 @@ tags:
   - uprobes
   - network-security
   - performance
+modDatetime: 2025-08-30T16:00:00+05:30
+title: "eBPF SSL/TLS Encrypted Traffic Analysis: Real-Time Insights Without Certificates"
+slug: ebpf-ssl-tls-encrypted-traffic-analysis
+featured: true
+draft: false
 category: eBPF
 description: Comprehensive guide to analyzing encrypted SSL/TLS traffic using eBPF uprobes, enabling real-time monitoring without SSL certificates or application modifications.
 ---

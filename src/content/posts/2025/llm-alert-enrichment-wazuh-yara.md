@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-22T10:00:00+05:30
-modDatetime: 2025-01-22T10:00:00+05:30
-title: "Leveraging LLMs for Alert Enrichment with Wazuh and YARA"
-slug: llm-alert-enrichment-wazuh-yara
-featured: true
-draft: false
 tags:
   - Wazuh
   - YARA
@@ -17,6 +12,11 @@ tags:
   - Malware-Detection
   - Active-Response
   - Security-Automation
+modDatetime: 2025-01-22T10:00:00+05:30
+title: "Leveraging LLMs for Alert Enrichment with Wazuh and YARA"
+slug: llm-alert-enrichment-wazuh-yara
+featured: true
+draft: false
 category: SIEM
 description: Enhance malware detection alerts with AI-powered context using ChatGPT integration. Learn how to automatically enrich YARA scan results with detailed threat analysis and remediation guidance.
 ---

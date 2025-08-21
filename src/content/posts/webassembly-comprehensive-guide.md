@@ -3,8 +3,6 @@ title: "WebAssembly (WASM) Comprehensive Guide: From Basics to Production"
 slug: "webassembly-comprehensive-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-02-07T21:56:00Z
-featured: true
-draft: false
 tags:
   - webassembly
   - wasm
@@ -14,6 +12,8 @@ tags:
   - ffmpeg
   - assemblyscript
   - react
+featured: true
+draft: false
 category: Platform Development
 description: "Complete guide to WebAssembly covering fundamentals, React integration, FFmpeg usage, AssemblyScript development, performance testing, and production deployment strategies."
 ---

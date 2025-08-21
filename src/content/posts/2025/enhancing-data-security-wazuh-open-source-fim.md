@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2024-01-30T10:00:00+05:30
-modDatetime: 2024-01-30T10:00:00+05:30
-title: "Enhancing Data Security with the Wazuh Open Source FIM"
-slug: enhancing-data-security-wazuh-open-source-fim
-featured: true
-draft: false
 tags:
   - Wazuh
   - FIM
@@ -17,6 +12,11 @@ tags:
   - Change-Management
   - Windows
   - Linux
+modDatetime: 2024-01-30T10:00:00+05:30
+title: "Enhancing Data Security with the Wazuh Open Source FIM"
+slug: enhancing-data-security-wazuh-open-source-fim
+featured: true
+draft: false
 category: SIEM
 description: Learn how to implement Wazuh's open source File Integrity Monitoring (FIM) module to detect unauthorized file changes, track system modifications, and protect against malware intrusions on Windows and Linux endpoints.
 ---

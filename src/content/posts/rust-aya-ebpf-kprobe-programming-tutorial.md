@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-12T08:30:00+05:30
-modDatetime: 2025-08-25T08:30:00+05:30
-title: "Writing eBPF Kprobe Programs with Rust Aya: Complete Developer Guide"
-slug: rust-aya-ebpf-kprobe-programming-tutorial
-featured: true
-draft: false
 tags:
   - ebpf
   - rust
@@ -16,6 +11,11 @@ tags:
   - linux
   - tracing
   - observability
+modDatetime: 2025-08-25T08:30:00+05:30
+title: "Writing eBPF Kprobe Programs with Rust Aya: Complete Developer Guide"
+slug: rust-aya-ebpf-kprobe-programming-tutorial
+featured: true
+draft: false
 category: eBPF
 description: Comprehensive tutorial on writing eBPF Kprobe programs using Rust Aya framework, including kernel function tracing, argument handling, and production deployment strategies.
 ---

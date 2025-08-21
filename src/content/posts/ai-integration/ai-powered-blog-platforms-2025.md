@@ -259,7 +259,10 @@ description: "${content.description}"
 author: "AI Assistant"
 slug: "${slug}"
 pubDatetime: ${new Date().toISOString()}
-tags: [${content.tags.map(tag => `"${tag}"`).join(', ')}]
+tags:
+  - general
+  - ${content.tags.map(tag => `"${tag}"`).join('
+  - ')}
 language: "${language}"
 generated: true
 seoScore: ${content.seoScore}

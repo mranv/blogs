@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-17T10:00:00+05:30
-modDatetime: 2025-01-17T10:00:00+05:30
-title: "Using Wazuh to Monitor Sysmon Events"
-slug: monitoring-sysmon-events-wazuh
-featured: true
-draft: false
 tags:
   - Wazuh
   - Sysmon
@@ -17,6 +12,11 @@ tags:
   - PowerShell
   - Malware
   - Process-Monitoring
+modDatetime: 2025-01-17T10:00:00+05:30
+title: "Using Wazuh to Monitor Sysmon Events"
+slug: monitoring-sysmon-events-wazuh
+featured: true
+draft: false
 category: SIEM
 description: Learn how to integrate Sysmon with Wazuh for advanced Windows security monitoring. Detect suspicious processes, network connections, and malware activities with custom rules.
 ---

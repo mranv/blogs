@@ -7,6 +7,7 @@ featured: false
 draft: false
 author: "Anubhav Gain"
 tags:
+  - general
 category: Security
   [
     "rust",

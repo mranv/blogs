@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-02T16:30:00+05:30
-modDatetime: 2025-08-02T16:30:00+05:30
-title: "Advanced eBPF Security Patterns for Cloud-Native Kubernetes Environments"
-slug: ebpf-cloud-native-security-patterns
-featured: true
-draft: false
 tags:
   - ebpf
   - kubernetes
@@ -14,6 +9,11 @@ tags:
   - observability
   - cilium
   - service-mesh
+modDatetime: 2025-08-02T16:30:00+05:30
+title: "Advanced eBPF Security Patterns for Cloud-Native Kubernetes Environments"
+slug: ebpf-cloud-native-security-patterns
+featured: true
+draft: false
 category: eBPF
 description: Explore advanced eBPF security patterns for cloud-native Kubernetes environments. Learn how to implement zero-trust networking, runtime security, and deep observability using eBPF in production.
 ---

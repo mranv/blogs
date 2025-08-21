@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-19T15:00:00+05:30
-modDatetime: 2025-08-26T15:00:00+05:30
-title: "eBPF Map Pressure Monitoring using eBPF Iterators: Preventing Performance Bottlenecks"
-slug: ebpf-map-pressure-monitoring-iterators
-featured: true
-draft: false
 tags:
   - ebpf
   - monitoring
@@ -15,6 +10,11 @@ tags:
   - observability
   - troubleshooting
   - production
+modDatetime: 2025-08-26T15:00:00+05:30
+title: "eBPF Map Pressure Monitoring using eBPF Iterators: Preventing Performance Bottlenecks"
+slug: ebpf-map-pressure-monitoring-iterators
+featured: true
+draft: false
 category: eBPF
 description: Comprehensive guide to monitoring eBPF map pressure using iterators, preventing performance bottlenecks caused by full maps, with real-world solutions and code examples.
 ---

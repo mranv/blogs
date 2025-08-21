@@ -5,6 +5,7 @@ description: "Master enterprise compliance automation with Wazuh's violation det
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:20:00+05:30
 tags:
+  - general
 category: Security
   [
     "wazuh",

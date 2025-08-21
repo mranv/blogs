@@ -2,15 +2,15 @@
 title: "Building Invinsense: The Journey of Creating an Enterprise XDR/OXDR Platform"
 published: 2025-08-01
 description: "An insider's perspective on architecting and developing the Invinsense XDR/OXDR platform at Infopercept Consulting - from conception to enterprise deployment."
-tags: 
+category: Platform Development
+draft: false
+tags:
   - XDR
   - OXDR
   - Invinsense
   - Platform Development
   - Infopercept
   - Enterprise Security
-category: Platform Development
-draft: false
 ---
 
 ## Introduction: The Genesis of Invinsense

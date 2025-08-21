@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-13T13:15:00+05:30
-modDatetime: 2025-08-14T13:15:00+05:30
-title: "Nmap and ChatGPT Security Auditing with Wazuh"
-slug: nmap-chatgpt-security-auditing-wazuh
-featured: true
-draft: false
 tags:
   - Wazuh
   - Nmap
@@ -17,6 +12,11 @@ tags:
   - Automation
   - Integration
   - Vulnerability-Assessment
+modDatetime: 2025-08-14T13:15:00+05:30
+title: "Nmap and ChatGPT Security Auditing with Wazuh"
+slug: nmap-chatgpt-security-auditing-wazuh
+featured: true
+draft: false
 category: SIEM
 description: Learn how to integrate Nmap network scanning with ChatGPT AI analysis in Wazuh for intelligent security auditing. Automate vulnerability assessment and get AI-powered insights on security findings.
 ---

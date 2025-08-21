@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-18T10:00:00+05:30
-modDatetime: 2025-01-18T10:00:00+05:30
-title: "The eBPF Ecosystem: Tools, Frameworks, and Production Solutions"
-slug: ebpf-tools-ecosystem-bcc-bpftrace-more
-featured: true
-draft: false
 tags:
   - ebpf
   - tools
@@ -13,6 +8,11 @@ tags:
   - bpftrace
   - cilium
   - observability
+modDatetime: 2025-01-18T10:00:00+05:30
+title: "The eBPF Ecosystem: Tools, Frameworks, and Production Solutions"
+slug: ebpf-tools-ecosystem-bcc-bpftrace-more
+featured: true
+draft: false
 category: eBPF
 description: Comprehensive guide to the eBPF ecosystem covering tools like BCC, bpftrace, libbpf, and production solutions for networking, security, and observability.
 ---

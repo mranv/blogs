@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-27T00:00:00Z
-modDatetime: 2025-01-27T00:00:00Z
-title: "Complete Microservices Patterns Guide: Your Ultimate Resource Hub"
-slug: microservices-patterns-complete-guide-index
-featured: true
-draft: false
 tags:
   - microservices
   - architecture
@@ -16,6 +11,11 @@ tags:
   - mermaid
   - index
   - reference
+modDatetime: 2025-01-27T00:00:00Z
+title: "Complete Microservices Patterns Guide: Your Ultimate Resource Hub"
+slug: microservices-patterns-complete-guide-index
+featured: true
+draft: false
 category: Microservices
 description: A comprehensive index of microservices patterns with detailed guides, mermaid diagrams, and practical implementations. Your complete resource hub for modern distributed systems architecture.
 ---

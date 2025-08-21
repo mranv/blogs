@@ -3,19 +3,17 @@ title: "Complete Guide to Microservices Security Patterns and Zero Trust Archite
 description: "Comprehensive guide to implementing security patterns in microservices architecture, covering Zero Trust principles, OAuth2/OpenID Connect, JWT management, mTLS, API security, and modern threat mitigation strategies."
 slug: "security-patterns-zero-trust-guide"
 pubDatetime: 2025-01-28T16:00:00+05:30
-author: "Anubhav Gain"
 tags:
-  [
-    "microservices",
-    "security",
-    "zero-trust",
-    "oauth2",
-    "jwt",
-    "mtls",
-    "api-security",
-    "istio",
-    "kubernetes",
-  ]
+  - microservices
+  - security
+  - zero-trust
+  - oauth2
+  - jwt
+  - mtls
+  - api-security
+  - istio
+  - kubernetes
+author: "Anubhav Gain"
 category: "Security"
 image: "/images/security-patterns-cover.jpg"
 featured: true

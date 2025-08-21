@@ -7,6 +7,7 @@ slug: opensearch-security-analytics-dashboard-installation
 featured: false
 draft: false
 tags:
+  - general
   - opensearch
   - security
   - analytics

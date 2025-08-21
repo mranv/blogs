@@ -5,17 +5,16 @@ description: "Implement secure pod-to-pod communication in Kubernetes using SPIF
 pubDatetime: 2025-01-29T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "spiffe",
-    "spire",
-    "kubernetes",
-    "mtls",
-    "workload-identity",
-    "security",
-    "zero-trust",
-    "pod-security",
-    "service-mesh",
-  ]
+  - general
+  - spiffe
+  - spire
+  - kubernetes
+  - mtls
+  - workload-identity
+  - security
+  - zero-trust
+  - pod-security
+  - service-mesh
 category: "Security"
 draft: false
 featured: true

@@ -5,19 +5,17 @@ description: "Implement RISC-V security extensions in Rust for next-generation s
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
-category: Security
-  [
-    "rust",
-    "risc-v",
-    "security",
-    "hardware",
-    "pmp",
-    "cryptography",
-    "secure-boot",
-    "trusted-execution",
-    "processor",
-    "isa",
-  ]
+  - rust
+  - risc-v
+  - security
+  - hardware
+  - pmp
+  - cryptography
+  - secure-boot
+  - trusted-execution
+  - processor
+  - isa
+
 featured: false
 draft: false
 ---

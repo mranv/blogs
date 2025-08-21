@@ -7,18 +7,17 @@ featured: false
 draft: false
 author: "Anubhav Gain"
 tags:
-  [
-    "rust",
-    "kubernetes",
-    "operators",
-    "security",
-    "k8s",
-    "admission-control",
-    "crd",
-    "controller",
-    "ebpf",
-    "falco",
-  ]
+  - general
+  - rust
+  - kubernetes
+  - operators
+  - security
+  - k8s
+  - admission-control
+  - crd
+  - controller
+  - ebpf
+  - falco
 category: Cloud Native
 ---
 

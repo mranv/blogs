@@ -5,6 +5,7 @@ author: "Anubhav Gain"
 slug: "ai-driven-threat-hunting-rust-ml"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
+  - general
 category: Programming
   [
     "threat-hunting",

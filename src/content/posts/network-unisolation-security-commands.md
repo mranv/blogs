@@ -3,8 +3,6 @@ title: "Network Unisolation Security Commands: Complete Guide to Windows Firewal
 slug: "network-unisolation-security-commands"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-27T15:50:00Z
-featured: true
-draft: false
 tags:
   - windows
   - firewall
@@ -13,6 +11,8 @@ tags:
   - security-commands
   - incident-response
   - system-administration
+featured: true
+draft: false
 category: Security
 description: "Comprehensive guide to network unisolation commands for Windows systems, including firewall recovery, security restoration, and proper incident response procedures."
 ---

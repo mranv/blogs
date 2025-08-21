@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-17T11:15:00+05:30
-modDatetime: 2025-08-26T11:15:00+05:30
-title: "eBPF for Security: Evolution or Revolution?"
-slug: ebpf-security-evolution-or-revolution
-featured: true
-draft: false
 tags:
   - ebpf
   - security
@@ -15,6 +10,11 @@ tags:
   - kernel
   - networking
   - cloud-security
+modDatetime: 2025-08-26T11:15:00+05:30
+title: "eBPF for Security: Evolution or Revolution?"
+slug: ebpf-security-evolution-or-revolution
+featured: true
+draft: false
 category: eBPF
 description: Comprehensive analysis of how eBPF is transforming cybersecurity - from its origins as a packet filter to becoming the cornerstone of modern security observability and threat detection.
 ---

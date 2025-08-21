@@ -1,17 +1,17 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-16T10:00:00+05:30
-modDatetime: 2025-01-16T10:00:00+05:30
-title: "eBPF Use Cases: Revolutionizing Security, Networking, and Observability"
-slug: ebpf-use-cases-security-networking-observability
-featured: true
-draft: false
 tags:
   - ebpf
   - security
   - networking
   - observability
   - linux
+modDatetime: 2025-01-16T10:00:00+05:30
+title: "eBPF Use Cases: Revolutionizing Security, Networking, and Observability"
+slug: ebpf-use-cases-security-networking-observability
+featured: true
+draft: false
 category: eBPF
 description: Explore real-world eBPF use cases in security, networking, and observability with practical examples and production deployments.
 ---

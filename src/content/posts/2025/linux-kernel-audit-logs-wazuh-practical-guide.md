@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-06T18:00:00+05:30
-modDatetime: 2025-08-06T18:00:00+05:30
-title: "Practical Guide: Linux Kernel and Audit Log Monitoring with Wazuh"
-slug: linux-kernel-audit-logs-wazuh-practical-guide
-featured: true
-draft: false
 tags:
   - Wazuh
   - Linux-Kernel
@@ -17,6 +12,11 @@ tags:
   - Threat-Detection
   - Blue-Team
   - SOC
+modDatetime: 2025-08-06T18:00:00+05:30
+title: "Practical Guide: Linux Kernel and Audit Log Monitoring with Wazuh"
+slug: linux-kernel-audit-logs-wazuh-practical-guide
+featured: true
+draft: false
 category: SIEM
 description: Complete practical guide to collecting and monitoring Linux kernel logs and audit events with Wazuh, including journald integration, auditd configuration, and real-world troubleshooting.
 ---

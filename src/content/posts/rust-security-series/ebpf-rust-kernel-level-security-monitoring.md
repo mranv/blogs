@@ -8,17 +8,16 @@ author: "Anubhav Gain"
 featured: true
 draft: false
 tags:
-  [
-    "rust",
-    "ebpf",
-    "kernel",
-    "security-monitoring",
-    "system-calls",
-    "container-security",
-    "intrusion-detection",
-    "cybersecurity",
-    "linux-security",
-  ]
+  - general
+  - rust
+  - ebpf
+  - kernel
+  - security-monitoring
+  - system-calls
+  - container-security
+  - intrusion-detection
+  - cybersecurity
+  - linux-security
 image: "/blog-placeholder-about.jpg"
 category: "Rust Security"
 ---

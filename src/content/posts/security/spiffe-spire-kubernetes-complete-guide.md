@@ -5,17 +5,16 @@ description: "Master zero-trust workload identity in Kubernetes with this compre
 pubDatetime: 2025-01-27T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "spiffe",
-    "spire",
-    "kubernetes",
-    "zero-trust",
-    "security",
-    "service-mesh",
-    "workload-identity",
-    "mtls",
-    "cloud-native",
-  ]
+  - general
+  - spiffe
+  - spire
+  - kubernetes
+  - zero-trust
+  - security
+  - service-mesh
+  - workload-identity
+  - mtls
+  - cloud-native
 category: "Security"
 draft: false
 featured: true

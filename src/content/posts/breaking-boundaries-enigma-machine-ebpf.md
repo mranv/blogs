@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-06-24T10:00:00+00:00
-modDatetime: 2025-06-24T10:00:00+00:00
-title: "Breaking Boundaries: Implementing the Enigma Machine in eBPF"
-slug: breaking-boundaries-enigma-machine-ebpf
-featured: true
-draft: false
 tags:
   - ebpf
   - encryption
@@ -14,6 +9,11 @@ tags:
   - programming
   - turing
   - cryptography
+modDatetime: 2025-06-24T10:00:00+00:00
+title: "Breaking Boundaries: Implementing the Enigma Machine in eBPF"
+slug: breaking-boundaries-enigma-machine-ebpf
+featured: true
+draft: false
 category: eBPF
 description: A fascinating exploration of implementing the historic Enigma machine using eBPF, celebrating Alan Turing's legacy while showcasing the evolution of eBPF tooling over the past decade.
 ---

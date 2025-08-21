@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-27T00:00:00Z
-modDatetime: 2025-01-27T00:00:00Z
-title: "Complete Microservices Patterns Guide: Expanded Edition with 12 Essential Patterns"
-slug: expanded-microservices-patterns-complete-guide
-featured: true
-draft: false
 tags:
   - microservices
   - architecture
@@ -21,6 +16,11 @@ tags:
   - deployment
   - database
   - testing
+modDatetime: 2025-01-27T00:00:00Z
+title: "Complete Microservices Patterns Guide: Expanded Edition with 12 Essential Patterns"
+slug: expanded-microservices-patterns-complete-guide
+featured: true
+draft: false
 category: Microservices
 description: The ultimate expanded microservices patterns collection with 12 comprehensive guides, 50+ mermaid diagrams, and production-ready implementations covering security, observability, deployment, and data management.
 ---

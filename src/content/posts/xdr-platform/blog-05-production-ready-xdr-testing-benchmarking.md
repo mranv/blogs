@@ -5,6 +5,7 @@ description: "Learn how to test, benchmark, and validate XDR platforms for produ
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:30:00+05:30
 tags:
+  - general
 category: Security
   [
     "xdr-testing",

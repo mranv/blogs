@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-02T17:00:00+05:30
-modDatetime: 2025-08-02T17:00:00+05:30
-title: "Linux Security Modules (LSM): A Deep Dive into Kernel-Level Security Frameworks"
-slug: linux-kernel-security-modules-deep-dive
-featured: true
-draft: false
 tags:
   - linux
   - kernel
@@ -14,6 +9,11 @@ tags:
   - selinux
   - apparmor
   - smack
+modDatetime: 2025-08-02T17:00:00+05:30
+title: "Linux Security Modules (LSM): A Deep Dive into Kernel-Level Security Frameworks"
+slug: linux-kernel-security-modules-deep-dive
+featured: true
+draft: false
 category: Security
 description: Comprehensive guide to Linux Security Modules (LSM) framework, exploring SELinux, AppArmor, SMACK, and modern LSM implementations. Learn how to implement custom security modules and integrate with the kernel security subsystem.
 ---

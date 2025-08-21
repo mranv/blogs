@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-05-07T05:00:00+05:30
-modDatetime: 2025-05-07T05:00:00+05:30
-title: "Deploying Wazuh Agents Using Windows Group Policy Objects (GPO)"
-slug: wazuh-agent-deployment-windows-gpo
-featured: true
-draft: false
 tags:
   - Wazuh
   - Windows
@@ -17,6 +12,11 @@ tags:
   - Security-Management
   - MSI
   - Domain-Controller
+modDatetime: 2025-05-07T05:00:00+05:30
+title: "Deploying Wazuh Agents Using Windows Group Policy Objects (GPO)"
+slug: wazuh-agent-deployment-windows-gpo
+featured: true
+draft: false
 category: SIEM
 description: Learn how to automate Wazuh agent deployment across Windows Active Directory infrastructure using Group Policy Objects (GPO), including MST file creation with Orca and centralized agent management.
 ---

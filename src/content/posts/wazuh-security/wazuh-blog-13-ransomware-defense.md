@@ -5,6 +5,7 @@ description: "Build advanced ransomware defense systems using Wazuh's AI-powered
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
+  - general
 category: Security
   [
     "wazuh",

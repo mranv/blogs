@@ -5,17 +5,15 @@ author: "Anubhav Gain"
 slug: "real-time-ai-translation-technologies-2025"
 pubDatetime: 2025-01-10T15:00:00+05:30
 tags:
-category: AI/ML
-  [
-    "real-time-translation",
-    "ai-translation",
-    "deepl-voice",
-    "simultaneous-interpretation",
-    "edge-computing",
-    "webrtc",
-    "low-latency",
-    "conference-translation",
-  ]
+  - real-time-translation
+  - ai-translation
+  - deepl-voice
+  - simultaneous-interpretation
+  - edge-computing
+  - webrtc
+  - low-latency
+  - conference-translation
+
 featured: true
 ---
 

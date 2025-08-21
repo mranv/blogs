@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-02T14:30:00+05:30
-modDatetime: 2025-08-02T14:30:00+05:30
-title: "eBPF Security: Revolutionizing Runtime Protection and Threat Detection in Linux"
-slug: ebpf-security-runtime-protection
-featured: true
-draft: false
 tags:
   - ebpf
   - security
@@ -13,6 +8,11 @@ tags:
   - kernel
   - runtime-protection
   - threat-detection
+modDatetime: 2025-08-02T14:30:00+05:30
+title: "eBPF Security: Revolutionizing Runtime Protection and Threat Detection in Linux"
+slug: ebpf-security-runtime-protection
+featured: true
+draft: false
 category: eBPF
 description: A deep dive into how eBPF is transforming security monitoring, runtime protection, and threat detection in modern Linux systems. Learn about security tools, best practices, and real-world implementations.
 ---

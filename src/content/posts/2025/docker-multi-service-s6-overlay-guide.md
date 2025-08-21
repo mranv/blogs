@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-26T15:00:00+05:30
-modDatetime: 2025-01-26T15:00:00+05:30
-title: "Running Multiple Services in Docker Like a Pro: My s6-overlay Production Setup"
-slug: docker-multi-service-s6-overlay-guide
-featured: true
-draft: false
 tags:
   - Docker
   - s6-overlay
@@ -17,6 +12,11 @@ tags:
   - DevOps
   - Process-Supervision
   - Alpine-Linux
+modDatetime: 2025-01-26T15:00:00+05:30
+title: "Running Multiple Services in Docker Like a Pro: My s6-overlay Production Setup"
+slug: docker-multi-service-s6-overlay-guide
+featured: true
+draft: false
 category: DevOps
 description: My battle-tested approach to running multiple services in Docker containers using s6-overlay. Perfect for OpenSearch clusters, log processors, and complex applications that need reliable service supervision.
 ---

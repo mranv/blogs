@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-06T16:00:00+05:30
-modDatetime: 2025-01-06T16:00:00+05:30
-title: "Complete Guide to Linux Kernel Log Monitoring with Wazuh: From Zero to Hero"
-slug: linux-kernel-log-monitoring-wazuh-complete-guide
-featured: true
-draft: false
 tags:
   - Wazuh
   - Linux-Kernel
@@ -17,6 +12,11 @@ tags:
   - System-Security
   - Log-Analysis
   - Blue-Team
+modDatetime: 2025-01-06T16:00:00+05:30
+title: "Complete Guide to Linux Kernel Log Monitoring with Wazuh: From Zero to Hero"
+slug: linux-kernel-log-monitoring-wazuh-complete-guide
+featured: true
+draft: false
 category: SIEM
 description: Master Linux kernel log monitoring with Wazuh through practical examples, from basic journald integration to advanced security monitoring, including real-world troubleshooting and performance optimization.
 ---

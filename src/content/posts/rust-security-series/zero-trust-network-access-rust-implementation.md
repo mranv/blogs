@@ -8,17 +8,16 @@ author: "Anubhav Gain"
 featured: true
 draft: false
 tags:
-  [
-    "rust",
-    "zero-trust",
-    "ztna",
-    "network-security",
-    "identity-governance",
-    "micro-segmentation",
-    "encryption",
-    "cybersecurity",
-    "network-access",
-  ]
+  - general
+  - rust
+  - zero-trust
+  - ztna
+  - network-security
+  - identity-governance
+  - micro-segmentation
+  - encryption
+  - cybersecurity
+  - network-access
 image: "/blog-placeholder-about.jpg"
 category: "Rust Security"
 ---

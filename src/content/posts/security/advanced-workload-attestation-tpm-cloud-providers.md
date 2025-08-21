@@ -5,19 +5,18 @@ description: "Master hardware-based attestation with TPM, cloud provider attesto
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "spiffe",
-    "spire",
-    "tpm",
-    "attestation",
-    "aws",
-    "gcp",
-    "azure",
-    "hardware-security",
-    "cloud-providers",
-    "zero-trust",
-    "security",
-  ]
+  - general
+  - spiffe
+  - spire
+  - tpm
+  - attestation
+  - aws
+  - gcp
+  - azure
+  - hardware-security
+  - cloud-providers
+  - zero-trust
+  - security
 category: "Security"
 draft: false
 featured: true

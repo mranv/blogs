@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-26T12:00:00+05:30
-modDatetime: 2025-01-26T12:00:00+05:30
-title: "ETW Performance Optimization and Enterprise Deployment with Wazuh"
-slug: etw-performance-optimization-wazuh-deployment
-featured: true
-draft: false
 tags:
   - Wazuh
   - ETW
@@ -17,6 +12,11 @@ tags:
   - Optimization
   - Deployment
   - Scalability
+modDatetime: 2025-01-26T12:00:00+05:30
+title: "ETW Performance Optimization and Enterprise Deployment with Wazuh"
+slug: etw-performance-optimization-wazuh-deployment
+featured: true
+draft: false
 category: SIEM
 description: Master ETW performance optimization and enterprise deployment strategies with Wazuh. Learn advanced techniques for high-volume ETW data processing, resource management, and scalable monitoring architectures.
 ---

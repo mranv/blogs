@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-17T09:00:00+05:30
-modDatetime: 2025-01-17T09:00:00+05:30
-title: "Firecracker Production Deployment Guide: Enterprise-Ready MicroVM Infrastructure"
-slug: firecracker-practical-deployment-guide
-featured: true
-draft: false
 tags:
   - Firecracker
   - Production-Deployment
@@ -15,6 +10,11 @@ tags:
   - CI-CD
   - Operations
   - Scalability
+modDatetime: 2025-01-17T09:00:00+05:30
+title: "Firecracker Production Deployment Guide: Enterprise-Ready MicroVM Infrastructure"
+slug: firecracker-practical-deployment-guide
+featured: true
+draft: false
 category: DevOps
 description: Complete enterprise-grade deployment guide for Firecracker microVMs, covering production infrastructure, automation, monitoring, disaster recovery, and operational best practices.
 ---

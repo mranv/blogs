@@ -3,8 +3,6 @@ title: "Security Correlation System Architecture: Database Design and Deployment
 slug: "security-correlation-system-architecture"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T18:00:00Z
-featured: false
-draft: false
 tags:
   - security
   - correlation
@@ -13,6 +11,8 @@ tags:
   - siem
   - system-design
   - deployment
+featured: false
+draft: false
 category: Security
 description: "Comprehensive guide to designing and implementing security correlation systems with database schemas, architectural patterns, and deployment strategies for modern SIEM platforms."
 ---

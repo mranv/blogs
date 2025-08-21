@@ -5,6 +5,7 @@ description: "Master risk-based alerting with Wazuh's AI-powered priority scorin
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:15:00+05:30
 tags:
+  - general
 category: Security
   [
     "wazuh",

@@ -5,18 +5,17 @@ description: "Master SPIFFE/SPIRE deployment for edge computing and IoT environm
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "spiffe",
-    "spire",
-    "edge-computing",
-    "iot",
-    "zero-trust",
-    "embedded-systems",
-    "kubernetes",
-    "security",
-    "industrial-iot",
-    "edge-devices",
-  ]
+  - general
+  - spiffe
+  - spire
+  - edge-computing
+  - iot
+  - zero-trust
+  - embedded-systems
+  - kubernetes
+  - security
+  - industrial-iot
+  - edge-devices
 category: "Security"
 draft: false
 featured: true

@@ -5,18 +5,16 @@ author: "Anubhav Gain"
 slug: "saga-pattern-distributed-transactions-guide"
 pubDatetime: 2025-01-27T14:00:00+05:30
 tags:
-category: Microservices
-  [
-    "microservices",
-    "saga-pattern",
-    "distributed-transactions",
-    "architecture",
-    "design-patterns",
-    "event-driven",
-    "compensation",
-    "orchestration",
-    "choreography",
-  ]
+  - microservices
+  - saga-pattern
+  - distributed-transactions
+  - architecture
+  - design-patterns
+  - event-driven
+  - compensation
+  - orchestration
+  - choreography
+
 featured: true
 ---
 

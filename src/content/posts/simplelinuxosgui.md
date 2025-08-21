@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2024-04-09T03:49:00+05:30
-modDatetime: 2024-06-14T14:29:00+05:30
-title: This is a simple, lightweight GUI-based Linux distribution designed to run on QEMU.
-slug: simple-gui-linux-os
-featured: true
-draft: false
 tags:
   - linux
   - linux kernel
@@ -27,6 +22,11 @@ tags:
   - linux development
   - linux kernel compilation
   - linux system
+modDatetime: 2024-06-14T14:29:00+05:30
+title: This is a simple, lightweight GUI-based Linux distribution designed to run on QEMU.
+slug: simple-gui-linux-os
+featured: true
+draft: false
 category: Linux
 description: This is a simple, lightweight GUI-based Linux distribution designed to run on QEMU.
 ---

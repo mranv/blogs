@@ -3,8 +3,6 @@ title: "Sysmon Terminal Services Monitoring: Complete Detection and Response Gui
 slug: "sysmon-terminal-services-monitoring-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T22:30:00Z
-featured: false
-draft: false
 tags:
   - sysmon
   - terminal-services
@@ -14,6 +12,8 @@ tags:
   - windows
   - detection
   - logging
+featured: false
+draft: false
 category: Observability
 description: "Comprehensive guide to monitoring Terminal Services and RDP activities using Sysmon, including advanced configuration, threat detection rules, and incident response strategies."
 ---

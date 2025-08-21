@@ -7,15 +7,14 @@ author: "Anubhav Gain"
 heroImage: "/rust-cross-platform-service.png"
 category: "Rust"
 tags:
-  [
-    "Rust",
-    "Security",
-    "systemd",
-    "Windows Services",
-    "Cross-Platform",
-    "Async",
-    "Tokio",
-  ]
+  - general
+  - Rust
+  - Security
+  - systemd
+  - Windows Services
+  - Cross-Platform
+  - Async
+  - Tokio
 featured: true
 ---
 

@@ -7,16 +7,15 @@ author: "Anubhav Gain"
 heroImage: "/rust-production-ebpf.png"
 category: "Rust"
 tags:
-  [
-    "Rust",
-    "eBPF",
-    "Security",
-    "XDP",
-    "Network",
-    "Monitoring",
-    "Production",
-    "Aya",
-  ]
+  - general
+  - Rust
+  - eBPF
+  - Security
+  - XDP
+  - Network
+  - Monitoring
+  - Production
+  - Aya
 featured: true
 ---
 

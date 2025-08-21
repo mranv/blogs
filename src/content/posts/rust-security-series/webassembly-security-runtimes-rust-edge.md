@@ -5,17 +5,16 @@ description: "Build production-grade security tools in Rust that compile to WebA
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "rust",
-    "webassembly",
-    "edge-computing",
-    "security-tools",
-    "sandboxed-execution",
-    "edge-security",
-    "wasm",
-    "cybersecurity",
-    "distributed-security",
-  ]
+  - general
+  - rust
+  - webassembly
+  - edge-computing
+  - security-tools
+  - sandboxed-execution
+  - edge-security
+  - wasm
+  - cybersecurity
+  - distributed-security
 image: "/blog-placeholder-about.jpg"
 category: "Rust Security"
 ---

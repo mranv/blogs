@@ -3,8 +3,6 @@ title: "Network Unisolation Queries: Advanced Incident Response and Forensic Ana
 slug: "network-unisolation-queries-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-11T04:00:00Z
-featured: false
-draft: false
 tags:
   - network-security
   - incident-response
@@ -13,6 +11,8 @@ tags:
   - threat-hunting
   - windows-security
   - malware-analysis
+featured: false
+draft: false
 category: Security
 description: "Comprehensive guide to network unisolation queries for incident response, covering advanced forensic techniques, threat hunting methodologies, and malware analysis procedures."
 ---

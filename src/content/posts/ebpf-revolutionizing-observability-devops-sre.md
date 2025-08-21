@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-18T14:15:00+05:30
-modDatetime: 2025-08-21T14:15:00+05:30
-title: "eBPF: Revolutionizing Observability for DevOps and SRE Teams"
-slug: ebpf-revolutionizing-observability-devops-sre
-featured: true
-draft: false
 tags:
   - ebpf
   - observability
@@ -16,6 +11,11 @@ tags:
   - networking
   - cloud-native
   - performance
+modDatetime: 2025-08-21T14:15:00+05:30
+title: "eBPF: Revolutionizing Observability for DevOps and SRE Teams"
+slug: ebpf-revolutionizing-observability-devops-sre
+featured: true
+draft: false
 category: eBPF
 description: Comprehensive guide to how eBPF is transforming observability for DevOps and SRE teams, enabling advanced monitoring, network analysis, and performance insights without manual instrumentation.
 ---

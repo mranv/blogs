@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2024-12-21T11:30:00+05:30
-modDatetime: 2024-12-21T11:30:00+05:30
-title: "SIEM Event Collection and Correlation: A Comprehensive Technical Guide"
-slug: siem-event-collection-correlation-guide
-featured: true
-draft: false
 tags:
   - SIEM
   - event-correlation
@@ -17,6 +12,11 @@ tags:
   - incident-response
   - cybersecurity
   - log-analysis
+modDatetime: 2024-12-21T11:30:00+05:30
+title: "SIEM Event Collection and Correlation: A Comprehensive Technical Guide"
+slug: siem-event-collection-correlation-guide
+featured: true
+draft: false
 category: SIEM
 description: "Master SIEM event collection and correlation with this in-depth technical guide covering Wazuh implementation, correlation rules, real-world use cases, and advanced threat detection techniques for modern Security Operations Centers."
 ---

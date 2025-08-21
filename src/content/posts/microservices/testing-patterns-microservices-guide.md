@@ -5,18 +5,17 @@ slug: "testing-patterns-microservices-guide"
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "microservices",
-    "testing",
-    "jest",
-    "pact",
-    "testcontainers",
-    "automation",
-    "devops",
-    "software-testing",
-    "integration-testing",
-    "contract-testing",
-  ]
+  - general
+  - microservices
+  - testing
+  - jest
+  - pact
+  - testcontainers
+  - automation
+  - devops
+  - software-testing
+  - integration-testing
+  - contract-testing
 # image: "./microservices-testing-patterns.jpg"
 category: "Testing"
 draft: false

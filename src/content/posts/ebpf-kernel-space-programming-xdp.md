@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-15T18:15:00+05:30
-modDatetime: 2025-08-22T18:15:00+05:30
-title: "How to Run Code in Kernel Space? eBPF! Complete Guide with XDP Packet Capture"
-slug: ebpf-kernel-space-programming-xdp
-featured: true
-draft: false
 tags:
   - ebpf
   - xdp
@@ -14,6 +9,11 @@ tags:
   - go
   - systems-programming
   - packet-capture
+modDatetime: 2025-08-22T18:15:00+05:30
+title: "How to Run Code in Kernel Space? eBPF! Complete Guide with XDP Packet Capture"
+slug: ebpf-kernel-space-programming-xdp
+featured: true
+draft: false
 category: eBPF
 description: Comprehensive guide to running code in kernel space using eBPF, featuring a complete XDP packet capture implementation with Go integration and practical examples.
 ---

@@ -5,6 +5,7 @@ description: "Master Wazuh SIEM's cutting-edge machine learning integration achi
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
+  - general
 category: Security
   [
     "wazuh",

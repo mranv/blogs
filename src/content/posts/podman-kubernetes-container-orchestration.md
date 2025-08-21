@@ -3,8 +3,6 @@ title: "Podman and Kubernetes Container Orchestration: Pods vs Containers Deep D
 slug: "podman-kubernetes-container-orchestration"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T19:00:00Z
-featured: false
-draft: false
 tags:
   - podman
   - kubernetes
@@ -13,6 +11,8 @@ tags:
   - orchestration
   - windows
   - linux
+featured: false
+draft: false
 category: Cloud Native
 description: "Comprehensive guide to understanding the differences between pods and containers in Kubernetes and Podman, including setup, orchestration patterns, and Windows deployment strategies."
 ---

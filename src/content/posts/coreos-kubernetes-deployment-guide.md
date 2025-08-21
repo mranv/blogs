@@ -3,8 +3,6 @@ title: "CoreOS Kubernetes Deployment: Production-Ready Multi-Node Cluster Guide"
 slug: "coreos-kubernetes-deployment-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-11T02:00:00Z
-featured: false
-draft: false
 tags:
   - kubernetes
   - coreos
@@ -13,6 +11,8 @@ tags:
   - production
   - infrastructure
   - devops
+featured: false
+draft: false
 category: Cloud Native
 description: "Comprehensive guide to deploying production-ready multi-node Kubernetes clusters on CoreOS, covering high availability, networking, storage, security, and operational best practices."
 ---

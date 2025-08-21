@@ -3,8 +3,6 @@ title: "Automating Safari Configuration on macOS: Complete Scripting Guide"
 slug: "macos-safari-automation-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-02-04T00:49:00Z
-featured: false
-draft: false
 tags:
   - macos
   - safari
@@ -12,6 +10,8 @@ tags:
   - applescript
   - shell-scripting
   - system-administration
+featured: false
+draft: false
 category: Security
 description: "Comprehensive guide to automating Safari browser configuration on macOS using shell scripts and AppleScript, including homepage setting, preferences management, and enterprise deployment strategies."
 ---

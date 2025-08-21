@@ -5,17 +5,16 @@ slug: "data-management-streaming-patterns-guide"
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "microservices",
-    "data-management",
-    "kafka",
-    "streaming",
-    "cdc",
-    "event-driven",
-    "data-architecture",
-    "real-time-analytics",
-    "data-governance",
-  ]
+  - general
+  - microservices
+  - data-management
+  - kafka
+  - streaming
+  - cdc
+  - event-driven
+  - data-architecture
+  - real-time-analytics
+  - data-governance
 image: "/blog-placeholder-about.jpg"
 category: "Microservices"
 ---

@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-24T10:00:00+05:30
-modDatetime: 2025-01-24T10:00:00+05:30
-title: "Creating Decoders and Rules from Scratch in Wazuh"
-slug: creating-decoders-rules-from-scratch-wazuh
-featured: true
-draft: false
 tags:
   - Wazuh
   - Decoders
@@ -17,6 +12,11 @@ tags:
   - Regex
   - Log-Processing
   - Threat-Detection
+modDatetime: 2025-01-24T10:00:00+05:30
+title: "Creating Decoders and Rules from Scratch in Wazuh"
+slug: creating-decoders-rules-from-scratch-wazuh
+featured: true
+draft: false
 category: SIEM
 description: Learn how to create custom decoders and rules from scratch in Wazuh. Master the art of log parsing with regex patterns and build effective threat detection rules for any log source.
 ---

@@ -5,19 +5,18 @@ description: "Master GitOps patterns for SPIFFE/SPIRE with ArgoCD, Flux, and com
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "spiffe",
-    "spire",
-    "gitops",
-    "argocd",
-    "flux",
-    "infrastructure-as-code",
-    "kubernetes",
-    "automation",
-    "ci-cd",
-    "helm",
-    "kustomize",
-  ]
+  - general
+  - spiffe
+  - spire
+  - gitops
+  - argocd
+  - flux
+  - infrastructure-as-code
+  - kubernetes
+  - automation
+  - ci-cd
+  - helm
+  - kustomize
 category: "Security"
 draft: false
 featured: true

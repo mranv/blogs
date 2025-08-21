@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-10T10:00:00+05:30
-modDatetime: 2025-08-10T10:00:00+05:30
-title: "Implementing Cloudflare Zero Trust: Complete Enterprise Security Guide"
-slug: cloudflare-zero-trust-implementation-guide
-featured: true
-draft: false
 tags:
   - Cloudflare
   - Zero-Trust
@@ -17,6 +12,11 @@ tags:
   - SASE
   - Network-Security
   - Cloud-Security
+modDatetime: 2025-08-10T10:00:00+05:30
+title: "Implementing Cloudflare Zero Trust: Complete Enterprise Security Guide"
+slug: cloudflare-zero-trust-implementation-guide
+featured: true
+draft: false
 category: Cloud Security
 description: Comprehensive guide to implementing Cloudflare Zero Trust Network Access (ZTNA) including WARP client deployment, Access policies, Gateway rules, and enterprise-grade security configurations.
 ---

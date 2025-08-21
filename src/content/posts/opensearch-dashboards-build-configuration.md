@@ -3,8 +3,6 @@ title: "OpenSearch Dashboards Build Configuration: Complete Manifest Guide"
 slug: "opensearch-dashboards-build-configuration"
 author: "Anubhav Gain"
 pubDatetime: 2025-02-02T23:22:00Z
-featured: false
-draft: false
 tags:
   - opensearch
   - dashboards
@@ -12,6 +10,8 @@ tags:
   - manifest
   - xdr
   - security-platform
+featured: false
+draft: false
 category: Security
 description: "Comprehensive guide to OpenSearch Dashboards build configuration manifests, including plugin management, XDR integration, and enterprise deployment strategies."
 ---

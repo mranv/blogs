@@ -5,13 +5,12 @@ description: "Zero Trust security has evolved from a buzzword to a critical nece
 pubDatetime: 2025-01-28T00:00:00Z
 author: "Anubhav Gain"
 tags:
-  [
-    "wazuh",
-    "zero-trust",
-    "security",
-    "micro-segmentation",
-    "network-correlation",
-  ]
+  - general
+  - wazuh
+  - zero-trust
+  - security
+  - micro-segmentation
+  - network-correlation
 category: "Wazuh Security"
 draft: false
 featured: false

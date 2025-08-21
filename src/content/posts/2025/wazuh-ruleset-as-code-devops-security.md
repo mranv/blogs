@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-06T20:00:00+05:30
-modDatetime: 2025-08-06T20:00:00+05:30
-title: "Wazuh Ruleset as Code (RaC): DevOps-Driven Security Detection Engineering"
-slug: wazuh-ruleset-as-code-devops-security
-featured: true
-draft: false
 tags:
   - Wazuh
   - DevOps
@@ -17,6 +12,11 @@ tags:
   - Security-Automation
   - Version-Control
   - GitHub-Actions
+modDatetime: 2025-08-06T20:00:00+05:30
+title: "Wazuh Ruleset as Code (RaC): DevOps-Driven Security Detection Engineering"
+slug: wazuh-ruleset-as-code-devops-security
+featured: true
+draft: false
 category: SIEM
 description: Implement Wazuh Ruleset as Code (RaC) to manage security detection rules using Git version control and CI/CD pipelines, enabling collaborative development, automated testing, and consistent deployment of threat detection logic.
 ---

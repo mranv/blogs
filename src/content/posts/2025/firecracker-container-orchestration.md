@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-15T09:00:00+05:30
-modDatetime: 2025-01-15T09:00:00+05:30
-title: "Firecracker Container Orchestration: Kubernetes Integration with Kata Containers"
-slug: firecracker-container-orchestration
-featured: true
-draft: false
 tags:
   - Firecracker
   - Kubernetes
@@ -14,6 +9,11 @@ tags:
   - Containerd
   - CRI
   - RuntimeClass
+modDatetime: 2025-01-15T09:00:00+05:30
+title: "Firecracker Container Orchestration: Kubernetes Integration with Kata Containers"
+slug: firecracker-container-orchestration
+featured: true
+draft: false
 category: Cloud Native
 description: Complete guide to integrating Firecracker microVMs with Kubernetes orchestration through Kata Containers, containerd, and CRI-O for secure container workloads.
 ---

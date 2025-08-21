@@ -1,17 +1,17 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-17T10:00:00+05:30
-modDatetime: 2025-01-17T10:00:00+05:30
-title: "Getting Started with eBPF Programming: A Hands-On Guide"
-slug: getting-started-ebpf-programming
-featured: true
-draft: false
 tags:
   - ebpf
   - programming
   - tutorial
   - linux
   - kernel
+modDatetime: 2025-01-17T10:00:00+05:30
+title: "Getting Started with eBPF Programming: A Hands-On Guide"
+slug: getting-started-ebpf-programming
+featured: true
+draft: false
 category: eBPF
 description: A practical guide to eBPF programming with hands-on examples, from hello world to production-ready programs using modern tools and frameworks.
 ---

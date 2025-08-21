@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2024-12-20T10:00:00+05:30
-modDatetime: 2024-12-20T10:00:00+05:30
-title: "eBPF-Based ADR: Real-time Application Defense"
-slug: ebpf-based-adr-real-time-app-defense
-featured: true
-draft: false
 tags:
   - ebpf
   - security
@@ -16,6 +11,11 @@ tags:
   - go
   - linux
   - runtime-protection
+modDatetime: 2024-12-20T10:00:00+05:30
+title: "eBPF-Based ADR: Real-time Application Defense"
+slug: ebpf-based-adr-real-time-app-defense
+featured: true
+draft: false
 category: eBPF
 description: Comprehensive guide to implementing Application Detection and Response (ADR) using eBPF for real-time threat detection and prevention in modern web applications.
 ---

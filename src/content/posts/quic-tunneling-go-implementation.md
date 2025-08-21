@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-17T10:45:00+05:30
-modDatetime: 2025-08-22T10:45:00+05:30
-title: "Tunneling over QUIC: Modern Network Protocol Implementation in Go"
-slug: quic-tunneling-go-implementation
-featured: true
-draft: false
 tags:
   - quic
   - networking
@@ -15,6 +10,11 @@ tags:
   - udp
   - tcp
   - systems-programming
+modDatetime: 2025-08-22T10:45:00+05:30
+title: "Tunneling over QUIC: Modern Network Protocol Implementation in Go"
+slug: quic-tunneling-go-implementation
+featured: true
+draft: false
 category: Programming
 description: Comprehensive guide to implementing network tunneling using the QUIC protocol in Go, covering proxy-agent architecture, TLS integration, and practical deployment scenarios.
 ---

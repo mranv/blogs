@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-16T08:15:00+05:30
-modDatetime: 2025-08-22T08:15:00+05:30
-title: "Unit Testing eBPF Programs: A Comprehensive Guide with XDP Examples"
-slug: unit-testing-ebpf-programs
-featured: true
-draft: false
 tags:
   - ebpf
   - testing
@@ -13,6 +8,11 @@ tags:
   - development
   - quality-assurance
   - linux
+modDatetime: 2025-08-22T08:15:00+05:30
+title: "Unit Testing eBPF Programs: A Comprehensive Guide with XDP Examples"
+slug: unit-testing-ebpf-programs
+featured: true
+draft: false
 category: Testing
 description: Learn how to effectively unit test eBPF programs using BPF_PROG_RUN and libbpf. Complete guide with XDP examples, best practices, and troubleshooting tips.
 ---

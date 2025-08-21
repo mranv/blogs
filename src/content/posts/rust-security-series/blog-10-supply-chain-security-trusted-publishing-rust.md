@@ -5,6 +5,7 @@ description: "Master supply chain security by implementing trusted publishing me
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:00:00+05:30
 tags:
+  - general
 category: Security
   [
     "supply-chain-security",

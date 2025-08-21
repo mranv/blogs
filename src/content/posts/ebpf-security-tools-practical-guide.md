@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-02T15:00:00+05:30
-modDatetime: 2025-08-02T15:00:00+05:30
-title: "Practical Guide to eBPF Security Tools: From Detection to Prevention"
-slug: ebpf-security-tools-practical-guide
-featured: true
-draft: false
 tags:
   - ebpf
   - security
@@ -14,6 +9,11 @@ tags:
   - tetragon
   - tracee
   - security-tools
+modDatetime: 2025-08-02T15:00:00+05:30
+title: "Practical Guide to eBPF Security Tools: From Detection to Prevention"
+slug: ebpf-security-tools-practical-guide
+featured: true
+draft: false
 category: eBPF
 description: A hands-on guide to implementing eBPF security tools in production. Learn to deploy Falco, Tetragon, Tracee, and build custom security solutions with real-world examples.
 ---

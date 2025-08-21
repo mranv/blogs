@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-10T16:00:00+05:30
-modDatetime: 2025-08-10T16:00:00+05:30
-title: "Kubernetes API Authentication & RBAC: Production-Ready Security Guide"
-slug: kubernetes-api-authentication-rbac-guide
-featured: true
-draft: false
 tags:
   - Kubernetes
   - API
@@ -17,6 +12,11 @@ tags:
   - CloudNative
   - Authorization
   - BestPractices
+modDatetime: 2025-08-10T16:00:00+05:30
+title: "Kubernetes API Authentication & RBAC: Production-Ready Security Guide"
+slug: kubernetes-api-authentication-rbac-guide
+featured: true
+draft: false
 category: Kubernetes
 description: Complete production guide to Kubernetes API authentication, service accounts, and RBAC implementation. Learn how to secure your cluster with practical examples, security best practices, and real-world patterns.
 ---

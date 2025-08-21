@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-18T12:30:00+05:30
-modDatetime: 2025-09-01T12:30:00+05:30
-title: "eBPF Map Metrics Prometheus Exporter: Advanced Observability with eBPF Iterators"
-slug: ebpf-map-metrics-prometheus-exporter
-featured: true
-draft: false
 tags:
   - ebpf
   - prometheus
@@ -15,6 +10,11 @@ tags:
   - iterators
   - linux-kernel
   - instrumentation
+modDatetime: 2025-09-01T12:30:00+05:30
+title: "eBPF Map Metrics Prometheus Exporter: Advanced Observability with eBPF Iterators"
+slug: ebpf-map-metrics-prometheus-exporter
+featured: true
+draft: false
 category: eBPF
 description: Learn how to build a standalone eBPF Map Metrics Prometheus exporter using eBPF Iterators, enabling comprehensive observability of eBPF programs without modifying application stacks.
 ---

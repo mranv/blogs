@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-12T10:30:00+05:30
-modDatetime: 2025-08-20T10:30:00+05:30
-title: "Netflix eBPF Infrastructure Observability: Detecting Noisy Neighbors at Scale"
-slug: netflix-ebpf-infrastructure-observability-noisy-neighbors
-featured: true
-draft: false
 tags:
   - ebpf
   - netflix
@@ -15,6 +10,11 @@ tags:
   - multi-tenant
   - scheduler
   - infrastructure
+modDatetime: 2025-08-20T10:30:00+05:30
+title: "Netflix eBPF Infrastructure Observability: Detecting Noisy Neighbors at Scale"
+slug: netflix-ebpf-infrastructure-observability-noisy-neighbors
+featured: true
+draft: false
 category: eBPF
 description: Learn how Netflix leverages eBPF to detect noisy neighbors in multi-tenant systems through continuous Linux scheduler instrumentation with minimal performance overhead.
 ---

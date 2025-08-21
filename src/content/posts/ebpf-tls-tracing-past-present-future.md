@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-18T13:30:00+05:30
-modDatetime: 2025-08-31T13:30:00+05:30
-title: "eBPF TLS Tracing: The Past, Present and Future of Encrypted Traffic Observability"
-slug: ebpf-tls-tracing-past-present-future
-featured: true
-draft: false
 tags:
   - ebpf
   - tls
@@ -16,6 +11,11 @@ tags:
   - encryption
   - openssl
   - pixie
+modDatetime: 2025-08-31T13:30:00+05:30
+title: "eBPF TLS Tracing: The Past, Present and Future of Encrypted Traffic Observability"
+slug: ebpf-tls-tracing-past-present-future
+featured: true
+draft: false
 category: eBPF
 description: Comprehensive analysis of eBPF TLS tracing evolution - from fragile memory offset approaches to robust syscall-based methods, covering challenges, solutions, and future innovations in encrypted traffic observability.
 ---

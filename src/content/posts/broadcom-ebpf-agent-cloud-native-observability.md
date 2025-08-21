@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-12T09:00:00+05:30
-modDatetime: 2025-08-24T09:00:00+05:30
-title: "Introducing The eBPF Agent: A No-Code Approach for Cloud-Native Observability"
-slug: broadcom-ebpf-agent-cloud-native-observability
-featured: true
-draft: false
 tags:
   - ebpf
   - cloud-native
@@ -15,6 +10,11 @@ tags:
   - monitoring
   - broadcom
   - dx-operational-observability
+modDatetime: 2025-08-24T09:00:00+05:30
+title: "Introducing The eBPF Agent: A No-Code Approach for Cloud-Native Observability"
+slug: broadcom-ebpf-agent-cloud-native-observability
+featured: true
+draft: false
 category: eBPF
 description: Discover how Broadcom's eBPF agent revolutionizes cloud-native monitoring with dynamic instrumentation, near-zero overhead, and language-agnostic support for modern microservices architectures.
 ---

@@ -5,17 +5,15 @@ author: "Anubhav Gain"
 slug: "multimodal-ai-translation-2025"
 pubDatetime: 2025-01-10T14:00:00+05:30
 tags:
-category: AI/ML
-  [
-    "ai-translation",
-    "multimodal-ai",
-    "seamlessm4t",
-    "gpt-4o",
-    "speech-translation",
-    "machine-translation",
-    "neural-networks",
-    "language-processing",
-  ]
+  - ai-translation
+  - multimodal-ai
+  - seamlessm4t
+  - gpt-4o
+  - speech-translation
+  - machine-translation
+  - neural-networks
+  - language-processing
+
 featured: true
 ---
 

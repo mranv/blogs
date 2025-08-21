@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-02T15:30:00+05:30
-modDatetime: 2025-08-02T15:30:00+05:30
-title: "The Dark Side of eBPF: Security Challenges, Vulnerabilities, and Defense Strategies"
-slug: ebpf-security-challenges-vulnerabilities
-featured: true
-draft: false
 tags:
   - ebpf
   - security
@@ -13,6 +8,11 @@ tags:
   - linux
   - kernel
   - exploit-prevention
+modDatetime: 2025-08-02T15:30:00+05:30
+title: "The Dark Side of eBPF: Security Challenges, Vulnerabilities, and Defense Strategies"
+slug: ebpf-security-challenges-vulnerabilities
+featured: true
+draft: false
 category: eBPF
 description: An in-depth analysis of eBPF security challenges, potential vulnerabilities, and defensive strategies. Learn about eBPF rootkits, verifier bypasses, and how to protect against malicious eBPF usage.
 ---

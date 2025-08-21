@@ -3,8 +3,6 @@ title: "OpenSSH Docker Security: Complete Guide to Secure SSH Containers"
 slug: "openssh-docker-security-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T20:15:00Z
-featured: false
-draft: false
 tags:
   - docker
   - openssh
@@ -13,6 +11,8 @@ tags:
   - ssh
   - networking
   - hardening
+featured: false
+draft: false
 category: Security
 description: "Comprehensive guide to implementing secure OpenSSH containers with Docker, covering security hardening, key management, network isolation, and enterprise deployment strategies."
 ---

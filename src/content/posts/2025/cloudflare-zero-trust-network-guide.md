@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-10T16:00:00+05:30
-modDatetime: 2025-08-10T16:00:00+05:30
-title: Implementing Zero Trust Network Access with Cloudflare
-slug: cloudflare-zero-trust-network-guide
-featured: true
-draft: false
 tags:
   - cloudflare
   - zero-trust
@@ -15,6 +10,11 @@ tags:
   - gateway
   - warp
   - network-security
+modDatetime: 2025-08-10T16:00:00+05:30
+title: Implementing Zero Trust Network Access with Cloudflare
+slug: cloudflare-zero-trust-network-guide
+featured: true
+draft: false
 category: Cloud
 description: Comprehensive guide to implementing Zero Trust Network Access using Cloudflare, including Access, Tunnel, Gateway, and WARP for secure enterprise networking.
 ---

@@ -5,6 +5,7 @@ description: "Master insider threat detection using Wazuh's advanced behavioral 
 author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
+  - general
 category: Security
   [
     "wazuh",

@@ -1,16 +1,16 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-15T10:00:00+05:30
-modDatetime: 2025-01-15T10:00:00+05:30
-title: "eBPF Explained: What It Is, Why It Matters, and How It Works"
-slug: ebpf-introduction-what-why-how
-featured: true
-draft: false
 tags:
   - ebpf
   - linux
   - kernel
   - programming
+modDatetime: 2025-01-15T10:00:00+05:30
+title: "eBPF Explained: What It Is, Why It Matters, and How It Works"
+slug: ebpf-introduction-what-why-how
+featured: true
+draft: false
 category: eBPF
 description: A comprehensive introduction to eBPF technology, covering its architecture, core concepts, and why it's revolutionizing Linux kernel programming.
 ---

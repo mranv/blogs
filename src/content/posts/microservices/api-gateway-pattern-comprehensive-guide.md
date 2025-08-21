@@ -5,15 +5,13 @@ author: "Anubhav Gain"
 slug: "api-gateway-pattern-comprehensive-guide"
 pubDatetime: 2025-01-27T10:00:00+05:30
 tags:
-category: Microservices
-  [
-    "microservices",
-    "api-gateway",
-    "architecture",
-    "design-patterns",
-    "backend",
-    "distributed-systems",
-  ]
+  - microservices
+  - api-gateway
+  - architecture
+  - design-patterns
+  - backend
+  - distributed-systems
+
 featured: true
 ---
 

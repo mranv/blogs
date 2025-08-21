@@ -7,16 +7,15 @@ author: "Anubhav Gain"
 heroImage: "/rust-secure-authentication.png"
 category: "Rust"
 tags:
-  [
-    "Rust",
-    "Authentication",
-    "JWT",
-    "OAuth2",
-    "MFA",
-    "Security",
-    "Enterprise",
-    "RBAC",
-  ]
+  - general
+  - Rust
+  - Authentication
+  - JWT
+  - OAuth2
+  - MFA
+  - Security
+  - Enterprise
+  - RBAC
 featured: true
 ---
 

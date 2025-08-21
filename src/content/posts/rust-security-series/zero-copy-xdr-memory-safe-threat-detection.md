@@ -5,17 +5,16 @@ description: "Learn how to leverage Rust's zero-copy parsing techniques, memory 
 pubDatetime: 2025-01-28T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "rust",
-    "xdr",
-    "cybersecurity",
-    "zero-copy",
-    "threat-detection",
-    "memory-safety",
-    "performance",
-    "networking",
-    "packet-processing",
-  ]
+  - general
+  - rust
+  - xdr
+  - cybersecurity
+  - zero-copy
+  - threat-detection
+  - memory-safety
+  - performance
+  - networking
+  - packet-processing
 image: "/blog-placeholder-about.jpg"
 category: "Rust Security"
 ---

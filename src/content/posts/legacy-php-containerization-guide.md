@@ -3,8 +3,6 @@ title: "Legacy PHP Containerization: Securing PHP 5.3.3 with Podman and CentOS 6
 slug: "legacy-php-containerization-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T02:19:00Z
-featured: false
-draft: false
 tags:
   - php
   - containerization
@@ -13,6 +11,8 @@ tags:
   - centos
   - security
   - migration
+featured: false
+draft: false
 category: DevOps
 description: "Complete guide to containerizing legacy PHP 5.3.3 applications using Podman with CentOS 6, including security considerations, rootless containers, and migration strategies."
 ---

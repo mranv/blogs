@@ -3,8 +3,6 @@ title: "Windows Toast Notifications with Rust: Complete Implementation Guide"
 slug: "windows-toast-notifications-rust-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T18:30:00Z
-featured: false
-draft: false
 tags:
   - rust
   - windows
@@ -13,6 +11,8 @@ tags:
   - desktop-development
   - winrt
   - notifications
+featured: false
+draft: false
 category: Programming
 description: "Comprehensive guide to implementing Windows toast notifications in Rust applications, covering WinRT APIs, notification templates, interactive elements, and advanced notification management."
 ---

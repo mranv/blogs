@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-26T14:00:00+05:30
-modDatetime: 2025-01-26T14:00:00+05:30
-title: "Supercharge Linux Security with Automated Logwatch Reports: My Production-Ready Setup"
-slug: linux-logwatch-security-automation-guide
-featured: true
-draft: false
 tags:
   - Linux-Security
   - Logwatch
@@ -17,6 +12,11 @@ tags:
   - Compliance
   - PDF-Reports
   - Email-Automation
+modDatetime: 2025-01-26T14:00:00+05:30
+title: "Supercharge Linux Security with Automated Logwatch Reports: My Production-Ready Setup"
+slug: linux-logwatch-security-automation-guide
+featured: true
+draft: false
 category: Security
 description: My comprehensive guide to transforming Logwatch into a powerful security monitoring tool. Includes automated PDF generation, email delivery, and SOC-ready customizations that I've battle-tested in production environments.
 ---

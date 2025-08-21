@@ -3,8 +3,6 @@ title: "Squarespace Performance Optimization: Complete Guide to Site Speed Enhan
 slug: "squarespace-performance-optimization-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T16:45:00Z
-featured: false
-draft: false
 tags:
   - squarespace
   - performance-optimization
@@ -12,6 +10,8 @@ tags:
   - site-speed
   - user-experience
   - seo
+featured: false
+draft: false
 category: Performance
 description: "Comprehensive guide to optimizing Squarespace website performance, including image optimization, code injection techniques, caching strategies, and Core Web Vitals improvements."
 ---

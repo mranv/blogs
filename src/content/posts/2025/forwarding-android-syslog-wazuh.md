@@ -1,11 +1,6 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-01-14T10:00:00+05:30
-modDatetime: 2025-01-14T10:00:00+05:30
-title: "How to Forward Android Syslog to Wazuh"
-slug: forwarding-android-syslog-wazuh
-featured: true
-draft: false
 tags:
   - Wazuh
   - Android
@@ -17,6 +12,11 @@ tags:
   - Monitoring
   - Security
   - Remote-Logging
+modDatetime: 2025-01-14T10:00:00+05:30
+title: "How to Forward Android Syslog to Wazuh"
+slug: forwarding-android-syslog-wazuh
+featured: true
+draft: false
 category: SIEM
 description: Learn how to monitor Android devices by forwarding system logs to Wazuh. Configure syslog collection, create custom decoders and rules for app installations, security events, and device activities.
 ---

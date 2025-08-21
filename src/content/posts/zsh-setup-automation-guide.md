@@ -3,8 +3,6 @@ title: "Automated Zsh Setup: Complete Installation and Configuration Script"
 slug: "zsh-setup-automation-guide"
 author: "Anubhav Gain"
 pubDatetime: 2025-01-10T14:13:00Z
-featured: false
-draft: false
 tags:
   - zsh
   - shell
@@ -13,6 +11,8 @@ tags:
   - terminal
   - starship
   - configuration
+featured: false
+draft: false
 category: Linux
 description: "Complete guide to automating Zsh installation and configuration with plugins, themes, and modern terminal tools using a comprehensive setup script."
 ---

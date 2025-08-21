@@ -5,17 +5,16 @@ description: "Build enterprise-grade SPIFFE/SPIRE deployments with high availabi
 pubDatetime: 2025-01-30T16:00:00+05:30
 author: "Anubhav Gain"
 tags:
-  [
-    "spiffe",
-    "spire",
-    "high-availability",
-    "kubernetes",
-    "disaster-recovery",
-    "production",
-    "scalability",
-    "enterprise",
-    "zero-trust",
-  ]
+  - general
+  - spiffe
+  - spire
+  - high-availability
+  - kubernetes
+  - disaster-recovery
+  - production
+  - scalability
+  - enterprise
+  - zero-trust
 category: "Security"
 draft: false
 featured: true
