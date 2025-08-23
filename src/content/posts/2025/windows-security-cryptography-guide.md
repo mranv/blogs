@@ -19,7 +19,6 @@ tags:
   - PKI
 category: Windows Development
 description: Master Windows security and cryptography programming. Learn CryptoAPI, DPAPI, certificate management, authentication systems, encryption techniques, and advanced security implementations with real-world examples.
-pubDatetime: 2025-08-16T09:00:00+05:30
 ---
 
 # Windows Security & Cryptography: Advanced Programming Techniques

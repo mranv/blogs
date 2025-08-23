@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-07-29T10:00:00+05:30
-modDatetime: 2025-07-29T10:00:00+05:30
+pubDatetime: 2025-08-09T09:00:00+05:30
+modDatetime: 2025-08-09T09:00:00+05:30
 title: "Windows COM & Shell Development: Advanced Component Programming"
 slug: windows-com-shell-development
 featured: true
@@ -19,7 +19,6 @@ tags:
   - Ole32
 category: Windows Development
 description: Master Windows COM and Shell development with comprehensive examples. Learn component programming, shell extensions, OLE automation, and advanced Windows integration techniques with real-world implementations.
-pubDatetime: 2025-08-09T09:00:00+05:30
 ---
 
 # Windows COM & Shell Development: Advanced Component Programming

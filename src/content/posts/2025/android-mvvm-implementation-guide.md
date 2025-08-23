@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-08-24T01:15:00+05:30
-modDatetime: 2025-08-24T01:15:00+05:30
+pubDatetime: 2025-07-22T09:00:00+05:30
+modDatetime: 2025-07-22T09:00:00+05:30
 title: "Android MVVM Implementation Guide: Building Scalable Apps with ViewModel, LiveData, and Data Binding"
 slug: android-mvvm-implementation-guide
 featured: false
@@ -19,7 +19,6 @@ tags:
   - Compose
 category: Android
 description: Complete guide to implementing MVVM architecture in Android applications. Learn ViewModel, LiveData, Data Binding, state management, testing strategies, and migration from MVP to MVVM with practical examples.
-pubDatetime: 2025-07-22T09:00:00+05:30
 ---
 
 # Android MVVM Implementation Guide: Building Scalable Apps

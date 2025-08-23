@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-08-23T22:30:00+05:30
-modDatetime: 2025-08-23T22:30:00+05:30
+pubDatetime: 2025-07-05T09:00:00+05:30
+modDatetime: 2025-07-05T09:00:00+05:30
 title: "n8n DevOps Automation: CI/CD, Monitoring & Infrastructure Workflows"
 slug: n8n-devops-monitoring-automation
 featured: true
@@ -19,7 +19,6 @@ tags:
   - SRE
 category: Automation
 description: Master DevOps automation with n8n. Build CI/CD pipelines, automate infrastructure management, implement monitoring workflows, and create incident response systems with real-world templates and production examples.
-pubDatetime: 2025-07-05T09:00:00+05:30
 ---
 
 # n8n DevOps Automation: CI/CD, Monitoring & Infrastructure Workflows

@@ -19,7 +19,6 @@ tags:
   - Claude
 category: Security
 description: Step-by-step tutorial for integrating Wazuh MCP Server with LangChain to build intelligent security agents. Includes OpenAI, Claude, and local LLM integrations with practical examples.
-pubDatetime: 2025-07-26T09:00:00+05:30
 ---
 
 # Complete LangChain Integration with Wazuh MCP Server: Building AI-Powered Security Agents

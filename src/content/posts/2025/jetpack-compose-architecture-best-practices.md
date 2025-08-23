@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-07-29T01:30:00+05:30
-modDatetime: 2025-07-29T01:30:00+05:30
+pubDatetime: 2025-07-24T09:00:00+05:30
+modDatetime: 2025-07-24T09:00:00+05:30
 title: "Jetpack Compose Architecture Best Practices: Building Scalable UI with State Management and Performance Optimization"
 slug: jetpack-compose-architecture-best-practices
 featured: false
@@ -19,7 +19,6 @@ tags:
   - Testing
 category: Android
 description: Comprehensive guide to Jetpack Compose architecture best practices. Learn state management, navigation, performance optimization, testing strategies, and building scalable UI components with real-world examples.
-pubDatetime: 2025-07-24T09:00:00+05:30
 ---
 
 # Jetpack Compose Architecture Best Practices: Building Scalable UI

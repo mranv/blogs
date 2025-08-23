@@ -19,7 +19,6 @@ tags:
   - Customer-Success
 category: Automation
 description: Transform your sales operations with n8n CRM automation workflows. Learn to build lead scoring systems, automate pipeline management, implement AI-powered sales intelligence, and create sophisticated revenue operations with real-world templates.
-pubDatetime: 2025-07-10T09:00:00+05:30
 ---
 
 # n8n Sales & CRM Automation: 50+ Templates for Revenue Growth

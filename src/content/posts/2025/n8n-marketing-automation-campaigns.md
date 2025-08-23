@@ -19,7 +19,6 @@ tags:
   - Campaign-Management
 category: Automation
 description: Build sophisticated marketing automation with n8n. Learn email campaigns, content generation, SEO automation, social media management, and AI-powered personalization with real-world templates and examples.
-pubDatetime: 2025-07-07T09:00:00+05:30
 ---
 
 # n8n Marketing Automation: AI-Powered Campaigns & Growth Templates

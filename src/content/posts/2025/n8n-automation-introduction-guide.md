@@ -22,7 +22,6 @@ tags:
   - Security
 category: Automation
 description: Master n8n workflow automation with 200+ plug-and-play templates. Learn to build AI-powered automations, integrate APIs, process data, and create sophisticated workflows with real-world examples from sales, marketing, DevOps, and security automation with Wazuh MCP Server integration.
-pubDatetime: 2025-07-03T09:00:00+05:30
 ---
 
 # n8n Automation: Complete Guide to Building 200+ Workflow Templates

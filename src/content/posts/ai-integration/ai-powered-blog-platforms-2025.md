@@ -258,7 +258,6 @@ title: "${content.title}"
 description: "${content.description}"
 author: "AI Assistant"
 slug: "${slug}"
-pubDatetime: ${new Date().toISOString()}
 tags:
   - general
   - ${content.tags.map(tag => `"${tag}"`).join('
