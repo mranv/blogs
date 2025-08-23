@@ -31,3 +31,4 @@ yarn.lock
 .claude-flow/metrics/task-metrics.json
 .hive-mind/*
 .swarm/*
+update_blog_dates.py
