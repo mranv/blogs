@@ -1,7 +1,7 @@
 ---
 title: "WebRTC Data Channels: Complete Guide to P2P Data Transfer"
 description: "Master WebRTC data channels for real-time peer-to-peer communication, file transfer, gaming, and collaborative applications with production-ready examples"
-pubDate: 2024-03-21
+pubDatetime: 2025-07-24T08:30:00+05:30
 author: "Tech Blog Team"
 tags: ["webrtc", "data-channels", "p2p", "real-time", "file-transfer"]
 image: "/images/webrtc-data-channels.jpg"
