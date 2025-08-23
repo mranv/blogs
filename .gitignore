@@ -32,3 +32,4 @@ yarn.lock
 .hive-mind/*
 .swarm/*
 update_blog_dates.py
+redistribute-dates.js

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-08-23T22:25:00+05:30
-modDatetime: 2025-08-23T22:25:00+05:30
+pubDatetime: 2025-07-18T06:00:00+05:30
+modDatetime: 2025-07-18T06:00:00+05:30
 title: "n8n AI/ML Workflows: Building Intelligent Automation with LLMs & Vector Databases"
 slug: n8n-ai-ml-workflow-automation
 featured: true

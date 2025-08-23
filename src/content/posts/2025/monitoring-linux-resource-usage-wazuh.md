@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
 pubDatetime: 2025-08-15T16:15:00+05:30
-modDatetime: 2025-08-23T16:15:00+05:30
+modDatetime: 2025-07-04T18:45:00+05:30
 title: "Monitoring Linux Resource Usage with Wazuh"
 slug: monitoring-linux-resource-usage-wazuh
 featured: true

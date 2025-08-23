@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-08-23T22:20:00+05:30
-modDatetime: 2025-08-23T22:20:00+05:30
+pubDatetime: 2025-08-03T13:45:00+05:30
+modDatetime: 2025-08-03T13:45:00+05:30
 title: "n8n Marketing Automation: AI-Powered Campaigns & Growth Templates"
 slug: n8n-marketing-automation-campaigns
 featured: true

@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Sub-Agents: Optimizing Performance and Cost with Model Selection"
-published: 2025-08-23
+pubDatetime: 2025-07-03T06:15:00+05:30
 description: "Exploring the new model parameter feature in Claude Code sub-agents that enables developers to optimize performance and costs by using different Claude models for different tasks within the same workflow."
 image: ""
 tags: ["Claude", "AI Agents", "Developer Tools", "Cost Optimization", "AI Development", "Multi-Agent Systems"]

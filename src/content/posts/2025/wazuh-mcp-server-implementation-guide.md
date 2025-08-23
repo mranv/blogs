@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-08-23T23:30:00+05:30
-modDatetime: 2025-08-23T23:30:00+05:30
+pubDatetime: 2025-08-13T14:30:00+05:30
+modDatetime: 2025-08-13T14:30:00+05:30
 title: "Wazuh MCP Server: Complete Implementation Guide with Production Examples"
 slug: wazuh-mcp-server-implementation-guide
 featured: false

@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-08-23T22:15:00+05:30
-modDatetime: 2025-08-23T22:15:00+05:30
+pubDatetime: 2025-08-04T16:00:00+05:30
+modDatetime: 2025-08-04T16:00:00+05:30
 title: "n8n Sales & CRM Automation: 50+ Templates for Revenue Growth"
 slug: n8n-sales-crm-automation-workflows
 featured: true

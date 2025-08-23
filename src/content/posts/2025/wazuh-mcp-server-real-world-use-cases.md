@@ -1,7 +1,7 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-08-23T23:45:00+05:30
-modDatetime: 2025-08-23T23:45:00+05:30
+pubDatetime: 2025-08-16T06:00:00+05:30
+modDatetime: 2025-08-16T06:00:00+05:30
 title: "50 Real-World Use Cases for Wazuh MCP Server: From SOC to DevSecOps"
 slug: wazuh-mcp-server-real-world-use-cases
 featured: false

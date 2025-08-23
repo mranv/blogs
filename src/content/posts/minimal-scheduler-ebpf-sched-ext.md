@@ -8,7 +8,7 @@ tags:
   - kernel
   - sched_ext
   - systems-programming
-modDatetime: 2025-08-23T19:15:00+05:30
+modDatetime: 2025-08-24T12:45:00+05:30
 title: "A Minimal Scheduler with eBPF, sched_ext and C"
 slug: minimal-scheduler-ebpf-sched-ext
 featured: true
