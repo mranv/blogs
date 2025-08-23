@@ -1,7 +1,7 @@
 ---
 title: "PDF & Document Processing with n8n: Intelligent Automation Workflows"
 description: "Build advanced PDF and document processing workflows using n8n for extraction, analysis, and automated document generation"
-date: 2025-07-17T14:00:00+05:30
+pubDatetime: 2025-07-17T14:00:00+05:30
 tags: ["n8n", "pdf", "document-processing", "ocr", "automation", "workflow", "ai"]
 categories: ["automation", "document-management", "ai"]
 draft: false

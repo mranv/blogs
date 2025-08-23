@@ -19,7 +19,7 @@ tags:
   - Testing
 category: Android
 description: Deep dive into Google's Android Architecture Samples repository. Learn modern Android development with MVVM, Jetpack Compose, Hilt DI, Room database, and comprehensive testing strategies with real-world implementation examples.
-date: 2025-07-15T09:00:00+05:30
+pubDatetime: 2025-07-15T09:00:00+05:30
 ---
 
 # Android Architecture Samples: Complete Guide to Modern App Development

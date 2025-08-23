@@ -1,7 +1,7 @@
 ---
 title: "Android Architecture Migration Guide: From Legacy to Modern MVVM"
 slug: "android-architecture-migration-guide"
-date: 2025-08-15T09:00:00+05:30
+pubDatetime: 2025-08-15T09:00:00+05:30
 tags: ["Android", "Migration", "MVVM", "Architecture", "Refactoring", "Legacy Code"]
 categories: ["Mobile Development", "Architecture", "Migration"]
 excerpt: "Complete guide to migrating legacy Android applications to modern MVVM architecture with Jetpack Compose, including step-by-step strategies and real-world examples."

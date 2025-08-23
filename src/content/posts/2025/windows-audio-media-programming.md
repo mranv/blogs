@@ -1,7 +1,7 @@
 ---
 title: "Windows Audio & Media Programming: Complete Multimedia Guide"
 description: "Master Windows audio programming, media playback, DirectShow, Media Foundation, and advanced multimedia application development"
-date: 2025-08-04T09:00:00+05:30
+pubDatetime: 2025-08-04T09:00:00+05:30
 pubDate: 2025-08-23
 categories: ['Windows Development', 'Audio Programming', 'Media', 'Multimedia']
 tags: ['Audio', 'Media Foundation', 'DirectShow', 'WASAPI', 'Multimedia', 'Windows API']

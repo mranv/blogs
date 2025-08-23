@@ -1,7 +1,7 @@
 ---
 title: "OpenAPI Integration Patterns with Microsoft Kiota: Enterprise-Grade API Client Generation"
 description: "Master OpenAPI specification integration with Microsoft Kiota. Learn advanced patterns, custom generators, and enterprise deployment strategies."
-date: 2025-08-05T14:00:00+05:30
+pubDatetime: 2025-08-05T14:00:00+05:30
 tags: ["microsoft-kiota", "openapi", "api-design", "code-generation", "enterprise-architecture", "sdk-development"]
 categories: ["api-development", "openapi", "code-generation"]
 draft: false

@@ -1,7 +1,7 @@
 ---
 title: "Android Performance Optimization: Complete Guide for Modern Architecture"
 slug: "android-performance-optimization-guide"
-date: 2025-08-23T09:00:00+05:30
+pubDatetime: 2025-08-23T09:00:00+05:30
 tags: ["Android", "Performance", "Optimization", "MVVM", "Jetpack Compose", "Memory Management"]
 categories: ["Mobile Development", "Performance", "Optimization"]
 excerpt: "Comprehensive guide to optimizing Android application performance with modern MVVM architecture, Jetpack Compose, and advanced profiling techniques."

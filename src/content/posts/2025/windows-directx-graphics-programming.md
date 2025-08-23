@@ -1,7 +1,7 @@
 ---
 title: "Windows DirectX & Graphics Programming: Complete Developer Guide"
 description: "Master DirectX programming, Direct3D, Direct2D, and advanced Windows graphics development with comprehensive examples and best practices"
-date: 2025-08-11T09:00:00+05:30
+pubDatetime: 2025-08-11T09:00:00+05:30
 pubDate: 2025-08-12
 categories: ['Windows Development', 'Graphics Programming', 'DirectX', 'Game Development']
 tags: ['DirectX', 'Direct3D', 'Direct2D', 'Graphics API', 'Shaders', 'C++', 'Windows SDK']

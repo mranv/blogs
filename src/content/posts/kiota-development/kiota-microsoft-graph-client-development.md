@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Graph API Client Development with Kiota: Enterprise Graph Integration Guide"
 description: "Master Microsoft Graph API development using Kiota-generated clients. Complete guide with authentication, permissions, and enterprise patterns."
-date: 2025-08-08T15:00:00+05:30
+pubDatetime: 2025-08-08T15:00:00+05:30
 tags: ["microsoft-kiota", "microsoft-graph", "azure-ad", "enterprise-integration", "graph-api", "oauth"]
 categories: ["api-development", "microsoft-graph", "enterprise"]
 draft: false

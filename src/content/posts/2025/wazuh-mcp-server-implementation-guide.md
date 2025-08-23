@@ -19,7 +19,7 @@ tags:
   - Security
 category: Security
 description: Step-by-step implementation guide for Wazuh MCP Server with production deployment strategies, Docker/Kubernetes configurations, and real-world security automation examples.
-date: 2025-07-28T09:00:00+05:30
+pubDatetime: 2025-07-28T09:00:00+05:30
 ---
 
 # Wazuh MCP Server: Complete Implementation Guide with Production Examples

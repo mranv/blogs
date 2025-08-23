@@ -1,7 +1,7 @@
 ---
 title: "TypeScript API Client Development with Microsoft Kiota: Complete Node.js Guide"
 description: "Build robust TypeScript API clients using Microsoft Kiota for Node.js applications. Comprehensive guide with real-world examples and production patterns."
-date: 2025-07-25T11:00:00+05:30
+pubDatetime: 2025-07-25T11:00:00+05:30
 tags: ["kiota", "typescript", "nodejs", "api-client", "openapi", "microsoft", "javascript"]
 categories: ["typescript", "nodejs", "api-development"]
 draft: false

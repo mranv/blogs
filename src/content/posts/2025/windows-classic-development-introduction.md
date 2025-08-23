@@ -19,7 +19,7 @@ tags:
   - Visual-Studio
 category: Windows Development
 description: Master Windows classic desktop development with Win32 APIs, COM components, and native programming. Learn to build powerful desktop applications with comprehensive examples from Microsoft's official samples repository.
-date: 2025-08-06T09:00:00+05:30
+pubDatetime: 2025-08-06T09:00:00+05:30
 ---
 
 # Windows Classic Development: Complete Guide to Win32 & Desktop Applications

@@ -19,7 +19,7 @@ tags:
   - Compose
 category: Android
 description: Complete guide to implementing MVVM architecture in Android applications. Learn ViewModel, LiveData, Data Binding, state management, testing strategies, and migration from MVP to MVVM with practical examples.
-date: 2025-07-22T09:00:00+05:30
+pubDatetime: 2025-07-22T09:00:00+05:30
 ---
 
 # Android MVVM Implementation Guide: Building Scalable Apps

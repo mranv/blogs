@@ -1,7 +1,7 @@
 ---
 title: "Windows WMI & System Management: Complete Administrator's Guide"
 description: "Master Windows Management Instrumentation (WMI), system monitoring, remote management, and advanced PowerShell automation techniques"
-date: 2025-08-23T09:00:00+05:30
+pubDatetime: 2025-08-23T09:00:00+05:30
 pubDate: 2025-08-21
 categories: ['Windows Development', 'System Administration', 'WMI', 'PowerShell']
 tags: ['WMI', 'System Management', 'PowerShell', 'Remote Management', 'Monitoring', 'Windows API']

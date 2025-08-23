@@ -19,7 +19,7 @@ tags:
   - Testing
 category: Android
 description: Comprehensive guide to Jetpack Compose architecture best practices. Learn state management, navigation, performance optimization, testing strategies, and building scalable UI components with real-world examples.
-date: 2025-07-24T09:00:00+05:30
+pubDatetime: 2025-07-24T09:00:00+05:30
 ---
 
 # Jetpack Compose Architecture Best Practices: Building Scalable UI

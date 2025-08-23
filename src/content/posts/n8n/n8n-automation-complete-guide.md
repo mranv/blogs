@@ -1,6 +1,6 @@
 ---
 title: "n8n Automation: The Complete Guide to No-Code Workflow Orchestration"
-date: 2025-07-08T09:00:00+05:30
+pubDatetime: 2025-07-08T09:00:00+05:30
 description: "Master n8n automation with real-world examples, workflow templates, and best practices for building powerful no-code automation solutions"
 image: ""
 tags: ["n8n", "automation", "workflow", "no-code", "integration"]

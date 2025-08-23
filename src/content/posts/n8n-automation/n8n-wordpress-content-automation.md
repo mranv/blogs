@@ -1,7 +1,7 @@
 ---
 title: "Automating WordPress Content with n8n: AI-Powered Publishing Workflows"
 description: "Build intelligent WordPress automation workflows using n8n for content generation, SEO optimization, and automated publishing"
-date: 2025-07-13T11:00:00+05:30
+pubDatetime: 2025-07-13T11:00:00+05:30
 tags: ["n8n", "wordpress", "automation", "ai", "content-generation", "seo", "workflow"]
 categories: ["automation", "content-management", "ai"]
 draft: false

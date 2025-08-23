@@ -1,7 +1,7 @@
 ---
 title: "Google Sheets Automation with n8n: Building Smart Data Workflows"
 description: "Master Google Sheets automation using n8n for data processing, AI analysis, and real-time synchronization workflows"
-date: 2025-07-14T12:00:00+05:30
+pubDatetime: 2025-07-14T12:00:00+05:30
 tags: ["n8n", "google-sheets", "automation", "data-processing", "workflow", "spreadsheet", "ai"]
 categories: ["automation", "data-management", "productivity"]
 draft: false

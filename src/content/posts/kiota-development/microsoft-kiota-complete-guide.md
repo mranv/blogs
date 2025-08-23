@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Kiota: The Complete Guide to OpenAPI Client Generation in 2025"
 description: "Master Microsoft Kiota for generating strongly-typed API clients from OpenAPI specifications. Comprehensive guide with real-world examples."
-date: 2025-07-15T09:00:00+05:30
+pubDatetime: 2025-07-15T09:00:00+05:30
 tags: ["microsoft-kiota", "openapi", "api-client", "sdk-generation", "dotnet", "typescript", "java", "go", "python"]
 categories: ["api-development", "sdk", "microsoft"]
 draft: false

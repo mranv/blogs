@@ -1,7 +1,7 @@
 ---
 title: "Airtable Automation with n8n: Building Smart Project Management Workflows"
 description: "Transform Airtable into a powerful automation hub using n8n for project management, data analysis, and team collaboration"
-date: 2025-07-19T16:00:00+05:30
+pubDatetime: 2025-07-19T16:00:00+05:30
 tags: ["n8n", "airtable", "automation", "project-management", "workflow", "database", "collaboration"]
 categories: ["automation", "project-management", "productivity"]
 draft: false

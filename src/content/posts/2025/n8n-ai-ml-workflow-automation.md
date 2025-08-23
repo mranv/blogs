@@ -19,7 +19,7 @@ tags:
   - AI-Automation
 category: Automation
 description: Master AI/ML automation with n8n. Build RAG systems, implement vector search, create AI agents, automate model training, and integrate LLMs like GPT-4 and Claude with real-world examples and production templates.
-date: 2025-07-01T09:00:00+05:30
+pubDatetime: 2025-07-01T09:00:00+05:30
 ---
 
 # n8n AI/ML Workflows: Building Intelligent Automation with LLMs & Vector Databases

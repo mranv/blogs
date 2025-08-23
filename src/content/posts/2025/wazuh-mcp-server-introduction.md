@@ -20,7 +20,7 @@ tags:
   - LangChain
 category: Security
 description: Deep dive into Wazuh MCP Server - a production-ready solution that bridges Wazuh SIEM with Large Language Models (LLMs) for intelligent security operations. Learn architecture, implementation, and real-world use cases.
-date: 2025-07-30T09:00:00+05:30
+pubDatetime: 2025-07-30T09:00:00+05:30
 ---
 
 # Wazuh MCP Server: Bridging SIEM and AI for Next-Generation Security Operations

@@ -19,7 +19,7 @@ tags:
   - AI
 category: Security
 description: Explore 50 practical use cases for Wazuh MCP Server across security operations, incident response, threat hunting, compliance, and DevSecOps with real implementation examples.
-date: 2025-08-02T09:00:00+05:30
+pubDatetime: 2025-08-02T09:00:00+05:30
 ---
 
 # 50 Real-World Use Cases for Wazuh MCP Server: From SOC to DevSecOps

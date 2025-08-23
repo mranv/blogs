@@ -19,7 +19,7 @@ tags:
   - Windows-SDK
 category: Windows Development
 description: Master Windows Win32 API programming with comprehensive examples. Learn system calls, window management, file operations, process control, and advanced Windows development techniques with real-world implementations.
-date: 2025-08-20T09:00:00+05:30
+pubDatetime: 2025-08-20T09:00:00+05:30
 ---
 
 # Windows Win32 API Programming: Mastering System-Level Development
