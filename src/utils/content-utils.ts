@@ -8,6 +8,9 @@ async function getRawSortedPosts() {
 	const allBlogPosts = await getCollection("posts", ({ data }) => {
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
+	
+	console.log(`[Build] Total posts retrieved: ${allBlogPosts.length}`);
+	console.log(`[Build] Environment: ${import.meta.env.PROD ? 'PRODUCTION' : 'DEVELOPMENT'}`);
 
 	const sorted = allBlogPosts.sort((a, b) => {
 		const dateA = new Date(a.data.pubDatetime || a.data.published || '2023-01-01');
