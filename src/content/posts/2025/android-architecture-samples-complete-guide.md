@@ -1,6 +1,6 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-07-15T01:00:00+05:30
+pubDatetime: 2025-07-15T09:00:00+05:30
 modDatetime: 2025-07-15T01:00:00+05:30
 title: "Android Architecture Samples: Complete Guide to Modern App Development with Jetpack Compose and MVVM"
 slug: android-architecture-samples-complete-guide
@@ -19,7 +19,6 @@ tags:
   - Testing
 category: Android
 description: Deep dive into Google's Android Architecture Samples repository. Learn modern Android development with MVVM, Jetpack Compose, Hilt DI, Room database, and comprehensive testing strategies with real-world implementation examples.
-pubDatetime: 2025-07-15T09:00:00+05:30
 ---
 
 # Android Architecture Samples: Complete Guide to Modern App Development
