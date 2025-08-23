@@ -3,7 +3,8 @@ title: "Post-Quantum Cryptography in Production: Implementing ML-KEM and Kyber w
 slug: "post-quantum-cryptography-rust-implementation"
 description: "Build production-ready post-quantum cryptography in Rust, focusing on ML-KEM (Module-Lattice-Based Key Encapsulation Mechanism) with zero unsafe code, hardware acceleration using AVX2 instructions, and deployment strategies for quantum-resistant encryption"
 pubDatetime: 2025-01-28T16:00:00+05:30
-draft: falseauthor: "Anubhav Gain"
+draft: false
+author: "Anubhav Gain"
 tags:
   - general
   - rust

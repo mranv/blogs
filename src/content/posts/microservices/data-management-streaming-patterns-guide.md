@@ -3,7 +3,8 @@ title: "Data Management and Streaming Patterns in Microservices: A Comprehensive
 description: "Master data management patterns for microservices including event streaming, CDC, real-time analytics, and data governance with practical Apache Kafka, Debezium, and Apache Flink examples"
 slug: "data-management-streaming-patterns-guide"
 pubDatetime: 2025-01-28T16:00:00+05:30
-draft: falseauthor: "Anubhav Gain"
+draft: false
+author: "Anubhav Gain"
 tags:
   - general
   - microservices
