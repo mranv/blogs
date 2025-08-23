@@ -1,0 +1,347 @@
+<!-- Wazuh Commands and Active Responses Configuration -->
+<ossec_config>
+
+  <!-- ================================ -->
+  <!-- COMMAND DEFINITIONS              -->
+  <!-- ================================ -->
+
+  <!-- Core Security Commands -->
+  <command>
+    <name>disable-account</name>
+    <executable>disable-account</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>disable-account</name>
+    <executable>disable-account.sh</executable>
+    <expect>user</expect>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>restart-wazuh</name>
+    <executable>restart-wazuh</executable>
+  </command>
+
+  <command>
+    <name>restart-ossec</name>
+    <executable>restart-ossec.sh</executable>
+    <expect></expect>
+  </command>
+
+  <command>
+    <name>firewall-drop</name>
+    <executable>firewall-drop</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>host-deny</name>
+    <executable>host-deny</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>host-deny</name>
+    <executable>host-deny.sh</executable>
+    <expect>srcip</expect>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>route-null</name>
+    <executable>route-null</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>route-null</name>
+    <executable>route-null.sh</executable>
+    <expect>srcip</expect>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <!-- Windows Specific Commands -->
+  <command>
+    <name>win_route-null</name>
+    <executable>route-null.exe</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>win_route-null</name>
+    <executable>route-null.cmd</executable>
+    <expect>srcip</expect>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>win_route-null-2012</name>
+    <executable>route-null-2012.cmd</executable>
+    <expect>srcip</expect>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>netsh</name>
+    <executable>netsh.exe</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>netsh</name>
+    <executable>netsh.cmd</executable>
+    <expect>srcip</expect>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>netsh-win-2016</name>
+    <executable>netsh-win-2016.cmd</executable>
+    <expect>srcip</expect>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <!-- Endpoint Protection Commands -->
+  <command>
+    <name>isolation</name>
+    <executable>isolation-teamviewer.exe</executable>
+  </command>
+
+  <command>
+    <name>unisolation</name>
+    <executable>unisolation-anydesk-hardening.exe</executable>
+  </command>
+
+  <!-- macOS Isolation Commands (Commented) -->
+  <!--<command>-->
+  <!--  <name>isolation</name>-->
+  <!--  <executable>isolation-anydesk.sh</executable>-->
+  <!--</command>-->
+
+  <!--<command>-->
+  <!--  <name>unisolation</name>-->
+  <!--  <executable>unisolation.sh</executable>-->
+  <!--</command>-->
+
+  <command>
+    <name>remove-threat</name>
+    <executable>remove-threat.exe</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>quick-scan</name>
+    <executable>quick-scan</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>full-scan</name>
+    <executable>full-scan.exe</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <!-- USB and Domain Control Commands -->
+  <command>
+    <name>block-domain</name>
+    <executable>block-domain.sh</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>unblock-domain</name>
+    <executable>unblock-domain.sh</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>blockusb</name>
+    <executable>block-usb.exe</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>unblockusb</name>
+    <executable>unblock-usb.exe</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>bit-locker</name>
+    <executable>bit-locker.exe</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <!-- System Management Commands -->
+  <command>
+    <name>hardening-apply</name>
+    <executable>hardening-apply</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>hardening-restore</name>
+    <executable>hardening-restore.exe</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>ar-trigger</name>
+    <executable>ar-trigger.exe</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>run-livequery</name>
+    <executable>run-livequery.exe</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <!-- Custom Invinsense Commands -->
+  <command>
+    <name>invinsense-run-clamscan</name>
+    <executable>invinsense-run-clamscan.py</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <command>
+    <name>invinsense-usb-control</name>
+    <executable>invinsense-usb-control.py</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <!-- ================================ -->
+  <!-- ACTIVE RESPONSE CONFIGURATIONS  -->
+  <!-- ================================ -->
+
+  <!-- Custom Invinsense Active Responses -->
+  <active-response>
+    <disabled>no</disabled>
+    <command>invinsense-run-clamscan</command>
+    <location>local</location>
+    <timeout>60</timeout>
+  </active-response>
+
+  <active-response>
+    <disabled>no</disabled>
+    <command>invinsense-usb-control</command>
+    <location>local</location>
+    <timeout>60</timeout>
+  </active-response>
+
+  <!-- Domain Control Active Responses -->
+  <active-response>
+    <command>block-domain</command>
+    <location>local</location>
+  </active-response>
+
+  <active-response>
+    <command>unblock-domain</command>
+    <location>local</location>
+  </active-response>
+
+  <!-- USB Control Active Responses -->
+  <active-response>
+    <command>blockusb</command>
+    <location>local</location>
+  </active-response>
+
+  <active-response>
+    <command>unblockusb</command>
+    <location>local</location>
+    <level>0</level>
+  </active-response>
+
+  <!-- Encryption Active Response -->
+  <active-response>
+    <command>bit-locker</command>
+    <location>local</location>
+  </active-response>
+
+  <!-- Threat Removal Active Response -->
+  <active-response>
+    <command>remove-threat</command>
+    <location>local</location>
+    <rules_id>62123</rules_id>
+    <timeout>1800</timeout>
+  </active-response>
+
+  <!-- Endpoint Isolation Active Responses -->
+  <active-response>
+    <command>isolation</command>
+    <location>local</location>
+  </active-response>
+
+  <active-response>
+    <command>unisolation</command>
+    <location>local</location>
+  </active-response>
+
+  <!-- Security Hardening Active Responses -->
+  <active-response>
+    <command>hardening-apply</command>
+    <location>local</location>
+  </active-response>
+
+  <active-response>
+    <command>hardening-restore</command>
+    <location>local</location>
+  </active-response>
+
+  <!-- System Management Active Responses -->
+  <active-response>
+    <command>ar-trigger</command>
+    <location>local</location>
+  </active-response>
+
+  <active-response>
+    <command>run-livequery</command>
+    <location>local</location>
+  </active-response>
+
+  <!-- Scanning Active Responses -->
+  <active-response>
+    <command>full-scan</command>
+    <location>local</location>
+  </active-response>
+
+  <active-response>
+    <command>quick-scan</command>
+    <location>local</location>
+  </active-response>
+
+  <!-- Network Security Active Responses -->
+  <active-response>
+    <command>firewall-drop</command>
+    <location>local</location>
+    <level>6</level>
+    <timeout>3600</timeout>
+    <rules_group>brute_force,web_attack</rules_group>
+  </active-response>
+
+  <active-response>
+    <command>host-deny</command>
+    <location>local</location>
+    <level>6</level>
+    <timeout>3600</timeout>
+  </active-response>
+
+  <active-response>
+    <command>route-null</command>
+    <location>local</location>
+    <level>6</level>
+    <timeout>1800</timeout>
+  </active-response>
+
+  <!-- ================================ -->
+  <!-- GLOBAL WHITELIST                -->
+  <!-- ================================ -->
+  <global>
+    <white_list>127.0.0.1</white_list>
+    <white_list>^localhost.localdomain$</white_list>
+    <white_list>127.0.0.53</white_list>
+  </global>
+
+</ossec_config>
