@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "build": "NODE_OPTIONS='--max-old-space-size=8192 --optimize-for-size' astro build && pagefind --site dist",
+    "build": "NODE_OPTIONS='--max-old-space-size=8192' astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",
