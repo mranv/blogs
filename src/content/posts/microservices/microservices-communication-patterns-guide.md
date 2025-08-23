@@ -18,6 +18,7 @@ tags:
 category: Microservices
 image: "/microservices-communication.jpg"
 featured: true
+draft: false
 ---
 
 # Microservices Communication Patterns: A Comprehensive Guide

@@ -15,6 +15,7 @@ tags:
   - language-processing
 
 featured: true
+draft: false
 ---
 
 # Multimodal AI Translation Systems in 2025: Breaking Language Barriers Across Text, Speech, and Vision

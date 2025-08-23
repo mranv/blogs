@@ -17,6 +17,7 @@ category: Security
     "threat-detection",
   ]
 featured: true
+draft: false
 ---
 
 # The Open XDR Revolution: Breaking Free from Vendor Lock-in with Interoperable Security

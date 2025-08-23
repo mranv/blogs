@@ -19,6 +19,7 @@ category: Security
     "cybersecurity",
   ]
 featured: true
+draft: false
 ---
 
 # Cloud Security Mastery: Multi-Cloud Correlation Rules with Wazuh

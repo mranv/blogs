@@ -3,7 +3,7 @@ title: "WebAssembly Security Runtimes: Deploying Rust Security Tools at the Edge
 slug: "webassembly-security-runtimes-rust-edge"
 description: "Build production-grade security tools in Rust that compile to WebAssembly, achieving near-native performance in sandboxed environments while maintaining memory safety guarantees for edge computing security applications"
 pubDatetime: 2025-01-28T16:00:00+05:30
-author: "Anubhav Gain"
+draft: falseauthor: "Anubhav Gain"
 tags:
   - general
   - rust

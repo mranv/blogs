@@ -18,6 +18,7 @@ category: Security
     "quality-assurance",
   ]
 featured: true
+draft: false
 ---
 
 # Building Production-Ready XDR: Testing, Benchmarking, and Deploying Rust Security Systems

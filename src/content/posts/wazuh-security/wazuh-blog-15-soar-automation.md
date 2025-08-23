@@ -18,6 +18,7 @@ category: Security
     "cybersecurity",
   ]
 featured: true
+draft: false
 ---
 
 # SOAR Integration Excellence: Advanced Security Orchestration with Wazuh

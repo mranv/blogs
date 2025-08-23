@@ -3,7 +3,7 @@ title: "Zero-Copy XDR: Building Memory-Safe Threat Detection Pipelines with Rust
 slug: "zero-copy-xdr-memory-safe-threat-detection"
 description: "Learn how to leverage Rust's zero-copy parsing techniques, memory pool management, and lock-free concurrent data structures to build a threat detection pipeline capable of processing over 1 million packets per second with less than 512MB memory footprint"
 pubDatetime: 2025-01-28T16:00:00+05:30
-author: "Anubhav Gain"
+draft: falseauthor: "Anubhav Gain"
 tags:
   - general
   - rust

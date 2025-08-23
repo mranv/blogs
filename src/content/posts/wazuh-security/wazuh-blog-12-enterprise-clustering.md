@@ -18,6 +18,7 @@ category: Security
     "cybersecurity",
   ]
 featured: true
+draft: false
 ---
 
 # Enterprise Clustering & High Availability: Scaling Wazuh for Fortune 500 Operations

@@ -19,7 +19,7 @@ tags:
 author: "Anubhav Gain"
 category: "DevOps"
 featured: true
-series: "Microservices Architecture"
+draft: falseseries: "Microservices Architecture"
 ---
 
 # Mastering Microservices: A Complete Guide to Modern Deployment and Release Patterns

@@ -15,6 +15,7 @@ tags:
   - large-language-models
 
 featured: true
+draft: false
 ---
 
 # LLM-Based Translation Systems 2025: How Large Language Models Are Revolutionizing Machine Translation

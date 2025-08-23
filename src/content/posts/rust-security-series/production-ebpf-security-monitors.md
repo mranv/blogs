@@ -17,6 +17,7 @@ tags:
   - Production
   - Aya
 featured: true
+draft: false
 ---
 
 # Building Production eBPF Security Monitors in Rust

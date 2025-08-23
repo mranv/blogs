@@ -18,6 +18,7 @@ category: Security
     "cybersecurity",
   ]
 featured: true
+draft: false
 ---
 
 # Detecting Advanced Persistent Threats: Multi-Stage Correlation Rules in Wazuh

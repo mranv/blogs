@@ -18,6 +18,7 @@ category: Security
     "cybersecurity",
   ]
 featured: true
+draft: false
 ---
 
 # Advanced Ransomware Defense: AI-Powered Early Detection and Response with Wazuh

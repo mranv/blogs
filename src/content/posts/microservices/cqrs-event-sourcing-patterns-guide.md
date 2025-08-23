@@ -3,7 +3,7 @@ title: "CQRS and Event Sourcing: Building Scalable Event-Driven Systems"
 description: "A comprehensive guide to implementing CQRS (Command Query Responsibility Segregation) and Event Sourcing patterns for building highly scalable, auditable, and maintainable distributed systems"
 slug: "cqrs-event-sourcing-patterns-guide"
 pubDatetime: 2025-01-27T15:00:00+05:30
-tags:
+draft: falsetags:
   - cqrs
   - event-sourcing
   - distributed-systems

@@ -18,6 +18,7 @@ category: Security
     "cybersecurity",
   ]
 featured: true
+draft: false
 ---
 
 # Enterprise Compliance: Automated Violation Detection Framework with Wazuh

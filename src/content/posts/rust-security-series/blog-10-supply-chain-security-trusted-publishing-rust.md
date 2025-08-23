@@ -18,6 +18,7 @@ category: Security
     "cybersecurity",
   ]
 featured: true
+draft: false
 ---
 
 # Supply Chain Security Revolution: Trusted Publishing with Rust and Cryptographic Attestations

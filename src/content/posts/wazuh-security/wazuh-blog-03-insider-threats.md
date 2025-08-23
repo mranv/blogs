@@ -18,6 +18,7 @@ category: Security
     "cybersecurity",
   ]
 featured: true
+draft: false
 ---
 
 # Insider Threat Detection: Behavioral Analytics with Wazuh

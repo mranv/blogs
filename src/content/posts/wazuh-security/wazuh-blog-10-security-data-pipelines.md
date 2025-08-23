@@ -18,6 +18,7 @@ category: Security
     "cybersecurity",
   ]
 featured: true
+draft: false
 ---
 
 # Security Data Pipelines: Revolutionizing Wazuh Architecture for 2025

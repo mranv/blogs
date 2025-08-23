@@ -17,6 +17,7 @@ category: Security
     "enterprise-security",
   ]
 featured: true
+draft: false
 ---
 
 # Enterprise-Grade Wazuh SIEM: 2025 Machine Learning Integration Guide

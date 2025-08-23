@@ -18,6 +18,7 @@ category: Security
     "cybersecurity",
   ]
 featured: true
+draft: false
 ---
 
 # Kubernetes Security Excellence: Advanced Container Monitoring and Threat Detection with Wazuh

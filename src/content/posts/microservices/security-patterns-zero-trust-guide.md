@@ -17,6 +17,7 @@ author: "Anubhav Gain"
 category: "Security"
 image: "/images/security-patterns-cover.jpg"
 featured: true
+draft: false
 ---
 
 # Complete Guide to Microservices Security Patterns and Zero Trust Architecture

@@ -16,6 +16,7 @@ tags:
   - choreography
 
 featured: true
+draft: false
 ---
 
 Managing distributed transactions across multiple microservices is one of the most challenging aspects of modern distributed systems. Traditional ACID transactions don't work across service boundaries, and that's where the Saga pattern comes to the rescue. In this comprehensive guide, we'll explore how to implement reliable distributed transactions using the Saga pattern, complete with real-world examples and battle-tested strategies.

@@ -15,6 +15,7 @@ tags:
   - Monitoring
   - Aya
 featured: true
+draft: false
 ---
 
 # eBPF Fundamentals for Rust Security Engineers

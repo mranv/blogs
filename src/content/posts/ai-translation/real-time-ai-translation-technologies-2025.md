@@ -15,6 +15,7 @@ tags:
   - conference-translation
 
 featured: true
+draft: false
 ---
 
 # Real-Time AI Translation Technologies 2025: Achieving Zero-Latency Global Communication
