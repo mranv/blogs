@@ -5,7 +5,7 @@ modDatetime: 2025-01-26T13:00:00+05:30
 title: "Wazuh to ClickHouse Integration: Optimizing Storage and Analytics at Scale"
 slug: wazuh-clickhouse-storage-optimization
 featured: true
-draft: true
+draft: false
 tags:
   - Wazuh
   - ClickHouse
