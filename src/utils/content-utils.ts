@@ -20,13 +20,16 @@ async function getRawSortedPosts() {
 export async function getSortedPosts() {
 	const sorted = await getRawSortedPosts();
 
-	for (let i = 1; i < sorted.length; i++) {
-		sorted[i].data.nextSlug = sorted[i - 1].slug;
-		sorted[i].data.nextTitle = sorted[i - 1].data.title;
-	}
-	for (let i = 0; i < sorted.length - 1; i++) {
-		sorted[i].data.prevSlug = sorted[i + 1].slug;
-		sorted[i].data.prevTitle = sorted[i + 1].data.title;
+	// Optimize memory by processing in a single loop
+	for (let i = 0; i < sorted.length; i++) {
+		if (i > 0) {
+			sorted[i].data.nextSlug = sorted[i - 1].slug;
+			sorted[i].data.nextTitle = sorted[i - 1].data.title;
+		}
+		if (i < sorted.length - 1) {
+			sorted[i].data.prevSlug = sorted[i + 1].slug;
+			sorted[i].data.prevTitle = sorted[i + 1].data.title;
+		}
 	}
 
 	return sorted;
