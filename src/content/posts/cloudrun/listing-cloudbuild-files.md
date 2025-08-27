@@ -17,14 +17,14 @@ title: Listing files uploaded to Cloud Build
 
 Today while running `datasette publish cloudrun ...` I noticed the following:
 
-```
+```bash
 Uploading tarball of [.] to [gs://datasette-222320_cloudbuild/source/1618465936.523167-939ed21aedff4cb8a2c914c099fb48cd.tgz]
 ```
 `gs://` indicates a Google Cloud Storage bucket. Can I see what's in that `datasette-222320_cloudbuild` bucket?
 
 Turns out I can:
 
-```
+```bash
 ~ % gsutil ls -l gs://datasette-222320_cloudbuild/source/ | head -n 10
      36929  2019-05-03T13:18:35Z  gs://datasette-222320_cloudbuild/source/1556889512.4-7ffeb30ed7bc4173a8101cc3e7d6e12e.tgz
      36929  2019-05-03T13:20:06Z  gs://datasette-222320_cloudbuild/source/1556889605.56-5a5251a73b9646cca36b9afef8e578fd.tgz
@@ -36,7 +36,7 @@ The `-l` option adds the size information.
 
 Mine has 7438 objects in it! I panicked a bit when I saw this at the end:
 
-```
+```bash
 ~ % gsutil ls -l gs://datasette-222320_cloudbuild/source/ | tail -n 10
  152553673  2021-04-15T01:41:32Z  gs://datasette-222320_cloudbuild/source/1618450815.99-26109d7f15bc478d999423e993091fd0.tgz
    1283564  2021-04-15T02:23:47Z  gs://datasette-222320_cloudbuild/source/1618453427.2-0e6193003ae14bff8be813f734b038b2.tgz
