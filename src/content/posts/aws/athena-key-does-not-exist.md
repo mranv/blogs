@@ -9,11 +9,11 @@ lang: en
 pubDatetime: '2024-08-17T19:17:08+05:30'
 slug: athena-error-the-specified-key-does-not-exist
 tags:
-- /
 - aws
-- javascript
-- web
-- cli
+- athena
+- s3
+- debugging
+- troubleshooting
 title: 'Athena error: The specified key does not exist'
 ---
 
