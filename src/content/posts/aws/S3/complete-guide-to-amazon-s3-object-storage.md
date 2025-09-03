@@ -1,6 +1,23 @@
-# S3 (Simple Storage Service)
+---
+author: Anubhav Gain
+category: aws
+description: Complete guide to Amazon S3 - understanding buckets, storage classes, security, lifecycle policies, and best practices for scalable object storage.
+draft: false
+featured: true
+lang: en
+pubDatetime: '2024-08-18T09:00:00+05:30'
+slug: complete-guide-to-amazon-s3-object-storage
+tags:
+- aws
+- s3
+- storage
+- cloud-storage
+- object-storage
+- security
+title: 'Complete Guide to Amazon S3: Scalable Object Storage for the Cloud'
+---
 
-## Overview
+# Complete Guide to Amazon S3: Scalable Object Storage for the Cloud
 
 Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance. This service is designed to store and retrieve any amount of data from anywhere on the web.
 
