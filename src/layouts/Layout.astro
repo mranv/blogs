@@ -26,10 +26,16 @@ interface Props {
 	banner?: string;
 	description?: string;
 	lang?: string;
+	image?: string;
 	setOGTypeArticle?: boolean;
+	articleData?: {
+		published?: string | Date;
+		modified?: string | Date;
+		tags?: string[];
+	};
 }
 
-let { title, banner, description, lang, setOGTypeArticle } = Astro.props;
+let { title, banner, description, lang, image, setOGTypeArticle, articleData } = Astro.props;
 
 // apply a class to the body element to decide the height of the banner, only used for initial page load
 // Swup can update the body for each page visit, but it's after the page transition, causing a delay for banner height change
@@ -63,6 +69,41 @@ if (!lang) {
 }
 const siteLang = lang.replace("_", "-");
 
+// compute social preview image
+let socialImage: string;
+if (image && typeof image === 'string' && image.trim() !== '') {
+	// if the provided image is absolute path, prefix with site
+	if (image.startsWith('http://') || image.startsWith('https://')) {
+		socialImage = image;
+	} else {
+		socialImage = `${Astro.site}${image.startsWith('/') ? image.slice(1) : image}`;
+	}
+} else {
+	socialImage = `${Astro.site}${profileConfig.avatar.startsWith('/') ? profileConfig.avatar.slice(1) : profileConfig.avatar}`;
+}
+
+// compute article times if provided
+const publishedTime = articleData?.published
+	? (typeof articleData.published === 'string' ? articleData.published : articleData.published.toISOString())
+	: undefined;
+const modifiedTime = articleData?.modified
+	? (typeof articleData.modified === 'string' ? articleData.modified : articleData.modified.toISOString())
+	: undefined;
+
+// helper: clamp description to ~155 chars without cutting words
+function clampDescription(desc: string, max = 155) {
+  if (!desc) return desc;
+  const clean = desc.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max);
+  const lastSpace = cut.lastIndexOf(' ');
+  return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trim() + '…';
+}
+
+// choose raw description: for articles, prefer the post description exactly; otherwise fallback to site tagline
+const rawDescription = setOGTypeArticle && description ? description : (description || `${siteConfig.title} - ${siteConfig.subtitle}. Expert in DevSecOps, XDR/OXDR Platforms, Rust, eBPF, and Cloud-Native Security. 222+ Research Citations.`);
+const metaDescription = clampDescription(rawDescription, 155);
+
 const bannerOffsetByPosition = {
 	top: `${BANNER_HEIGHT_EXTEND}vh`,
 	center: `${BANNER_HEIGHT_EXTEND / 2}vh`,
@@ -81,9 +122,9 @@ const bannerOffset =
 		<title>{pageTitle}</title>
 
 		<meta charset="UTF-8" />
-		<meta name="description" content={description || `${siteConfig.title} - ${siteConfig.subtitle}. Expert in DevSecOps, XDR/OXDR Platforms, Rust, eBPF, and Cloud-Native Security. 222+ Research Citations.`}>
+		<meta name="description" content={metaDescription}>
 		<meta name="author" content={profileConfig.name}>
-		<meta name="keywords" content="Anubhav Gain, DevSecOps Expert, XDR Platform Architect, OXDR Security, Rust Programming, eBPF Development, Cloud Security, Kubernetes Security, Container Security, TechAnv Consulting, Infopercept Consulting, Security Software Engineer">
+		<meta name="keywords" content={(articleData?.tags && articleData.tags.length > 0) ? articleData.tags.join(', ') : "Anubhav Gain, DevSecOps Expert, XDR Platform Architect, OXDR Security, Rust Programming, eBPF Development, Cloud Security, Kubernetes Security, Container Security, TechAnv Consulting, Infopercept Consulting, Security Software Engineer"}>
 
 		<!-- Canonical URL -->
 		<link rel="canonical" href={Astro.url} />
@@ -92,14 +133,19 @@ const bannerOffset =
 		<meta property="og:site_name" content={siteConfig.title}>
 		<meta property="og:url" content={Astro.url}>
 		<meta property="og:title" content={pageTitle}>
-		<meta property="og:description" content={description || `${siteConfig.title} - ${siteConfig.subtitle}. Expert in DevSecOps, XDR/OXDR Platforms, and Cloud-Native Security.`}>
+		<meta property="og:description" content={metaDescription}>
 		<meta property="og:locale" content={siteLang}>
-		<meta property="og:image" content={`${Astro.site}${profileConfig.avatar.startsWith('/') ? profileConfig.avatar.slice(1) : profileConfig.avatar}`}>
-		<meta property="og:image:alt" content="Anubhav Gain - Security Software Engineer & Security Expert">
+		<meta property="og:image" content={socialImage}>
+		<meta property="og:image:alt" content={title ? `${title}` : "Anubhav Gain - Security Software Engineer & Security Expert"}>
 		{setOGTypeArticle ? (
         <meta property="og:type" content="article" />
         <meta property="article:author" content={profileConfig.name} />
-        <meta property="article:published_time" content={new Date().toISOString()} />
+        {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+        {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+        {(modifiedTime || publishedTime) && <meta property="og:updated_time" content={modifiedTime || publishedTime} />}
+        {Array.isArray(articleData?.tags) && articleData!.tags!.map(tag => (
+          <meta property="article:tag" content={tag} />
+        ))}
         ) : (
         <meta property="og:type" content="website" />
         )}
@@ -110,9 +156,9 @@ const bannerOffset =
 		<meta name="twitter:site" content="@anubhavgain">
 		<meta name="twitter:creator" content="@anubhavgain">
 		<meta name="twitter:title" content={pageTitle}>
-		<meta name="twitter:description" content={description || `${siteConfig.title} - ${siteConfig.subtitle}. Expert in DevSecOps and Cloud-Native Security.`}>
-		<meta name="twitter:image" content={`${Astro.site}${profileConfig.avatar.startsWith('/') ? profileConfig.avatar.slice(1) : profileConfig.avatar}`}>
-		<meta name="twitter:image:alt" content="Anubhav Gain - Security Software Engineer & Security Expert">
+		<meta name="twitter:description" content={metaDescription}>
+		<meta name="twitter:image" content={socialImage}>
+		<meta name="twitter:image:alt" content={title ? `${title}` : "Anubhav Gain - Security Software Engineer & Security Expert"}>
 
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
