@@ -1,5 +1,5 @@
 ---
-title: IAM Roles: Trusted Entity
+title: "IAM Roles: Trusted Entity"
 ---
 
 # IAM Roles: Trusted Entity
