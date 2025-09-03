@@ -33,3 +33,6 @@ yarn.lock
 .swarm/*
 update_blog_dates.py
 redistribute-dates.js
+src/content/posts/aws/.swarm/memory.db-wal
+src/content/posts/aws/.claude-flow/metrics/system-metrics.json
+src/content/posts/aws/.swarm/memory.db-shm

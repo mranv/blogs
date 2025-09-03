@@ -1,4 +1,26 @@
-# IAM Roles
+---
+author: Anubhav Gain
+category: aws
+description: Complete guide to AWS IAM Roles - understanding trust policies, permissions, and common use cases for secure AWS resource access management.
+draft: false
+featured: false
+lang: en
+pubDatetime: '2024-12-03T09:00:00+05:30'
+slug: complete-guide-to-aws-iam-roles
+tags:
+- aws
+- iam
+- security
+- roles
+- permissions
+- access-management
+- ec2
+- lambda
+- cross-account
+title: 'Complete Guide to AWS IAM Roles: Secure Access Management'
+---
+
+# Complete Guide to AWS IAM Roles: Secure Access Management
 
 ## Overview
 
@@ -6,7 +28,7 @@ An IAM Role in AWS is a set of permissions that define what actions are allowed 
 
 ## Key Concepts
 
-- [Trusted Entities](./Trusted_Entity.md) Learn More about the Trusted entities in AWS IAM Role's
+- [Trusted Entities](./IAM/roles/Trusted_Entity.md) Learn More about the Trusted entities in AWS IAM Role's
 
 ### 1. **Trust Policy**
    - Defines who can assume the role.
@@ -71,4 +93,4 @@ This example trust policy allows the EC2 service to assume the role:
 
 ### Quiz 
 
-> 1. [IAM Basic Quiz](./Roles_Trusted_Entity_Q.md) Please take this quiz before taking please go through the link for Trusted Entities 
+> 1. [IAM Basic Quiz](./IAM/roles/Roles_Trusted_Entity_Q.md) Please take this quiz before taking please go through the link for Trusted Entities
