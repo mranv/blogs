@@ -1,5 +1,6 @@
-# Private vs Public IP
-
+---
+title: Private vs Public IP (IPv4)
+---
 
 IPv4, or Internet Protocol version 4, is the fourth version of the Internet Protocol (IP) and it routes most of the traffic on the Internet. An easy way to understand IPv4 is to compare it to a postal system for computers. Just as each home has a unique postal address, each device connected to the internet is assigned a unique IP address. This address is used to identify and locate these devices, allowing them to communicate with each other.
 
@@ -18,4 +19,3 @@ IPv4 addresses are written as four sets of numbers separated by periods; for exa
   - Common private IP ranges include `192.168.x.x`, `10.x.x.x`, and `172.16.x.x` to `172.31.x.x`.
 
 Understanding the distinction between public and private IPs is crucial for network configuration and security. Private IP addresses allow for secure communications within a network, while public IPs enable communication with devices across the internet.
-
