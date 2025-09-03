@@ -9,9 +9,11 @@ lang: en
 pubDatetime: '2024-03-25T14:00:45+05:30'
 slug: recovering-data-from-aws-lightsail-using-ec2
 tags:
-- /
 - aws
-- web
+- lightsail
+- ec2
+- data-recovery
+- troubleshooting
 title: Recovering data from AWS Lightsail using EC2
 ---
 

@@ -9,14 +9,13 @@ lang: en
 pubDatetime: '2024-03-09T14:31:46+05:30'
 slug: using-s3-triggers-to-maintain-a-list-of-files-in-dynamodb
 tags:
-- /
 - aws
+- s3
+- lambda
+- dynamodb
+- automation
 - python
-- javascript
-- git
-- web
-- cli
-- testing
+- serverless
 title: Using S3 triggers to maintain a list of files in DynamoDB
 ---
 

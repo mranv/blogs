@@ -9,12 +9,12 @@ lang: en
 pubDatetime: '2024-08-14T09:49:01+05:30'
 slug: adding-a-cors-policy-to-an-s3-bucket
 tags:
-- /
 - aws
+- s3
+- cors
 - javascript
-- web
-- cli
-- testing
+- web-development
+- security
 title: Adding a CORS policy to an S3 bucket
 ---
 

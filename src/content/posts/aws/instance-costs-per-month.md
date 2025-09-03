@@ -9,10 +9,11 @@ lang: en
 pubDatetime: '2024-12-21T10:08:19+05:30'
 slug: display-ec2-instance-costs-per-month
 tags:
-- /
 - aws
+- ec2
+- pricing
 - javascript
-- web
+- cost-optimization
 title: Display EC2 instance costs per month
 ---
 

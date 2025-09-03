@@ -9,12 +9,12 @@ lang: en
 pubDatetime: '2024-09-27T09:19:51+05:30'
 slug: using-boto3-from-the-command-line
 tags:
-- /
 - aws
+- boto3
 - python
-- javascript
-- web
 - cli
+- automation
+- iam
 title: Using boto3 from the command line
 ---
 

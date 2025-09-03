@@ -9,14 +9,13 @@ lang: en
 pubDatetime: '2024-07-02T09:52:49+05:30'
 slug: running-ocr-against-a-pdf-file-with-aws-textract
 tags:
-- /
 - aws
+- textract
+- ocr
+- pdf
+- s3
 - python
-- javascript
-- git
-- web
-- cli
-- testing
+- machine-learning
 title: Running OCR against a PDF file with AWS Textract
 ---
 

@@ -9,12 +9,12 @@ lang: en
 pubDatetime: '2024-03-17T15:45:36+05:30'
 slug: querying-newline-delimited-json-logs-using-aws-athena
 tags:
-- /
 - aws
-- javascript
-- database
-- web
-- testing
+- athena
+- json
+- logging
+- data-analytics
+- s3
 title: Querying newline-delimited JSON logs using AWS Athena
 ---
 

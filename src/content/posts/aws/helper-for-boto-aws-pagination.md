@@ -9,11 +9,11 @@ lang: en
 pubDatetime: '2024-06-07T19:59:44+05:30'
 slug: helper-function-for-pagination-using-aws-boto3
 tags:
-- /
 - aws
+- boto3
 - python
-- git
-- web
+- pagination
+- optimization
 title: Helper function for pagination using AWS boto3
 ---
 
