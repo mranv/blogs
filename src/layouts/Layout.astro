@@ -137,18 +137,22 @@ const bannerOffset =
 		<meta property="og:locale" content={siteLang}>
 		<meta property="og:image" content={socialImage}>
 		<meta property="og:image:alt" content={title ? `${title}` : "Anubhav Gain - Security Software Engineer & Security Expert"}>
-		{setOGTypeArticle ? (
-        <meta property="og:type" content="article" />
-        <meta property="article:author" content={profileConfig.name} />
-        {publishedTime && <meta property="article:published_time" content={publishedTime} />}
-        {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
-        {(modifiedTime || publishedTime) && <meta property="og:updated_time" content={modifiedTime || publishedTime} />}
-        {Array.isArray(articleData?.tags) && articleData!.tags!.map(tag => (
-          <meta property="article:tag" content={tag} />
-        ))}
-        ) : (
-        <meta property="og:type" content="website" />
-        )}
+			{setOGTypeArticle ? (
+	        <>
+	          <meta property="og:type" content="article" />
+	          <meta property="article:author" content={profileConfig.name} />
+	          {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+	          {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+	          {(modifiedTime || publishedTime) && <meta property="og:updated_time" content={modifiedTime || publishedTime} />}
+	          {Array.isArray(articleData?.tags) && articleData!.tags!.map(tag => (
+	            <meta property="article:tag" content={tag} />
+	          ))}
+	        </>
+	        ) : (
+	        <>
+	          <meta property="og:type" content="website" />
+	        </>
+	        )}
 
 		<!-- Twitter Card Tags -->
 		<meta name="twitter:card" content="summary_large_image">
