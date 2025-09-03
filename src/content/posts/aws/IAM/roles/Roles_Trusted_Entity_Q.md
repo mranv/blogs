@@ -1,3 +1,7 @@
+---
+title: IAM Roles and Trusted Entities Quiz
+---
+
 # IAM Roles and Trusted Entities Quiz
 
 ## Question 1

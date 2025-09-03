@@ -1,3 +1,7 @@
+---
+title: EC2 Simplified Version
+---
+
 # EC2 Simplified Version
 
 ## Defination

@@ -1,3 +1,7 @@
+---
+title: IAM Roles: Trusted Entity
+---
+
 # IAM Roles: Trusted Entity
 
 ## Overview

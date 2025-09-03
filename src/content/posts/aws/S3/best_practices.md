@@ -1,3 +1,7 @@
+---
+title: S3 Best Practices
+---
+
 # S3 Best Practices
 
 Here are some key best practices for using Amazon S3 (Simple Storage Service):

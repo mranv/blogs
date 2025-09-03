@@ -1,3 +1,7 @@
+---
+title: EBS in Depth
+---
+
 # EBS in Depth
 
 Amazon Elastic Block Store (EBS) is a high-performance block storage service designed for use with Amazon Elastic Compute Cloud (EC2) for both throughput and transaction-intensive workloads at any scale. A broad range of workloads, such as databases, enterprise applications, containerized applications, big data analytics engines, file systems, and media workflows are well-suited for EBS.
@@ -46,4 +50,3 @@ Understanding these features and use cases can help you optimize your AWS infras
 - **Monitoring and Maintenance**: Regularly monitor your EBS volumes using Amazon CloudWatch to track performance metrics and set alarms for proactive issue resolution. Perform routine snapshots to safeguard your data and ensure business continuity.
 
 By understanding and implementing these features, use cases, and best practices, you can effectively utilize EBS to enhance the efficiency and performance of your AWS infrastructure.
-
