@@ -1,8 +1,26 @@
-# IAM (Identity and Access Management)
+---
+author: Anubhav Gain
+category: aws
+description: Complete guide to AWS IAM - manage access to AWS services securely with users, groups, roles, policies, and best practices for identity management.
+draft: false
+featured: true
+lang: en
+pubDatetime: '2024-08-18T12:00:00+05:30'
+slug: complete-guide-to-aws-iam-security
+tags:
+- aws
+- iam
+- security
+- access-control
+- identity-management
+- best-practices
+title: 'Complete Guide to AWS IAM: Secure Access Management for the Cloud'
+---
+
+# Complete Guide to AWS IAM: Secure Access Management for the Cloud
 
 Amazon Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely. Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.
 
-##
 > 🛑 **CAUTION:** Be careful when granting permissions. Overly permissive policies can pose a security risk. Always follow the principle of least privilege.
 
 
@@ -18,13 +36,13 @@ Amazon Identity and Access Management (IAM) enables you to manage access to AWS 
 
 ### 2. **Groups**
     - Collections of IAM users.
-    - Groups on;y contains users not another Groups
+    - Groups only contain users, not other groups
     - Users in groups inherit the permissions assigned to the group.
 
 ### 3. **Roles**
     - A set of permissions defining what actions are allowed and denied by an entity in AWS.
     - Roles can be assumed by users, applications, or services.
->   - [Deep Dive on IAM Roles](./roles/README.md)
+   - [Deep Dive on IAM Roles](./roles/README.md)
 
 ### 4. **Policies**
     - Documents defining permissions and are associated with users, groups, or roles.
