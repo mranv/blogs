@@ -9,7 +9,8 @@ import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
 	title: "Anubhav Gain",
-	subtitle: "Security Software Engineer at Infopercept | CEO at TechAnv Consulting",
+	subtitle:
+		"Security Software Engineer at Infopercept | CEO at TechAnv Consulting",
 	lang: "en", // Language code, e.g. 'en', 'zh-CN', 'ja', etc.
 	banner: {
 		enable: false,
@@ -41,9 +42,14 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		{
-			name: "GitHub",
+			name: "GitHub (mranv)",
 			url: "https://github.com/mranv", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
+		},
+		{
+			name: "GitHub (Infopercept)",
+			url: "https://github.com/anubhavg-icpl",
+			external: true,
 		},
 	],
 };
@@ -54,9 +60,14 @@ export const profileConfig: ProfileConfig = {
 	bio: "Security Software Engineer at Infopercept Consulting | CEO at TechAnv Consulting | DevSecOps Expert | XDR/OXDR Platform Architect | Rust & eBPF Specialist | 222+ Research Citations",
 	links: [
 		{
-			name: "GitHub",
+			name: "GitHub (mranv)",
 			icon: "fa6-brands:github",
 			url: "https://github.com/mranv",
+		},
+		{
+			name: "GitHub (Infopercept)",
+			icon: "fa6-brands:github",
+			url: "https://github.com/anubhavg-icpl",
 		},
 		{
 			name: "LinkedIn",
