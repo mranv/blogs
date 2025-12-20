@@ -24,11 +24,11 @@ One of our employees attempted to install a Python package, and shortly afterwar
 ## Start Investigation
 >The attacker downloaded a malicious package. What is the full URL?
 
-![292049caac051b817918e3d9c89d342c.png](assets/resources-writeups292049caac051b817918e3d9c89d342c.png)
+![292049caac051b817918e3d9c89d342c.png](assets/resources-writeups/292049caac051b817918e3d9c89d342c.png)
 
 After extracted content of zip file, I got relevant artefacts to analyze but the question ask for "downloaded" a malicious package so It might reside on one of user's download folder and the only user of this machine (not include Guest and Public) is Administrator and this is suspicious python package that might be extracted from archive file.
 
-![f4ca20788ee8ee068fa27f642a6d55bc.png](assets/resources-writeupsf4ca20788ee8ee068fa27f642a6d55bc.png)
+![f4ca20788ee8ee068fa27f642a6d55bc.png](assets/resources-writeups/f4ca20788ee8ee068fa27f642a6d55bc.png)
 
 I also found chrome browser artefacts so I opened History file with DB Browser then we can see that there is suspicious zip file downloaded from Github.
 
@@ -39,7 +39,7 @@ https://github.com/0xMM0X/peloton
 >What is the name and version of the downloaded package?
 **Answer Format**: package-name111:0.0.01
 
-![28e0aca0e6d477b0dd4ecdf3e489e045.png](assets/resources-writeups28e0aca0e6d477b0dd4ecdf3e489e045.png)
+![28e0aca0e6d477b0dd4ecdf3e489e045.png](assets/resources-writeups/28e0aca0e6d477b0dd4ecdf3e489e045.png)
 
 We will find this information in `PKG-INFO` (package information) file 
 
@@ -52,15 +52,15 @@ peloton-client123:0.8.10
 
 I tried to get download end time chrome browser history but thats not accept as the answer of this question so it seems like we need to parse Master File Table to get Created0x10 timestamp.
 
-![b15315a0321732b0a547cc7ed309cace.png](assets/resources-writeupsb15315a0321732b0a547cc7ed309cace.png)
+![b15315a0321732b0a547cc7ed309cace.png](assets/resources-writeups/b15315a0321732b0a547cc7ed309cace.png)
 
 Go back to chrome history database again to get name of malicious archive package.
 
-![20122aca6613588031772887f448a3e0.png](assets/resources-writeups20122aca6613588031772887f448a3e0.png)
+![20122aca6613588031772887f448a3e0.png](assets/resources-writeups/20122aca6613588031772887f448a3e0.png)
 
 Use `MFTECmd.exe` from EZ tools to parse `$MFT` file.
 
-![33e96867c8b2956bdc69d9ff7584dcb1.png](assets/resources-writeups33e96867c8b2956bdc69d9ff7584dcb1.png)
+![33e96867c8b2956bdc69d9ff7584dcb1.png](assets/resources-writeups/33e96867c8b2956bdc69d9ff7584dcb1.png)
 
 Now search for malicious package archive to get create timestamp which also the exact time this file was downloaded successful.
 
@@ -70,15 +70,15 @@ Now search for malicious package archive to get create timestamp which also the 
 
 >What file in the package contains malicious code?
 
-![3d2cdf87851fb4b1a9fcd142137f94a3.png](assets/resources-writeups3d2cdf87851fb4b1a9fcd142137f94a3.png)
+![3d2cdf87851fb4b1a9fcd142137f94a3.png](assets/resources-writeups/3d2cdf87851fb4b1a9fcd142137f94a3.png)
 
 Another interesting artefacts that I found is PowerShell History that indicate this user executed `setup.py` via PowerShell
 
-![84ba326d738487aa5266f6fdbd2d677e.png](assets/resources-writeups84ba326d738487aa5266f6fdbd2d677e.png)
+![84ba326d738487aa5266f6fdbd2d677e.png](assets/resources-writeups/84ba326d738487aa5266f6fdbd2d677e.png)
 
 So lets take a look at `setup.py`, we can see a lot of red flag here since it got base64 encode strings that need to be reversed and decompressed so lets do that in CyberChef and find out what this file really does
 
-![d8e7ddda76db4117194d92586196fa96.png](assets/resources-writeupsd8e7ddda76db4117194d92586196fa96.png)
+![d8e7ddda76db4117194d92586196fa96.png](assets/resources-writeups/d8e7ddda76db4117194d92586196fa96.png)
 
 Now we can see that it exfiltrate chrome's login data database file -> `temp_file.zip` -> send to C2 server -> delete `temp_file.zip` (clean up)
 
@@ -94,15 +94,15 @@ temp_file.zip
 >When did the zip file get deleted?
 **Answer Format**: YYYY-MM-DD HH:MM:SS
 
-![d8a751213ca1d79e5865a851394a620a.png](assets/resources-writeupsd8a751213ca1d79e5865a851394a620a.png)
+![d8a751213ca1d79e5865a851394a620a.png](assets/resources-writeups/d8a751213ca1d79e5865a851394a620a.png)
 
 We will need to parse UsnJournal (`$J`) for this one, we could still use `MFTECmd.exe` for this
 
-![f646f32a55edff978db9559253f0abe5.png](assets/resources-writeupsf646f32a55edff978db9559253f0abe5.png)
+![f646f32a55edff978db9559253f0abe5.png](assets/resources-writeups/f646f32a55edff978db9559253f0abe5.png)
 
 After search for this file from output, we can see that it got 5 records from Create to Delete so we have to get the last record timestamp
 
-![9428f13ea61e009b905988f3c7d64c95.png](assets/resources-writeups9428f13ea61e009b905988f3c7d64c95.png)
+![9428f13ea61e009b905988f3c7d64c95.png](assets/resources-writeups/9428f13ea61e009b905988f3c7d64c95.png)
 
 Turn out... there is no need since this file was created and deleted in such short amount of time so it appeared with the same timestamp.
 
@@ -118,7 +118,7 @@ Login Data
 >The stolen file contains some sensitive data. What is the full URL of the website and the victim’s username?
 **Answer Format**: URL_username
 
-![645d52cb1a119b5ea1ac77a147ca3757.png](assets/resources-writeups645d52cb1a119b5ea1ac77a147ca3757.png)
+![645d52cb1a119b5ea1ac77a147ca3757.png](assets/resources-writeups/645d52cb1a119b5ea1ac77a147ca3757.png)
 
 Lets see whats important in `Login Data` database file which we could see that attacker could get saved login credential of app.letsdefend.io (self-promo)
 
@@ -141,7 +141,7 @@ On this challenge, we analyzed
 
 <div align=center>
 
-![d284a338d007982c893b2ab970391f7a.png](assets/resources-writeupsd284a338d007982c893b2ab970391f7a.png)
+![d284a338d007982c893b2ab970391f7a.png](assets/resources-writeups/d284a338d007982c893b2ab970391f7a.png)
 </div>
 
 * * *

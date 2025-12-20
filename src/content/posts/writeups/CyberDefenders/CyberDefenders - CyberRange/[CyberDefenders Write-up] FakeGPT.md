@@ -31,11 +31,11 @@ Your task is to perform a thorough analysis of this extension identify its malic
 Link: https://cyberdefenders.org/blueteam-ctf-challenges/fakegpt/
 * * *
 ## What we have
-![2c6c6b9afd19f1b9437a861d3f3b94c3.png](assets/resources-writeups2c6c6b9afd19f1b9437a861d3f3b94c3.png)
+![2c6c6b9afd19f1b9437a861d3f3b94c3.png](assets/resources-writeups/2c6c6b9afd19f1b9437a861d3f3b94c3.png)
 
 Lets take a look at what we have here, we have 3 js, 1 html, 1 GIF and `manifest.json` file and since we already know that we have to perform an analysis of fake ChatGPT extension then lets start with `manifest.json` which contain metadata of this extension to understand more about this extension and its permission.
 
-![aa88622dad0e87f85bb32206d681e392.png](assets/resources-writeupsaa88622dad0e87f85bb32206d681e392.png)
+![aa88622dad0e87f85bb32206d681e392.png](assets/resources-writeups/aa88622dad0e87f85bb32206d681e392.png)
 
 - `manifest_version` telling us that this extension use Manifest V2 which is already deprecated since we are moving to Manifest V3
 - `name` telling us the name of this extension
@@ -49,13 +49,13 @@ Now lets hunt for each js scripts to understand more about this extension.
 ## Questions
 >Q1:Which encoding method does the browser extension use to obscure target URLs, making them more difficult to detect during analysis?
 
-![fd9a92f28b1583137f226ab1fe797816.png](assets/resources-writeupsfd9a92f28b1583137f226ab1fe797816.png)
+![fd9a92f28b1583137f226ab1fe797816.png](assets/resources-writeups/fd9a92f28b1583137f226ab1fe797816.png)
 
 Then upon reading the `app.js`, which responsible for capturing keystroke and exfiltrate data and credential, encrypt then send them to C2
 
 we can clearly see that there is 1 string with `==` padding indicates that it was encoded with base64. 
 
-![e8111bd556e8d27aaec29003532c3409.png](assets/resources-writeupse8111bd556e8d27aaec29003532c3409.png)
+![e8111bd556e8d27aaec29003532c3409.png](assets/resources-writeups/e8111bd556e8d27aaec29003532c3409.png)
 
 So we can decode it which we can see that it is indeed base64 encoded and the site that was targeted by this extension is facebook.
 
@@ -70,7 +70,7 @@ www.facebook.com
 
 >Q3: Which type of HTML element is utilized by the extension to send stolen data?
 
-![b83520c6396ded56d7c27f43440fa57c.png](assets/resources-writeupsb83520c6396ded56d7c27f43440fa57c.png)
+![b83520c6396ded56d7c27f43440fa57c.png](assets/resources-writeups/b83520c6396ded56d7c27f43440fa57c.png)
 
 Lets take a look at `sendToServer` function that responsible for sending encrypted data pass from `exfiltrateCredentials` to C2 server, we can see that an image element and the `src` attribute is set to C2 url then an encrypted data will be append to this url before adding the image element to the webpage
 
@@ -80,7 +80,7 @@ Lets take a look at `sendToServer` function that responsible for sending encrypt
 
 >Q4: What is the first specific condition in the code that triggers the extension to deactivate itself?
 
-![756564428a58483f0987b402353fbdd7.png](assets/resources-writeups756564428a58483f0987b402353fbdd7.png)
+![756564428a58483f0987b402353fbdd7.png](assets/resources-writeups/756564428a58483f0987b402353fbdd7.png)
 
 For this one, we have to take a look at `loader.js` file which will check for installed browser plugin and `HeadlessChrome` user plugin which is common in VM so it will alert user with disable itself
 
@@ -92,7 +92,7 @@ navigator.plugins.length === 0
 
 >Q5: Which event does the extension capture to track user input submitted through forms?
 
-![ae7d161fc0d56cd7b6bf8abc264fee46.png](assets/resources-writeupsae7d161fc0d56cd7b6bf8abc264fee46.png)
+![ae7d161fc0d56cd7b6bf8abc264fee46.png](assets/resources-writeups/ae7d161fc0d56cd7b6bf8abc264fee46.png)
 
 Lets go back to `app.js`, we can see that it create Event Listener on `submit` element which will get `username`, `email` and `password` from a form and if both values exists then it will encrypted both values and send it to C2.
 
@@ -102,7 +102,7 @@ submit
 
 >Q6: Which API or method does the extension use to capture and monitor user keystrokes?
 
-![c61e52456d6c89edd9d1dee368dcbe38.png](assets/resources-writeupsc61e52456d6c89edd9d1dee368dcbe38.png)
+![c61e52456d6c89edd9d1dee368dcbe38.png](assets/resources-writeups/c61e52456d6c89edd9d1dee368dcbe38.png)
 
 `keydown` event listener will also added to capture a keystroke with which will pass to `exfiltrateData` function to construct json payload before sending to C2.
 
@@ -112,21 +112,21 @@ keydown
 
 >Q7: What is the domain where the extension transmits the exfiltrated data?
 
-![fae190694e284ec273d721e24d0c32e9.png](assets/resources-writeupsfae190694e284ec273d721e24d0c32e9.png)
+![fae190694e284ec273d721e24d0c32e9.png](assets/resources-writeups/fae190694e284ec273d721e24d0c32e9.png)
 ```
 Mo.Elshaheedy.com
 ```
 
 >Q8: Which function in the code is used to exfiltrate user credentials, including the username and password?
 
-![72d860fb30c3b3c15dcef92cf93949e3.png](assets/resources-writeups72d860fb30c3b3c15dcef92cf93949e3.png)
+![72d860fb30c3b3c15dcef92cf93949e3.png](assets/resources-writeups/72d860fb30c3b3c15dcef92cf93949e3.png)
 ```
 exfiltrateCredentials(username, password);
 ```
 
 >Q9: Which encryption algorithm is applied to secure the data before sending?
 
-![2e2e79dfb98208b999ebd78637f18c19.png](assets/resources-writeups2e2e79dfb98208b999ebd78637f18c19.png)
+![2e2e79dfb98208b999ebd78637f18c19.png](assets/resources-writeups/2e2e79dfb98208b999ebd78637f18c19.png)
 
 Lets take a look at `encryptPayload` function that responsible for data encryption, which we can see that its use AES with hard-coded key "SuperSecretKey123" with random IV to encrypt data then return iv and base64 encoded of encrypted data to a function that calls for this function.
 
@@ -136,7 +136,7 @@ AES
 
 >Q10: What critical browser API does the extension use to access and manipulate cookies?
 
-![a819ab93ec8a236c720c86b79e77a3b2.png](assets/resources-writeupsa819ab93ec8a236c720c86b79e77a3b2.png)
+![a819ab93ec8a236c720c86b79e77a3b2.png](assets/resources-writeups/a819ab93ec8a236c720c86b79e77a3b2.png)
 https://developer.chrome.com/docs/extensions/reference/api/cookies
 ```
 chrome.cookies
@@ -145,7 +145,7 @@ chrome.cookies
 ***
 This lab also retired with official write-up so if you want to learn more about this lab and how it was intended to be solved then you could go to the following url (https://cyberdefenders.org/walkthroughs/fakegpt/) or access it directly though lab page.
 
-![b382093523a89e39a5b37b406726cd50.png](assets/resources-writeupsb382093523a89e39a5b37b406726cd50.png)
+![b382093523a89e39a5b37b406726cd50.png](assets/resources-writeups/b382093523a89e39a5b37b406726cd50.png)
 https://cyberdefenders.org/blueteam-ctf-challenges/progress/Chicken_0248/213/ 
 
 * * *

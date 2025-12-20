@@ -18,7 +18,7 @@ Created: 26/01/2024 13:30
 Last Updated: 05/06/2024 20:40
 * * *
 
-![1ebadb060b33b33f4906f0640a7e9528.png](assets/resources-writeups1ebadb060b33b33f4906f0640a7e9528.png)
+![1ebadb060b33b33f4906f0640a7e9528.png](assets/resources-writeups/1ebadb060b33b33f4906f0640a7e9528.png)
 
 We receive a log indicating a possible attack, can you gather information from the .pcap file?
 
@@ -32,14 +32,14 @@ Note: pcap file found public resources.
 5
 ```
 
-![be71793331ad1f36cf37e6845839a17b.png](assets/resources-writeupsbe71793331ad1f36cf37e6845839a17b.png)
+![be71793331ad1f36cf37e6845839a17b.png](assets/resources-writeups/be71793331ad1f36cf37e6845839a17b.png)
 
 > What is the server operating system?
 ```
 FreeBSD
 ```
 
-![a8a4b774a6101ba125aa2cac6556064d.png](assets/resources-writeupsa8a4b774a6101ba125aa2cac6556064d.png)
+![a8a4b774a6101ba125aa2cac6556064d.png](assets/resources-writeups/a8a4b774a6101ba125aa2cac6556064d.png)
 
 > What is the name and version of the web server software?
 ```
@@ -61,9 +61,9 @@ Lynx/2.8.7rel.1 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8n
 webadmin
 ```
 
-![6746132e8475a700515a3c7427d37618.png](assets/resources-writeups6746132e8475a700515a3c7427d37618.png)
+![6746132e8475a700515a3c7427d37618.png](assets/resources-writeups/6746132e8475a700515a3c7427d37618.png)
 
-![1634775f864642d8ab79ee57e69b9048.png](assets/resources-writeups1634775f864642d8ab79ee57e69b9048.png)
+![1634775f864642d8ab79ee57e69b9048.png](assets/resources-writeups/1634775f864642d8ab79ee57e69b9048.png)
 
 > What is the user password used for Basic Authentication?
 ```
@@ -74,7 +74,7 @@ W3b4Dm1n
 ## Summary
 There is a basic authentication happened during in this pcap file.
 
-![e4ccc3723ebe6783710a4517525081c6.png](assets/resources-writeupse4ccc3723ebe6783710a4517525081c6.png)
+![e4ccc3723ebe6783710a4517525081c6.png](assets/resources-writeups/e4ccc3723ebe6783710a4517525081c6.png)
 
 Badge Acquired
 

@@ -38,15 +38,15 @@ As a soc analyst, analyze the artifacts and answer the questions.
 **Resources**:
 1. Hindsight from Ryan Benson: https://github.com/obsidianforensics/hindsight
 2. Chromebook Data Locations: https://www.magnetforensics.com/blog/chromebook-data-locations/
-3. Taking a Byte out of Chromebook Analysis: https://www.magnetforensics.comassets/resources-writeupstaking-a-byte-of-chromebook-analysis-mvs-may-5/
+3. Taking a Byte out of Chromebook Analysis: https://www.magnetforensics.comassets/resources-writeups/taking-a-byte-of-chromebook-analysis-mvs-may-5/
 4. Ross Donnelly on Google Takeout Location Data: https://dfir.pubpub.org/pub/d39u7lg1/release/1
-5. Takeout Locations: https://www.magnetforensics.comassets/resources-writeupstargeted-locations-quick-reference-guide-for-android-and-google-takeouts/
-6. Takeout Data: https://www.magnetforensics.comassets/resources-writeupsexploring-the-data-available-from-google-takeout-webinar-sep-22-oct-6/
+5. Takeout Locations: https://www.magnetforensics.comassets/resources-writeups/targeted-locations-quick-reference-guide-for-android-and-google-takeouts/
+6. Takeout Data: https://www.magnetforensics.comassets/resources-writeups/exploring-the-data-available-from-google-takeout-webinar-sep-22-oct-6/
 * * *
 ## Questions
 > Q1: The folder to store all your data in - How many files are in Eli's downloads directory?
 
-![b98d789b71626f388d64ad6801eafa24.png](assets/resources-writeupsb98d789b71626f388d64ad6801eafa24.png)
+![b98d789b71626f388d64ad6801eafa24.png](assets/resources-writeups/b98d789b71626f388d64ad6801eafa24.png)
 
 I've never touched chromebook before so I didn't know how their data structure look like, so I did some google search and found that it should be Downloads folder somewhere under user folder
 
@@ -64,11 +64,11 @@ foreach ($dir in $downloadsDirs) {
 
 So I used this powershell script to recursively find all files inside all "Downloads" folders 
 
-![3eb4c97c785b7dd332c16b7529f1a03f.png](assets/resources-writeups3eb4c97c785b7dd332c16b7529f1a03f.png)
+![3eb4c97c785b7dd332c16b7529f1a03f.png](assets/resources-writeups/3eb4c97c785b7dd332c16b7529f1a03f.png)
 
 Which we will see that under `\2021 CTF - Chromebook\decrypted\mount\user\Downloads` folder, there are 6 files while the rest of Downloads folders doesn't have anything inside of them
 
-![bd2b8e8c73dfaaed8cd6f0447497f6c8.png](assets/resources-writeupsbd2b8e8c73dfaaed8cd6f0447497f6c8.png)
+![bd2b8e8c73dfaaed8cd6f0447497f6c8.png](assets/resources-writeups/bd2b8e8c73dfaaed8cd6f0447497f6c8.png)
 
 ```
 6
@@ -76,7 +76,7 @@ Which we will see that under `\2021 CTF - Chromebook\decrypted\mount\user\Downlo
 
 > Q2: Smile for the camera - What is the MD5 hash of the user's profile photo?
 
-![d1a7294d516e1ba3b93421509edf9c59.png](assets/resources-writeupsd1a7294d516e1ba3b93421509edf9c59.png)
+![d1a7294d516e1ba3b93421509edf9c59.png](assets/resources-writeups/d1a7294d516e1ba3b93421509edf9c59.png)
 
 After determined user, directory then I found an avatar image inside `\2021 CTF - Chromebook\decrypted\mount\user\Accounts\Avatar Images` folder
 
@@ -86,11 +86,11 @@ After determined user, directory then I found an avatar image inside `\2021 CTF 
 
 > Q3: Road Trip! - What city was Eli's destination in?
 
-![6fdb232dbdfe0a0b5c9d0b6ef1fd2134.png](assets/resources-writeups6fdb232dbdfe0a0b5c9d0b6ef1fd2134.png)
+![6fdb232dbdfe0a0b5c9d0b6ef1fd2134.png](assets/resources-writeups/6fdb232dbdfe0a0b5c9d0b6ef1fd2134.png)
 
 Inside user's Downloads folder, we can see an image taken from google maps 
 
-![522a2046d076fa826faa4867bc590aa5.png](assets/resources-writeups522a2046d076fa826faa4867bc590aa5.png)
+![522a2046d076fa826faa4867bc590aa5.png](assets/resources-writeups/522a2046d076fa826faa4867bc590aa5.png)
 
 which indicates user was going to Chick-fill-a in Plattsburgh city
 
@@ -100,11 +100,11 @@ Plattsburgh
 
 > Q4: Promise Me - How many promises does Wickr make?
 
-![c4a3567868179db70070e393c7175b2f.png](assets/resources-writeupsc4a3567868179db70070e393c7175b2f.png)
+![c4a3567868179db70070e393c7175b2f.png](assets/resources-writeups/c4a3567868179db70070e393c7175b2f.png)
 
 There is a pdf file inside user's Downloads folder that writing about Customer Security Promises
 
-![ce2e2dc4dbf164f1eaa0c400efaa4277.png](assets/resources-writeupsce2e2dc4dbf164f1eaa0c400efaa4277.png)
+![ce2e2dc4dbf164f1eaa0c400efaa4277.png](assets/resources-writeups/ce2e2dc4dbf164f1eaa0c400efaa4277.png)
 
 Open this file and scroll down for a bit then we can see there are 9 promises 
 
@@ -114,17 +114,17 @@ Open this file and scroll down for a bit then we can see there are 9 promises
 
 > Q5: Key-ty Cat - What are the last five characters of the key for the Tabby Cat extension?
 
-![21625653e87138491c961f34ab8977ac.png](assets/resources-writeups21625653e87138491c961f34ab8977ac.png)
+![21625653e87138491c961f34ab8977ac.png](assets/resources-writeups/21625653e87138491c961f34ab8977ac.png)
 
 There are so much extensions inside user's Extensions folder
 
-![59bc425d0795c6afbcd3b06d700cd4b5.png](assets/resources-writeups59bc425d0795c6afbcd3b06d700cd4b5.png)
+![59bc425d0795c6afbcd3b06d700cd4b5.png](assets/resources-writeups/59bc425d0795c6afbcd3b06d700cd4b5.png)
 
 So I used `Get-ChildItem -Path "Z:\2021 CTF - Chromebook\decrypted\mount\user\Extensions" -Recurse -File | Select-String -Pattern "Tabby Cat" | Select-Object -ExpandProperty Path -Unique` to find all the file that has strings "Tabby Cat" which eventually gave us path to `manifest.json` of this extension
 
-![9558723c4bb6a4563889d51688967008.png](assets/resources-writeups9558723c4bb6a4563889d51688967008.png)
+![9558723c4bb6a4563889d51688967008.png](assets/resources-writeups/9558723c4bb6a4563889d51688967008.png)
 
-![2cf14252f6545c450241ba89b3c240c4.png](assets/resources-writeups2cf14252f6545c450241ba89b3c240c4.png)
+![2cf14252f6545c450241ba89b3c240c4.png](assets/resources-writeups/2cf14252f6545c450241ba89b3c240c4.png)
 
 Lets open it and get the last five characters of the key to answer this question 
 
@@ -134,7 +134,7 @@ DAQAB
 
 > Q6: Time to jam out - How many songs does Eli have downloaded?
 
-![1684dc3c2ef3b48d1276c963bb0923a1.png](assets/resources-writeups1684dc3c2ef3b48d1276c963bb0923a1.png)
+![1684dc3c2ef3b48d1276c963bb0923a1.png](assets/resources-writeups/1684dc3c2ef3b48d1276c963bb0923a1.png)
 
 There is Music folder inside `\2021 CTF - Chromebook\decrypted\mount\user\MyFiles\`, which have 2 mp3 files inside of it
 
@@ -144,11 +144,11 @@ There is Music folder inside `\2021 CTF - Chromebook\decrypted\mount\user\MyFile
 
 > Q7: Autofill, roll out - Which word was Autofilled the most?
 
-![565cff5bfdf754d4a1355dd3f63b568d.png](assets/resources-writeups565cff5bfdf754d4a1355dd3f63b568d.png)
+![565cff5bfdf754d4a1355dd3f63b568d.png](assets/resources-writeups/565cff5bfdf754d4a1355dd3f63b568d.png)
 
 I used [cLEAPP](https://github.com/markmckinnon/cLeapp) (Chrome Logs Events and Protobuf Parser) which is a tool that can help us automated some process for a little bit 
 
-![0d3b02538f532eb97595d8be89a522e2.png](assets/resources-writeups0d3b02538f532eb97595d8be89a522e2.png)
+![0d3b02538f532eb97595d8be89a522e2.png](assets/resources-writeups/0d3b02538f532eb97595d8be89a522e2.png)
 
 Go to Chromebook Autofill then you can see that email field was filled the most
 
@@ -160,11 +160,11 @@ email
 
 > Q8: Dress for success - What is this bird's image's logical size in bytes?
 
-![28d266b89f2823ad3954d6aa98d2c518.png](assets/resources-writeups28d266b89f2823ad3954d6aa98d2c518.png)
+![28d266b89f2823ad3954d6aa98d2c518.png](assets/resources-writeups/28d266b89f2823ad3954d6aa98d2c518.png)
 
 If you remember little linux penguin inside download folder, then you can navigate there and display logical size of this image 
 
-![19c7e75321aa0f385f525ef9ccbf98ba.png](assets/resources-writeups19c7e75321aa0f385f525ef9ccbf98ba.png)
+![19c7e75321aa0f385f525ef9ccbf98ba.png](assets/resources-writeups/19c7e75321aa0f385f525ef9ccbf98ba.png)
 
 ```
 46,791
@@ -172,7 +172,7 @@ If you remember little linux penguin inside download folder, then you can naviga
 
 > Q9: Repeat customer - What was Eli's top visited site?
 
-![d4d755501410c9bf596224e6047e5d0f.png](assets/resources-writeupsd4d755501410c9bf596224e6047e5d0f.png)
+![d4d755501410c9bf596224e6047e5d0f.png](assets/resources-writeups/d4d755501410c9bf596224e6047e5d0f.png)
 
 by using [hindsight](https://github.com/obsidianforensics/hindsight), you will eventually get the answer by sorting most visit sites but  its not google doc 
 
@@ -182,7 +182,7 @@ protonmail.com
 
 > Q10: Vroom Vroom, What is the name of the car-related theme?
 
-![7aa08df51c646f4a70d3da132a4fbf74.png](assets/resources-writeups7aa08df51c646f4a70d3da132a4fbf74.png)
+![7aa08df51c646f4a70d3da132a4fbf74.png](assets/resources-writeups/7aa08df51c646f4a70d3da132a4fbf74.png)
 
 Go to Installed Extensions sheet and you will see there is only one extension that related to the car 
 
@@ -192,13 +192,13 @@ Lamborghini Cherry
 
 > Q11: You got mail - How many emails were received from notification@service.tiktok.com?
 
-![573f966f4ae70d94f79d9cb8aabd6904.png](assets/resources-writeups573f966f4ae70d94f79d9cb8aabd6904.png)
+![573f966f4ae70d94f79d9cb8aabd6904.png](assets/resources-writeups/573f966f4ae70d94f79d9cb8aabd6904.png)
 
 I searched for a file that contains the string "tiktok"  inside and the file that caught my eye and made me want to look into it first is `\2021 CTF - Takeout\Takeout\Mail\All mail Including Spam and Trash.mbox`
 
-![a10899876b33ec64dac7173a4a969454.png](assets/resources-writeupsa10899876b33ec64dac7173a4a969454.png)
+![a10899876b33ec64dac7173a4a969454.png](assets/resources-writeups/a10899876b33ec64dac7173a4a969454.png)
 
-![11f5b8aedbbfdcfdb6523a3a861b39ee.png](assets/resources-writeups11f5b8aedbbfdcfdb6523a3a861b39ee.png)
+![11f5b8aedbbfdcfdb6523a3a861b39ee.png](assets/resources-writeups/11f5b8aedbbfdcfdb6523a3a861b39ee.png)
 
 We can use thunderbird to open this but to make things easier, I'll just open this file using VScode and filter for "From: "Tiktok" <notification@service.tiktok.com>""
 
@@ -208,11 +208,11 @@ We can use thunderbird to open this but to make things easier, I'll just open th
 
 > Q12: Hungry for directions - Where did the user request directions to on Mar 4, 2021, at 4:15:18 AM EDT
 
-![b7d7f750351ed84eea5c78d1ecec7cb9.png](assets/resources-writeupsb7d7f750351ed84eea5c78d1ecec7cb9.png)
+![b7d7f750351ed84eea5c78d1ecec7cb9.png](assets/resources-writeups/b7d7f750351ed84eea5c78d1ecec7cb9.png)
 
 We know that user was going to Chick-fill-A but time doesn't add up so I searched for this specific time and found it was in `\2021 CTF - Takeout\Takeout\My Activity\Maps\MyActivity.html`
 
-![f18018d0fec99409cda43ff7d2e12d9d.png](assets/resources-writeupsf18018d0fec99409cda43ff7d2e12d9d.png)
+![f18018d0fec99409cda43ff7d2e12d9d.png](assets/resources-writeups/f18018d0fec99409cda43ff7d2e12d9d.png)
 
 After researching what is Takeout folder, now it make sense why we found this information here
 
@@ -222,11 +222,11 @@ Chick-fil-A
 
 > Q13: Who defines essential? - What was searched on Mar 4, 2021, at 4:09:35 AM EDT
 
-![a9d68f86edd348da402926aaada9fe62.png](assets/resources-writeupsa9d68f86edd348da402926aaada9fe62.png)
+![a9d68f86edd348da402926aaada9fe62.png](assets/resources-writeups/a9d68f86edd348da402926aaada9fe62.png)
 
 It is in `\2021 CTF - Takeout\Takeout\My Activity\Search\MyActivity.html`
 
-![d6961a66abc7ff18db752624d50d8011.png](assets/resources-writeupsd6961a66abc7ff18db752624d50d8011.png)
+![d6961a66abc7ff18db752624d50d8011.png](assets/resources-writeups/d6961a66abc7ff18db752624d50d8011.png)
 
 ```
 is travelling to get chicken essential travel
@@ -234,11 +234,11 @@ is travelling to get chicken essential travel
 
 > Q14: I got three subscribers, and counting - How many YouTube channels is the user subscribed to?
 
-![e9181af532bfd3a99b7db517679bf337.png](assets/resources-writeupse9181af532bfd3a99b7db517679bf337.png)
+![e9181af532bfd3a99b7db517679bf337.png](assets/resources-writeups/e9181af532bfd3a99b7db517679bf337.png)
 
 There is a `subscriptions.json` inside `\2021 CTF - Takeout\Takeout\YouTube and YouTube Music\` folder
 
-![d2b2f67adedb644fd18d05ef4e2eef67.png](assets/resources-writeupsd2b2f67adedb644fd18d05ef4e2eef67.png)
+![d2b2f67adedb644fd18d05ef4e2eef67.png](assets/resources-writeups/d2b2f67adedb644fd18d05ef4e2eef67.png)
 
 There is no data inside of it which mean this user does not subscribe to anyone on youtube
 
@@ -248,15 +248,15 @@ There is no data inside of it which mean this user does not subscribe to anyone 
 
 > Q15: Time flies when you're watching YT - What date was the first YouTube video the user watched uploaded?
 
-![a04826aad67b3563faa059e3556a11e7.png](assets/resources-writeupsa04826aad67b3563faa059e3556a11e7.png)
+![a04826aad67b3563faa059e3556a11e7.png](assets/resources-writeups/a04826aad67b3563faa059e3556a11e7.png)
 
 The answer lying in `\2021 CTF - Takeout\Takeout\My Activity\YouTube` folder
 
-![f40c17e38fcf086cdeafaf43b2264365.png](assets/resources-writeupsf40c17e38fcf086cdeafaf43b2264365.png)
+![f40c17e38fcf086cdeafaf43b2264365.png](assets/resources-writeups/f40c17e38fcf086cdeafaf43b2264365.png)
 
 Scroll down to the last record which is the oldest one/first one that was recorded, follow this link then you will find the first youtube video that user watched 
 
-![fdefb53e6aaed15051dbae3409a834c9.png](assets/resources-writeupsfdefb53e6aaed15051dbae3409a834c9.png)
+![fdefb53e6aaed15051dbae3409a834c9.png](assets/resources-writeups/fdefb53e6aaed15051dbae3409a834c9.png)
 
 My timezone is UTC+7 so I have to subtract a day out of this
 
@@ -266,29 +266,29 @@ My timezone is UTC+7 so I have to subtract a day out of this
 
 > Q16: How much? - What is the price of the belt?
 
-![62b2d5bd30c19858e3f4dd9cf7ad529a.png](assets/resources-writeups62b2d5bd30c19858e3f4dd9cf7ad529a.png)
+![62b2d5bd30c19858e3f4dd9cf7ad529a.png](assets/resources-writeups/62b2d5bd30c19858e3f4dd9cf7ad529a.png)
 
 Result from searching for a "belt" string lead us to Chrome browsing history 
 
-![98b4789aac6832c77990ac5f75ad0994.png](assets/resources-writeups98b4789aac6832c77990ac5f75ad0994.png)
+![98b4789aac6832c77990ac5f75ad0994.png](assets/resources-writeups/98b4789aac6832c77990ac5f75ad0994.png)
 
 We can see that user accessed a shop for leather belt
 
-![d592e221cd5ac3d4013471a4d78ffee4.png](assets/resources-writeupsd592e221cd5ac3d4013471a4d78ffee4.png)
+![d592e221cd5ac3d4013471a4d78ffee4.png](assets/resources-writeups/d592e221cd5ac3d4013471a4d78ffee4.png)
 
 But it is out of stock and the price could not be find anymore 
 
-![30b032077037381c6ac0e317c78c4071.png](assets/resources-writeups30b032077037381c6ac0e317c78c4071.png)
+![30b032077037381c6ac0e317c78c4071.png](assets/resources-writeups/30b032077037381c6ac0e317c78c4071.png)
 
 I couldn't search for this belt on web archive too
 
-![fd8095865318a4adb58b4cc93f9fd3fb.png](assets/resources-writeupsfd8095865318a4adb58b4cc93f9fd3fb.png)
+![fd8095865318a4adb58b4cc93f9fd3fb.png](assets/resources-writeups/fd8095865318a4adb58b4cc93f9fd3fb.png)
 
 Inspecting web page does not give me anything either
 
 So I had to read other write-up for this one and turn out that I was using the right url on wayback machine and the url that was archive is https://web.archive.org/web/20210122000112/https://www.vineyardvines.com/mens-belts/pebbled-leather-belt/1B001191.html?dwvar_1B001191_color=202&cgid=mens-accessories
 
-![87f4cba3fc70eea8a9a5d75da5561c7c.png](assets/resources-writeups87f4cba3fc70eea8a9a5d75da5561c7c.png)
+![87f4cba3fc70eea8a9a5d75da5561c7c.png](assets/resources-writeups/87f4cba3fc70eea8a9a5d75da5561c7c.png)
 
 ```
 98.5
