@@ -15,7 +15,7 @@ description: Guide on setting up the Elgato Streamdeck on Arch Linux, including 
 
 # Elgato Streamdeck on Arch Linux
 
-<img alt="Guangzhou, China" src="/assets/images/photo-kt443t6d_64hdh43hfh6dgjdfhg4_d-a6ea9c37592199bec87ef0a289a7fd91.jpg" width="1500" height="622">
+<img alt="Guangzhou, China" src="assets/images/photo-kt443t6d_64hdh43hfh6dgjdfhg4_d-a6ea9c37592199bec87ef0a289a7fd91.jpg" width="1500" height="622">
 
 ## Streamdeck UI
 
@@ -69,6 +69,6 @@ python -m pip install streamdeck-ui --user
 streamdeck
 ```
 
-<img alt="Elgato Streamdeck on Arch Linux" src="/assets/images/Elgato_Streamdeck_on_Arch_Linux_01-224c434dc64584d69e4f60bd344f4b10.png" width="934" height="514">
+<img alt="Elgato Streamdeck on Arch Linux" src="assets/images/Elgato_Streamdeck_on_Arch_Linux_01-224c434dc64584d69e4f60bd344f4b10.png" width="934" height="514">
 
 Now you should be able to use the Elgato Streamdeck on your Arch Linux system.

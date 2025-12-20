@@ -15,7 +15,7 @@ description: Guide to installing Docker on Windows Server 2019, both via OneGet 
 
 # Windows Server 2019 - Docker Daemon
 
-<img alt="Shanghai, China" src="/assets/images/photo-f654_gfdgbg4e345g4_sf-bfc8f1f79edc9b8c9913aed41d58a3db.png" width="1500" height="664">
+<img alt="Shanghai, China" src="assets/images/photo-f654_gfdgbg4e345g4_sf-bfc8f1f79edc9b8c9913aed41d58a3db.png" width="1500" height="664">
 
 ### Installing Docker via OneGet Provider PowerShell Module
 
@@ -38,7 +38,7 @@ Windows containers enable packaging applications with dependencies and leveragin
    Restart-Computer -Force
    ```
 
-<img alt="Windows Server 2019" src="/assets/images/Windows_Server_2019_01-4ea32b0be138e6853c664ca772e0c220.png" width="1273" height="591">
+<img alt="Windows Server 2019" src="assets/images/Windows_Server_2019_01-4ea32b0be138e6853c664ca772e0c220.png" width="1273" height="591">
 
 ### Downloading Docker Manually
 
@@ -88,6 +88,6 @@ For environments with restricted internet access, follow these steps to manually
    docker container run hello-world:nanoserver
    ```
 
-<img alt="Windows Server 2019" src="/assets/images/Windows_Server_2019_02-9ef2e9d10b4f275acd828e7634d9cfee.png" width="840" height="469">
+<img alt="Windows Server 2019" src="assets/images/Windows_Server_2019_02-9ef2e9d10b4f275acd828e7634d9cfee.png" width="840" height="469">
 
 This guide covers both automated installation via OneGet and manual installation for environments with restricted internet access.

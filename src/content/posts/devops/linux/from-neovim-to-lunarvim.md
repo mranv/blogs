@@ -16,7 +16,7 @@ description: Guide for transitioning from NeoVim to LunarVim, an IDE layer for N
 
 # From NeoVim to LunarVim
 
-<img alt="Guangzhou, China" src="/assets/images/photo-kt443t6d_64hdh43hfh6dgjdfhg4_d-32dbeca90d3e5d2fc5dae0a82fcd32cc.jpg" width="1500" height="615">
+<img alt="Guangzhou, China" src="assets/images/photo-kt443t6d_64hdh43hfh6dgjdfhg4_d-32dbeca90d3e5d2fc5dae0a82fcd32cc.jpg" width="1500" height="615">
 <!-- TOC -->
 
 ## Installation
@@ -163,7 +163,7 @@ linters.setup { { command = "flake8", args = { "--ignore=E
 203" }, filetypes = { "python" } } }
 ```
 
-<img alt="From NeoVim to LunarVim" src="/assets/images/LunarVim_01-1a48122367f6e72d425ad5d14669115a.png" width="1110" height="578">
+<img alt="From NeoVim to LunarVim" src="assets/images/LunarVim_01-1a48122367f6e72d425ad5d14669115a.png" width="1110" height="578">
 
 <!-- Further, there are two plugins that come recommended - one for switching virtual environments and an eye-candy one:
 

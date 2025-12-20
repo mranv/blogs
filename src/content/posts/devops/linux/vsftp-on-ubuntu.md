@@ -16,7 +16,7 @@ description: Guide for setting up vsFTP on Ubuntu.
 
 # vsFTP on Ubuntu
 
-<img alt="Guangzhou, China" src="/assets/images/photo-kt443t6d_64hdh43hfh6dgjdfhg4_d-32dbeca90d3e5d2fc5dae0a82fcd32cc.jpg" width="1500" height="615">
+<img alt="Guangzhou, China" src="assets/images/photo-kt443t6d_64hdh43hfh6dgjdfhg4_d-32dbeca90d3e5d2fc5dae0a82fcd32cc.jpg" width="1500" height="615">
 
 ### Prerequisites
 
