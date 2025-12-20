@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.909Z
+slug: htb-write-up-retro
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-retro
+title: 'HTB Write up Retro'
+---
 # [HackTheBox - Retro](https://app.hackthebox.com/machines/Retro)
 
 ![8c137bf429e00361974c2bae911f72fb.png](assets/resources-writeups8c137bf429e00361974c2bae911f72fb.png)

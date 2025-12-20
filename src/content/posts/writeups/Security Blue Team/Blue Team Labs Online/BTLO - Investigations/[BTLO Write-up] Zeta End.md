@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.950Z
+slug: btlo-write-up-zeta-end
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-zeta-end
+title: 'BTLO Write up Zeta End'
+---
 # [Blue Team Labs Online - Zeta End](https://blueteamlabs.online/home/investigation/zeta-end-2a5b4e8c18)
 
 ![fed2cf400076028b38af448fc011abe1.png](assets/resources-writeupsfed2cf400076028b38af448fc011abe1.png)

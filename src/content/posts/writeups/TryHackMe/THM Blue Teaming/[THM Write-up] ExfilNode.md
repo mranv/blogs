@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.955Z
+slug: thm-write-up-exfilnode
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-exfilnode
+title: 'THM Write up ExfilNode'
+---
 # [TryHackMe - ExfilNode](https://tryhackme.com/room/exfilnode)
 ![a3c19e727c5a8de1c7ddf9bb62c1e878.png](assets/resources-writeupsa3c19e727c5a8de1c7ddf9bb62c1e878.png)
 ***

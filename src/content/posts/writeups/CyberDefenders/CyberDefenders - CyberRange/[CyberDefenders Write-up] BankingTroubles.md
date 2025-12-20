@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.884Z
+slug: cyberdefenders-write-up-bankingtroubles
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-bankingtroubles
+title: 'CyberDefenders Write up BankingTroubles'
+---
 # [CyberDefenders - BankingTroubles](https://cyberdefenders.org/blueteam-ctf-challenges/bankingtroubles/)
 Created: 23/05/2024 21:29
 Last Updated: 24/05/2024 09:08

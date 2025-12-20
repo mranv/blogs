@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.901Z
+slug: cyberdefenders-write-up-redline
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-redline
+title: 'CyberDefenders Write up RedLine'
+---
 # [CyberDefenders - RedLine](https://cyberdefenders.org/blueteam-ctf-challenges/redline/) 
 Created: 05/03/2024 14:43
 Last Updated: 05/03/2024 16:13

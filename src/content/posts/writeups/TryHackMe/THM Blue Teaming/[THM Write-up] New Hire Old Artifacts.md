@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.957Z
+slug: thm-write-up-new-hire-old-artifacts
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-new-hire-old-artifacts
+title: 'THM Write up New Hire Old Artifacts'
+---
 # [TryHackMe - New Hire Old Artifacts](https://tryhackme.com/room/newhireoldartifacts)
 ![1555d39d23fcc08b2c93301f14e7c4b5.png](assets/resources-writeups1555d39d23fcc08b2c93301f14e7c4b5.png)
 ***

@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.907Z
+slug: htb-write-up-breach
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-breach
+title: 'HTB Write up Breach'
+---
 # [HackTheBox - Breach](https://app.hackthebox.com/machines/Breach)
 
 ![46ad3b94d4e0c8388c661813b8fb8691.png](assets/resources-writeups46ad3b94d4e0c8388c661813b8fb8691.png)

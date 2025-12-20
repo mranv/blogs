@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.904Z
+slug: cyberdefenders-write-up-the-crime
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-the-crime
+title: 'CyberDefenders Write up The Crime'
+---
 # [CyberDefenders - The Crime](https://cyberdefenders.org/blueteam-ctf-challenges/the-crime/)
 Created: 28/05/2024 18:04
 Last Updated: 31/05/2024 21:01

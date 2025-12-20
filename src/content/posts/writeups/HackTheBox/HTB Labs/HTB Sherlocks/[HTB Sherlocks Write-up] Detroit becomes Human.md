@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.914Z
+slug: htb-sherlocks-write-up-detroit-becomes-human
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-detroit-becomes-human
+title: 'HTB Sherlocks Write up Detroit becomes Human'
+---
 # [HackTheBox Sherlocks - Detroit becomes Human](https://app.hackthebox.com/sherlocks/Detroit%20becomes%20Human)
 Created: 12/08/2024 19:56
 Last Updated: 13/08/2024 01:25

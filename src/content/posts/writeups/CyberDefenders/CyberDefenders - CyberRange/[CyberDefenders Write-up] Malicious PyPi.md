@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.894Z
+slug: cyberdefenders-write-up-malicious-pypi
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-malicious-pypi
+title: 'CyberDefenders Write up Malicious PyPi'
+---
 # [CyberDefenders - Malicious PyPi](https://cyberdefenders.org/blueteam-ctf-challenges/malicious-pypi/)
 ## Table of Contents
 

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.889Z
+slug: cyberdefenders-write-up-hawkeye
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-hawkeye
+title: 'CyberDefenders Write up HawkEye'
+---
 # [CyberDefenders - HawkEye](https://cyberdefenders.org/blueteam-ctf-challenges/hawkeye/)
 Created: 15/03/2024 12:59
 Last Updated: 26/06/2024 08:24

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.959Z
+slug: thm-write-up-retracted
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-retracted
+title: 'THM Write up Retracted'
+---
 # [TryHackMe - Retracted](https://tryhackme.com/room/retracted)
 ![6aad4123977805c26e86afffe3e32d4d.png](assets/resources-writeups6aad4123977805c26e86afffe3e32d4d.png)
 ***

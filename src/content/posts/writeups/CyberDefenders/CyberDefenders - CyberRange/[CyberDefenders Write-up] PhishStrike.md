@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.897Z
+slug: cyberdefenders-write-up-phishstrike
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-phishstrike
+title: 'CyberDefenders Write up PhishStrike'
+---
 # [CyberDefenders - PhishStrike](https://cyberdefenders.org/blueteam-ctf-challenges/phishstrike/)
 Created: 08/10/2024 13:20
 Last Updated: 08/10/2024 18:16

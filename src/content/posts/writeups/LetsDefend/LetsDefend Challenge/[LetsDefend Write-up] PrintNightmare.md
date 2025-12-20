@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.939Z
+slug: letsdefend-write-up-printnightmare
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-printnightmare
+title: 'LetsDefend Write up PrintNightmare'
+---
 # [LetsDefend - PrintNightmare](https://app.letsdefend.io/challenge/PrintNightmare)
 Created: 11/06/2024 11:54
 Last Updated: 07/01/2025 21:08

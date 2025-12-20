@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.887Z
+slug: cyberdefenders-write-up-fog-ransomware
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-fog-ransomware
+title: 'CyberDefenders Write up Fog Ransomware'
+---
 # [CyberDefenders - Fog Ransomware](https://cyberdefenders.org/blueteam-ctf-challenges/fog-ransomware/)
 ## Table of Contents
 

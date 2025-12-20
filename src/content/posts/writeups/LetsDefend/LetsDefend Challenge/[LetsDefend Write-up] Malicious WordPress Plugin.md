@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.934Z
+slug: letsdefend-write-up-malicious-wordpress-plugin
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-malicious-wordpress-plugin
+title: 'LetsDefend Write up Malicious WordPress Plugin'
+---
 # [LetsDefend - Malicious WordPress Plugin](https://app.letsdefend.io/challenge/malicious-wordpress-plugin)
 Created: 07/06/2024 13:41
 Last Updated: 10/06/2024 23:19

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.891Z
+slug: cyberdefenders-write-up-icedid
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-icedid
+title: 'CyberDefenders Write up IcedID'
+---
 # [CyberDefenders - IcedID](https://cyberdefenders.org/blueteam-ctf-challenges/icedid/)
 Created: 08/10/2024 13:27
 Last Updated: 08/10/2024 21:37

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.894Z
+slug: cyberdefenders-write-up-msixphish
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-msixphish
+title: 'CyberDefenders Write up MSIXPhish'
+---
 # [CyberDefenders - MSIXPhish](https://cyberdefenders.org/blueteam-ctf-challenges/msixphish/)
 Created: 08/10/2024 13:46
 Last Updated: 31/12/2024 20:24

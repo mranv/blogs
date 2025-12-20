@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.943Z
+slug: letsdefend-write-up-wannacry-ransomware
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-wannacry-ransomware
+title: 'LetsDefend Write up WannaCry Ransomware'
+---
 # [LetsDefend - WannaCry Ransomware](https://app.letsdefend.io/challenge/wannacry-ransomware)
 Created: 22/03/2024 14:06
 Last Updated: 22/06/2024 13:36

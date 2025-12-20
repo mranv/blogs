@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.940Z
+slug: letsdefend-write-up-revenge-rat
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-revenge-rat
+title: 'LetsDefend Write up Revenge RAT'
+---
 # [LetsDefend - Revenge RAT](https://app.letsdefend.io/challenge/revenge-rat)
 Created: 30/07/2024 23:31
 Last Updated: 02/08/2024 10:53

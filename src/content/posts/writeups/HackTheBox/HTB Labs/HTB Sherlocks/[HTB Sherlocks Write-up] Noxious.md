@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.917Z
+slug: htb-sherlocks-write-up-noxious
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-noxious
+title: 'HTB Sherlocks Write up Noxious'
+---
 # [HackTheBox Sherlocks - Noxious](https://app.hackthebox.com/sherlocks/Noxious)
 Created: 03/08/2024 14:00
 Last Updated: 03/08/2024 03/08/2024 15:38

@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.919Z
+slug: htb-sherlocks-write-up-opsalwarkameez24-4-salsa-dance
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-opsalwarkameez24-4-salsa-dance
+title: 'HTB Sherlocks Write up OpSalwarKameez24 4 Salsa Dance'
+---
 # [HackTheBox Sherlocks - OpSalwarKameez24-4: Salsa-Dance](https://app.hackthebox.com/sherlocks/OpSalwarKameez24-4:%20Salsa-Dance)
 Created: 03/11/2024 17:20
 Last Updated: 08/12/2024 00:25

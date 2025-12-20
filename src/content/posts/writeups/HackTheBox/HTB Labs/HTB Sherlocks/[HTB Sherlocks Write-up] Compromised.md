@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.913Z
+slug: htb-sherlocks-write-up-compromised
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-compromised
+title: 'HTB Sherlocks Write up Compromised'
+---
 # [HackTheBox Sherlocks - Compromised](https://app.hackthebox.com/sherlocks/Compromised)
 
 ![fa4df0f2b0b9df0488da90bc857bf5e8.png](assets/resources-writeupsfa4df0f2b0b9df0488da90bc857bf5e8.png)

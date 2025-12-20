@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.947Z
+slug: btlo-write-up-masquerade
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-masquerade
+title: 'BTLO Write up Masquerade'
+---
 # [Blue Team Labs Online - Masquerade](https://blueteamlabs.online/home/investigation/masquerade-d41fa429f3)
 
 ![25dd1c8d2ec779d65c6945e3aa0dbcac.png](assets/resources-writeups25dd1c8d2ec779d65c6945e3aa0dbcac.png)

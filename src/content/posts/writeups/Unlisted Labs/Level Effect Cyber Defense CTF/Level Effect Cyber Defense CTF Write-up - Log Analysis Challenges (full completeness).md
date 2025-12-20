@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: Level Effect Cyber Defense CTF
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.962Z
+slug: level-effect-cyber-defense-ctf-write-up---log-analysis-challenges-(full-completeness)
+tags:
+- level-effect-cyber-defense-ctf
+- unlisted-labs
+- level-effect-cyber-defense-ctf-write-up---log-analysis-challenges-(full-completeness)
+title: 'Level Effect Cyber Defense CTF Write up   Log Analysis Challenges (full completeness)'
+---
 # Level Effect Cyber Defense CTF Write-up - Log Analysis Challenges (6/6 completeness)
 ## Table of Contents
 

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.891Z
+slug: cyberdefenders-write-up-hunter
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-hunter
+title: 'CyberDefenders Write up Hunter'
+---
 # [CyberDefenders - Hunter](https://cyberdefenders.org/blueteam-ctf-challenges/hunter/)
 ## Table of Contents
 

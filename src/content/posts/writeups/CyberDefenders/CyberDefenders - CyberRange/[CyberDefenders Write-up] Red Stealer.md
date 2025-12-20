@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.900Z
+slug: cyberdefenders-write-up-red-stealer
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-red-stealer
+title: 'CyberDefenders Write up Red Stealer'
+---
 # [CyberDefenders - Red Stealer](https://cyberdefenders.org/blueteam-ctf-challenges/red-stealer/)
 Created: 08/06/2024 13:24
 Last Updated: 08/06/2024 14:59

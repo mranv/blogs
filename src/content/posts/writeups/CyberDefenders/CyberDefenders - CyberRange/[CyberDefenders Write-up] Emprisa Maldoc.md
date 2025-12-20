@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.886Z
+slug: cyberdefenders-write-up-emprisa-maldoc
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-emprisa-maldoc
+title: 'CyberDefenders Write up Emprisa Maldoc'
+---
 # [CyberDefenders - Emprisa Maldoc](https://cyberdefenders.org/blueteam-ctf-challenges/emprisa-maldoc/)
 Created: 22/06/2024 12:51
 Last Updated: 22/06/2024 18:39

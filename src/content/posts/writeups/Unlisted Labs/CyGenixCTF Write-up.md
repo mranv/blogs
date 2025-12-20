@@ -1,3 +1,17 @@
+---
+author: Anubhav Gain
+category: Unlisted Labs
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.961Z
+slug: cygenixctf-write-up
+tags:
+- unlisted-labs
+- cygenixctf-write-up
+title: 'CyGenixCTF Write up'
+---
 # CyGenixCTF Write-up (10/24 solved)
 ## Table of Contents
 

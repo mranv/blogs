@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.920Z
+slug: htb-sherlocks-write-up-optinseltrace24-1-sneaky-cookies
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-optinseltrace24-1-sneaky-cookies
+title: 'HTB Sherlocks Write up OpTinselTrace24 1 Sneaky Cookies'
+---
 # [HackTheBox Sherlocks - OpTinselTrace24-1: Sneaky Cookies](https://app.hackthebox.com/sherlocks/OpTinselTrace24-1:%20Sneaky%20Cookies)
 Created: 15/12/2024 23:01
 Last Updated: 17/02/2025 01:09

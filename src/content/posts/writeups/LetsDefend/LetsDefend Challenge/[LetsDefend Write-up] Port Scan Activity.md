@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.938Z
+slug: letsdefend-write-up-port-scan-activity
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-port-scan-activity
+title: 'LetsDefend Write up Port Scan Activity'
+---
 # [LetsDefend - Port Scan Activity](https://app.letsdefend.io/challenge/port-scan-activity)
 Created: 12/01/2024 12:13
 Last Updated: 05/06/2024 20:17

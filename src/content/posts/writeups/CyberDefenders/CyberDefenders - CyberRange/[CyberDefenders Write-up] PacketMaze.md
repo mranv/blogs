@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.897Z
+slug: cyberdefenders-write-up-packetmaze
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-packetmaze
+title: 'CyberDefenders Write up PacketMaze'
+---
 # [CyberDefenders - PacketMaze](https://cyberdefenders.org/blueteam-ctf-challenges/packetmaze/)
 Created: 14/03/2024 15:10
 Last Updated: 14/03/2024 16:02

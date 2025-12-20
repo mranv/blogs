@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.909Z
+slug: htb-write-up-media
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-media
+title: 'HTB Write up Media'
+---
 # [HackTheBox - Media](https://app.hackthebox.com/machines/Media)
 
 ![45875114e37755b090f67430a777c14d.png](assets/resources-writeups45875114e37755b090f67430a777c14d.png)

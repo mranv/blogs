@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.944Z
+slug: letsdefend-write-up-windows-registry
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-windows-registry
+title: 'LetsDefend Write up Windows Registry'
+---
 # [LetsDefend - Windows Registry](https://app.letsdefend.io/challenge/windows-registry)
 Created: 24/03/2025 20:21
 Last Updated: 22/04/2025 20:15

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.951Z
+slug: thm-write-up-block
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-block
+title: 'THM Write up Block'
+---
 # [TryHackMe - Block](https://tryhackme.com/r/room/blockroom)
 ![3138c3081ab03a010d93ba4401508269.png](assets/resources-writeups3138c3081ab03a010d93ba4401508269.png)
 Encryption? What encryption?

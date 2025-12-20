@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.918Z
+slug: htb-sherlocks-write-up-optinseltrace24-4-neural-noel
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-optinseltrace24-4-neural-noel
+title: 'HTB Sherlocks Write up OPTinselTrace24 4 Neural Noel'
+---
 # [HackTheBox Sherlocks - OPTinselTrace24-4: Neural Noel](https://app.hackthebox.com/sherlocks/OPTinselTrace24-4:%20Neural%20Noel)
 Created: 15/12/2024 23:06
 Last Updated: 

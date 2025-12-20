@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.910Z
+slug: htb-write-up-slonik
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-slonik
+title: 'HTB Write up Slonik'
+---
 # [HackTheBox - Slonik](https://app.hackthebox.com/machines/Slonik)
 
 ![83fb37a52cd7f1e70f4a5c5a558c3a32.png](assets/resources-writeups83fb37a52cd7f1e70f4a5c5a558c3a32.png)

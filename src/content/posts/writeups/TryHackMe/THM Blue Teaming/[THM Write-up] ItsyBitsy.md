@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.957Z
+slug: thm-write-up-itsybitsy
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-itsybitsy
+title: 'THM Write up ItsyBitsy'
+---
 # [TryHackMe - ItsyBitsy](https://tryhackme.com/room/itsybitsy)
 ![c857f94abcff342c3b66ac6ac9c6354d.png](assets/resources-writeupsc857f94abcff342c3b66ac6ac9c6354d.png)
 ***

@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.920Z
+slug: htb-sherlocks-write-up-psittaciformes
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-psittaciformes
+title: 'HTB Sherlocks Write up Psittaciformes'
+---
 # [HackTheBox Sherlocks - Psittaciformes](https://app.hackthebox.com/sherlocks/Psittaciformes)
 ![8647ce797f41cda9d29b9e2d682e7b23.png](assets/resources-writeups8647ce797f41cda9d29b9e2d682e7b23.png)
 **Scenario:**

@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.919Z
+slug: htb-sherlocks-write-up-opsalwarkameez24-2-magic-show
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-opsalwarkameez24-2-magic-show
+title: 'HTB Sherlocks Write up OpSalwarKameez24 2 Magic Show'
+---
 # [HackTheBox Sherlocks - OpSalwarKameez24-2: Magic-Show](https://app.hackthebox.com/sherlocks/OpSalwarKameez24-2:%20Magic-Show)
 Created: 03/11/2024 14:50
 Last Updated: 23/11/2024 17:13

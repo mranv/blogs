@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.916Z
+slug: htb-sherlocks-write-up-litter
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-litter
+title: 'HTB Sherlocks Write up Litter'
+---
 # [HackTheBox Sherlocks - Litter](https://app.hackthebox.com/sherlocks/Litter)
 Created: 29/09/2024 10:26
 Last Updated: 29/09/2024 18:03

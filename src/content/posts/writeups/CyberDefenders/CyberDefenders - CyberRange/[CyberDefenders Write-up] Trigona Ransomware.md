@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.904Z
+slug: cyberdefenders-write-up-trigona-ransomware
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-trigona-ransomware
+title: 'CyberDefenders Write up Trigona Ransomware'
+---
 # [CyberDefenders - Trigona Ransomware](https://cyberdefenders.org/blueteam-ctf-challenges/trigona-ransomware/)
 ## Table of Contents
 

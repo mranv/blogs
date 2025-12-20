@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.912Z
+slug: htb-sherlocks-write-up-bought
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-bought
+title: 'HTB Sherlocks Write up BOughT'
+---
 # [HackTheBox Sherlocks - BOughT](https://app.hackthebox.com/sherlocks/BOughT)
 Created: 27/07/2024 13:21
 Last Updated: 27/07/2024 21:34

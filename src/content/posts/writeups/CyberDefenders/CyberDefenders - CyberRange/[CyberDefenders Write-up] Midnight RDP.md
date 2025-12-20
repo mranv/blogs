@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.895Z
+slug: cyberdefenders-write-up-midnight-rdp
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-midnight-rdp
+title: 'CyberDefenders Write up Midnight RDP'
+---
 # [CyberDefenders - Midnight RDP](https://cyberdefenders.org/blueteam-ctf-challenges/midnight-rdp/)
 ## Table of Contents
 

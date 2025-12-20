@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.898Z
+slug: cyberdefenders-write-up-poisonedcredentials
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-poisonedcredentials
+title: 'CyberDefenders Write up PoisonedCredentials'
+---
 # [CyberDefenders - PoisonedCredentials](https://cyberdefenders.org/blueteam-ctf-challenges/poisonedcredentials/) 
 Created: 20/02/2024 12:30
 Last Updated: 20/02/2024 12:53

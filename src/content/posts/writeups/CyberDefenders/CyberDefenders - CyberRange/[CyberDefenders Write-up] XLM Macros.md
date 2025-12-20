@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.906Z
+slug: cyberdefenders-write-up-xlm-macros
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-xlm-macros
+title: 'CyberDefenders Write up XLM Macros'
+---
 # [CyberDefenders - XLM Macros](https://cyberdefenders.org/blueteam-ctf-challenges/xlm-macros/)
 Created: 21/06/2024 00:22
 Last Updated: 22/06/2024 02:03

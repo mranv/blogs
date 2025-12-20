@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.930Z
+slug: letsdefend-write-up-linux-disk-forensics
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-linux-disk-forensics
+title: 'LetsDefend Write up Linux Disk Forensics'
+---
 # [LetsDefend - Linux Disk Forensics](https://app.letsdefend.io/challenge/linux-disk-forensics)
 Created: 02/04/2024 15:26
 Last Updated: 03/04/2024 08:48

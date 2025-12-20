@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.885Z
+slug: cyberdefenders-write-up-brave
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-brave
+title: 'CyberDefenders Write up Brave'
+---
 # [CyberDefenders - Brave](https://cyberdefenders.org/blueteam-ctf-challenges/brave/)
 Created: 15/06/2024 21:03
 Last Updated: 16/06/2024 01:14

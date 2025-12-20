@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.886Z
+slug: cyberdefenders-write-up-dumpme
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-dumpme
+title: 'CyberDefenders Write up DumpMe'
+---
 # [CyberDefenders - DumpMe](https://cyberdefenders.org/blueteam-ctf-challenges/dumpme/)
 Created: 05/06/2024 01:42
 Last Updated: 13/06/2024 12:48

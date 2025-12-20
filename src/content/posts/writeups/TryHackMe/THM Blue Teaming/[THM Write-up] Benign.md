@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.950Z
+slug: thm-write-up-benign
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-benign
+title: 'THM Write up Benign'
+---
 # [TryHackMe - Benign](https://tryhackme.com/room/benign)
 ![c3c780ff9a78f6398cc32da2582c96a1.png](assets/resources-writeupsc3c780ff9a78f6398cc32da2582c96a1.png)
 ***

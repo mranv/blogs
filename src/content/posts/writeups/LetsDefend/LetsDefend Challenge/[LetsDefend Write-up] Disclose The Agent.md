@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.926Z
+slug: letsdefend-write-up-disclose-the-agent
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-disclose-the-agent
+title: 'LetsDefend Write up Disclose The Agent'
+---
 # [LetsDefend - Disclose The Agent](https://app.letsdefend.io/challenge/disclose-the-agent)
 Created: 16/01/2024 09:34
 Last Updated: 25/01/2024 13:07

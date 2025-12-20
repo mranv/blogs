@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.915Z
+slug: htb-sherlocks-write-up-heartbreaker-continuum
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-heartbreaker-continuum
+title: 'HTB Sherlocks Write up Heartbreaker Continuum'
+---
 # [HackTheBox Sherlocks - Heartbreaker-Continuum](https://app.hackthebox.com/sherlocks/Heartbreaker-Continuum)
 Created: 12/07/2024 17:30
 Last Updated: 12/07/2024 22:38

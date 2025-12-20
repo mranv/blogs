@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.941Z
+slug: letsdefend-write-up-serpent-stealer
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-serpent-stealer
+title: 'LetsDefend Write up Serpent Stealer'
+---
 # [LetsDefend - Serpent Stealer](https://app.letsdefend.io/challenge/serpent-stealer)
 Created: 11/04/2024 12:59
 Last Updated: 30/04/2024 19:08

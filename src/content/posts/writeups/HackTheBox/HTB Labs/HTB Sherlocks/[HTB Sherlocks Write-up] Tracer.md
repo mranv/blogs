@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.921Z
+slug: htb-sherlocks-write-up-tracer
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-tracer
+title: 'HTB Sherlocks Write up Tracer'
+---
 # [HackTheBox Sherlocks - Tracer](https://app.hackthebox.com/sherlocks/Tracer)
 Created: 22/05/2024 13:14
 Last Updated: 22/05/2024 15:36

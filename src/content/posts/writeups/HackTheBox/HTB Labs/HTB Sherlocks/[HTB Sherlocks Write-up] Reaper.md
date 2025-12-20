@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.920Z
+slug: htb-sherlocks-write-up-reaper
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-reaper
+title: 'HTB Sherlocks Write up Reaper'
+---
 # [HackTheBox Sherlocks - Reaper](https://app.hackthebox.com/sherlocks/Reaper)
 Created: 16/08/2024 16:44
 Last Updated: 16/08/2024 18:19

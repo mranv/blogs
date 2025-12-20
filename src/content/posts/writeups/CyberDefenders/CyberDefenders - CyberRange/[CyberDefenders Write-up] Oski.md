@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.896Z
+slug: cyberdefenders-write-up-oski
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-oski
+title: 'CyberDefenders Write up Oski'
+---
 # [CyberDefenders - Oski](https://cyberdefenders.org/blueteam-ctf-challenges/oski/)
 Created: 08/10/2024 13:35
 Last Updated: 08/10/2024 23:53

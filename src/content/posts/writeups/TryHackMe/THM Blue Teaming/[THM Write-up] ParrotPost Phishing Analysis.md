@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.958Z
+slug: thm-write-up-parrotpost-phishing-analysis
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-parrotpost-phishing-analysis
+title: 'THM Write up ParrotPost Phishing Analysis'
+---
 # TryHackMe - ParrotPost: Phishing Analysis
 ![24148e7f86a0536d38c03c449da60477.png](assets/resources-writeups24148e7f86a0536d38c03c449da60477.png)
 Reveal how attackers can craft client-side credential-stealing webpages that evade detection by security tools.

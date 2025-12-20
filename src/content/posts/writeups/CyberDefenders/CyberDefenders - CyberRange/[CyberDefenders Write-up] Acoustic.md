@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.882Z
+slug: cyberdefenders-write-up-acoustic
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-acoustic
+title: 'CyberDefenders Write up Acoustic'
+---
 # [CyberDefenders - Acoustic](https://cyberdefenders.org/blueteam-ctf-challenges/acoustic/)
 Created: 14/03/2024 10:49
 Last Updated: 14/03/2024 14:55

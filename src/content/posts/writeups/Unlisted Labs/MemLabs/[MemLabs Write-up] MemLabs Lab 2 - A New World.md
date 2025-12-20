@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: MemLabs
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.963Z
+slug: memlabs-write-up-memlabs-lab-2---a-new-world
+tags:
+- memlabs
+- unlisted-labs
+- memlabs-write-up-memlabs-lab-2---a-new-world
+title: 'MemLabs Write up MemLabs Lab 2   A New World'
+---
 # [MemLabs Lab 2 - A New World](https://github.com/stuxnet999/MemLabs/tree/master/Lab%202)
 Created: 14/07/2024 16:01
 Last Updated: 

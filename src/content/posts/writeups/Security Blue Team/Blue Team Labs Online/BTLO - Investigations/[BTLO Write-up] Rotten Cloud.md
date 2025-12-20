@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.948Z
+slug: btlo-write-up-rotten-cloud
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-rotten-cloud
+title: 'BTLO Write up Rotten Cloud'
+---
 # [Blue Team Labs Online - Rottencloud](https://blueteamlabs.online/home/investigation/rotten-cloud-dcf4ab87e0)
 
 ![e3efe79da6e0bffc8111276c46d3fed1.png](assets/resources-writeupse3efe79da6e0bffc8111276c46d3fed1.png)

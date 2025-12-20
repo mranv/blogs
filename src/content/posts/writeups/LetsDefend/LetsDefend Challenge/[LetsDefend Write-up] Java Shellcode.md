@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.929Z
+slug: letsdefend-write-up-java-shellcode
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-java-shellcode
+title: 'LetsDefend Write up Java Shellcode'
+---
 # [LetsDefend - Java Shellcode](https://app.letsdefend.io/challenge/java-shellcode)
 Created: 
 Last Updated: 

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.942Z
+slug: letsdefend-write-up-teamviewer-forensics
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-teamviewer-forensics
+title: 'LetsDefend Write up TeamViewer Forensics'
+---
 # [LetsDefend - TeamViewer Forensics](https://app.letsdefend.io/challenge/teamviewer-forensics)
 Created: 09/07/2024 10:31
 Last Updated: 07/08/2024 19:42

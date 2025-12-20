@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.960Z
+slug: thm-write-up-the-greenholt-phish
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-the-greenholt-phish
+title: 'THM Write up The Greenholt Phish'
+---
 # [TryHackMe - The Greenholt Phish](https://tryhackme.com/room/phishingemails5fgjlzxc)
 ![a65fee32610a8d6bcb232c4c2ffdd236.png](assets/resources-writeupsa65fee32610a8d6bcb232c4c2ffdd236.png)
 ***

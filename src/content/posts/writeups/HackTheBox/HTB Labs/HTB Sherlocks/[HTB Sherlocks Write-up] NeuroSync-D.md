@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.917Z
+slug: htb-sherlocks-write-up-neurosync-d
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-neurosync-d
+title: 'HTB Sherlocks Write up NeuroSync D'
+---
 # [HackTheBox Sherlocks - NeuroSync-D](https://app.hackthebox.com/sherlocks/NeuroSync-D)
 ![88c28e4ff83a53a51595847681cbfab9.png](assets/resources-writeups88c28e4ff83a53a51595847681cbfab9.png)
 **Scenario:**

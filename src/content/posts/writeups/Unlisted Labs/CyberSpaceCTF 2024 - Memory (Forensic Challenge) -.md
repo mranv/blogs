@@ -1,3 +1,17 @@
+---
+author: Anubhav Gain
+category: Unlisted Labs
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.962Z
+slug: cyberspacectf-2024---memory-(forensic-challenge)--
+tags:
+- unlisted-labs
+- cyberspacectf-2024---memory-(forensic-challenge)--
+title: 'CyberSpaceCTF 2024   Memory (Forensic Challenge)  '
+---
 # CyberSpaceCTF 2024 - Memory - Forensics Challenge
 ![7b69ff048b07fa725b0c71407a1a3134.png](assets/resources-writeups7b69ff048b07fa725b0c71407a1a3134.png)
 I left the image of the flag in the desktop but somehow it disappeared, can you help me recover it?

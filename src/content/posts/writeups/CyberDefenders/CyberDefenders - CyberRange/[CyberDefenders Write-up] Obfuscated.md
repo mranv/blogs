@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.896Z
+slug: cyberdefenders-write-up-obfuscated
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-obfuscated
+title: 'CyberDefenders Write up Obfuscated'
+---
 # [CyberDefenders - Obfuscated](https://cyberdefenders.org/blueteam-ctf-challenges/obfuscated/)
 Created: 23/06/2024 01:41
 Last Updated: 23/06/2024 20:22

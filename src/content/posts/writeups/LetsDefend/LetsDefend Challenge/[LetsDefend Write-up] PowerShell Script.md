@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.938Z
+slug: letsdefend-write-up-powershell-script
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-powershell-script
+title: 'LetsDefend Write up PowerShell Script'
+---
 # [LetsDefend - PowerShell Script](https://app.letsdefend.io/challenge/powershell-script)
 Created: 27/02/2024 08:30
 Last Updated: 27/02/2024 08:54

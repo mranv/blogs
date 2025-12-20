@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.935Z
+slug: letsdefend-write-up-ntfs-forensics
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-ntfs-forensics
+title: 'LetsDefend Write up NTFS Forensics'
+---
 # [LetsDefend - NTFS Forensics](https://app.letsdefend.io/challenge/ntfs-forensics)
 Created: 24/02/2025 23:00
 Last Updated: 22/04/2025 19:02

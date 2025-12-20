@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.901Z
+slug: cyberdefenders-write-up-seized
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-seized
+title: 'CyberDefenders Write up Seized'
+---
 # [CyberDefenders - Seized](https://cyberdefenders.org/blueteam-ctf-challenges/seized/)
 Created: 05/06/2024 04:48
 Last Updated: 05/06/2024 20:15

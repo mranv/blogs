@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.925Z
+slug: letsdefend-write-up-batch-downloader
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-batch-downloader
+title: 'LetsDefend Write up Batch Downloader'
+---
 # [LetsDefend - Batch Downloader](https://app.letsdefend.io/challenge/batch-downloader)
 Created: 16/07/2024 08:00
 Last Updated: 26/07/2024 07:20

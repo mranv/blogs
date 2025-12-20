@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.885Z
+slug: cyberdefenders-write-up-bumblesting
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-bumblesting
+title: 'CyberDefenders Write up BumbleSting'
+---
 # [CyberDefenders - BumbleSting](https://cyberdefenders.org/blueteam-ctf-challenges/bumblesting/)
 ## Table of Contents
 

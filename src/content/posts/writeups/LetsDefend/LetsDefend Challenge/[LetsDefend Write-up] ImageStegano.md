@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.928Z
+slug: letsdefend-write-up-imagestegano
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-imagestegano
+title: 'LetsDefend Write up ImageStegano'
+---
 # [LetsDefend - ImageStegano](https://app.letsdefend.io/challenge/imagestegano)
 Created: 02/04/2024 11:05
 Last Updated: 02/04/2024 12:21

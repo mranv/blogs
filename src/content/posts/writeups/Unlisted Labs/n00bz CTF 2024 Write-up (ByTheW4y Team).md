@@ -1,3 +1,17 @@
+---
+author: Anubhav Gain
+category: Unlisted Labs
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.966Z
+slug: n00bz-ctf-2024-write-up-(bythew4y-team)
+tags:
+- unlisted-labs
+- n00bz-ctf-2024-write-up-(bythew4y-team)
+title: 'n00bz CTF 2024 Write up (ByTheW4y Team)'
+---
 # n00bz CTF 2024 by ByTheW4y
 ## Table of Contents
 

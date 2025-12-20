@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.905Z
+slug: cyberdefenders-write-up-webstrike
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-webstrike
+title: 'CyberDefenders Write up WebStrike'
+---
 # [CyberDefenders - WebStrike](https://cyberdefenders.org/blueteam-ctf-challenges/webstrike/)
 Created: 19/02/2024 12:45
 Last Updated: 09/10/2024 00:21

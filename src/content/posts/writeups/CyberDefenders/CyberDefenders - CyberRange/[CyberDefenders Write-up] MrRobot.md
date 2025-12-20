@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.895Z
+slug: cyberdefenders-write-up-mrrobot
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-mrrobot
+title: 'CyberDefenders Write up MrRobot'
+---
 # [CyberDefenders - MrRobot](https://cyberdefenders.org/blueteam-ctf-challenges/mrrobot/)
 Created: 05/06/2024 19:35
 Last Updated: 08/06/2024 16:47

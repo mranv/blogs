@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.906Z
+slug: cyberdefenders-write-up-yellow-rat
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-yellow-rat
+title: 'CyberDefenders Write up Yellow RAT'
+---
 # [CyberDefenders - Yellow RAT](https://cyberdefenders.org/blueteam-ctf-challenges/yellow-rat/)
 Created: 08/10/2024 13:44
 Last Updated: 09/10/2024 10:03

@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.922Z
+slug: htb-sherlocks-write-up-trent
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-trent
+title: 'HTB Sherlocks Write up Trent'
+---
 # [HackTheBox Sherlocks - Trent](https://app.hackthebox.com/sherlocks/Trent)
 Created: 17/02/2025 13:15
 Last Updated: 19/02/2025 13:14

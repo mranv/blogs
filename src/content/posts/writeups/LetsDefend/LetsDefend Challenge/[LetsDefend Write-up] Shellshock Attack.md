@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.941Z
+slug: letsdefend-write-up-shellshock-attack
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-shellshock-attack
+title: 'LetsDefend Write up Shellshock Attack'
+---
 # [LetsDefend - Shellshock Attack](https://app.letsdefend.io/challenge/shellshock-attack)
 Created: 12/01/2024 12:13
 Last Updated: 16/01/2024 14:15

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.886Z
+slug: cyberdefenders-write-up-deepdive
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-deepdive
+title: 'CyberDefenders Write up DeepDive'
+---
 # [CyberDefenders - DeepDive](https://cyberdefenders.org/blueteam-ctf-challenges/deepdive/)
 Created: 11/06/2024 22:07
 Last Updated: 12/06/2024 22:15

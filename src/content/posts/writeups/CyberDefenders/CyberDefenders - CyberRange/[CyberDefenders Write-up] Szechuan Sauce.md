@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.903Z
+slug: cyberdefenders-write-up-szechuan-sauce
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-szechuan-sauce
+title: 'CyberDefenders Write up Szechuan Sauce'
+---
 # [CyberDefenders - Szechuan Sauce](https://cyberdefenders.org/blueteam-ctf-challenges/szechuan-sauce/)
 ## Table of Contents
 

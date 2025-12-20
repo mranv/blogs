@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.933Z
+slug: letsdefend-write-up-malicious-web-traffic-analys
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-malicious-web-traffic-analys
+title: 'LetsDefend Write up Malicious Web Traffic Analys'
+---
 # [LetsDefend - Malicious Web Traffic Analysis](https://app.letsdefend.io/challenge/malicious-web-traffic-analysis)
 Created: 06/08/2024 18:14
 Last Updated: 07/08/2024 18:31

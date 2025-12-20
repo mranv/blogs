@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.914Z
+slug: htb-sherlocks-write-up-crewcrow
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-crewcrow
+title: 'HTB Sherlocks Write up CrewCrow'
+---
 # [HackTheBox Sherlocks - CrewCrow](https://app.hackthebox.com/sherlocks/CrewCrow)
 ![6ebe37a68e57300c75d581cbcaf6a1c3.png](assets/resources-writeups6ebe37a68e57300c75d581cbcaf6a1c3.png)
 ## Scenario

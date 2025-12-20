@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: MemLabs
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.963Z
+slug: memlabs-write-up-memlabs-lab-5---black-tuesday
+tags:
+- memlabs
+- unlisted-labs
+- memlabs-write-up-memlabs-lab-5---black-tuesday
+title: 'MemLabs Write up MemLabs Lab 5   Black Tuesday'
+---
 # [MemLabs Lab 5 - Black Tuesday](https://github.com/stuxnet999/MemLabs/tree/master/Lab%205)
 Created: 14/07/2024 16:51
 Last Updated: 27/08/2024 18:10

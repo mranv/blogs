@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.958Z
+slug: thm-write-up-phishing-analysis-tools-(case-1-3)
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-phishing-analysis-tools-(case-1-3)
+title: 'THM Write up Phishing Analysis Tools (Case 1 3)'
+---
 # [TryHackMe - Phishing Analysis Tools (Phishing Case 1-3)](https://tryhackme.com/room/phishingemails3tryoe)
 ![77bebe6bbc08d4557788a76f4a5645cd.png](assets/resources-writeups77bebe6bbc08d4557788a76f4a5645cd.png)
 ***

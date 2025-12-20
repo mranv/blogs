@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.928Z
+slug: letsdefend-write-up-investigate-web-attack
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-investigate-web-attack
+title: 'LetsDefend Write up Investigate Web Attack'
+---
 # [LetsDefend - Investigate Web Attack](https://app.letsdefend.io/challenge/investigate-web-attack)
 Created: 15/01/2024 12:02
 Last Updated: 19/01/2024 08:52

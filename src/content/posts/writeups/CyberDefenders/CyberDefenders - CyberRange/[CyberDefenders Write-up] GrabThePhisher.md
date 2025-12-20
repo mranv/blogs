@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.889Z
+slug: cyberdefenders-write-up-grabthephisher
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-grabthephisher
+title: 'CyberDefenders Write up GrabThePhisher'
+---
 # [CyberDefenders - GrabThePhisher](https://cyberdefenders.org/blueteam-ctf-challenges/grabthephisher/)
 Created: 27/02/2024 16:02
 Last Updated: 27/02/2024 16:25

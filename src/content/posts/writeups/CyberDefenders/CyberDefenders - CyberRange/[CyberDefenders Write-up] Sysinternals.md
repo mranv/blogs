@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.903Z
+slug: cyberdefenders-write-up-sysinternals
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-sysinternals
+title: 'CyberDefenders Write up Sysinternals'
+---
 # [CyberDefenders - Sysinternals](https://cyberdefenders.org/blueteam-ctf-challenges/sysinternals/)
 Created: 27/02/2024 10:40
 Last Updated: 27/02/2024 13:16

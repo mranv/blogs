@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.905Z
+slug: cyberdefenders-write-up-unpackme
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-unpackme
+title: 'CyberDefenders Write up UnPackMe'
+---
 # [CyberDefenders - UnPackMe](https://cyberdefenders.org/blueteam-ctf-challenges/unpackme/)
 Created: 29/05/2024 17:03
 Last Updated: 03/07/2024 11:18

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.959Z
+slug: thm-write-up-snapped-phish-ing-line
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-snapped-phish-ing-line
+title: 'THM Write up Snapped Phish ing Line'
+---
 # [TryHackMe - Snapped Phish-ing Line](https://tryhackme.com/room/snappedphishingline)
 ![90e303a94683bb6ad5632c6cc59d6e43.png](assets/resources-writeups90e303a94683bb6ad5632c6cc59d6e43.png)
 ***

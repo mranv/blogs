@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.912Z
+slug: htb-sherlocks-write-up-brutus
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-brutus
+title: 'HTB Sherlocks Write up Brutus'
+---
 # [HackTheBox Sherlocks - Brutus](https://app.hackthebox.com/sherlocks/Brutus/play)
 Created: 19/05/2024 13:42
 Last Updated: 19/05/2024 14:48

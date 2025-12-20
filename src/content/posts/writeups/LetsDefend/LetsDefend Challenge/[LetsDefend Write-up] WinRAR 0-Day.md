@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.943Z
+slug: letsdefend-write-up-winrar-0-day
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-winrar-0-day
+title: 'LetsDefend Write up WinRAR 0 Day'
+---
 # [LetsDefend - WinRAR 0-Day](https://app.letsdefend.io/challenge/winrar-0-day)
 Created: 03/04/2024 9:09
 Last Updated: 03/04/2024 10:48

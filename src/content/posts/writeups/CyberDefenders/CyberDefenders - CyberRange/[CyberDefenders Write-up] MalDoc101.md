@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.894Z
+slug: cyberdefenders-write-up-maldoc101
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-maldoc101
+title: 'CyberDefenders Write up MalDoc101'
+---
 # [CyberDefenders - MalDoc101](https://cyberdefenders.org/blueteam-ctf-challenges/maldoc101/)
 Created: 21/06/2024 20:48
 Last Updated: 21/06/2024 21:39

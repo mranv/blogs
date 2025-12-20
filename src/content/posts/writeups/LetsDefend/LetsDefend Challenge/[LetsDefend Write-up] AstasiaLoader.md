@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.925Z
+slug: letsdefend-write-up-astasialoader
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-astasialoader
+title: 'LetsDefend Write up AstasiaLoader'
+---
 # [LetsDefend - AstasiaLoader](https://app.letsdefend.io/challenge/astasialoader)
 Created: 19/06/2024 10:45
 Last Updated: 19/06/2024 11:46

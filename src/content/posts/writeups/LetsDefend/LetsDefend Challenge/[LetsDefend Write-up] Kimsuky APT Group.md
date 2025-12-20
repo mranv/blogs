@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.929Z
+slug: letsdefend-write-up-kimsuky-apt-group
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-kimsuky-apt-group
+title: 'LetsDefend Write up Kimsuky APT Group'
+---
 # [LetsDefend - Kimsuky APT Group](https://app.letsdefend.io/challenge/kimsuky-apt-group)
 Created: 22/03/2024 12:24
 Last Updated: 22/03/2024 13:13

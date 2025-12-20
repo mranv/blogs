@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.922Z
+slug: htb-sherlocks-write-up-unit42
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-unit42
+title: 'HTB Sherlocks Write up Unit42'
+---
 # [HackTheBox Sherlocks - Unit42](https://app.hackthebox.com/sherlocks/Unit42)
 Created: 19/05/2024 16:16
 Last Updated: 19/05/2024 16:32

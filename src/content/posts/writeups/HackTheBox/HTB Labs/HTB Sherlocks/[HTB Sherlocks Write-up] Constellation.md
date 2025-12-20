@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.913Z
+slug: htb-sherlocks-write-up-constellation
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-constellation
+title: 'HTB Sherlocks Write up Constellation'
+---
 # [HackTheBox Sherlocks - Constellation](https://app.hackthebox.com/sherlocks/Constellation)
 Created: 30/05/2024 20:11
 Last Updated: 30/05/2024 20:55

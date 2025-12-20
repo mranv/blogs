@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.953Z
+slug: thm-write-up-dead-end-
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-dead-end-
+title: 'THM Write up Dead End_'
+---
 # [TryHackMe - Dead End?](https://tryhackme.com/room/deadend)
 ![75158528f017d3840c84ca61a3c248ed.png](assets/resources-writeups75158528f017d3840c84ca61a3c248ed.png)
 ***

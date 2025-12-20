@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.953Z
+slug: thm-write-up-carnage
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-carnage
+title: 'THM Write up Carnage'
+---
 # [TryHackMe - Carnage](https://tryhackme.com/r/room/c2carnage)
 ![22e4eaabdd82fe03622811396c2e0cc3.png](assets/resources-writeups22e4eaabdd82fe03622811396c2e0cc3.png)
 Apply your analytical skills to analyze the malicious network traffic using Wireshark.

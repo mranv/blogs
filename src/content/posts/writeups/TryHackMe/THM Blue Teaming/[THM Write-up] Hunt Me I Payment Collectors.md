@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.956Z
+slug: thm-write-up-hunt-me-i-payment-collectors
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-hunt-me-i-payment-collectors
+title: 'THM Write up Hunt Me I Payment Collectors'
+---
 # [TryHackMe - Hunt Me I: Payment Collectors](https://tryhackme.com/room/paymentcollectors)
 ![43f295e251b3c18687844a3da0316c63.png](assets/resources-writeups43f295e251b3c18687844a3da0316c63.png)
 ***

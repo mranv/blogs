@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.918Z
+slug: htb-sherlocks-write-up-optinseltrace24-3-blizzard-breakdown
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-optinseltrace24-3-blizzard-breakdown
+title: 'HTB Sherlocks Write up OPTinselTrace24 3 Blizzard Breakdown'
+---
 # [HackTheBox Sherlocks - OPTinselTrace24-3: Blizzard Breakdown](https://app.hackthebox.com/sherlocks/OPTinselTrace24-3:%20Blizzard%20Breakdown)
 Created: 15/12/2024 23:05
 Last Updated: 21/12/2024 00:14

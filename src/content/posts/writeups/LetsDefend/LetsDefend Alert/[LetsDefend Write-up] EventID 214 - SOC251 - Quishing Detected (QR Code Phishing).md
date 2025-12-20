@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Alert
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.924Z
+slug: letsdefend-write-up-eventid-214---soc251---quishing-detected-(qr-code-phishing)
+tags:
+- letsdefend-alert
+- letsdefend
+- letsdefend-write-up-eventid-214---soc251---quishing-detected-(qr-code-phishing)
+title: 'LetsDefend Write up EventID 214   SOC251   Quishing Detected (QR Code Phishing)'
+---
 # LetsDefend - EventID 214 - SOC251 - Quishing Detected (QR Code Phishing)
 Created: 01/06/2024 12:54
 Last Updated: 01/06/2024 12:57

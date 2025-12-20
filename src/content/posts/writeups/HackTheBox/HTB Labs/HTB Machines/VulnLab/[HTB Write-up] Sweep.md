@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.911Z
+slug: htb-write-up-sweep
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-sweep
+title: 'HTB Write up Sweep'
+---
 # [HackTheBox - Sweep](https://app.hackthebox.com/machines/Sweep)
 
 ![ca14eb20774b9369201705b525de8cdb.png](assets/resources-writeupsca14eb20774b9369201705b525de8cdb.png)

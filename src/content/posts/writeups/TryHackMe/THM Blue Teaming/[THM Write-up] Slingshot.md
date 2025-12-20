@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.959Z
+slug: thm-write-up-slingshot
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-slingshot
+title: 'THM Write up Slingshot'
+---
 # [TryHackMe - Slingshot](https://tryhackme.com/room/slingshot)
 ![1dde743207407c1f73620eb70691cefc.png](assets/resources-writeups1dde743207407c1f73620eb70691cefc.png)
 ***

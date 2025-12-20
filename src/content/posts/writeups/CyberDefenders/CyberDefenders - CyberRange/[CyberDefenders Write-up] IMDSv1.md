@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.891Z
+slug: cyberdefenders-write-up-imdsv1
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-imdsv1
+title: 'CyberDefenders Write up IMDSv1'
+---
 # [CyberDefenders - IMDSv1](https://cyberdefenders.org/blueteam-ctf-challenges/imdsv1/)
 ## Table of Contents
 

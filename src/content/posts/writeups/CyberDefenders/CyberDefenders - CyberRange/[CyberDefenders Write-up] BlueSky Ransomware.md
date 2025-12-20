@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.884Z
+slug: cyberdefenders-write-up-bluesky-ransomware
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-bluesky-ransomware
+title: 'CyberDefenders Write up BlueSky Ransomware'
+---
 # [CyberDefenders - BlueSky Ransomware](https://cyberdefenders.org/blueteam-ctf-challenges/bluesky-ransomware/)
 Created: 18/05/2024 15:49
 Last Updated: 19/05/2024 01:30

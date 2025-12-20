@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.928Z
+slug: letsdefend-write-up-infection-with-cobalt-strike
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-infection-with-cobalt-strike
+title: 'LetsDefend Write up Infection with Cobalt Strike'
+---
 # [LetsDefend - Infection with Cobalt Strike](https://app.letsdefend.io/challenge/infection-cobalt-strike)
 Created: 28/02/2024 13:40
 Last Updated: 28/02/2024 16:36

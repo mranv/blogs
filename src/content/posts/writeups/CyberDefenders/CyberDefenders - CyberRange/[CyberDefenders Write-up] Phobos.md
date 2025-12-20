@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.898Z
+slug: cyberdefenders-write-up-phobos
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-phobos
+title: 'CyberDefenders Write up Phobos'
+---
 # [CyberDefenders - Phobos](https://cyberdefenders.org/blueteam-ctf-challenges/phobos/)
 Created: 25/06/2024 18:05
 Last Updated: 30/11/2024 02:44

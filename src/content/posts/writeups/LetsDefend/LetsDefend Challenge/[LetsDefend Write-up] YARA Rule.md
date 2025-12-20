@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.945Z
+slug: letsdefend-write-up-yara-rule
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-yara-rule
+title: 'LetsDefend Write up YARA Rule'
+---
 # [LetsDefend - YARA Rule](https://app.letsdefend.io/challenge/yara-rule)
 Created: 11/06/2024 10:48
 Last Updated: 11/06/2024 11:48

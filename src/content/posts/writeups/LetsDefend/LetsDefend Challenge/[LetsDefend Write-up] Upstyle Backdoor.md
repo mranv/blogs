@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.942Z
+slug: letsdefend-write-up-upstyle-backdoor
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-upstyle-backdoor
+title: 'LetsDefend Write up Upstyle Backdoor'
+---
 # [LetsDefend - Upstyle Backdoor](https://app.letsdefend.io/challenge/upstyle-backdoor)
 Created: 08/10/2024 09:32
 Last Updated: 08/10/2024 11:29

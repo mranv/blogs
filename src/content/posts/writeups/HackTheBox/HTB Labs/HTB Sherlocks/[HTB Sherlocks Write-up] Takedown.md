@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.921Z
+slug: htb-sherlocks-write-up-takedown
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-takedown
+title: 'HTB Sherlocks Write up Takedown'
+---
 # [HackTheBox Sherlocks - Takedown](https://app.hackthebox.com/sherlocks/Takedown)
 ![14e66ef239ea48fe7c93da4a2ae8f40e.png](assets/resources-writeups14e66ef239ea48fe7c93da4a2ae8f40e.png)
 **Scenario:**

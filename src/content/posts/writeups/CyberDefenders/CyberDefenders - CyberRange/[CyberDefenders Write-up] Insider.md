@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.892Z
+slug: cyberdefenders-write-up-insider
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-insider
+title: 'CyberDefenders Write up Insider'
+---
 # [CyberDefenders - Insider](https://cyberdefenders.org/blueteam-ctf-challenges/insider/) 
 Created: 05/03/2024 13:30
 Last Updated: 02/04/2024 08:30

@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.915Z
+slug: htb-sherlocks-write-up-heartbreaker-denouement
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-heartbreaker-denouement
+title: 'HTB Sherlocks Write up Heartbreaker Denouement'
+---
 # [HackTheBox Sherlocks - Heartbreaker-Denouement](https://app.hackthebox.com/sherlocks/Heartbreaker-Denouement)
 Created: 26/07/2024 19:48
 Last Updated: 13/08/2024 11:30

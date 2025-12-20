@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.931Z
+slug: letsdefend-write-up-linux-memory-forensics
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-linux-memory-forensics
+title: 'LetsDefend Write up Linux Memory Forensics'
+---
 # [LetsDefend - Linux Memory Forensics](https://app.letsdefend.io/challenge/linux-memory-forensics)
 Created: 11/05/2024 14:11
 Last Updated: 07/06/2024 08:58

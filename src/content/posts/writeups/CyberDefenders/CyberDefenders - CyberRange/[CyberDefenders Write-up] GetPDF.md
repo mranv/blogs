@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.888Z
+slug: cyberdefenders-write-up-getpdf
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-getpdf
+title: 'CyberDefenders Write up GetPDF'
+---
 # [CyberDefenders - GetPDF](https://cyberdefenders.org/blueteam-ctf-challenges/getpdf/)
 Created: 22/06/2024 19:13
 Last Updated: 23/06/2024 00:47

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.892Z
+slug: cyberdefenders-write-up-injector
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-injector
+title: 'CyberDefenders Write up Injector'
+---
 # [CyberDefenders - Injector](https://cyberdefenders.org/blueteam-ctf-challenges/injector/)
 Created: 18/06/2024 18:56
 Last Updated: 19/06/2024 21:44

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.959Z
+slug: thm-write-up-secret-recipe
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-secret-recipe
+title: 'THM Write up Secret Recipe'
+---
 # [TryHackMe - Secret Recipe](https://tryhackme.com/room/registry4n6)
 ![6ffd218e1b80f4ca036d54222f66e09d.png](assets/resources-writeups6ffd218e1b80f4ca036d54222f66e09d.png)
 ***

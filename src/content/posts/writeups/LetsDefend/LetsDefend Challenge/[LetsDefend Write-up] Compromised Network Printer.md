@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.926Z
+slug: letsdefend-write-up-compromised-network-printer
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-compromised-network-printer
+title: 'LetsDefend Write up Compromised Network Printer'
+---
 # [LetsDefend - Compromised Network Printer](https://app.letsdefend.io/challenge/compromised-network-printer)
 Created: 29/08/2024 22:23
 Last Updated: 29/08/2024 23:43

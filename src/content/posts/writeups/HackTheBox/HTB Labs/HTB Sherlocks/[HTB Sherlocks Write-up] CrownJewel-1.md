@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.914Z
+slug: htb-sherlocks-write-up-crownjewel-1
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-crownjewel-1
+title: 'HTB Sherlocks Write up CrownJewel 1'
+---
 # [HackTheBox Sherlocks - CrownJewel-1](https://app.hackthebox.com/sherlocks/CrownJewel-1)
 Created: 31/08/2024 10:43
 Last Updated: 31/08/2024 13:19

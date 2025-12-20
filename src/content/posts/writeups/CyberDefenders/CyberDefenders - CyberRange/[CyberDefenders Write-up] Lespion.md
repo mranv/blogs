@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.893Z
+slug: cyberdefenders-write-up-lespion
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-lespion
+title: 'CyberDefenders Write up Lespion'
+---
 # [CyberDefenders - Lespion](https://cyberdefenders.org/blueteam-ctf-challenges/lespion/) 
 Created: 28/02/2024 15:36
 Last Updated: 28/02/2024 09:07

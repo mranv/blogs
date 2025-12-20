@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.954Z
+slug: thm-write-up-disgruntled
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-disgruntled
+title: 'THM Write up Disgruntled'
+---
 # [TryHackMe - Disgruntled](https://tryhackme.com/room/disgruntled)
 ![17bf632054e2a09eb9bca1918230589d.png](assets/resources-writeups17bf632054e2a09eb9bca1918230589d.png)
 ***

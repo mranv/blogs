@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.955Z
+slug: thm-write-up-diskrupt
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-diskrupt
+title: 'THM Write up Diskrupt'
+---
 # [TryHackMe - Diskrupt](https://tryhackme.com/room/diskrupt)
 ![7d31f280af47a8c9eb9538feedaace47.png](assets/resources-writeups7d31f280af47a8c9eb9538feedaace47.png)
 ***

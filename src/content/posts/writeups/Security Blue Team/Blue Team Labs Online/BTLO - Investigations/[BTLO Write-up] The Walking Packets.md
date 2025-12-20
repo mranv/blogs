@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.949Z
+slug: btlo-write-up-the-walking-packets
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-the-walking-packets
+title: 'BTLO Write up The Walking Packets'
+---
 # [Blue Team Labs Online - The Walking Packets](https://blueteamlabs.online/home/investigation/the-walking-packets-f8cf5573cf)
 
 ![35ddb9b7d0c99338c503270835af604f.png](assets/resources-writeups35ddb9b7d0c99338c503270835af604f.png)

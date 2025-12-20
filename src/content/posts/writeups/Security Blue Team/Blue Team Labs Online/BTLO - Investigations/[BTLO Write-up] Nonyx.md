@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.947Z
+slug: btlo-write-up-nonyx
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-nonyx
+title: 'BTLO Write up Nonyx'
+---
 # [Blue Team Labs Online - Nonyx](https://blueteamlabs.online/home/investigation/nonyx-63b4769449)
 
 ![81155214d4921ba1c8014f030140fa8d.png](assets/resources-writeups81155214d4921ba1c8014f030140fa8d.png)

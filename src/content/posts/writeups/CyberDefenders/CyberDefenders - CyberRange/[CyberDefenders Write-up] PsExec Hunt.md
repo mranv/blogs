@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.898Z
+slug: cyberdefenders-write-up-psexec-hunt
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-psexec-hunt
+title: 'CyberDefenders Write up PsExec Hunt'
+---
 # [CyberDefenders - PsExec Hunt](https://cyberdefenders.org/blueteam-ctf-challenges/psexec-hunt/)
 Created: 21/02/2024 09:34
 Last Updated: 21/02/2024 10:55

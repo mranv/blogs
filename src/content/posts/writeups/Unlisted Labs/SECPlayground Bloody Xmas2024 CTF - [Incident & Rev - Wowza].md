@@ -1,3 +1,17 @@
+---
+author: Anubhav Gain
+category: Unlisted Labs
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.964Z
+slug: secplayground-bloody-xmas2024-ctf---incident-&-rev---wowza
+tags:
+- unlisted-labs
+- secplayground-bloody-xmas2024-ctf---incident-&-rev---wowza
+title: 'SECPlayground Bloody Xmas2024 CTF   Incident & Rev   Wowza'
+---
 # SECPlayground Bloody Xmas2024 CTF - [Incident & Rev - Wowza]
 ## Table of Contents
 

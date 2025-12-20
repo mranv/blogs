@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.911Z
+slug: htb-sherlocks-write-up-aptnightmare-2
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-aptnightmare-2
+title: 'HTB Sherlocks Write up APTNightmare 2'
+---
 # [HackTheBox Sherlocks - APTNightmare-2](https://app.hackthebox.com/sherlocks/APTNightmare-2)
 ![0a8ae8cb5fae3e72d3f61498bd3e0d7e.png](assets/resources-writeups0a8ae8cb5fae3e72d3f61498bd3e0d7e.png)
 ## Scenario

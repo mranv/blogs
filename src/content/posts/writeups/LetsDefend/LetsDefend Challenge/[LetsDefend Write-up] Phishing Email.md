@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.937Z
+slug: letsdefend-write-up-phishing-email
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-phishing-email
+title: 'LetsDefend Write up Phishing Email'
+---
 # [LetsDefend - Phishing Email](https://app.letsdefend.io/challenge/phishing-email)
 Created: 16/01/2024 10:45
 Last Updated: 05/06/2024 20:38

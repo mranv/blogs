@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.957Z
+slug: thm-write-up-ironshade
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-ironshade
+title: 'THM Write up IronShade'
+---
 # [TryHackMe - IronShade](https://tryhackme.com/room/ironshade)
 ![3e2b04b1a031d1e46b8dfa9dbcd63ff7.png](assets/resources-writeups3e2b04b1a031d1e46b8dfa9dbcd63ff7.png)
 ***

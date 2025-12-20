@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.900Z
+slug: cyberdefenders-write-up-ramnit
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-ramnit
+title: 'CyberDefenders Write up Ramnit'
+---
 # [CyberDefenders - Ramnit](https://cyberdefenders.org/blueteam-ctf-challenges/ramnit/)
 Created: 26/05/2024 17:08
 Last Updated: 09/10/2024 00:17

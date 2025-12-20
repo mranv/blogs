@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.947Z
+slug: btlo-write-up-krampus
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-krampus
+title: 'BTLO Write up Krampus'
+---
 # [Blue Team Labs Online - Krampus](https://blueteamlabs.online/home/investigation/krampus-79226a7f4f)
 
 ![0e56557eacd2950976c340843e705796.png](assets/resources-writeups0e56557eacd2950976c340843e705796.png)

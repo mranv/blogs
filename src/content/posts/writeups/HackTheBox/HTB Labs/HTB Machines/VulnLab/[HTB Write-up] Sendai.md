@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.910Z
+slug: htb-write-up-sendai
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-sendai
+title: 'HTB Write up Sendai'
+---
 # [HackTheBox - Sendai](https://app.hackthebox.com/machines/Sendai)
 
 ![af405ee6dbf68c791b1f0bb130eaa718.png](assets/resources-writeupsaf405ee6dbf68c791b1f0bb130eaa718.png)

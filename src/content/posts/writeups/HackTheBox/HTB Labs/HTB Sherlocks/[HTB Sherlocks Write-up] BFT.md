@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.911Z
+slug: htb-sherlocks-write-up-bft
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-bft
+title: 'HTB Sherlocks Write up BFT'
+---
 # [HackTheBox Sherlocks - BFT](https://app.hackthebox.com/sherlocks/BFT)
 Created: 19/05/2024 16:42
 Last Updated: 19/05/2024 17:44

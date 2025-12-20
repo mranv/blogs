@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.905Z
+slug: cyberdefenders-write-up-web-investigation
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-web-investigation
+title: 'CyberDefenders Write up Web Investigation'
+---
 # [CyberDefenders - Web Investigation](https://cyberdefenders.org/blueteam-ctf-challenges/web-investigation/)
 Created: 20/03/2024 13:11
 Last Updated: 20/03/2024 15:20

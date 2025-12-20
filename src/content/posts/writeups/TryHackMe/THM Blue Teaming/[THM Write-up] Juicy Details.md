@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.957Z
+slug: thm-write-up-juicy-details
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-juicy-details
+title: 'THM Write up Juicy Details'
+---
 # [TryHackMe - Juicy Details](https://tryhackme.com/r/room/juicydetails)
 ![2671baf4ee526794bf71b7dc2a207f2a.png](assets/resources-writeups2671baf4ee526794bf71b7dc2a207f2a.png)
 A popular juice shop has been breached! Analyze the logs to see what had happened...

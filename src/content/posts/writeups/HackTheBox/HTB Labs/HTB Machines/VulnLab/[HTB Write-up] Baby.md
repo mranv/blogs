@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.907Z
+slug: htb-write-up-baby
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-baby
+title: 'HTB Write up Baby'
+---
 # [HackTheBox - Baby](https://app.hackthebox.com/machines/Baby)
 
 ![c6f135fd23e08499dbcf0bcab8d08564.png](assets/resources-writeupsc6f135fd23e08499dbcf0bcab8d08564.png)

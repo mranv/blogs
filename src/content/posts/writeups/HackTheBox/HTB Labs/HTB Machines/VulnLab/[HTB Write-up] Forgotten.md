@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.907Z
+slug: htb-write-up-forgotten
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-forgotten
+title: 'HTB Write up Forgotten'
+---
 # [HackTheBox - Forgotten](https://app.hackthebox.com/machines/Forgotten)
 
 ![c29024c50375590e18ac6fe58b8d0b97.png](assets/resources-writeupsc29024c50375590e18ac6fe58b8d0b97.png)

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Alert
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.924Z
+slug: letsdefend-write-up-eventid-257--⭐-soc282---phishing-alert---deceptive-mail-detected
+tags:
+- letsdefend-alert
+- letsdefend
+- letsdefend-write-up-eventid-257--⭐-soc282---phishing-alert---deceptive-mail-detected
+title: 'LetsDefend Write up EventID 257  ⭐ SOC282   Phishing Alert   Deceptive Mail Detected'
+---
 # LetsDefend - EventID 257 -⭐ SOC282 - Phishing Alert - Deceptive Mail Detected
 Created: 11/07/2024 07:06
 Last Updated: 11/07/2024 07:10

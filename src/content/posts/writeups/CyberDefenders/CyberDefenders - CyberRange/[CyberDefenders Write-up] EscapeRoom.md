@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.887Z
+slug: cyberdefenders-write-up-escaperoom
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-escaperoom
+title: 'CyberDefenders Write up EscapeRoom'
+---
 # [CyberDefenders - EscapeRoom](https://cyberdefenders.org/blueteam-ctf-challenges/escaperoom/)
 Created: 29/05/2024 18:55
 Last Updated: 30/05/2024 19:48

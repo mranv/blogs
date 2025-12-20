@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.890Z
+slug: cyberdefenders-write-up-hireme
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-hireme
+title: 'CyberDefenders Write up HireMe'
+---
 # [CyberDefenders - HireMe](https://cyberdefenders.org/blueteam-ctf-challenges/hireme/)
 Created: 30/04/2024 22:01
 Last Updated: 01/05/2024 12:38

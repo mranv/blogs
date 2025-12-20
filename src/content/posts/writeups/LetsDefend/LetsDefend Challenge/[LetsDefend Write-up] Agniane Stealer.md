@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.925Z
+slug: letsdefend-write-up-agniane-stealer
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-agniane-stealer
+title: 'LetsDefend Write up Agniane Stealer'
+---
 # [LetsDefend - Agniane Stealer](https://app.letsdefend.io/challenge/agniane-stealer)
 Created: 19/06/2024 12:04
 Last Updated: 19/06/2024 15:16

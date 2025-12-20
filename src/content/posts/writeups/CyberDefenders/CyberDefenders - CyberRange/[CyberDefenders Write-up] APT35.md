@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.882Z
+slug: cyberdefenders-write-up-apt35
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-apt35
+title: 'CyberDefenders Write up APT35'
+---
 # [CyberDefenders - APT35](https://cyberdefenders.org/blueteam-ctf-challenges/apt35/)
 ## Table of Contents
 

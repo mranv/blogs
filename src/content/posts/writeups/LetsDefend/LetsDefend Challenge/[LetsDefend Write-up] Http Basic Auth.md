@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.927Z
+slug: letsdefend-write-up-http-basic-auth
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-http-basic-auth
+title: 'LetsDefend Write up Http Basic Auth'
+---
 # [LetsDefend - Http Basic Auth](https://app.letsdefend.io/challenge/http-basic-auth)
 Created: 26/01/2024 13:30
 Last Updated: 05/06/2024 20:40

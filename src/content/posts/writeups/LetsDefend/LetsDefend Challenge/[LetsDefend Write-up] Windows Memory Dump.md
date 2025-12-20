@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.944Z
+slug: letsdefend-write-up-windows-memory-dump
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-windows-memory-dump
+title: 'LetsDefend Write up Windows Memory Dump'
+---
 # [LetsDefend - Windows Memory Dump](https://app.letsdefend.io/challenge/windows-memory-dump)
 Created: 19/06/2024 07:59
 Last Updated: 19/06/2024 10:30

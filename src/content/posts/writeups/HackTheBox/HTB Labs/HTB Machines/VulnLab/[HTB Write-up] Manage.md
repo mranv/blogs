@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.909Z
+slug: htb-write-up-manage
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-manage
+title: 'HTB Write up Manage'
+---
 # [HackTheBox - Manage](https://app.hackthebox.com/machines/Manage)
 
 ![64ef1c026f85600acf697abb162d4ec2.png](assets/resources-writeups64ef1c026f85600acf697abb162d4ec2.png)

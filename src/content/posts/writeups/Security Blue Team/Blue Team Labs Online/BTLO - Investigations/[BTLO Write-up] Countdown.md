@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.946Z
+slug: btlo-write-up-countdown
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-countdown
+title: 'BTLO Write up Countdown'
+---
 # [Blue Team Labs Online - Countdown](https://blueteamlabs.online/home/investigation/countdown-2c3cc56daf)
 
 ![b0bcd731255ee9356a4aabc687cc2de1.png](assets/resources-writeupsb0bcd731255ee9356a4aabc687cc2de1-1.png)

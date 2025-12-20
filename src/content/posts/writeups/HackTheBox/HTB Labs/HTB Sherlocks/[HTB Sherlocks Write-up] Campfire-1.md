@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.912Z
+slug: htb-sherlocks-write-up-campfire-1
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-campfire-1
+title: 'HTB Sherlocks Write up Campfire 1'
+---
 # [HackTheBox Sherlocks - Campfire-1](https://app.hackthebox.com/sherlocks/Campfire-1/play)
 Created: 21/06/2024 17:23
 Last Updated: 21/06/2024 19:08

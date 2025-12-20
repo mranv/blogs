@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.881Z
+slug: cyberdefenders-write-up-3cx-supply-chain
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-3cx-supply-chain
+title: 'CyberDefenders Write up 3CX Supply Chain'
+---
 # [CyberDefenders - 3CX Supply Chain](https://cyberdefenders.org/blueteam-ctf-challenges/3cx-supply-chain/)
 Created: 18/05/2024 14:06
 Last Updated: 04/06/2024 08:30

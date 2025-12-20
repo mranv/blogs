@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.935Z
+slug: letsdefend-write-up-obfuscated-javascript
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-obfuscated-javascript
+title: 'LetsDefend Write up Obfuscated JavaScript'
+---
 # [LetsDefend - Obfuscated JavaScript](https://app.letsdefend.io/challenge/obfuscated-javascript)
 Created: 24/03/2025 20:11
 Last Updated: 20/04/2025 19:29

@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.949Z
+slug: btlo-write-up-typhon
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-typhon
+title: 'BTLO Write up Typhon'
+---
 # [Blue Team Labs Online - Typhon](https://blueteamlabs.online/home/investigation/typhon-339cc99cba)
 
 ![fbaef5242263e9ddc5c063928582673d.png](assets/resources-writeupsfbaef5242263e9ddc5c063928582673d.png)

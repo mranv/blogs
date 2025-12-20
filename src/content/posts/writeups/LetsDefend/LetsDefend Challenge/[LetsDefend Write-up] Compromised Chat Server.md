@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.925Z
+slug: letsdefend-write-up-compromised-chat-server
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-compromised-chat-server
+title: 'LetsDefend Write up Compromised Chat Server'
+---
 # [LetsDefend - Compromised Chat Server](https://app.letsdefend.io/challenge/compromised-chat-server)
 Created: 17/09/2024 11:02
 Last Updated: 17/09/2024 14:02

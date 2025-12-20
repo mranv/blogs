@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.911Z
+slug: htb-write-up-vulnescape
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-vulnescape
+title: 'HTB Write up VulnEscape'
+---
 # [HackTheBox - VulnEscape](https://app.hackthebox.com/machines/VulnEscape)
 
 ![9869a71153cbce4a9c949d997e45a9be.png](assets/resources-writeups9869a71153cbce4a9c949d997e45a9be.png)

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.896Z
+slug: cyberdefenders-write-up-nintendohunt
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-nintendohunt
+title: 'CyberDefenders Write up NintendoHunt'
+---
 # [CyberDefenders - NintendoHunt](https://cyberdefenders.org/blueteam-ctf-challenges/nintendohunt/)
 Created: 15/06/2024 13:48
 Last Updated: 15/06/2024 20:49

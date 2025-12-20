@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.916Z
+slug: htb-sherlocks-write-up-logjammer
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-logjammer
+title: 'HTB Sherlocks Write up Logjammer'
+---
 # [HackTheBox Sherlocks - Logjammer](https://app.hackthebox.com/sherlocks/Logjammer)
 Created: 22/05/2024 10:47
 Last Updated: 22/05/2024 13:03

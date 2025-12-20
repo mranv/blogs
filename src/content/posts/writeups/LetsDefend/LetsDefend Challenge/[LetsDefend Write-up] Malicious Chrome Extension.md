@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.932Z
+slug: letsdefend-write-up-malicious-chrome-extension
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-malicious-chrome-extension
+title: 'LetsDefend Write up Malicious Chrome Extension'
+---
 # [LetsDefend - Malicious Chrome Extension](https://app.letsdefend.io/challenge/malicious-chrome-extension)
 Created: 25/04/2024 10:32
 Last Updated: 30/11/2024 18:28

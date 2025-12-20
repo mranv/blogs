@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.915Z
+slug: htb-sherlocks-write-up-jingle-bell
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-jingle-bell
+title: 'HTB Sherlocks Write up Jingle Bell'
+---
 # [HackTheBox Sherlocks - Jingle Bell](https://app.hackthebox.com/sherlocks/Jingle%20Bell)
 Created: 20/05/2024 18:43
 Last Updated: 20/05/2024 19:49

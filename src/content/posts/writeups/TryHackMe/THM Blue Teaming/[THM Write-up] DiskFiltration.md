@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.955Z
+slug: thm-write-up-diskfiltration
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-diskfiltration
+title: 'THM Write up DiskFiltration'
+---
 # [TryHackMe - DiskFiltration](https://tryhackme.com/room/diskfiltration)
 ![c66a4e3755f5c79b007baf33b409d1db.png](assets/resources-writeupsc66a4e3755f5c79b007baf33b409d1db.png)
 ***

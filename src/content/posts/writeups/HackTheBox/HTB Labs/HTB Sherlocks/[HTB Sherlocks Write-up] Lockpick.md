@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.916Z
+slug: htb-sherlocks-write-up-lockpick
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-lockpick
+title: 'HTB Sherlocks Write up Lockpick'
+---
 # [HackTheBox Sherlocks - Lockpick](https://app.hackthebox.com/sherlocks/Lockpick)
 Created: 21/05/2024 18:08
 Last Updated: 21/05/2024 20:53

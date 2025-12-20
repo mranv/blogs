@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.902Z
+slug: cyberdefenders-write-up-shadowroast
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-shadowroast
+title: 'CyberDefenders Write up ShadowRoast'
+---
 # [CyberDefenders - ShadowRoast](https://cyberdefenders.org/blueteam-ctf-challenges/shadowroast/)
 ## Table of Contents
 

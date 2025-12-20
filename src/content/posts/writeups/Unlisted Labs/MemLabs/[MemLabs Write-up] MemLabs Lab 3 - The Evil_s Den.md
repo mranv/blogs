@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: MemLabs
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.963Z
+slug: memlabs-write-up-memlabs-lab-3---the-evil-s-den
+tags:
+- memlabs
+- unlisted-labs
+- memlabs-write-up-memlabs-lab-3---the-evil-s-den
+title: 'MemLabs Write up MemLabs Lab 3   The Evil_s Den'
+---
 # [MemLabs Lab 3 - The Evil's Den](https://github.com/stuxnet999/MemLabs/tree/master/Lab%203)
 Created: 14/07/2024 16:20
 Last Updated: 24/08/2024 16:23

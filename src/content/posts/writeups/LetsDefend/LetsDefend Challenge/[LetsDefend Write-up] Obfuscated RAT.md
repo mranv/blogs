@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.935Z
+slug: letsdefend-write-up-obfuscated-rat
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-obfuscated-rat
+title: 'LetsDefend Write up Obfuscated RAT'
+---
 # [LetsDefend - Obfuscated RAT](https://app.letsdefend.io/challenge/obfuscated-rat)
 Created: 11/06/2024 15:02
 Last Updated: 11/06/2024 16:35

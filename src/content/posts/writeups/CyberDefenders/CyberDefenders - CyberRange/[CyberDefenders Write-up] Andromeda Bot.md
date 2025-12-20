@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.884Z
+slug: cyberdefenders-write-up-andromeda-bot
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-andromeda-bot
+title: 'CyberDefenders Write up Andromeda Bot'
+---
 # [CyberDefenders - Andromeda Bot](https://cyberdefenders.org/blueteam-ctf-challenges/andromeda-bot/)
 ## Table of Contents
 

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.887Z
+slug: cyberdefenders-write-up-fakegpt
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-fakegpt
+title: 'CyberDefenders Write up FakeGPT'
+---
 # [CyberDefenders - FakeGPT](https://cyberdefenders.org/blueteam-ctf-challenges/fakegpt/)
 Created: 07/12/2024 20:14
 Last Updated: 16/12/2024 21:10

@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.909Z
+slug: htb-write-up-reset
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-reset
+title: 'HTB Write up Reset'
+---
 # [HackTheBox - Reset](https://app.hackthebox.com/machines/Reset)
 
 ![c794eb831da4ecd97534b8be9550a10b.png](assets/resources-writeupsc794eb831da4ecd97534b8be9550a10b.png)

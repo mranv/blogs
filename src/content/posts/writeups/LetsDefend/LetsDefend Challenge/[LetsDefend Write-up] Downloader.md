@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.927Z
+slug: letsdefend-write-up-downloader
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-downloader
+title: 'LetsDefend Write up Downloader'
+---
 # [LetsDefend - Downloader](https://app.letsdefend.io/challenge/downloader)
 Created: 19/08/2024 23:21
 Last Updated: 20/08/2024 01:23

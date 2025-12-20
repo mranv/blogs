@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.931Z
+slug: letsdefend-write-up-lockbit
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-lockbit
+title: 'LetsDefend Write up LockBit'
+---
 # [LetsDefend - LockBit](https://app.letsdefend.io/challenge/lockbit)
 Created: 19/06/2024 17:25
 Last Updated: 23/09/2024 08:21

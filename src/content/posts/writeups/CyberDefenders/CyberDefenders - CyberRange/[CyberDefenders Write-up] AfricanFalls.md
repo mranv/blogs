@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.883Z
+slug: cyberdefenders-write-up-africanfalls
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-africanfalls
+title: 'CyberDefenders Write up AfricanFalls'
+---
 # [CyberDefenders - AfricanFalls](https://cyberdefenders.org/blueteam-ctf-challenges/africanfalls/)
 Created: 02/05/2024 00:35
 Last Updated: 13/06/2024 08:47

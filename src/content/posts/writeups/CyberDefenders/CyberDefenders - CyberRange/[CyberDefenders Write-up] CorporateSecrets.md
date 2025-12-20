@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.885Z
+slug: cyberdefenders-write-up-corporatesecrets
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-corporatesecrets
+title: 'CyberDefenders Write up CorporateSecrets'
+---
 # [CyberDefenders - CorporateSecrets](https://cyberdefenders.org/blueteam-ctf-challenges/corporatesecrets/)
 ## Table of Contents
 

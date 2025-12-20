@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.908Z
+slug: htb-write-up-lock
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-lock
+title: 'HTB Write up Lock'
+---
 # [HackTheBox - Lock](https://app.hackthebox.com/machines/Lock)
 ![73d89b3fdd96703dbfe2f36b028651b0.png](assets/resources-writeups73d89b3fdd96703dbfe2f36b028651b0.png)
 ## Table of Contents

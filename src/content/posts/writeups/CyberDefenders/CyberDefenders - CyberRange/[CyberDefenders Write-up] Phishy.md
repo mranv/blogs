@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.897Z
+slug: cyberdefenders-write-up-phishy
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-phishy
+title: 'CyberDefenders Write up Phishy'
+---
 # [CyberDefenders - Phishy](https://cyberdefenders.org/blueteam-ctf-challenges/phishy/)
 ## Table of Contents
 

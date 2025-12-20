@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.960Z
+slug: thm-write-up-tempest
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-tempest
+title: 'THM Write up Tempest'
+---
 # [TryHackMe - Tempest](https://tryhackme.com/room/tempestincident)
 ![43476f53edc80d36edc93ee4d13f54a7.png](assets/resources-writeups43476f53edc80d36edc93ee4d13f54a7.png)
 ***

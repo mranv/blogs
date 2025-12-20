@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.915Z
+slug: htb-sherlocks-write-up-jugglin
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-jugglin
+title: 'HTB Sherlocks Write up Jugglin'
+---
 # [HackTheBox Sherlocks - Jugglin](https://app.hackthebox.com/sherlocks/Jugglin)
 Created: 24/05/2024 19:50
 Last Updated: 30/05/2024 23:55

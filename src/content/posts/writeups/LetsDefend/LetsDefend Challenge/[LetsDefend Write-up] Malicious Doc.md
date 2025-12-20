@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.932Z
+slug: letsdefend-write-up-malicious-doc
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-malicious-doc
+title: 'LetsDefend Write up Malicious Doc'
+---
 # [LetsDefend - Malicious Doc](https://app.letsdefend.io/challenge/malicious-doic)
 Created: 10/01/2024 14:04
 Last Updated: 05/06/2024 20:03

@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.948Z
+slug: btlo-write-up-pikaboo
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-pikaboo
+title: 'BTLO Write up PikaBoo'
+---
 # [Blue Team Labs Online - PikaBoo](https://blueteamlabs.online/home/investigation/pikaboo-6bcb02f1a9)
 
 ![8d5062ade7bce839a279168f4f46eead.png](assets/resources-writeups8d5062ade7bce839a279168f4f46eead.png)

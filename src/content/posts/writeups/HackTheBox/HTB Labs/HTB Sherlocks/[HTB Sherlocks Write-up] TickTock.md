@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.921Z
+slug: htb-sherlocks-write-up-ticktock
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-ticktock
+title: 'HTB Sherlocks Write up TickTock'
+---
 # [HackTheBox Sherlocks - TickTock](https://app.hackthebox.com/sherlocks/TickTock)
 Created: 10/10/2024 09:30
 Last Updated: 10/10/2024 13:53

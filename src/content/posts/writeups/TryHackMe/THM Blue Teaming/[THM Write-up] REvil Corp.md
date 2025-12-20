@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.958Z
+slug: thm-write-up-revil-corp
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-revil-corp
+title: 'THM Write up REvil Corp'
+---
 # [TryHackMe - REvil Corp](https://tryhackme.com/r/room/revilcorp?ref=blog.tryhackme.com)
 ![358a63058c6eed610a3aece41308b7c0.png](assets/resources-writeups358a63058c6eed610a3aece41308b7c0.png)
 You are involved in an incident response engagement and need to analyze an infected host using Redline.

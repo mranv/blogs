@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.946Z
+slug: btlo-write-up-haunted
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-haunted
+title: 'BTLO Write up Haunted'
+---
 # [Blue Team Labs Online - Haunted](https://blueteamlabs.online/home/investigation/haunted-dfa349d2bb)
 
 ![afd61e4ac70179815c6d90bc7430fe19.png](assets/resources-writeupsafd61e4ac70179815c6d90bc7430fe19.png)

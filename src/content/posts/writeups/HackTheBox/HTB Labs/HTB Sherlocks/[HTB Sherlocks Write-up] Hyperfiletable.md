@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.915Z
+slug: htb-sherlocks-write-up-hyperfiletable
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-hyperfiletable
+title: 'HTB Sherlocks Write up Hyperfiletable'
+---
 # [HackTheBox Sherlocks - Hyperfiletable](https://app.hackthebox.com/sherlocks/Hyperfiletable)
 Created: 29/09/2024 15:32
 Last Updated: 30/09/2024 09:00

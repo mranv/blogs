@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.930Z
+slug: letsdefend-write-up-linux-forensics
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-linux-forensics
+title: 'LetsDefend Write up Linux Forensics'
+---
 # [LetsDefend - Linux Forensics](https://app.letsdefend.io/challenge/linux-forensics)
 Created: 20/03/2024 13:01
 Last Updated: 21/03/2024 12:18

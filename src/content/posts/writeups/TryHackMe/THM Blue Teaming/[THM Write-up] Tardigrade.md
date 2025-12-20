@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.960Z
+slug: thm-write-up-tardigrade
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-tardigrade
+title: 'THM Write up Tardigrade'
+---
 # [TryHackMe - Tardigrade](https://tryhackme.com/room/tardigrade)
 ![e3c209fe00d6503716cccae1db4969f3.png](assets/resources-writeupse3c209fe00d6503716cccae1db4969f3.png)
 ***

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.895Z
+slug: cyberdefenders-write-up-mrgamer
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-mrgamer
+title: 'CyberDefenders Write up MrGamer'
+---
 # [CyberDefenders - MrGamer](https://cyberdefenders.org/blueteam-ctf-challenges/mrgamer/)
 Created: 30/06/2024 12:43
 Last Updated: 08/09/2024 00:47

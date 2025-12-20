@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.946Z
+slug: btlo-write-up-deep-freeze
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-deep-freeze
+title: 'BTLO Write up Deep Freeze'
+---
 # [Blue Team Labs Online - Deep Freeze](https://blueteamlabs.online/home/investigation/deep-freeze-fc58456bb2)
 
 ![42dee1a3ad5fe8795d5055b9c89ceae5.png](assets/resources-writeups42dee1a3ad5fe8795d5055b9c89ceae5.png)

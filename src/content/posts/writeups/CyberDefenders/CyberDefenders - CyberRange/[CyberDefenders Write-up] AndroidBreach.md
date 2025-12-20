@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.883Z
+slug: cyberdefenders-write-up-androidbreach
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-androidbreach
+title: 'CyberDefenders Write up AndroidBreach'
+---
 # [CyberDefenders - AndroidBreach](https://cyberdefenders.org/blueteam-ctf-challenges/androidbreach/)
 ## Table of Contents
 

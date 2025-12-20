@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.954Z
+slug: thm-write-up-disk-analysis-&-autopsy
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-disk-analysis-&-autopsy
+title: 'THM Write up Disk Analysis & Autopsy'
+---
 # [TryHackMe - Disk Analysis & Autopsy](https://tryhackme.com/r/room/autopsy2ze0)
 ![b3bb941ed71782804f1f29e4d3b5edc2.png](assets/resources-writeupsb3bb941ed71782804f1f29e4d3b5edc2.png)
 Ready for a challenge? Use Autopsy to investigate artifacts from a disk image.

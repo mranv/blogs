@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.921Z
+slug: htb-sherlocks-write-up-rogueone
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-rogueone
+title: 'HTB Sherlocks Write up RogueOne'
+---
 # [HackTheBox Sherlocks - RogueOne](https://app.hackthebox.com/sherlocks/RogueOne)
 Created: 22/05/2024 15:48
 Last Updated: 22/05/2024 18:26

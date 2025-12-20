@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.902Z
+slug: cyberdefenders-write-up-spottedinthewild
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-spottedinthewild
+title: 'CyberDefenders Write up SpottedInTheWild'
+---
 # [CyberDefenders - SpottedInTheWild](https://cyberdefenders.org/blueteam-ctf-challenges/spottedinthewild/)
 Created: 28/05/2024 19:39
 Last Updated: 28/05/2024 23:38

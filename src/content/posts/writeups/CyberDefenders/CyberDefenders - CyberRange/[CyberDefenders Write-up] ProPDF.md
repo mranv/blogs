@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.898Z
+slug: cyberdefenders-write-up-propdf
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-propdf
+title: 'CyberDefenders Write up ProPDF'
+---
 # [CyberDefenders - ProPDF](https://cyberdefenders.org/blueteam-ctf-challenges/propdf/)
 ## Table of Contents
 

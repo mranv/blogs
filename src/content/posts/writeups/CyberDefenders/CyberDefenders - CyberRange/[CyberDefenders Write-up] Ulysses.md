@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.905Z
+slug: cyberdefenders-write-up-ulysses
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-ulysses
+title: 'CyberDefenders Write up Ulysses'
+---
 # [CyberDefenders - Ulysses](https://cyberdefenders.org/blueteam-ctf-challenges/ulysses/)
 Created: 23/05/2024 19:05
 Last Updated: 13/06/2024 12:19

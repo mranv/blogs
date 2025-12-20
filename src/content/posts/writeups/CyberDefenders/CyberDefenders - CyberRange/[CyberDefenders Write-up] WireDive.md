@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.906Z
+slug: cyberdefenders-write-up-wiredive
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-wiredive
+title: 'CyberDefenders Write up WireDive'
+---
 # [CyberDefenders - WireDive](https://cyberdefenders.org/blueteam-ctf-challenges/wiredive/)
 Created: 07/03/2024 14:47
 Last Updated: 11/03/2024 14:52

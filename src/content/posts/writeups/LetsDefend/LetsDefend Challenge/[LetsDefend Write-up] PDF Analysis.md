@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.936Z
+slug: letsdefend-write-up-pdf-analysis
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-pdf-analysis
+title: 'LetsDefend Write up PDF Analysis'
+---
 # [LetsDefend - PDF Analysis](https://app.letsdefend.io/challenge/pdf-analysis)
 Created: 29/02/2024 13:14
 Last Updated: 05/06/2024 21:02

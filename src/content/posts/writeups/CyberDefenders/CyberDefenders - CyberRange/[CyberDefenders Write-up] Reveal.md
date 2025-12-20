@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.901Z
+slug: cyberdefenders-write-up-reveal
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-reveal
+title: 'CyberDefenders Write up Reveal'
+---
 # [CyberDefenders - Reveal](https://cyberdefenders.org/blueteam-ctf-challenges/reveal/)
 Created: 17/07/2024 12:42
 Last Updated: 28/07/2024 16:27

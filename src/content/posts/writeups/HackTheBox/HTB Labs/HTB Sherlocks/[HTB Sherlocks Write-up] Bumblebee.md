@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.912Z
+slug: htb-sherlocks-write-up-bumblebee
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-bumblebee
+title: 'HTB Sherlocks Write up Bumblebee'
+---
 # [HackTheBox Sherlocks - Bumblebee](https://app.hackthebox.com/sherlocks/Bumblebee)
 Created: 21/05/2024 01:04
 Last Updated: 21/05/2024 09:37

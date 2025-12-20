@@ -1,3 +1,17 @@
+---
+author: Anubhav Gain
+category: Unlisted Labs
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.962Z
+slug: cyberspacectf-2024---social-distancing-(forensic)
+tags:
+- unlisted-labs
+- cyberspacectf-2024---social-distancing-(forensic)
+title: 'CyberSpaceCTF 2024   Social Distancing (Forensic)'
+---
 # CyberSpaceCTF 2024 - Social Distancing (50 points) - Forensics Challenge
 ## Social Distancing (50)
 ![69ccf62aaa54e2f961fa481810c7368d.png](assets/resources-writeups69ccf62aaa54e2f961fa481810c7368d.png)

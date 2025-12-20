@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.927Z
+slug: letsdefend-write-up-excel-4.0-macros
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-excel-4.0-macros
+title: 'LetsDefend Write up Excel 4.0 Macros'
+---
 # [LetsDefend - Excel 4.0 Macros](https://app.letsdefend.io/challenge/Excel-40-Macros)
 Created: 29/01/2024 09:03
 Last Updated: 05/06/2024 20:42

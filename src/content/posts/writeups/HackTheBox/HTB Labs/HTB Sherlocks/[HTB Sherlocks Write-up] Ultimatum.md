@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.922Z
+slug: htb-sherlocks-write-up-ultimatum
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-ultimatum
+title: 'HTB Sherlocks Write up Ultimatum'
+---
 # [HackTheBox Sherlocks - Ultimatum](https://app.hackthebox.com/sherlocks/Ultimatum)
 Created: 19/05/2024 17:51
 Last Updated: 19/05/2024 21:16

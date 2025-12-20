@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.920Z
+slug: htb-sherlocks-write-up-pikaptcha
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-pikaptcha
+title: 'HTB Sherlocks Write up Pikaptcha'
+---
 # [HackTheBox Sherlocks - Pikaptcha](https://app.hackthebox.com/sherlocks/Pikaptcha)
 ![b3f4d6878c450e4ebeeb5f07168f3317.png](assets/resources-writeupsb3f4d6878c450e4ebeeb5f07168f3317.png)
 **Scenario:**

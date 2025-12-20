@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.889Z
+slug: cyberdefenders-write-up-hacked
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-hacked
+title: 'CyberDefenders Write up Hacked'
+---
 # [CyberDefenders - Hacked](https://cyberdefenders.org/blueteam-ctf-challenges/hacked/)
 Created: 02/05/2024 11:20
 Last Updated: 02/05/2024 23:33

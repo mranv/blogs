@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.939Z
+slug: letsdefend-write-up-ransomware-attack
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-ransomware-attack
+title: 'LetsDefend Write up Ransomware Attack'
+---
 # [LetsDefend - Ransomware Attack](https://app.letsdefend.io/challenge/ransomware-attack)
 Created: 02/06/2024 22:00
 Last Updated: 02/06/2024 22:47

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: MemLabs
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.963Z
+slug: memlabs-write-up-memlabs-lab-6---the-reckoning
+tags:
+- memlabs
+- unlisted-labs
+- memlabs-write-up-memlabs-lab-6---the-reckoning
+title: 'MemLabs Write up MemLabs Lab 6   The Reckoning'
+---
 # [MemLabs Lab 6 - The Reckoning](https://github.com/stuxnet999/MemLabs/tree/master/Lab%206)
 Created: 14/07/2024 19:01
 Last Updated: 27/08/2024 18:10

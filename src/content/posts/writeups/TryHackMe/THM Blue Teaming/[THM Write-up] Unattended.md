@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.960Z
+slug: thm-write-up-unattended
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-unattended
+title: 'THM Write up Unattended'
+---
 # [TryHackMe - Unattended](https://tryhackme.com/r/room/unattended)
 ![15d873da8fa3dcfa082e95343b2a508b.png](assets/resources-writeups15d873da8fa3dcfa082e95343b2a508b.png)
 ***

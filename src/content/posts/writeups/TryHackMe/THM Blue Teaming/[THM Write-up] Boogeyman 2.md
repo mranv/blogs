@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.952Z
+slug: thm-write-up-boogeyman-2
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-boogeyman-2
+title: 'THM Write up Boogeyman 2'
+---
 # [TryHackMe - Boogeyman 2](https://tryhackme.com/room/boogeyman2)
 ![00ec137cdfaa46c434d0941eebf3d330.png](assets/resources-writeups00ec137cdfaa46c434d0941eebf3d330.png)
 ***

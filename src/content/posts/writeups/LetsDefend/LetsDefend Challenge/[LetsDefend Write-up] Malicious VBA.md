@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.933Z
+slug: letsdefend-write-up-malicious-vba
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-malicious-vba
+title: 'LetsDefend Write up Malicious VBA'
+---
 # [LetsDefend - Malicous VBA](https://app.letsdefend.io/challenge/Malicious-VBA)
 Created: 10/01/2024 14:04
 Last Updated: 05/06/2024 20:07

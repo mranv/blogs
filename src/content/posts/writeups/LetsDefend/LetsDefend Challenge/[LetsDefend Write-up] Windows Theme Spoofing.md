@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.945Z
+slug: letsdefend-write-up-windows-theme-spoofing
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-windows-theme-spoofing
+title: 'LetsDefend Write up Windows Theme Spoofing'
+---
 # [LetsDefend - Windows Theme Spoofing](https://app.letsdefend.io/challenge/windows-theme-spoofing)
 Created: 07/01/2025 22:12
 Last Updated: 12/01/2025 01:04

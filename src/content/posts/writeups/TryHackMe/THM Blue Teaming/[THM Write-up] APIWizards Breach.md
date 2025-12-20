@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.950Z
+slug: thm-write-up-apiwizards-breach
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-apiwizards-breach
+title: 'THM Write up APIWizards Breach'
+---
 # TryHackMe - APIWizards Breach
 ![d0381ce9b5a97d43c231a4ff4d61f4ca.png](assets/resources-writeupsd0381ce9b5a97d43c231a4ff4d61f4ca.png)
 Investigate a security breach at APIWizards Inc.

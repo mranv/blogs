@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.906Z
+slug: cyberdefenders-write-up-l337-s4uc3
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-l337-s4uc3
+title: 'CyberDefenders Write up l337 S4uc3'
+---
 # [CyberDefenders - l337 S4uc3](https://cyberdefenders.org/blueteam-ctf-challenges/l337-s4uc3/)
 ## Table of Contents
 

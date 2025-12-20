@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.942Z
+slug: letsdefend-write-up-suspicious-python-package
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-suspicious-python-package
+title: 'LetsDefend Write up Suspicious Python Package'
+---
 # [LetsDefend - Suspicious Python Package](https://app.letsdefend.io/challenge/suspicious-python-package)
 Created: 01/10/2024 08:56
 Last Updated: 01/10/2024 10:46

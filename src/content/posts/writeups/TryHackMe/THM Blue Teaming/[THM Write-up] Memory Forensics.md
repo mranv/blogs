@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.957Z
+slug: thm-write-up-memory-forensics
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-memory-forensics
+title: 'THM Write up Memory Forensics'
+---
 # [TryHackMe - Memory Forensics](https://tryhackme.com/r/room/memoryforensics)
 ![9e88f0ba74f7beee1dec1fe736fee46d.png](assets/resources-writeups9e88f0ba74f7beee1dec1fe736fee46d.png)
 Perform memory forensics to find the flags

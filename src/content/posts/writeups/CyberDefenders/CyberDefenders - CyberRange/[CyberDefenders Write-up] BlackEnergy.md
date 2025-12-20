@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.884Z
+slug: cyberdefenders-write-up-blackenergy
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-blackenergy
+title: 'CyberDefenders Write up BlackEnergy'
+---
 # [CyberDefenders - BlackEnergy](https://cyberdefenders.org/blueteam-ctf-challenges/blackenergy/)
 Created: 24/05/2024 17:48
 Last Updated: 12/06/2024 07:40

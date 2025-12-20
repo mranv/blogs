@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.916Z
+slug: htb-sherlocks-write-up-knock-knock
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-knock-knock
+title: 'HTB Sherlocks Write up Knock Knock'
+---
 # [HackTheBox Sherlocks - Knock Knock](https://app.hackthebox.com/sherlocks/Knock%20Knock)
 ![623d4517bbe2bbf2dc078d3f242054d4.png](assets/resources-writeups623d4517bbe2bbf2dc078d3f242054d4.png)
 **Scenario:**

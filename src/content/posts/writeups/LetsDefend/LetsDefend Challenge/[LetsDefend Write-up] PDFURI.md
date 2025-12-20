@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.936Z
+slug: letsdefend-write-up-pdfuri
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-pdfuri
+title: 'LetsDefend Write up PDFURI'
+---
 # [LetsDefend - PDFURI](https://app.letsdefend.io/challenge/pdfuri)
 Created: 11/03/2024 16:00
 Last Updated: 22/11/2024 18:55

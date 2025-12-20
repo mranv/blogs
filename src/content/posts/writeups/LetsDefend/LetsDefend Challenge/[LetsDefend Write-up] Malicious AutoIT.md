@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.931Z
+slug: letsdefend-write-up-malicious-autoit
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-malicious-autoit
+title: 'LetsDefend Write up Malicious AutoIT'
+---
 # [LetsDefend - Malicious AutoIT](https://app.letsdefend.io/challenge/malicious-autoit)
 Created: 09/09/2024 21:46
 Last Updated: 17/09/2024 14:16

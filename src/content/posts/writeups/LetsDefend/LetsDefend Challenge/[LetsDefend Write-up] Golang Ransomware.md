@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.927Z
+slug: letsdefend-write-up-golang-ransomware
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-golang-ransomware
+title: 'LetsDefend Write up Golang Ransomware'
+---
 # [LetsDefend - Golang Ransomware](https://app.letsdefend.io/challenge/golang-ransomware)
 Created: 07/09/2024 11:50
 Last Updated: 07/09/2024 17:43

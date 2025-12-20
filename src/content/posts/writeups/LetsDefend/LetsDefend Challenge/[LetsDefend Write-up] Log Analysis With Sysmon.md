@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.931Z
+slug: letsdefend-write-up-log-analysis-with-sysmon
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-log-analysis-with-sysmon
+title: 'LetsDefend Write up Log Analysis With Sysmon'
+---
 # [LetsDefend - Log Analysis With Sysmon](https://app.letsdefend.io/challenge/log-analysis-with-sysmon)
 Created: 02/09/2024 22:37
 Last Updated: 03/09/2024 00:38

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.939Z
+slug: letsdefend-write-up-registryhive
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-registryhive
+title: 'LetsDefend Write up RegistryHive'
+---
 # [LetsDefend - RegistryHive](https://app.letsdefend.io/challenge/registryhive)
 Created: 21/03/2024 11:28
 Last Updated: 22/03/2024 13:52

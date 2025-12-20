@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.926Z
+slug: letsdefend-write-up-dll-stealer
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-dll-stealer
+title: 'LetsDefend Write up DLL Stealer'
+---
 # [LetsDefend - DLL Stealer](https://app.letsdefend.io/challenge/dll-stealer)
 Created: 30/04/2024 15:55
 Last Updated: 30/04/2024 18:07

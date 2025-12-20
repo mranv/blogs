@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.941Z
+slug: letsdefend-write-up-suspicious-browser-extension
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-suspicious-browser-extension
+title: 'LetsDefend Write up Suspicious Browser Extension'
+---
 # [LetsDefend - Suspicious Browser Extension](https://app.letsdefend.io/challenge/suspicious-browser-extension)
 Created: 25/04/2024 21:28
 Last Updated: 07/06/2024 08:28

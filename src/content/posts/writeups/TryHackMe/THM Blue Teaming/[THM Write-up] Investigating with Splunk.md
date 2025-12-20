@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.956Z
+slug: thm-write-up-investigating-with-splunk
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-investigating-with-splunk
+title: 'THM Write up Investigating with Splunk'
+---
 # [TryHackMe - Investigating with Splunk](https://tryhackme.com/room/investigatingwithsplunk)
 ![f108569d832ec09e7c212dbd144377a7.png](assets/resources-writeupsf108569d832ec09e7c212dbd144377a7.png)
 ***

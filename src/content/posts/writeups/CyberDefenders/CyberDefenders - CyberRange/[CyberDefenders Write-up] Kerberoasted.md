@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.893Z
+slug: cyberdefenders-write-up-kerberoasted
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-kerberoasted
+title: 'CyberDefenders Write up Kerberoasted'
+---
 # [CyberDefenders - Kerberoasted](https://cyberdefenders.org/blueteam-ctf-challenges/kerberoasted/)
 ## Table of Contents
 

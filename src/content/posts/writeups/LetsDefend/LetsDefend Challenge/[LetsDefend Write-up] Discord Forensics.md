@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.926Z
+slug: letsdefend-write-up-discord-forensics
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-discord-forensics
+title: 'LetsDefend Write up Discord Forensics'
+---
 # [LetsDefend - Discord Forensics](https://app.letsdefend.io/challenge/discord-forensics)
 Created: 07/06/2024 11:47
 Last Updated: 20/07/2024 12:43

@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.931Z
+slug: letsdefend-write-up-mshtml
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-mshtml
+title: 'LetsDefend Write up MSHTML'
+---
 # [LetsDefend - MSHTML](https://app.letsdefend.io/challenge/mshtml)
 Created: 15/01/2024 12:02
 Last Updated: 19/01/2024 15:14

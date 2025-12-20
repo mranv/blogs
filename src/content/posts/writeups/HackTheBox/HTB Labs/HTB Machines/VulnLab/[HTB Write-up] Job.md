@@ -1,3 +1,20 @@
+---
+author: Anubhav Gain
+category: VulnLab
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.908Z
+slug: htb-write-up-job
+tags:
+- vulnlab
+- hackthebox
+- htb-labs
+- htb-machines
+- htb-write-up-job
+title: 'HTB Write up Job'
+---
 # [HackTheBox - Job](https://app.hackthebox.com/machines/Job)
 
 ![b7e7f7bd99b41a69580c344a96e11a66.png](assets/resources-writeupsb7e7f7bd99b41a69580c344a96e11a66.png)

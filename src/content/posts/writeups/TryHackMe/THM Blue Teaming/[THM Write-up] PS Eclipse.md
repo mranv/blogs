@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.958Z
+slug: thm-write-up-ps-eclipse
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-ps-eclipse
+title: 'THM Write up PS Eclipse'
+---
 # [TryHackMe - PS Eclipse](https://tryhackme.com/room/posheclipse)
 ![fea05b278f926b4e41bcd479acb09606.png](assets/resources-writeupsfea05b278f926b4e41bcd479acb09606.png)
 ***

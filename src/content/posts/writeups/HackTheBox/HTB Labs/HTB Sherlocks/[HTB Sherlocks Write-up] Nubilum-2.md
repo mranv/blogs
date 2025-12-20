@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.917Z
+slug: htb-sherlocks-write-up-nubilum-2
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-nubilum-2
+title: 'HTB Sherlocks Write up Nubilum 2'
+---
 # [HackTheBox Sherlocks - Nubilum-2](https://app.hackthebox.com/sherlocks/Nubilum-2)
 Created: 16/06/2024 20:02
 Last Updated: 16/06/2024 23:18

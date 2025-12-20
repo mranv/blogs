@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.917Z
+slug: htb-sherlocks-write-up-noted
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-noted
+title: 'HTB Sherlocks Write up Noted'
+---
 # [HackTheBox Sherlocks - Noted](https://app.hackthebox.com/sherlocks/Noted)
 Created: 20/05/2024 22:41
 Last Updated: 20/05/2024 23:48

@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: BTLO - Investigations
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.947Z
+slug: btlo-write-up-ozarks
+tags:
+- btlo---investigations
+- security-blue-team
+- blue-team-labs-online
+- btlo-write-up-ozarks
+title: 'BTLO Write up Ozarks'
+---
 # [Blue Team Labs Online - Ozarks](https://blueteamlabs.online/home/investigation/ozarks-66864262c0)
 
 ![40eb42e811bd0cf1e6a68d4efa28d2fc.png](assets/resources-writeups40eb42e811bd0cf1e6a68d4efa28d2fc.png)

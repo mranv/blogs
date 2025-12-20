@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.919Z
+slug: htb-sherlocks-write-up-opsalwarkameez24-1-super-star
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-opsalwarkameez24-1-super-star
+title: 'HTB Sherlocks Write up OpSalwarKameez24 1 Super Star'
+---
 # [HackTheBox Sherlocks - OpSalwarKameez24-1: Super-Star](https://app.hackthebox.com/sherlocks/OpSalwarKameez24-1:%20Super-Star)
 Created: 03/11/2024 11:50
 Last Updated: 04/11/2024 14:59

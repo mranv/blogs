@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.917Z
+slug: htb-sherlocks-write-up-meerkat
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-meerkat
+title: 'HTB Sherlocks Write up Meerkat'
+---
 # [HackTheBox Sherlocks - Meerkat](https://app.hackthebox.com/sherlocks/Meerkat)
 Created: 01/06/2024 12:50
 Last Updated: 01/06/2024 16:11

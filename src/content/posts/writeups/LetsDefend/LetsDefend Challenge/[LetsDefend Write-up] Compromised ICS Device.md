@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.926Z
+slug: letsdefend-write-up-compromised-ics-device
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-compromised-ics-device
+title: 'LetsDefend Write up Compromised ICS Device'
+---
 # [LetsDefend - Compromised ICS Device](https://app.letsdefend.io/challenge/compromised-ics-device)
 Created: 06/09/2024 18:11
 Last Updated: 06/09/2024 22:49

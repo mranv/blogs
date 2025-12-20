@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: THM Blue Teaming
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.950Z
+slug: thm-write-up-blizzard
+tags:
+- thm-blue-teaming
+- tryhackme
+- thm-write-up-blizzard
+title: 'THM Write up Blizzard'
+---
 # [TryHackMe - Blizzard](https://tryhackme.com/room/blizzard)
 ![c561f8d5ce0af0a22ad8160e7a2c62d1.png](assets/resources-writeupsc561f8d5ce0af0a22ad8160e7a2c62d1.png)
 ***

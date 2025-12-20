@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.935Z
+slug: letsdefend-write-up-pcap-analysis
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-pcap-analysis
+title: 'LetsDefend Write up PCAP Analysis'
+---
 # [LetsDefend - PCAP Analysis](https://app.letsdefend.io/challenge/pcap-analysis)
 Created: 22/02/2024 14:28
 Last Updated: 22/02/2024 15:16

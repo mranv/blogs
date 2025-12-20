@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: LetsDefend Challenge
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.927Z
+slug: letsdefend-write-up-email-analysis
+tags:
+- letsdefend-challenge
+- letsdefend
+- letsdefend-write-up-email-analysis
+title: 'LetsDefend Write up Email Analysis'
+---
 # [LetsDefend - Email Analysis](https://app.letsdefend.io/challenge/email-analysis)
 Created: 23/02/2024 11:00
 Last Updated: 05/06/2024 20:52

@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.923Z
+slug: htb-sherlocks-write-up-unsupervised
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-unsupervised
+title: 'HTB Sherlocks Write up Unsupervised'
+---
 # [HackTheBox Sherlocks - Unsupervised](https://app.hackthebox.com/sherlocks/Unsupervised)
 ![023bc541bfd4e11c370d95208f7e3f5e.png](assets/resources-writeups023bc541bfd4e11c370d95208f7e3f5e.png)
 ## Scenario

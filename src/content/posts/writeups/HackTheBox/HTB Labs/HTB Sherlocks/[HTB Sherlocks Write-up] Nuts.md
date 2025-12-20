@@ -1,3 +1,19 @@
+---
+author: Anubhav Gain
+category: HTB Sherlocks
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.918Z
+slug: htb-sherlocks-write-up-nuts
+tags:
+- htb-sherlocks
+- hackthebox
+- htb-labs
+- htb-sherlocks-write-up-nuts
+title: 'HTB Sherlocks Write up Nuts'
+---
 # [HackTheBox Sherlocks - Nuts](https://app.hackthebox.com/sherlocks/Nuts)
 ![7571ccae44080db1a3654bf3734a6d57.png](assets/resources-writeups7571ccae44080db1a3654bf3734a6d57.png)
 * * *

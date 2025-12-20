@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: CyberDefenders - CyberRange
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.896Z
+slug: cyberdefenders-write-up-nukethebrowser
+tags:
+- cyberdefenders---cyberrange
+- cyberdefenders
+- cyberdefenders-write-up-nukethebrowser
+title: 'CyberDefenders Write up NukeTheBrowser'
+---
 # [CyberDefenders - NukeTheBrowser](https://cyberdefenders.org/blueteam-ctf-challenges/nukethebrowser/)
 Created: 17/06/2024 17:31
 Last Updated: 04/07/2024 10:27

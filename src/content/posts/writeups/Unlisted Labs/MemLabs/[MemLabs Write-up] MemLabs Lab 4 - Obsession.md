@@ -1,3 +1,18 @@
+---
+author: Anubhav Gain
+category: MemLabs
+description: ''
+draft: false
+featured: false
+lang: en
+pubDatetime: 2025-12-20T10:04:24.963Z
+slug: memlabs-write-up-memlabs-lab-4---obsession
+tags:
+- memlabs
+- unlisted-labs
+- memlabs-write-up-memlabs-lab-4---obsession
+title: 'MemLabs Write up MemLabs Lab 4   Obsession'
+---
 # [MemLabs Lab 4 - Obsession](https://github.com/stuxnet999/MemLabs/tree/master/Lab%204)
 Created: 14/07/2024 16:48
 Last Updated: 24/08/2024 17:46
