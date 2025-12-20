@@ -18,21 +18,21 @@ title: 'HTB Sherlocks Write up Jugglin'
 Created: 24/05/2024 19:50
 Last Updated: 30/05/2024 23:55
 * * *
-![62015aff678a05edcd70dd4e1f3d1ec1.png](assets/resources-writeups/62015aff678a05edcd70dd4e1f3d1ec1.png)
+![62015aff678a05edcd70dd4e1f3d1ec1.png](/assets/resources-writeups/62015aff678a05edcd70dd4e1f3d1ec1.png)
 **Scenario:**
 Forela Corporation heavily depends on the utilisation of the Windows Subsystem for Linux (WSL), and currently, threat actors are leveraging this feature, taking advantage of its elusive nature that makes it difficult for defenders to detect. In response, the red team at Forela has executed a range of commands using WSL2 and shared API logs for analysis.
 
 * * *
 >Task 1: What was the initial command executed by the insider?
 
-![ef9ceebdedb7193a21e0159dd5b2b087.png](assets/resources-writeups/ef9ceebdedb7193a21e0159dd5b2b087.png)
+![ef9ceebdedb7193a21e0159dd5b2b087.png](/assets/resources-writeups/ef9ceebdedb7193a21e0159dd5b2b087.png)
 We got 2 apmx64 files, I've never seen this file before so Its time to do my research
-![b744f9176de8f36ff1ef3c08b48b3617.png](assets/resources-writeups/b744f9176de8f36ff1ef3c08b48b3617.png)
+![b744f9176de8f36ff1ef3c08b48b3617.png](/assets/resources-writeups/b744f9176de8f36ff1ef3c08b48b3617.png)
 According to [file-extension.org](https://www.file-extensions.org/apmx64-file-extension), these files could be opened with API Monitor and look like we gonna have to investigate API calls
 
 And lucky for us, HackTheBox already posted a blog about [Tracking WSL Activity with API Hooking](https://www.hackthebox.com/blog/tracking-wsl-activity-with-api-hooking) so now we know what and where to look for
 
-![e08bfbfa90e328076ee35575b81fa2c5.png](assets/resources-writeups/e08bfbfa90e328076ee35575b81fa2c5.png)
+![e08bfbfa90e328076ee35575b81fa2c5.png](/assets/resources-writeups/e08bfbfa90e328076ee35575b81fa2c5.png)
 An answer of this question lied in `Attacker.apmx64`
 ```
 whoami
@@ -47,7 +47,7 @@ RtlUnicodeToUTF8N, WideCharToMultiByte
 
 >Task 3: Which Linux distribution the insider was interacting with?
 
-![721cd8ddc56489591dbfc94ce552ac16.png](assets/resources-writeups/721cd8ddc56489591dbfc94ce552ac16.png)
+![721cd8ddc56489591dbfc94ce552ac16.png](/assets/resources-writeups/721cd8ddc56489591dbfc94ce552ac16.png)
 Its kali linux
 ```
 kali
@@ -62,7 +62,7 @@ flag.txt
 
 >Task 5: Submit the first flag.
 
-![bf6fcfda69167f2214e2706448bca288.png](assets/resources-writeups/bf6fcfda69167f2214e2706448bca288.png)
+![bf6fcfda69167f2214e2706448bca288.png](/assets/resources-writeups/bf6fcfda69167f2214e2706448bca288.png)
 ```
 HOOK_tH1$_apI_R7lUNIcoDet0utf8N
 ```
@@ -75,16 +75,16 @@ Invoke-WebRequest
 
 >Task 7: Which string function can be intercepted to monitor the usage of Windows tools via WSL by an insider?
 
-![2e07a46d2a89f5b720ee090eb7eba83a.png](assets/resources-writeups/2e07a46d2a89f5b720ee090eb7eba83a.png)
+![2e07a46d2a89f5b720ee090eb7eba83a.png](/assets/resources-writeups/2e07a46d2a89f5b720ee090eb7eba83a.png)
 ```
 RtlUTF8ToUnicodeN
 ```
 
 >Task 8: The insider has also accessed 'confidential.txt'. Please provide the second flag for submission.
 
-![38e5966e49eaf88db669a617d53a5c7a.png](assets/resources-writeups/38e5966e49eaf88db669a617d53a5c7a.png)
+![38e5966e49eaf88db669a617d53a5c7a.png](/assets/resources-writeups/38e5966e49eaf88db669a617d53a5c7a.png)
 So now we know that an insider used powershell to upload confidential.txt to attacker's hosted website
-![9c4a978e13e9ae5d87de170dd1d6dbef.png](assets/resources-writeups/9c4a978e13e9ae5d87de170dd1d6dbef.png)
+![9c4a978e13e9ae5d87de170dd1d6dbef.png](/assets/resources-writeups/9c4a978e13e9ae5d87de170dd1d6dbef.png)
 At the end of API events, we will eventually obtain this flag 
 ```
 H0ok_ThIS_@PI_rtlutf8TounICOD3N
@@ -92,14 +92,14 @@ H0ok_ThIS_@PI_rtlutf8TounICOD3N
 
 >Task 9: Which command executed by the attacker resulted in a 'not found' response?
 
-![dc3ac7cd1f3ca3fc3b06608de1588bd2.png](assets/resources-writeups/dc3ac7cd1f3ca3fc3b06608de1588bd2.png)
+![dc3ac7cd1f3ca3fc3b06608de1588bd2.png](/assets/resources-writeups/dc3ac7cd1f3ca3fc3b06608de1588bd2.png)
 ```
 lsassy
 ```
 
 >Task 10: Which link was utilized to download the 'lsassy' binary?
 
-![b6a0d8a9d4c27c3fce6fec56d61ae909.png](assets/resources-writeups/b6a0d8a9d4c27c3fce6fec56d61ae909.png)
+![b6a0d8a9d4c27c3fce6fec56d61ae909.png](/assets/resources-writeups/b6a0d8a9d4c27c3fce6fec56d61ae909.png)
 An attacker using wget to fetch this url
 ```
 http://3.6.165.8/lsassy
@@ -107,7 +107,7 @@ http://3.6.165.8/lsassy
 
 >Task 11: What is the SHA1 hash of victim 'user' ?
 
-![76cfd3b0835669a7add4b2475da984b2.png](assets/resources-writeups/76cfd3b0835669a7add4b2475da984b2.png)
+![76cfd3b0835669a7add4b2475da984b2.png](/assets/resources-writeups/76cfd3b0835669a7add4b2475da984b2.png)
 Find any WriteFile API then we finally see that user's masterkey was saved to keys.txt and his SHA1 was shown here too
 ```
 e8f97fba9104d1ea5047948e6dfb67facd9f5b73
@@ -118,5 +118,5 @@ e8f97fba9104d1ea5047948e6dfb67facd9f5b73
 WriteFile
 ```
 
-![72452f41f3a623572bbaeb8ccf88eeb3.png](assets/resources-writeups/72452f41f3a623572bbaeb8ccf88eeb3.png)
+![72452f41f3a623572bbaeb8ccf88eeb3.png](/assets/resources-writeups/72452f41f3a623572bbaeb8ccf88eeb3.png)
 * * *

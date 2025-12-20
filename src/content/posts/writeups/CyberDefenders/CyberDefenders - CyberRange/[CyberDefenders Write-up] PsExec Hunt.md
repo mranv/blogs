@@ -36,14 +36,14 @@ And there are two more resource that I think they're very useful
 ## Questions
 > Q1: In order to effectively trace the attacker's activities within our network, can you determine the IP address of the machine where the attacker initially gained access?
 
-![61765d98132d92e272a101c144b127e0.png](assets/resources-writeups/61765d98132d92e272a101c144b127e0.png)
+![61765d98132d92e272a101c144b127e0.png](/assets/resources-writeups/61765d98132d92e272a101c144b127e0.png)
 The information from the above, DCERPC, EPM and SVCCTL that will also be captured if PsExec is executed and `.key` file will also be generated, there are the indicators, I know where to look for
-![bf1494405d05609e70840363a7ebcf11.png](assets/resources-writeups/bf1494405d05609e70840363a7ebcf11.png)
+![bf1494405d05609e70840363a7ebcf11.png](/assets/resources-writeups/bf1494405d05609e70840363a7ebcf11.png)
 Here after PsExec was successfully written, The attacker immediately used it
-![14aee1c7ad82ed2fc924ccd57d4e125f.png](assets/resources-writeups/14aee1c7ad82ed2fc924ccd57d4e125f.png)
+![14aee1c7ad82ed2fc924ccd57d4e125f.png](/assets/resources-writeups/14aee1c7ad82ed2fc924ccd57d4e125f.png)
 
 `.key` file also be generated on HR-PC
-![99608d01cdb8abb4dda61942a7cabc6c.png](assets/resources-writeups/99608d01cdb8abb4dda61942a7cabc6c.png)
+![99608d01cdb8abb4dda61942a7cabc6c.png](/assets/resources-writeups/99608d01cdb8abb4dda61942a7cabc6c.png)
 PSEXECSVC was also created on `\\10.0.0.133\IPC$` which mean the attacker also used this network share beside `ADMIN$`
 
 ```
@@ -52,17 +52,17 @@ PSEXECSVC was also created on `\\10.0.0.133\IPC$` which mean the attacker also u
 
 > Q2: To fully comprehend the extent of the breach, can you determine the machine's hostname to which the attacker first pivoted?
 
-![99ca483dceae564db4bf13c427efaee4.png](assets/resources-writeups/99ca483dceae564db4bf13c427efaee4.png)
+![99ca483dceae564db4bf13c427efaee4.png](/assets/resources-writeups/99ca483dceae564db4bf13c427efaee4.png)
 I knew that the attacker already used PsExec but I didn't know where to find the answer but in the end, Follow TCP Stream worked.
 ```
 SALES-PC
 ```
-![91ff4afa9b0cf253c918428bd6a136b1.png](assets/resources-writeups/91ff4afa9b0cf253c918428bd6a136b1.png)
+![91ff4afa9b0cf253c918428bd6a136b1.png](/assets/resources-writeups/91ff4afa9b0cf253c918428bd6a136b1.png)
 And I found out later that it could be seen on DCERPC packet
 
 > Q3: After identifying the initial entry point, it's crucial to understand how far the attacker has moved laterally within our network. Knowing the username of the account the attacker used for authentication will give us insights into the extent of the breach. What is the username utilized by the attacker for authentication?
 
-![5b9ea03016bf699e92dfe1e8a001d1cd.png](assets/resources-writeups/5b9ea03016bf699e92dfe1e8a001d1cd.png)
+![5b9ea03016bf699e92dfe1e8a001d1cd.png](/assets/resources-writeups/5b9ea03016bf699e92dfe1e8a001d1cd.png)
 On SMB2 packet, I saw that `ssales` user was the account of this session
 ```
 ssales
@@ -87,7 +87,7 @@ IPC$
 
 <div align=center>
 
-![4c94509bbd34a8535bff1ccfd68140d6.png](assets/resources-writeups/4c94509bbd34a8535bff1ccfd68140d6.png)
+![4c94509bbd34a8535bff1ccfd68140d6.png](/assets/resources-writeups/4c94509bbd34a8535bff1ccfd68140d6.png)
 </div>
 
 ```
@@ -96,7 +96,7 @@ MARKETING-PC
 
 <div align=center>
 
-![299a009ae989432e378740990cc1563c.png](assets/resources-writeups/299a009ae989432e378740990cc1563c.png)
+![299a009ae989432e378740990cc1563c.png](/assets/resources-writeups/299a009ae989432e378740990cc1563c.png)
 </div>
 
 * * *

