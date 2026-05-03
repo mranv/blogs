@@ -34,23 +34,23 @@ RE101 challenge is a binary analysis exercise - a task security blue team analys
 ## Questions
 > Q1: File: MALWARE000 - I've used this new encryption I heard about online for my warez; I bet you can't extract the flag!
 
-![ebbe490199d262aab2a1188d5945fb41.png](/assets/resources-writeups/ebbe490199d262aab2a1188d5945fb41.png)
+![ebbe490199d262aab2a1188d5945fb41.png](/assets/resources-writeups/ebbe490199d262aab2a1188d5945fb41.avif)
 
 Its elf file compiled by GCC so we can use decomplier like Ghidra to decompile and read the code 
 
-![ca5305e305470935dff3d5c4241f4e43.png](/assets/resources-writeups/ca5305e305470935dff3d5c4241f4e43.png)
+![ca5305e305470935dff3d5c4241f4e43.png](/assets/resources-writeups/ca5305e305470935dff3d5c4241f4e43.avif)
 
 We can see that if we actually execute this file, it will print something and sleep for a several times before actually exit the program
 
-![dc3f6ebafcd07daea14c3d599a85e6ad.png](/assets/resources-writeups/dc3f6ebafcd07daea14c3d599a85e6ad.png)
+![dc3f6ebafcd07daea14c3d599a85e6ad.png](/assets/resources-writeups/dc3f6ebafcd07daea14c3d599a85e6ad.avif)
 
 But the flag can be obtained by using strings then we will have this base64 string
 
-![5564a0a87830958a3dfa0be15ce84a5f.png](/assets/resources-writeups/5564a0a87830958a3dfa0be15ce84a5f.png)
+![5564a0a87830958a3dfa0be15ce84a5f.png](/assets/resources-writeups/5564a0a87830958a3dfa0be15ce84a5f.avif)
 
 Decode it then we will have a flag
 
-![7a4cf4eb017a89a6a55384fca62c9aeb.png](/assets/resources-writeups/7a4cf4eb017a89a6a55384fca62c9aeb.png)
+![7a4cf4eb017a89a6a55384fca62c9aeb.png](/assets/resources-writeups/7a4cf4eb017a89a6a55384fca62c9aeb.avif)
 
 We can actually find base64 character here but strings would be the best to solve this one
 ```
@@ -59,11 +59,11 @@ We can actually find base64 character here but strings would be the best to solv
 
 > Q2: File: Just some JS - Check out what I can do!
 
-![f172e57f9d6a60e42f983247621e5116.png](/assets/resources-writeups/f172e57f9d6a60e42f983247621e5116.png)
+![f172e57f9d6a60e42f983247621e5116.png](/assets/resources-writeups/f172e57f9d6a60e42f983247621e5116.avif)
 
 After examined that code, It does look like heavily obfuscated JavaScript so I used JavaScript Deobfuscator to see if I can execute this script directly on the browser, and the output shows us that its safe to execute this JavaScript code and obtain a flag
 
-![4434175cd84a8476fdfd73c8540a0432.png](/assets/resources-writeups/4434175cd84a8476fdfd73c8540a0432.png)
+![4434175cd84a8476fdfd73c8540a0432.png](/assets/resources-writeups/4434175cd84a8476fdfd73c8540a0432.avif)
 
 I used [JavaScript Online Compiler](https://www.programiz.com/javascript/online-compiler/) to execute it rather than using console
 
@@ -73,11 +73,11 @@ what_a_cheeky_language!1!
 
 > Q3: File: This is not JS - I'm tired of Javascript. Luckily, I found the grand-daddy of that lame last language!
 
-![40f77cbd3a1675fc9f7cab86bad55f92.png](/assets/resources-writeups/40f77cbd3a1675fc9f7cab86bad55f92.png)
+![40f77cbd3a1675fc9f7cab86bad55f92.png](/assets/resources-writeups/40f77cbd3a1675fc9f7cab86bad55f92.avif)
 
 I recognized this pattern, It is brainfuck
 
-![baa8eed551864a2ca70019b886c2c106.png](/assets/resources-writeups/baa8eed551864a2ca70019b886c2c106.png)
+![baa8eed551864a2ca70019b886c2c106.png](/assets/resources-writeups/baa8eed551864a2ca70019b886c2c106.avif)
 
 Use [Brainfuck Translator](https://md5decrypt.net/en/Brainfuck-translator/) to obtain a flag
 
@@ -89,19 +89,19 @@ Now_THIS_is_programming
 
 We couldn't extract a file since file is corrupted so we need to fix it
 
-![9ad196a3b7ca498aad2a4cd6fb313a82.png](/assets/resources-writeups/9ad196a3b7ca498aad2a4cd6fb313a82.png)
+![9ad196a3b7ca498aad2a4cd6fb313a82.png](/assets/resources-writeups/9ad196a3b7ca498aad2a4cd6fb313a82.avif)
 
 Using "zipdetails" then we can see that magic number of pkzip is correct but Filename Length is a bit weird since we have that "flag.txt" length is not 5858 but 8
 
-![4205ab460d8cf9af45345dcb50b3f6d8.png](/assets/resources-writeups/4205ab460d8cf9af45345dcb50b3f6d8.png)
+![4205ab460d8cf9af45345dcb50b3f6d8.png](/assets/resources-writeups/4205ab460d8cf9af45345dcb50b3f6d8.avif)
 
 According to https://users.cs.jmu.edu/buchhofp/forensics/formats/pkzip.html, we need to fix this offset 
 
-![db919f65fd450781e25861a6940bc2b0.png](/assets/resources-writeups/db919f65fd450781e25861a6940bc2b0.png)
+![db919f65fd450781e25861a6940bc2b0.png](/assets/resources-writeups/db919f65fd450781e25861a6940bc2b0.avif)
 
 Used HxD (Hex Editor) to fix it to 08 00
 
-![467cc3322677bb5e981e8699843ea747.png](/assets/resources-writeups/467cc3322677bb5e981e8699843ea747.png)
+![467cc3322677bb5e981e8699843ea747.png](/assets/resources-writeups/467cc3322677bb5e981e8699843ea747.avif)
 
 Then we use can password provided from a question to read text file inside recovered zip file
 
@@ -111,11 +111,11 @@ R3ad_th3_spec
 
 > Q5: File: MALWARE101 - Apparently, my encryption isn't so secure. I've got a new way of hiding my flags!
 
-![0411ea942a32975136e3de764971ae59.png](/assets/resources-writeups/0411ea942a32975136e3de764971ae59.png)
+![0411ea942a32975136e3de764971ae59.png](/assets/resources-writeups/0411ea942a32975136e3de764971ae59.avif)
 
 Using decomplier, we can se that many characters will be assigned to different memory location
 
-![d4c735b4446345eae4c690d071ddc2e0.png](/assets/resources-writeups/d4c735b4446345eae4c690d071ddc2e0.png)
+![d4c735b4446345eae4c690d071ddc2e0.png](/assets/resources-writeups/d4c735b4446345eae4c690d071ddc2e0.avif)
 
 Debug it then open stack memory which we will obtain a flag here
 
@@ -125,19 +125,19 @@ sTaCk_strings_LMAO
 
 > Q6: File: MALWARE201 - Ugh... I guess I'll just roll my own encryption. I'm not too good at math, but it looks good to me!
 
-![3d2becc55c279d728a1566d686e5a409.png](/assets/resources-writeups/3d2becc55c279d728a1566d686e5a409.png)
+![3d2becc55c279d728a1566d686e5a409.png](/assets/resources-writeups/3d2becc55c279d728a1566d686e5a409.avif)
 
 Using decomplier, we can see it will print encrypted flag first then it shows us the sample text which will be sent to encrypt function and print it out for us 
 
-![bc37649c1db51a35b27977bebae54fdc.png](/assets/resources-writeups/bc37649c1db51a35b27977bebae54fdc.png)
+![bc37649c1db51a35b27977bebae54fdc.png](/assets/resources-writeups/bc37649c1db51a35b27977bebae54fdc.avif)
 
 Here it what it look like when we actually executed this file
 
-![67f4b4871da71e64613cb8ab7c548280.png](/assets/resources-writeups/67f4b4871da71e64613cb8ab7c548280.png)
+![67f4b4871da71e64613cb8ab7c548280.png](/assets/resources-writeups/67f4b4871da71e64613cb8ab7c548280.avif)
 
 Here is the function that created an encrypted flag but we didn't need it since we can just copy encryped flag from an image above
 
-![56bca681d74b820539a377dc42646f7a.png](/assets/resources-writeups/56bca681d74b820539a377dc42646f7a.png)
+![56bca681d74b820539a377dc42646f7a.png](/assets/resources-writeups/56bca681d74b820539a377dc42646f7a.avif)
 
 And here is an encryption function, we can see that it start by shifting 1 bit then OR with 1 then XOR the result with (local_28 % 0xff | 0xa0) before getting that output
 
@@ -173,7 +173,7 @@ print("Original data (hex):", original_data.hex())
 
 I asked ChatGPT to write me this script so we can execute it and get the flag right away
 
-![62af225da487a883e7de266de0bb3f8e.png](/assets/resources-writeups/62af225da487a883e7de266de0bb3f8e.png)
+![62af225da487a883e7de266de0bb3f8e.png](/assets/resources-writeups/62af225da487a883e7de266de0bb3f8e.avif)
 
 ```
 malwar3-3ncryp710n-15-Sh17

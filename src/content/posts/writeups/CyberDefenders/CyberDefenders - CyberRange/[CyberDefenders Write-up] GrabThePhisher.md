@@ -29,7 +29,7 @@ Provided the phishing kit, you as a soc analyst are requested to analyze it and 
 > Q1: Which wallet is used for asking the seed phrase?
 
 Here are the directory of the kit after decompressed 
-![0e03e9d8fc117e5c560fd6e3f6983fed.png](/assets/resources-writeups/0e03e9d8fc117e5c560fd6e3f6983fed.png)
+![0e03e9d8fc117e5c560fd6e3f6983fed.png](/assets/resources-writeups/0e03e9d8fc117e5c560fd6e3f6983fed.avif)
 There is a metamask which should be the answer of this question
 ```
 metamask
@@ -37,11 +37,11 @@ metamask
 
 For those who wonders what's Metamask?
 There you go
-![c04975e4f5ad3fb3155a188e90f1b839.png](/assets/resources-writeups/c04975e4f5ad3fb3155a188e90f1b839.png)
+![c04975e4f5ad3fb3155a188e90f1b839.png](/assets/resources-writeups/c04975e4f5ad3fb3155a188e90f1b839.avif)
 
 > Q2: What is the file name that has the code for the phishing kit?
 
-![a0851403d61765a4eb535a8ea9852fb8.png](/assets/resources-writeups/a0851403d61765a4eb535a8ea9852fb8.png)
+![a0851403d61765a4eb535a8ea9852fb8.png](/assets/resources-writeups/a0851403d61765a4eb535a8ea9852fb8.avif)
 Inside the metamask folder, there is a php file 
 ```
 metamask.php
@@ -49,7 +49,7 @@ metamask.php
 
 > Q3: In which language was the kit written?
 
-![0551d07efb9eeb76b7ff855b75178e3b.png](/assets/resources-writeups/0551d07efb9eeb76b7ff855b75178e3b.png)
+![0551d07efb9eeb76b7ff855b75178e3b.png](/assets/resources-writeups/0551d07efb9eeb76b7ff855b75178e3b.avif)
 Its a php script to retrieve geolocation data based on the user IP address then extract Country, City out of it then it construct a message then send it to Telegram Bot using API 
 
 After that it also log data it receive from a form to `/log/log.txt` by appending it 
@@ -60,7 +60,7 @@ php
 
 > Q4: What service does the kit use to retrieve the victim's machine information?
 
-![b9c264a1c5bf32fbe1a4b80de2f2edca.png](/assets/resources-writeups/b9c264a1c5bf32fbe1a4b80de2f2edca.png)
+![b9c264a1c5bf32fbe1a4b80de2f2edca.png](/assets/resources-writeups/b9c264a1c5bf32fbe1a4b80de2f2edca.avif)
 ```
 sypex geo
 ```
@@ -68,9 +68,9 @@ sypex geo
 > Q5: How many seed phrases were already collected?
 
 For those who doesn't know what is the Wallet Seed Phase, here the explaination
-![1944ebbcaa0bc8a96fdbe31b9f84133a.png](/assets/resources-writeups/1944ebbcaa0bc8a96fdbe31b9f84133a.png)
+![1944ebbcaa0bc8a96fdbe31b9f84133a.png](/assets/resources-writeups/1944ebbcaa0bc8a96fdbe31b9f84133a.avif)
 I went to where the log where created and then opened it
-![cab4bca61530f2dd5219d6ecdd0f60cf.png](/assets/resources-writeups/cab4bca61530f2dd5219d6ecdd0f60cf.png)
+![cab4bca61530f2dd5219d6ecdd0f60cf.png](/assets/resources-writeups/cab4bca61530f2dd5219d6ecdd0f60cf.avif)
 Looking at the content it seems like a wallet seed phases
 
 ```
@@ -87,14 +87,14 @@ father also recycle embody balance concert mechanic believe owner pair muffin ho
 > Q7: Which medium had been used for credential dumping?
 
 By looking at the code, the telegram it is
-![58e14e41143dad1c40f903af8988fdad.png](/assets/resources-writeups/58e14e41143dad1c40f903af8988fdad.png)
+![58e14e41143dad1c40f903af8988fdad.png](/assets/resources-writeups/58e14e41143dad1c40f903af8988fdad.avif)
 ```
 telegram
 ```
 
 > Q8: What is the token for the channel?
 
-![a9b0358b83aa2aaaad7f3a107b819805.png](/assets/resources-writeups/a9b0358b83aa2aaaad7f3a107b819805.png)
+![a9b0358b83aa2aaaad7f3a107b819805.png](/assets/resources-writeups/a9b0358b83aa2aaaad7f3a107b819805.avif)
 ```
 5457463144:AAG8t4k7e2ew3tTi0IBShcWbSia0Irvxm10
 ```
@@ -102,7 +102,7 @@ telegram
 > Q9: What is the chat ID of the phisher's 
 channel?
 
-![8db8522e257ee6213b308d1b782e7566.png](/assets/resources-writeups/8db8522e257ee6213b308d1b782e7566.png)
+![8db8522e257ee6213b308d1b782e7566.png](/assets/resources-writeups/8db8522e257ee6213b308d1b782e7566.avif)
 ```
 5442785564
 ```
@@ -110,7 +110,7 @@ channel?
 > Q10: What are the allies of the phish kit developer?
 
 There is a comment on this script and there is a name too
-![26444d99cdadb056695f3226c9ea3c73.png](/assets/resources-writeups/26444d99cdadb056695f3226c9ea3c73.png)
+![26444d99cdadb056695f3226c9ea3c73.png](/assets/resources-writeups/26444d99cdadb056695f3226c9ea3c73.avif)
 ```
 j1j1b1s@m3r0
 ```
@@ -119,20 +119,20 @@ j1j1b1s@m3r0
 
 Since it's a Telegram API then I started reading [documentation](https://core.telegram.org/bots/api#available-methods) to interact with this API
 And I found this getChat method that can retrieve information about the user
-![af2843e6b68490998c65960571f4a035.png](/assets/resources-writeups/af2843e6b68490998c65960571f4a035.png)
+![af2843e6b68490998c65960571f4a035.png](/assets/resources-writeups/af2843e6b68490998c65960571f4a035.avif)
 So I used this command
 `wget https://api.telegram.org/bot5457463144:AAG8t4k7e2ew3tTi0IBShcWbSia0Irvxm10/getChat?chat_id=5442785564` on the cmd and got the answer
-![b4a20c2f90512f98eb34f72c843e3925.png](/assets/resources-writeups/b4a20c2f90512f98eb34f72c843e3925.png)
+![b4a20c2f90512f98eb34f72c843e3925.png](/assets/resources-writeups/b4a20c2f90512f98eb34f72c843e3925.avif)
 ```
 Marcus Aurelius
 ```
 
 > Q12: What is the username of the Phish Actor? 
 
-![bcb191b9783a674f9c8f78b007cfc7b1.png](/assets/resources-writeups/bcb191b9783a674f9c8f78b007cfc7b1.png)
+![bcb191b9783a674f9c8f78b007cfc7b1.png](/assets/resources-writeups/bcb191b9783a674f9c8f78b007cfc7b1.avif)
 ```
 pumpkinboii
 ```
 
-![66e1647b340aae50c0a9613b53120797.png](/assets/resources-writeups/66e1647b340aae50c0a9613b53120797.png)
+![66e1647b340aae50c0a9613b53120797.png](/assets/resources-writeups/66e1647b340aae50c0a9613b53120797.avif)
 * * *

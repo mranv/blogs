@@ -19,20 +19,20 @@ Created: 16/08/2024 16:44
 Last Updated: 16/08/2024 18:19
 * * *
 
-![8fb43f3c04ed06280ec0a3fd07f5a884.png](/assets/resources-writeups/8fb43f3c04ed06280ec0a3fd07f5a884.png)
+![8fb43f3c04ed06280ec0a3fd07f5a884.png](/assets/resources-writeups/8fb43f3c04ed06280ec0a3fd07f5a884.avif)
 **Scenario:**
 Our SIEM alerted us to a suspicious logon event which needs to be looked at immediately . The alert details were that the IP Address and the Source Workstation name were a mismatch .You are provided a network capture and event logs from the surrounding time around the incident timeframe. Corelate the given evidence and report back to your SOC Manager.
 
 * * *
 This sherlock was launched with a new [blog](https://www.hackthebox.com/blog/ntlm-relay-attack-detection) to teach us about NTLM Relay attack and how to investigate it with Wireshark and logon audit log, treat it like a walkthrough then you can solve this sherlock easily
 
-![be12f552bac81c1f73a5296420ec0636.png](/assets/resources-writeups/be12f552bac81c1f73a5296420ec0636.png)
+![be12f552bac81c1f73a5296420ec0636.png](/assets/resources-writeups/be12f552bac81c1f73a5296420ec0636.avif)
 
 *This sherlock is also the 4th AD investigation sherlock after Campfire-1 and 2 and Noxious so the last part of this series, NTDS dumping will be coming soon in the future ([CrownJewel-1](https://app.hackthebox.com/sherlocks/CrownJewel-1) and [CrownJewel-2](https://app.hackthebox.com/sherlocks/CrownJewel-2))
 
 >Task 1: What is the IP Address for Forela-Wkstn001?
 
-![cd6d9933492eb593b50cdbffde8228fe.png](/assets/resources-writeups/cd6d9933492eb593b50cdbffde8228fe.png)
+![cd6d9933492eb593b50cdbffde8228fe.png](/assets/resources-writeups/cd6d9933492eb593b50cdbffde8228fe.avif)
 
 We can filter for `nbns` for NetBIOS Name Service (NBNS) Refresh packet which allows a device to refresh its NetBIOS name registration on the network. and as you can see that this IP address is refreshing its NetBIOS name that is Folera-Wkstn001
 
@@ -42,7 +42,7 @@ We can filter for `nbns` for NetBIOS Name Service (NBNS) Refresh packet which al
 
 >Task 2: What is the IP Address for Forela-Wkstn002?
 
-![27d159c582835bf88ed05801f2c89f1a.png](/assets/resources-writeups/27d159c582835bf88ed05801f2c89f1a.png)
+![27d159c582835bf88ed05801f2c89f1a.png](/assets/resources-writeups/27d159c582835bf88ed05801f2c89f1a.avif)
 
 We could do the same as previous task on this task to get an IP address of Forela-Wkstn002.
 
@@ -52,16 +52,16 @@ We could do the same as previous task on this task to get an IP address of Forel
 
 >Task 3: Which user account's hash was stolen by attacker?
 
-![45c02e24464fefd91c02dbf37ec2e6ad.png](/assets/resources-writeups/45c02e24464fefd91c02dbf37ec2e6ad.png)
+![45c02e24464fefd91c02dbf37ec2e6ad.png](/assets/resources-writeups/45c02e24464fefd91c02dbf37ec2e6ad.avif)
 
 We can also see other IP address jumped in on NBNS protocol to query status of a NetBIOS name or machine, including a list of all NetBIOS names from `172.17.79.1` and as the blog says that the IP address that sent this request could be an unknown device / threat actor device so we can use this IP address to filter for SMB traffic and see if the threat actor has accessed to any file share.
 
-![db8038847afcccff9c69b8cda7181666.png](/assets/resources-writeups/db8038847afcccff9c69b8cda7181666.png)
+![db8038847afcccff9c69b8cda7181666.png](/assets/resources-writeups/db8038847afcccff9c69b8cda7181666.avif)
 
 After filtered with `smb2 && ip.addr == 172.17.79.135`, we can see that this unknown device successfully authenticated as `arthur.kyle` and tried to access other file shares.
 
-![7da7e8ad4771bb06a68e622e6044df54.png](/assets/resources-writeups/7da7e8ad4771bb06a68e622e6044df54.png)
-![572eaf443289950ed21ca9eb612f02f6.png](/assets/resources-writeups/572eaf443289950ed21ca9eb612f02f6.png)
+![7da7e8ad4771bb06a68e622e6044df54.png](/assets/resources-writeups/7da7e8ad4771bb06a68e622e6044df54.avif)
+![572eaf443289950ed21ca9eb612f02f6.png](/assets/resources-writeups/572eaf443289950ed21ca9eb612f02f6.avif)
 
 Its time to open audit log to see that there is one login event that look very suspicious since there is no Logon ID (NULL SID) and it was authenticated via NTLM and the source IP address is the suspicious device we are after.
 
@@ -76,7 +76,7 @@ arthur kyle
 
 >Task 5: What was the fileshare navigated by the victim user account?
 
-![6db82d462ad296212faa98eeac430b1e.png](/assets/resources-writeups/6db82d462ad296212faa98eeac430b1e.png)
+![6db82d462ad296212faa98eeac430b1e.png](/assets/resources-writeups/6db82d462ad296212faa98eeac430b1e.avif)
 
 For this one, we have to find for Tree Connect that response with Error like this which mean file share could not be found or was not recognized by the server. This could happen if the share doesn't exist, is offline, or the client doesn't have access rights.
 
@@ -86,7 +86,7 @@ For this one, we have to find for Tree Connect that response with Error like thi
 
 >Task 6: What is the source port used to logon to target workstation using the compromised account?
 
-![572eaf443289950ed21ca9eb612f02f6.png](/assets/resources-writeups/572eaf443289950ed21ca9eb612f02f6.png)
+![572eaf443289950ed21ca9eb612f02f6.png](/assets/resources-writeups/572eaf443289950ed21ca9eb612f02f6.avif)
 ```
 40252
 ```
@@ -109,7 +109,7 @@ FORELA-WKSTN002, 172.17.79.135
 
 >Task 10: What is the share Name accessed as part of the authentication process by the malicious tool used by the attacker?
 
-![7a58d13f5405eccffa0d6395a716efed.png](/assets/resources-writeups/7a58d13f5405eccffa0d6395a716efed.png)
+![7a58d13f5405eccffa0d6395a716efed.png](/assets/resources-writeups/7a58d13f5405eccffa0d6395a716efed.avif)
 
 For this, we have to inspect EventID 5140 (network share accessed) that happened after the threat actor authenticated as arthur
 
@@ -117,5 +117,5 @@ For this, we have to inspect EventID 5140 (network share accessed) that happened
 \\*\IPC$
 ```
 
-![6908aa531e679423f53a8ceb785dd685.png](/assets/resources-writeups/6908aa531e679423f53a8ceb785dd685.png)
+![6908aa531e679423f53a8ceb785dd685.png](/assets/resources-writeups/6908aa531e679423f53a8ceb785dd685.avif)
 * * *

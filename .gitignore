@@ -36,3 +36,8 @@ redistribute-dates.js
 src/content/posts/aws/.swarm/memory.db-wal
 src/content/posts/aws/.claude-flow/metrics/system-metrics.json
 src/content/posts/aws/.swarm/memory.db-shm
+
+# Large image assets — kept on disk, not tracked in git
+public/assets/images/
+public/assets/resources-writeups/
+src/assets/resources-writeups/

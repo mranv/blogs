@@ -14,7 +14,7 @@ tags:
 title: 'THM Write up Retracted'
 ---
 # [TryHackMe - Retracted](https://tryhackme.com/room/retracted)
-![6aad4123977805c26e86afffe3e32d4d.png](/assets/resources-writeups/6aad4123977805c26e86afffe3e32d4d.png)
+![6aad4123977805c26e86afffe3e32d4d.png](/assets/resources-writeups/6aad4123977805c26e86afffe3e32d4d.avif)
 ***
 ## Introduction
 **A Mother's Plea**
@@ -29,7 +29,7 @@ title: 'THM Write up Retracted'
 
 > I'll handle it,  Mom.
 
-![2ea157a6802d9032441c462b76b13dfe.png](/assets/resources-writeups/2ea157a6802d9032441c462b76b13dfe.png)
+![2ea157a6802d9032441c462b76b13dfe.png](/assets/resources-writeups/2ea157a6802d9032441c462b76b13dfe.avif)
 
 On this room, We will have to investigate live environment that already executed a malware and the first thing I always do when access new Windows environment is to enable "**File name extensions**" and "**Hidden items**" view as you can see from the image above, and now we are ready to investigate.
 * * *
@@ -40,11 +40,11 @@ On this room, We will have to investigate live environment that already executed
 
 > What is the full path of the text file containing the "message"?
 
-![c720dd94c602819ecc02444d0740fc39.png](/assets/resources-writeups/c720dd94c602819ecc02444d0740fc39.png)
+![c720dd94c602819ecc02444d0740fc39.png](/assets/resources-writeups/c720dd94c602819ecc02444d0740fc39.avif)
 
 On the desktop, we can see a text file named `SOPHIE.txt` on the desktop right here. 
 
-![5cea4eb6bd26232580be47ae169782b0.png](/assets/resources-writeups/5cea4eb6bd26232580be47ae169782b0.png)
+![5cea4eb6bd26232580be47ae169782b0.png](/assets/resources-writeups/5cea4eb6bd26232580be47ae169782b0.avif)
 
 We can see the "message" once we opened a file and since we logged on as SOPHIE user which mean the file is located in `C:\Users\Sophie\Desktop` 
 
@@ -55,19 +55,19 @@ We can see the "message" once we opened a file and since we logged on as SOPHIE 
 
 > What program was used to create the text file?
 
-![03a192d3408b59f16033793c1af0bda9.png](/assets/resources-writeups/03a192d3408b59f16033793c1af0bda9.png)
+![03a192d3408b59f16033793c1af0bda9.png](/assets/resources-writeups/03a192d3408b59f16033793c1af0bda9.avif)
 
 Next, we can see that this file was created on **January 8,2024** and the default program that can be used to open this file is notepad but lets check if there is any log that we could use to dig a little bit deeper.
 
-![12cb9c38630e5953da18ef1c232d9a2e.png](/assets/resources-writeups/12cb9c38630e5953da18ef1c232d9a2e.png)
+![12cb9c38630e5953da18ef1c232d9a2e.png](/assets/resources-writeups/12cb9c38630e5953da18ef1c232d9a2e.avif)
 
 Luckily for us, We got **SYSMON** log which we can open it from Event Viewer so we can use this log to investigate further how this incident occurred and what happened after Sophie executed fake antivirus.
 
-![d20960048cf4531ad116238163a8d452.png](/assets/resources-writeups/d20960048cf4531ad116238163a8d452.png)
+![d20960048cf4531ad116238163a8d452.png](/assets/resources-writeups/d20960048cf4531ad116238163a8d452.avif)
 
 First, Lets scope for the timeline that we know that the text file was created which I filtered for any events that happened between 2024-01-08 to 2024-01-09 then after scope this, I saved this fitler as custom view so I don't have to filter again if I went to other logs.
 
-![9ed459df949ee0d08437f1a5a6f0b773.png](/assets/resources-writeups/9ed459df949ee0d08437f1a5a6f0b773.png)
+![9ed459df949ee0d08437f1a5a6f0b773.png](/assets/resources-writeups/9ed459df949ee0d08437f1a5a6f0b773.avif)
 
 We know that the text file was created around 02:25 PM so we can look up the log around there which we will can see that the text file was created / opened using `notepad.exe` and the parent process is `openwith.exe` indicates that the one who created this file just right-click on the file and select option "open with" to open a file with notepad.
 
@@ -78,7 +78,7 @@ We know that the text file was created around 02:25 PM so we can look up the log
 
 > What is the time of execution of the process that created the text file? Timezone UTC (Format YYYY-MM-DD hh:mm:ss)
 
-![e87cfae8a8f0ad361ad30db8cc731b1b.png](/assets/resources-writeups/e87cfae8a8f0ad361ad30db8cc731b1b.png)
+![e87cfae8a8f0ad361ad30db8cc731b1b.png](/assets/resources-writeups/e87cfae8a8f0ad361ad30db8cc731b1b.avif)
 
 We can copy the UtcTime of this event right here
 
@@ -95,11 +95,11 @@ We can copy the UtcTime of this event right here
 
 > What is the filename of this "installer"? (Including the file extension)
 
-![9f665d20d70516c4163204edd52b6886.png](/assets/resources-writeups/9f665d20d70516c4163204edd52b6886.png)
+![9f665d20d70516c4163204edd52b6886.png](/assets/resources-writeups/9f665d20d70516c4163204edd52b6886.avif)
 
 After tracing back, I found several Microsoft Edge processes before 14:15:00 and then a suspicious file named `antivirus.exe` was executed by `explorer.exe` which indicates that user SOPHIE executed this file herself which aligns with the scenario that user downloaded installer for antivirus and executed it.
 
-![2c0338c9fdbcee334326b460dbe8ec6b.png](/assets/resources-writeups/2c0338c9fdbcee334326b460dbe8ec6b.png)
+![2c0338c9fdbcee334326b460dbe8ec6b.png](/assets/resources-writeups/2c0338c9fdbcee334326b460dbe8ec6b.avif)
 
 After that, several files was renamed with `.dmp` extension which indicates ransomware behavior by encrypting sensitive files on infected system.
 
@@ -122,7 +122,7 @@ After that, several files was renamed with `.dmp` extension which indicates rans
 
 > The installer reached out to an IP. What is this IP?
 
-![f27252e1d3aedbfc458416bb42d8a45a.png](/assets/resources-writeups/f27252e1d3aedbfc458416bb42d8a45a.png)
+![f27252e1d3aedbfc458416bb42d8a45a.png](/assets/resources-writeups/f27252e1d3aedbfc458416bb42d8a45a.avif)
 
 After encrypted files, Noticed that there is network connection to another IP address by antivirus process on port 80.
 
@@ -137,19 +137,19 @@ After encrypted files, Noticed that there is network connection to another IP ad
 
 > The threat actor logged in via RDP right after the “installer” was downloaded. What is the source IP?
 
-![24b804dd7cc6be6d7bf2b64fd85571f6.png](/assets/resources-writeups/24b804dd7cc6be6d7bf2b64fd85571f6.png)
+![24b804dd7cc6be6d7bf2b64fd85571f6.png](/assets/resources-writeups/24b804dd7cc6be6d7bf2b64fd85571f6.avif)
 
 To find out which IP address logged in to this machine, I filtered for Event ID 4624 (Logon successfully) from Security log and do not forget to scope the time range the incident occurred on January 8, 2024 
 
-![48e3b85f013298301b621a00549cd504.png](/assets/resources-writeups/48e3b85f013298301b621a00549cd504.png)
+![48e3b85f013298301b621a00549cd504.png](/assets/resources-writeups/48e3b85f013298301b621a00549cd504.avif)
 
 Then we can see that at 14:19:41, there is logon success event from 10.11.27.46 to this machine but the Logon Type is not matched what Logon Type via RDP is so I dug a little bit deeper
 
-![4dd8df14e8cbe8f64156ee6794dbf9e7.png](/assets/resources-writeups/4dd8df14e8cbe8f64156ee6794dbf9e7.png)
+![4dd8df14e8cbe8f64156ee6794dbf9e7.png](/assets/resources-writeups/4dd8df14e8cbe8f64156ee6794dbf9e7.avif)
 
 Next, I found there is an RDP event was logged in RemoteDesktopServices-RdpCoreTS and the IP address is matches what we found on Security log as well.
 
-![31e90d93111e93f86feaa7e33796c9d3.png](/assets/resources-writeups/31e90d93111e93f86feaa7e33796c9d3.png)
+![31e90d93111e93f86feaa7e33796c9d3.png](/assets/resources-writeups/31e90d93111e93f86feaa7e33796c9d3.avif)
 
 Looking a bit further, we can see that RDP connection was established at 14:19:48 from the previous IP we found earlier.
 
@@ -160,11 +160,11 @@ Looking a bit further, we can see that RDP connection was established at 14:19:4
 
 > This other person downloaded a file and ran it. When was this file run? Timezone UTC (Format YYYY-MM-DD hh:mm:ss)
 
-![43d92f65fde8d2d5734b35f75c7257ba.png](/assets/resources-writeups/43d92f65fde8d2d5734b35f75c7257ba.png)
+![43d92f65fde8d2d5734b35f75c7257ba.png](/assets/resources-writeups/43d92f65fde8d2d5734b35f75c7257ba.avif)
 
 Going back to Sysmon, I noticed that `decrypter.exe` was downloaded via Microsoft Edge and executed by user Sophie at 2024-01-08 14:24:18 which happened before text file was created.
 
-![cb601a993e5cdb0565a76f4ece6de7a7.png](/assets/resources-writeups/cb601a993e5cdb0565a76f4ece6de7a7.png)
+![cb601a993e5cdb0565a76f4ece6de7a7.png](/assets/resources-writeups/cb601a993e5cdb0565a76f4ece6de7a7.avif)
 
 Easily copy timestamp right here.
 
@@ -183,7 +183,7 @@ Easily copy timestamp right here.
 
 **Arrange the following events in sequential order from 1 to 7, based on the timeline in which they occurred.**
 
-![f907d3ea19155d66c0e66dc9393750f5.png](/assets/resources-writeups/f907d3ea19155d66c0e66dc9393750f5.png)
+![f907d3ea19155d66c0e66dc9393750f5.png](/assets/resources-writeups/f907d3ea19155d66c0e66dc9393750f5.avif)
 
 From the incident, we can arrange the timeline as seen in the above image and its pretty much summed up the incident and what we needed to know to complete the room.
 
@@ -197,5 +197,5 @@ From the incident, we can arrange the timeline as seen in the above image and it
 
 >Yeah, possibly.
 
-![cd0123d7e05d0abd9161c6634d76dff4.png](/assets/resources-writeups/cd0123d7e05d0abd9161c6634d76dff4.png)
+![cd0123d7e05d0abd9161c6634d76dff4.png](/assets/resources-writeups/cd0123d7e05d0abd9161c6634d76dff4.avif)
 ***

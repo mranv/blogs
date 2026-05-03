@@ -20,7 +20,7 @@ Last Updated: 11/06/2024 16:35
 <div align=center>
 
 **Obfuscated RAT**
-![b8fe1fc367a384b6c288de7e625b274e.png](/assets/resources-writeups/b8fe1fc367a384b6c288de7e625b274e.png)
+![b8fe1fc367a384b6c288de7e625b274e.png](/assets/resources-writeups/b8fe1fc367a384b6c288de7e625b274e.avif)
 </div>
 
 We have obfuscated binary, can you help us to deobfuscate it and find the answers.
@@ -32,15 +32,15 @@ We have obfuscated binary, can you help us to deobfuscate it and find the answer
 ## Start Investigation
 >What is the name of the function that was used to decode the base64 string and decrypt string?
 
-![bf9ebfd90524323ab6a271ceacd1ad19.png](/assets/resources-writeups/bf9ebfd90524323ab6a271ceacd1ad19.png)
+![bf9ebfd90524323ab6a271ceacd1ad19.png](/assets/resources-writeups/bf9ebfd90524323ab6a271ceacd1ad19.avif)
 
 First we need to determine which disassembler we could use base on file type, and look like this malware is using .NET 
 
-![e3d63703559629ae7121eaeacce5a726.png](/assets/resources-writeups/e3d63703559629ae7121eaeacce5a726.png)
+![e3d63703559629ae7121eaeacce5a726.png](/assets/resources-writeups/e3d63703559629ae7121eaeacce5a726.avif)
 
 We can use dotPeek to decomplie this and we can see there there are a function that seem to process all base64 strings of this malware
 
-![04a599c4be99186e5a1d0fef928dc6d1.png](/assets/resources-writeups/04a599c4be99186e5a1d0fef928dc6d1.png)
+![04a599c4be99186e5a1d0fef928dc6d1.png](/assets/resources-writeups/04a599c4be99186e5a1d0fef928dc6d1.avif)
 
 It is a function to decrypt given Base64-encoded string using TripleDES encryption in ECB mode with a specific key derived from an MD5 hash and return value back to function calls
 
@@ -50,7 +50,7 @@ It is a function to decrypt given Base64-encoded string using TripleDES encrypti
 
 >What is the mod that is used in the process of decryption?
 
-![7a7a17c0a22d34e05848c4d4fdfab886.png](/assets/resources-writeups/7a7a17c0a22d34e05848c4d4fdfab886.png)
+![7a7a17c0a22d34e05848c4d4fdfab886.png](/assets/resources-writeups/7a7a17c0a22d34e05848c4d4fdfab886.avif)
 
 This snippet clearly declared that it used TripleDES ECB Mode
 
@@ -98,15 +98,15 @@ if __name__ == "__main__":
 
 Then we have this script ready to decrypt any base64 string from this malware
 
-![0790bc602ab393c5f971d84880d17ed3.png](/assets/resources-writeups/0790bc602ab393c5f971d84880d17ed3.png)
+![0790bc602ab393c5f971d84880d17ed3.png](/assets/resources-writeups/0790bc602ab393c5f971d84880d17ed3.avif)
 
 Alternatively you can search filehash on VirusTotal and still got the right answer but to answer last question from this challenge, we need to have a python script to decrypt it
 
-![0a2413113ffbb8f49b6999494d2a6073.png](/assets/resources-writeups/0a2413113ffbb8f49b6999494d2a6073.png)
+![0a2413113ffbb8f49b6999494d2a6073.png](/assets/resources-writeups/0a2413113ffbb8f49b6999494d2a6073.avif)
 
 dotPeek didn't get the code inside main function for me so I switched to ILSpy then we can see that `serverURL` string is declared here and after review other functions, I learned that this malware collect many informations from infected system and send them to `serverURL` so lets decrypt it
 
-![b9ca885cc86d6752af0c321c1e002ddd.png](/assets/resources-writeups/b9ca885cc86d6752af0c321c1e002ddd.png)
+![b9ca885cc86d6752af0c321c1e002ddd.png](/assets/resources-writeups/b9ca885cc86d6752af0c321c1e002ddd.avif)
 
 There it is
 
@@ -116,11 +116,11 @@ There it is
 
 >What is the name of RAT?
 
-![cc5d738c437cf9aef67342fb928df069.png](/assets/resources-writeups/cc5d738c437cf9aef67342fb928df069.png)
+![cc5d738c437cf9aef67342fb928df069.png](/assets/resources-writeups/cc5d738c437cf9aef67342fb928df069.avif)
 
 On VirusTotal, Go to Community tab and follow Reference url
 
-![a306add2afd0af4ea14e3991d0830efe.png](/assets/resources-writeups/a306add2afd0af4ea14e3991d0830efe.png)
+![a306add2afd0af4ea14e3991d0830efe.png](/assets/resources-writeups/a306add2afd0af4ea14e3991d0830efe.avif)
 
 It is DarkCrystal RAT or rad-x 
 
@@ -132,7 +132,7 @@ rad-x
 
 >What is the decrypt value of this string “SdB8pdfQ1nTkMSX7BnUPucesbN9ijxjK”?
 
-![6df3d8bf70daececa30d0dd111795822.png](/assets/resources-writeups/6df3d8bf70daececa30d0dd111795822.png)
+![6df3d8bf70daececa30d0dd111795822.png](/assets/resources-writeups/6df3d8bf70daececa30d0dd111795822.avif)
 
 ```
 localExtensionSettings
@@ -145,7 +145,7 @@ On this challenge, we analyzed DarkCryptal RAT or RAD-X malware that have many c
 
 <div align=center>
 
-![a3d88710c352534703cbd36a068df802.png](/assets/resources-writeups/a3d88710c352534703cbd36a068df802.png)
+![a3d88710c352534703cbd36a068df802.png](/assets/resources-writeups/a3d88710c352534703cbd36a068df802.avif)
 </div>
 
 * * *

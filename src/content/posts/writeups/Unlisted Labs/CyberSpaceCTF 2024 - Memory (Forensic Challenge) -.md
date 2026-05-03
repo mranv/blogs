@@ -13,7 +13,7 @@ tags:
 title: 'CyberSpaceCTF 2024   Memory (Forensic Challenge)  '
 ---
 # CyberSpaceCTF 2024 - Memory - Forensics Challenge
-![7b69ff048b07fa725b0c71407a1a3134.png](/assets/resources-writeups/7b69ff048b07fa725b0c71407a1a3134.png)
+![7b69ff048b07fa725b0c71407a1a3134.png](/assets/resources-writeups/7b69ff048b07fa725b0c71407a1a3134.avif)
 I left the image of the flag in the desktop but somehow it disappeared, can you help me recover it?
 
 https://drive.google.com/file/d/1OqrNosho2yYFSu05sNKamQ1VeQcDzRVn/view?usp=sharing
@@ -24,65 +24,65 @@ https://drive.google.com/file/d/1OqrNosho2yYFSu05sNKamQ1VeQcDzRVn/view?usp=shari
 * * *
 This challenge is quite unique, We were provided with Windows Memory dump and tasked to restore a file from "Desktop" < which is a big hint right here so we wanted to use `mftparser` and `filescan` and attempt to restore that file from provided memory dump (if its still there).
 
-![ceefd4ea91126d48698c8f130f7c76be.png](/assets/resources-writeups/ceefd4ea91126d48698c8f130f7c76be.png)
+![ceefd4ea91126d48698c8f130f7c76be.png](/assets/resources-writeups/ceefd4ea91126d48698c8f130f7c76be.avif)
 
 First, lets get to know about system of this memory dump first with `file` and it telling us that this memory dump is MS Windows 64bit crash dump so I used Volatility 3 with `windows.info` plugin next to find OS version which helped me determine suitable profile for Volatility 2.
 
 From this result, I finally decided which profile to use which is `--profile=Win10x64_18362`
 
-![b5ca251aabe5c3491827b7d793f41612.png](/assets/resources-writeups/b5ca251aabe5c3491827b7d793f41612.png)
+![b5ca251aabe5c3491827b7d793f41612.png](/assets/resources-writeups/b5ca251aabe5c3491827b7d793f41612.avif)
 
 I always started with `pstree` to show any suspicious processes that I might want to look deep into and from this result, I wanted to dig into is `notepad.exe` and `WINWORD.EXE` despite knowing that they probably not associated directly with flag image. 
 
-![1469629af3552ef01d7176730439b927.png](/assets/resources-writeups/1469629af3552ef01d7176730439b927.png)
+![1469629af3552ef01d7176730439b927.png](/assets/resources-writeups/1469629af3552ef01d7176730439b927.avif)
 
 I used `cmdline` plugin next to show command-line arguments of each process and from this result, it telling me that there is one more file on "Desktop" that I might want to look into.
 
-![84ea597206832b6de44fd71b1af35723.png](/assets/resources-writeups/84ea597206832b6de44fd71b1af35723.png)
+![84ea597206832b6de44fd71b1af35723.png](/assets/resources-writeups/84ea597206832b6de44fd71b1af35723.avif)
 
 I used `mftparser` plugin to dump master file table record to a text file and find for any files reside in "Desktop" folder. and look like `note.txt` is not containing any hint nor an actual flag for us.
 
-![7b6bc6d8cdeffbc569aa7b529a14defe.png](/assets/resources-writeups/7b6bc6d8cdeffbc569aa7b529a14defe.png)
+![7b6bc6d8cdeffbc569aa7b529a14defe.png](/assets/resources-writeups/7b6bc6d8cdeffbc569aa7b529a14defe.avif)
 
 But there is one particular file that made me think, I was on the right track which is `flag.enc` but I could not dump this file using `dumpfiles` plugin since `filescan` plugin could not find this file from this memory dump.
 
 There is a hint from the file extension indicates that this file could be an image file I was looking for but it was encrypted with some algorithms. 
 
-![b5f0b6c261a6ca20bd76e99ffdd789d2.png](/assets/resources-writeups/b5f0b6c261a6ca20bd76e99ffdd789d2.png)
+![b5f0b6c261a6ca20bd76e99ffdd789d2.png](/assets/resources-writeups/b5f0b6c261a6ca20bd76e99ffdd789d2.avif)
 
 So I used `flag.enc` to search for anything from this memory dump which landed me with a powershell script responsible for encryption.
 
-![2b0b37360927ac01051135c8e76f7e82.png](/assets/resources-writeups/2b0b37360927ac01051135c8e76f7e82.png)
+![2b0b37360927ac01051135c8e76f7e82.png](/assets/resources-writeups/2b0b37360927ac01051135c8e76f7e82.avif)
 
 After reviewing this script, We can see that this script used AES CBC Mode to encrypt `flag.jpg` and stores ciphertext, encryption key and IV on environment variables and eventually deleted `flag.jpg`
 
-![bcde09142ec6153a35c1aec7cac2d7c8.png](/assets/resources-writeups/bcde09142ec6153a35c1aec7cac2d7c8.png)
+![bcde09142ec6153a35c1aec7cac2d7c8.png](/assets/resources-writeups/bcde09142ec6153a35c1aec7cac2d7c8.avif)
 
 I used `envars` plugin (of volatility 2) to get these variables but It did not print out full content of `ENCD` and it could not retrieve other 2 variables.
 
 So I had to get these variable directly from memory dump. 
 
-![984f132e8be7c7c892bfc1a4c38d61c9.png](/assets/resources-writeups/984f132e8be7c7c892bfc1a4c38d61c9.png)
+![984f132e8be7c7c892bfc1a4c38d61c9.png](/assets/resources-writeups/984f132e8be7c7c892bfc1a4c38d61c9.avif)
 
 These 3 variables were declared together so I expected that at the end of `ENCD` should follow by `ENCK` and `ENCV`.
 
-![71f4446a6ec10b5cb4ebd78f2e424a6d.png](/assets/resources-writeups/71f4446a6ec10b5cb4ebd78f2e424a6d.png)
+![71f4446a6ec10b5cb4ebd78f2e424a6d.png](/assets/resources-writeups/71f4446a6ec10b5cb4ebd78f2e424a6d.avif)
 
 But when I tried to restore this image, it was corrupted and I had no way to solve so I went to sleep and forgot that this CTF was about to end.
 
-![8c12d36ae6370837324a024580fa0f44.png](/assets/resources-writeups/8c12d36ae6370837324a024580fa0f44.png)
+![8c12d36ae6370837324a024580fa0f44.png](/assets/resources-writeups/8c12d36ae6370837324a024580fa0f44.avif)
 
 A thought came in my mind after I woke up (CTF has ended already) that maybe DATA craving via HxD and volatility 2 are not work then how about volatility 3?
 
-![2be850c62500a92335389a8681fcea59.png](/assets/resources-writeups/2be850c62500a92335389a8681fcea59.png)
+![2be850c62500a92335389a8681fcea59.png](/assets/resources-writeups/2be850c62500a92335389a8681fcea59.avif)
 
 After I tried `vol3 -f mem.dmp windows.envars > envars.txt` with `grep "ENC" envars.txt` then I finally realized that sometimes I just need to calm down and explore which options I have before give up on anything.
 
-![32eba328b42e805ac09178b4feb51326.png](/assets/resources-writeups/32eba328b42e805ac09178b4feb51326.png)
+![32eba328b42e805ac09178b4feb51326.png](/assets/resources-writeups/32eba328b42e805ac09178b4feb51326.avif)
 
 So finally I got 3 variables from the same process (different process might have different ciphertext, key and IV) then came back to CyberChef to retrieve a flag. (too late, CTF already ended LOL)
 
-![800029e294194ff103bf520888105fdf.png](/assets/resources-writeups/800029e294194ff103bf520888105fdf.png)
+![800029e294194ff103bf520888105fdf.png](/assets/resources-writeups/800029e294194ff103bf520888105fdf.avif)
 
 Here is All Recipes I used on CyberChef.
 

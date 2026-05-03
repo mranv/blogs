@@ -20,7 +20,7 @@ Last Updated: 07/06/2024 08:28
 <div align=center>
 
 **Suspicious Browser Extension**
-![ec079e0680ab54bd70245349b61b8ac6.png](/assets/resources-writeups/ec079e0680ab54bd70245349b61b8ac6.png)
+![ec079e0680ab54bd70245349b61b8ac6.png](/assets/resources-writeups/ec079e0680ab54bd70245349b61b8ac6.avif)
 </div>
 A person working in the accounting department wanted to add a browser extension, but it was deleted from his device because it was perceived as harmful by AVs.
 
@@ -34,13 +34,13 @@ This challenge prepared by [@DXploiter](https://twitter.com/DXploiter)
 ## Start Investigation
 > Which browser supports this extension?
 
-![743e0ae2c8af2cd9f03861189bca38bb.png](/assets/resources-writeups/743e0ae2c8af2cd9f03861189bca38bb.png)
+![743e0ae2c8af2cd9f03861189bca38bb.png](/assets/resources-writeups/743e0ae2c8af2cd9f03861189bca38bb.avif)
 We got a crx file which is a typical file extension for browser extension 
-![95c4790725ee3c5bcd34f8d20afc3edd.png](/assets/resources-writeups/95c4790725ee3c5bcd34f8d20afc3edd.png)
+![95c4790725ee3c5bcd34f8d20afc3edd.png](/assets/resources-writeups/95c4790725ee3c5bcd34f8d20afc3edd.avif)
 Then I did some research on how to analyse this file without installing it and found this [website](https://fileinfo.com/extension/crx) explaination is very useful
-![18c3ea0b30da0d40025b8ac50c823f95.png](/assets/resources-writeups/18c3ea0b30da0d40025b8ac50c823f95.png)
+![18c3ea0b30da0d40025b8ac50c823f95.png](/assets/resources-writeups/18c3ea0b30da0d40025b8ac50c823f95.avif)
 And according to information provided on this website, we know now that crx file can be unzip
-![b49eb6a700469b7a68ac65b7fc220bb4.png](/assets/resources-writeups/b49eb6a700469b7a68ac65b7fc220bb4.png)
+![b49eb6a700469b7a68ac65b7fc220bb4.png](/assets/resources-writeups/b49eb6a700469b7a68ac65b7fc220bb4.avif)
 There is it, crx file is designed for Google Chrome so answer of this question is Google Chrome obviously
 ```
 Google Chrome
@@ -48,7 +48,7 @@ Google Chrome
 
 > What is the name of the main file which contains metadata?
 
-![57627edae35803fb8ff200b14b96d6b4.png](/assets/resources-writeups/57627edae35803fb8ff200b14b96d6b4.png)
+![57627edae35803fb8ff200b14b96d6b4.png](/assets/resources-writeups/57627edae35803fb8ff200b14b96d6b4.avif)
 I knew the answer is `manifest.json` but I also did some research on why it has to be this file and my search result made it crystal clear to me
 ```
 manifest.json
@@ -56,7 +56,7 @@ manifest.json
 
 > How many js files are there? (Answer should be numerical)
 
-![83466bf1ffef7fad76c84f431307d3a9.png](/assets/resources-writeups/83466bf1ffef7fad76c84f431307d3a9.png)
+![83466bf1ffef7fad76c84f431307d3a9.png](/assets/resources-writeups/83466bf1ffef7fad76c84f431307d3a9.avif)
 There are 2 js files here
 ```
 2
@@ -64,9 +64,9 @@ There are 2 js files here
 
 > Go to crxcavator.io and check if this browser extension has already been analyzed by searching its name. Is it known to the community? (Yes/No)
 
-![d608e2a93d21638fa1bba6eb9f4954a5.png](/assets/resources-writeups/d608e2a93d21638fa1bba6eb9f4954a5.png)
+![d608e2a93d21638fa1bba6eb9f4954a5.png](/assets/resources-writeups/d608e2a93d21638fa1bba6eb9f4954a5.avif)
 Checking extension name from `manifest.json`
-![54d58aec5b716714122f72a4b8ef5217.png](/assets/resources-writeups/54d58aec5b716714122f72a4b8ef5217.png)
+![54d58aec5b716714122f72a4b8ef5217.png](/assets/resources-writeups/54d58aec5b716714122f72a4b8ef5217.avif)
 Then search on crxcavator.io which found none which mean the answer is No
 ```
 No
@@ -75,17 +75,17 @@ No
 > Download and install ExtAnalysis. Is the author of the extension known? (Yes/No)
 
 Here is the [ExtAnalysis repository](https://github.com/Tuhinshubhra/ExtAnalysis), you can install with git and pip3 or using docker 
-![da2aeb099694a412f367fa09bd6ccd10.png](/assets/resources-writeups/da2aeb099694a412f367fa09bd6ccd10.png)
+![da2aeb099694a412f367fa09bd6ccd10.png](/assets/resources-writeups/da2aeb099694a412f367fa09bd6ccd10.avif)
 ExtAnalysis is a framework that can be used to analyze malicious browser extensions so it made sense why this challenge told us to get one
-![fca5302ea088a8a5f54b44a9e7abb085.png](/assets/resources-writeups/fca5302ea088a8a5f54b44a9e7abb085.png)
+![fca5302ea088a8a5f54b44a9e7abb085.png](/assets/resources-writeups/fca5302ea088a8a5f54b44a9e7abb085.avif)
 I installed this framework using git and pip3
-![a640dba2aa81329d10cdb6d745d7ba92.png](/assets/resources-writeups/a640dba2aa81329d10cdb6d745d7ba92.png)
+![a640dba2aa81329d10cdb6d745d7ba92.png](/assets/resources-writeups/a640dba2aa81329d10cdb6d745d7ba92.avif)
 Look like I missed 1 package but if you have the same problem just use pip to install them
-![7b1ea0c9b738ac6209efd2bed357b16c.png](/assets/resources-writeups/7b1ea0c9b738ac6209efd2bed357b16c.png)
+![7b1ea0c9b738ac6209efd2bed357b16c.png](/assets/resources-writeups/7b1ea0c9b738ac6209efd2bed357b16c.avif)
 Then after all requirements are met, executed python file then ExtAnalysis will be hosted at port 13337 on localhost
-![ebe3e2747ee7633fffee892f2e6ccee8.png](/assets/resources-writeups/ebe3e2747ee7633fffee892f2e6ccee8.png)
+![ebe3e2747ee7633fffee892f2e6ccee8.png](/assets/resources-writeups/ebe3e2747ee7633fffee892f2e6ccee8.avif)
 Go to UPLOAD EXTENSION to upload crx file
-![bcd758c3ba524049dbf88e7161848a04.png](/assets/resources-writeups/bcd758c3ba524049dbf88e7161848a04.png)
+![bcd758c3ba524049dbf88e7161848a04.png](/assets/resources-writeups/bcd758c3ba524049dbf88e7161848a04.avif)
 On BASIC INFO, look like Author is unknown so the answer of this question is No
 ```
 No
@@ -93,7 +93,7 @@ No
 
 > Often there are URLs and domains in malicious extensions. Using ExtAnlaylsis, check the ‘URLs and Domains’ tab How many URLs & Domains are listed? (Answer should be numerical)
 
-![45bbfe74c9f9652a9ecb025722159e87.png](/assets/resources-writeups/45bbfe74c9f9652a9ecb025722159e87.png)
+![45bbfe74c9f9652a9ecb025722159e87.png](/assets/resources-writeups/45bbfe74c9f9652a9ecb025722159e87.avif)
 We got 2 domains here
 ```
 2
@@ -101,7 +101,7 @@ We got 2 domains here
 
 > Find the piece of code that uses an evasion technique. Analyse it, what type of systems is it attempting to evade?
 
-![516131e3ccb94c417a9f6e630b332d5d.png](/assets/resources-writeups/516131e3ccb94c417a9f6e630b332d5d.png)
+![516131e3ccb94c417a9f6e630b332d5d.png](/assets/resources-writeups/516131e3ccb94c417a9f6e630b332d5d.avif)
 Open `ThankYou.html` with your preferred text editor which you can see that if statement is checking for virtual machine and once any of them is detected, it will write something on web browser console and terminate chrome.exe process
 ```
 virtual machine
@@ -109,27 +109,27 @@ virtual machine
 
 > If this type of system is detected what function is triggered in its response?
 
-![87b54d75d7596b48d913b7e0fcda5c74.png](/assets/resources-writeups/87b54d75d7596b48d913b7e0fcda5c74.png)
+![87b54d75d7596b48d913b7e0fcda5c74.png](/assets/resources-writeups/87b54d75d7596b48d913b7e0fcda5c74.avif)
 ```
 chrome.processes.terminate(0)
 ```
 
 > What keyword in a user visited URL will trigger the if condition statement in the code?
 
-![c1c536545198e8d02350f6d6ad09d9e6.png](/assets/resources-writeups/c1c536545198e8d02350f6d6ad09d9e6.png)
+![c1c536545198e8d02350f6d6ad09d9e6.png](/assets/resources-writeups/c1c536545198e8d02350f6d6ad09d9e6.avif)
 Go to `content.js`, you can see that it was obfuscated but one thing for sure is the first line is to assigned an array to a variable 
-![8d7af9c341d201856a918b4ed30572e0.png](/assets/resources-writeups/8d7af9c341d201856a918b4ed30572e0.png)
+![8d7af9c341d201856a918b4ed30572e0.png](/assets/resources-writeups/8d7af9c341d201856a918b4ed30572e0.avif)
 This if condition might be the one that check for a keyword so lets grab each hex characters from an array to decode 
-![e81f3e5746e2927ddf79d507e91d0185.png](/assets/resources-writeups/e81f3e5746e2927ddf79d507e91d0185.png)
-![8905fe9039a3dd3ea16da373d2ebfe4c.png](/assets/resources-writeups/8905fe9039a3dd3ea16da373d2ebfe4c.png)
+![e81f3e5746e2927ddf79d507e91d0185.png](/assets/resources-writeups/e81f3e5746e2927ddf79d507e91d0185.avif)
+![8905fe9039a3dd3ea16da373d2ebfe4c.png](/assets/resources-writeups/8905fe9039a3dd3ea16da373d2ebfe4c.avif)
 Look like it check for any url that has `login.aspx` inside of it
 
-![2648cc8553a68cfeeb24ae6028207956.png](/assets/resources-writeups/2648cc8553a68cfeeb24ae6028207956.png)
+![2648cc8553a68cfeeb24ae6028207956.png](/assets/resources-writeups/2648cc8553a68cfeeb24ae6028207956.avif)
 
 To make life easier I found this https://obf-io.deobfuscate.io/ website to be very useful to de-obfuscate js code 
-![6708373bf8f3b8dbd48413643cfda019.png](/assets/resources-writeups/6708373bf8f3b8dbd48413643cfda019.png)
+![6708373bf8f3b8dbd48413643cfda019.png](/assets/resources-writeups/6708373bf8f3b8dbd48413643cfda019.avif)
 It's time to deobfuscate and analyze this js script
-![2ed6ba8cb89d35ef42aa2ad6fb248cf4.png](/assets/resources-writeups/2ed6ba8cb89d35ef42aa2ad6fb248cf4.png)
+![2ed6ba8cb89d35ef42aa2ad6fb248cf4.png](/assets/resources-writeups/2ed6ba8cb89d35ef42aa2ad6fb248cf4.avif)
 In conclusion, this script is a keylogger
 ```
 login
@@ -137,8 +137,8 @@ login
 
 > Based on the analysis of the content.js, what type of malware is this?
 
-![fd34ddb2d1fc0f6925a1478792f2943e.png](/assets/resources-writeups/fd34ddb2d1fc0f6925a1478792f2943e.png)
-![46973b530be0270187572fea72fdab71.png](/assets/resources-writeups/46973b530be0270187572fea72fdab71.png)
+![fd34ddb2d1fc0f6925a1478792f2943e.png](/assets/resources-writeups/fd34ddb2d1fc0f6925a1478792f2943e.avif)
+![46973b530be0270187572fea72fdab71.png](/assets/resources-writeups/46973b530be0270187572fea72fdab71.avif)
 `window.onkeydown` is a property that used to capture any keystroke so the only malware type that do this thing is a keylogger malware
 ```
 keylogger
@@ -146,9 +146,9 @@ keylogger
 
 > Which domain/URL will data be sent to?
 
-![ada779e745f8e92cc8e7ff9ab9c3ebc7.png](/assets/resources-writeups/ada779e745f8e92cc8e7ff9ab9c3ebc7.png)
+![ada779e745f8e92cc8e7ff9ab9c3ebc7.png](/assets/resources-writeups/ada779e745f8e92cc8e7ff9ab9c3ebc7.avif)
 Now open `background.js` to grab an url which we couldn't find on `content.js`
-![1bab56193df19cbe21cc2b428ca498ca.png](/assets/resources-writeups/1bab56193df19cbe21cc2b428ca498ca.png)
+![1bab56193df19cbe21cc2b428ca498ca.png](/assets/resources-writeups/1bab56193df19cbe21cc2b428ca498ca.avif)
 Put it in [deobfuscator](https://obf-io.deobfuscate.io/ ) we finally obtained a C2
 ```
 https://google-analytics-cm.com/analytics-3032344.txt
@@ -176,7 +176,7 @@ This challenge will teach user how to investigate suspicious crx file which you 
 Overall it is a great challenge for a beginner.
 <div align=center>
 
-![7f09f3deaaefcf50cb13104e30b5b48c.png](/assets/resources-writeups/7f09f3deaaefcf50cb13104e30b5b48c.png)
+![7f09f3deaaefcf50cb13104e30b5b48c.png](/assets/resources-writeups/7f09f3deaaefcf50cb13104e30b5b48c.avif)
 https://app.letsdefend.io/my-rewards/detail/3b1cbc9246e04f1b8489635f226ab131
 </div>
 

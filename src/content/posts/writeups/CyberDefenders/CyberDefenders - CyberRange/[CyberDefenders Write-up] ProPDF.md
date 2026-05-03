@@ -34,14 +34,14 @@ CyberChef
 Ghidra
 
 * * *
-![ce2040d225884a20409bd030bf5d3403.png](/assets/resources-writeups/ce2040d225884a20409bd030bf5d3403.png)
+![ce2040d225884a20409bd030bf5d3403.png](/assets/resources-writeups/ce2040d225884a20409bd030bf5d3403.avif)
 
 We only have pdf sample on this lab and looking at tools provided for us; we might deal with some JS code embedded within this file and also using Ghidra to reverse engineering final PE32 payload that as well. 
 
 ## Questions
 >Q1: This PDF seems to trigger unexpected system actions when opened. Could you provide the object number that contains the malicious code?
 
-![b52066d3acfeee811f477bda7a87ff56.png](/assets/resources-writeups/b52066d3acfeee811f477bda7a87ff56.png)
+![b52066d3acfeee811f477bda7a87ff56.png](/assets/resources-writeups/b52066d3acfeee811f477bda7a87ff56.avif)
 
 PDF file is known for initial access vector as it could embedded with JavaScript code to execute once the file is opened. First, we will have to use PDF Walker to inspect the JavaScript object inside this file on object 88 which reveals that the actual JavaScript content is stored in steam 89
 
@@ -51,21 +51,21 @@ PDF file is known for initial access vector as it could embedded with JavaScript
 
 >Q2: The analysis of the extracted malicious code reveals an additional procedure within the PDF, What specific API is utilized to embed this secondary malicious code?
 
-![ef13056330561360f74c5e766c15491a.png](/assets/resources-writeups/ef13056330561360f74c5e766c15491a.png)
+![ef13056330561360f74c5e766c15491a.png](/assets/resources-writeups/ef13056330561360f74c5e766c15491a.avif)
 
 We can go to the next object by just press down 1 time as PDF Walker already sorted objects for us, but we can also go to `Document` → `Jump to Object...` to specify object number we want to jump into as well.
 
-![e7c1762918ddd398134a76f1062a58b8.png](/assets/resources-writeups/e7c1762918ddd398134a76f1062a58b8.png)
+![e7c1762918ddd398134a76f1062a58b8.png](/assets/resources-writeups/e7c1762918ddd398134a76f1062a58b8.avif)
 
 Now we will dump the embedded JavaScript by right-clicking on the object and select `Dump decoded stream`
 
-![c5cc702ce0ecbe2da007eb834afbb30f.png](/assets/resources-writeups/c5cc702ce0ecbe2da007eb834afbb30f.png)
+![c5cc702ce0ecbe2da007eb834afbb30f.png](/assets/resources-writeups/c5cc702ce0ecbe2da007eb834afbb30f.avif)
 
-![5525cdf537be10221da3d48d098527e2.png](/assets/resources-writeups/5525cdf537be10221da3d48d098527e2.png)
+![5525cdf537be10221da3d48d098527e2.png](/assets/resources-writeups/5525cdf537be10221da3d48d098527e2.avif)
 
 The dumped JavaScript code is a very long one-liner one but ultimately, it will decode the base64 blob declared in `aa()` function and we can see that at the end of this file, there are functions related to Adobe Acrobat Javascript API being invoked here to execute this JavaScript at the start if the document is opened via Adobe Acrobat program. 
 
-![144cc186fb4d67655136d425ee7ebf46.png](/assets/resources-writeups/144cc186fb4d67655136d425ee7ebf46.png)
+![144cc186fb4d67655136d425ee7ebf46.png](/assets/resources-writeups/144cc186fb4d67655136d425ee7ebf46.avif)
 
 By looking at this [documentation](https://online.verypdf.com/examples/doc/AcroJS.pdf), we can see that `addScript` API is used to execute base64-decoded JavaScript declared in `aa()` function.
 
@@ -75,31 +75,31 @@ addScript
 
 >Q3: Upon analyzing the scripts, it appears that it was actively carrying out malicious operations. The script uses a method to alter memory permissions. What is the Windows API function name?
 
-![6797295a2289c4a7451feada8ba943a2.png](/assets/resources-writeups/6797295a2289c4a7451feada8ba943a2.png)
+![6797295a2289c4a7451feada8ba943a2.png](/assets/resources-writeups/6797295a2289c4a7451feada8ba943a2.avif)
 
 I will remove everything else except for base64 blob then decode it with `base64` binary already pre-installed on the VM, and we can see that there is a variable declared with Hex array of executable file so this PE32 executable one might be drop or injected somewhere when this JavaScript is executed.
 
 Command: `cat base64.blob | base64 -d > stage1.js`
 
-![bf6ab36cc19fece2d70b3a0e03aa7d76.png](/assets/resources-writeups/bf6ab36cc19fece2d70b3a0e03aa7d76.png)
+![bf6ab36cc19fece2d70b3a0e03aa7d76.png](/assets/resources-writeups/bf6ab36cc19fece2d70b3a0e03aa7d76.avif)
 
 I tried to make sense of the script but it looks too messy, so I’ll beautify it first.
 
-![be01995821c23aed8e8085c168a7bc9b.png](/assets/resources-writeups/be01995821c23aed8e8085c168a7bc9b.png)
+![be01995821c23aed8e8085c168a7bc9b.png](/assets/resources-writeups/be01995821c23aed8e8085c168a7bc9b.avif)
 
 I open this JavaScript and beautify it with “JavaScript Beautify” recipe and save it to `stage1_beauty.js`
 
-![20aae9a4ed314c074759f2e867fbbcef.png](/assets/resources-writeups/20aae9a4ed314c074759f2e867fbbcef.png)
+![20aae9a4ed314c074759f2e867fbbcef.png](/assets/resources-writeups/20aae9a4ed314c074759f2e867fbbcef.avif)
 
 Now the code is easier to read but a lot of things still does not add up for me, so it is the time for LLM!
 
-![a2cceff7bfb0b2c989a0c7b62ab15ef2.png](/assets/resources-writeups/a2cceff7bfb0b2c989a0c7b62ab15ef2.png)
+![a2cceff7bfb0b2c989a0c7b62ab15ef2.png](/assets/resources-writeups/a2cceff7bfb0b2c989a0c7b62ab15ef2.avif)
 
 Alright so this JavaScript exploit use-after-free (UAF) vulnerability on the Adobe Reader’s JavaScript Engine, specifically exploiting vulnerabilities in XML parsing and ArrayBuffer handling which will ultimately execute the executable declared in this script.
 
-![250cf6e618c094bd77a3892399f76829.png](/assets/resources-writeups/250cf6e618c094bd77a3892399f76829.png)
+![250cf6e618c094bd77a3892399f76829.png](/assets/resources-writeups/250cf6e618c094bd77a3892399f76829.avif)
 
-![668f7928ab6254741722d05490f0fde4.png](/assets/resources-writeups/668f7928ab6254741722d05490f0fde4.png)
+![668f7928ab6254741722d05490f0fde4.png](/assets/resources-writeups/668f7928ab6254741722d05490f0fde4.avif)
 
 In the process of injection, it will use `VirtualProtect` API to grant execution permission (PAGE_EXECUTE_READWIRTE) to specific memory address that will be used to run the executable file or shellcode.
 
@@ -145,13 +145,13 @@ console.log(`\nMZ Header: ${mzHeader === 'MZ' ? '✓ Valid PE file' : '✗ Inval
 console.log(`\nFirst 16 bytes: ${buffer.slice(0, 16).toString('hex')}`);
 ```
 
-![276a735abcb90425b59ef11513cdb707.png](/assets/resources-writeups/276a735abcb90425b59ef11513cdb707.png)
+![276a735abcb90425b59ef11513cdb707.png](/assets/resources-writeups/276a735abcb90425b59ef11513cdb707.avif)
 
-![14507e543375ffd1767f252c4ec2144e.png](/assets/resources-writeups/14507e543375ffd1767f252c4ec2144e.png)
+![14507e543375ffd1767f252c4ec2144e.png](/assets/resources-writeups/14507e543375ffd1767f252c4ec2144e.avif)
 
 Now I will copy the whole variable from `stage1.js` (not beautify version) and run it with `node`
 
-![0c4f45ec73719643ae494380b09d595f.png](/assets/resources-writeups/0c4f45ec73719643ae494380b09d595f.png)
+![0c4f45ec73719643ae494380b09d595f.png](/assets/resources-writeups/0c4f45ec73719643ae494380b09d595f.avif)
 
 By searching this hash on [VirusTotal - File - 6f5068784fc1635daddcfa447082098fa960e32b00906898bc0c4ed921d72b32](https://www.virustotal.com/gui/file/6f5068784fc1635daddcfa447082098fa960e32b00906898bc0c4ed921d72b32), it reveals that this sample is a dropper that related to Kimsuky, the infamous North Korean stated-sponsor group
 
@@ -161,11 +161,11 @@ By searching this hash on [VirusTotal - File - 6f5068784fc1635daddcfa447082098fa
 
 >Q5: The malicious executable connects with a C2 server to download another stage. What is the C2 server name?
 
-![fdd4e16c265fecc23b98fd3283d82ce9.png](/assets/resources-writeups/fdd4e16c265fecc23b98fd3283d82ce9.png)
+![fdd4e16c265fecc23b98fd3283d82ce9.png](/assets/resources-writeups/fdd4e16c265fecc23b98fd3283d82ce9.avif)
 
 There are multiple ways to obtain the answer to this question, first way is to look at the “Contacted URLs” section under “Relations” tab which we can see that it reaches out to php endpoint on `tksrpdl.atwebpages.com` to download file.
 
-![1c8861b3861ddb21d60fb4c8dee4ec1e.png](/assets/resources-writeups/1c8861b3861ddb21d60fb4c8dee4ec1e.png)
+![1c8861b3861ddb21d60fb4c8dee4ec1e.png](/assets/resources-writeups/1c8861b3861ddb21d60fb4c8dee4ec1e.avif)
 
 The second way is to try extract readable string from the executable file which reveals many interesting strings including 
 
@@ -174,7 +174,7 @@ The second way is to try extract readable string from the executable file which 
 
 Command: `strings extracted_payload.exe -n 10`
 
-![c242b47a598ee0ef805fd854351b802b.png](/assets/resources-writeups/c242b47a598ee0ef805fd854351b802b.png)
+![c242b47a598ee0ef805fd854351b802b.png](/assets/resources-writeups/c242b47a598ee0ef805fd854351b802b.avif)
 
 Lastly, we can use Ghidra to decompile the executable file like this.
 
@@ -184,7 +184,7 @@ tksrpdl.atwebpages.com
 
 >Q6: The malicious executable connects with a C2 server to download another stage. What is the C2 server name?
 
-![01eed6d23c6b9e4b6ee7f42581eb2588.png](/assets/resources-writeups/01eed6d23c6b9e4b6ee7f42581eb2588.png)
+![01eed6d23c6b9e4b6ee7f42581eb2588.png](/assets/resources-writeups/01eed6d23c6b9e4b6ee7f42581eb2588.avif)
 
 As we already discovered suspicious dll file from the `strings` , we can track it back in Ghidra which reveals that the downloaded fille will be dropped inside `C:\Users\<username>\AppData\Roaming\adobe` folder under the name of  `AdobeAdv.dll` before invoking its main function as we have seen in the code.
 

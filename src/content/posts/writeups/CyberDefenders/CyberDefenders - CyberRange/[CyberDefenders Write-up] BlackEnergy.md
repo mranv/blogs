@@ -33,7 +33,7 @@ WinXPSP2x86
 
 > Q2: How many processes were running when the image was acquired?
 
-![80318a1e2063833eae819a32d87aa2c1.png](/assets/resources-writeups/80318a1e2063833eae819a32d87aa2c1.png)
+![80318a1e2063833eae819a32d87aa2c1.png](/assets/resources-writeups/80318a1e2063833eae819a32d87aa2c1.avif)
 by running `vol3 -f CYBERDEF-567078-20230213-171333.raw psscan`, we can see that there are 25 processes and 6 processes were already exited which leave us with 19 processes that still running
 ```
 19
@@ -41,14 +41,14 @@ by running `vol3 -f CYBERDEF-567078-20230213-171333.raw psscan`, we can see that
 
 > Q3: What is the process ID of cmd.exe?
 
-![9a0bbdeda7bdb5ab86ae247230859a7b.png](/assets/resources-writeups/9a0bbdeda7bdb5ab86ae247230859a7b.png)
+![9a0bbdeda7bdb5ab86ae247230859a7b.png](/assets/resources-writeups/9a0bbdeda7bdb5ab86ae247230859a7b.avif)
 ```
 1960
 ```
 
 > Q4: What is the name of the most suspicious process?
 
-![2005827e9e3a75067fe6bdddaefb0e23.png](/assets/resources-writeups/2005827e9e3a75067fe6bdddaefb0e23.png)
+![2005827e9e3a75067fe6bdddaefb0e23.png](/assets/resources-writeups/2005827e9e3a75067fe6bdddaefb0e23.avif)
 Well.. Its self-explanatory here
 ```
 rootkit.exe
@@ -56,15 +56,15 @@ rootkit.exe
 
 > Q5: Which process shows the highest likelihood of code injection?
 
-![f104bc256c49797733b92a7176b328c7.png](/assets/resources-writeups/f104bc256c49797733b92a7176b328c7.png)
+![f104bc256c49797733b92a7176b328c7.png](/assets/resources-writeups/f104bc256c49797733b92a7176b328c7.avif)
 malfind plugin will help us find that process so I used `vol3 -f CYBERDEF-567078-20230213-171333.raw windows.malfind` then after scanning is completed, there are a lot of winlogon.exe found and this svchost.exe that caught my eyes has "MZ.." in it so I'll look into this process first
 
-![e77badc225f9d5e5c97e1f0d6235dd3b.png](/assets/resources-writeups/e77badc225f9d5e5c97e1f0d6235dd3b.png)
+![e77badc225f9d5e5c97e1f0d6235dd3b.png](/assets/resources-writeups/e77badc225f9d5e5c97e1f0d6235dd3b.avif)
 Lets dump it using with `vol3 -f CYBERDEF-567078-20230213-171333.raw -o /tmp/outfile windows.malfind --pid=880 --dump` then use md5sum to calculate file hash then search it on VirusTotal
-![c2fe170e054e5c80c9145167b404f0e7.png](/assets/resources-writeups/c2fe170e054e5c80c9145167b404f0e7.png)
+![c2fe170e054e5c80c9145167b404f0e7.png](/assets/resources-writeups/c2fe170e054e5c80c9145167b404f0e7.avif)
 As expected this process is indeed malicious
 
-![47151de00c311555450936dbd18558d9.png](/assets/resources-writeups/47151de00c311555450936dbd18558d9.png)
+![47151de00c311555450936dbd18558d9.png](/assets/resources-writeups/47151de00c311555450936dbd18558d9.avif)
 And if its really BlackEnergy malware then it made sense why it has to be this process
 ```
 svchost.exe
@@ -72,9 +72,9 @@ svchost.exe
 
 > Q6: There is an odd file referenced in the recent process. Provide the full path of that file.
 
-![406b646ca8374749e44fdd173b69e3ee.png](/assets/resources-writeups/406b646ca8374749e44fdd173b69e3ee.png)
+![406b646ca8374749e44fdd173b69e3ee.png](/assets/resources-writeups/406b646ca8374749e44fdd173b69e3ee.avif)
 I used `strings /tmp/outfile/pid.880.vad.0x980000-0x988fff.dmp` to find any path hidden in this files and there is one
-![7a146ab98b291ed3be598cdecde856cf.png](/assets/resources-writeups/7a146ab98b291ed3be598cdecde856cf.png)
+![7a146ab98b291ed3be598cdecde856cf.png](/assets/resources-writeups/7a146ab98b291ed3be598cdecde856cf.avif)
 Probably for persistence
 ```
 C:\WINDOWS\system32\drivers\str.sys
@@ -84,7 +84,7 @@ C:\WINDOWS\system32\drivers\str.sys
 
 For a plugin that detected dll injection, I would recommend you to read this [blog](https://imphash.medium.com/windows-process-internals-a-few-concepts-to-know-before-jumping-on-memory-forensics-part-2-4f45022fb1f8) which is very helpful and informative for this question
 
-![31cf201fd9ebd404ac4a1d62f99474b1.png](/assets/resources-writeups/31cf201fd9ebd404ac4a1d62f99474b1.png)
+![31cf201fd9ebd404ac4a1d62f99474b1.png](/assets/resources-writeups/31cf201fd9ebd404ac4a1d62f99474b1.avif)
 So lets do this `vol3 -f CYBERDEF-567078-20230213-171333.raw windows.ldrmodules --pid=880` then we will find the only one dll that does not mapped for all 3 
 ```
 msxml3r.dll
@@ -92,7 +92,7 @@ msxml3r.dll
 
 > Q8: What is the base address of the injected dll?
 
-![c2783f5d1bd669f7e97f007f563c49ac.png](/assets/resources-writeups/c2783f5d1bd669f7e97f007f563c49ac.png)
+![c2783f5d1bd669f7e97f007f563c49ac.png](/assets/resources-writeups/c2783f5d1bd669f7e97f007f563c49ac.avif)
 We can get this by using malfind and the base address could be found here
 ```
 0x980000
@@ -101,5 +101,5 @@ We can get this by using malfind and the base address could be found here
 
 You can read more about this malware [here](https://attack.mitre.org/software/S0089/)
 
-![5132c0d47bd7dee4a9328c3fe2202e90.png](/assets/resources-writeups/5132c0d47bd7dee4a9328c3fe2202e90.png)
+![5132c0d47bd7dee4a9328c3fe2202e90.png](/assets/resources-writeups/5132c0d47bd7dee4a9328c3fe2202e90.avif)
 * * *
