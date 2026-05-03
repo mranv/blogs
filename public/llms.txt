@@ -1,0 +1,64 @@
+# Anubhav Gain — Security Engineering Blog
+
+> Security Software Engineer at Infopercept Consulting and CEO at TechAnv Consulting. Builder of production-grade security systems in Rust and Go. DevSecOps Expert, XDR/OXDR Platform Architect, eBPF Specialist. 222+ Research Citations.
+
+Anubhav Gain (alias: mranv) writes about low-level security engineering, DevSecOps, Rust and Go systems programming, Windows kernel security, Kubernetes platform engineering, CTF writeups, and eBPF development. He is based in Ahmedabad, Gujarat, India.
+
+## Author & Profile
+
+- [About Anubhav Gain](https://mranv.pages.dev/about/): Full bio, expertise, and contact information
+- [GitHub (mranv)](https://github.com/mranv): Personal open-source projects — Rust, eBPF, security tools
+- [GitHub (Infopercept)](https://github.com/anubhavg-icpl): Organization projects — Leviathan, Krustron, Agni, opensearch-rust-sdk
+- [LinkedIn](https://in.linkedin.com/in/anubhavgain): Professional profile with full project history
+- [Portfolio](https://mranv.pages.dev/): Personal site and blog
+
+## Flagship Open-Source Projects
+
+- [Leviathan](https://github.com/anubhavg-icpl/leviathan): Windows kernel-mode EDR/XDR security framework in safe Rust (KMDF v1.33, Ring 0, five kernel callbacks, MITRE ATT&CK mapping across 16 techniques, pool-tag memory forensics, SSDT/IDT/MSR hook scanning, ELAM, zero-copy MDL ring buffer)
+- [Krustron](https://github.com/anubhavg-icpl/krustron): Open-source Devtron alternative for Kubernetes platform engineering (Go, unified dashboard, GitOps CI/CD, multi-cluster, RBAC, observability)
+- [Agni](https://github.com/anubhavg-icpl/agni): Terminal UI for Firecracker microVMs built on Bubble Tea (Go) — interactive alternative to firectl
+- [opensearch-rust-sdk](https://github.com/Infopercept/opensearch-rust-sdk): High-performance async-first Rust SDK for the OpenSearch Extensions API
+- [ebpf-file-monitor (RustInotifyTracker)](https://github.com/mranv/ebpf-file-monitor): eBPF file monitoring with inotify in Rust — timestamped change tracking
+- [rshell](https://github.com/mranv/rshell-backdoor): Rust bind and reverse shell for ethical security research
+- [status](https://github.com/anubhavg-icpl/status): Enterprise-grade status page and monitoring platform in Go
+- [vibe](https://github.com/anubhavg-icpl/vibe): Curated AI system prompt library for software engineering workflows
+- [ocsf-rust-crawler](https://github.com/mranv/ocsf-rust-crawler): OCSF JSON crawler in Rust with scheduled HTTP fetching
+- [r-logger](https://github.com/mranv/r-logger): Lightweight Rust logging utility for activity and query tracking
+
+## App Control for Business Series
+
+A comprehensive 8-part series on Microsoft App Control for Business (WDAC/AppLocker), plus 12 file rule level references and 21 rule option references.
+
+- [Part 1: Introduction & Key Concepts](https://mranv.pages.dev/posts/app-control-part-1-introduction-keyconcepts/): Why application control matters, key use cases, deployment, licensing
+- [Part 2: Policy Templates & Rule Options](https://mranv.pages.dev/posts/app-control-part-2-policy-templates-rule-options/): Policy templates and rule option overview
+- [Part 3: AppID Tagging & Managed Installer](https://mranv.pages.dev/posts/app-control-part-3-appid-tagging-managed-installer/): AppID tagging and managed installer configuration
+- [Part 4: Starter Base Policy (Lightly Managed)](https://mranv.pages.dev/posts/app-control-part-4-starter-base-policy-lightly-managed/): Base policy for lightly managed devices
+- [Part 5: Base Policy (Fully Managed Devices)](https://mranv.pages.dev/posts/app-control-part-5-base-policy-fully-managed-devices/): Full lockdown policy for managed endpoints
+- [Part 6: Sign, Apply & Remove Signed Policies](https://mranv.pages.dev/posts/app-control-part-6-sign-apply-remove-signed-policies/): Policy signing and deployment lifecycle
+- [Part 7: Maintaining Policies with Azure DevOps & PowerShell](https://mranv.pages.dev/posts/app-control-part-7-maintaining-policies-azuredevops-powershell/): CI/CD-driven policy management
+- [Part 8: AppLocker, Option 13 & Selective MSI Allowlisting](https://mranv.pages.dev/posts/app-control-part-8-applocker-option13-selective-msi-allowlisting/): End-to-end MSI allowlisting
+
+## CTF & Security Writeups
+
+Over 280 writeup posts covering blue-team CTF challenges across multiple platforms.
+
+- [CyberDefenders Writeups](https://mranv.pages.dev/archive/): Cloud forensics, malware analysis, network forensics, threat hunting
+- [HackTheBox Writeups](https://mranv.pages.dev/archive/): Machine and challenge writeups
+- [TryHackMe Writeups](https://mranv.pages.dev/archive/): Blue team labs and SOC analyst paths
+- [LetsDefend Writeups](https://mranv.pages.dev/archive/): Incident response and SIEM analysis
+- [Security Blue Team (BTLO) Writeups](https://mranv.pages.dev/archive/): Investigation challenges
+
+## Technical Topics Covered
+
+- [Archive — All Posts](https://mranv.pages.dev/archive/): 1500+ posts across all topics
+
+Key topic areas: Rust security tools, eBPF, Windows kernel development, DevSecOps, XDR/OXDR platforms, Kubernetes (K8s), GitOps, Cloud security (AWS/Azure), SIEM, EDR, Wazuh, OpenSearch, Docker, Linux kernel, MITRE ATT&CK, OCSF, zero trust, network security, reverse engineering, digital forensics.
+
+## RSS & Discovery
+
+- [RSS Feed](https://mranv.pages.dev/rss.xml): Full blog RSS feed in XML format
+- [Sitemap](https://mranv.pages.dev/sitemap-index.xml): Full sitemap index
+
+## Optional
+
+- [Instagram](https://www.instagram.com/anubhavgain/): Personal updates
