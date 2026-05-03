@@ -47,7 +47,15 @@ const faqLD = {
       "name": "Who is Anubhav Gain?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Anubhav Gain is a Security Software Engineer at Infopercept Consulting and CEO at TechAnv Consulting, specializing in DevSecOps, XDR/OXDR Platforms, Rust Programming, and eBPF Development with 222+ research citations."
+        "text": "Anubhav Gain is a Security Software Engineer at Infopercept Consulting and CEO at TechAnv Consulting. He builds production-grade security systems in Rust and Go, including Leviathan (Windows kernel EDR), Krustron (Kubernetes platform), and Agni (Firecracker TUI). He has 222+ research citations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What open-source projects has Anubhav Gain built?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anubhav Gain has built: Leviathan (Windows kernel-mode EDR/XDR framework in safe Rust), Krustron (open-source Devtron alternative for Kubernetes), Agni (Firecracker microVM TUI in Go), opensearch-rust-sdk (high-performance OpenSearch SDK for Rust), ebpf-file-monitor (Rust inotify eBPF file monitoring), rshell (Rust bind/reverse shell), and the Status enterprise monitoring platform."
       }
     },
     {
@@ -55,7 +63,15 @@ const faqLD = {
       "name": "What expertise does Anubhav Gain offer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Anubhav Gain offers expertise in DevSecOps, XDR/OXDR Platform Architecture, Cloud-Native Security, Kubernetes, Container Security, Zero Trust Architecture, SIEM Implementation, and Rust-based security tool development."
+        "text": "Anubhav Gain specializes in DevSecOps, XDR/OXDR Platform Architecture, Windows Kernel Security (Ring 0, KMDF, ELAM), eBPF development, Rust and Go programming, Kubernetes platform engineering, GitOps CI/CD, MITRE ATT&CK mapping, Cloud-Native Security, SIEM/EDR implementation, and OpenSearch SDK development."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Leviathan by Anubhav Gain?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Leviathan is a production-grade Windows kernel-mode security framework written entirely in safe Rust using Microsoft's windows-drivers-rs (KMDF v1.33). It implements the full EDR/XDR primitive stack at Ring 0 with five kernel callbacks, MITRE ATT&CK mapping across 16 techniques, pool-tag memory forensics, SSDT/IDT/MSR hook scanning, ELAM support, and zero-copy kernel-to-user telemetry streaming."
       }
     },
     {
@@ -63,7 +79,7 @@ const faqLD = {
       "name": "What companies does Anubhav Gain work with?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Anubhav Gain currently works as a Security Software Engineer at Infopercept Consulting and is the CEO & Founder of TechAnv Consulting, providing enterprise security consulting and XDR platform development services."
+        "text": "Anubhav Gain works as Security Software Engineer at Infopercept Consulting and is the CEO and Founder of TechAnv Consulting. He also contributes to open-source projects under the anubhavg-icpl GitHub organization."
       }
     }
   ]
@@ -117,6 +133,22 @@ const serviceLD = {
           "name": "Security Research & Development",
           "description": "Research on emerging threats and development of custom security tools using Rust and eBPF"
         }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Kubernetes Platform Engineering",
+          "description": "Design and deployment of enterprise Kubernetes platforms with GitOps CI/CD, multi-cluster management, and integrated observability using tools like Krustron"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Windows Kernel Security Development",
+          "description": "Development of kernel-mode security drivers, EDR primitives, and Ring 0 security frameworks using safe Rust and Microsoft KMDF"
+        }
       }
     ]
   }
@@ -150,7 +182,7 @@ const serviceLD = {
 <!-- Dublin Core Metadata -->
 <meta name="DC.title" content={title || siteConfig.title}>
 <meta name="DC.creator" content="Anubhav Gain">
-<meta name="DC.subject" content="Cybersecurity, DevSecOps, XDR, OXDR, Rust Programming, eBPF, Cloud Security">
+<meta name="DC.subject" content="Cybersecurity, DevSecOps, XDR, OXDR, Rust Programming, eBPF, Windows Kernel Security, EDR, Leviathan, Krustron, Kubernetes, Firecracker, Go Programming, MITRE ATT&CK, OpenSearch, Cloud Security">
 <meta name="DC.description" content={description || siteConfig.subtitle}>
 <meta name="DC.publisher" content="Anubhav Gain">
 <meta name="DC.contributor" content="Anubhav Gain">

@@ -124,7 +124,7 @@ const bannerOffset =
 		<meta charset="UTF-8" />
 		<meta name="description" content={metaDescription}>
 		<meta name="author" content={profileConfig.name}>
-		<meta name="keywords" content={(articleData?.tags && articleData.tags.length > 0) ? articleData.tags.join(', ') : "Anubhav Gain, DevSecOps Expert, XDR Platform Architect, OXDR Security, Rust Programming, eBPF Development, Cloud Security, Kubernetes Security, Container Security, TechAnv Consulting, Infopercept Consulting, Security Software Engineer"}>
+		<meta name="keywords" content={(articleData?.tags && articleData.tags.length > 0) ? articleData.tags.join(', ') : "Anubhav Gain, DevSecOps Expert, XDR Platform Architect, OXDR Security, Rust Programming, eBPF Development, Windows Kernel Security, EDR Platform, Leviathan Security Framework, Krustron Kubernetes, Agni Firecracker, Cloud Security, Kubernetes Security, Container Security, TechAnv Consulting, Infopercept Consulting, Security Software Engineer, MITRE ATT&CK, OpenSearch Rust SDK, Go Programming"}>
 
 		<!-- Canonical URL -->
 		<link rel="canonical" href={Astro.url} />
@@ -137,6 +137,8 @@ const bannerOffset =
 		<meta property="og:locale" content={siteLang}>
 		<meta property="og:image" content={socialImage}>
 		<meta property="og:image:alt" content={title ? `${title}` : "Anubhav Gain - Security Software Engineer & Security Expert"}>
+		<meta property="og:image:width" content="1200">
+		<meta property="og:image:height" content="630">
 			{setOGTypeArticle ? (
 	        <>
 	          <meta property="og:type" content="article" />
@@ -186,18 +188,28 @@ const bannerOffset =
 					"description": "CEO and Founder"
 				}
 			],
-			"description": "Security Software Engineer at Infopercept | CEO at TechAnv Consulting | DevSecOps Expert | XDR/OXDR Platform Architect | Rust & eBPF Specialist | 222+ Research Citations",
+			"description": "Security Software Engineer at Infopercept Consulting and CEO at TechAnv Consulting. Builder of Leviathan (Windows kernel-mode EDR/XDR framework in safe Rust), Krustron (open-source Kubernetes platform engineering alternative to Devtron), Agni (Firecracker microVM TUI), and OpenSearch Rust SDK. DevSecOps Expert, XDR/OXDR Platform Architect, Rust & eBPF Specialist. 222+ Research Citations.",
 			"knowsAbout": [
 				"DevSecOps",
-				"XDR Platforms",
-				"OXDR Security",
+				"XDR/OXDR Platform Architecture",
 				"Rust Programming",
 				"eBPF Development",
+				"Windows Kernel Security (Ring 0)",
+				"EDR/XDR Platform Development",
 				"Cloud-Native Security",
-				"Kubernetes",
+				"Kubernetes Platform Engineering",
+				"GitOps CI/CD",
 				"Container Security",
 				"Zero Trust Architecture",
-				"SIEM Implementation"
+				"SIEM Implementation",
+				"MITRE ATT&CK Framework",
+				"OCSF (Open Cybersecurity Schema Framework)",
+				"Go Programming",
+				"Linux Kernel Development",
+				"OpenSearch SDK Development",
+				"Firecracker microVMs",
+				"Network Security Tools",
+				"eBPF File Monitoring"
 			],
 			"alumniOf": {
 				"@type": "EducationalOrganization",
@@ -207,6 +219,7 @@ const bannerOffset =
 			"image": `${Astro.site}${profileConfig.avatar.startsWith('/') ? profileConfig.avatar.slice(1) : profileConfig.avatar}`,
 			"sameAs": [
 				"https://github.com/mranv",
+				"https://github.com/anubhavg-icpl",
 				"https://in.linkedin.com/in/anubhavgain",
 				"https://www.instagram.com/anubhavgain/",
 				"https://mranv.pages.dev/"
