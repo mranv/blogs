@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: SignedVersion'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-signedversion
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-signedversion
 draft: false
 featured: false
 description: 'The SignedVersion rule level in WDAC App Control for Business grants execution rights based on two combined criteria: the file must be signed by a specific publ'
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: SignedVersion
 
 ## Table of Contents

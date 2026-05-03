@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: RootCertificate'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-rootcertificate
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-rootcertificate
 draft: false
 featured: false
 description: '> CRITICAL: The RootCertificate level is NOT SUPPORTED in App Control for Business . This document explains why, what happens if you try to use it, and what you'
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: RootCertificate
 
 > **CRITICAL:** The `RootCertificate` level is **NOT SUPPORTED** in App Control for Business (WDAC). This document explains why, what happens if you try to use it, and what you should use instead.

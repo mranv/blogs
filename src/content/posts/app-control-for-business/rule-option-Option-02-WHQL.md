@@ -1,8 +1,8 @@
 ---
 title: 'Option 2 — Required:WHQL (Windows Hardware Quality Labs Certification)'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-02-whql
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-02-whql
 draft: false
 featured: false
 description: 'Required:WHQL tightens the kernel-mode driver signing standard from the broader Microsoft-signed requirement to the stricter Windows Hardware Quality Labs  cert'
@@ -17,6 +17,7 @@ category: WDAC Rule Options
 lang: en
 ---
 # Option 2 — Required:WHQL (Windows Hardware Quality Labs Certification)
+
 
 ---
 
@@ -243,6 +244,7 @@ Copy-Item $BinPath "C:\Windows\System32\CodeIntegrity\CiPolicies\Active\{<Policy
       <Option>Enabled:Audit Mode</Option>
     </Rule>
   </Rules>
+
 
 </SiPolicy>
 ```

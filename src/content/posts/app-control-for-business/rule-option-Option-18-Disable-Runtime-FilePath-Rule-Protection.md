@@ -1,8 +1,8 @@
 ---
 title: 'Option 18 — Disabled:Runtime FilePath Rule Protection'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-18-disable-runtime-filepath-rule-protection
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-18-disable-runtime-filepath-rule-protection
 draft: false
 featured: false
 description: 'Minimum OS Version: Windows 10 version 1903 / Windows Server 2022'

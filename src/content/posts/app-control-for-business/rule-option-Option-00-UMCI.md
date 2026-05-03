@@ -1,8 +1,8 @@
 ---
 title: 'Option 0 — Enabled:UMCI (User Mode Code Integrity)'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-00-umci
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-00-umci
 draft: false
 featured: false
 description: 'Enabled:UMCI extends Windows Defender Application Control  enforcement from kernel-mode code down into the full user-mode execution space. Without this option, '
@@ -17,6 +17,7 @@ category: WDAC Rule Options
 lang: en
 ---
 # Option 0 — Enabled:UMCI (User Mode Code Integrity)
+
 
 ---
 
@@ -216,6 +217,7 @@ Set-RuleOption -FilePath $PolicyPath -Option 3 -Delete
       <Option>Required:WHQL</Option>
     </Rule>
   </Rules>
+
 
 </SiPolicy>
 ```

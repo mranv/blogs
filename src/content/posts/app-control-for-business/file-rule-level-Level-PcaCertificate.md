@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: PcaCertificate'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-pcacertificate
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-pcacertificate
 draft: false
 featured: false
 description: 'The PcaCertificate rule level in Windows Defender Application Control  trusts files based on the intermediate Certificate Authority certificate that sits betwee'
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: PcaCertificate
 
 ## Table of Contents

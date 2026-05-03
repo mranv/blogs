@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: WHQLFilePublisher'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-whqlfilepublisher
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-whqlfilepublisher
 draft: false
 featured: false
 description: '> The most specific WHQL-family rule level: combines the WHQL EKU trust check, vendor leaf certificate CN, specific driver filename, and a minimum version floor'
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: WHQLFilePublisher
 
 > The most specific WHQL-family rule level: combines the WHQL EKU trust check, vendor leaf certificate CN, specific driver filename, and a minimum version floor — granting surgical, version-gated trust for exactly the kernel drivers you have inventoried.
@@ -367,6 +368,7 @@ A `WHQLFilePublisher` rule requires three coordinated XML elements plus a refere
 
       <FileAttribRef RuleID="ID_FILEATTRIB_INTEL_NIC_DRIVER" />
       <FileAttribRef RuleID="ID_FILEATTRIB_INTEL_NIC_DIAG" />
+
     </Signer>
 
     <!--

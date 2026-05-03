@@ -1,8 +1,8 @@
 ---
 title: 'Part 4: Starter Base Policy for Lightly Managed Devices'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: part4-starter-base-policy-lightly-managed
+pubDatetime: 2026-05-01T14:58:23.000Z
+slug: app-control-part-4-starter-base-policy-lightly-managed
 draft: false
 featured: false
 description: 'The goal of this part is to build a starter base policy suitable for lightly managed devices — environments where employees currently have broad software freedo'
@@ -18,6 +18,7 @@ lang: en
 ---
 # Mastering App Control for Business
 ## Part 4: Starter Base Policy for Lightly Managed Devices
+
 
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: 'Part 6: Sign, Apply and Remove Signed Policies'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: part6-sign-apply-remove-signed-policies
+pubDatetime: 2026-05-01T14:58:23.000Z
+slug: app-control-part-6-sign-apply-remove-signed-policies
 draft: false
 featured: false
 description: 'Unsigned policies are appropriate for testing and lab environments. Signed policies are required for secure production environments. An unsigned policy that has'
@@ -18,6 +18,7 @@ lang: en
 ---
 # Mastering App Control for Business
 ## Part 6: Sign, Apply and Remove Signed Policies
+
 
 ---
 

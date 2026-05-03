@@ -1,8 +1,8 @@
 ---
 title: 'Part 8: AppLocker, Managed Installer (Option 13) & Selective MSI Allowlisting — End-to-End'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: part8-applocker-option13-selective-msi-allowlisting
+pubDatetime: 2026-05-02T14:24:42.000Z
+slug: app-control-part-8-applocker-option13-selective-msi-allowlisting
 draft: false
 featured: false
 description: 'AppLocker is a Windows feature that lets administrators restrict which applications users can run. It predates WDAC  and operates at a higher abstraction level '
@@ -18,6 +18,7 @@ lang: en
 ---
 # Mastering App Control for Business
 ## Part 8: AppLocker, Managed Installer (Option 13) & Selective MSI Allowlisting — End-to-End
+
 
 ---
 

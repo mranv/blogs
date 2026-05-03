@@ -1,8 +1,8 @@
 ---
 title: 'Option 20 — Enabled:Revoked Expired As Unsigned'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-20-revoked-expired-as-unsigned
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-20-revoked-expired-as-unsigned
 draft: false
 featured: false
 description: 'XML Token: Enabled:Revoked Expired As Unsigned'
@@ -22,6 +22,7 @@ lang: en
 **XML Token:** `Enabled:Revoked Expired As Unsigned`  
 **Applies To:** User Mode Code Integrity (UMCI) — enterprise signing scenarios  
 **Minimum OS:** Windows 10 / Windows Server 2016  
+
 ---
 
 ## Table of Contents

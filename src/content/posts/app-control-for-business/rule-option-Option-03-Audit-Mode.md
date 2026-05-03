@@ -1,8 +1,8 @@
 ---
 title: 'Option 3 — Enabled:Audit Mode (Default)'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-03-audit-mode
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-03-audit-mode
 draft: false
 featured: false
 description: 'Enabled:Audit Mode places an App Control for Business policy in a non-enforcing observation state. When Audit Mode is active, the Code Integrity engine evaluate'
@@ -17,6 +17,7 @@ category: WDAC Rule Options
 lang: en
 ---
 # Option 3 — Enabled:Audit Mode (Default)
+
 
 ---
 
@@ -247,6 +248,7 @@ ConvertFrom-CIPolicy -XmlFilePath "C:\Policies\Corp_Baseline_Refined.xml" `
 
   </Rules>
 
+
 </SiPolicy>
 ```
 
@@ -257,6 +259,7 @@ ConvertFrom-CIPolicy -XmlFilePath "C:\Policies\Corp_Baseline_Refined.xml" `
   <Rule>
     <Option>Enabled:UMCI</Option>
   </Rule>
+
 
 </Rules>
 ```

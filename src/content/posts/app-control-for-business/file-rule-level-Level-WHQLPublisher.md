@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: WHQLPublisher'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-whqlpublisher
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-whqlpublisher
 draft: false
 featured: false
 description: '> Combines the WHQL EKU trust check with the Common Name  of the leaf certificate — allowing only WHQL-certified drivers from a specific named hardware vendor, '
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: WHQLPublisher
 
 > Combines the WHQL EKU trust check with the Common Name (CN) of the leaf certificate — allowing only WHQL-certified drivers from a **specific named hardware vendor**, rather than any WHQL-certified driver.

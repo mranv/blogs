@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: FileName'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-filename
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-filename
 draft: false
 featured: false
 description: 'The FileName rule level in WDAC App Control for Business allows or denies execution based on metadata embedded in the file''s PE  VERSIONINFO resource — not base'
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: FileName
 
 ## Table of Contents

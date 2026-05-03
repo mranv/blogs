@@ -1,8 +1,8 @@
 ---
 title: 'Part 5: Create a Base Policy for Fully Managed Devices'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: part5-base-policy-fully-managed-devices
+pubDatetime: 2026-05-01T14:58:23.000Z
+slug: app-control-part-5-base-policy-fully-managed-devices
 draft: false
 featured: false
 description: 'Two approaches are covered for creating a base policy for fully managed devices:'
@@ -18,6 +18,7 @@ lang: en
 ---
 # Mastering App Control for Business
 ## Part 5: Create a Base Policy for Fully Managed Devices
+
 
 ---
 

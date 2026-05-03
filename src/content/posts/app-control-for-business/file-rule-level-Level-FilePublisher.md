@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: FilePublisher'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-filepublisher
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-filepublisher
 draft: false
 featured: false
 description: 'FilePublisher is the gold standard rule level for most enterprise WDAC deployments. It offers the optimal balance between specificity and maintainability — tigh'
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: FilePublisher
 
 ## Table of Contents
@@ -304,6 +305,7 @@ The key behavior to note: if a FilePublisher rule matches on PCA + CN + FileName
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <SiPolicy xmlns="urn:schemas-microsoft-com:sipolicy" PolicyType="Base Policy">
+
 
   <FileRules>
 

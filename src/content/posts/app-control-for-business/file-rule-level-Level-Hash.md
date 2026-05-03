@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: Hash'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-hash
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-hash
 draft: false
 featured: false
 description: 'The Hash rule level in Windows Defender Application Control  is the most granular and cryptographically precise rule level available. A Hash rule allows or deni'
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: Hash
 
 ## Table of Contents

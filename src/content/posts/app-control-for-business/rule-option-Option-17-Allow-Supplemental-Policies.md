@@ -1,8 +1,8 @@
 ---
 title: 'Option 17 — Enabled:Allow Supplemental Policies'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-17-allow-supplemental-policies
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-17-allow-supplemental-policies
 draft: false
 featured: false
 description: 'Minimum OS Version: Windows 10 version 1903 / Windows Server 2022'
@@ -360,6 +360,7 @@ Write-Host "Supplemental links to base: $($Supp.SiPolicy.BasePolicyID)"
 
   <FileRules>
   </FileRules>
+
 
 </SiPolicy>
 ```

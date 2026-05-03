@@ -1,8 +1,8 @@
 ---
 title: 'Developer Mode Dynamic Code Trust'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-devmode-dynamic-code-trust
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-devmode-dynamic-code-trust
 draft: false
 featured: false
 description: 'XML Token: Enabled:Developer Mode Dynamic Code Trust'
@@ -22,6 +22,7 @@ lang: en
 **XML Token:** `Enabled:Developer Mode Dynamic Code Trust`  
 **Applies To:** User Mode Code Integrity (UMCI) — UWP / Windows App development workflows  
 **Minimum OS:** Windows 10 version 1809 (RS5) / Windows Server 2019  
+
 ---
 
 ## Table of Contents

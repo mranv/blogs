@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: WHQL'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-whql
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-whql
 draft: false
 featured: false
 description: '> Windows Hardware Quality Lab signing — a Microsoft-operated certification program that tests and cryptographically endorses hardware drivers. The WHQL level i'
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: WHQL
 
 > Windows Hardware Quality Lab signing — a Microsoft-operated certification program that tests and cryptographically endorses hardware drivers. The WHQL level in App Control for Business allows files that carry the WHQL Extended Key Usage (EKU) in their signing certificate chain.

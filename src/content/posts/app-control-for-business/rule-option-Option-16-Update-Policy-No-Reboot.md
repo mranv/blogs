@@ -1,8 +1,8 @@
 ---
 title: 'Option 16 — Enabled:Update Policy No Reboot'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-16-update-policy-no-reboot
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-16-update-policy-no-reboot
 draft: false
 featured: false
 description: 'Minimum OS Version: Windows 10 version 1709 / Windows Server 2019'
@@ -237,6 +237,7 @@ Get-ChildItem -Path $ActivePolicies -Filter "*.p7" | ForEach-Object {
     </Rule>
 
   </Rules>
+
 
 </SiPolicy>
 ```

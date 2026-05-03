@@ -1,8 +1,8 @@
 ---
 title: 'Option 7 — Allowed:Debug Policy Augmented'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-07-debug-policy-augmented
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-07-debug-policy-augmented
 draft: false
 featured: false
 description: 'XML Value: <Rule><Option>Allowed:Debug Policy Augmented</Option></Rule>'
@@ -20,6 +20,7 @@ lang: en
 
 **Policy Rule Option Index:** 7  
 **XML Value:** `<Rule><Option>Allowed:Debug Policy Augmented</Option></Rule>`  
+
 ---
 
 ## Table of Contents

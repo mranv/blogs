@@ -1,8 +1,8 @@
 ---
 title: 'Option 19 — Enabled:Dynamic Code Security'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-19-dynamic-code-security
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-19-dynamic-code-security
 draft: false
 featured: false
 description: 'XML Token: Enabled:Dynamic Code Security'
@@ -22,6 +22,7 @@ lang: en
 **XML Token:** `Enabled:Dynamic Code Security`  
 **Applies To:** User Mode Code Integrity (UMCI)  
 **Minimum OS:** Windows 10 version 1803 (RS4) / Windows Server 2019  
+
 ---
 
 ## Table of Contents

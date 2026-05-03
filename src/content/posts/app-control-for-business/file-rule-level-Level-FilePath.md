@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: FilePath'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-filepath
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-filepath
 draft: false
 featured: false
 description: 'The FilePath rule level in WDAC App Control for Business allows execution of any code located at a specified filesystem path — without checking what that code a'
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: FilePath
 
 ## Table of Contents

@@ -1,8 +1,8 @@
 ---
 title: 'Option 1 — Enabled:Boot Menu Protection'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-01-boot-menu-protection
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-01-boot-menu-protection
 draft: false
 featured: false
 description: 'Current Support Status: Not currently supported by Windows'

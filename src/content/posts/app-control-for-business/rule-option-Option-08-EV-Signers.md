@@ -1,8 +1,8 @@
 ---
 title: 'Option 8 — Required:EV Signers'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-08-ev-signers
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-08-ev-signers
 draft: false
 featured: false
 description: 'XML Value: <Rule><Option>Required:EV Signers</Option></Rule>'
@@ -20,6 +20,7 @@ lang: en
 
 **Policy Rule Option Index:** 8  
 **XML Value:** `<Rule><Option>Required:EV Signers</Option></Rule>`  
+
 ---
 
 ## Table of Contents
@@ -261,6 +262,7 @@ function Test-PolicyEVOption {
       <Option>Required:EV Signers</Option>
     </Rule>
   </Rules>
+
 
   <!--
     When Option 8 is implemented, signers listed here will need to be

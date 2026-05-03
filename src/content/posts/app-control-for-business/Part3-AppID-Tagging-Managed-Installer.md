@@ -1,8 +1,8 @@
 ---
 title: 'Part 3: Application ID Tagging Policies & Managed Installer'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: part3-appid-tagging-managed-installer
+pubDatetime: 2026-05-01T14:58:23.000Z
+slug: app-control-part-3-appid-tagging-managed-installer
 draft: false
 featured: false
 description: 'AppID Tagging Policies do not allow or block execution. They tag applications and files based on predefined rules using custom labels. Because no enforcement de'
@@ -18,6 +18,7 @@ lang: en
 ---
 # Mastering App Control for Business
 ## Part 3: Application ID Tagging Policies & Managed Installer
+
 
 ---
 

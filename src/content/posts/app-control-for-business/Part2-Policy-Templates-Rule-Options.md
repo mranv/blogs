@@ -1,8 +1,8 @@
 ---
 title: 'Part 2: Policy Templates & Rule Options'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: part2-policy-templates-rule-options
+pubDatetime: 2026-05-01T14:58:23.000Z
+slug: app-control-part-2-policy-templates-rule-options
 draft: false
 featured: false
 description: 'Microsoft ships a set of example base policies with Windows and the WDAC Wizard. These serve as starting points for creating custom policies rather than writing'
@@ -18,6 +18,7 @@ lang: en
 ---
 # Mastering App Control for Business
 ## Part 2: Policy Templates & Rule Options
+
 
 ---
 

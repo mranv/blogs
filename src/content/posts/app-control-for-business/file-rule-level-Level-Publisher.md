@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: Publisher'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-publisher
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-publisher
 draft: false
 featured: false
 description: 'The Publisher rule level is one of the most practical and widely used certificate-based trust levels in Windows Defender Application Control , also known as App'
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: Publisher
 
 ## Table of Contents
@@ -227,6 +228,7 @@ A Publisher rule produces the following elements in a WDAC policy XML file (SiPo
 <?xml version="1.0" encoding="utf-8"?>
 <SiPolicy xmlns="urn:schemas-microsoft-com:sipolicy" PolicyType="Base Policy">
 
+
   <Signers>
 
     <!--
@@ -260,6 +262,7 @@ A Publisher rule produces the following elements in a WDAC policy XML file (SiPo
     </Signer>
 
   </Signers>
+
 
   <SigningScenarios>
 
@@ -575,6 +578,7 @@ When ConfigCI scans a double-signed file with `-Level Publisher`, the following 
 4. Both rules are written to the policy XML
 
 ```xml
+
 <Signer ID="ID_SIGNER_INTEL_SHA256" Name="DigiCert Code Signing SHA2">
   <CertRoot Type="TBS" Value="AABBCC..."/>
   <CertPublisher Value="Intel Corporation"/>

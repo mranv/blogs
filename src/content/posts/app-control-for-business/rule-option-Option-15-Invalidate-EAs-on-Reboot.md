@@ -1,8 +1,8 @@
 ---
 title: 'Option 15 — Enabled:Invalidate EAs on Reboot'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-15-invalidate-eas-on-reboot
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-15-invalidate-eas-on-reboot
 draft: false
 featured: false
 description: 'Dependency: Requires Option 14'
@@ -21,6 +21,7 @@ lang: en
 **Rule Option ID:** 15
 **Rule String:** `Enabled:Invalidate EAs on Reboot`
 **Dependency:** Requires Option 14 (Enabled:Intelligent Security Graph Authorization)
+
 ---
 
 ## Table of Contents
@@ -199,6 +200,7 @@ When Option 15 is enabled, the following XML element is added to the `<Rules>` s
     </Rule>
 
   </Rules>
+
 
 </SiPolicy>
 ```

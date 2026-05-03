@@ -1,8 +1,8 @@
 ---
 title: 'Part 1: Introduction & Key Concepts'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: part1-introduction-keyconcepts
+pubDatetime: 2026-05-01T14:58:23.000Z
+slug: app-control-part-1-introduction-keyconcepts
 draft: false
 featured: false
 description: 'Traditional security solutions are reactive — they respond after a threat has already executed. This creates a gap between detection and response that attackers'
@@ -18,6 +18,7 @@ lang: en
 ---
 # Mastering App Control for Business
 ## Part 1: Introduction & Key Concepts
+
 
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: 'Option 10 — Enabled:Boot Audit on Failure'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-10-boot-audit-on-failure
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-10-boot-audit-on-failure
 draft: false
 featured: false
 description: 'Applies to Supplemental Policies: No'
@@ -162,6 +162,7 @@ Within the policy XML, Option 10 appears as a `<Rule>` element inside the `<Rule
     <Rule>
       <Option>Enabled:Boot Audit on Failure</Option>
     </Rule>
+
 
   </Rules>
 </SiPolicy>

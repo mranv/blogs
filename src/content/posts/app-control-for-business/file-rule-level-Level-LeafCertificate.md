@@ -1,8 +1,8 @@
 ---
 title: 'WDAC File Rule Level: LeafCertificate'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: file-rule-level-level-leafcertificate
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-file-rule-level-leafcertificate
 draft: false
 featured: false
 description: 'The LeafCertificate rule level trusts files based on the end-entity  certificate that was used to directly sign those files. This is the actual code-signing cer'
@@ -15,6 +15,7 @@ tags:
 category: WDAC File Rule Levels
 lang: en
 ---
+
 # WDAC File Rule Level: LeafCertificate
 
 ## Table of Contents
@@ -690,6 +691,7 @@ When ConfigCI encounters a file with multiple Authenticode signatures at LeafCer
 4. The file is allowed if any one of its signatures matches any one LeafCertificate rule
 
 ```xml
+
 <Signer ID="ID_SIGNER_LEAF_SHA256" Name="Acme Software Inc (SHA-256 cert)">
   <CertRoot Type="TBS" Value="AABB..."/>  <!-- SHA-256 chain leaf TBS hash -->
 </Signer>

@@ -1,8 +1,8 @@
 ---
 title: 'Part 7: Maintaining Policies with Azure DevOps (or PowerShell)'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: part7-maintaining-policies-azuredevops-powershell
+pubDatetime: 2026-05-01T14:58:23.000Z
+slug: app-control-part-7-maintaining-policies-azuredevops-powershell
 draft: false
 featured: false
 description: 'This document describes how to maintain App Control for Business  policies as code, using an Azure DevOps Pipeline for automated deployment and PowerShell 7 for'
@@ -18,6 +18,7 @@ lang: en
 ---
 # Mastering App Control for Business
 ## Part 7: Maintaining Policies with Azure DevOps (or PowerShell)
+
 
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: 'App Control for Business — Complete Reference: Notes, Tips & Advanced Considerations'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: notes-notes-tips-appcontrol
+pubDatetime: 2026-05-02T15:13:14.000Z
+slug: app-control-notes-tips-appcontrol
 draft: false
 featured: false
 description: '> Formerly known as: Windows Defender Application Control'
@@ -11,9 +11,12 @@ tags:
 - app-control-for-business
 - wdac
 - endpoint-security
+- applocker
+- powershell
 category: App Control for Business
 lang: en
 ---
+
 # App Control for Business — Complete Reference: Notes, Tips & Advanced Considerations
 
 > **Formerly known as:** Windows Defender Application Control (WDAC)

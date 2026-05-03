@@ -1,8 +1,8 @@
 ---
 title: 'Option 9 — Enabled:Advanced Boot Options Menu'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-09-advanced-boot-options-menu
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-09-advanced-boot-options-menu
 draft: false
 featured: false
 description: 'XML Value: <Rule><Option>Enabled:Advanced Boot Options Menu</Option></Rule>'
@@ -20,6 +20,7 @@ lang: en
 
 **Policy Rule Option Index:** 9  
 **XML Value:** `<Rule><Option>Enabled:Advanced Boot Options Menu</Option></Rule>`  
+
 ---
 
 ## Table of Contents

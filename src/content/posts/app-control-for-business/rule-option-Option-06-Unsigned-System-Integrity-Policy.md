@@ -1,8 +1,8 @@
 ---
 title: 'Option 6 — Enabled:Unsigned System Integrity Policy'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-06-unsigned-system-integrity-policy
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-06-unsigned-system-integrity-policy
 draft: false
 featured: false
 description: 'XML Value: <Rule><Option>Enabled:Unsigned System Integrity Policy</Option></Rule>'
@@ -20,6 +20,7 @@ lang: en
 
 **Policy Rule Option Index:** 6  
 **XML Value:** `<Rule><Option>Enabled:Unsigned System Integrity Policy</Option></Rule>`  
+
 ---
 
 ## Table of Contents

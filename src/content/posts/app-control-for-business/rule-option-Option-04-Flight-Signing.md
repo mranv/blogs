@@ -1,8 +1,8 @@
 ---
 title: 'Option 4 — Disabled:Flight Signing'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-04-flight-signing
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-04-flight-signing
 draft: false
 featured: false
 description: 'Disabled:Flight Signing removes the implicit trust that WDAC / App Control for Business policies grant to Windows Insider build  certificates. In the default WD'
@@ -17,6 +17,7 @@ category: WDAC Rule Options
 lang: en
 ---
 # Option 4 — Disabled:Flight Signing
+
 
 ---
 

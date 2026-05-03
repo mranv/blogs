@@ -1,8 +1,8 @@
 ---
 title: 'Option 11 — Disabled:Script Enforcement'
 author: Anubhav Gain
-pubDatetime: 2026-05-03T10:00:00.000Z
-slug: rule-option-option-11-script-enforcement-disabled
+pubDatetime: 2026-05-02T14:46:42.000Z
+slug: app-control-rule-option-11-script-enforcement-disabled
 draft: false
 featured: false
 description: 'Applies to Supplemental Policies: No'
@@ -184,6 +184,7 @@ $ExecutionContext.SessionState.LanguageMode
     <Rule>
       <Option>Disabled:Script Enforcement</Option>
     </Rule>
+
 
   </Rules>
 </SiPolicy>
