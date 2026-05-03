@@ -30,17 +30,17 @@ const className = Astro.props.class;
 <div class:list={["flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2", className]}>
     <!-- author -->
     {author && (
-        <div class="flex items-center">
-            <div class="meta-icon">
+        <div class="flex items-center min-w-0">
+            <div class="meta-icon shrink-0">
                 <Icon name="material-symbols:person-outline" class="text-xl"></Icon>
             </div>
-            <span class="text-50 text-sm font-medium">{author}</span>
+            <span class="text-50 text-sm font-medium break-words">{author}</span>
         </div>
     )}
 
     <!-- publish date -->
-    <div class="flex items-center">
-        <div class="meta-icon"
+    <div class="flex items-center min-w-0">
+        <div class="meta-icon shrink-0"
         >
             <Icon name="material-symbols:calendar-today-outline-rounded" class="text-xl"></Icon>
         </div>
@@ -49,8 +49,8 @@ const className = Astro.props.class;
 
     <!-- update date -->
     {!hideUpdateDate && updated && updated.getTime() !== published.getTime() && (
-        <div class="flex items-center">
-            <div class="meta-icon"
+        <div class="flex items-center min-w-0">
+            <div class="meta-icon shrink-0"
             >
                 <Icon name="material-symbols:edit-calendar-outline-rounded" class="text-xl"></Icon>
             </div>
@@ -59,32 +59,32 @@ const className = Astro.props.class;
     )}
 
     <!-- categories -->
-    <div class="flex items-center">
-        <div class="meta-icon"
+    <div class="flex items-center min-w-0">
+        <div class="meta-icon shrink-0"
         >
             <Icon name="material-symbols:book-2-outline-rounded" class="text-xl"></Icon>
         </div>
-        <div class="flex flex-row flex-nowrap items-center">
+        <div class="flex flex-row flex-wrap items-center min-w-0">
             <a href={getCategoryUrl(category)} aria-label={`View all posts in the ${category} category`}
                class="link-lg transition text-50 text-sm font-medium
-                            hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
+                            hover:text-[var(--primary)] dark:hover:text-[var(--primary)] break-words">
                 {category || i18n(I18nKey.uncategorized)}
             </a>
         </div>
     </div>
 
     <!-- tags -->
-    <div class:list={["items-center", {"flex": !hideTagsForMobile, "hidden md:flex": hideTagsForMobile}]}>
-        <div class="meta-icon"
+    <div class:list={["items-center min-w-0", {"flex": !hideTagsForMobile, "hidden md:flex": hideTagsForMobile}]}>
+        <div class="meta-icon shrink-0"
         >
             <Icon name="material-symbols:tag-rounded" class="text-xl"></Icon>
         </div>
-        <div class="flex flex-row flex-nowrap items-center">
+        <div class="flex flex-row flex-wrap items-center gap-y-1 min-w-0">
             {(tags && tags.length > 0) && tags.map((tag, i) => (
                 <div class:list={[{"hidden": i == 0}, "mx-1.5 text-[var(--meta-divider)] text-sm"]}>/</div>
                 <a href={getTagUrl(tag)} aria-label={`View all posts with the ${tag.trim()} tag`}
                    class="link-lg transition text-50 text-sm font-medium
-                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
+                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] break-words">
                     {tag.trim()}
                 </a>
             ))}

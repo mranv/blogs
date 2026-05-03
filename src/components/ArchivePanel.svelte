@@ -87,11 +87,11 @@ onMount(async () => {
 });
 </script>
 
-<div class="card-base px-8 py-6">
+<div class="card-base px-4 sm:px-8 py-6">
     {#each groups as group}
         <div>
             <div class="flex flex-row w-full items-center h-[3.75rem]">
-                <div class="w-[15%] md:w-[10%] transition text-2xl font-bold text-right text-75">
+                <div class="w-[20%] md:w-[10%] transition text-xl sm:text-2xl font-bold text-right text-75">
                     {group.year}
                 </div>
                 <div class="w-[15%] md:w-[10%]">
@@ -100,7 +100,7 @@ onMount(async () => {
                   -outline-offset-[2px] z-50 outline-3"
                     ></div>
                 </div>
-                <div class="w-[70%] md:w-[80%] transition text-left text-50">
+                <div class="w-[65%] md:w-[80%] transition text-left text-50">
                     {group.posts.length} {i18n(group.posts.length === 1 ? I18nKey.postCount : I18nKey.postsCount)}
                 </div>
             </div>
@@ -109,16 +109,16 @@ onMount(async () => {
                 <a
                         href={getPostUrlBySlug(post.slug)}
                         aria-label={post.data.title}
-                        class="group btn-plain !block h-10 w-full rounded-lg hover:text-[initial]"
+                        class="group btn-plain !block min-h-[2.75rem] w-full rounded-lg hover:text-[initial]"
                 >
-                    <div class="flex flex-row justify-start items-center h-full">
+                    <div class="flex flex-row justify-start items-center min-h-[2.75rem]">
                         <!-- date -->
-                        <div class="w-[15%] md:w-[10%] transition text-sm text-right text-50">
+                        <div class="w-[20%] md:w-[10%] transition text-xs sm:text-sm text-right text-50 shrink-0">
                             {formatDate(post.data.pubDatetime || post.data.published || new Date('2023-01-01'))}
                         </div>
 
                         <!-- dot and line -->
-                        <div class="w-[15%] md:w-[10%] relative dash-line h-full flex items-center">
+                        <div class="w-[15%] md:w-[10%] relative dash-line h-full min-h-[2.75rem] flex items-center shrink-0">
                             <div
                                     class="transition-all mx-auto w-1 h-1 rounded group-hover:h-5
                        bg-[oklch(0.5_0.05_var(--hue))] group-hover:bg-[var(--primary)]
@@ -131,9 +131,9 @@ onMount(async () => {
 
                         <!-- post title -->
                         <div
-                                class="w-[70%] md:max-w-[65%] md:w-[65%] text-left font-bold
+                                class="w-[65%] md:max-w-[65%] md:w-[65%] text-left font-bold
                      group-hover:translate-x-1 transition-all group-hover:text-[var(--primary)]
-                     text-75 pr-8 whitespace-nowrap overflow-ellipsis overflow-hidden"
+                     text-75 pr-4 sm:pr-8 whitespace-nowrap overflow-ellipsis overflow-hidden"
                         >
                             {post.data.title}
                         </div>
