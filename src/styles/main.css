@@ -139,3 +139,15 @@
 .collapsed {
     height: var(--collapsedHeight);
 }
+
+.mermaid-diagram-wrapper {
+    @apply my-4 flex justify-center overflow-x-auto;
+}
+
+.mermaid-diagram-wrapper svg {
+    @apply max-w-full h-auto;
+}
+
+pre.mermaid {
+    @apply bg-transparent border-0 p-0 m-0;
+}
