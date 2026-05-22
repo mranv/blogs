@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T10:00:00+05:30
-modDatetime: 2026-05-22T10:00:00+05:30
+pubDatetime: 2026-05-22T09:15:00+05:30
+modDatetime: 2026-05-22T09:15:00+05:30
 title: "SoK: Attack and Defense Landscape of Agentic AI Systems — USENIX Security 2026"
 slug: sok-agentic-ai-attack-defense
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - agentic-ai

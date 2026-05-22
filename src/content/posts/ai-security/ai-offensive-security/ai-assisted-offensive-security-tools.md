@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T10:00:00+05:30
-modDatetime: 2025-05-22T10:00:00+05:30
+pubDatetime: 2026-05-17T19:27:00+05:30
+modDatetime: 2026-05-17T19:27:00+05:30
 title: "AI-Assisted Offensive Security: Autonomous Pentesting and Red Team Tools"
 slug: ai-assisted-offensive-security-tools
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - offensive-security

@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T08:30:00+05:30
-modDatetime: 2025-05-22T08:30:00+05:30
+pubDatetime: 2026-05-21T17:04:00+05:30
+modDatetime: 2026-05-21T17:04:00+05:30
 title: "Adversarial Machine Learning: Attack Frameworks and Toolkits"
 slug: adversarial-machine-learning-attack-frameworks
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - adversarial-ml

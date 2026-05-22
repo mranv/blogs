@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T12:00:00+05:30
-modDatetime: 2026-05-22T12:00:00+05:30
+pubDatetime: 2026-05-19T18:31:00+05:30
+modDatetime: 2026-05-19T18:31:00+05:30
 title: "Redefining Agent Security: Why We Need a Holistic Framework for AI Agent Safety"
 slug: agent-security-holistic-framework-redefinition
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - agent-security

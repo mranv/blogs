@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T12:00:00+05:30
-modDatetime: 2025-05-22T12:00:00+05:30
+pubDatetime: 2026-05-16T08:47:00+05:30
+modDatetime: 2026-05-16T08:47:00+05:30
 title: "MCP Security: Scanning, Gateway, and Audit Tools"
 slug: mcp-security-scanning-gateway-audit-tools
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - mcp

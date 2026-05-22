@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T14:30:00+05:30
-modDatetime: 2026-05-22T14:30:00+05:30
+pubDatetime: 2026-05-20T12:09:00+05:30
+modDatetime: 2026-05-20T12:09:00+05:30
 title: "In-Context Watermarks: A New Approach to LLM Content Attribution"
 slug: in-context-watermarks-large-language-models
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - watermarking

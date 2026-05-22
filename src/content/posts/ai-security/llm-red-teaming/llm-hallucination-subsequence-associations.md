@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T16:00:00+05:30
-modDatetime: 2026-05-22T16:00:00+05:30
+pubDatetime: 2026-05-20T17:12:00+05:30
+modDatetime: 2026-05-20T17:12:00+05:30
 title: "Why LLMs Hallucinate: Connecting the Dots with Subsequence Associations"
 slug: llm-hallucination-subsequence-associations
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - hallucination

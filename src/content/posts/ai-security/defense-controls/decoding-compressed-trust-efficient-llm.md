@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T13:00:00+05:30
-modDatetime: 2026-05-23T13:00:00+05:30
+pubDatetime: 2026-05-16T21:40:00+05:30
+modDatetime: 2026-05-16T21:40:00+05:30
 title: "Decoding Compressed Trust: How LLM Compression Impacts Trustworthiness"
 slug: decoding-compressed-trust-efficient-llm
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - model-compression

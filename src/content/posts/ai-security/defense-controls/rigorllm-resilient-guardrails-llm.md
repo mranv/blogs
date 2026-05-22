@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T12:30:00+05:30
-modDatetime: 2026-05-23T12:30:00+05:30
+pubDatetime: 2026-05-17T16:58:00+05:30
+modDatetime: 2026-05-17T16:58:00+05:30
 title: "RigorLLM: Resilient Guardrails for Large Language Models Against Undesired Content"
 slug: rigorllm-resilient-guardrails-llm
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - llm-guardrails

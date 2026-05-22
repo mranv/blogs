@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T16:00:00+05:30
-modDatetime: 2026-05-23T16:00:00+05:30
+pubDatetime: 2026-05-18T09:21:00+05:30
+modDatetime: 2026-05-18T09:21:00+05:30
 title: "RedCode: Benchmarking Risky Code Execution in AI Code Agents"
 slug: redcode-risky-code-execution-benchmark
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - code-agents

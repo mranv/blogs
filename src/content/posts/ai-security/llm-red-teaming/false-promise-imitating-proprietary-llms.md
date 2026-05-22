@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T15:00:00+05:30
-modDatetime: 2026-05-23T15:00:00+05:30
+pubDatetime: 2026-05-16T14:17:00+05:30
+modDatetime: 2026-05-16T14:17:00+05:30
 title: "The False Promise of Imitating Proprietary Language Models"
 slug: false-promise-imitating-proprietary-llms
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - model-imitation

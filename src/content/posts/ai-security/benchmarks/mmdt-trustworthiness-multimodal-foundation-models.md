@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T21:00:00+05:30
-modDatetime: 2026-05-22T21:00:00+05:30
+pubDatetime: 2026-05-21T22:37:00+05:30
+modDatetime: 2026-05-21T22:37:00+05:30
 title: "MMDT: Decoding the Trustworthiness and Safety of Multimodal Foundation Models"
 slug: mmdt-trustworthiness-multimodal-foundation-models
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - multimodal-safety

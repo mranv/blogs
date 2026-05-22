@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T15:30:00+05:30
-modDatetime: 2025-05-22T15:30:00+05:30
+pubDatetime: 2026-05-16T16:15:00+05:30
+modDatetime: 2026-05-16T16:15:00+05:30
 title: "Microsoft RAMPART, Clarity, and GitHub Taskflow Agent: AI Agent Security Tooling"
 slug: microsoft-rampart-clarity-github-taskflow-agent
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - microsoft

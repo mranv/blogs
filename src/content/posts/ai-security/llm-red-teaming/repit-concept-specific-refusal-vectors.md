@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T13:00:00+05:30
-modDatetime: 2026-05-22T13:00:00+05:30
+pubDatetime: 2026-05-15T20:20:00+05:30
+modDatetime: 2026-05-15T20:20:00+05:30
 title: "RepIt: Steering Language Models with Concept-Specific Refusal Vectors"
 slug: repit-concept-specific-refusal-vectors
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - refusal-vectors

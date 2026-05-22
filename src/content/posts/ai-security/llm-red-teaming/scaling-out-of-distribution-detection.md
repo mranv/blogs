@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T09:00:00+05:30
-modDatetime: 2026-05-24T09:00:00+05:30
+pubDatetime: 2026-05-18T10:29:00+05:30
+modDatetime: 2026-05-18T10:29:00+05:30
 title: "Scaling Out-of-Distribution Detection for Real-World AI Systems"
 slug: scaling-out-of-distribution-detection
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - ood-detection

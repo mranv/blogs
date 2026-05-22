@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T19:30:00+05:30
-modDatetime: 2026-05-22T19:30:00+05:30
+pubDatetime: 2026-05-22T16:10:00+05:30
+modDatetime: 2026-05-22T16:10:00+05:30
 title: "SoK: Watermarking AI-Generated Content — IEEE S&P Distinguished Paper"
 slug: watermarking-ai-generated-content-sok
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - watermarking

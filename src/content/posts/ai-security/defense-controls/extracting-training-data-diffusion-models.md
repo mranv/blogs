@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T11:30:00+05:30
-modDatetime: 2026-05-24T11:30:00+05:30
+pubDatetime: 2026-05-19T16:48:00+05:30
+modDatetime: 2026-05-19T16:48:00+05:30
 title: "Extracting Training Data from Diffusion Models: Privacy Risks in Generative AI"
 slug: extracting-training-data-diffusion-models
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - diffusion-models

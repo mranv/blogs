@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T17:00:00+05:30
-modDatetime: 2025-05-22T17:00:00+05:30
+pubDatetime: 2026-05-16T13:54:00+05:30
+modDatetime: 2026-05-16T13:54:00+05:30
 title: "A2A Protocol Security and the 2026 Offensive Security Landscape"
 slug: a2a-protocol-security-2026-offensive-landscape
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - a2a

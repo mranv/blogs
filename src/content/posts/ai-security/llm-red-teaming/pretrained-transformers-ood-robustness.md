@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T16:00:00+05:30
-modDatetime: 2026-05-24T16:00:00+05:30
+pubDatetime: 2026-05-16T22:24:00+05:30
+modDatetime: 2026-05-16T22:24:00+05:30
 title: "Pretrained Transformers Improve Out-of-Distribution Robustness"
 slug: pretrained-transformers-ood-robustness
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - transformers

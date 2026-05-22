@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T14:00:00+05:30
-modDatetime: 2026-05-24T14:00:00+05:30
+pubDatetime: 2026-05-15T19:56:00+05:30
+modDatetime: 2026-05-15T19:56:00+05:30
 title: "AdvIT: Detecting Adversarial Frames Using Temporal Consistency in Video"
 slug: advit-adversarial-frames-temporal-consistency-video
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - adversarial-detection

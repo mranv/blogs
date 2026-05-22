@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T08:15:00+05:30
-modDatetime: 2025-05-22T08:15:00+05:30
+pubDatetime: 2026-05-16T10:40:00+05:30
+modDatetime: 2026-05-16T10:40:00+05:30
 title: "AI Governance and Risk Management: Frameworks, Standards, and Taxonomies"
 slug: ai-governance-risk-management-frameworks
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - governance

@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T12:00:00+05:30
-modDatetime: 2026-05-24T12:00:00+05:30
+pubDatetime: 2026-05-19T21:40:00+05:30
+modDatetime: 2026-05-19T21:40:00+05:30
 title: "Robust Physical-World Attacks on Deep Learning: Why Stop Signs Can Fool Self-Driving Cars"
 slug: robust-physical-world-attacks-deep-learning
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - physical-attacks

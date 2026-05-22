@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T20:30:00+05:30
-modDatetime: 2026-05-22T20:30:00+05:30
+pubDatetime: 2026-05-20T10:23:00+05:30
+modDatetime: 2026-05-20T10:23:00+05:30
 title: "Undetectable Watermarks for Generative Image Models"
 slug: undetectable-watermark-generative-image-models
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - watermarking

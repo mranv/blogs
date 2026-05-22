@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T14:30:00+05:30
-modDatetime: 2025-05-22T14:30:00+05:30
+pubDatetime: 2026-05-15T16:12:00+05:30
+modDatetime: 2026-05-15T16:12:00+05:30
 title: "Data and AI Supply Chain Security: AIBOM, Fingerprinting, and Discovery"
 slug: data-ai-supply-chain-security-aibom
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - supply-chain

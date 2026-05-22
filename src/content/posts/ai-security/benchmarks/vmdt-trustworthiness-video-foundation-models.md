@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T15:30:00+05:30
-modDatetime: 2026-05-22T15:30:00+05:30
+pubDatetime: 2026-05-20T11:41:00+05:30
+modDatetime: 2026-05-20T11:41:00+05:30
 title: "VMDT: Decoding the Trustworthiness of Video Foundation Models"
 slug: vmdt-trustworthiness-video-foundation-models
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - video-models

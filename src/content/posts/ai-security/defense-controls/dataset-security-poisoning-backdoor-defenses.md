@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T08:00:00+05:30
-modDatetime: 2026-05-24T08:00:00+05:30
+pubDatetime: 2026-05-15T17:20:00+05:30
+modDatetime: 2026-05-15T17:20:00+05:30
 title: "Dataset Security for Machine Learning: Data Poisoning, Backdoor Attacks, and Defenses"
 slug: dataset-security-poisoning-backdoor-defenses
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - data-poisoning

@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T16:30:00+05:30
-modDatetime: 2026-05-24T16:30:00+05:30
+pubDatetime: 2026-05-18T19:19:00+05:30
+modDatetime: 2026-05-18T19:19:00+05:30
 title: "The Secret Revealer: Model-Inversion Attacks That Reconstruct Training Data"
 slug: secret-revealer-model-inversion-attacks
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - model-inversion

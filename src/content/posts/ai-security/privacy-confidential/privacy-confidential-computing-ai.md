@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T12:30:00+05:30
-modDatetime: 2025-05-22T12:30:00+05:30
+pubDatetime: 2026-05-18T20:21:00+05:30
+modDatetime: 2026-05-18T20:21:00+05:30
 title: "Privacy and Confidential Computing for AI: Differential Privacy, HE, and Secure Computation"
 slug: privacy-confidential-computing-ai
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - privacy

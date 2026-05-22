@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T14:00:00+05:30
-modDatetime: 2026-05-22T14:00:00+05:30
+pubDatetime: 2026-05-15T21:21:00+05:30
+modDatetime: 2026-05-15T21:21:00+05:30
 title: "RedCodeAgent: Automated Red-Teaming Against Code Agents"
 slug: redcode-agent-automatic-red-teaming-code-agents
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - red-teaming

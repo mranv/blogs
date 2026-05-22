@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T17:00:00+05:30
-modDatetime: 2026-05-23T17:00:00+05:30
+pubDatetime: 2026-05-22T21:04:00+05:30
+modDatetime: 2026-05-22T21:04:00+05:30
 title: "DiffAttack: Breaking Through Diffusion-Based Adversarial Purification Defenses"
 slug: diffattack-evasion-diffusion-purification
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - adversarial-attacks

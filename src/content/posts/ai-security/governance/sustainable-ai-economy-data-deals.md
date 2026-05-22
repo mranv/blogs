@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T16:30:00+05:30
-modDatetime: 2026-05-22T16:30:00+05:30
+pubDatetime: 2026-05-17T20:43:00+05:30
+modDatetime: 2026-05-17T20:43:00+05:30
 title: "A Sustainable AI Economy Needs Fair Data Deals: Position Paper from NeurIPS"
 slug: sustainable-ai-economy-data-deals
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - data-economics

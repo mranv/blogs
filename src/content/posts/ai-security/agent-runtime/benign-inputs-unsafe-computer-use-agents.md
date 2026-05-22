@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T11:30:00+05:30
-modDatetime: 2026-05-22T11:30:00+05:30
+pubDatetime: 2026-05-15T11:04:00+05:30
+modDatetime: 2026-05-15T11:04:00+05:30
 title: "When Benign Inputs Cause Severe Harm: Uncovering Unsafe Behaviors in Computer-Use Agents"
 slug: benign-inputs-unsafe-computer-use-agents
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - computer-use-agents

@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T18:00:00+05:30
-modDatetime: 2026-05-23T18:00:00+05:30
+pubDatetime: 2026-05-18T22:36:00+05:30
+modDatetime: 2026-05-18T22:36:00+05:30
 title: "PATROL: Provable Defense Against Adversarial Policies in Two-Player Games"
 slug: patrol-provable-defense-adversarial-policy
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - adversarial-policy

@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T17:30:00+05:30
-modDatetime: 2026-05-23T17:30:00+05:30
+pubDatetime: 2026-05-21T18:41:00+05:30
+modDatetime: 2026-05-21T18:41:00+05:30
 title: "BIRD: Generalizable Backdoor Detection and Removal in Deep RL"
 slug: bird-backdoor-detection-removal-deep-rl
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - backdoor-detection

@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T08:00:00+05:30
-modDatetime: 2025-05-22T08:00:00+05:30
+pubDatetime: 2026-05-17T16:31:00+05:30
+modDatetime: 2026-05-17T16:31:00+05:30
 title: "AI Security Learning Resources: Frameworks, Labs, and Podcasts"
 slug: ai-security-learning-resources-guide
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - machine-learning

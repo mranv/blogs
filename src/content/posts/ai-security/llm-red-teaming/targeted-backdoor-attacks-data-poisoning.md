@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T13:00:00+05:30
-modDatetime: 2026-05-24T13:00:00+05:30
+pubDatetime: 2026-05-16T21:14:00+05:30
+modDatetime: 2026-05-16T21:14:00+05:30
 title: "Targeted Backdoor Attacks via Data Poisoning: The Trojan Horse of Deep Learning"
 slug: targeted-backdoor-attacks-data-poisoning
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - backdoor-attacks

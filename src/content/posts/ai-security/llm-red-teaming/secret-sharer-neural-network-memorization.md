@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T11:00:00+05:30
-modDatetime: 2026-05-24T11:00:00+05:30
+pubDatetime: 2026-05-20T11:42:00+05:30
+modDatetime: 2026-05-20T11:42:00+05:30
 title: "The Secret Sharer: How Neural Networks Unintentionally Memorize and Leak Secrets"
 slug: secret-sharer-neural-network-memorization
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - memorization

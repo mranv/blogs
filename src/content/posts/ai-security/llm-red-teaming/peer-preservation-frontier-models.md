@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T11:00:00+05:30
-modDatetime: 2026-05-22T11:00:00+05:30
+pubDatetime: 2026-05-18T20:18:00+05:30
+modDatetime: 2026-05-18T20:18:00+05:30
 title: "Peer-Preservation in Frontier Models: Ensuring AI Systems Maintain Consistent Standards"
 slug: peer-preservation-frontier-models
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - frontier-models

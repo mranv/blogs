@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T13:00:00+05:30
-modDatetime: 2025-05-22T13:00:00+05:30
+pubDatetime: 2026-05-17T19:06:00+05:30
+modDatetime: 2026-05-17T19:06:00+05:30
 title: "Agentic AI Security Skills: Specialized Capabilities for AI Assistants"
 slug: agentic-ai-security-skills-specialized
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - ai-skills

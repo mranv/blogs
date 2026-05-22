@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T15:00:00+05:30
-modDatetime: 2025-05-22T15:00:00+05:30
+pubDatetime: 2026-05-17T16:46:00+05:30
+modDatetime: 2026-05-17T16:46:00+05:30
 title: "SteeringSafety: Benchmarking Representation Steering in LLMs Across Safety Perspectives"
 slug: steeringsafety-benchmarking-representation-steering
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - representation-steering

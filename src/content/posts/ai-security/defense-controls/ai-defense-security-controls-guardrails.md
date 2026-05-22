@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T11:00:00+05:30
-modDatetime: 2025-05-22T11:00:00+05:30
+pubDatetime: 2026-05-22T08:07:00+05:30
+modDatetime: 2026-05-22T08:07:00+05:30
 title: "AI Defense and Security Controls: Input/Output Guardrails and Model Scanning"
 slug: ai-defense-security-controls-guardrails
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - defense

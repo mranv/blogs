@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T09:30:00+05:30
-modDatetime: 2025-05-22T09:30:00+05:30
+pubDatetime: 2026-05-16T09:24:00+05:30
+modDatetime: 2026-05-16T09:24:00+05:30
 title: "Agentic AI and MCP Security: Attack Tools and Vulnerabilities"
 slug: agentic-ai-mcp-security-attack-tools
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - agentic-ai

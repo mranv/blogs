@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T16:30:00+05:30
-modDatetime: 2026-05-23T16:30:00+05:30
+pubDatetime: 2026-05-18T11:32:00+05:30
+modDatetime: 2026-05-18T11:32:00+05:30
 title: "Data Shapley in One Training Run: Efficient Data Valuation for Machine Learning"
 slug: data-shapley-one-training-run
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - data-valuation

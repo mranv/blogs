@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T19:00:00+05:30
-modDatetime: 2026-05-23T19:00:00+05:30
+pubDatetime: 2026-05-19T16:55:00+05:30
+modDatetime: 2026-05-19T16:55:00+05:30
 title: "PixMix: How Dreamlike Pictures Comprehensively Improve AI Safety Measures"
 slug: pixmix-robustness-safety-improvement
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - data-augmentation

@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T10:00:00+05:30
-modDatetime: 2026-05-24T10:00:00+05:30
+pubDatetime: 2026-05-17T16:49:00+05:30
+modDatetime: 2026-05-17T16:49:00+05:30
 title: "Natural Adversarial Examples: When Real-World Data Breaks AI Models"
 slug: natural-adversarial-examples
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - adversarial-examples

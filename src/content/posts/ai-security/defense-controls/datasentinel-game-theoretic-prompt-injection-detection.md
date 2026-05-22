@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T20:00:00+05:30
-modDatetime: 2026-05-22T20:00:00+05:30
+pubDatetime: 2026-05-16T09:46:00+05:30
+modDatetime: 2026-05-16T09:46:00+05:30
 title: "DataSentinel: Game-Theoretic Detection of Prompt Injection Attacks — IEEE S&P Distinguished Paper"
 slug: datasentinel-game-theoretic-prompt-injection-detection
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - prompt-injection

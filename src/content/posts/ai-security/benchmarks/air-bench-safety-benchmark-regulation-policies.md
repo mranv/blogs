@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T08:30:00+05:30
-modDatetime: 2026-05-23T08:30:00+05:30
+pubDatetime: 2026-05-17T11:47:00+05:30
+modDatetime: 2026-05-17T11:47:00+05:30
 title: "AIR-Bench 2024: AI Safety Benchmark Aligned with Regulation and Policy"
 slug: air-bench-safety-benchmark-regulation-policies
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - safety-benchmark

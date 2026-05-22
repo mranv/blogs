@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T17:30:00+05:30
-modDatetime: 2026-05-22T17:30:00+05:30
+pubDatetime: 2026-05-15T09:45:00+05:30
+modDatetime: 2026-05-15T09:45:00+05:30
 title: "AGENTVIGIL: Automated Black-Box Red-Teaming for Indirect Prompt Injection Attacks"
 slug: agentvigil-blackbox-redteaming-indirect-prompt-injection
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - prompt-injection

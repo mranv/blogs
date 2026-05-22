@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T15:30:00+05:30
-modDatetime: 2026-05-24T15:30:00+05:30
+pubDatetime: 2026-05-22T16:16:00+05:30
+modDatetime: 2026-05-22T16:16:00+05:30
 title: "Ensembles of Weak Defenses Are Not Strong: Lessons from Adversarial ML"
 slug: adversarial-example-defenses-ensemble-weak-not-strong
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - adversarial-defenses

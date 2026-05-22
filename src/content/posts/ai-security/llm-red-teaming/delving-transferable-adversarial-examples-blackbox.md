@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T12:30:00+05:30
-modDatetime: 2026-05-24T12:30:00+05:30
+pubDatetime: 2026-05-15T19:29:00+05:30
+modDatetime: 2026-05-15T19:29:00+05:30
 title: "Delving into Transferable Adversarial Examples and Black-Box Attacks"
 slug: delving-transferable-adversarial-examples-blackbox
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - adversarial-transferability

@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T13:30:00+05:30
-modDatetime: 2026-05-22T13:30:00+05:30
+pubDatetime: 2026-05-21T11:28:00+05:30
+modDatetime: 2026-05-21T11:28:00+05:30
 title: "Rethinking Proxy-Model Practice: Can Small Training Runs Guide Data Curation?"
 slug: proxy-model-data-curation-rethinking
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - data-curation

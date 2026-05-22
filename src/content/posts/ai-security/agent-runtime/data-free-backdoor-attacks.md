@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T15:30:00+05:30
-modDatetime: 2026-05-23T15:30:00+05:30
+pubDatetime: 2026-05-15T17:35:00+05:30
+modDatetime: 2026-05-15T17:35:00+05:30
 title: "Data-Free Backdoor Attacks: A New Threat to Machine Learning Models"
 slug: data-free-backdoor-attacks
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - backdoor-attacks

@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T09:30:00+05:30
-modDatetime: 2026-05-24T09:30:00+05:30
+pubDatetime: 2026-05-19T19:37:00+05:30
+modDatetime: 2026-05-19T19:37:00+05:30
 title: "The Many Faces of Robustness: A Critical Analysis of OOD Generalization"
 slug: many-faces-robustness-ood-generalization
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - robustness

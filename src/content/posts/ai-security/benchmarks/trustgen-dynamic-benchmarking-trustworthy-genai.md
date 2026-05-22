@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T12:30:00+05:30
-modDatetime: 2026-05-22T12:30:00+05:30
+pubDatetime: 2026-05-22T10:16:00+05:30
+modDatetime: 2026-05-22T10:16:00+05:30
 title: "TrustGen: Dynamic Benchmarking Platform for Trustworthy Generative AI"
 slug: trustgen-dynamic-benchmarking-trustworthy-genai
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - trustworthiness

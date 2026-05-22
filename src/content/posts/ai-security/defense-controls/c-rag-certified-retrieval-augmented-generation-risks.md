@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T13:30:00+05:30
-modDatetime: 2026-05-23T13:30:00+05:30
+pubDatetime: 2026-05-16T18:56:00+05:30
+modDatetime: 2026-05-16T18:56:00+05:30
 title: "C-RAG: Certified Risk Assessment for Retrieval-Augmented Generation"
 slug: c-rag-certified-retrieval-augmented-generation-risks
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - rag

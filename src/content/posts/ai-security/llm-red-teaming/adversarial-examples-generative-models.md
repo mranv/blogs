@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-24T15:00:00+05:30
-modDatetime: 2026-05-24T15:00:00+05:30
+pubDatetime: 2026-05-19T19:59:00+05:30
+modDatetime: 2026-05-19T19:59:00+05:30
 title: "Adversarial Examples for Generative Models: Attacking the Generators"
 slug: adversarial-examples-generative-models
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - adversarial-examples

@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T13:30:00+05:30
-modDatetime: 2025-05-22T13:30:00+05:30
+pubDatetime: 2026-05-19T11:14:00+05:30
+modDatetime: 2026-05-19T11:14:00+05:30
 title: "Security-Focused AI Models: Specialized Models for Cybersecurity"
 slug: security-focused-ai-models-cybersecurity
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - ai-models

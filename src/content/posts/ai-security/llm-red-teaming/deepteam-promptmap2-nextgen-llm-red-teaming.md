@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T15:00:00+05:30
-modDatetime: 2025-05-22T15:00:00+05:30
+pubDatetime: 2026-05-22T18:53:00+05:30
+modDatetime: 2026-05-22T18:53:00+05:30
 title: "DeepTeam and promptmap2: Next-Gen LLM Red Teaming Frameworks"
 slug: deepteam-promptmap2-nextgen-llm-red-teaming
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - llm

@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T10:00:00+05:30
-modDatetime: 2026-05-22T10:00:00+05:30
+pubDatetime: 2026-05-18T16:08:00+05:30
+modDatetime: 2026-05-18T16:08:00+05:30
 title: "Unsafer in Many Turns: Benchmarking and Defending Multi-Turn Safety Risks in Tool-Using Agents"
 slug: unsafer-many-turns-tool-using-agents
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - multi-turn-attacks

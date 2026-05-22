@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T09:30:00+05:30
-modDatetime: 2026-05-23T09:30:00+05:30
+pubDatetime: 2026-05-21T14:38:00+05:30
+modDatetime: 2026-05-21T14:38:00+05:30
 title: "Boosting Alignment After Unlearning in Text-to-Image Models"
 slug: boosting-alignment-post-unlearning-text-to-image
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - machine-unlearning

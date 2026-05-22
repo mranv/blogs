@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T12:00:00+05:30
-modDatetime: 2026-05-23T12:00:00+05:30
+pubDatetime: 2026-05-19T20:41:00+05:30
+modDatetime: 2026-05-19T20:41:00+05:30
 title: "SHINE: Shielding Backdoors in Deep Reinforcement Learning"
 slug: shine-shielding-backdoors-deep-rl
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - backdoor-attacks

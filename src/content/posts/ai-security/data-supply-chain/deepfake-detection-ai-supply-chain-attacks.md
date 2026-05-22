@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T17:30:00+05:30
-modDatetime: 2025-05-22T17:30:00+05:30
+pubDatetime: 2026-05-19T20:55:00+05:30
+modDatetime: 2026-05-19T20:55:00+05:30
 title: "Deepfake Detection, AI Supply Chain Attacks, and the Agent Skill Threat"
 slug: deepfake-detection-ai-supply-chain-attacks
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - deepfake

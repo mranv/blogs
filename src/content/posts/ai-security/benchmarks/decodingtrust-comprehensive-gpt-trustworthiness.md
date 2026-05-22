@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T14:00:00+05:30
-modDatetime: 2026-05-23T14:00:00+05:30
+pubDatetime: 2026-05-18T22:36:00+05:30
+modDatetime: 2026-05-18T22:36:00+05:30
 title: "DecodingTrust: The Definitive GPT Trustworthiness Assessment — NeurIPS Outstanding Paper"
 slug: decodingtrust-comprehensive-gpt-trustworthiness
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - gpt-trustworthiness

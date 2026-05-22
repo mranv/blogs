@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T11:30:00+05:30
-modDatetime: 2026-05-23T11:30:00+05:30
+pubDatetime: 2026-05-20T22:53:00+05:30
+modDatetime: 2026-05-20T22:53:00+05:30
 title: "Evolving AI Collectives: Enhancing Human Diversity and Enabling Self-Regulation"
 slug: evolving-ai-collectives-diversity-self-regulation
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - ai-collectives

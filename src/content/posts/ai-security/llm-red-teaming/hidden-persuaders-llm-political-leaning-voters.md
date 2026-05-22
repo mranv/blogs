@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T10:30:00+05:30
-modDatetime: 2026-05-23T10:30:00+05:30
+pubDatetime: 2026-05-21T12:04:00+05:30
+modDatetime: 2026-05-21T12:04:00+05:30
 title: "Hidden Persuaders: How LLM Political Leaning Influences Voter Decisions"
 slug: hidden-persuaders-llm-political-leaning-voters
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - political-bias

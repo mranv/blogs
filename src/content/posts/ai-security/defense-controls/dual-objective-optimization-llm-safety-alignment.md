@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T18:30:00+05:30
-modDatetime: 2026-05-22T18:30:00+05:30
+pubDatetime: 2026-05-19T11:03:00+05:30
+modDatetime: 2026-05-19T11:03:00+05:30
 title: "Improving LLM Safety Alignment Through Dual-Objective Optimization"
 slug: dual-objective-optimization-llm-safety-alignment
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - safety-alignment

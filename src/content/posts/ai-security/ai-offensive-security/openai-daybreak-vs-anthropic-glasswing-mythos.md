@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2025-05-22T16:00:00+05:30
-modDatetime: 2025-05-22T16:00:00+05:30
+pubDatetime: 2026-05-15T20:51:00+05:30
+modDatetime: 2026-05-15T20:51:00+05:30
 title: "The AI Cybersecurity Arms Race: OpenAI Daybreak vs Anthropic Glasswing and Mythos"
 slug: openai-daybreak-vs-anthropic-glasswing-mythos
 featured: true
-draft: false
+draft: true
 tags:
   - ai-security
   - openai

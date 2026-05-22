@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-23T14:30:00+05:30
-modDatetime: 2026-05-23T14:30:00+05:30
+pubDatetime: 2026-05-15T18:46:00+05:30
+modDatetime: 2026-05-15T18:46:00+05:30
 title: "TextGuard: Provable Defense Against Backdoor Attacks on Text Classification"
 slug: textguard-backdoor-text-classification
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - backdoor-defense

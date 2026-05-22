@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T15:00:00+05:30
-modDatetime: 2026-05-22T15:00:00+05:30
+pubDatetime: 2026-05-21T13:14:00+05:30
+modDatetime: 2026-05-21T13:14:00+05:30
 title: "OVERT: Benchmarking Over-Refusal in Text-to-Image Generation Models"
 slug: overt-benchmark-over-refusal-text-to-image
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - over-refusal

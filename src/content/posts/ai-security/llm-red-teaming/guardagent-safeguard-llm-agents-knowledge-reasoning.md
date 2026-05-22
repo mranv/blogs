@@ -1,11 +1,11 @@
 ---
 author: Anubhav Gain
-pubDatetime: 2026-05-22T18:00:00+05:30
-modDatetime: 2026-05-22T18:00:00+05:30
+pubDatetime: 2026-05-20T17:16:00+05:30
+modDatetime: 2026-05-20T17:16:00+05:30
 title: "GuardAgent: Safeguarding LLM Agents Through Knowledge-Enabled Reasoning"
 slug: guardagent-safeguard-llm-agents-knowledge-reasoning
 featured: false
-draft: false
+draft: true
 tags:
   - ai-security
   - agent-guardrails
