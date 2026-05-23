@@ -58,9 +58,10 @@ async function sendEmail(
   env: Env
 ): Promise<boolean> {
   try {
+    const siteName = env.SITE_NAME || "Anubhav Gain's Blog";
     await env.SEND_EMAIL.send({
-      from: `newsletter@techanv.com`,
-      to,
+      from: { email: 'newsletter@techanv.com', name: siteName },
+      to: [{ email: to }],
       subject,
       html: htmlBody,
       text: textBody,

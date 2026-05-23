@@ -116,8 +116,8 @@ If you didn't subscribe, you can safely ignore this email.`;
 
   try {
     await env.SEND_EMAIL.send({
-      from: `newsletter@techanv.com`,
-      to: email,
+      from: { email: 'newsletter@techanv.com', name: siteName },
+      to: [{ email }],
       subject: `Confirm your subscription ✨`,
       html: htmlBody,
       text: textBody,
