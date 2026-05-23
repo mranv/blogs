@@ -3,6 +3,7 @@
 import { getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
+import AudioVisualizerGrid from "../components/AudioVisualizerGrid.svelte";
 
 
 const projectsPost = await getEntry("spec", "projects");
@@ -18,6 +19,18 @@ const pageDescription = "Production-grade open-source projects by Anubhav Gain: 
 ---
 <MainGridLayout title={pageTitle} description={pageDescription} headings={headings}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <!-- Grid Visualizer as background decoration -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30 overflow-hidden">
+            <AudioVisualizerGrid
+                client:idle
+                size={400}
+                color="#1FD5F9"
+                rowCount={15}
+                columnCount={15}
+                radius={60}
+                state="idle"
+            />
+        </div>
         <div class="card-base z-10 px-9 py-6 relative w-full ">
             <Markdown class="mt-2">
                 <Content />

@@ -1,11 +1,10 @@
 ---
-
 import { getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
-
+import AudioVisualizerGrid from "../components/AudioVisualizerGrid.svelte";
 
 const aboutPost = await getEntry("spec", "about");
 
@@ -20,6 +19,18 @@ const aboutPageDescription = "Learn about Anubhav Gain, Security Software Engine
 ---
 <MainGridLayout title={aboutPageTitle} description={aboutPageDescription} headings={headings}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <!-- Grid Visualizer as background decoration -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30 overflow-hidden">
+            <AudioVisualizerGrid
+                client:idle
+                size={400}
+                color="#C04CFA"
+                rowCount={15}
+                columnCount={15}
+                radius={60}
+                state="idle"
+            />
+        </div>
         <div class="card-base z-10 px-9 py-6 relative w-full ">
             <Markdown class="mt-2">
                 <Content />
