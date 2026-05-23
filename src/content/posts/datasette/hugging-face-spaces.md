@@ -42,7 +42,7 @@ Free spaces get [a generous](https://huggingface.co/docs/hub/spaces-overview#har
 
 My first attempt to run Datasette used a single Dockerfile, and worked out of the box:
 
-```Dockerfile
+```dockerfile
 FROM python:3.11
 
 WORKDIR /code
@@ -95,7 +95,7 @@ I wanted to serve a database of data collected by my scraper. I haven't automate
 
 Here's the updated `Dockerfile`:
 
-```Dockerfile
+```dockerfile
 FROM python:3.11
 
 WORKDIR /code

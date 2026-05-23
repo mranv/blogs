@@ -81,58 +81,70 @@ async function sendViaWorker(env: Env, to: string, subject: string, html: string
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const env = context.env;
-
-  let body: SubscribeRequest;
   try {
-    body = await context.request.json();
-  } catch {
-    return json({ ok: false, error: 'Invalid request body.' }, 400);
-  }
+    const env = context.env;
 
-  const { valid, error } = validateEmail(body.email);
-  if (!valid) return json({ ok: false, error }, 422);
-
-  const email = body.email.trim().toLowerCase();
-  const ref = body.ref || '/';
-
-  if (!env.SUBSCRIBERS_KV) {
-    console.error('[subscribe] SUBSCRIBERS_KV not configured');
-    return json({ ok: false, error: 'Subscription system unavailable.' }, 503);
-  }
-
-  // Check existing subscriber
-  const existing = await env.SUBSCRIBERS_KV.get(`sub:${email}`, { type: 'json' }).catch(() => null);
-  if (existing) {
-    const sub = existing as any;
-    if (sub.confirmed) {
-      return json({ ok: true, message: "You're already subscribed!" });
+    let body: SubscribeRequest;
+    try {
+      body = await context.request.json();
+    } catch {
+      return json({ ok: false, error: 'Invalid request body.' }, 400);
     }
-    // Resend confirmation
+
+    const { valid, error } = validateEmail(body.email);
+    if (!valid) return json({ ok: false, error }, 422);
+
+    const email = body.email.trim().toLowerCase();
+    const ref = body.ref || '/';
+
+    if (!env.SUBSCRIBERS_KV) {
+      console.error('[subscribe] SUBSCRIBERS_KV not configured');
+      return json({ ok: false, error: 'Subscription system unavailable.' }, 503);
+    }
+
+    // Check existing subscriber
+    const existing = await env.SUBSCRIBERS_KV.get(`sub:${email}`, { type: 'json' }).catch(() => null);
+    if (existing) {
+      const sub = existing as any;
+      if (sub.confirmed) {
+        return json({ ok: true, message: "You're already subscribed!" });
+      }
+      // Resend confirmation
+      const token = generateToken();
+      await env.SUBSCRIBERS_KV.put(`token:${token}`, email, { expirationTtl: 86400 }).catch((e) => {
+        console.error('[subscribe] KV put token error:', e);
+      });
+      const tpl = confirmEmail(email, token);
+      await sendViaWorker(env, email, tpl.subject, tpl.html, tpl.text);
+      return json({ ok: true, message: 'Confirmation email resent! Check your inbox.' });
+    }
+
+    // New subscriber
     const token = generateToken();
-    await env.SUBSCRIBERS_KV.put(`token:${token}`, email, { expirationTtl: 86400 });
+    await env.SUBSCRIBERS_KV.put(`sub:${email}`, JSON.stringify({
+      email,
+      ref,
+      subscribedAt: new Date().toISOString(),
+      confirmed: false,
+    })).catch((e) => {
+      console.error('[subscribe] KV put sub error:', e);
+      throw e;
+    });
+    await env.SUBSCRIBERS_KV.put(`token:${token}`, email, { expirationTtl: 86400 }).catch((e) => {
+      console.error('[subscribe] KV put token error:', e);
+    });
+
     const tpl = confirmEmail(email, token);
-    await sendViaWorker(env, email, tpl.subject, tpl.html, tpl.text);
-    return json({ ok: true, message: 'Confirmation email resent! Check your inbox.' });
+    const sent = await sendViaWorker(env, email, tpl.subject, tpl.html, tpl.text);
+
+    if (!sent) {
+      return json({ ok: true, message: "Subscribed! We'll send your confirmation shortly." });
+    }
+    return json({ ok: true, message: 'Check your inbox to confirm your subscription!' });
+  } catch (err) {
+    console.error('[subscribe] Unhandled error:', err);
+    return json({ ok: false, error: 'Service temporarily unavailable. Please try again.' }, 503);
   }
-
-  // New subscriber
-  const token = generateToken();
-  await env.SUBSCRIBERS_KV.put(`sub:${email}`, JSON.stringify({
-    email,
-    ref,
-    subscribedAt: new Date().toISOString(),
-    confirmed: false,
-  }));
-  await env.SUBSCRIBERS_KV.put(`token:${token}`, email, { expirationTtl: 86400 });
-
-  const tpl = confirmEmail(email, token);
-  const sent = await sendViaWorker(env, email, tpl.subject, tpl.html, tpl.text);
-
-  if (!sent) {
-    return json({ ok: true, message: "Subscribed! We'll send your confirmation shortly." });
-  }
-  return json({ ok: true, message: 'Check your inbox to confirm your subscription!' });
 };
 
 export const onRequestOptions: PagesFunction = async () => {

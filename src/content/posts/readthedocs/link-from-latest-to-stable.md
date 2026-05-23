@@ -33,7 +33,7 @@ I had an extra requirement: I wanted pages on my `/en/latest/` documentation (wh
 
 I ended up [adding this snippet](https://github.com/simonw/datasette/commit/ffca55dfd7cc9b53522c2e5a2fa1ff67c9beadf2) of jQuery JavaScript to my custom ` docs/_templates/layout.html` template:
 
-```html+jinja
+```jinja2
 {% block footer %}
 {{ super() }}
 <script>

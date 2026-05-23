@@ -117,7 +117,7 @@ In Python code this can be achieved like so:
 conn.set_progress_handler(lambda: 1, 100)
 ```
 This sets a progress handler which will be called after every 100 opcodes - but by returning `1` the handler causes the query to be cancelled:
-```pycon
+```python
 >>> import sqlite3
 >>> conn = sqlite3.connect("fixtures.db")
 >>> conn.set_progress_handler(lambda: 1, 200)

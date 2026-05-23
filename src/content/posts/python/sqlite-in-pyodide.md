@@ -29,7 +29,7 @@ It turns out it also now includes [a working version](https://github.com/pyodide
 
 [pyodide.org/en/stable/console.html](https://pyodide.org/en/stable/console.html) provides an interactive REPL for trying eut Pyodide. You can run a one-liner to demonstrate the available SQLite version like this:
 
-```pycon
+```python
 Welcome to the Pyodide terminal emulator 🐍
 Python 3.9.5 (default, Sep 16 2021 11:22:45) on WebAssembly VM
 Type "help", "copyright", "credits" or "license" for more information.

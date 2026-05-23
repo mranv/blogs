@@ -29,7 +29,7 @@ It has named blocks in it, which means I can over-ride just the specific named b
 To inherit from the default layout template, I used `{% extends "!layout.html" %}` - note the `!` there which causes it to use the default template (without that character the build script throws an infinite recursion error).
 
 Here's the `layout.html` template I used:
-```html+jinja
+```jinja2
 {%- extends "!layout.html" %}
 
 {% block sidebartitle %}

@@ -116,7 +116,7 @@ Vite works by scanning the `index.html` for any JavaScript references, then doin
 <script type="module" src="/@vite/client"></script>
 ```
 And when it serves the `datasette-table.js` file it rewrites the first import line to look like this:
-```script
+```bash
 import {LitElement, html, css} from '/node_modules/.vite/lit.js?v=bf29c8a9';
 ```
 

@@ -72,14 +72,14 @@ A key detail here is that `Cache-Control: s-maxage=10` HTTP header, telling [Clo
 
 Plus a new template, `templates/entry_updates.html`:
 
-```html+django
+```html
 {% for update in updates %}
 <p><strong>{{ update.created_str }}</strong> {{ update.content|safe }}</p>
 {% endfor %}
 ```
 
 I also duplicated code to make that list of entries available in my entry page as well, and added this to my regular blog entry template:
-```html+django
+```html
 {% if updates %}
 <div id="live-updates">
 {% for update in updates %}
@@ -197,7 +197,7 @@ Again, these return an HTTP header telling Cloudflare to cache them for ten seco
 I also needed hooks in the HTML to help with sort ordering and so the JavaScript could tell what IDs had been displayed already when the page first loaded.
 
 I went with this HTML:
-```html+django
+```html
 {% for update in updates %}
 <div data-update-id="{{ update.id }}">
   <p><strong>{{ update.created_str }}</strong> {{ update.content|safe }}</p>
@@ -410,7 +410,7 @@ if (sortOrder === 'oldest-first') {
 }
 ```
 I didn’t have to correct one minor bug. My Django template used this pattern:
-```html+django
+```html
 {{ update.content|safe }}
 ```
 The pipe to `|safe` turns off Django’s default HTML escaping, which meant I could drop arbitrary HTML into my updates - useful for adding links, bold text and the occasional image.

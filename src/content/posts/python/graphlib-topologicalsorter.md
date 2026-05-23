@@ -70,7 +70,7 @@ Having called `.prepare()` no further `.add()` calls are allowed.
 
 If you just want the nodes ordered such that none of them come before a dependency you can use `.static_order()`:
 
-```pycon
+```python
 >>> graph = {
 ...     "datasette": {"httpx", "sqlite-utils", "click"},
 ...     "sqlite-utils": {"click", "httpx"}
@@ -82,7 +82,7 @@ If you just want the nodes ordered such that none of them come before a dependen
 
 The `.prepare()` method raises `graphlib.CycleError` if it detects a cycle:
 
-```pycon
+```python
 >>> TopologicalSorter({"datasette": {"sqlite-utils"}, "sqlite-utils": {"datasette"}}).prepare()
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>

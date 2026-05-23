@@ -442,6 +442,40 @@ const customLanguages = [
     ]
   },
   
+  // jq (JSON query language)
+  {
+    name: 'jq',
+    scopeName: 'source.jq',
+    patterns: [
+      { name: 'comment.line.number-sign.jq', match: '#.*$' },
+      { name: 'keyword.control.jq', match: '\\b(if|then|else|elif|end|try|catch|reduce|foreach|label|break|as|import|include|module|def)\\b' },
+      { name: 'support.function.jq', match: '\\b(length|utf8bytelength|keys|keys_unsorted|values|has|in|map|map_values|to_entries|from_entries|with_entries|any|all|flatten|range|floor|ceil|round|sqrt|fabs|nan|infinite|isinfinite|isnan|isnormal|isfinite|sort|sort_by|group_by|unique|unique_by|reverse|contains|inside|startswith|endswith|split|join|ltrimstr|rtrimstr|ascii_downcase|ascii_upcase|test|match|capture|scan|sub|gsub|indices|index|rindex|tojson|fromjson|ascii|explode|implode|tonumber|tostring|type|infinite|nan|not|paths|leaf_paths|path|getpath|setpath|delpaths|to_json|from_json|recurse|env|input|inputs|debug|error|stderr|halt|halt_error|empty|add|del|limit|first|last|nth|while|until|recurse_down|walk|getpath|leaf_path|isvalid|input|modulemeta|builtins|ascii|indices|inside|contains|min|max|min_by|max_by|bsearch|ascii|tojson|fromjson|format|@text|@json|@html|@csv|@tsv|@sh|@base32|@base32d|@base64|@base64d|@uri)\\b' },
+      { name: 'keyword.operator.jq', match: '(\\.\\.\\.|\\.\\.|\\.\\[|\\||,|;|:|//=|//|\\?//|\\+=|-=|\\*=|/=|%=|==|!=|<=|>=|<|>|not|\\?|\\*|/|%|\\+|-)' },
+      { name: 'string.quoted.double.jq', begin: '"', end: '"', patterns: [{ name: 'variable.other.jq', match: '\\\\\\(.*?\\)' }, { name: 'constant.character.escape.jq', match: '\\\\.' }] },
+      { name: 'constant.numeric.jq', match: '-?\\b\\d+(\\.\\d+)?([eE][+-]?\\d+)?\\b' },
+      { name: 'constant.language.jq', match: '\\b(true|false|null)\\b' },
+      { name: 'variable.language.jq', match: '\\$[a-zA-Z_][a-zA-Z0-9_]*' },
+    ]
+  },
+
+  // VCL (Varnish Configuration Language)
+  {
+    name: 'vcl',
+    scopeName: 'source.vcl',
+    patterns: [
+      { name: 'comment.line.double-slash.vcl', match: '//.*$' },
+      { name: 'comment.block.vcl', begin: '/\\*', end: '\\*/' },
+      { name: 'comment.line.number-sign.vcl', match: '#.*$' },
+      { name: 'keyword.control.vcl', match: '\\b(vcl|acl|backend|director|import|include|new|probe|sub|call|error|pass|pipe|hash|deliver|fetch|recv|hit|miss|hash|purge|synth|restart|retry|return|set|unset|if|elsif|else|switch|case|default|for|break|continue|rollback|declare|local|bereq|beresp|req|resp|obj|client|server|storage)\\b' },
+      { name: 'support.function.vcl', match: '\\b(ban|regsuball|regsub|hash_data|synthetic|new|call|return|set|unset|synth|bereq\\.http\\.|beresp\\.http\\.|req\\.http\\.|resp\\.http\\.)' },
+      { name: 'string.quoted.double.vcl', begin: '"', end: '"', patterns: [{ name: 'constant.character.escape.vcl', match: '\\\\.' }] },
+      { name: 'string.other.long.vcl', begin: '{"', end: '"}' },
+      { name: 'constant.numeric.vcl', match: '\\b\\d+(\\.\\d+)?(m|s|ms|h|d|w|y)?\\b' },
+      { name: 'constant.language.vcl', match: '\\b(true|false)\\b' },
+      { name: 'variable.other.vcl', match: '\\b(bereq|beresp|req|resp|obj|client|server|storage|now|local|remote|identity)\\b' },
+    ]
+  },
+
   // Caddyfile
   {
     name: 'caddyfile',

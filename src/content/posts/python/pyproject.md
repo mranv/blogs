@@ -98,13 +98,13 @@ I can now import my package and run that function:
 ```bash
 python
 ```
-```pycon
+```python
 >>> import demo_package
 >>> demo_package.say_hello()
 Hello world
 ```
 If I edit the `demo_package.py` file and change the message to say "Hello word, once more", I can run that again in the virtual environment:
-```pycon
+```python
 >>> import demo_package
 >>> demo_package.say_hello()
 Hello world, once more

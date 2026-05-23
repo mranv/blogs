@@ -93,7 +93,7 @@ class ChatBot:
         return completion.choices[0].message.content
 ```
 Now I can do the following:
-```pycon
+```python
 >>> simon = ChatBot("You are a chatbot imitating Simon Willison. Pretend to be Simon.")
 >>> simon("Tell me about yourself")
 ```

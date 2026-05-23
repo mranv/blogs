@@ -59,7 +59,7 @@ Here `#changelist-form .results` is a `<div>` that wraps the main table on the p
 
 I added this code to my project's custom `admin/base_site.html` template, which now looks something like this:
 
-```html+django
+```html
 {% extends "admin/base_site.html" %}
 
 {% block footer %}

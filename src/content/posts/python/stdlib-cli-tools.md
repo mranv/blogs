@@ -213,7 +213,7 @@ This provides a Python console with top-level await:
 ```bash
 python -m asyncio
 ```
-```pycon
+```python
 asyncio REPL 3.11.4 (main, Jun 20 2023, 17:23:00) [Clang 14.0.3 (clang-1403.0.22.14.1)] on darwin
 Use "await" directly instead of "asyncio.run()".
 Type "help", "copyright", "credits" or "license" for more information.

@@ -38,7 +38,7 @@ v_1_0a13 = parse("1.0a13")
 v_0631 = parse("0.63.1")
 ```
 And some comparisons:
-```pycon
+```python
 >>> v_1_0 > v_1_0a13
 True
 >>> v_1_0 < v_1_0a13

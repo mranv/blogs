@@ -136,7 +136,7 @@ def run_code(string_of_code):
 ```
 
 This works! I tested it in a `python` REPL:
-```pycon
+```python
 >>> import deno_run
 >>> deno_run.run_code("4 + 5")
 {'output': 9}

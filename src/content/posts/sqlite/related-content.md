@@ -97,7 +97,7 @@ I decided to implement this using a custom Jinja template function, added using 
 
 The custom function is called `related_tils()`, and is called from the template [like this](https://github.com/simonw/til/blob/cb62b8ab4c7b26ec7a895adea7f2d405b48686ba/templates/pages/%7Btopic%7D/%7Bslug%7D.html#L37-L45):
 
-```html+jinja
+```jinja2
 {% set related = related_tils(til) %}
 {% if related %}
   <h3>Related</h3>

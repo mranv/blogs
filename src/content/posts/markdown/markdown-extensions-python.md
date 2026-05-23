@@ -53,7 +53,7 @@ def docs(request):
 ```
 And in the `docs.html` template:
 
-```html+django
+```html
 {% extends "base.html" %}
 
 {% block title %}Documentation{% endblock %}

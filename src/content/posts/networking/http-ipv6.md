@@ -23,7 +23,7 @@ Tiny TIL today: I learned how to make an HTTP call to an IPv6 address. The trick
     http://[2a09:8280:1::1:2741]
 
 Here's that working as a request to www.pillarpointstewards.com (hosted on [Fly.io](https://fly.io/) which issues IPv6 addresses) using the [httpx](https://www.python-httpx.org/) Python library:
-```pycon
+```python
 >>> httpx.get("http://[2a09:8280:1::1:2741]", headers={"host": "www.pillarpointstewards.com"}).text
 '<!DOCTYPE html>\n<html lang="en">\n<head>\n<title>Pillar Point Tidepool Stewards</title>\n<meta
 ```

@@ -65,7 +65,7 @@ loadDependencies(() => {
 >
 > First, the Javascript is overly complicated with pushing `this` (?) to an array. I think the reason you're doing this is because you are subconsciously influenced by Python which has broken nonlocals by default. Even ES5 Javascript, however, respects `var` declarations, and you're using `let`, which is ES6. So, you can radically simplify this:
 >
-> ```JavaScript
+> ```javascript
 > const loadDependencies = (callback) => {
 >     let loaded = 0;
 >     function hasLoaded() {
@@ -78,7 +78,7 @@ loadDependencies(() => {
 >
 > Two, you can radically complicate this. :-) The idiomatic way in JavaScript to deal with callbacks is to _convert them to promises as soon as possible_. Again, you're writing ES6 (arrow funcs, `const`, `let`) anyway, plus this is a hobby project, so don't let IE11 hold you back. Just use a promise. Again, I think you're influenced by Python, in which async is a big deal architecturally and you can't just drop it in anywhere. In JS, because it's single threaded by the spec, you can just drop in async any time you like and converting callbacks to Promises is trivial. There are two options for converting to promises, first you can keep your existing API:
 >
-> ```JavaScript
+> ```javascript
 > const resolveOnLoad = (el) =>
 >   new Promise((resolve) => {
 >     el.onload = resolve;
@@ -107,7 +107,7 @@ loadDependencies(() => {
 >
 > Or second, you just move to all promises/async:
 >
-> ```JavaScript
+> ```javascript
 > const resolveOnLoad = (el) =>
 >   new Promise((resolve) => {
 >     el.onload = resolve;

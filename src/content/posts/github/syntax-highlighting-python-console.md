@@ -21,7 +21,7 @@ title: Syntax highlighting Python console examples with GFM
 
 It turns out [GitHub Flavored Markdown](https://github.github.com/gfm/) can apply syntax highlighting to Python console examples, like this one:
 
-```pycon
+```python
 >>> import csv
 >>> with open('eggs.csv', newline='') as csvfile:
 ...     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
@@ -34,7 +34,7 @@ Spam, Lovely Spam, Wonderful Spam
 The trick is to use the following:
 
 ````
-```pycon
+```python
 >>> import csv
 >>> with open('eggs.csv', newline='') as csvfile:
 ...     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
@@ -51,7 +51,7 @@ While writing this TIL I also learned how to embed triple-backticks in a code bl
 
 `````
 ````
-```pycon
+```python
 >>> import csv
 >>> with open('eggs.csv', newline='') as csvfile:
 ...     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')

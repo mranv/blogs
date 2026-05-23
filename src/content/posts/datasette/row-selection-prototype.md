@@ -162,7 +162,7 @@ Then in Heroku:
 ./manage.py shell
 ```
 And in the Python console:
-```pycon
+```python
 >>> from blog.models import Blogmark, Tag, Entry, Quotation
 >>> tag = Tag.objects.get(tag='llms')
 >>> tag

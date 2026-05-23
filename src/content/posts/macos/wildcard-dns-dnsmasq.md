@@ -107,7 +107,7 @@ unbound none
 ## Testing dnsmasq
 
 Running `dig` and specifically telling it to use the new `127.0.0.1` DNS server works:
-```bas
+```vb
 dig foo.test.lan @127.0.0.1
 ```
 ```

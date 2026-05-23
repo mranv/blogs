@@ -22,7 +22,7 @@ title: Custom Jinja template tags with attributes
 
 I decided to implement a custom Jinja template block tag for my [datasette-render-markdown](https://datasette.io/plugins/datasette-render-markdown) plugin. I wanted the tag to work like this:
 
-```html+jinja
+```jinja2
 {% markdown %}
 # This will be rendered as markdown
 
@@ -81,7 +81,7 @@ My [render_markdown() function](https://github.com/simonw/datasette-render-markd
 
 I decided to use the following syntax for that:
 
-```html+jinja
+```jinja2
 {% markdown
   extensions="tables"
   extra_tags="table thead tr th td tbody"

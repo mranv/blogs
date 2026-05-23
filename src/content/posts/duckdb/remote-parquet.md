@@ -305,7 +305,7 @@ Running `create view` here transferred 37 KiB according to `nettop` - presumably
 describe midjourney_messages;
 ```
 Output:
-```wide
+```text
 ┌─────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐
 │ column_name │ column_type │  null   │   key   │ default │ extra │
 │   varchar   │   varchar   │ varchar │ varchar │ varchar │ int32 │
@@ -337,7 +337,7 @@ select * from parquet_metadata(
 );
 ```
 That returns the following, after fetching 37 KiB:
-```wide
+```text
 ┌──────────────────────┬──────────────┬────────────────────┬───┬──────────────────┬──────────────────────┬──────────────────────┐
 │      file_name       │ row_group_id │ row_group_num_rows │ … │ data_page_offset │ total_compressed_s…  │ total_uncompressed…  │
 │       varchar        │    int64     │       int64        │   │      int64       │        int64         │        int64         │
@@ -356,7 +356,7 @@ That returns the following, after fetching 37 KiB:
 └───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 Since some of the columns here were truncated in the middle, I typed `.columns` to switch modes and ran the query again:
-```wide
+```text
 ┌──────────────────────┬─────────┬──────────────────────┬───┬──────────────────────┬──────────────────────┬──────────────────────┐
 │        Column        │  Type   │        Row 1         │ … │        Row 7         │        Row 8         │        Row 9         │
 ├──────────────────────┼─────────┼──────────────────────┼───┼──────────────────────┼──────────────────────┼──────────────────────┤

@@ -22,7 +22,7 @@ title: Using pysqlite3 on macOS
 
 While trying to use [pysqlite3](https://github.com/coleifer/pysqlite3) on macOS I got the following error:
 
-```pycon
+```python
 >>> import pysqlite3
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -40,7 +40,7 @@ Thanks to [this tip](https://stackoverflow.com/a/60046923/6083) on Stack Overflo
     export DYLD_LIBRARY_PATH=/usr/local/opt/sqlite/lib:/usr/lib
 
 Then:
-```pycon
+```python
 >>> import pysqlite3
 >>> pysqlite3.connect(":memory:").execute("select sqlite_version()").fetchall()
 [('3.36.0',)]

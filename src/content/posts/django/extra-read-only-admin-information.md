@@ -49,7 +49,7 @@ class ReporterAdmin(admin.ModelAdmin):
 
 That's it! `recent_calls` is marked as a read-only field, then implemented as a method which returns HTML. That method passes the instance to a template using `render_to_string`. That template looks like this:
 
-```html+jinja
+```jinja2
 <h2>{{ reporter }} has made {{ call_count }} call{{ call_count|pluralize }}</h2>
 
 <p><strong>Recent calls</strong> (<a href="/admin/core/callreport/?reported_by__exact={{ reporter.id }}">view all</a>)</p>

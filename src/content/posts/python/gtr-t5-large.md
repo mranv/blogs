@@ -87,7 +87,7 @@ The first time this runs takes a while because it has to download and cache the 
 
 Here's how to find the location of the cache:
 
-```pycon
+```python
 >>> from torch.hub import _get_torch_home
 >>> _get_torch_home()
 '/Users/simon/.cache/torch'
@@ -184,7 +184,7 @@ def id_list_to_sql(ids):
     return sql
 ```
 And now:
-```pycon
+```python
 >>> print(id_list_to_sql(find_similar_for_id(6832)))
 
     with results(sort, id) as (

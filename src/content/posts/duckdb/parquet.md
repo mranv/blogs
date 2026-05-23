@@ -37,7 +37,7 @@ To install it:
 
 Then in a Python console:
 
-```pycon
+```python
 >>> import duckdb
 >>> db = duckdb.connect() # No need to pass a file name, we will use a VIEW
 >>> db.execute("CREATE VIEW hamming AS SELECT * FROM parquet_scan('parquet/*.parquet')")

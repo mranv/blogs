@@ -211,7 +211,7 @@ I like to be able to click on a feed link and see the XML before I paste the URL
 It's easy to forget these, but they're really important - with the right markup links to posts shared on Mastodon, Twitter, LinkedIn and Facebook will look MUCH better.
 
 Here's a snipet from my `entry.html` template:
-```html+django
+```html
 {% block extra_head %}
 {% if entry.card_image %}
 <meta name="twitter:card" content="summary_large_image">

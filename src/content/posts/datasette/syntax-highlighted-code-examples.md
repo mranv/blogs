@@ -38,7 +38,7 @@ datasette install Pygments
 
 Here's the recipe that worked:
 
-````html+jinja
+````jinja2
 {% markdown
   extensions="fenced_code codehilite"
   extra_tags="span div"

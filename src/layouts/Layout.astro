@@ -602,6 +602,7 @@ const setup = () => {
 			navbar.classList.add('navbar-hidden')
 		}
 	})
+	window.swup.hooks.on('content:replace', refreshDomRefs)
 	window.swup.hooks.on('content:replace', initCustomScrollbar)
 	window.swup.hooks.on('content:replace', initMermaid)
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
@@ -631,7 +632,7 @@ const setup = () => {
 		// hide the temp high element when the transition is done
 		const heightExtend = document.getElementById('page-height-extend')
 		if (heightExtend) {
-			heightExtend.classList.remove('hidden')
+			heightExtend.classList.add('hidden')
 		}
 	});
 	window.swup.hooks.on('visit:end', (_visit: {to: {url: string}}) => {
@@ -657,7 +658,13 @@ if (window?.swup?.hooks) {
 
 let backToTopBtn = document.getElementById('back-to-top-btn');
 let toc = document.getElementById('toc-wrapper');
-let navbar = document.getElementById('navbar-wrapper')
+let navbar = document.getElementById('navbar-wrapper');
+
+function refreshDomRefs() {
+	backToTopBtn = document.getElementById('back-to-top-btn');
+	toc = document.getElementById('toc-wrapper');
+	navbar = document.getElementById('navbar-wrapper');
+}
 function scrollFunction() {
 	let bannerHeight = window.innerHeight * (BANNER_HEIGHT / 100)
 

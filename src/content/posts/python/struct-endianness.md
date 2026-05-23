@@ -41,20 +41,20 @@ SQLite doesn't change the binary format depending on the endianness of the syste
 
 On little-endian systems:
 
-```pycon
+```python
 >>> buf = b'\x01\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00'
 >>> decode_matchinfo(buf)
 (1, 2, 2, 2)
 ```
 But on big-endian systems:
-```pycon
+```python
 >>> buf = b'\x01\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00'
 >>> decode_matchinfo(buf)
 (16777216, 33554432, 33554432, 33554432)
 ```
 The fix is to add a first character to that format string specifying the endianness that should be used, see [Byte Order, Size, and Alignment](https://docs.python.org/3/library/struct.html#struct-alignment) in the Python documentation.
 
-```pycon
+```python
 >>> struct.unpack("<IIII", buf)
 (1, 2, 2, 2)
 >>> struct.unpack(">IIII", buf)
@@ -70,7 +70,7 @@ def decode_matchinfo(buf):
 
 Turns out Python can tell you if you are big-endian or little-endian like this:
 
-```pycon
+```python
 >>> from sys import byteorder
 >>> byteorder
 'little'

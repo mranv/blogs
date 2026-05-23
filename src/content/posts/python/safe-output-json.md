@@ -21,7 +21,7 @@ title: Safely outputting JSON
 
 Carelessly including the output of `json.dumps()` in an HTML page can lead to an XSS hole, thanks to the following:
 
-```pycon
+```python
 >>> import json
 >>> s = "</script><script>alert(document.location)</script>"
 >>> print(json.dumps({"bad": s}))
@@ -40,7 +40,7 @@ def htmlsafe_json_dumps(obj):
     )
 ```
 Which outputs like this:
-```pycon
+```python
 >>> print(htmlsafe_json_dumps({"bad": s}))
 {"bad": "\u003c/script\u003e\u003cscript\u003ealert(document.location)\u003c/script\u003e"}
 ```

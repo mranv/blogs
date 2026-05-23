@@ -110,7 +110,7 @@ python-implementation = "CPython"
 data2 = tomllib.loads(toml_str)
 ```
 This is effectively a vendored version of [tomli](https://github.com/hukkin/tomli), which is available for previous Python versions via `pip install tomli`:
-```pycon
+```python
 >>> import tomli
 >>> tomli.loads("foo = 1\nbar = 2")
 {'foo': 1, 'bar': 2}

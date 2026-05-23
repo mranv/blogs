@@ -23,7 +23,7 @@ I have a bunch of models with JSON fields that are marked as read-only in the Dj
 
 Here's a pattern I found for pretty-printing ANY JSON value that is displayed in a read-only field in the admin. Create a template called `admin/change_form.html` and populate it with the following:
 
-```html+django
+```html
 {% extends "admin/change_form.html" %}
 {% block admin_change_form_document_ready %}
 {{ block.super }}

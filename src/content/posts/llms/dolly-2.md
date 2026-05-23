@@ -60,7 +60,7 @@ def prompt(s):
     return response
 ```
 Then tested it like this:
-```pycon
+```python
 >>> prompt("First man on the moon?")
 716.0470576286316
 ```
