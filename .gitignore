@@ -41,3 +41,4 @@ src/content/posts/aws/.swarm/memory.db-shm
 public/assets/images/
 public/assets/resources-writeups/
 src/assets/resources-writeups/
+.wrangler/
