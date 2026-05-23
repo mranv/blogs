@@ -3,7 +3,7 @@
 // Admin-only: Send branded newsletter to all confirmed subscribers
 // Protected by ADMIN_SECRET env var
 
-import { broadcastEmail } from '../_lib/email-templates';
+import { broadcastEmail } from '../../_lib/email-templates';
 
 interface Env {
   SUBSCRIBERS_KV?: KVNamespace;
