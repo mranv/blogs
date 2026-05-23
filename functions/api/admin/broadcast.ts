@@ -1,3 +1,4 @@
+// v3: ADMIN_SECRET via pages secret
 // Cloudflare Pages Function — /api/admin/broadcast
 // Admin-only: Send branded newsletter to all confirmed subscribers
 // Protected by ADMIN_SECRET env var
