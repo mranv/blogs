@@ -85,9 +85,15 @@ export default {
 
     // Send email via Cloudflare Email Service
     try {
+      // Cloudflare send_email expects:
+      //   from: string (email address)
+      //   to: string (single email)
+      //   subject: string
+      //   html: string (optional)
+      //   text: string (optional)
       const message: any = {
-        from: body.from,
-        to: body.to,
+        from: body.from.email || body.from,
+        to: body.to[0]?.email || body.to[0],
         subject: body.subject,
       };
       if (body.html) message.html = body.html;
