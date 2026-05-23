@@ -444,6 +444,7 @@ const bannerEnabled = !!document.getElementById('banner-wrapper')
 function setClickOutsideToClose(panel: string, ignores: string[]) {
 	document.addEventListener("click", event => {
 		let panelDom = document.getElementById(panel);
+		if (!panelDom) return;
 		let tDom = event.target;
 		if (!(tDom instanceof Node)) return;		// Ensure the event target is an HTML Node
 		for (let ig of ignores) {
@@ -452,7 +453,7 @@ function setClickOutsideToClose(panel: string, ignores: string[]) {
 				return;
 			}
 		}
-		panelDom!.classList.add("float-panel-closed");
+		panelDom.classList.add("float-panel-closed");
 	});
 }
 setClickOutsideToClose("display-setting", ["display-setting", "display-settings-switch"])
@@ -606,10 +607,12 @@ const setup = () => {
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
 		// change banner height immediately when a link is clicked
 		const bodyElement = document.querySelector('body')
-		if (pathsEqual(visit.to.url, url('/'))) {
-			bodyElement!.classList.add('lg:is-home');
-		} else {
-			bodyElement!.classList.remove('lg:is-home');
+		if (bodyElement) {
+			if (pathsEqual(visit.to.url, url('/'))) {
+				bodyElement.classList.add('lg:is-home');
+			} else {
+				bodyElement.classList.remove('lg:is-home');
+			}
 		}
 
 		// increase the page height during page transition to prevent the scrolling animation from jumping
