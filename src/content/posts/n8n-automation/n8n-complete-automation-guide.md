@@ -5,7 +5,10 @@ title: "The Complete Guide to n8n Automation: Building Enterprise-Grade Workflow
 description: "Master n8n workflow automation with this comprehensive guide covering setup, best practices, and real-world implementations"
 pubDatetime: 2025-07-20T17:00:00+05:30
 tags: ["n8n", "automation", "workflow", "tutorial", "guide", "enterprise", "best-practices"]
-categories: ["automation", "tutorial", "productivity"]
+categories:
+  - automation
+  - tutorial
+  - productivity
 draft: false
 
 ---

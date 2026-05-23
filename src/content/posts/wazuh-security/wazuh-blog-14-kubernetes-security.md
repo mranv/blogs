@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T15:45:00+05:30
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "kubernetes-security",
-    "container-monitoring",
-    "threat-detection",
-    "kubernetes",
-    "containers",
-    "cloud-native",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - kubernetes-security
+  - container-monitoring
+  - threat-detection
+  - kubernetes
+  - containers
+  - cloud-native
+  - cybersecurity
 featured: true
 draft: false
 ---

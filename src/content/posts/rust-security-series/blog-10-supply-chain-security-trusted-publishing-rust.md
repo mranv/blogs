@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:00:00+05:30
 tags:
   - general
-category: Security
-  [
-    "supply-chain-security",
-    "trusted-publishing",
-    "rust",
-    "cryptography",
-    "slsa",
-    "sigstore",
-    "software-attestations",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - supply-chain-security
+  - trusted-publishing
+  - rust
+  - cryptography
+  - slsa
+  - sigstore
+  - software-attestations
+  - cybersecurity
 featured: true
 draft: false
 ---

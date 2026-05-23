@@ -8,19 +8,19 @@ draft: false
 author: "Anubhav Gain"
 tags:
   - general
-category: Security
-  [
-    "rust",
-    "service-mesh",
-    "security",
-    "envoy",
-    "istio",
-    "mtls",
-    "zero-trust",
-    "microservices",
-    "ebpf",
-    "linkerd",
-  ]
+categories:
+  - Security
+tags:
+  - rust
+  - service-mesh
+  - security
+  - envoy
+  - istio
+  - mtls
+  - zero-trust
+  - microservices
+  - ebpf
+  - linkerd
 ---
 
 Service meshes have become the de facto standard for securing microservices at scale. This guide demonstrates building a high-performance service mesh security layer in Rust that rivals established solutions while providing memory safety and predictable performance.

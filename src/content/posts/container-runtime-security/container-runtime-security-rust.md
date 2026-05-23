@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
   - general
-category: Security
-  [
-    "container-security",
-    "runtime-security",
-    "rust",
-    "oci-runtime",
-    "seccomp",
-    "apparmor",
-    "rootless-containers",
-    "kubernetes-security",
-  ]
+categories:
+  - Security
+tags:
+  - container-security
+  - runtime-security
+  - rust
+  - oci-runtime
+  - seccomp
+  - apparmor
+  - rootless-containers
+  - kubernetes-security
 featured: true
 draft: false
 ---

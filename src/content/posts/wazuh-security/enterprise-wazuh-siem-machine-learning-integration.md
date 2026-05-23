@@ -6,16 +6,16 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "siem",
-    "machine-learning",
-    "threat-detection",
-    "security-analytics",
-    "cybersecurity",
-    "enterprise-security",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - siem
+  - machine-learning
+  - threat-detection
+  - security-analytics
+  - cybersecurity
+  - enterprise-security
 featured: true
 draft: false
 ---

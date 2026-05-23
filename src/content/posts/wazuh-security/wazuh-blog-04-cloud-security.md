@@ -6,18 +6,18 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "cloud-security",
-    "multi-cloud",
-    "correlation-rules",
-    "aws",
-    "azure",
-    "gcp",
-    "containers",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - cloud-security
+  - multi-cloud
+  - correlation-rules
+  - aws
+  - azure
+  - gcp
+  - containers
+  - cybersecurity
 featured: true
 draft: false
 ---

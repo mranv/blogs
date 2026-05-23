@@ -5,7 +5,10 @@ title: "Slack & Discord Automation with n8n: Building Intelligent Communication 
 description: "Create powerful Slack and Discord automation workflows using n8n for support, monitoring, and team collaboration"
 pubDatetime: 2025-07-16T13:00:00+05:30
 tags: ["n8n", "slack", "discord", "automation", "chatops", "workflow", "team-collaboration"]
-categories: ["automation", "communication", "productivity"]
+categories:
+  - automation
+  - communication
+  - productivity
 draft: false
 
 ---

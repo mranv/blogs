@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "insider-threats",
-    "behavioral-analytics",
-    "threat-detection",
-    "user-monitoring",
-    "security-analytics",
-    "baseline-analysis",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - insider-threats
+  - behavioral-analytics
+  - threat-detection
+  - user-monitoring
+  - security-analytics
+  - baseline-analysis
+  - cybersecurity
 featured: true
 draft: false
 ---

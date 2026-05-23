@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T15:50:00+05:30
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "soar",
-    "security-orchestration",
-    "automated-response",
-    "incident-response",
-    "workflow-automation",
-    "threat-remediation",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - soar
+  - security-orchestration
+  - automated-response
+  - incident-response
+  - workflow-automation
+  - threat-remediation
+  - cybersecurity
 featured: true
 draft: false
 ---

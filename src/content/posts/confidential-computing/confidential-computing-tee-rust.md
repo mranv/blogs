@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
   - general
-category: Programming
-  [
-    "confidential-computing",
-    "trusted-execution-environments",
-    "intel-sgx",
-    "amd-sev",
-    "arm-trustzone",
-    "rust",
-    "secure-enclaves",
-    "hardware-security",
-  ]
+categories:
+  - Programming
+tags:
+  - confidential-computing
+  - trusted-execution-environments
+  - intel-sgx
+  - amd-sev
+  - arm-trustzone
+  - rust
+  - secure-enclaves
+  - hardware-security
 featured: true
 draft: false
 ---

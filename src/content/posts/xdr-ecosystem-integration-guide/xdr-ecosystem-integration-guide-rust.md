@@ -6,19 +6,19 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
   - general
-category: Programming
-  [
-    "rust",
-    "xdr",
-    "integration",
-    "security",
-    "architecture",
-    "deployment",
-    "production",
-    "monitoring",
-    "orchestration",
-    "enterprise",
-  ]
+categories:
+  - Programming
+tags:
+  - rust
+  - xdr
+  - integration
+  - security
+  - architecture
+  - deployment
+  - production
+  - monitoring
+  - orchestration
+  - enterprise
 featured: false
 draft: false
 ---

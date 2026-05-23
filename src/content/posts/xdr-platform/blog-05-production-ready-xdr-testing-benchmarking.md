@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:30:00+05:30
 tags:
   - general
-category: Security
-  [
-    "xdr-testing",
-    "performance-benchmarking",
-    "production-deployment",
-    "rust",
-    "security-testing",
-    "load-testing",
-    "xdr-platform",
-    "quality-assurance",
-  ]
+categories:
+  - Security
+tags:
+  - xdr-testing
+  - performance-benchmarking
+  - production-deployment
+  - rust
+  - security-testing
+  - load-testing
+  - xdr-platform
+  - quality-assurance
 featured: true
 draft: false
 ---

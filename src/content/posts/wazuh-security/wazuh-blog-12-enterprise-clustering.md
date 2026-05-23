@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:45:00+05:30
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "enterprise-clustering",
-    "high-availability",
-    "scalability",
-    "fault-tolerance",
-    "disaster-recovery",
-    "enterprise-architecture",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - enterprise-clustering
+  - high-availability
+  - scalability
+  - fault-tolerance
+  - disaster-recovery
+  - enterprise-architecture
+  - cybersecurity
 featured: true
 draft: false
 ---

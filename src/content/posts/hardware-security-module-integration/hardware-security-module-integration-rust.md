@@ -6,19 +6,19 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
   - general
-category: Security
-  [
-    "rust",
-    "hsm",
-    "pkcs11",
-    "cryptography",
-    "key-management",
-    "tpm",
-    "secure-element",
-    "fips",
-    "hardware-security",
-    "kms",
-  ]
+categories:
+  - Security
+tags:
+  - rust
+  - hsm
+  - pkcs11
+  - cryptography
+  - key-management
+  - tpm
+  - secure-element
+  - fips
+  - hardware-security
+  - kms
 featured: false
 draft: false
 ---

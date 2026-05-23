@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "apt-detection",
-    "siem",
-    "correlation-rules",
-    "threat-hunting",
-    "advanced-threats",
-    "security-analytics",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - apt-detection
+  - siem
+  - correlation-rules
+  - threat-hunting
+  - advanced-threats
+  - security-analytics
+  - cybersecurity
 featured: true
 draft: false
 ---

@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
   - general
-category: Programming
-  [
-    "behavioral-analytics",
-    "mitre-attack",
-    "ai-threat-detection",
-    "machine-learning",
-    "rust",
-    "cybersecurity",
-    "threat-hunting",
-    "security-analytics",
-  ]
+categories:
+  - Programming
+tags:
+  - behavioral-analytics
+  - mitre-attack
+  - ai-threat-detection
+  - machine-learning
+  - rust
+  - cybersecurity
+  - threat-hunting
+  - security-analytics
 featured: true
 draft: false
 ---

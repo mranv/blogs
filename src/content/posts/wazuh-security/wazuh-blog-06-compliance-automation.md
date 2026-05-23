@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:20:00+05:30
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "compliance-automation",
-    "violation-detection",
-    "regulatory-compliance",
-    "automated-monitoring",
-    "compliance-reporting",
-    "enterprise-governance",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - compliance-automation
+  - violation-detection
+  - regulatory-compliance
+  - automated-monitoring
+  - compliance-reporting
+  - enterprise-governance
+  - cybersecurity
 featured: true
 draft: false
 ---

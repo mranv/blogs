@@ -3,7 +3,10 @@ title: "Android Testing Strategies: A Comprehensive Guide for Modern Architectur
 slug: "android-testing-strategies-comprehensive-guide"
 pubDatetime: 2025-08-05T09:00:00+05:30
 tags: ["Android", "Testing", "MVVM", "Jetpack Compose", "Unit Testing", "UI Testing", "Integration Testing"]
-categories: ["Mobile Development", "Testing", "Architecture"]
+categories:
+  - Mobile Development
+  - Testing
+  - Architecture
 excerpt: "Master comprehensive testing strategies for modern Android applications using MVVM architecture, Jetpack Compose, and contemporary testing frameworks."
 draft: false
 ---

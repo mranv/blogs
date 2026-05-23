@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:15:00+05:30
 tags:
   - general
-category: Security
-  [
-    "zero-trust",
-    "network-access",
-    "rust",
-    "ztna",
-    "security-architecture",
-    "authentication",
-    "authorization",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - zero-trust
+  - network-access
+  - rust
+  - ztna
+  - security-architecture
+  - authentication
+  - authorization
+  - cybersecurity
 featured: true
 draft: false
 ---

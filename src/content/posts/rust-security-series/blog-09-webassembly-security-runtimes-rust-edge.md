@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:30:00+05:30
 tags:
   - general
-category: Security
-  [
-    "webassembly",
-    "wasm",
-    "rust",
-    "edge-computing",
-    "security-runtimes",
-    "sandboxing",
-    "distributed-security",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - webassembly
+  - wasm
+  - rust
+  - edge-computing
+  - security-runtimes
+  - sandboxing
+  - distributed-security
+  - cybersecurity
 featured: true
 draft: false
 ---

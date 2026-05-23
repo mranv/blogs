@@ -5,7 +5,10 @@ title: "Go & Python API Client Development with Microsoft Kiota: Multi-Language 
 description: "Build powerful API clients using Microsoft Kiota with Go and Python. Complete guide with real-world examples and production patterns."
 pubDatetime: 2025-08-01T13:00:00+05:30
 tags: ["kiota", "go", "python", "api-client", "openapi", "microsoft", "golang"]
-categories: ["go", "python", "api-development"]
+categories:
+  - go
+  - python
+  - api-development
 draft: false
 
 ---

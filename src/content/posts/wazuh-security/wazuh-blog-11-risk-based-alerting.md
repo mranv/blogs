@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:15:00+05:30
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "risk-based-alerting",
-    "ai-powered-scoring",
-    "alert-consolidation",
-    "priority-management",
-    "alert-fatigue",
-    "siem",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - risk-based-alerting
+  - ai-powered-scoring
+  - alert-consolidation
+  - priority-management
+  - alert-fatigue
+  - siem
+  - cybersecurity
 featured: true
 draft: false
 ---

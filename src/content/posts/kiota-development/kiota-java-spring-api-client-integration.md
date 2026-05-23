@@ -5,7 +5,10 @@ title: "Java Spring Boot API Client Development with Microsoft Kiota: Enterprise
 description: "Build enterprise-grade Java API clients using Microsoft Kiota with Spring Boot. Complete guide with real-world examples and production patterns."
 pubDatetime: 2025-07-29T12:00:00+05:30
 tags: ["kiota", "java", "spring-boot", "api-client", "openapi", "microsoft", "enterprise"]
-categories: ["java", "spring-boot", "api-development"]
+categories:
+  - java
+  - spring-boot
+  - api-development
 draft: false
 
 ---

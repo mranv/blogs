@@ -6,16 +6,16 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T11:00:00+05:30
 tags:
   - general
-category: Security
-  [
-    "xdr",
-    "open-xdr",
-    "security-orchestration",
-    "vendor-lock-in",
-    "interoperability",
-    "security-architecture",
-    "threat-detection",
-  ]
+categories:
+  - Security
+tags:
+  - xdr
+  - open-xdr
+  - security-orchestration
+  - vendor-lock-in
+  - interoperability
+  - security-architecture
+  - threat-detection
 featured: true
 draft: false
 ---

@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T13:45:00+05:30
 tags:
   - general
-category: eBPF
-  [
-    "ebpf",
-    "rust",
-    "kernel-security",
-    "security-monitoring",
-    "system-programming",
-    "performance",
-    "linux-security",
-    "cybersecurity",
-  ]
+categories:
+  - eBPF
+tags:
+  - ebpf
+  - rust
+  - kernel-security
+  - security-monitoring
+  - system-programming
+  - performance
+  - linux-security
+  - cybersecurity
 featured: true
 draft: false
 ---

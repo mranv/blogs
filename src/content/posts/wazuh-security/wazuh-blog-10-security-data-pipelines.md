@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:00:00+05:30
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "data-pipelines",
-    "security-architecture",
-    "performance-optimization",
-    "data-processing",
-    "scalability",
-    "siem",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - data-pipelines
+  - security-architecture
+  - performance-optimization
+  - data-processing
+  - scalability
+  - siem
+  - cybersecurity
 featured: true
 draft: false
 ---

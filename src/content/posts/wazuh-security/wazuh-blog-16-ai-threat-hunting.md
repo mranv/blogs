@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:30:00+05:30
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "ai-threat-hunting",
-    "behavioral-analytics",
-    "hypothesis-driven",
-    "machine-learning",
-    "threat-detection",
-    "siem",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - ai-threat-hunting
+  - behavioral-analytics
+  - hypothesis-driven
+  - machine-learning
+  - threat-detection
+  - siem
+  - cybersecurity
 featured: true
 draft: false
 ---

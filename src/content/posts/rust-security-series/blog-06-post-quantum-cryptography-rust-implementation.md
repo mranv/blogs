@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T13:30:00+05:30
 tags:
   - general
-category: Security
-  [
-    "post-quantum-cryptography",
-    "rust",
-    "cryptography",
-    "ml-kem",
-    "kyber",
-    "quantum-computing",
-    "hardware-acceleration",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - post-quantum-cryptography
+  - rust
+  - cryptography
+  - ml-kem
+  - kyber
+  - quantum-computing
+  - hardware-acceleration
+  - cybersecurity
 featured: true
 draft: false
 ---

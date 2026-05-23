@@ -12,7 +12,10 @@ tags:
   - data-consistency
   - polyglot-persistence
 
-categories: ["Software Architecture", "Database Design", "Microservices"]
+categories:
+  - Software Architecture
+  - Database Design
+  - Microservices
 series: "Microservices Architecture Guide"
 featured: true
 draft: false

@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:45:00+05:30
 tags:
   - general
-category: Security
-  [
-    "lattice-cryptography",
-    "post-quantum-cryptography",
-    "rust",
-    "quantum-resistance",
-    "nist-standards",
-    "security-systems",
-    "cryptography",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - lattice-cryptography
+  - post-quantum-cryptography
+  - rust
+  - quantum-resistance
+  - nist-standards
+  - security-systems
+  - cryptography
+  - cybersecurity
 featured: true
 draft: false
 ---

@@ -6,17 +6,17 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
   - general
-category: Security
-  [
-    "wazuh",
-    "ransomware-defense",
-    "ai-detection",
-    "siem",
-    "automated-response",
-    "threat-prevention",
-    "security-automation",
-    "cybersecurity",
-  ]
+categories:
+  - Security
+tags:
+  - wazuh
+  - ransomware-defense
+  - ai-detection
+  - siem
+  - automated-response
+  - threat-prevention
+  - security-automation
+  - cybersecurity
 featured: true
 draft: false
 ---
