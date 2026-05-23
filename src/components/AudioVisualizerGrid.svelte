@@ -1,17 +1,6 @@
-/**
- * AudioVisualizerGrid — Svelte 5 port of @livekit/agent-audio-visualizer-grid
- * Pure Svelte implementation. Uses Canvas to render an animated dot grid
- * where dots pulse in a circular pattern based on simulated audio data.
- *
- * Props:
- *   size        — number (px) default 300
- *   color       — string (hex) default "#C04CFA"
- *   rowCount    — number default 15
- *   columnCount — number default 15
- *   radius      — number (px) default 60 — affected circle radius
- *   state       — "idle" | "speaking" | "thinking" default "idle"
- */
 <script lang="ts">
+  // AudioVisualizerGrid — Svelte 5 port of @livekit/agent-audio-visualizer-grid
+  // Props: size(px), color(hex), rowCount, columnCount, radius(px), state(idle|speaking|thinking)
   import { onMount } from 'svelte';
 
   let {

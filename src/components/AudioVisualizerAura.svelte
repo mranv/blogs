@@ -1,15 +1,7 @@
-/**
- * AudioVisualizerAura — Svelte 5 port of @livekit/agent-audio-visualizer-aura
- * Pure Svelte implementation with zero dependencies. Uses Canvas + requestAnimationFrame.
- * Renders an animated radial aura that pulses based on simulated audio frequency data.
- *
- * Props:
- *   size       — number (px) default 200
- *   color      — string (hex) default "#1FD5F9"
- *   colorShift — number 0-1, hue shift intensity default 0.3
- *   state      — "idle" | "speaking" | "thinking" default "idle"
- */
 <script lang="ts">
+  // AudioVisualizerAura — Svelte 5 port of @livekit/agent-audio-visualizer-aura
+  // Pure Svelte implementation. Uses Canvas + requestAnimationFrame.
+  // Props: size(px), color(hex), colorShift(0-1), state(idle|speaking|thinking)
   import { onMount } from 'svelte';
 
   let {
