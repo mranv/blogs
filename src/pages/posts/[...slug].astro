@@ -13,16 +13,19 @@ import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import PostMetadata from "../../components/PostMeta.astro";
 import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-	const blogEntries = await getSortedPosts();
-	return blogEntries.map((entry) => ({
-		params: { slug: entry.slug },
-		props: { entry },
+	const allPosts = await getCollection("posts", ({ data }) => {
+		return import.meta.env.PROD ? data.draft !== true : true;
+	});
+	return allPosts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
 	}));
 }
 
-const { entry } = Astro.props;
+const { post: entry } = Astro.props;
 const { Content, headings, remarkPluginFrontmatter } = await entry.render();
 
 const jsonLd = {

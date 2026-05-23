@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { siteConfig } from "@/config";
 
+
 export const GET: APIRoute = ({ site }) => {
   const siteUrl = (site ?? new URL(import.meta.env.SITE || "https://mranv.pages.dev/")).toString();
   const searchTemplate = `${siteUrl}?search={searchTerms}`;

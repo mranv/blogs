@@ -7,7 +7,7 @@
     "start": "astro dev",
     "check": "astro check",
     "build": "NODE_OPTIONS='--max-old-space-size=8192' astro build && pagefind --site dist",
-    "preview": "astro preview",
+    "preview": "wrangler pages dev ./dist",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",
     "new-post": "node scripts/new-post.js",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/cloudflare": "12.6.13",
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.4.2",
     "@astrojs/svelte": "7.1.0",

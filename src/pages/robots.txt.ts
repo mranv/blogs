@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 
+
 const robotsTxt = `
 # Robots.txt for Anubhav Gain's Blog
 # https://mranv.pages.dev

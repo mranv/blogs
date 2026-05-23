@@ -5,6 +5,7 @@ import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPostsList, getTagList, getCategoryList } from "../utils/content-utils";
 
+
 const sortedPostsList = await getSortedPostsList();
 const tagList = await getTagList();
 const categoryList = await getCategoryList();

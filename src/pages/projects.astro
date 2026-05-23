@@ -4,6 +4,7 @@ import { getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 
+
 const projectsPost = await getEntry("spec", "projects");
 
 if (!projectsPost) {
