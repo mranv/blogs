@@ -1,9 +1,10 @@
 // Cloudflare Pages Function — /api/admin/broadcast
-// Admin-only: Send a newsletter email to all confirmed subscribers
-// Protected by ADMIN_SECRET env var — call with ?secret=xxx
+// Admin-only: Send newsletter to all confirmed subscribers via send_email binding
+// Protected by ADMIN_SECRET env var
 
 interface Env {
   SUBSCRIBERS_KV: KVNamespace;
+  SEND_EMAIL: { send: (msg: any) => Promise<void> };
   ADMIN_EMAIL: string;
   SITE_NAME: string;
   SITE_URL: string;
@@ -12,10 +13,41 @@ interface Env {
 
 interface BroadcastRequest {
   subject: string;
-  htmlBody: string;
+  htmlBody?: string;
   textBody?: string;
-  postUrl?: string; // If sending a new post notification
+  postUrl?: string;
   postTitle?: string;
+}
+
+function wrapInTemplate(content: string, env: Env, email: string): { html: string; text: string } {
+  const siteUrl = env.SITE_URL || 'https://mranv.pages.dev';
+  const siteName = env.SITE_NAME || "Anubhav Gain's Blog";
+  const unsubUrl = `${siteUrl}/api/unsubscribe?email=${encodeURIComponent(email)}`;
+
+  const html = `
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background:#0d111b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:40px auto;background:#161b22;border-radius:16px;border:1px solid #30363d;">
+    <tr>
+      <td style="padding:40px 32px;">
+        ${content}
+        <hr style="border:none;border-top:1px solid #30363d;margin:24px 0;">
+        <p style="margin:0;color:#484f58;font-size:12px;">
+          You're receiving this because you subscribed to ${siteName}.<br>
+          <a href="${unsubUrl}" style="color:#6366f1;">Unsubscribe</a> ·
+          <a href="${siteUrl}" style="color:#6366f1;">View on web</a>
+        </p>
+      </td>
+    </tr>
+  </table>
+</body></html>`;
+
+  // Strip HTML for plain text version
+  const text = content.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim() +
+    `\n\nUnsubscribe: ${unsubUrl}\nView on web: ${siteUrl}`;
+
+  return { html, text };
 }
 
 async function sendEmail(
@@ -26,66 +58,21 @@ async function sendEmail(
   env: Env
 ): Promise<boolean> {
   try {
-    const res = await fetch('https://api.mailchannels.net/tx/v1/send', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        personalizations: [{ to: [{ email: to }] }],
-        from: {
-          email: `newsletter@${new URL(env.SITE_URL || 'https://mranv.pages.dev').hostname}`,
-          name: env.SITE_NAME || "Anubhav Gain's Blog",
-        },
-        subject,
-        content: [
-          { type: 'text/plain', value: textBody },
-          { type: 'text/html', value: htmlBody },
-        ],
-      }),
+    await env.SEND_EMAIL.send({
+      from: `newsletter@techanv.com`,
+      to,
+      subject,
+      html: htmlBody,
+      text: textBody,
     });
-
-    if (!res.ok) {
-      console.error(`[broadcast] Failed for ${to}:`, res.status);
-      return false;
-    }
     return true;
   } catch (err) {
-    console.error(`[broadcast] Error for ${to}:`, err);
+    console.error(`[broadcast] Failed for ${to}:`, err);
     return false;
   }
 }
 
-// Generate unsubscribe link with simple token
-function generateUnsubToken(email: string): string {
-  // Simple hash — for production, use HMAC with a secret
-  const encoder = new TextEncoder();
-  const data = encoder.encode(email + '-unsub');
-  // Use first 16 chars of a simple hash
-  return email.split('@')[0] + '-' + email.split('@')[1]?.charAt(0);
-}
-
-function wrapInTemplate(content: string, env: Env, email: string): string {
-  const unsubUrl = `${env.SITE_URL || 'https://mranv.pages.dev'}/api/unsubscribe?email=${encodeURIComponent(email)}&token=${generateUnsubToken(email)}`;
-
-  return `
-<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background:#0d111b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:40px auto;background:#161b22;border-radius:16px;border:1px solid #30363d;">
-    <tr>
-      <td style="padding:40px 32px;">
-        ${content}
-        <hr style="border:none;border-top:1px solid #30363d;margin:24px 0;">
-        <p style="margin:0;color:#484f58;font-size:12px;">
-          You're receiving this because you subscribed to ${env.SITE_NAME || "Anubhav Gain's Blog"}.<br>
-          <a href="${unsubUrl}" style="color:#6366f1;">Unsubscribe</a> ·
-          <a href="${env.SITE_URL || 'https://mranv.pages.dev'}" style="color:#6366f1;">View on web</a>
-        </p>
-      </td>
-    </tr>
-  </table>
-</body></html>`;
-}
-
+// ── POST: Send broadcast ────────────────────────────────────────
 export const onRequestPost: PagesFunction<Env> = async (context) => {
   const env = context.env;
 
@@ -122,7 +109,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     });
   }
 
-  // If it's a new post notification, build the email content
+  // If it's a new post notification, build the email
   let htmlContent = body.htmlBody || '';
   let textContent = body.textBody || '';
 
@@ -140,7 +127,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     textContent = `New Post: ${body.postTitle}\n\nRead it here: ${body.postUrl}`;
   }
 
-  // List all confirmed subscribers
+  // List all confirmed subscribers from KV
   const confirmed: string[] = [];
   let cursor: string | null = null;
   do {
@@ -157,7 +144,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     });
   }
 
-  // Send emails (batch of 5 to avoid rate limits)
+  // Send emails in batches of 5
   let sent = 0;
   let failed = 0;
   const batchSize = 5;
@@ -165,21 +152,15 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   for (let i = 0; i < confirmed.length; i += batchSize) {
     const batch = confirmed.slice(i, i + batchSize);
     const results = await Promise.allSettled(
-      batch.map((email) =>
-        sendEmail(
-          email,
-          body.subject,
-          wrapInTemplate(htmlContent, env, email),
-          textContent,
-          env
-        )
-      )
+      batch.map((email) => {
+        const { html, text } = wrapInTemplate(htmlContent, env, email);
+        return sendEmail(email, body.subject, html, text, env);
+      })
     );
     for (const r of results) {
       if (r.status === 'fulfilled' && r.value) sent++;
       else failed++;
     }
-    // Small delay between batches to respect rate limits
     if (i + batchSize < confirmed.length) {
       await new Promise((r) => setTimeout(r, 200));
     }
@@ -195,7 +176,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   });
 };
 
-// GET: List subscriber stats
+// ── GET: Subscriber stats ───────────────────────────────────────
 export const onRequestGet: PagesFunction<Env> = async (context) => {
   const env = context.env;
   const secret = context.url.searchParams.get('secret');
@@ -231,7 +212,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
   return new Response(JSON.stringify({
     confirmed: confirmed.length,
     pending: pending.length,
-    total: confirmed.length + pending,
+    total: confirmed.length + pending.length,
     emails: { confirmed, pending },
   }), {
     headers: { 'Content-Type': 'application/json' },

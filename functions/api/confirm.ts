@@ -1,5 +1,5 @@
 // Cloudflare Pages Function — /api/confirm
-// Handles double opt-in: verifies token, marks subscriber as confirmed
+// Double opt-in: verifies token, marks subscriber as confirmed
 
 interface Env {
   SUBSCRIBERS_KV: KVNamespace;
@@ -16,12 +16,13 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
   }
 
   if (!env.SUBSCRIBERS_KV) {
-    return new Response('Subscription system not configured. Please contact the site owner.', { status: 500 });
+    return new Response('Subscription system not configured.', { status: 500 });
   }
 
   // Look up token → email
   const email = await env.SUBSCRIBERS_KV.get(`token:${token}`);
   if (!email) {
+    const siteUrl = env.SITE_URL || 'https://mranv.pages.dev';
     return new Response(`
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -36,7 +37,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
 <div class="card">
   <h1>⏰ Link Expired</h1>
   <p>This confirmation link has expired (valid for 24 hours). Please subscribe again to get a new link.</p>
-  <a href="${env.SITE_URL || 'https://mranv.pages.dev'}">← Back to blog</a>
+  <a href="${siteUrl}">← Back to blog</a>
 </div>
 </body></html>`, {
       status: 410,
@@ -55,17 +56,18 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
   sub.confirmedAt = new Date().toISOString();
 
   await env.SUBSCRIBERS_KV.put(`sub:${email}`, JSON.stringify(sub));
-  // Delete the used token
   await env.SUBSCRIBERS_KV.delete(`token:${token}`);
 
-  // Add to confirmed subscribers list (for fast broadcasting)
+  // Add to confirmed list (for fast broadcasting)
   await env.SUBSCRIBERS_KV.put(`confirmed:${email}`, JSON.stringify({
     email,
     confirmedAt: sub.confirmedAt,
     ref: sub.ref,
   }));
 
-  // Return success page
+  const siteUrl = env.SITE_URL || 'https://mranv.pages.dev';
+  const siteName = env.SITE_NAME || "Anubhav Gain's Blog";
+
   return new Response(`
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -79,14 +81,11 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
 </style></head><body>
 <div class="card">
   <h1>🎉 You're subscribed!</h1>
-  <p>You'll now receive updates about new posts on security, Rust, eBPF, and DevSecOps.</p>
-  <a href="${env.SITE_URL || 'https://mranv.pages.dev'}">Start Reading →</a>
+  <p>You'll now receive updates about new posts from <strong>${siteName}</strong>.</p>
+  <a href="${siteUrl}">Start Reading →</a>
 </div>
 </body></html>`, {
     status: 200,
-    headers: {
-      'Content-Type': 'text/html; charset=utf-8',
-      'Cache-Control': 'no-store',
-    },
+    headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
   });
 };
