@@ -4,11 +4,11 @@
 
 interface Env {
   SUBSCRIBERS_KV: KVNamespace;
-  SEND_EMAIL: { send: (msg: any) => Promise<void> };
-  ADMIN_EMAIL: string;
-  SITE_NAME: string;
-  SITE_URL: string;
-  ADMIN_SECRET: string;
+  SEND_EMAIL?: { send: (msg: any) => Promise<void> };
+  ADMIN_EMAIL?: string;
+  SITE_NAME?: string;
+  SITE_URL?: string;
+  ADMIN_SECRET?: string;
 }
 
 interface BroadcastRequest {
@@ -87,6 +87,13 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
   if (!env.SUBSCRIBERS_KV) {
     return new Response(JSON.stringify({ ok: false, error: 'KV not configured' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  if (!env.SEND_EMAIL) {
+    return new Response(JSON.stringify({ ok: false, error: 'SEND_EMAIL binding not configured. Add it in Cloudflare Dashboard → Pages → Settings → Functions → Send email binding.' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -178,9 +185,9 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
 // ── GET: Subscriber stats ───────────────────────────────────────
 export const onRequestGet: PagesFunction<Env> = async (context) => {
-  const env = context.env;
+  const env = context.env as Record<string, any>;
   const secret = context.url.searchParams.get('secret');
-  if (!secret || secret !== env.ADMIN_SECRET) {
+  if (!secret || !env.ADMIN_SECRET || secret !== env.ADMIN_SECRET) {
     return new Response(JSON.stringify({ ok: false, error: 'Unauthorized' }), {
       status: 401,
       headers: { 'Content-Type': 'application/json' },

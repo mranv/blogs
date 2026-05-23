@@ -2,8 +2,8 @@
 // One-click unsubscribe from newsletter
 
 interface Env {
-  SUBSCRIBERS_KV: KVNamespace;
-  SITE_URL: string;
+  SUBSCRIBERS_KV?: KVNamespace;
+  SITE_URL?: string;
 }
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {

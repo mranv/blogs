@@ -4,11 +4,11 @@
 // Cost: $0/month
 
 interface Env {
-  SUBSCRIBERS_KV: KVNamespace;
-  SEND_EMAIL: { send: (msg: any) => Promise<void> };
-  ADMIN_EMAIL: string;
-  SITE_NAME: string;
-  SITE_URL: string;
+  SUBSCRIBERS_KV?: KVNamespace;
+  SEND_EMAIL?: { send: (msg: any) => Promise<void> };
+  ADMIN_EMAIL?: string;
+  SITE_NAME?: string;
+  SITE_URL?: string;
 }
 
 interface SubscribeRequest {

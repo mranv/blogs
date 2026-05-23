@@ -2,9 +2,9 @@
 // Double opt-in: verifies token, marks subscriber as confirmed
 
 interface Env {
-  SUBSCRIBERS_KV: KVNamespace;
-  SITE_URL: string;
-  SITE_NAME: string;
+  SUBSCRIBERS_KV?: KVNamespace;
+  SITE_URL?: string;
+  SITE_NAME?: string;
 }
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
