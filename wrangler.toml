@@ -4,8 +4,8 @@ compatibility_date = "2025-05-23"
 compatibility_flags = ["nodejs_compat"]
 
 # ── Environment variables ──────────────────────────────────────
-[vars]
-ADMIN_SECRET = "2505b3c9e0d8b48716e9deed4828635f1e828dd0cfa9acde7848033b6c442f51"
+# ADMIN_SECRET is set via: wrangler pages secret put ADMIN_SECRET
+# Do NOT put secrets in wrangler.toml — use Pages secrets instead.
 
 # ── KV Namespace for subscriber storage ────────────────────────
 
