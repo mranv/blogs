@@ -5,7 +5,8 @@
 
 interface Env {
   SUBSCRIBERS_KV?: KVNamespace;
-  SEND_EMAIL?: { send: (msg: any) => Promise<void> };
+  EMAIL_WORKER_URL?: string;
+  EMAIL_WORKER_SECRET?: string;
   ADMIN_EMAIL?: string;
   SITE_NAME?: string;
   SITE_URL?: string;
@@ -58,7 +59,7 @@ function generateToken(): string {
   return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// Send confirmation email via Cloudflare send_email binding
+// Send confirmation email via dedicated email Worker
 async function sendConfirmationEmail(
   email: string,
   token: string,
@@ -108,23 +109,34 @@ async function sendConfirmationEmail(
 </body>
 </html>`;
 
-  const textBody = `Confirm your subscription to ${siteName}
-
-Click here to confirm: ${confirmUrl}
-
-If you didn't subscribe, you can safely ignore this email.`;
+  const textBody = `Confirm your subscription to ${siteName}\n\nClick here to confirm: ${confirmUrl}\n\nIf you didn't subscribe, you can safely ignore this email.`;
 
   try {
-    await env.SEND_EMAIL.send({
-      from: { email: 'newsletter@techanv.com', name: siteName },
-      to: [{ email }],
-      subject: `Confirm your subscription ✨`,
-      html: htmlBody,
-      text: textBody,
+    const workerUrl = env.EMAIL_WORKER_URL;
+    const secret = env.EMAIL_WORKER_SECRET;
+    if (!workerUrl || !secret) {
+      console.warn('[subscribe] Email worker not configured');
+      return false;
+    }
+
+    const res = await fetch(`${workerUrl}/send`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${secret}`,
+      },
+      body: JSON.stringify({
+        to: [{ email }],
+        from: { email: 'newsletter@techanv.com', name: siteName },
+        subject: 'Confirm your subscription ✨',
+        html: htmlBody,
+        text: textBody,
+      }),
     });
-    return true;
+    const data = await res.json() as any;
+    return data.ok === true;
   } catch (err) {
-    console.error('[subscribe] send_email error:', err);
+    console.error('[subscribe] email worker error:', err);
     return false;
   }
 }

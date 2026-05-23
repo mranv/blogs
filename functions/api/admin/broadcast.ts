@@ -3,8 +3,9 @@
 // Protected by ADMIN_SECRET env var
 
 interface Env {
-  SUBSCRIBERS_KV: KVNamespace;
-  SEND_EMAIL?: { send: (msg: any) => Promise<void> };
+  SUBSCRIBERS_KV?: KVNamespace;
+  EMAIL_WORKER_URL?: string;
+  EMAIL_WORKER_SECRET?: string;
   ADMIN_EMAIL?: string;
   SITE_NAME?: string;
   SITE_URL?: string;
@@ -59,14 +60,29 @@ async function sendEmail(
 ): Promise<boolean> {
   try {
     const siteName = env.SITE_NAME || "Anubhav Gain's Blog";
-    await env.SEND_EMAIL.send({
-      from: { email: 'newsletter@techanv.com', name: siteName },
-      to: [{ email: to }],
-      subject,
-      html: htmlBody,
-      text: textBody,
+    const workerUrl = (env as any).EMAIL_WORKER_URL;
+    const secret = (env as any).EMAIL_WORKER_SECRET;
+    if (!workerUrl || !secret) {
+      console.warn('[broadcast] Email worker not configured');
+      return false;
+    }
+
+    const res = await fetch(`${workerUrl}/send`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${secret}`,
+      },
+      body: JSON.stringify({
+        to: [{ email: to }],
+        from: { email: 'newsletter@techanv.com', name: siteName },
+        subject,
+        html: htmlBody,
+        text: textBody,
+      }),
     });
-    return true;
+    const data = await res.json() as any;
+    return data.ok === true;
   } catch (err) {
     console.error(`[broadcast] Failed for ${to}:`, err);
     return false;

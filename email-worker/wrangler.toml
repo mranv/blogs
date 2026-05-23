@@ -1,0 +1,15 @@
+name = "email-sender"
+main = "src/index.ts"
+compatibility_date = "2025-05-23"
+compatibility_flags = ["nodejs_compat"]
+
+# ── Email Sending binding ──────────────────────────────────────
+# Cloudflare Email Service: sends from newsletter@techanv.com
+# SPF/DKIM/MX already configured on techanv.com via Email Routing
+
+[[send_email]]
+name = "SEND_EMAIL"
+
+# ── Secret: shared auth key between Pages Functions and this Worker ──
+# Set via: wrangler secret put EMAIL_WORKER_SECRET
+# Pages Functions pass this in requests to authenticate
