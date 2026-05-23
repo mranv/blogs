@@ -1,4 +1,6 @@
 ---
+slug: 'n8n-devops-cicd-automation'
+
 title: "n8n DevOps and CI/CD Automation: Streamlining Development Workflows"
 published: 2025-01-20
 description: "Automate DevOps workflows with n8n including CI/CD pipelines, infrastructure management, monitoring, deployment automation, and GitOps with practical examples"
@@ -6,6 +8,7 @@ image: ""
 tags: ["n8n", "DevOps", "CI/CD", "automation", "deployment", "monitoring", "GitOps"]
 category: DevOps
 draft: false
+
 ---
 
 ## Introduction: DevOps Automation with n8n

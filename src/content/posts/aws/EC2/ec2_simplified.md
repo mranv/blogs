@@ -1,5 +1,8 @@
 ---
+slug: 'ec2_simplified'
+
 title: EC2 Simplified Version
+
 ---
 
 # EC2 Simplified Version

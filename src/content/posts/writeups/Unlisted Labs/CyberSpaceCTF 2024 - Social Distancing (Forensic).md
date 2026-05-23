@@ -1,4 +1,5 @@
 ---
+title: 'CyberSpaceCTF 2024 - Social Distancing (Forensic)'
 author: Anubhav Gain
 category: Unlisted Labs
 description: ''
@@ -6,7 +7,8 @@ draft: false
 featured: false
 lang: en
 pubDatetime: 2025-12-20T10:04:24.962Z
-slug: cyberspacectf-2024---social-distancing-(forensic)
+slug: cyberspacectf-2024
+---social-distancing-(forensic)
 tags:
 - unlisted-labs
 - cyberspacectf-2024---social-distancing-(forensic)

@@ -1,5 +1,8 @@
 ---
+slug: 'best_practices'
+
 title: S3 Best Practices
+
 ---
 
 # S3 Best Practices

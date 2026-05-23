@@ -1,4 +1,6 @@
 ---
+slug: 'windows-networking-winsock-guide'
+
 title: "Windows Networking & WinSock Programming: Complete Developer Guide"
 description: "Master Windows networking with WinSock, TCP/UDP programming, HTTP clients, network security, and modern Windows network APIs"
 pubDatetime: 2025-08-13T09:00:00+05:30
@@ -7,6 +9,7 @@ categories: ['Windows Development', 'Networking', 'WinSock', 'TCP/IP']
 tags: ['WinSock', 'TCP', 'UDP', 'HTTP', 'Networking', 'Windows API', 'C++']
 author: 'Claude AI'
 draft: false
+
 ---
 
 # Windows Networking & WinSock Programming: Complete Developer Guide

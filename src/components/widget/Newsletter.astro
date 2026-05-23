@@ -1,0 +1,233 @@
+---
+// Newsletter subscription widget for Astro blog
+// Privacy-compliant: no dark patterns, explicit consent, clear messaging
+// Works with Buttondown, ConvertKit, Mailchimp, or Resend via /api/subscribe
+
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  /** Heading text shown above the form */
+  heading?: string;
+  /** Short description below heading */
+  description?: string;
+  /** Placeholder text for the email input */
+  placeholder?: string;
+  /** Button label */
+  buttonLabel?: string;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  heading = "Stay Updated",
+  description = "Get notified about new posts on security, Rust, eBPF, and DevSecOps. No spam, unsubscribe anytime.",
+  placeholder = "you@example.com",
+  buttonLabel = "Subscribe",
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  id="newsletter-widget"
+  class:list={["newsletter-widget card-base p-4", className]}
+  data-endpoint="/api/subscribe"
+>
+  <!-- Header -->
+  <div class="flex items-center gap-2 mb-2">
+    <Icon name="material-symbols:mail-outline-rounded" class="text-[var(--primary)] text-xl" />
+    <h3 class="font-bold text-lg text-90 m-0">{heading}</h3>
+  </div>
+  <p class="text-sm text-50 mb-3 leading-relaxed">{description}</p>
+
+  <!-- Form -->
+  <form id="newsletter-form" class="newsletter-form" novalidate>
+    <div class="flex gap-2">
+      <label for="newsletter-email" class="sr-only">Email address</label>
+      <input
+        id="newsletter-email"
+        type="email"
+        name="email"
+        placeholder={placeholder}
+        required
+        autocomplete="email"
+        aria-describedby="newsletter-hint newsletter-error"
+        class="newsletter-input flex-1 min-w-0 rounded-lg px-3 py-2 text-sm
+               bg-[var(--btn-regular-bg)] text-90
+               border border-transparent
+               placeholder:text-30
+               focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent
+               transition"
+      />
+      <button
+        type="submit"
+        id="newsletter-submit"
+        class="newsletter-submit btn-regular rounded-lg px-4 py-2 text-sm font-medium
+               whitespace-nowrap active:scale-95 transition
+               hover:bg-[var(--primary)] hover:text-white"
+      >
+        <span id="newsletter-btn-text">{buttonLabel}</span>
+        <span id="newsletter-btn-spinner" class="hidden">
+          <svg class="animate-spin h-4 w-4 inline-block" viewBox="0 0 24 24" fill="none">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+          </svg>
+        </span>
+      </button>
+    </div>
+
+    <!-- Privacy notice -->
+    <p id="newsletter-hint" class="text-xs text-30 mt-2 leading-snug">
+      By subscribing, you agree to receive email updates. You can unsubscribe at any time.
+      We respect your privacy — your email is never shared or sold.
+    </p>
+  </form>
+
+  <!-- Success state -->
+  <div id="newsletter-success" class="hidden">
+    <div class="flex items-center gap-2 text-sm text-[var(--primary)] font-medium">
+      <Icon name="material-symbols:check-circle-outline-rounded" class="text-xl" />
+      <span>You're subscribed!</span>
+    </div>
+    <p class="text-sm text-50 mt-1">
+      Check your inbox to confirm your subscription.
+    </p>
+  </div>
+
+  <!-- Error state -->
+  <div id="newsletter-error" class="hidden mt-2">
+    <div class="flex items-start gap-2 text-sm text-[oklch(0.55_0.20_25)] dark:text-[oklch(0.70_0.18_25)]">
+      <Icon name="material-symbols:error-outline-rounded" class="text-lg shrink-0 mt-0.5" />
+      <span id="newsletter-error-text">Something went wrong. Please try again.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function initNewsletter() {
+  const form = document.getElementById("newsletter-form") as HTMLFormElement | null;
+  const widget = document.getElementById("newsletter-widget");
+  const successEl = document.getElementById("newsletter-success");
+  const errorEl = document.getElementById("newsletter-error");
+  const errorText = document.getElementById("newsletter-error-text");
+  const btnText = document.getElementById("newsletter-btn-text");
+  const btnSpinner = document.getElementById("newsletter-btn-spinner");
+  const submitBtn = document.getElementById("newsletter-submit") as HTMLButtonElement | null;
+  const emailInput = document.getElementById("newsletter-email") as HTMLInputElement | null;
+
+  if (!form || !widget || !successEl || !errorEl || !errorText || !btnText || !btnSpinner || !submitBtn || !emailInput) return;
+
+  const endpoint = widget.dataset.endpoint || "/api/subscribe";
+
+  function setLoading(loading: boolean) {
+    submitBtn!.disabled = loading;
+    btnText!.classList.toggle("hidden", loading);
+    btnSpinner!.classList.toggle("hidden", !loading);
+    if (loading) {
+      emailInput!.setAttribute("aria-busy", "true");
+    } else {
+      emailInput!.removeAttribute("aria-busy");
+    }
+  }
+
+  function showError(message: string) {
+    errorText!.textContent = message;
+    errorEl!.classList.remove("hidden");
+    successEl!.classList.add("hidden");
+    emailInput!.setAttribute("aria-invalid", "true");
+    emailInput!.focus();
+  }
+
+  function showSuccess() {
+    successEl!.classList.remove("hidden");
+    errorEl!.classList.add("hidden");
+    form!.classList.add("hidden");
+    emailInput!.removeAttribute("aria-invalid");
+  }
+
+  function hideError() {
+    errorEl!.classList.add("hidden");
+    emailInput!.removeAttribute("aria-invalid");
+  }
+
+  emailInput!.addEventListener("input", () => {
+    hideError();
+  });
+
+  function isValidEmail(email: string): boolean {
+    const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    return re.test(email.trim());
+  }
+
+  form!.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    hideError();
+
+    const email = emailInput!.value.trim();
+
+    if (!email) {
+      showError("Please enter your email address.");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      showError("Please enter a valid email address.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          ref: window.location.pathname,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.ok) {
+        showSuccess();
+      } else {
+        showError(data.error || "Something went wrong. Please try again.");
+      }
+    } catch {
+      showError("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
+  });
+}
+
+initNewsletter();
+
+document.addEventListener("swup:content:replace", () => {
+  initNewsletter();
+});
+if (window.swup) {
+  (window as any).swup.hooks.on("content:replace", () => {
+    initNewsletter();
+  });
+}
+</script>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .newsletter-form,
+  #newsletter-success,
+  #newsletter-error {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+</style>

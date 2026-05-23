@@ -5,7 +5,7 @@ modDatetime: 2026-05-15T18:46:00+05:30
 title: "TextGuard: Provable Defense Against Backdoor Attacks on Text Classification"
 slug: textguard-backdoor-text-classification
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - backdoor-defense

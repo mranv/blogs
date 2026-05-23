@@ -1,4 +1,5 @@
 ---
+title: 'BTLO Write-up Rotten Cloud'
 author: Anubhav Gain
 category: BTLO - Investigations
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.948Z
 slug: btlo-write-up-rotten-cloud
 tags:
-- btlo---investigations
+- btlo
+---investigations
 - security-blue-team
 - blue-team-labs-online
 - btlo-write-up-rotten-cloud

@@ -5,7 +5,7 @@ modDatetime: 2026-05-21T13:14:00+05:30
 title: "OVERT: Benchmarking Over-Refusal in Text-to-Image Generation Models"
 slug: overt-benchmark-over-refusal-text-to-image
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - over-refusal

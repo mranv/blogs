@@ -1,4 +1,6 @@
 ---
+slug: 'wazuh-nats-integration-xdr-platform'
+
 title: "Revolutionizing Wazuh with NATS: Building Real-Time XDR/OXDR Platforms"
 published: 2025-01-19
 description: "Comprehensive analysis of integrating NATS messaging into Wazuh's core for real-time agent monitoring, event streaming, and XDR platform capabilities"
@@ -13,6 +15,7 @@ tags:
   - Security Architecture
 category: Security
 draft: false
+
 ---
 
 ## Introduction

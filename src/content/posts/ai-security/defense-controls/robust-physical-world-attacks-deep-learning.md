@@ -5,7 +5,7 @@ modDatetime: 2026-05-19T21:40:00+05:30
 title: "Robust Physical-World Attacks on Deep Learning: Why Stop Signs Can Fool Self-Driving Cars"
 slug: robust-physical-world-attacks-deep-learning
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - physical-attacks

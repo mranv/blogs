@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up Hacked'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.889Z
 slug: cyberdefenders-write-up-hacked
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-hacked
 title: 'CyberDefenders Write up Hacked'

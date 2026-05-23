@@ -5,7 +5,7 @@ modDatetime: 2026-05-21T22:37:00+05:30
 title: "MMDT: Decoding the Trustworthiness and Safety of Multimodal Foundation Models"
 slug: mmdt-trustworthiness-multimodal-foundation-models
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - multimodal-safety

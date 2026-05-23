@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up l337 S4uc3'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.906Z
 slug: cyberdefenders-write-up-l337-s4uc3
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-l337-s4uc3
 title: 'CyberDefenders Write up l337 S4uc3'

@@ -1,4 +1,5 @@
 ---
+title: 'SECPlayground Hackloween CTF 2024 Log Analysis & Incident write-up - R@b!T_T'
 author: Anubhav Gain
 category: Unlisted Labs
 description: ''
@@ -6,7 +7,8 @@ draft: false
 featured: false
 lang: en
 pubDatetime: 2025-12-20T10:04:24.964Z
-slug: secplayground-hackloween-ctf-2024--log-analysis-&-incident-write-up---r@b!t-t
+slug: secplayground-hackloween-ctf-2024--log-analysis-&-incident-write-up
+---r@b!t-t
 tags:
 - unlisted-labs
 - secplayground-hackloween-ctf-2024--log-analysis-&-incident-write-up---r@b!t-t

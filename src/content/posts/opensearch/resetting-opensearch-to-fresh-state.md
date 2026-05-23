@@ -1,4 +1,6 @@
 ---
+slug: 'resetting-opensearch-to-fresh-state'
+
 title: "How to Completely Reset OpenSearch and OpenSearch Dashboards to a Fresh State"
 description: "A comprehensive guide to resetting OpenSearch and OpenSearch Dashboards, removing all data and configurations for a clean start"
 pubDatetime: 2025-01-29T00:00:00Z
@@ -12,6 +14,7 @@ tags:
 category: DevOps
 featured: false
 draft: false
+
 ---
 
 Sometimes you need to completely reset OpenSearch and OpenSearch Dashboards to start fresh - whether you're dealing with corrupted data, testing configurations, or simply want a clean slate. This guide walks you through the process of completely resetting both services.

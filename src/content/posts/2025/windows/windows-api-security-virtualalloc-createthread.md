@@ -1,4 +1,6 @@
 ---
+slug: 'windows-api-security-virtualalloc-createthread'
+
 title: "Windows API Security: Deep Dive into VirtualAlloc, CreateThread, and WaitForSingleObject"
 published: 2025-01-19
 description: "Comprehensive security analysis of critical Windows APIs commonly exploited in malware, with Rust implementations and defensive patterns"
@@ -11,6 +13,7 @@ tags:
   - Memory Protection
 category: Security
 draft: false
+
 ---
 
 ## Introduction

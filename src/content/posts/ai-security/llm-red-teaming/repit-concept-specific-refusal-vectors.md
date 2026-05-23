@@ -5,7 +5,7 @@ modDatetime: 2026-05-15T20:20:00+05:30
 title: "RepIt: Steering Language Models with Concept-Specific Refusal Vectors"
 slug: repit-concept-specific-refusal-vectors
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - refusal-vectors

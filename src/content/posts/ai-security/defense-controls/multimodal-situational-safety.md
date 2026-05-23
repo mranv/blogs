@@ -5,7 +5,7 @@ modDatetime: 2026-05-20T09:18:00+05:30
 title: "Multimodal Situational Safety: Context-Aware Safety for Multimodal AI"
 slug: multimodal-situational-safety
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - multimodal-safety

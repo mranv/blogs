@@ -1,4 +1,6 @@
 ---
+slug: 'draft'
+
 title: Draft Example
 published: 2022-07-01
 tags: 
@@ -7,6 +9,7 @@ tags:
   - Demo
 category: Examples
 draft: false
+
 ---
 
 # This Article is a Draft

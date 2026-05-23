@@ -5,7 +5,7 @@ modDatetime: 2026-05-15T11:04:00+05:30
 title: "When Benign Inputs Cause Severe Harm: Uncovering Unsafe Behaviors in Computer-Use Agents"
 slug: benign-inputs-unsafe-computer-use-agents
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - computer-use-agents

@@ -5,7 +5,7 @@ modDatetime: 2026-05-16T20:03:00+05:30
 title: "Snyk Agent Scan, NIST AI Control Overlays, and the CSA AI Controls Matrix"
 slug: snyk-agent-scan-nist-csa-ai-controls
 featured: true
-draft: true
+draft: false
 tags:
   - ai-security
   - snyk

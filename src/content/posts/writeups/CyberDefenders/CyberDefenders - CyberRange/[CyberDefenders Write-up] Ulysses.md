@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up Ulysses'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.905Z
 slug: cyberdefenders-write-up-ulysses
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-ulysses
 title: 'CyberDefenders Write up Ulysses'

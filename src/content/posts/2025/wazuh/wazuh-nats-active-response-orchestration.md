@@ -1,4 +1,6 @@
 ---
+slug: 'wazuh-nats-active-response-orchestration'
+
 title: "Orchestrating Wazuh Active Response with NATS: Real-Time Threat Mitigation"
 published: 2025-01-19
 description: "Build a distributed active response orchestration system for Wazuh using NATS, enabling coordinated threat response across entire infrastructures in milliseconds"
@@ -13,6 +15,7 @@ tags:
   - Threat Mitigation
 category: Security
 draft: false
+
 ---
 
 ## Introduction

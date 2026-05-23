@@ -1,10 +1,13 @@
 ---
+slug: 'n8n-gmail-ai-automation-guide'
+
 title: "Automating Gmail with AI: A Complete n8n Workflow Guide"
 description: "Learn how to build intelligent Gmail automation workflows using n8n and AI for auto-labeling, smart replies, and email analysis"
 pubDatetime: 2025-07-11T09:00:00+05:30
 tags: ["n8n", "automation", "gmail", "ai", "workflow", "email-automation", "openai"]
 categories: ["automation", "ai", "productivity"]
 draft: false
+
 ---
 
 ## Introduction

@@ -5,7 +5,7 @@ modDatetime: 2026-05-16T18:56:00+05:30
 title: "C-RAG: Certified Risk Assessment for Retrieval-Augmented Generation"
 slug: c-rag-certified-retrieval-augmented-generation-risks
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - rag

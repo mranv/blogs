@@ -1,5 +1,8 @@
 ---
+slug: 'trusted_entity'
+
 title: "IAM Roles: Trusted Entity"
+
 ---
 
 # IAM Roles: Trusted Entity

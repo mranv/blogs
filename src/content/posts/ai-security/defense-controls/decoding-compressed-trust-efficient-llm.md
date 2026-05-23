@@ -5,7 +5,7 @@ modDatetime: 2026-05-16T21:40:00+05:30
 title: "Decoding Compressed Trust: How LLM Compression Impacts Trustworthiness"
 slug: decoding-compressed-trust-efficient-llm
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - model-compression

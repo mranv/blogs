@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up MalDoc101'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.894Z
 slug: cyberdefenders-write-up-maldoc101
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-maldoc101
 title: 'CyberDefenders Write up MalDoc101'

@@ -1,4 +1,6 @@
 ---
+slug: 'multi-agent-research-system-architecture'
+
 title: "How Anthropic Built Their Multi-Agent Research System: Architecture, Engineering Challenges, and Lessons Learned"
 pubDatetime: 2025-07-15T10:00:00+05:30
 description: "A deep dive into Anthropic's multi-agent research system architecture, exploring how they built Claude's Research feature using orchestrated AI agents, the engineering challenges they faced, and practical lessons for building production-ready multi-agent systems."
@@ -7,6 +9,7 @@ tags: ["AI", "Multi-Agent Systems", "System Architecture", "Claude", "LLM", "Dis
 category: "AI Architecture"
 draft: false
 lang: ""
+
 ---
 
 # How Anthropic Built Their Multi-Agent Research System: Architecture, Engineering Challenges, and Lessons Learned

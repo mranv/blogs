@@ -5,7 +5,7 @@ modDatetime: 2026-05-22T08:07:00+05:30
 title: "AI Defense and Security Controls: Input/Output Guardrails and Model Scanning"
 slug: ai-defense-security-controls-guardrails
 featured: true
-draft: true
+draft: false
 tags:
   - ai-security
   - defense

@@ -5,7 +5,7 @@ modDatetime: 2026-05-20T17:16:00+05:30
 title: "GuardAgent: Safeguarding LLM Agents Through Knowledge-Enabled Reasoning"
 slug: guardagent-safeguard-llm-agents-knowledge-reasoning
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - agent-guardrails

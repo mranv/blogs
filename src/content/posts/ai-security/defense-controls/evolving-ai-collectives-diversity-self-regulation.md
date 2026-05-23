@@ -5,7 +5,7 @@ modDatetime: 2026-05-20T22:53:00+05:30
 title: "Evolving AI Collectives: Enhancing Human Diversity and Enabling Self-Regulation"
 slug: evolving-ai-collectives-diversity-self-regulation
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - ai-collectives

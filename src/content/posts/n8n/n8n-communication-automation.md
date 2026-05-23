@@ -1,4 +1,6 @@
 ---
+slug: 'n8n-communication-automation'
+
 title: "n8n Communication Automation: Email, Slack, SMS, and Messaging Workflows"
 published: 2025-01-20
 description: "Build powerful communication workflows in n8n for email automation, Slack integration, SMS campaigns, and multi-channel messaging with real-world examples"
@@ -6,6 +8,7 @@ image: ""
 tags: ["n8n", "communication", "email", "slack", "SMS", "automation", "messaging"]
 category: Communication
 draft: false
+
 ---
 
 ## Introduction: Mastering Communication Automation

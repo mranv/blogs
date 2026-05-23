@@ -5,7 +5,7 @@ modDatetime: 2026-05-20T10:23:00+05:30
 title: "Undetectable Watermarks for Generative Image Models"
 slug: undetectable-watermark-generative-image-models
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - watermarking

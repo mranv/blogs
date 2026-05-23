@@ -5,7 +5,7 @@ modDatetime: 2026-05-21T18:41:00+05:30
 title: "BIRD: Generalizable Backdoor Detection and Removal in Deep RL"
 slug: bird-backdoor-detection-removal-deep-rl
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - backdoor-detection

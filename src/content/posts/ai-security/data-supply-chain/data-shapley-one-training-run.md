@@ -5,7 +5,7 @@ modDatetime: 2026-05-18T11:32:00+05:30
 title: "Data Shapley in One Training Run: Efficient Data Valuation for Machine Learning"
 slug: data-shapley-one-training-run
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - data-valuation

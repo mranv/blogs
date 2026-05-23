@@ -1,4 +1,6 @@
 ---
+slug: 'mscred-anomaly-detection-multivariate-timeseries'
+
 title: "MSCRED: Deep Neural Network for Unsupervised Anomaly Detection in Multivariate Time Series"
 author: Anubhav Gain
 published: 2025-10-07
@@ -17,6 +19,7 @@ tags:
 category: "Machine Learning"
 draft: false
 lang: "en"
+
 ---
 
 # MSCRED: Advanced Anomaly Detection for Multivariate Time Series

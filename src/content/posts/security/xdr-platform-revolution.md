@@ -1,4 +1,6 @@
 ---
+slug: 'xdr-platform-revolution'
+
 title: "Building the Future: Open XDR Platform Development"
 published: 2025-08-02
 description: "An in-depth look at developing enterprise-grade Open XDR platforms that break vendor lock-in while providing comprehensive threat detection and response."
@@ -10,6 +12,7 @@ tags:
   - Security Platform
   - Enterprise Security
   - DevSecOps
+
 ---
 
 ## The Evolution of Security Operations

@@ -5,7 +5,7 @@ modDatetime: 2026-05-22T21:04:00+05:30
 title: "DiffAttack: Breaking Through Diffusion-Based Adversarial Purification Defenses"
 slug: diffattack-evasion-diffusion-purification
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - adversarial-attacks

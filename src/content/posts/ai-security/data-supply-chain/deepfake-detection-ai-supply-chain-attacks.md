@@ -5,7 +5,7 @@ modDatetime: 2026-05-19T20:55:00+05:30
 title: "Deepfake Detection, AI Supply Chain Attacks, and the Agent Skill Threat"
 slug: deepfake-detection-ai-supply-chain-attacks
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - deepfake

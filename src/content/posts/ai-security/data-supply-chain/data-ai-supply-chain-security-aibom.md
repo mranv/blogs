@@ -5,7 +5,7 @@ modDatetime: 2026-05-15T16:12:00+05:30
 title: "Data and AI Supply Chain Security: AIBOM, Fingerprinting, and Discovery"
 slug: data-ai-supply-chain-security-aibom
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - supply-chain

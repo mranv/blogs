@@ -1,4 +1,5 @@
 ---
+title: 'MemLabs Write-up MemLabs Lab 2 - A New World'
 author: Anubhav Gain
 category: MemLabs
 description: ''
@@ -6,7 +7,8 @@ draft: false
 featured: false
 lang: en
 pubDatetime: 2025-12-20T10:04:24.963Z
-slug: memlabs-write-up-memlabs-lab-2---a-new-world
+slug: memlabs-write-up-memlabs-lab-2
+---a-new-world
 tags:
 - memlabs
 - unlisted-labs

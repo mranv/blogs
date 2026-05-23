@@ -1,4 +1,6 @@
 ---
+slug: 'webrtc-video-chat-implementation'
+
 title: "Building Production-Ready WebRTC Video Chat Applications"
 published: 2025-01-20
 description: "Complete guide to implementing WebRTC video chat with signaling servers, STUN/TURN, and advanced features like recording, effects, and multi-party calls"
@@ -6,6 +8,7 @@ image: ""
 tags: ["WebRTC", "video-chat", "signaling", "STUN", "TURN", "real-time", "communication"]
 category: WebRTC
 draft: false
+
 ---
 
 ## Introduction: WebRTC Video Chat Architecture

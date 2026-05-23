@@ -1,4 +1,6 @@
 ---
+slug: 'webrtc-fundamentals-guide'
+
 title: "WebRTC Fundamentals: Building Real-Time Communication Applications"
 published: 2025-01-20
 description: "Master WebRTC fundamentals with comprehensive examples covering getUserMedia, peer connections, data channels, and real-time communication APIs"
@@ -6,6 +8,7 @@ image: ""
 tags: ["WebRTC", "JavaScript", "real-time", "video", "audio", "P2P", "streaming"]
 category: WebRTC
 draft: false
+
 ---
 
 ## Introduction: Understanding WebRTC

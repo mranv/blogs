@@ -5,7 +5,7 @@ modDatetime: 2026-05-22T16:10:00+05:30
 title: "SoK: Watermarking AI-Generated Content — IEEE S&P Distinguished Paper"
 slug: watermarking-ai-generated-content-sok
 featured: true
-draft: true
+draft: false
 tags:
   - ai-security
   - watermarking

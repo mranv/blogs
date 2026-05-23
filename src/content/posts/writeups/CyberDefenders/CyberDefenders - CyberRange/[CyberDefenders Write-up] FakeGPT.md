@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up FakeGPT'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.887Z
 slug: cyberdefenders-write-up-fakegpt
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-fakegpt
 title: 'CyberDefenders Write up FakeGPT'

@@ -1,10 +1,13 @@
 ---
+slug: 'n8n-telegram-chatbot-automation'
+
 title: "Building Intelligent Telegram Bots with n8n: Complete Automation Guide"
 description: "Create powerful Telegram chatbots using n8n workflows for customer support, content delivery, and interactive automation"
 pubDatetime: 2025-07-12T10:00:00+05:30
 tags: ["n8n", "telegram", "chatbot", "automation", "ai", "workflow", "messaging"]
 categories: ["automation", "chatbots", "ai"]
 draft: false
+
 ---
 
 ## Introduction

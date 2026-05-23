@@ -1,4 +1,6 @@
 ---
+slug: 'n8n-data-processing-automation'
+
 title: "n8n Data Processing Automation: ETL, Analytics, and Real-Time Pipelines"
 published: 2025-01-20
 description: "Build powerful data processing workflows in n8n for ETL operations, data transformation, analytics, and real-time data pipelines with practical examples"
@@ -6,6 +8,7 @@ image: ""
 tags: ["n8n", "ETL", "data-processing", "analytics", "automation", "pipeline"]
 category: Data Engineering
 draft: false
+
 ---
 
 ## Introduction: Data Processing with n8n

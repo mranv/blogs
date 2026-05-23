@@ -1,4 +1,6 @@
 ---
+
+title: 'CyberSpaceCTF 2024 - Memory (Forensic Challenge) -'
 author: Anubhav Gain
 category: Unlisted Labs
 description: ''
@@ -6,7 +8,9 @@ draft: false
 featured: false
 lang: en
 pubDatetime: 2025-12-20T10:04:24.962Z
-slug: cyberspacectf-2024---memory-(forensic-challenge)--
+slug: 'cyberspacectf-2024-e40f2c'
+
+---memory-(forensic-challenge)--
 tags:
 - unlisted-labs
 - cyberspacectf-2024---memory-(forensic-challenge)--

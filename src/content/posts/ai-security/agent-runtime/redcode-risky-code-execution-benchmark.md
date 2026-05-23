@@ -5,7 +5,7 @@ modDatetime: 2026-05-18T09:21:00+05:30
 title: "RedCode: Benchmarking Risky Code Execution in AI Code Agents"
 slug: redcode-risky-code-execution-benchmark
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - code-agents

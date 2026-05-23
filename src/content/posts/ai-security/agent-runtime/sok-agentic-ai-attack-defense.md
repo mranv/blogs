@@ -5,7 +5,7 @@ modDatetime: 2026-05-22T09:15:00+05:30
 title: "SoK: Attack and Defense Landscape of Agentic AI Systems — USENIX Security 2026"
 slug: sok-agentic-ai-attack-defense
 featured: true
-draft: true
+draft: false
 tags:
   - ai-security
   - agentic-ai

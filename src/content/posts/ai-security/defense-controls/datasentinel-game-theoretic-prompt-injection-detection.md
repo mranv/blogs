@@ -5,7 +5,7 @@ modDatetime: 2026-05-16T09:46:00+05:30
 title: "DataSentinel: Game-Theoretic Detection of Prompt Injection Attacks — IEEE S&P Distinguished Paper"
 slug: datasentinel-game-theoretic-prompt-injection-detection
 featured: true
-draft: true
+draft: false
 tags:
   - ai-security
   - prompt-injection

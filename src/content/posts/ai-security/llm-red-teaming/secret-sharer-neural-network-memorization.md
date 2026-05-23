@@ -5,7 +5,7 @@ modDatetime: 2026-05-20T11:42:00+05:30
 title: "The Secret Sharer: How Neural Networks Unintentionally Memorize and Leak Secrets"
 slug: secret-sharer-neural-network-memorization
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - memorization

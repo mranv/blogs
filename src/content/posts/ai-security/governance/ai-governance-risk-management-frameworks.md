@@ -5,7 +5,7 @@ modDatetime: 2026-05-16T10:40:00+05:30
 title: "AI Governance and Risk Management: Frameworks, Standards, and Taxonomies"
 slug: ai-governance-risk-management-frameworks
 featured: true
-draft: true
+draft: false
 tags:
   - ai-security
   - governance

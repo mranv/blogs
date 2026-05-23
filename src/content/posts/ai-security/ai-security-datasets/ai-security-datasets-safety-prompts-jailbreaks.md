@@ -5,7 +5,7 @@ modDatetime: 2026-05-16T17:27:00+05:30
 title: "AI Security Datasets: Safety Prompts, Jailbreaks, and Evaluation Data"
 slug: ai-security-datasets-safety-prompts-jailbreaks
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - datasets

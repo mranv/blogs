@@ -5,7 +5,7 @@ modDatetime: 2026-05-18T10:29:00+05:30
 title: "Scaling Out-of-Distribution Detection for Real-World AI Systems"
 slug: scaling-out-of-distribution-detection
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - ood-detection

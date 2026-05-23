@@ -1,4 +1,6 @@
 ---
+slug: 'windows-services-drivers-guide'
+
 title: "Windows Services & Driver Development: Complete System Programming Guide"
 description: "Master Windows services, device drivers, kernel programming, and system-level development with comprehensive examples and best practices"
 pubDatetime: 2025-08-18T09:00:00+05:30
@@ -7,6 +9,7 @@ categories: ['Windows Development', 'System Programming', 'Services', 'Drivers']
 tags: ['Windows Services', 'Device Drivers', 'Kernel Programming', 'System Development', 'C++', 'Windows SDK']
 author: 'Claude AI'
 draft: false
+
 ---
 
 # Windows Services & Driver Development: Complete System Programming Guide

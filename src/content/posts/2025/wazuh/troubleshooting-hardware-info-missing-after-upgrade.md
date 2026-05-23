@@ -1,4 +1,6 @@
 ---
+slug: 'troubleshooting-hardware-info-missing-after-upgrade'
+
 title: "Troubleshooting: Wazuh Hardware Info Missing After Upgrade to 4.13.1"
 author: Anubhav Gain
 published: 2025-10-07
@@ -15,6 +17,7 @@ tags:
 category: "Wazuh Security"
 draft: false
 lang: "en"
+
 ---
 
 # Troubleshooting: Hardware Info Missing After Wazuh 4.13.1 Upgrade

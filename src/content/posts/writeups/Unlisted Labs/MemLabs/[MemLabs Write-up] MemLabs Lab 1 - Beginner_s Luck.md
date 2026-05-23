@@ -1,4 +1,5 @@
 ---
+title: 'MemLabs Write-up MemLabs Lab 1 - Beginner_s Luck'
 author: Anubhav Gain
 category: MemLabs
 description: ''
@@ -6,7 +7,8 @@ draft: false
 featured: false
 lang: en
 pubDatetime: 2025-12-20T10:04:24.962Z
-slug: memlabs-write-up-memlabs-lab-1---beginner-s-luck
+slug: memlabs-write-up-memlabs-lab-1
+---beginner-s-luck
 tags:
 - memlabs
 - unlisted-labs

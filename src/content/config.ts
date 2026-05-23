@@ -17,6 +17,15 @@ const postsCollection = defineCollection({
 		lang: z.string().optional().default(""),
 		slug: z.string().optional(),
 
+		/* Aliases used by imported content — map to canonical fields */
+		publishDate: z.coerce.date().optional(),
+		pubDate: z.coerce.date().optional(),
+		categories: z.array(z.string()).optional().default([]),
+		heroImage: z.string().optional().default(""),
+		excerpt: z.string().optional().default(""),
+		series: z.string().optional().default(""),
+		authorImage: z.string().optional().default(""),
+
 		/* For internal use */
 		prevTitle: z.string().default(""),
 		prevSlug: z.string().default(""),

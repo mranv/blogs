@@ -1,4 +1,6 @@
 ---
+slug: 'markdown-extended'
+
 title: Markdown Extended Features
 published: 2024-05-01
 updated: 2024-11-29
@@ -11,6 +13,7 @@ tags:
   - gainsaheb
 category: 'Examples'
 draft: false
+
 ---
 
 ## GitHub Repository Cards

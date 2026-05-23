@@ -5,7 +5,7 @@ modDatetime: 2026-05-19T16:48:00+05:30
 title: "Extracting Training Data from Diffusion Models: Privacy Risks in Generative AI"
 slug: extracting-training-data-diffusion-models
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - diffusion-models

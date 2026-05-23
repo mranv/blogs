@@ -1,10 +1,13 @@
 ---
+slug: 'kiota-csharp-dotnet-client-generation'
+
 title: "Building .NET API Clients with Microsoft Kiota: Complete C# Developer Guide"
 description: "Master C# API client generation using Microsoft Kiota for .NET applications. Comprehensive guide with real-world examples and best practices."
 pubDatetime: 2025-07-22T10:00:00+05:30
 tags: ["kiota", "csharp", "dotnet", "api-client", "openapi", "microsoft", "sdk-generation"]
 categories: ["dotnet", "api-development", "csharp"]
 draft: false
+
 ---
 
 ## Introduction

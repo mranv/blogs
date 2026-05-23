@@ -1,5 +1,8 @@
 ---
+slug: 'ebs'
+
 title: EBS in Depth
+
 ---
 
 # EBS in Depth

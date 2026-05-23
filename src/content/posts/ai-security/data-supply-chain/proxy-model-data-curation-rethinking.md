@@ -5,7 +5,7 @@ modDatetime: 2026-05-21T11:28:00+05:30
 title: "Rethinking Proxy-Model Practice: Can Small Training Runs Guide Data Curation?"
 slug: proxy-model-data-curation-rethinking
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - data-curation

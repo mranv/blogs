@@ -5,7 +5,7 @@ modDatetime: 2026-05-21T11:59:00+05:30
 title: "TrojDiff: Trojan Attacks on Diffusion Models with Diverse Targets"
 slug: trojdiff-trojan-attacks-diffusion-models
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - trojan-attacks

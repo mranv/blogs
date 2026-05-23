@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up NintendoHunt'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.896Z
 slug: cyberdefenders-write-up-nintendohunt
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-nintendohunt
 title: 'CyberDefenders Write up NintendoHunt'

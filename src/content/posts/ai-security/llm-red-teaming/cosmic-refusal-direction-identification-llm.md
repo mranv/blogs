@@ -5,7 +5,7 @@ modDatetime: 2026-05-16T08:42:00+05:30
 title: "COSMIC: Generalized Refusal Direction Identification in LLM Activations"
 slug: cosmic-refusal-direction-identification-llm
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - refusal-direction

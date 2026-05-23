@@ -5,7 +5,7 @@ modDatetime: 2026-05-17T16:46:00+05:30
 title: "SteeringSafety: Benchmarking Representation Steering in LLMs Across Safety Perspectives"
 slug: steeringsafety-benchmarking-representation-steering
 featured: true
-draft: true
+draft: false
 tags:
   - ai-security
   - representation-steering

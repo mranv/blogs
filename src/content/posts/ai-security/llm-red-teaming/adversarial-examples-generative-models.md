@@ -5,7 +5,7 @@ modDatetime: 2026-05-19T19:59:00+05:30
 title: "Adversarial Examples for Generative Models: Attacking the Generators"
 slug: adversarial-examples-generative-models
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - adversarial-examples

@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up Emprisa Maldoc'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.886Z
 slug: cyberdefenders-write-up-emprisa-maldoc
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-emprisa-maldoc
 title: 'CyberDefenders Write up Emprisa Maldoc'

@@ -1,4 +1,6 @@
 ---
+slug: 'troubleshooting-wazuh-api-health-check-timeout'
+
 title: "Troubleshooting: Wazuh API Health Check Timeout on Dashboard Login"
 author: Anubhav Gain
 published: 2025-10-07
@@ -16,6 +18,7 @@ tags:
 category: "Wazuh Security"
 draft: false
 lang: "en"
+
 ---
 
 # Troubleshooting: Wazuh API Health Check Timeout on Dashboard Login

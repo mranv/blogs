@@ -5,7 +5,7 @@ modDatetime: 2026-05-18T18:20:00+05:30
 title: "Poisoning Instruction-Tuned Language Models: A Growing Threat"
 slug: poisoning-instruction-tuned-language-models
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - model-poisoning

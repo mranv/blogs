@@ -1,4 +1,5 @@
 ---
+title: 'Cyber Range Thailand 2024 Final - Review'
 author: Anubhav Gain
 category: Unlisted Labs
 description: ''
@@ -6,7 +7,8 @@ draft: false
 featured: false
 lang: en
 pubDatetime: 2025-12-20T10:04:24.961Z
-slug: cyber-range-thailand-2024-final---review
+slug: cyber-range-thailand-2024-final
+---review
 tags:
 - unlisted-labs
 - cyber-range-thailand-2024-final---review

@@ -5,7 +5,7 @@ modDatetime: 2026-05-17T16:49:00+05:30
 title: "Natural Adversarial Examples: When Real-World Data Breaks AI Models"
 slug: natural-adversarial-examples
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - adversarial-examples

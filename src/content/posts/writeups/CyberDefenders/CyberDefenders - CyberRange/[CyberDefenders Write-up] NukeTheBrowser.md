@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up NukeTheBrowser'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.896Z
 slug: cyberdefenders-write-up-nukethebrowser
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-nukethebrowser
 title: 'CyberDefenders Write up NukeTheBrowser'

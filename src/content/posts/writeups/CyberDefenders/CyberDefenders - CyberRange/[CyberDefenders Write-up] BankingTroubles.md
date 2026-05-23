@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up BankingTroubles'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.884Z
 slug: cyberdefenders-write-up-bankingtroubles
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-bankingtroubles
 title: 'CyberDefenders Write up BankingTroubles'

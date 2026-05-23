@@ -1,4 +1,6 @@
 ---
+
+title: 'THCTT2024 - Reverse_Crypto_Programming - MaAowHa'
 author: Anubhav Gain
 category: Unlisted Labs
 description: ''
@@ -6,7 +8,9 @@ draft: false
 featured: false
 lang: en
 pubDatetime: 2025-12-20T10:04:24.965Z
-slug: thctt2024---reverse-crypto-programming---maaowha
+slug: 'thctt2024-d848f9'
+
+---reverse-crypto-programming---maaowha
 tags:
 - unlisted-labs
 - thctt2024---reverse-crypto-programming---maaowha

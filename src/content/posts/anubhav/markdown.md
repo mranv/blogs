@@ -1,4 +1,6 @@
 ---
+slug: 'markdown'
+
 title: Markdown Example
 published: 2023-10-01
 description: A simple example of a Markdown blog post.
@@ -8,6 +10,7 @@ tags:
   - Demo
 category: Examples
 draft: false
+
 ---
 
 # An h1 header

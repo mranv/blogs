@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up DumpMe'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.886Z
 slug: cyberdefenders-write-up-dumpme
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-dumpme
 title: 'CyberDefenders Write up DumpMe'

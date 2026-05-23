@@ -5,7 +5,7 @@ modDatetime: 2026-05-22T18:53:00+05:30
 title: "DeepTeam and promptmap2: Next-Gen LLM Red Teaming Frameworks"
 slug: deepteam-promptmap2-nextgen-llm-red-teaming
 featured: true
-draft: true
+draft: false
 tags:
   - ai-security
   - llm

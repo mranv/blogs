@@ -5,7 +5,7 @@ modDatetime: 2026-05-21T12:59:00+05:30
 title: "CodeHalu: Investigating Code Hallucinations in LLMs via Execution-Based Verification"
 slug: codehalu-code-hallucinations-llm-execution-verification
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - code-hallucination

@@ -1,5 +1,8 @@
 ---
+slug: 'best_practices_ec2'
+
 title: EC2 Best Practices
+
 ---
 
 # EC2 Best Practices

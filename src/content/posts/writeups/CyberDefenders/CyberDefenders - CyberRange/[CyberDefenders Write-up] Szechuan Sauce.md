@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up Szechuan Sauce'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.903Z
 slug: cyberdefenders-write-up-szechuan-sauce
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-szechuan-sauce
 title: 'CyberDefenders Write up Szechuan Sauce'

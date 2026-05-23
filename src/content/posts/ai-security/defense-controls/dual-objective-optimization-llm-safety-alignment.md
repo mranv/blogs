@@ -5,7 +5,7 @@ modDatetime: 2026-05-19T11:03:00+05:30
 title: "Improving LLM Safety Alignment Through Dual-Objective Optimization"
 slug: dual-objective-optimization-llm-safety-alignment
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - safety-alignment

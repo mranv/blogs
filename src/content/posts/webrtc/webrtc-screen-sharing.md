@@ -1,4 +1,6 @@
 ---
+slug: 'webrtc-screen-sharing'
+
 title: "Complete Guide to WebRTC Screen Sharing: Implementation & Best Practices"
 description: "Learn how to implement professional-grade WebRTC screen sharing with multi-monitor support, window selection, audio capture, and recording capabilities"
 pubDatetime: 2025-07-25T09:15:00+05:30
@@ -7,6 +9,7 @@ tags: ["webrtc", "screen-sharing", "real-time", "javascript", "peer-to-peer"]
 image: "/images/webrtc-screen-sharing.jpg"
 category: "WebRTC"
 draft: false
+
 ---
 
 # Complete Guide to WebRTC Screen Sharing: Implementation & Best Practices

@@ -5,7 +5,7 @@ modDatetime: 2026-05-16T17:40:00+05:30
 title: "Extracting Training Data from Large Language Models: The Privacy Risk No One Expected"
 slug: extracting-training-data-large-language-models
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - training-data-extraction

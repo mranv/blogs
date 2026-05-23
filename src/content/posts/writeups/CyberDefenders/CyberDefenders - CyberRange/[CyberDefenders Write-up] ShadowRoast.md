@@ -1,4 +1,5 @@
 ---
+title: 'CyberDefenders Write-up ShadowRoast'
 author: Anubhav Gain
 category: CyberDefenders - CyberRange
 description: ''
@@ -8,7 +9,8 @@ lang: en
 pubDatetime: 2025-12-20T10:04:24.902Z
 slug: cyberdefenders-write-up-shadowroast
 tags:
-- cyberdefenders---cyberrange
+- cyberdefenders
+---cyberrange
 - cyberdefenders
 - cyberdefenders-write-up-shadowroast
 title: 'CyberDefenders Write up ShadowRoast'

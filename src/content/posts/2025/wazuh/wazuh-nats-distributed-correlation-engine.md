@@ -1,4 +1,6 @@
 ---
+slug: 'wazuh-nats-distributed-correlation-engine'
+
 title: "Building a Distributed Correlation Engine for Wazuh with NATS"
 published: 2025-01-19
 description: "Implement real-time, distributed security event correlation across multiple Wazuh managers using NATS messaging for advanced threat detection"
@@ -12,6 +14,7 @@ tags:
   - Real-time Analytics
 category: Security
 draft: false
+
 ---
 
 ## Introduction

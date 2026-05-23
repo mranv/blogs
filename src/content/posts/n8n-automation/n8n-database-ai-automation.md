@@ -1,10 +1,13 @@
 ---
+slug: 'n8n-database-ai-automation'
+
 title: "Database & AI Automation with n8n: Building Intelligent Data Workflows"
 description: "Master database automation and AI integration using n8n for intelligent data processing, analysis, and real-time synchronization"
 pubDatetime: 2025-07-18T15:00:00+05:30
 tags: ["n8n", "database", "ai", "automation", "sql", "nosql", "machine-learning", "workflow"]
 categories: ["automation", "database", "ai", "data-engineering"]
 draft: false
+
 ---
 
 ## Introduction

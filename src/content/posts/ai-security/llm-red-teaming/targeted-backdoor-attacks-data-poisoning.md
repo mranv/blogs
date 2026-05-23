@@ -5,7 +5,7 @@ modDatetime: 2026-05-16T21:14:00+05:30
 title: "Targeted Backdoor Attacks via Data Poisoning: The Trojan Horse of Deep Learning"
 slug: targeted-backdoor-attacks-data-poisoning
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - backdoor-attacks

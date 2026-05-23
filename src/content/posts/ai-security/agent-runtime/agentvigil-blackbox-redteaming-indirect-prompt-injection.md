@@ -5,7 +5,7 @@ modDatetime: 2026-05-15T09:45:00+05:30
 title: "AGENTVIGIL: Automated Black-Box Red-Teaming for Indirect Prompt Injection Attacks"
 slug: agentvigil-blackbox-redteaming-indirect-prompt-injection
 featured: false
-draft: true
+draft: false
 tags:
   - ai-security
   - prompt-injection

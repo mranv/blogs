@@ -5,7 +5,7 @@ modDatetime: 2026-05-18T16:08:00+05:30
 title: "Unsafer in Many Turns: Benchmarking and Defending Multi-Turn Safety Risks in Tool-Using Agents"
 slug: unsafer-many-turns-tool-using-agents
 featured: true
-draft: true
+draft: false
 tags:
   - ai-security
   - multi-turn-attacks

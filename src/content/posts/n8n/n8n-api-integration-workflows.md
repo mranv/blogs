@@ -1,4 +1,6 @@
 ---
+slug: 'n8n-api-integration-workflows'
+
 title: "Mastering API Integration with n8n: From REST to GraphQL"
 published: 2025-01-20
 description: "Learn how to build powerful API integration workflows in n8n, connecting REST APIs, GraphQL endpoints, webhooks, and custom services with practical examples"
@@ -6,6 +8,7 @@ image: ""
 tags: ["n8n", "API", "REST", "GraphQL", "webhooks", "integration"]
 category: API Integration
 draft: false
+
 ---
 
 ## Introduction: API Integration in the Modern Stack

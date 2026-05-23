@@ -5,7 +5,7 @@ modDatetime: 2026-05-16T16:15:00+05:30
 title: "Microsoft RAMPART, Clarity, and GitHub Taskflow Agent: AI Agent Security Tooling"
 slug: microsoft-rampart-clarity-github-taskflow-agent
 featured: true
-draft: true
+draft: false
 tags:
   - ai-security
   - microsoft

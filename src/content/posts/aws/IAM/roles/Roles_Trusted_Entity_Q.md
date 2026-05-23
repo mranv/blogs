@@ -1,5 +1,8 @@
 ---
+slug: 'roles_trusted_entity_q'
+
 title: IAM Roles and Trusted Entities Quiz
+
 ---
 
 # IAM Roles and Trusted Entities Quiz
