@@ -1,3 +1,13 @@
 name = "gainsaheb-blog"
 compatibility_date = "2025-05-23"
 compatibility_flags = ["nodejs_compat"]
+
+# ── KV Namespace bindings ──────────────────────────────────────
+# Create the KV namespace first:
+#   wrangler kv:namespace create "SUBSCRIBERS_KV"
+# Then paste the id below.
+
+# [[kv_namespaces]]
+#   binding = "SUBSCRIBERS_KV"
+#   id = "<your-kv-namespace-id>"
+#   preview_id = "<your-preview-kv-namespace-id>"
