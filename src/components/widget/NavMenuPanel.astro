@@ -9,7 +9,7 @@ interface Props {
 
 const links = Astro.props.links;
 ---
-<div id="nav-menu-panel" class:list={["float-panel float-panel-closed absolute top-[4.5rem] right-0 left-0 sm:left-auto sm:right-4 sm:w-48 z-50 px-2 py-2 transition-all max-h-[calc(100vh-5rem)] overflow-y-auto md:hidden"]}>
+<div id="nav-menu-panel" class:list={["float-panel float-panel-closed absolute top-[4.5rem] right-0 left-0 sm:left-auto sm:right-4 sm:w-48 z-50 px-2 py-2 transition-all max-h-[calc(100vh-5rem)] overflow-y-auto lg:hidden"]}>
     {links.map((link) => (
         <a href={link.external ? link.url : url(link.url)} class="group flex justify-between items-center min-h-[44px] py-2 pl-3 pr-2 rounded-lg gap-4
             hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition

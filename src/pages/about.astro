@@ -12,12 +12,12 @@ if (!aboutPost) {
 	throw new Error("About page content not found");
 }
 
-const { Content } = await render(aboutPost);
+const { Content, headings } = await render(aboutPost);
 
 const aboutPageTitle = "About Anubhav Gain - Security Software Engineer & Security Expert";
 const aboutPageDescription = "Learn about Anubhav Gain, Security Software Engineer at Infopercept, CEO at TechAnv Consulting, DevSecOps Expert, XDR/OXDR Platform Architect with 222+ Research Citations.";
 ---
-<MainGridLayout title={aboutPageTitle} description={aboutPageDescription}>
+<MainGridLayout title={aboutPageTitle} description={aboutPageDescription} headings={headings}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
         <div class="card-base z-10 px-9 py-6 relative w-full ">
             <Markdown class="mt-2">

@@ -9,8 +9,7 @@ import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
 	title: "Anubhav Gain",
-	subtitle:
-		"Security Software Engineer · DevSecOps Expert · XDR/OXDR Architect · Rust & eBPF · Windows Kernel Security · 222+ Citations",
+	subtitle: "Security Engineer · DevSecOps · XDR Architect · Rust & eBPF · 222+ Citations",
 	lang: "en", // Language code, e.g. 'en', 'zh-CN', 'ja', etc.
 	banner: {
 		enable: true,
@@ -47,12 +46,12 @@ export const navBarConfig: NavBarConfig = {
 			external: false,
 		},
 		{
-			name: "GitHub (mranv)",
+			name: "GitHub",
 			url: "https://github.com/mranv", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 		{
-			name: "GitHub (Infopercept)",
+			name: "GitHub (ICPL)",
 			url: "https://github.com/anubhavg-icpl",
 			external: true,
 		},
@@ -62,7 +61,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/gainsaheb-suit.avif", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "Anubhav Gain",
-	bio: "Security Software Engineer at Infopercept Consulting | CEO at TechAnv Consulting | Builder of Leviathan (Windows Kernel EDR in Rust), Krustron (K8s Platform), Agni (Firecracker TUI) | DevSecOps Expert | XDR/OXDR Architect | Rust · eBPF · Go | 222+ Research Citations",
+	bio: "Security Software Engineer · XDR/OXDR Architect · Rust & eBPF · 222+ Research Citations",
 	links: [
 		{
 			name: "GitHub (mranv)",
