@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:00:00+05:30
 tags:
   - general
-categories:
-  - Security
-tags:
   - supply-chain-security
   - trusted-publishing
   - rust
@@ -17,6 +14,8 @@ tags:
   - sigstore
   - software-attestations
   - cybersecurity
+categories:
+  - Security
 featured: true
 draft: false
 ---

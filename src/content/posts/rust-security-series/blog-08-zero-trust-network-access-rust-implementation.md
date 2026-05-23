@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:15:00+05:30
 tags:
   - general
-categories:
-  - Security
-tags:
   - zero-trust
   - network-access
   - rust
@@ -17,6 +14,8 @@ tags:
   - authentication
   - authorization
   - cybersecurity
+categories:
+  - Security
 featured: true
 draft: false
 ---

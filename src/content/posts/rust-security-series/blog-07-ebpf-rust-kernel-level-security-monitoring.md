@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T13:45:00+05:30
 tags:
   - general
-categories:
-  - eBPF
-tags:
   - ebpf
   - rust
   - kernel-security
@@ -17,6 +14,8 @@ tags:
   - performance
   - linux-security
   - cybersecurity
+categories:
+  - eBPF
 featured: true
 draft: false
 ---

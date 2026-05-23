@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T15:50:00+05:30
 tags:
   - general
-categories:
-  - Security
-tags:
   - wazuh
   - soar
   - security-orchestration
@@ -17,6 +14,8 @@ tags:
   - workflow-automation
   - threat-remediation
   - cybersecurity
+categories:
+  - Security
 featured: true
 draft: false
 ---

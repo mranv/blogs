@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T13:30:00+05:30
 tags:
   - general
-categories:
-  - Security
-tags:
   - post-quantum-cryptography
   - rust
   - cryptography
@@ -17,6 +14,8 @@ tags:
   - quantum-computing
   - hardware-acceleration
   - cybersecurity
+categories:
+  - Security
 featured: true
 draft: false
 ---

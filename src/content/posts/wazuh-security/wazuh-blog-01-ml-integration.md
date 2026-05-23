@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
   - general
-categories:
-  - Security
-tags:
   - wazuh
   - siem
   - machine-learning
@@ -17,6 +14,8 @@ tags:
   - ml-integration
   - enterprise-security
   - cybersecurity
+categories:
+  - Security
 featured: true
 draft: false
 ---

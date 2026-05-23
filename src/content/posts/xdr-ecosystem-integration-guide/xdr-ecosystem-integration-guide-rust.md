@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
   - general
-categories:
-  - Programming
-tags:
   - rust
   - xdr
   - integration
@@ -19,6 +16,8 @@ tags:
   - monitoring
   - orchestration
   - enterprise
+categories:
+  - Programming
 featured: false
 draft: false
 ---

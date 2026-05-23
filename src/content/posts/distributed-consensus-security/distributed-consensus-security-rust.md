@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
   - general
-categories:
-  - Security
-tags:
   - rust
   - consensus
   - distributed-systems
@@ -19,6 +16,8 @@ tags:
   - threshold-cryptography
   - security
   - fault-tolerance
+categories:
+  - Security
 featured: false
 draft: false
 ---

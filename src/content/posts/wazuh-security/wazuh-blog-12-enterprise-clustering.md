@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T16:45:00+05:30
 tags:
   - general
-categories:
-  - Security
-tags:
   - wazuh
   - enterprise-clustering
   - high-availability
@@ -17,6 +14,8 @@ tags:
   - disaster-recovery
   - enterprise-architecture
   - cybersecurity
+categories:
+  - Security
 featured: true
 draft: false
 ---

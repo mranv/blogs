@@ -6,9 +6,6 @@ slug: "ai-driven-threat-hunting-rust-ml"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
   - general
-categories:
-  - Programming
-tags:
   - threat-hunting
   - machine-learning
   - rust
@@ -17,6 +14,8 @@ tags:
   - anomaly-detection
   - security-automation
   - neural-networks
+categories:
+  - Programming
 featured: true
 draft: false
 ---

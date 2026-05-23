@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
   - general
-categories:
-  - Programming
-tags:
   - confidential-computing
   - trusted-execution-environments
   - intel-sgx
@@ -17,6 +14,8 @@ tags:
   - rust
   - secure-enclaves
   - hardware-security
+categories:
+  - Programming
 featured: true
 draft: false
 ---

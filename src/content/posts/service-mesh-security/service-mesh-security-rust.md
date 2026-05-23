@@ -8,9 +8,6 @@ draft: false
 author: "Anubhav Gain"
 tags:
   - general
-categories:
-  - Security
-tags:
   - rust
   - service-mesh
   - security
@@ -21,6 +18,8 @@ tags:
   - microservices
   - ebpf
   - linkerd
+categories:
+  - Security
 ---
 
 Service meshes have become the de facto standard for securing microservices at scale. This guide demonstrates building a high-performance service mesh security layer in Rust that rivals established solutions while providing memory safety and predictable performance.

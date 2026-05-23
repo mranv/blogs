@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T00:00:00Z
 tags:
   - general
-categories:
-  - Security
-tags:
   - wazuh
   - cloud-security
   - multi-cloud
@@ -18,6 +15,8 @@ tags:
   - gcp
   - containers
   - cybersecurity
+categories:
+  - Security
 featured: true
 draft: false
 ---

@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:00:00+05:30
 tags:
   - general
-categories:
-  - Programming
-tags:
   - behavioral-analytics
   - mitre-attack
   - ai-threat-detection
@@ -17,6 +14,8 @@ tags:
   - cybersecurity
   - threat-hunting
   - security-analytics
+categories:
+  - Programming
 featured: true
 draft: false
 ---

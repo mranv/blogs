@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T12:30:00+05:30
 tags:
   - general
-categories:
-  - Security
-tags:
   - xdr-testing
   - performance-benchmarking
   - production-deployment
@@ -17,6 +14,8 @@ tags:
   - load-testing
   - xdr-platform
   - quality-assurance
+categories:
+  - Security
 featured: true
 draft: false
 ---

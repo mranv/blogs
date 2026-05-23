@@ -6,9 +6,6 @@ author: "Anubhav Gain"
 pubDatetime: 2025-01-28T14:30:00+05:30
 tags:
   - general
-categories:
-  - Security
-tags:
   - webassembly
   - wasm
   - rust
@@ -17,6 +14,8 @@ tags:
   - sandboxing
   - distributed-security
   - cybersecurity
+categories:
+  - Security
 featured: true
 draft: false
 ---
