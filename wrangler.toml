@@ -3,18 +3,15 @@ compatibility_date = "2025-05-23"
 compatibility_flags = ["nodejs_compat"]
 
 # ── Email Sending binding ──────────────────────────────────────
-# Uses Cloudflare's native Email Sending API to send from newsletter@techanv.com
-# Requires: Email Routing enabled on techanv.com (already done)
-# Dashboard: Workers & Pages → your blog → Settings → Functions → Send email binding
+# Cloudflare native Email Sending: sends from newsletter@techanv.com
+# SPF/DKIM/MX already configured on techanv.com via Email Routing
 
 [[send_email]]
 name = "SEND_EMAIL"
 
-# ── KV Namespace bindings ──────────────────────────────────────
-# Create the KV namespace first:
-#   npx wrangler kv:namespace create "SUBSCRIBERS_KV"
-# Then uncomment and paste the ID:
-#
-# [[kv_namespaces]]
-#   binding = "SUBSCRIBERS_KV"
-#   id = "<your-kv-namespace-id>"
+# ── KV Namespace for subscriber storage ────────────────────────
+
+[[kv_namespaces]]
+binding = "SUBSCRIBERS_KV"
+id = "08a4753f2e6a4709ba72bd08709ac823"
+preview_id = "7b180f11019d4820a60fda95550cf9e4"
