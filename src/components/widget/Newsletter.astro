@@ -1,26 +1,21 @@
 ---
-// Newsletter subscription widget for Astro blog
-// Privacy-compliant: no dark patterns, explicit consent, clear messaging
-// Works with Buttondown, ConvertKit, Mailchimp, or Resend via /api/subscribe
+// Newsletter subscription widget — TechAnV Corporate Branding
+// Double opt-in via Cloudflare KV + email-sender Worker
+// CAN-SPAM compliant: explicit consent, clear unsubscribe
 
 import { Icon } from "astro-icon/components";
 
 interface Props {
-  /** Heading text shown above the form */
   heading?: string;
-  /** Short description below heading */
   description?: string;
-  /** Placeholder text for the email input */
   placeholder?: string;
-  /** Button label */
   buttonLabel?: string;
-  /** Additional CSS classes */
   class?: string;
 }
 
 const {
-  heading = "Stay Updated",
-  description = "Get notified about new posts on security, Rust, eBPF, and DevSecOps. No spam, unsubscribe anytime.",
+  heading = "Newsletter",
+  description = "Get updates on security engineering, Rust, eBPF, and DevSecOps. No spam, unsubscribe anytime.",
   placeholder = "you@example.com",
   buttonLabel = "Subscribe",
   class: className = "",
@@ -32,12 +27,17 @@ const {
   class:list={["newsletter-widget card-base p-4", className]}
   data-endpoint="/api/subscribe"
 >
-  <!-- Header -->
-  <div class="flex items-center gap-2 mb-2">
-    <Icon name="material-symbols:mail-outline-rounded" class="text-[var(--primary)] text-xl" />
-    <h3 class="font-bold text-lg text-90 m-0">{heading}</h3>
+  <!-- Header with TechAnV branding -->
+  <div class="flex items-center gap-2.5 mb-2">
+    <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-[var(--primary)] bg-opacity-10">
+      <Icon name="material-symbols:mail-outline-rounded" class="text-[var(--primary)] text-lg" />
+    </div>
+    <div>
+      <h3 class="font-bold text-sm text-90 m-0 leading-tight">{heading}</h3>
+      <p class="text-[10px] text-30 m-0 font-medium tracking-wide uppercase">TechAnV Blog</p>
+    </div>
   </div>
-  <p class="text-sm text-50 mb-3 leading-relaxed">{description}</p>
+  <p class="text-xs text-50 mb-3 leading-relaxed">{description}</p>
 
   <!-- Form -->
   <form id="newsletter-form" class="newsletter-form" novalidate>
@@ -61,7 +61,7 @@ const {
       <button
         type="submit"
         id="newsletter-submit"
-        class="newsletter-submit btn-regular rounded-lg px-4 py-2 text-sm font-medium
+        class="newsletter-submit btn-regular rounded-lg px-4 py-2 text-sm font-semibold
                whitespace-nowrap active:scale-95 transition
                hover:bg-[var(--primary)] hover:text-white"
       >
@@ -76,20 +76,20 @@ const {
     </div>
 
     <!-- Privacy notice -->
-    <p id="newsletter-hint" class="text-xs text-30 mt-2 leading-snug">
-      By subscribing, you agree to receive email updates. You can unsubscribe at any time.
-      We respect your privacy — your email is never shared or sold.
+    <p id="newsletter-hint" class="text-[11px] text-30 mt-2 leading-snug">
+      By subscribing, you agree to receive email updates from TechAnV Consulting.
+      Your email is never shared or sold. <a href="https://techanv.com" class="underline hover:text-[var(--primary)]">Privacy Policy</a>.
     </p>
   </form>
 
   <!-- Success state -->
   <div id="newsletter-success" class="hidden">
-    <div class="flex items-center gap-2 text-sm text-[var(--primary)] font-medium">
+    <div class="flex items-center gap-2 text-sm text-[var(--primary)] font-semibold">
       <Icon name="material-symbols:check-circle-outline-rounded" class="text-xl" />
-      <span>You're subscribed!</span>
+      <span>You're almost there!</span>
     </div>
-    <p class="text-sm text-50 mt-1">
-      Check your inbox to confirm your subscription.
+    <p class="text-xs text-50 mt-1 leading-relaxed">
+      Check your inbox and click the confirmation link to complete your subscription.
     </p>
   </div>
 
@@ -122,11 +122,8 @@ function initNewsletter() {
     submitBtn!.disabled = loading;
     btnText!.classList.toggle("hidden", loading);
     btnSpinner!.classList.toggle("hidden", !loading);
-    if (loading) {
-      emailInput!.setAttribute("aria-busy", "true");
-    } else {
-      emailInput!.removeAttribute("aria-busy");
-    }
+    if (loading) emailInput!.setAttribute("aria-busy", "true");
+    else emailInput!.removeAttribute("aria-busy");
   }
 
   function showError(message: string) {
@@ -149,9 +146,7 @@ function initNewsletter() {
     emailInput!.removeAttribute("aria-invalid");
   }
 
-  emailInput!.addEventListener("input", () => {
-    hideError();
-  });
+  emailInput!.addEventListener("input", hideError);
 
   function isValidEmail(email: string): boolean {
     const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -163,38 +158,21 @@ function initNewsletter() {
     hideError();
 
     const email = emailInput!.value.trim();
-
-    if (!email) {
-      showError("Please enter your email address.");
-      return;
-    }
-
-    if (!isValidEmail(email)) {
-      showError("Please enter a valid email address.");
-      return;
-    }
+    if (!email) { showError("Please enter your email address."); return; }
+    if (!isValidEmail(email)) { showError("Please enter a valid email address."); return; }
 
     setLoading(true);
-
     try {
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          ref: window.location.pathname,
-        }),
+        body: JSON.stringify({ email, ref: window.location.pathname }),
       });
-
       const data = await response.json();
-
-      if (data.ok) {
-        showSuccess();
-      } else {
-        showError(data.error || "Something went wrong. Please try again.");
-      }
+      if (data.ok) showSuccess();
+      else showError(data.error || "Something went wrong. Please try again.");
     } catch {
-      showError("Network error. Please check your connection and try again.");
+      showError("Network error. Please check your connection.");
     } finally {
       setLoading(false);
     }
@@ -203,13 +181,9 @@ function initNewsletter() {
 
 initNewsletter();
 
-document.addEventListener("swup:content:replace", () => {
-  initNewsletter();
-});
+document.addEventListener("swup:content:replace", () => { initNewsletter(); });
 if (window.swup) {
-  (window as any).swup.hooks.on("content:replace", () => {
-    initNewsletter();
-  });
+  (window as any).swup.hooks.on("content:replace", () => { initNewsletter(); });
 }
 </script>
 

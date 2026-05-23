@@ -1,16 +1,41 @@
 // Cloudflare Pages Function — /api/confirm
-// Double opt-in: verifies token, marks subscriber as confirmed
+// Double opt-in: verifies token, marks subscriber as confirmed, sends welcome email
+
+import { tokenExpiredPage, confirmSuccessPage, welcomeEmail } from '../_lib/email-templates';
 
 interface Env {
   SUBSCRIBERS_KV?: KVNamespace;
+  EMAIL_WORKER_URL?: string;
+  EMAIL_WORKER_SECRET?: string;
   SITE_URL?: string;
-  SITE_NAME?: string;
+}
+
+async function sendViaWorker(env: Env, to: string, subject: string, html: string, text: string): Promise<void> {
+  const workerUrl = env.EMAIL_WORKER_URL;
+  const secret = env.EMAIL_WORKER_SECRET;
+  if (!workerUrl || !secret) return;
+  try {
+    await fetch(`${workerUrl}/send`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${secret}` },
+      body: JSON.stringify({
+        to: [{ email: to }],
+        from: { email: 'newsletter@techanv.com' },
+        subject,
+        html,
+        text,
+      }),
+    });
+  } catch (err) {
+    console.error('[confirm] Welcome email error:', err);
+  }
 }
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
   const env = context.env;
   const url = new URL(context.request.url);
   const token = url.searchParams.get('token');
+  const siteUrl = env.SITE_URL || 'https://mranv.pages.dev';
 
   if (!token) {
     return new Response('Missing confirmation token.', { status: 400 });
@@ -23,24 +48,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
   // Look up token → email
   const email = await env.SUBSCRIBERS_KV.get(`token:${token}`);
   if (!email) {
-    const siteUrl = env.SITE_URL || 'https://mranv.pages.dev';
-    return new Response(`
-<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Link Expired</title>
-<style>
-  body{margin:0;padding:0;background:#0d111b;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:-apple-system,sans-serif;color:#e6edf3}
-  .card{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:40px;max-width:480px;text-align:center}
-  h1{font-size:24px;margin:0 0 12px}
-  p{color:#8b949e;font-size:15px;line-height:1.6;margin:0 0 20px}
-  a{color:#6366f1;text-decoration:none}
-</style></head><body>
-<div class="card">
-  <h1>⏰ Link Expired</h1>
-  <p>This confirmation link has expired (valid for 24 hours). Please subscribe again to get a new link.</p>
-  <a href="${siteUrl}">← Back to blog</a>
-</div>
-</body></html>`, {
+    return new Response(tokenExpiredPage(siteUrl), {
       status: 410,
       headers: { 'Content-Type': 'text/html; charset=utf-8' },
     });
@@ -59,33 +67,18 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
   await env.SUBSCRIBERS_KV.put(`sub:${email}`, JSON.stringify(sub));
   await env.SUBSCRIBERS_KV.delete(`token:${token}`);
 
-  // Add to confirmed list (for fast broadcasting)
+  // Add to confirmed set (for fast broadcasting)
   await env.SUBSCRIBERS_KV.put(`confirmed:${email}`, JSON.stringify({
     email,
     confirmedAt: sub.confirmedAt,
     ref: sub.ref,
   }));
 
-  const siteUrl = env.SITE_URL || 'https://mranv.pages.dev';
-  const siteName = env.SITE_NAME || "Anubhav Gain's Blog";
+  // Send welcome email (fire-and-forget, don't block the page)
+  const welcome = welcomeEmail(email);
+  context.waitUntil(sendViaWorker(env, email, welcome.subject, welcome.html, welcome.text));
 
-  return new Response(`
-<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Subscribed!</title>
-<style>
-  body{margin:0;padding:0;background:#0d111b;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:-apple-system,sans-serif;color:#e6edf3}
-  .card{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:40px;max-width:480px;text-align:center}
-  h1{font-size:24px;margin:0 0 12px}
-  p{color:#8b949e;font-size:15px;line-height:1.6;margin:0 0 20px}
-  a{display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;text-decoration:none;border-radius:8px;font-weight:600}
-</style></head><body>
-<div class="card">
-  <h1>🎉 You're subscribed!</h1>
-  <p>You'll now receive updates about new posts from <strong>${siteName}</strong>.</p>
-  <a href="${siteUrl}">Start Reading →</a>
-</div>
-</body></html>`, {
+  return new Response(confirmSuccessPage(siteUrl), {
     status: 200,
     headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
   });

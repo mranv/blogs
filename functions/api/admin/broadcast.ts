@@ -1,14 +1,13 @@
 // Cloudflare Pages Function — /api/admin/broadcast
-// Admin-only: Send newsletter to all confirmed subscribers via send_email binding
+// Admin-only: Send branded newsletter to all confirmed subscribers
 // Protected by ADMIN_SECRET env var
+
+import { broadcastEmail } from '../_lib/email-templates';
 
 interface Env {
   SUBSCRIBERS_KV?: KVNamespace;
   EMAIL_WORKER_URL?: string;
   EMAIL_WORKER_SECRET?: string;
-  ADMIN_EMAIL?: string;
-  SITE_NAME?: string;
-  SITE_URL?: string;
   ADMIN_SECRET?: string;
 }
 
@@ -18,67 +17,23 @@ interface BroadcastRequest {
   textBody?: string;
   postUrl?: string;
   postTitle?: string;
+  postExcerpt?: string;
 }
 
-function wrapInTemplate(content: string, env: Env, email: string): { html: string; text: string } {
-  const siteUrl = env.SITE_URL || 'https://mranv.pages.dev';
-  const siteName = env.SITE_NAME || "Anubhav Gain's Blog";
-  const unsubUrl = `${siteUrl}/api/unsubscribe?email=${encodeURIComponent(email)}`;
-
-  const html = `
-<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background:#0d111b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:40px auto;background:#161b22;border-radius:16px;border:1px solid #30363d;">
-    <tr>
-      <td style="padding:40px 32px;">
-        ${content}
-        <hr style="border:none;border-top:1px solid #30363d;margin:24px 0;">
-        <p style="margin:0;color:#484f58;font-size:12px;">
-          You're receiving this because you subscribed to ${siteName}.<br>
-          <a href="${unsubUrl}" style="color:#6366f1;">Unsubscribe</a> ·
-          <a href="${siteUrl}" style="color:#6366f1;">View on web</a>
-        </p>
-      </td>
-    </tr>
-  </table>
-</body></html>`;
-
-  // Strip HTML for plain text version
-  const text = content.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim() +
-    `\n\nUnsubscribe: ${unsubUrl}\nView on web: ${siteUrl}`;
-
-  return { html, text };
-}
-
-async function sendEmail(
-  to: string,
-  subject: string,
-  htmlBody: string,
-  textBody: string,
-  env: Env
-): Promise<boolean> {
+async function sendViaWorker(env: Env, to: string, subject: string, html: string, text: string): Promise<boolean> {
+  const workerUrl = env.EMAIL_WORKER_URL;
+  const secret = env.EMAIL_WORKER_SECRET;
+  if (!workerUrl || !secret) return false;
   try {
-    const siteName = env.SITE_NAME || "Anubhav Gain's Blog";
-    const workerUrl = (env as any).EMAIL_WORKER_URL;
-    const secret = (env as any).EMAIL_WORKER_SECRET;
-    if (!workerUrl || !secret) {
-      console.warn('[broadcast] Email worker not configured');
-      return false;
-    }
-
     const res = await fetch(`${workerUrl}/send`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${secret}`,
-      },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${secret}` },
       body: JSON.stringify({
         to: [{ email: to }],
-        from: { email: 'newsletter@techanv.com', name: siteName },
+        from: { email: 'newsletter@techanv.com' },
         subject,
-        html: htmlBody,
-        text: textBody,
+        html,
+        text,
       }),
     });
     const data = await res.json() as any;
@@ -89,6 +44,13 @@ async function sendEmail(
   }
 }
 
+function json(data: object, status = 200): Response {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
+
 // ── POST: Send broadcast ────────────────────────────────────────
 export const onRequestPost: PagesFunction<Env> = async (context) => {
   const env = context.env;
@@ -97,101 +59,60 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   // Verify admin secret
   const secret = url.searchParams.get('secret');
   if (!secret || secret !== env.ADMIN_SECRET) {
-    return new Response(JSON.stringify({ ok: false, error: 'Unauthorized' }), {
-      status: 401,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ ok: false, error: 'Unauthorized' }, 401);
   }
 
   if (!env.SUBSCRIBERS_KV) {
-    return new Response(JSON.stringify({ ok: false, error: 'KV not configured' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ ok: false, error: 'KV not configured' }, 500);
   }
 
   let body: BroadcastRequest;
   try {
     body = await context.request.json();
   } catch {
-    return new Response(JSON.stringify({ ok: false, error: 'Invalid body' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ ok: false, error: 'Invalid body' }, 400);
   }
 
   if (!body.subject || (!body.htmlBody && !body.postUrl)) {
-    return new Response(JSON.stringify({ ok: false, error: 'Missing subject or content' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ ok: false, error: 'Missing subject or content' }, 400);
   }
 
-  // If it's a new post notification, build the email
-  let htmlContent = body.htmlBody || '';
-  let textContent = body.textBody || '';
-
-  if (body.postUrl && body.postTitle) {
-    htmlContent = `
-      <h1 style="margin:0 0 8px;color:#e6edf3;font-size:24px;">📝 New Post Published</h1>
-      <h2 style="margin:0 0 16px;color:#6366f1;font-size:20px;">${body.postTitle}</h2>
-      <p style="margin:0 0 24px;color:#8b949e;font-size:15px;line-height:1.6;">
-        A new article has been published on ${env.SITE_NAME || 'the blog'}.
-        Click below to read it.
-      </p>
-      <a href="${body.postUrl}" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:600;">
-        Read Article →
-      </a>`;
-    textContent = `New Post: ${body.postTitle}\n\nRead it here: ${body.postUrl}`;
-  }
-
-  // List all confirmed subscribers from KV
+  // List all confirmed subscribers
   const confirmed: string[] = [];
-  let cursor: string | null = null;
+  let cursor: string | undefined;
   do {
-    const list = await env.SUBSCRIBERS_KV.list({ prefix: 'confirmed:', cursor });
+    const list = await env.SUBSCRIBERS_KV.list({ prefix: 'confirmed:', cursor, limit: 100 });
     for (const key of list.keys) {
-      confirmed.push(key.name.replace('confirmed:', ''));
+      if (key.name.startsWith('confirmed:')) {
+        confirmed.push(key.name.replace('confirmed:', ''));
+      }
     }
-    cursor = list.list_complete ? null : list.cursor;
+    cursor = list.list_complete ? undefined : list.cursor;
   } while (cursor);
 
   if (confirmed.length === 0) {
-    return new Response(JSON.stringify({ ok: true, message: 'No confirmed subscribers', sent: 0 }), {
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ ok: true, sent: 0, message: 'No confirmed subscribers.' });
   }
 
-  // Send emails in batches of 5
+  // Send to each subscriber (with personal unsubscribe link)
   let sent = 0;
   let failed = 0;
-  const batchSize = 5;
-
-  for (let i = 0; i < confirmed.length; i += batchSize) {
-    const batch = confirmed.slice(i, i + batchSize);
-    const results = await Promise.allSettled(
-      batch.map((email) => {
-        const { html, text } = wrapInTemplate(htmlContent, env, email);
-        return sendEmail(email, body.subject, html, text, env);
-      })
+  for (const email of confirmed) {
+    const tpl = broadcastEmail(
+      email,
+      body.subject,
+      body.htmlBody || '',
+      body.textBody || '',
+      body.postTitle,
+      body.postUrl,
+      body.postExcerpt,
     );
-    for (const r of results) {
-      if (r.status === 'fulfilled' && r.value) sent++;
-      else failed++;
-    }
-    if (i + batchSize < confirmed.length) {
-      await new Promise((r) => setTimeout(r, 200));
-    }
+    const ok = await sendViaWorker(env, email, tpl.subject, tpl.html, tpl.text);
+    if (ok) sent++;
+    else failed++;
   }
 
-  return new Response(JSON.stringify({
-    ok: true,
-    sent,
-    failed,
-    total: confirmed.length,
-  }), {
-    headers: { 'Content-Type': 'application/json' },
-  });
+  return json({ ok: true, sent, failed, total: confirmed.length });
 };
 
 // ── GET: Subscriber stats ───────────────────────────────────────
@@ -200,40 +121,34 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
   const url = new URL(context.request.url);
   const secret = url.searchParams.get('secret');
   if (!secret || !env.ADMIN_SECRET || secret !== env.ADMIN_SECRET) {
-    return new Response(JSON.stringify({ ok: false, error: 'Unauthorized' }), {
-      status: 401,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ ok: false, error: 'Unauthorized' }, 401);
   }
 
   if (!env.SUBSCRIBERS_KV) {
-    return new Response(JSON.stringify({ error: 'KV not configured' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ ok: false, error: 'KV not configured' }, 500);
   }
 
-  const confirmed: string[] = [];
-  const pending: string[] = [];
-  let cursor: string | null = null;
+  const kv = env.SUBSCRIBERS_KV as KVNamespace;
 
+  // Count confirmed subscribers
+  let confirmed = 0;
+  let pending = 0;
+  let cursor: string | undefined;
   do {
-    const list = await env.SUBSCRIBERS_KV.list({ prefix: 'sub:', cursor });
-    for (const key of list.keys) {
-      const data = await env.SUBSCRIBERS_KV.get(key.name, { type: 'json' }) as any;
-      const email = key.name.replace('sub:', '');
-      if (data?.confirmed) confirmed.push(email);
-      else pending.push(email);
-    }
-    cursor = list.list_complete ? null : list.cursor;
+    const list = await kv.list({ prefix: 'confirmed:', cursor, limit: 100 });
+    confirmed += list.keys.length;
+    cursor = list.list_complete ? undefined : list.cursor;
   } while (cursor);
 
-  return new Response(JSON.stringify({
-    confirmed: confirmed.length,
-    pending: pending.length,
-    total: confirmed.length + pending.length,
-    emails: { confirmed, pending },
-  }), {
-    headers: { 'Content-Type': 'application/json' },
-  });
+  cursor = undefined;
+  do {
+    const list = await kv.list({ prefix: 'sub:', cursor, limit: 100 });
+    for (const key of list.keys) {
+      const data = await kv.get(key.name, { type: 'json' }) as any;
+      if (data && !data.confirmed) pending++;
+    }
+    cursor = list.list_complete ? undefined : list.cursor;
+  } while (cursor);
+
+  return json({ ok: true, confirmed, pending });
 };
