@@ -23,9 +23,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await entry.render();
-
-const { remarkPluginFrontmatter } = await entry.render();
+const { Content, headings, remarkPluginFrontmatter } = await entry.render();
 
 const jsonLd = {
 	"@context": "https://schema.org",
@@ -58,12 +56,12 @@ const jsonLd = {
 		"@type": "Person",
 		name: "Anubhav Gain"
 	},
-	datePublished: formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published),
-	dateModified: entry.data.modDatetime ? formatDateToYYYYMMDD(entry.data.modDatetime) : formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published),
+	datePublished: formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published || new Date()),
+	dateModified: entry.data.modDatetime ? formatDateToYYYYMMDD(entry.data.modDatetime) : formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published || new Date()),
 	inLanguage: entry.data.lang
 		? entry.data.lang.replace("_", "-")
 		: siteConfig.lang.replace("_", "-"),
-	image: entry.data.image ? `${Astro.site}${entry.data.image}` : `${Astro.site}${profileConfig.avatar.startsWith('/') ? profileConfig.avatar.slice(1) : profileConfig.avatar}`,
+	image: entry.data.image ? `${Astro.site}${entry.data.image}` : `${Astro.site}${(profileConfig.avatar || "").startsWith('/') ? (profileConfig.avatar || "").slice(1) : profileConfig.avatar || ""}`,
 	mainEntityOfPage: {
 		"@type": "WebPage",
 		"@id": `${Astro.site}posts/${entry.slug}/`
@@ -73,10 +71,10 @@ const jsonLd = {
 	timeRequired: `PT${remarkPluginFrontmatter.minutes}M`
 };
 
-const publishedISO = formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published);
+const publishedISO = formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published || new Date());
 const modifiedISO = entry.data.modDatetime
 	? formatDateToYYYYMMDD(entry.data.modDatetime)
-	: formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published);
+	: formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published || new Date());
 ---
 <MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} image={entry.data.image} setOGTypeArticle={true} articleData={{ published: publishedISO, modified: modifiedISO, tags: entry.data.tags }} headings={headings}>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
@@ -120,7 +118,7 @@ const modifiedISO = entry.data.modDatetime
             <div class="onload-animation">
                 <PostMetadata
                         class="mb-5"
-                        published={entry.data.pubDatetime || entry.data.published}
+                        published={entry.data.pubDatetime || entry.data.published || new Date()}
                         updated={entry.data.modDatetime || entry.data.updated}
                         tags={entry.data.tags}
                         category={entry.data.category}
@@ -140,7 +138,7 @@ const modifiedISO = entry.data.modDatetime
                 <Content />
             </Markdown>
 
-            {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.pubDatetime || entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
+            {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.pubDatetime || entry.data.published || new Date()} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
         </div>
     </div>

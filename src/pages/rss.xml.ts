@@ -17,12 +17,14 @@ function stripInvalidXmlChars(str: string): string {
 
 export async function GET(context: APIContext) {
 	const blog = await getSortedPosts();
+	// Cap RSS feed to latest 100 posts — nobody consumes 100K items in RSS
+	const latestPosts = blog.slice(0, 100);
 
 	return rss({
 		title: siteConfig.title,
 		description: siteConfig.subtitle || "No description",
 		site: context.site ?? "https://mranv.pages.dev",
-		items: blog.map((post) => {
+		items: latestPosts.map((post) => {
 			const content =
 				typeof post.body === "string" ? post.body : String(post.body || "");
 			const cleanedContent = stripInvalidXmlChars(content);
