@@ -8,7 +8,8 @@ interface Env {
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
   const env = context.env;
-  const email = context.url.searchParams.get('email');
+  const url = new URL(context.request.url);
+  const email = url.searchParams.get('email');
 
   if (!email) {
     return new Response('Missing email parameter.', { status: 400 });

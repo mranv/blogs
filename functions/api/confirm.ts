@@ -9,7 +9,8 @@ interface Env {
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
   const env = context.env;
-  const token = context.url.searchParams.get('token');
+  const url = new URL(context.request.url);
+  const token = url.searchParams.get('token');
 
   if (!token) {
     return new Response('Missing confirmation token.', { status: 400 });
