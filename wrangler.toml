@@ -3,16 +3,14 @@ pages_build_output_dir = "./dist"
 compatibility_date = "2025-05-23"
 compatibility_flags = ["nodejs_compat"]
 
-# ── Email Sending binding ──────────────────────────────────────
-# Cloudflare native Email Sending: sends from newsletter@techanv.com
-# SPF/DKIM/MX already configured on techanv.com via Email Routing
-
-[[send_email]]
-name = "SEND_EMAIL"
-
 # ── KV Namespace for subscriber storage ────────────────────────
 
 [[kv_namespaces]]
 binding = "SUBSCRIBERS_KV"
 id = "08a4753f2e6a4709ba72bd08709ac823"
 preview_id = "7b180f11019d4820a60fda95550cf9e4"
+
+# ── NOTE: send_email binding ───────────────────────────────────
+# Pages projects do NOT support send_email in wrangler.toml.
+# Add it manually in Cloudflare Dashboard:
+#   Workers & Pages → mranv → Settings → Functions → Send email bindings → Add "SEND_EMAIL"
