@@ -92,9 +92,10 @@ async function sendEmail(
 // ── POST: Send broadcast ────────────────────────────────────────
 export const onRequestPost: PagesFunction<Env> = async (context) => {
   const env = context.env;
+  const url = new URL(context.request.url);
 
   // Verify admin secret
-  const secret = context.url.searchParams.get('secret');
+  const secret = url.searchParams.get('secret');
   if (!secret || secret !== env.ADMIN_SECRET) {
     return new Response(JSON.stringify({ ok: false, error: 'Unauthorized' }), {
       status: 401,
@@ -104,13 +105,6 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
   if (!env.SUBSCRIBERS_KV) {
     return new Response(JSON.stringify({ ok: false, error: 'KV not configured' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
-  if (!env.SEND_EMAIL) {
-    return new Response(JSON.stringify({ ok: false, error: 'SEND_EMAIL binding not configured. Add it in Cloudflare Dashboard → Pages → Settings → Functions → Send email binding.' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -203,7 +197,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 // ── GET: Subscriber stats ───────────────────────────────────────
 export const onRequestGet: PagesFunction<Env> = async (context) => {
   const env = context.env as Record<string, any>;
-  const secret = context.url.searchParams.get('secret');
+  const url = new URL(context.request.url);
+  const secret = url.searchParams.get('secret');
   if (!secret || !env.ADMIN_SECRET || secret !== env.ADMIN_SECRET) {
     return new Response(JSON.stringify({ ok: false, error: 'Unauthorized' }), {
       status: 401,
