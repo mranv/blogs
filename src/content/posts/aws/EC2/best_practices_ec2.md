@@ -2,6 +2,8 @@
 slug: 'best_practices_ec2'
 
 title: EC2 Best Practices
+description: "Amazon EC2 best practices: security groups, IAM roles, right-sizing, backups, monitoring, and cost optimization for reliable cloud compute."
+published: 2025-09-03
 
 ---
 

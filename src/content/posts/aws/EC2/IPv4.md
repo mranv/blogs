@@ -2,6 +2,8 @@
 slug: 'ipv4'
 
 title: Private vs Public IP (IPv4)
+description: "Private vs public IPv4 addresses in AWS EC2 explained simply — how IP addressing works, when to use each, and core networking fundamentals."
+published: 2025-09-03
 
 ---
 

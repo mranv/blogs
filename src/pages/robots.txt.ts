@@ -5,27 +5,16 @@ const robotsTxt = `
 # Robots.txt for Anubhav Gain's Blog
 # https://mranv.pages.dev
 
-# Allow all search engines
+# Allow all search engines full, unthrottled crawling.
+# Note: /_astro/ is intentionally NOT blocked — search engines need the
+# CSS/JS there to render and assess pages (blocking it causes "crawled,
+# currently not indexed"). No Crawl-delay — it only throttles Bing.
 User-agent: *
 Allow: /
-Disallow: /_astro/
 Disallow: /api/
 Disallow: /admin/
-Crawl-delay: 1
 
-# Google
-User-agent: Googlebot
-Allow: /
-Disallow: /_astro/
-Crawl-delay: 0
-
-# Bing
-User-agent: Bingbot
-Allow: /
-Disallow: /_astro/
-Crawl-delay: 1
-
-# Block bad bots
+# Block aggressive commercial SEO crawlers to preserve crawl budget
 User-agent: SemrushBot
 Disallow: /
 

@@ -2,6 +2,8 @@
 slug: 'ec2_simplified'
 
 title: EC2 Simplified Version
+description: "A simplified guide to Amazon EC2: instances, AMIs, instance types, and the core compute concepts every AWS beginner should know."
+published: 2025-09-03
 
 ---
 

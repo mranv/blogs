@@ -2,6 +2,8 @@
 slug: 'ebs'
 
 title: EBS in Depth
+description: "Amazon EBS in depth: volume types, snapshots, encryption, IOPS and throughput performance, and attaching block storage to EC2 instances."
+published: 2025-09-03
 
 ---
 

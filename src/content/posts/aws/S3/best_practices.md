@@ -2,6 +2,8 @@
 slug: 'best_practices'
 
 title: S3 Best Practices
+description: "AWS S3 best practices: bucket security, encryption, versioning, lifecycle policies, access control, and cost optimization for production storage."
+published: 2025-09-03
 
 ---
 

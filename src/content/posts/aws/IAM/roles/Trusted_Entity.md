@@ -2,6 +2,8 @@
 slug: 'trusted_entity'
 
 title: "IAM Roles: Trusted Entity"
+description: "AWS IAM trusted entities explained: how trust policies and assume-role let users, services, and accounts securely assume IAM roles."
+published: 2025-09-03
 
 ---
 

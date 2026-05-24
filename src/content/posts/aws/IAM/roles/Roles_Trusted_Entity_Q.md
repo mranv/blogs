@@ -2,6 +2,8 @@
 slug: 'roles_trusted_entity_q'
 
 title: IAM Roles and Trusted Entities Quiz
+description: "Test your knowledge of AWS IAM roles and trusted entities — a quiz covering trust policies, assume-role, and cross-account access."
+published: 2025-09-03
 
 ---
 
