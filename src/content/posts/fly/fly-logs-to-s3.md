@@ -72,7 +72,7 @@ I set all of the configuration variables as secrets in one go like this:
 fly secrets set \
   ORG="my-project-org" \
   ACCESS_TOKEN="..." \
-  AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_REDACTED" \
+  AWS_ACCESS_KEY_ID="YOYO" \
   AWS_SECRET_ACCESS_KEY="..." \
   AWS_BUCKET="my-project-fly-logs" \
   AWS_REGION="us-west-1" \
