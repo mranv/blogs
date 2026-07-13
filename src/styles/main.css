@@ -13,14 +13,18 @@
     /* Composite neon card treatment — apply to PostCard etc. */
     .card-glow {
         border: 1px solid color-mix(in srgb, var(--neon-amber) 22%, var(--card-border));
-        transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                    border-color 0.4s ease;
     }
     .card-glow:hover,
     .card-glow:focus-within {
         border-color: color-mix(in srgb, var(--neon-amber) 55%, var(--card-border));
         box-shadow: 0 0 0 1px color-mix(in srgb, var(--neon-amber) 18%, transparent),
-                    0 8px 30px -8px color-mix(in srgb, var(--neon-amber) 55%, transparent);
-        transform: translateY(-3px);
+                    0 0 22px -4px color-mix(in srgb, var(--neon-amber) 45%, transparent),
+                    0 14px 36px -12px color-mix(in srgb, var(--neon-amber) 40%, transparent),
+                    inset 0 1px 0 0 color-mix(in srgb, var(--neon-amber) 22%, transparent);
+        transform: translateY(-4px);
     }
     .expand-animation {
         @apply relative before:ease-out before:transition active:bg-none hover:before:bg-[var(--btn-plain-bg-hover)] active:before:bg-[var(--btn-plain-bg-active)] z-0
@@ -159,13 +163,18 @@
 }
 
 .mermaid-diagram-wrapper {
-    @apply my-4 flex justify-center overflow-x-auto;
+    @apply my-6 w-full flex justify-center items-center overflow-x-auto;
 }
 
+/* Responsive mermaid: fill column width, auto height (preserves aspect via viewBox).
+   !important overrides mermaid's inline pixel width/max-width so diagrams aren't tiny. */
 .mermaid-diagram-wrapper svg {
-    @apply max-w-full h-auto;
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
 }
 
 pre.mermaid {
-    @apply bg-transparent border-0 p-0 m-0;
+    @apply bg-transparent border-0 p-0 m-0 w-full flex justify-center;
 }

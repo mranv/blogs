@@ -1,4 +1,10 @@
 .custom-md {
+    line-height: 1.75;
+
+    p {
+        @apply mb-4;
+    }
+
     h1 {
         @apply text-2xl md:text-3xl;
     }

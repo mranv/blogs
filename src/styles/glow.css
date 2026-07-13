@@ -76,22 +76,6 @@
     50%      { box-shadow: 0 0 0 3px color-mix(in srgb, var(--neon-amber) 70%, transparent); }
 }
 
-/* --- CRT --- */
-@keyframes crtRoll {
-    0%   { transform: translateY(-100%); }
-    100% { transform: translateY(400%); }
-}
-@keyframes crtFlicker {
-    0%   { opacity: 1; }
-    50%  { opacity: 0.94; }
-    100% { opacity: 1; }
-}
-@keyframes crtPowerOn {
-    0%   { opacity: 0; }
-    8%   { opacity: 1; }
-    100% { opacity: 0; }
-}
-
 /* ============================================================
    NEON GLOW UTILITIES
    ============================================================ */
@@ -187,113 +171,54 @@
 }
 
 /* ============================================================
-   CRT OVERLAY
-   Toggle via body.crt-on. Markup injected in Layout.astro.
-   Sits outside Swup's main container so it survives navigation.
+   AMBIENT PAGE DEPTH — subtle fixed glows behind content (non-flat premium feel)
    ============================================================ */
-
-.crt-overlay {
+.dark body::before {
+    content: "";
     position: fixed;
     inset: 0;
-    z-index: 9000;
+    z-index: -1;
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.45s ease;
-}
-.crt-on .crt-overlay {
-    opacity: 1;
-}
-
-/* Horizontal scanlines, multiplied over content */
-.crt-overlay__scanlines {
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0,0,0,0) 0px,
-        rgba(0,0,0,0) 2px,
-        rgba(0,0,0,0.22) 3px,
-        rgba(0,0,0,0.22) 4px
-    );
-    mix-blend-mode: multiply;
-}
-.crt-on .crt-overlay__scanlines {
-    animation: crtFlicker 0.12s steps(3) infinite;
-}
-
-/* Slow rolling light band (CRT refresh roll) */
-.crt-overlay__roll {
-    position: absolute;
-    left: 0; right: 0;
-    height: 28%;
-    background: linear-gradient(
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.035) 50%,
-        rgba(255,255,255,0) 100%
-    );
-    animation: crtRoll 7s linear infinite;
-}
-
-/* Vignette + subtle purple corner haze */
-.crt-overlay__vignette {
-    position: absolute;
-    inset: 0;
     background:
-        radial-gradient(circle at center,
-            transparent 0%,
-            transparent 60%,
-            rgba(0,0,0,0.22) 88%,
-            rgba(0,0,0,0.48) 100%),
-        radial-gradient(ellipse 120% 120% at 50% 50%,
-            transparent 72%,
-            color-mix(in srgb, var(--neon-purple, #c4a7e7) 16%, transparent) 115%);
+        radial-gradient(ellipse 90% 55% at 50% -12%, color-mix(in srgb, var(--neon-amber) 7%, transparent), transparent 70%),
+        radial-gradient(ellipse 70% 45% at 100% 115%, color-mix(in srgb, var(--neon-purple) 6%, transparent), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 0% 100%, color-mix(in srgb, var(--neon-cyan) 4%, transparent), transparent 70%);
 }
-
-/* Power-on flash — plays once when CRT is turned on */
-.crt-overlay__flash {
-    position: absolute;
+body:not(.dark)::before {
+    content: "";
+    position: fixed;
     inset: 0;
-    background: var(--crt-flash-bg, #fdfbd4);
-    opacity: 0;
+    z-index: -1;
     pointer-events: none;
-}
-.crt-just-on .crt-overlay__flash {
-    animation: crtPowerOn 0.5s ease-out 1;
+    background:
+        radial-gradient(ellipse 90% 55% at 50% -12%, color-mix(in srgb, var(--neon-amber) 5%, transparent), transparent 70%),
+        radial-gradient(ellipse 70% 45% at 100% 115%, color-mix(in srgb, var(--neon-purple) 4%, transparent), transparent 70%);
 }
 
-/* CRT toggle button state dot (rendered in Footer) */
-.crt-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.15rem 0.65rem;
-    border: 1px solid var(--card-border);
-    border-radius: 999px;
-    color: var(--color-text-muted);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+/* ============================================================
+   TOC ACTIVE GLOW — scroll-spy indicator + active entry
+   ============================================================ */
+#toc a.visible,
+table-of-contents a.visible,
+.toc a.visible {
+    color: var(--neon-amber) !important;
+    text-shadow: 0 0 8px color-mix(in srgb, var(--neon-amber) 45%, transparent);
 }
-.crt-toggle:hover {
-    border-color: color-mix(in srgb, var(--neon-amber) 50%, var(--card-border));
+#active-indicator {
+    box-shadow: 0 0 14px -3px color-mix(in srgb, var(--neon-amber) 40%, transparent);
+    border-color: color-mix(in srgb, var(--neon-amber) 35%, var(--toc-btn-hover)) !important;
 }
-.crt-toggle__dot {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 999px;
-    background: var(--card-border);
-    transition: background 0.2s ease, box-shadow 0.2s ease;
-}
-.crt-on .crt-toggle__dot {
-    background: var(--color-green, #37d99e);
-    box-shadow: 0 0 8px var(--color-green, #37d99e), 0 0 2px #fff;
-}
-.crt-on .crt-toggle {
-    color: var(--color-text-primary, #fdfbd4);
-    border-color: color-mix(in srgb, var(--color-green, #37d99e) 45%, var(--color-bg-muted, #4a3e44));
+
+/* ============================================================
+   PREMIUM FOCUS RING — keyboard focus on interactive elements
+   ============================================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--neon-amber) 70%, transparent);
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 /* ============================================================
@@ -306,9 +231,7 @@
     .rainbow-badge:focus-visible,
     .holo-sweep::after,
     .holo-sweep:hover::after,
-    .holo-sweep:focus-within::after,
-    .crt-overlay__roll,
-    .crt-on .crt-overlay__scanlines {
+    .holo-sweep:focus-within::after {
         animation: none !important;
     }
     .neon-hover:hover,
