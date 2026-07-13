@@ -2,6 +2,20 @@
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import "@fontsource/maple-mono/400.css";
+import "@fontsource/maple-mono/500.css";
+import "@fontsource/maple-mono/700.css";
+
+// Design-system styles (tokens, components, prose, motion, glow/CRT)
+import "../styles/variables.styl";
+import "../styles/main.css";
+import "../styles/scrollbar.css";
+import "../styles/markdown.css";
+import "../styles/markdown-extend.styl";
+import "../styles/transition.css";
+import "../styles/photoswipe.css";
+import "../styles/expressive-code.css";
+import "../styles/glow.css";
 
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import SEOEnhanced from "@components/SEOEnhanced.astro";
@@ -114,7 +128,7 @@ const bannerOffset =
 ---
 
 <!DOCTYPE html>
-<html lang={siteLang} class="bg-[var(--page-bg)] transition text-[14px] md:text-[16px]"
+<html lang={siteLang} class="bg-[var(--page-bg)] transition text-[14px] md:text-[16px] text-[var(--deep-text)]"
 	  data-overlayscrollbars-initialize
 >
 	<head>
@@ -285,6 +299,15 @@ const bannerOffset =
 					}
 			}
 
+			// CRT overlay: default ON in dark mode, OFF in light; honor explicit localStorage pref.
+			// Class lives on <html> (same as `dark`) because this runs in <head> before <body> exists.
+			(function applyCrt() {
+				const crtPref = localStorage.getItem('crt');
+				const isDark = document.documentElement.classList.contains('dark');
+				const crtOn = crtPref === null ? isDark : crtPref === 'on';
+				if (crtOn) document.documentElement.classList.add('crt-on');
+			})();
+
 
 			// calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
 			let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100));
@@ -307,6 +330,15 @@ const bannerOffset =
 		  data-overlayscrollbars-initialize
 	>
 		<ConfigCarrier></ConfigCarrier>
+
+		{/* CRT overlay — toggleable via body.crt-on (Footer button). Sits outside Swup's main container so it survives navigation. */}
+		<div class="crt-overlay" aria-hidden="true">
+			<div class="crt-overlay__scanlines"></div>
+			<div class="crt-overlay__roll"></div>
+			<div class="crt-overlay__vignette"></div>
+			<div class="crt-overlay__flash"></div>
+		</div>
+
 		<slot />
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
@@ -466,6 +498,24 @@ function loadTheme() {
 	setTheme(theme)
 }
 
+/* CRT overlay toggle — button rendered in Footer. Class lives on <html>. */
+function setupCrtToggle() {
+	const btn = document.getElementById('crt-toggle') as HTMLButtonElement | null;
+	if (!btn || btn.dataset.crtBound === '1') return;
+	btn.dataset.crtBound = '1';
+	btn.addEventListener('click', () => {
+		const html = document.documentElement;
+		const turningOn = !html.classList.contains('crt-on');
+		if (turningOn) {
+			html.classList.add('crt-on', 'crt-just-on');
+			setTimeout(() => html.classList.remove('crt-just-on'), 500);
+		} else {
+			html.classList.remove('crt-on');
+		}
+		localStorage.setItem('crt', turningOn ? 'on' : 'off');
+	});
+}
+
 
 function initCustomScrollbar() {
 	const bodyElement = document.querySelector('body');
@@ -564,6 +614,7 @@ async function initMermaid() {
 function init() {
 	// disableAnimation()()		// TODO
 	loadTheme();
+	setupCrtToggle();
 	initCustomScrollbar();
 	showBanner();
 	initMermaid();
@@ -603,6 +654,7 @@ const setup = () => {
 		}
 	})
 	window.swup.hooks.on('content:replace', refreshDomRefs)
+	window.swup.hooks.on('content:replace', setupCrtToggle)
 	window.swup.hooks.on('content:replace', initCustomScrollbar)
 	window.swup.hooks.on('content:replace', initMermaid)
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
