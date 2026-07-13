@@ -7,6 +7,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Roboto", "sans-serif", ...defaultTheme.fontFamily.sans],
+        mono: ["'Maple Mono'", "'JetBrains Mono'", ...defaultTheme.fontFamily.mono],
+        heading: ["'Maple Mono'", "'JetBrains Mono'", ...defaultTheme.fontFamily.mono],
       },
     },
   },

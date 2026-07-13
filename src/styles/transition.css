@@ -51,3 +51,27 @@ html.is-animating .transition-swup-fade {
 #post-container :nth-child(5) { animation-delay: calc(var(--content-delay) + 250ms) }
 #post-container :nth-child(6) { animation-delay: calc(var(--content-delay) + 325ms) }
 
+/* Staggered neon card-grid entrance (crow cardFadeIn / gridSlideIn) */
+@keyframes cardFadeIn {
+    0%   { opacity: 0; transform: translateY(0.75rem); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.post-card-enter {
+    opacity: 0;
+    animation: cardFadeIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+/* stagger the first 12 cards in a grid (covers a paginated page) */
+.post-card-enter:nth-child(1)  { animation-delay: calc(var(--content-delay) + 40ms); }
+.post-card-enter:nth-child(2)  { animation-delay: calc(var(--content-delay) + 90ms); }
+.post-card-enter:nth-child(3)  { animation-delay: calc(var(--content-delay) + 140ms); }
+.post-card-enter:nth-child(4)  { animation-delay: calc(var(--content-delay) + 190ms); }
+.post-card-enter:nth-child(5)  { animation-delay: calc(var(--content-delay) + 240ms); }
+.post-card-enter:nth-child(6)  { animation-delay: calc(var(--content-delay) + 290ms); }
+.post-card-enter:nth-child(7)  { animation-delay: calc(var(--content-delay) + 340ms); }
+.post-card-enter:nth-child(8)  { animation-delay: calc(var(--content-delay) + 390ms); }
+.post-card-enter:nth-child(n+9) { animation-delay: calc(var(--content-delay) + 440ms); }
+
+@media (prefers-reduced-motion: reduce) {
+    .post-card-enter { animation: none; opacity: 1; }
+}
+

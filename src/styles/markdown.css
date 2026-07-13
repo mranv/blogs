@@ -16,6 +16,9 @@
     }
 
     h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        letter-spacing: -0.01em;
+
         .anchor {
             @apply transition -m-0.5 ml-[0.2ch] p-0.5 select-none opacity-0 no-underline !important;
 
@@ -25,6 +28,7 @@
         }
 
         &:hover {
+            text-shadow: 0 0 12px color-mix(in srgb, var(--neon-amber) 35%, transparent);
             .anchor {
                 @apply opacity-100 !important;
             }
@@ -65,7 +69,7 @@
     code {
         @apply bg-[var(--inline-code-bg)] text-[var(--inline-code-color)] px-1 py-0.5 rounded-md overflow-hidden;
 
-        font-family: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+        font-family: var(--font-mono);
         &:before {
             content:none;
         }
@@ -118,6 +122,13 @@
         @apply my-4;
         ::selection {
             @apply bg-[var(--codeblock-selection)];
+        }
+        .frame {
+            transition: box-shadow 0.3s ease;
+        }
+        .frame:hover {
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--neon-amber) 22%, transparent),
+                        0 10px 30px -10px color-mix(in srgb, var(--neon-amber) 45%, transparent);
         }
     }
 

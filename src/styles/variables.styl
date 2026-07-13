@@ -9,13 +9,17 @@ rainbow-light = linear-gradient(to right, oklch(0.80 0.10 0), oklch(0.80 0.10 30
 rainbow-dark = linear-gradient(to right, oklch(0.70 0.10 0), oklch(0.70 0.10 30), oklch(0.70 0.10 60), oklch(0.70 0.10 90), oklch(0.70 0.10 120), oklch(0.70 0.10 150), oklch(0.70 0.10 180), oklch(0.70 0.10 210), oklch(0.70 0.10 240), oklch(0.70 0.10 270), oklch(0.70 0.10 300), oklch(0.70 0.10 330), oklch(0.70 0.10 360))
 
 :root
-  --radius-large 0.5rem
+  --radius-large 0.75rem
   --content-delay 150ms
   --font-sans "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
-  --font-mono "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+  --font-mono "'Maple Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
   --font-serif "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif"
+  /* heading/UI font = Maple Mono (crow vibe); body prose keeps --font-sans */
+  --font-heading "'Maple Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
 
-/* An util to define variables that vary with light and dark mode */
+/* An util to define variables that vary with light and dark mode.
+   Each value is a [light, dark] pair. Light = Rosé-Pine-Dawn-on-warm-cream,
+   dark = crow.rip warm-plum. */
 define(vars)
   :root
     for key, value in vars
@@ -26,50 +30,58 @@ define(vars)
         {key}: value[1]
 
 define({
-  --primary: oklch(0.6171 0.1375 39.0427) oklch(0.6724 0.1308 38.7559)
-  --page-bg: oklch(0.9818 0.0054 95.0986) oklch(0.2679 0.0036 106.6427)
-  --card-bg: white oklch(0.2213 0.0038 106.7070)
+  /* ---- Primary accent (amber/gold glow signature) ---- */
+  --primary: #d97a1f #ea9d34
+  --title-active: #d97a1f #ea9d34
 
-  --btn-content: oklch(0.3438 0.0269 95.7226) oklch(0.8074 0.0142 93.0137)
+  /* ---- Surfaces ---- */
+  --page-bg: #faf4ed #362b31           /* RP-Dawn cream / crow warm plum */
+  --card-bg: #fffaf3 #3d3239           /* floating card, slightly lifted */
+  --card-border: #e3dad0 #4a3e44
+  --deep-text: #4a3f38 #fdfbd4         /* body text color */
 
-  --btn-regular-bg: oklch(0.9245 0.0138 92.9892) oklch(0.2130 0.0078 95.4245)
-  --btn-regular-bg-hover: oklch(0.9341 0.0153 90.2390) oklch(0.3618 0.0101 106.8928)
-  --btn-regular-bg-active: oklch(0.8847 0.0069 97.3627) oklch(0.4336 0.0113 100.2195)
+  /* ---- Button content + regular button surfaces ---- */
+  --btn-content: #5c5248 #fdfbd4
 
-  --btn-plain-bg-hover: oklch(0.9245 0.0138 92.9892) oklch(0.2130 0.0078 95.4245)
-  --btn-plain-bg-active: oklch(0.9341 0.0153 90.2390) oklch(0.3618 0.0101 106.8928)
+  --btn-regular-bg: #efe6da #2C2328
+  --btn-regular-bg-hover: #e6dacb #4a3e44
+  --btn-regular-bg-active: #dccfbd #564650
 
-  --btn-card-bg-hover: oklch(0.9245 0.0138 92.9892) oklch(0.2130 0.0078 95.4245)
-  --btn-card-bg-active: oklch(0.9341 0.0153 90.2390) oklch(0.3618 0.0101 106.8928)
+  --btn-plain-bg-hover: #efe6da #4a3e44
+  --btn-plain-bg-active: #e6dacb #564650
+
+  --btn-card-bg-hover: #efe6da #4a3e44
+  --btn-card-bg-active: #e6dacb #564650
 
   --enter-btn-bg: var(--btn-regular-bg)
   --enter-btn-bg-hover: var(--btn-regular-bg-hover)
   --enter-btn-bg-active: var(--btn-regular-bg-active)
 
-  --deep-text: oklch(0.3438 0.0269 95.7226)
+  /* ---- Dividers / meta ---- */
+  --line-divider: #d8cfc2 #4a3e44
+  --line-color: #d8cfc2 #4a3e44
+  --meta-divider: #c9bfb0 #564650
 
-  --title-active: oklch(0.6171 0.1375 39.0427)
+  /* ---- Inline code + selection ---- */
+  --inline-code-bg: #efe6da #2C2328
+  --inline-code-color: #b65a1e #ea9d34
+  --selection-bg: #f0d9b0 #564650
+  --codeblock-selection: #dccfbd #564650
 
-  --line-divider: oklch(0.8847 0.0069 97.3627) oklch(0.3618 0.0101 106.8928)
+  /* ---- Code block surfaces ---- */
+  --codeblock-bg: #f0ebe4 #241c20
+  --codeblock-topbar-bg: #e8e2da #2C2328
+  --license-block-bg: black(0.03) #241c20
 
-  --line-color: oklch(0.8847 0.0069 97.3627) oklch(0.3618 0.0101 106.8928)
-  --meta-divider: oklch(0.8847 0.0069 97.3627) oklch(0.3618 0.0101 106.8928)
+  /* ---- Links ---- */
+  --link-underline: #c9bfb0 #564650
+  --link-hover: #d97a1f #ea9d34
+  --link-active: #b65a1e #f0b050
 
-  --inline-code-bg: var(--btn-regular-bg)
-  --inline-code-color: var(--btn-content)
-  --selection-bg: oklch(0.9341 0.0153 90.2390) oklch(0.4336 0.0113 100.2195)
-  --codeblock-selection: oklch(0.4336 0.0113 100.2195)
-  --codeblock-bg: oklch(0.2679 0.0036 106.6427) oklch(0.2679 0.0036 106.6427)
-  --codeblock-topbar-bg: oklch(0.2213 0.0038 106.7070) oklch(0.2213 0.0038 106.7070)
+  /* ---- Floating glass panels ---- */
+  --float-panel-bg: rgba(255,250,243,0.82) rgba(28,20,24,0.78)
 
-  --license-block-bg: black(0.03) var(--codeblock-bg)
-
-  --link-underline: oklch(0.9341 0.0153 90.2390) oklch(0.4336 0.0113 100.2195)
-  --link-hover: oklch(0.9245 0.0138 92.9892) oklch(0.4336 0.0113 100.2195)
-  --link-active: oklch(0.9341 0.0153 90.2390) oklch(0.3618 0.0101 106.8928)
-
-  --float-panel-bg: white oklch(0.2679 0.0036 106.6427)
-
+  /* ---- Scrollbars ---- */
   --scrollbar-bg-light: black(0.4)
   --scrollbar-bg-hover-light: black(0.5)
   --scrollbar-bg-active-light: black(0.6)
@@ -87,15 +99,44 @@ define({
   --display-light-icon: 1 0
   --display-dark-icon: 0 1
 
-  --admonitions-color-tip: oklch(0.55 0.15 145) oklch(0.65 0.15 145)
-  --admonitions-color-note: oklch(0.55 0.12 250) oklch(0.65 0.12 250)
-  --admonitions-color-important: oklch(0.55 0.15 300) oklch(0.65 0.15 300)
-  --admonitions-color-warning: oklch(0.65 0.15 80) oklch(0.70 0.15 80)
-  --admonitions-color-caution: oklch(0.55 0.20 25) oklch(0.65 0.22 25)
+  /* ---- Admonitions (crow-tinted) ---- */
+  --admonitions-color-tip: #467a5e #37d99e
+  --admonitions-color-note: #3b6ea5 #9ccfd8
+  --admonitions-color-important: #7a5a8c #c4a7e7
+  --admonitions-color-warning: #b88a2e #ea9d34
+  --admonitions-color-caution: #b04a3a #fd5e3a
 
-  --toc-badge-bg: oklch(0.9245 0.0138 92.9892) var(--btn-regular-bg)
-  --toc-btn-hover: oklch(0.9341 0.0153 90.2390) oklch(0.2130 0.0078 95.4245)
-  --toc-btn-active: oklch(0.9341 0.0153 90.2390) oklch(0.2130 0.0078 95.4245)
+  /* ---- TOC ---- */
+  --toc-badge-bg: #efe6da #2C2328
+  --toc-btn-hover: #e6dacb #4a3e44
+  --toc-btn-active: #e6dacb #4a3e44
   --toc-width: calc((100vw - var(--page-width)) / 2 - 1rem)
-  --toc-item-active: oklch(0.6171 0.1375 39.0427) oklch(0.3618 0.0101 106.8928)
+  --toc-item-active: #d97a1f #ea9d34
+
+  /* ---- NEON GLOW TOKENS (new) ---- */
+  --neon-amber: #d97a1f #ea9d34
+  --neon-cyan: #3b8ea5 #9ccfd8
+  --neon-purple: #907aa9 #c4a7e7
+  --neon-pink: #d685af #ebbcba
+  --neon-orange: #e8843b #ffb86c
+  --glow-color: var(--neon-amber)
+
+  /* ---- crow-compatible color aliases (used by glow.css + CRT toggle) ---- */
+  --color-bg-primary: #faf4ed #362b31
+  --color-bg-secondary: #fffaf3 #3d3239
+  --color-bg-muted: #e3dad0 #4a3e44
+  --color-text-primary: #4a3f38 #fdfbd4
+  --color-text-muted: #6b5f54 #beae94
+  --color-red: #c85a50 #fd5e3a
+  --color-yellow: #b88a2e #ea9d34
+  --color-green: #467a5e #37d99e
+  --color-blue: #3b6ea5 #3e8fb0
+  --color-purple: #907aa9 #c4a7e7
+
+  /* ---- GLASS (frosted panels) ---- */
+  --glass-bg: rgba(255,250,243,0.80) rgba(28,20,24,0.72)
+  --glass-border: rgba(74,62,68,0.14) rgba(253,251,212,0.12)
+
+  /* ---- CRT power-on flash color ---- */
+  --crt-flash-bg: #fffaf3 #fdfbd4
 })

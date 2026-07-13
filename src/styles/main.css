@@ -2,13 +2,25 @@
 
 @layer components {
     .card-base {
-        @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg)] transition;
+        @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg)] transition border border-[var(--card-border)];
     }
     h1, h2, h3, h4, h5, h6, p, a, span, li, ul, ol, blockquote, code, pre, table, th, td, strong {
         @apply transition;
     }
     .card-shadow {
-        @apply drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]
+        filter: drop-shadow(0 2px 10px color-mix(in srgb, var(--neon-amber) 14%, transparent));
+    }
+    /* Composite neon card treatment — apply to PostCard etc. */
+    .card-glow {
+        border: 1px solid color-mix(in srgb, var(--neon-amber) 22%, var(--card-border));
+        transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+    .card-glow:hover,
+    .card-glow:focus-within {
+        border-color: color-mix(in srgb, var(--neon-amber) 55%, var(--card-border));
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--neon-amber) 18%, transparent),
+                    0 8px 30px -8px color-mix(in srgb, var(--neon-amber) 55%, transparent);
+        transform: translateY(-3px);
     }
     .expand-animation {
         @apply relative before:ease-out before:transition active:bg-none hover:before:bg-[var(--btn-plain-bg-hover)] active:before:bg-[var(--btn-plain-bg-active)] z-0
@@ -21,7 +33,11 @@
         @apply transition rounded-md p-1.5 -m-1.5 expand-animation;
     }
     .float-panel {
-        @apply top-[5.25rem] rounded-[var(--radius-large)] overflow-hidden bg-[var(--float-panel-bg)] transition shadow-xl dark:shadow-none
+        @apply top-[5.25rem] rounded-[var(--radius-large)] overflow-hidden transition shadow-xl dark:shadow-none;
+        background: var(--float-panel-bg);
+        backdrop-filter: blur(12px) saturate(125%);
+        -webkit-backdrop-filter: blur(12px) saturate(125%);
+        border: 1px solid var(--glass-border);
     }
     .float-panel-closed {
         @apply -translate-y-1 opacity-0 pointer-events-none

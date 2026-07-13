@@ -1,0 +1,319 @@
+/*
+ * glow.css — neon-glow + CRT + micro-animation system
+ * Inspired by crow.rip's real computed design system, adapted for Fuwari.
+ * Tokens (color values) live in variables.styl; this file references them via var(--…).
+ * All motion is gated behind prefers-reduced-motion at the bottom.
+ */
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+
+/* Card "life" — subtle drop-shadow oscillation (crow cardWiggle) */
+@keyframes cardWiggle {
+    0%   { filter: drop-shadow(0 2px 8px rgba(0,0,0,0.30)); }
+    25%  { filter: drop-shadow(1px 2px 8px rgba(0,0,0,0.30)); }
+    50%  { filter: drop-shadow(0 2px 8px rgba(0,0,0,0.30)); }
+    75%  { filter: drop-shadow(-1px 2px 8px rgba(0,0,0,0.30)); }
+    100% { filter: drop-shadow(0 2px 8px rgba(0,0,0,0.30)); }
+}
+
+/* Rainbow badge — shifts the 300% gradient across (crow badge-glow) */
+@keyframes badgeGlow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Staggered card entrance */
+@keyframes cardFadeIn {
+    0%   { opacity: 0; transform: translateY(0.75rem); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes gridSlideIn {
+    0%   { opacity: 0; transform: translateY(1rem) scale(0.985); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Holographic sheen sweep across a surface (crow holoShineSweep / prismaticShine) */
+@keyframes holoShineSweep {
+    0%   { transform: translateX(-130%) skewX(-18deg); opacity: 0; }
+    20%  { opacity: 0.55; }
+    60%  { opacity: 0.55; }
+    100% { transform: translateX(130%) skewX(-18deg); opacity: 0; }
+}
+
+/* Prismatic palette pulse for nav/icon hover (crow paletteGlow) */
+@keyframes paletteGlow {
+    0%   { filter: drop-shadow(0 0 4px var(--neon-amber)); }
+    25%  { filter: drop-shadow(0 0 5px var(--neon-cyan)); }
+    50%  { filter: drop-shadow(0 0 5px var(--neon-purple)); }
+    75%  { filter: drop-shadow(0 0 5px var(--neon-pink)); }
+    100% { filter: drop-shadow(0 0 4px var(--neon-amber)); }
+}
+
+/* Idle title bob (crow logoBob) */
+@keyframes logoBob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-1px); }
+}
+
+/* Form feedback */
+@keyframes pulseSuccess {
+    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-green, #37d99e) 55%, transparent); }
+    70%  { box-shadow: 0 0 0 8px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+}
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-4px); }
+    40%, 80% { transform: translateX(4px); }
+}
+
+/* Focus ring glow */
+@keyframes focusRingGlow {
+    0%, 100% { box-shadow: 0 0 0 2px color-mix(in srgb, var(--neon-amber) 45%, transparent); }
+    50%      { box-shadow: 0 0 0 3px color-mix(in srgb, var(--neon-amber) 70%, transparent); }
+}
+
+/* --- CRT --- */
+@keyframes crtRoll {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(400%); }
+}
+@keyframes crtFlicker {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.94; }
+    100% { opacity: 1; }
+}
+@keyframes crtPowerOn {
+    0%   { opacity: 0; }
+    8%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* ============================================================
+   NEON GLOW UTILITIES
+   ============================================================ */
+
+/* Glowing text — amber primary, cyan secondary */
+.neon-text {
+    text-shadow: 0 0 6px color-mix(in srgb, var(--neon-amber) 55%, transparent),
+                 0 0 14px color-mix(in srgb, var(--neon-amber) 30%, transparent);
+}
+.neon-text-cyan {
+    text-shadow: 0 0 6px color-mix(in srgb, var(--neon-cyan) 55%, transparent),
+                 0 0 14px color-mix(in srgb, var(--neon-cyan) 30%, transparent);
+}
+
+/* Glowing border + soft outer halo */
+.neon-border {
+    border: 1px solid color-mix(in srgb, var(--neon-amber) 35%, var(--card-border, transparent));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--neon-amber) 12%, transparent),
+                0 0 14px -4px color-mix(in srgb, var(--neon-amber) 45%, transparent),
+                inset 0 0 18px -10px color-mix(in srgb, var(--neon-amber) 35%, transparent);
+}
+/* Intensify on hover / focus-within */
+.neon-hover {
+    transition: box-shadow 0.28s ease, border-color 0.28s ease, transform 0.28s ease;
+}
+.neon-hover:hover,
+.neon-hover:focus-within {
+    border-color: color-mix(in srgb, var(--neon-amber) 60%, var(--card-border, transparent));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--neon-amber) 25%, transparent),
+                0 0 22px -3px color-mix(in srgb, var(--neon-amber) 65%, transparent),
+                inset 0 0 22px -10px color-mix(in srgb, var(--neon-amber) 50%, transparent);
+    transform: translateY(-2px);
+}
+
+/* Frosted-glass panel (crow glass) */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.20);
+}
+
+/* Rainbow animated badge — apply to small pill tags/badges; activates on hover/focus */
+.rainbow-badge {
+    position: relative;
+    transition: color 0.2s ease, box-shadow 0.3s ease;
+}
+.rainbow-badge:hover,
+.rainbow-badge:focus-visible {
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--neon-orange) 92%, white 0%),
+        var(--neon-cyan),
+        var(--neon-purple),
+        var(--neon-pink)) 0% 0% / 300% 300%;
+    color: #0a0a0a;
+    animation: badgeGlow 3s ease infinite;
+    box-shadow: 0 0 12px -2px color-mix(in srgb, var(--neon-amber) 60%, transparent);
+}
+
+/* Card "life" wiggle (subtle, slow) */
+.card-wiggle {
+    animation: cardWiggle 6s ease-in-out infinite;
+}
+
+/* Holographic sheen sweep — needs parent overflow:hidden + a child::after using this */
+.holo-sweep {
+    position: relative;
+    overflow: hidden;
+}
+.holo-sweep::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        color-mix(in srgb, white 18%, transparent),
+        transparent);
+    transform: translateX(-130%) skewX(-18deg);
+    opacity: 0;
+    pointer-events: none;
+}
+.holo-sweep:hover::after,
+.holo-sweep:focus-within::after {
+    animation: holoShineSweep 0.9s ease;
+}
+
+/* Active-state neon (TOC active item, nav active) */
+.neon-active {
+    color: var(--neon-amber);
+    text-shadow: 0 0 8px color-mix(in srgb, var(--neon-amber) 60%, transparent);
+}
+
+/* ============================================================
+   CRT OVERLAY
+   Toggle via body.crt-on. Markup injected in Layout.astro.
+   Sits outside Swup's main container so it survives navigation.
+   ============================================================ */
+
+.crt-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+.crt-on .crt-overlay {
+    opacity: 1;
+}
+
+/* Horizontal scanlines, multiplied over content */
+.crt-overlay__scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0) 0px,
+        rgba(0,0,0,0) 2px,
+        rgba(0,0,0,0.22) 3px,
+        rgba(0,0,0,0.22) 4px
+    );
+    mix-blend-mode: multiply;
+}
+.crt-on .crt-overlay__scanlines {
+    animation: crtFlicker 0.12s steps(3) infinite;
+}
+
+/* Slow rolling light band (CRT refresh roll) */
+.crt-overlay__roll {
+    position: absolute;
+    left: 0; right: 0;
+    height: 28%;
+    background: linear-gradient(
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.035) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    animation: crtRoll 7s linear infinite;
+}
+
+/* Vignette + subtle purple corner haze */
+.crt-overlay__vignette {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at center,
+            transparent 0%,
+            transparent 60%,
+            rgba(0,0,0,0.22) 88%,
+            rgba(0,0,0,0.48) 100%),
+        radial-gradient(ellipse 120% 120% at 50% 50%,
+            transparent 72%,
+            color-mix(in srgb, var(--neon-purple, #c4a7e7) 16%, transparent) 115%);
+}
+
+/* Power-on flash — plays once when CRT is turned on */
+.crt-overlay__flash {
+    position: absolute;
+    inset: 0;
+    background: var(--crt-flash-bg, #fdfbd4);
+    opacity: 0;
+    pointer-events: none;
+}
+.crt-just-on .crt-overlay__flash {
+    animation: crtPowerOn 0.5s ease-out 1;
+}
+
+/* CRT toggle button state dot (rendered in Footer) */
+.crt-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.15rem 0.65rem;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+.crt-toggle:hover {
+    border-color: color-mix(in srgb, var(--neon-amber) 50%, var(--card-border));
+}
+.crt-toggle__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--card-border);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+.crt-on .crt-toggle__dot {
+    background: var(--color-green, #37d99e);
+    box-shadow: 0 0 8px var(--color-green, #37d99e), 0 0 2px #fff;
+}
+.crt-on .crt-toggle {
+    color: var(--color-text-primary, #fdfbd4);
+    border-color: color-mix(in srgb, var(--color-green, #37d99e) 45%, var(--color-bg-muted, #4a3e44));
+}
+
+/* ============================================================
+   REDUCED MOTION — keep static glow, kill all oscillation
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .card-wiggle,
+    .rainbow-badge:hover,
+    .rainbow-badge:focus-visible,
+    .holo-sweep::after,
+    .holo-sweep:hover::after,
+    .holo-sweep:focus-within::after,
+    .crt-overlay__roll,
+    .crt-on .crt-overlay__scanlines {
+        animation: none !important;
+    }
+    .neon-hover:hover,
+    .neon-hover:focus-within {
+        transform: none;
+    }
+    /* rainbow badge hover still recolors (no animation), stays legible */
+}
