@@ -24,10 +24,10 @@ let links: NavBarLink[] = navBarConfig.links.map(
     <div class:list={[
         className,
         "card-base !overflow-visible max-w-[var(--page-width)] h-[4.5rem] !rounded-t-none mx-auto flex items-center justify-between px-2 sm:px-4 relative"]}>
-        <a href={url('/')} class="btn-plain scale-animation rounded-lg h-11 min-h-[44px] px-2 sm:px-5 font-bold active:scale-95 min-w-0 shrink overflow-hidden">
+        <a href={url('/')} class="btn-plain scale-animation group rounded-lg h-11 min-h-[44px] px-2 sm:px-5 font-bold active:scale-95 min-w-0 shrink overflow-hidden">
             <div class="flex flex-row text-[var(--primary)] items-center text-sm sm:text-md min-w-0">
-                <Icon name="material-symbols:home-outline-rounded" class="text-[1.75rem] mb-1 mr-1 sm:mr-2 shrink-0" />
-                <span class="truncate">{siteConfig.title}</span>
+                <Icon name="material-symbols:home-outline-rounded" class="text-[1.75rem] mb-1 mr-1 sm:mr-2 shrink-0 transition group-hover:[filter:drop-shadow(0_0_6px_var(--neon-amber))]" />
+                <span class="truncate font-heading transition-[text-shadow] duration-200 group-hover:[text-shadow:0_0_10px_var(--neon-amber)]">{siteConfig.title}</span>
             </div>
         </a>
         <div class="hidden lg:flex shrink-0">
