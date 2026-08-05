@@ -6,17 +6,14 @@ compatibility_flags = ["nodejs_compat"]
 # ── Email Sending binding ──────────────────────────────────────
 # Cloudflare Email Service: sends from newsletter@techanv.com
 # SPF/DKIM/MX already configured on techanv.com via Email Routing
+# 
+# NOTE: allowed_destination_addresses is omitted to allow sending to
+# ANY confirmed subscriber. During the Email Service beta, Cloudflare
+# may require addresses to be verified in the dashboard first.
+# If sends fail for new addresses, add them here or verify in dashboard.
 
 [[send_email]]
 name = "SEND_EMAIL"
-allowed_destination_addresses = [
-  "iamanubhavgain@gmail.com",
-  "broti.works@gmail.com",
-  "jalajdungarpur@gmail.com",
-  "prembhavsar658@gmail.com",
-  "shriyavyas.works@gmail.com",
-  "techanvconsulting@gmail.com"
-]
 
 # ── Secret: shared auth key between Pages Functions and this Worker ──
 # Set via: wrangler secret put EMAIL_WORKER_SECRET

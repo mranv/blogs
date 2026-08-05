@@ -1,7 +1,6 @@
-// v3: ADMIN_SECRET via pages secret
 // Cloudflare Pages Function — /api/admin/broadcast
 // Admin-only: Send branded newsletter to all confirmed subscribers
-// Protected by ADMIN_SECRET env var
+// Protected by ADMIN_SECRET via Authorization header
 
 import { broadcastEmail } from '../../_lib/email-templates';
 
@@ -52,14 +51,25 @@ function json(data: object, status = 200): Response {
   });
 }
 
+// Extract admin secret from Authorization header (preferred) or query param (fallback)
+function getAdminSecret(context: { request: Request; env: Env }): string | null {
+  // Check Authorization header first (secure)
+  const authHeader = context.request.headers.get('Authorization');
+  if (authHeader?.startsWith('Bearer ')) {
+    return authHeader.slice(7);
+  }
+  // Fallback to query param for backwards compatibility
+  const url = new URL(context.request.url);
+  return url.searchParams.get('secret');
+}
+
 // ── POST: Send broadcast ────────────────────────────────────────
 export const onRequestPost: PagesFunction<Env> = async (context) => {
   const env = context.env;
-  const url = new URL(context.request.url);
 
-  // Verify admin secret
-  const secret = url.searchParams.get('secret');
-  if (!secret || secret !== env.ADMIN_SECRET) {
+  // Verify admin secret (header preferred, query fallback)
+  const secret = getAdminSecret(context);
+  if (!secret || !env.ADMIN_SECRET || secret !== env.ADMIN_SECRET) {
     return json({ ok: false, error: 'Unauthorized' }, 401);
   }
 
@@ -118,9 +128,9 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
 // ── GET: Subscriber stats ───────────────────────────────────────
 export const onRequestGet: PagesFunction<Env> = async (context) => {
-  const env = context.env as Record<string, any>;
-  const url = new URL(context.request.url);
-  const secret = url.searchParams.get('secret');
+  const env = context.env;
+
+  const secret = getAdminSecret(context);
   if (!secret || !env.ADMIN_SECRET || secret !== env.ADMIN_SECRET) {
     return json({ ok: false, error: 'Unauthorized' }, 401);
   }
@@ -129,7 +139,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     return json({ ok: false, error: 'KV not configured' }, 500);
   }
 
-  const kv = env.SUBSCRIBERS_KV as KVNamespace;
+  const kv = env.SUBSCRIBERS_KV;
 
   // Count confirmed subscribers
   let confirmed = 0;

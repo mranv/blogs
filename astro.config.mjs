@@ -1,4 +1,3 @@
-import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
@@ -107,6 +106,14 @@ export default defineConfig({
 		}),
 		expressiveCode({
 			themes: [expressiveCodeConfig.theme],
+			langs: [
+				'dockerfile', 'pycon', 'html+jinja', 'html+django', 'jq',
+				'vcl', 'svg', 'powershell', 'javascript', 'bash', 'python',
+				'text', 'json', 'yaml', 'rust', 'go', 'typescript', 'tsx',
+				'shell', 'shellscript', 'toml', 'ini', 'diff', 'sql',
+				'c', 'cpp', 'java', 'ruby', 'php', 'swift', 'kotlin',
+				'hcl', 'groovy', 'makefile', 'docker', 'graphql', 'protobuf',
+			],
 			plugins: [
 				pluginCollapsibleSections(),
 				pluginLineNumbers(),
@@ -226,21 +233,21 @@ export default defineConfig({
 					}
 					warn(warning);
 				},
-			output: {
-				manualChunks: (id) => {
-					if (id.includes('node_modules')) {
-						// Split vendor into meaningful chunks instead of one 3.2MB blob
-						if (id.includes('shiki') || id.includes('expressive-code')) return 'vendor-code';
-						if (id.includes('katex') || id.includes('remark') || id.includes('rehype') || id.includes('unified') || id.includes('micromark') || id.includes('mdast')) return 'vendor-markdown';
-						if (id.includes('mermaid')) return 'vendor-mermaid';
-						if (id.includes('svelte') || id.includes('swup')) return 'vendor-ui';
-						if (id.includes('iconify') || id.includes('material-symbols')) return 'vendor-icons';
-						return 'vendor';
-					}
+				output: {
+					manualChunks: (id) => {
+						if (id.includes('node_modules')) {
+							// Split vendor into meaningful chunks instead of one 3.2MB blob
+							if (id.includes('shiki') || id.includes('expressive-code')) return 'vendor-code';
+							if (id.includes('katex') || id.includes('remark') || id.includes('rehype') || id.includes('unified') || id.includes('micromark') || id.includes('mdast')) return 'vendor-markdown';
+							if (id.includes('mermaid')) return 'vendor-mermaid';
+							if (id.includes('svelte') || id.includes('swup')) return 'vendor-ui';
+							if (id.includes('iconify') || id.includes('material-symbols')) return 'vendor-icons';
+							return 'vendor';
+						}
+					},
 				},
 			},
-				maxParallelFileOps: 5,
-			},
+			maxParallelFileOps: 5,
 		},
 		ssr: {
 			noExternal: ['sharp'],
