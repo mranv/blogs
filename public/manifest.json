@@ -1,0 +1,18 @@
+{
+  "name": "Anubhav Gain — Security Engineering Blog",
+  "short_name": "Anubhav Gain",
+  "description": "Security Software Engineer · XDR/OXDR Architect · Rust & eBPF · 222+ Research Citations",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#d97706",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["technology", "security", "programming"],
+  "lang": "en"
+}

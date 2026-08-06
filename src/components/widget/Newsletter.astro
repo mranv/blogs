@@ -141,7 +141,11 @@ function initNewsletter() {
     emailInput!.focus();
   }
 
-  function showSuccess() {
+  function showSuccess(message?: string) {
+    if (message) {
+      const successText = successEl!.querySelector('span');
+      if (successText) successText.textContent = message;
+    }
     successEl!.classList.remove("hidden");
     errorEl!.classList.add("hidden");
     form!.classList.add("hidden");
@@ -176,7 +180,7 @@ function initNewsletter() {
         body: JSON.stringify({ email, ref: window.location.pathname }),
       });
       const data = await response.json();
-      if (data.ok) showSuccess();
+      if (data.ok) showSuccess(data.message);
       else showError(data.error || "Something went wrong. Please try again.");
     } catch {
       showError("Network error. Please check your connection.");

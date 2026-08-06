@@ -93,7 +93,7 @@ if (image && typeof image === 'string' && image.trim() !== '') {
 		socialImage = `${Astro.site}${image.startsWith('/') ? image.slice(1) : image}`;
 	}
 } else {
-	socialImage = `${Astro.site}${profileConfig.avatar.startsWith('/') ? profileConfig.avatar.slice(1) : profileConfig.avatar}`;
+	socialImage = `${Astro.site}${(profileConfig.avatar || "").startsWith('/') ? (profileConfig.avatar || "").slice(1) : (profileConfig.avatar || "")}`;
 }
 
 // compute article times if provided
@@ -230,7 +230,7 @@ const bannerOffset =
 				"name": "Professional Institution"
 			},
 			"url": Astro.site?.toString() || "https://mranv.pages.dev",
-			"image": `${Astro.site}${profileConfig.avatar.startsWith('/') ? profileConfig.avatar.slice(1) : profileConfig.avatar}`,
+			"image": `${Astro.site}${(profileConfig.avatar || "").startsWith('/') ? (profileConfig.avatar || "").slice(1) : (profileConfig.avatar || "")}`,
 			"sameAs": [
 				"https://github.com/mranv",
 				"https://github.com/anubhavg-icpl",

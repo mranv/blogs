@@ -38,7 +38,7 @@ const togglePanel = () => {
 
 const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
 	const panel = document.getElementById("search-panel");
-	if (!panel || !isDesktop) return;
+	if (!panel) return;
 
 	if (show) {
 		panel.classList.remove("float-panel-closed");
@@ -87,6 +87,13 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 };
 
 onMount(() => {
+	// Read ?search= URL param (OpenSearch / SearchAction integration)
+	const urlParams = new URLSearchParams(window.location.search);
+	const searchQuery = urlParams.get("search");
+	if (searchQuery) {
+		keywordDesktop = searchQuery;
+	}
+
 	const initializeSearch = () => {
 		initialized = true;
 		pagefindLoaded =

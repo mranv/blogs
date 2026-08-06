@@ -1,0 +1,236 @@
+---
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+const pageTitle = "Admin Dashboard — Newsletter Management";
+const pageDescription = "Manage newsletter subscribers, view stats, and send broadcasts.";
+---
+<MainGridLayout title={pageTitle} description={pageDescription}>
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-6 md:px-9 py-6 relative w-full">
+            <div id="admin-not-authed" class="onload-animation">
+                <h2 class="text-2xl font-bold mb-4 text-90">🔐 Admin Access</h2>
+                <p class="text-75 mb-4">Enter your admin secret to access the newsletter dashboard.</p>
+                <div class="flex gap-2 max-w-md">
+                    <input
+                        id="admin-secret-input"
+                        type="password"
+                        placeholder="Admin secret"
+                        class="flex-1 min-w-0 rounded-lg px-3 py-2 text-sm bg-[var(--btn-regular-bg)] text-90 border border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition"
+                    />
+                    <button id="admin-login-btn" class="btn-regular rounded-lg px-4 py-2 text-sm font-semibold whitespace-nowrap active:scale-95 transition">
+                        Unlock
+                    </button>
+                </div>
+                <p id="admin-login-error" class="hidden mt-2 text-sm text-[oklch(0.55_0.20_25)]"></p>
+            </div>
+
+            <div id="admin-dashboard" class="hidden">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-90">📧 Newsletter Dashboard</h2>
+                    <button id="admin-logout" class="btn-regular rounded-lg px-3 py-1.5 text-xs font-medium active:scale-95 transition">Logout</button>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                    <div class="card-base p-4 text-center">
+                        <div class="text-3xl font-bold text-[var(--primary)]" id="stat-confirmed">—</div>
+                        <div class="text-sm text-50 mt-1">Confirmed Subscribers</div>
+                    </div>
+                    <div class="card-base p-4 text-center">
+                        <div class="text-3xl font-bold text-90" id="stat-pending">—</div>
+                        <div class="text-sm text-50 mt-1">Pending Confirmation</div>
+                    </div>
+                    <div class="card-base p-4 text-center">
+                        <div class="text-3xl font-bold text-90" id="stat-total">—</div>
+                        <div class="text-sm text-50 mt-1">Total Subscribers</div>
+                    </div>
+                </div>
+
+                <!-- Broadcast form -->
+                <div class="card-base p-5 mb-4">
+                    <h3 class="font-bold text-lg text-90 mb-3">📤 Send Broadcast</h3>
+                    <form id="broadcast-form" class="flex flex-col gap-3">
+                        <input
+                            id="broadcast-subject"
+                            type="text"
+                            placeholder="Email subject line"
+                            required
+                            class="w-full rounded-lg px-3 py-2 text-sm bg-[var(--btn-regular-bg)] text-90 border border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition"
+                        />
+                        <textarea
+                            id="broadcast-body"
+                            placeholder="HTML or plain text content of the newsletter..."
+                            rows="6"
+                            class="w-full rounded-lg px-3 py-2 text-sm bg-[var(--btn-regular-bg)] text-90 border border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition resize-y"
+                        ></textarea>
+                        <div class="text-xs text-30">
+                            Optionally, fill in post details instead of writing HTML:
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <input
+                                id="broadcast-post-title"
+                                type="text"
+                                placeholder="Post title (optional)"
+                                class="rounded-lg px-3 py-2 text-sm bg-[var(--btn-regular-bg)] text-90 border border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition"
+                            />
+                            <input
+                                id="broadcast-post-url"
+                                type="url"
+                                placeholder="Post URL (optional)"
+                                class="rounded-lg px-3 py-2 text-sm bg-[var(--btn-regular-bg)] text-90 border border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition"
+                            />
+                            <input
+                                id="broadcast-post-excerpt"
+                                type="text"
+                                placeholder="Post excerpt (optional)"
+                                class="rounded-lg px-3 py-2 text-sm bg-[var(--btn-regular-bg)] text-90 border border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            id="broadcast-send-btn"
+                            class="btn-regular rounded-lg px-5 py-2.5 text-sm font-bold whitespace-nowrap active:scale-95 transition self-start"
+                        >
+                            Send Broadcast
+                        </button>
+                    </form>
+                    <div id="broadcast-result" class="hidden mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</MainGridLayout>
+
+<script>
+function initAdmin() {
+    const notAuthed = document.getElementById("admin-not-authed");
+    const dashboard = document.getElementById("admin-dashboard");
+    const loginBtn = document.getElementById("admin-login-btn");
+    const secretInput = document.getElementById("admin-secret-input") as HTMLInputElement | null;
+    const loginError = document.getElementById("admin-login-error");
+    const logoutBtn = document.getElementById("admin-logout");
+
+    if (!notAuthed || !dashboard || !loginBtn || !secretInput) return;
+
+    // Check sessionStorage for existing secret
+    let adminSecret = sessionStorage.getItem("admin_secret") || "";
+
+    function getHeaders(): HeadersInit {
+        return { "Authorization": `Bearer ${adminSecret}`, "Content-Type": "application/json" };
+    }
+
+    async function tryAuth(secret: string): Promise<boolean> {
+        try {
+            const res = await fetch(`/api/admin/broadcast`, { headers: getHeaders() });
+            if (res.ok) {
+                adminSecret = secret;
+                sessionStorage.setItem("admin_secret", secret);
+                notAuthed!.classList.add("hidden");
+                dashboard!.classList.remove("hidden");
+                await loadStats();
+                return true;
+            }
+            return false;
+        } catch {
+            return false;
+        }
+    }
+
+    // Auto-login if secret in sessionStorage
+    if (adminSecret) {
+        tryAuth(adminSecret);
+    }
+
+    loginBtn.addEventListener("click", async () => {
+        const secret = secretInput!.value.trim();
+        if (!secret) return;
+        loginBtn!.textContent = "Checking...";
+        loginBtn!.setAttribute("disabled", "");
+        const ok = await tryAuth(secret);
+        loginBtn!.textContent = "Unlock";
+        loginBtn!.removeAttribute("disabled");
+        if (!ok) {
+            loginError!.textContent = "Invalid admin secret. Please try again.";
+            loginError!.classList.remove("hidden");
+            secretInput!.value = "";
+        } else {
+            loginError!.classList.add("hidden");
+        }
+    });
+
+    secretInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") loginBtn!.click();
+    });
+
+    logoutBtn?.addEventListener("click", () => {
+        sessionStorage.removeItem("admin_secret");
+        adminSecret = "";
+        dashboard!.classList.add("hidden");
+        notAuthed!.classList.remove("hidden");
+        secretInput!.value = "";
+    });
+
+    async function loadStats() {
+        const statConfirmed = document.getElementById("stat-confirmed");
+        const statPending = document.getElementById("stat-pending");
+        const statTotal = document.getElementById("stat-total");
+        try {
+            const res = await fetch(`/api/admin/broadcast`, { headers: getHeaders() });
+            const data = await res.json();
+            if (data.ok) {
+                statConfirmed!.textContent = String(data.confirmed);
+                statPending!.textContent = String(data.pending);
+                statTotal!.textContent = String(data.confirmed + data.pending);
+            }
+        } catch {
+            statConfirmed!.textContent = "Error";
+        }
+    }
+
+    // Broadcast form
+    const broadcastForm = document.getElementById("broadcast-form") as HTMLFormElement | null;
+    const sendBtn = document.getElementById("broadcast-send-btn");
+    const resultEl = document.getElementById("broadcast-result");
+
+    broadcastForm?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const subject = (document.getElementById("broadcast-subject") as HTMLInputElement)?.value.trim();
+        const htmlBody = (document.getElementById("broadcast-body") as HTMLTextAreaElement)?.value.trim();
+        const postTitle = (document.getElementById("broadcast-post-title") as HTMLInputElement)?.value.trim();
+        const postUrl = (document.getElementById("broadcast-post-url") as HTMLInputElement)?.value.trim();
+        const postExcerpt = (document.getElementById("broadcast-post-excerpt") as HTMLInputElement)?.value.trim();
+
+        if (!subject || (!htmlBody && !postUrl)) {
+            resultEl!.innerHTML = `<div class="text-sm text-[oklch(0.55_0.20_25)]">Missing subject or content.</div>`;
+            resultEl!.classList.remove("hidden");
+            return;
+        }
+
+        sendBtn!.textContent = "Sending...";
+        sendBtn!.setAttribute("disabled", "");
+        resultEl!.classList.add("hidden");
+
+        try {
+            const res = await fetch(`/api/admin/broadcast`, {
+                method: "POST",
+                headers: getHeaders(),
+                body: JSON.stringify({ subject, htmlBody, postTitle, postUrl, postExcerpt }),
+            });
+            const data = await res.json();
+            if (data.ok) {
+                resultEl!.innerHTML = `<div class="text-sm text-[var(--primary)] font-semibold">✅ Broadcast sent to ${data.sent} subscribers${data.failed ? ` (${data.failed} failed)` : ""}.</div>`;
+            } else {
+                resultEl!.innerHTML = `<div class="text-sm text-[oklch(0.55_0.20_25)]">❌ ${data.error || "Failed to send broadcast."}</div>`;
+            }
+        } catch {
+            resultEl!.innerHTML = `<div class="text-sm text-[oklch(0.55_0.20_25)]">❌ Network error. Please try again.</div>`;
+        }
+        resultEl!.classList.remove("hidden");
+        sendBtn!.textContent = "Send Broadcast";
+        sendBtn!.removeAttribute("disabled");
+    });
+}
+
+initAdmin();
+document.addEventListener("swup:content:replace", initAdmin);
+</script>

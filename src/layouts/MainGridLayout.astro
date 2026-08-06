@@ -2,6 +2,7 @@
 import BackToTop from "@components/control/BackToTop.astro";
 import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
+import Newsletter from "@components/widget/Newsletter.astro";
 import SideBar from "@components/widget/SideBar.astro";
 import type { MarkdownHeading } from "astro";
 import { Icon } from "astro-icon/components";
@@ -95,6 +96,10 @@ const mainPanelTop = siteConfig.banner.enable
                     <!-- the overflow-hidden here prevent long text break the layout-->
                     <!-- make id different from windows.swup global property -->
                     <slot></slot>
+                    <!-- Mobile-only Newsletter widget (sidebar is hidden < lg) -->
+                    <div class="block lg:hidden mt-4 onload-animation">
+                        <Newsletter />
+                    </div>
                     <div class="footer col-span-1 onload-animation hidden lg:block">
                         <Footer></Footer>
                     </div>
