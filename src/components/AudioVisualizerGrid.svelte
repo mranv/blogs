@@ -29,7 +29,20 @@
   let time = 0;
 
   function hexToRgb(hex: string): [number, number, number] {
-    const h = hex.replace('#', '');
+    let h = hex.replace('#', '');
+    if (h.length === 3) {
+      h = h.split('').map(c => c + c).join('');
+    }
+    if (h.length !== 6 || !/^[0-9a-fA-F]{6}$/.test(h)) {
+      const ctx = document.createElement('canvas').getContext('2d');
+      if (ctx) {
+        ctx.fillStyle = hex;
+        const computed = ctx.fillStyle;
+        if (computed && computed.startsWith('#')) {
+          h = computed.slice(1);
+        } else return [31, 213, 249];
+      } else return [31, 213, 249];
+    }
     return [
       parseInt(h.substring(0, 2), 16),
       parseInt(h.substring(2, 4), 16),

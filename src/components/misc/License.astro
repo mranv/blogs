@@ -16,7 +16,8 @@ const { title, pubDate } = Astro.props;
 const className = Astro.props.class;
 const profileConf = profileConfig;
 const licenseConf = licenseConfig;
-const postUrl = decodeURIComponent(Astro.url.toString());
+// Use pathname only (strip query params that change URL meaning when decoded)
+const postUrl = decodeURIComponent(Astro.url.origin + Astro.url.pathname);
 ---
 <div class={`relative transition overflow-hidden bg-[var(--license-block-bg)] py-5 px-6 ${className}`}>
     <div class="transition font-bold text-black/75 dark:text-white/75">
