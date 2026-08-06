@@ -69,7 +69,7 @@
   }
 
   function draw() {
-    if (!canvas) return;
+    if (!canvas || !canvas.isConnected) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 

@@ -199,13 +199,20 @@ class TableOfContents extends HTMLElement {
     connectedCallback() {
         // wait for the onload animation to finish, which makes the `getBoundingClientRect` return correct values
         const element = document.querySelector('.prose');
+        let initialized = false;
+        const doInit = () => {
+            if (initialized) return;
+            initialized = true;
+            this.init();
+        };
         if (element) {
-            element.addEventListener('animationend', () => {
-                this.init();
-            }, { once: true });
+            element.addEventListener('animationend', doInit, { once: true });
         } else {
             console.debug('Animation element not found');
         }
+        // Fallback: init after delay in case animation never fires
+        // (e.g. prefers-reduced-motion, missing .prose, or Swup timing edge case)
+        setTimeout(doInit, 1000);
     };
 
     init() {

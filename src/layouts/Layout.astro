@@ -470,7 +470,6 @@ function setClickOutsideToClose(panel: string, ignores: string[]) {
 		panelDom.classList.add("float-panel-closed");
 	});
 }
-setClickOutsideToClose("display-setting", ["display-setting", "display-settings-switch"])
 setClickOutsideToClose("nav-menu-panel", ["nav-menu-panel", "nav-menu-switch"])
 setClickOutsideToClose("search-panel", ["search-panel", "search-bar", "search-switch"])
 
@@ -715,7 +714,15 @@ function scrollFunction() {
 		}
 	}
 }
-window.onscroll = scrollFunction
+let scrollTicking = false;
+window.addEventListener('scroll', () => {
+	if (scrollTicking) return;
+	scrollTicking = true;
+	requestAnimationFrame(() => {
+		scrollFunction();
+		scrollTicking = false;
+	});
+}, { passive: true });
 
 window.onresize = () => {
 	// calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
@@ -765,9 +772,9 @@ function createPhotoSwipe() {
 }
 
 const setup = () => {
-	if (!lightbox) {
-		createPhotoSwipe()
-	}
+	// Create PhotoSwipe on every page view (including initial load).
+	// The content:replace hook destroys the previous instance before replacement,
+	// so we always start fresh — no need for a separate initial creation.
 	window.swup.hooks.on("page:view", () => {
 		createPhotoSwipe()
 	})

@@ -12,7 +12,7 @@ interface Env {
 export const onRequestGet: PagesFunction<Env> = async (context) => {
   const env = context.env;
   const url = new URL(context.request.url);
-  const email = url.searchParams.get('email');
+  const email = url.searchParams.get('email')?.trim().toLowerCase();
   const siteUrl = env.SITE_URL || 'https://mranv.pages.dev';
 
   if (!email) {

@@ -92,8 +92,8 @@ export default {
       //   html: string (optional)
       //   text: string (optional)
       const message: any = {
-        from: body.from.email || body.from,
-        to: body.to[0]?.email || body.to[0],
+        from: typeof body.from === 'string' ? body.from : (body.from.email || ''),
+        to: typeof body.to[0] === 'string' ? body.to[0] : (body.to[0]?.email || ''),
         subject: body.subject,
       };
       if (body.html) message.html = body.html;

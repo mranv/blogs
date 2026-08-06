@@ -1,22 +1,26 @@
 export function formatDateToYYYYMMDD(date: Date | string): string {
 	// Handle null, undefined, or empty values
 	if (!date) {
-		return new Date().toISOString().substring(0, 10);
+		return '';
 	}
-	
+
+	let d: Date;
 	if (typeof date === 'string') {
-		const parsed = new Date(date);
-		// Check if the parsed date is valid
-		if (isNaN(parsed.getTime())) {
-			return new Date().toISOString().substring(0, 10);
-		}
-		return parsed.toISOString().substring(0, 10);
+		d = new Date(date);
+	} else {
+		d = date;
 	}
-	
+
 	// Check if the date object is valid
-	if (isNaN(date.getTime())) {
-		return new Date().toISOString().substring(0, 10);
+	if (isNaN(d.getTime())) {
+		return '';
 	}
-	
-	return date.toISOString().substring(0, 10);
+
+	// Use local date components, NOT toISOString() (which uses UTC and shifts dates
+	// for posts authored in timezones like IST). This ensures the displayed date
+	// matches what the author wrote in frontmatter.
+	const y = d.getFullYear();
+	const m = String(d.getMonth() + 1).padStart(2, '0');
+	const day = String(d.getDate()).padStart(2, '0');
+	return `${y}-${m}-${day}`;
 }
