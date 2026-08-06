@@ -1,6 +1,7 @@
 // Cloudflare Pages Function — /api/confirm
 // Double opt-in: verifies token, marks subscriber as confirmed, sends welcome email
 
+import { sendEmail } from '../_lib/email';
 import { tokenExpiredPage, confirmSuccessPage, welcomeEmail } from '../_lib/email-templates';
 
 interface Env {
@@ -8,27 +9,6 @@ interface Env {
   EMAIL_WORKER_URL?: string;
   EMAIL_WORKER_SECRET?: string;
   SITE_URL?: string;
-}
-
-async function sendViaWorker(env: Env, to: string, subject: string, html: string, text: string): Promise<void> {
-  const workerUrl = env.EMAIL_WORKER_URL;
-  const secret = env.EMAIL_WORKER_SECRET;
-  if (!workerUrl || !secret) return;
-  try {
-    await fetch(`${workerUrl}/send`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${secret}` },
-      body: JSON.stringify({
-        to: [{ email: to }],
-        from: { email: 'newsletter@techanv.com' },
-        subject,
-        html,
-        text,
-      }),
-    });
-  } catch (err) {
-    console.error('[confirm] Welcome email error:', err);
-  }
 }
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
@@ -76,7 +56,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
 
   // Send welcome email (fire-and-forget, don't block the page)
   const welcome = welcomeEmail(email);
-  context.waitUntil(sendViaWorker(env, email, welcome.subject, welcome.html, welcome.text));
+  context.waitUntil(sendEmail({ to: email, subject: welcome.subject, html: welcome.html, text: welcome.text }, env));
 
   return new Response(confirmSuccessPage(siteUrl), {
     status: 200,

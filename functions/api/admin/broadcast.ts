@@ -2,6 +2,7 @@
 // Admin-only: Send branded newsletter to all confirmed subscribers
 // Protected by ADMIN_SECRET via Authorization header
 
+import { sendEmail } from '../../_lib/email';
 import { broadcastEmail } from '../../_lib/email-templates';
 
 interface Env {
@@ -18,30 +19,6 @@ interface BroadcastRequest {
   postUrl?: string;
   postTitle?: string;
   postExcerpt?: string;
-}
-
-async function sendViaWorker(env: Env, to: string, subject: string, html: string, text: string): Promise<boolean> {
-  const workerUrl = env.EMAIL_WORKER_URL;
-  const secret = env.EMAIL_WORKER_SECRET;
-  if (!workerUrl || !secret) return false;
-  try {
-    const res = await fetch(`${workerUrl}/send`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${secret}` },
-      body: JSON.stringify({
-        to: [{ email: to }],
-        from: { email: 'newsletter@techanv.com' },
-        subject,
-        html,
-        text,
-      }),
-    });
-    const data = await res.json() as any;
-    return data.ok === true;
-  } catch (err) {
-    console.error(`[broadcast] Failed for ${to}:`, err);
-    return false;
-  }
 }
 
 function json(data: object, status = 200): Response {
@@ -118,8 +95,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       body.postUrl,
       body.postExcerpt,
     );
-    const ok = await sendViaWorker(env, email, tpl.subject, tpl.html, tpl.text);
-    if (ok) sent++;
+    const result = await sendEmail({ to: email, subject: tpl.subject, html: tpl.html, text: tpl.text }, env);
+    if (result.ok) sent++;
     else failed++;
   }
 
