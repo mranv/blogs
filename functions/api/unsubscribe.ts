@@ -2,11 +2,13 @@
 // One-click unsubscribe (CAN-SPAM / GDPR compliant)
 // List-Unsubscribe header is handled by the email Worker
 
-import { unsubscribedPage } from '../_lib/email-templates';
+import { signEmail, timingSafeCompare } from '../_lib/email';
+import { invalidUnsubscribePage, unsubscribedPage } from '../_lib/email-templates';
 
 interface Env {
   SUBSCRIBERS_KV?: KVNamespace;
   SITE_URL?: string;
+  EMAIL_WORKER_SECRET?: string;
 }
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
@@ -19,8 +21,17 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     return new Response('Missing email parameter.', { status: 400 });
   }
 
-  if (!env.SUBSCRIBERS_KV) {
+  if (!env.SUBSCRIBERS_KV || !env.EMAIL_WORKER_SECRET) {
     return new Response('Subscription system not configured.', { status: 500 });
+  }
+
+  // Signed links only (see unsubscribeUrl in _lib/email.ts); links sent before signing existed get the invalid page.
+  const sig = url.searchParams.get('sig') || '';
+  if (!timingSafeCompare(sig, await signEmail(email, env.EMAIL_WORKER_SECRET))) {
+    return new Response(invalidUnsubscribePage(siteUrl), {
+      status: 403,
+      headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
+    });
   }
 
   // Remove all subscriber data

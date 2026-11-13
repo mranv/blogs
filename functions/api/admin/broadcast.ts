@@ -2,7 +2,7 @@
 // Admin-only: Send branded newsletter to all confirmed subscribers
 // Protected by ADMIN_SECRET via Authorization header
 
-import { sendEmail } from '../../_lib/email';
+import { sendEmail, timingSafeCompare, unsubscribeUrl } from '../../_lib/email';
 import { broadcastEmail } from '../../_lib/email-templates';
 
 interface Env {
@@ -10,6 +10,7 @@ interface Env {
   EMAIL_WORKER_URL?: string;
   EMAIL_WORKER_SECRET?: string;
   ADMIN_SECRET?: string;
+  SITE_URL?: string;
 }
 
 interface BroadcastRequest {
@@ -28,24 +29,10 @@ function json(data: object, status = 200): Response {
   });
 }
 
-// Constant-time string comparison to prevent timing attacks
-function timingSafeCompare(a: string, b: string): boolean {
-  if (a.length !== b.length) return false;
-  let result = 0;
-  for (let i = 0; i < a.length; i++) {
-    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
-  }
-  return result === 0;
-}
-
-// Extract admin secret from Authorization header (preferred) or query param (fallback)
+// Header only: a ?secret= query param would leak the secret into logs and browser history.
 function getAdminSecret(request: Request): string | null {
   const authHeader = request.headers.get('Authorization');
-  if (authHeader?.startsWith('Bearer ')) {
-    return authHeader.slice(7);
-  }
-  const url = new URL(request.url);
-  return url.searchParams.get('secret');
+  return authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null;
 }
 
 function verifySecret(request: Request, env: Env): boolean {
@@ -94,6 +81,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     return json({ ok: true, sent: 0, message: 'No confirmed subscribers.' });
   }
 
+  const siteUrl = env.SITE_URL || 'https://mranv.pages.dev';
+
   // Batch send with bounded concurrency (chunks of 10) to avoid timeouts
   const BATCH_SIZE = 10;
   let sent = 0;
@@ -104,7 +93,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     const results = await Promise.allSettled(
       batch.map(async (email) => {
         const tpl = broadcastEmail(
-          email,
+          await unsubscribeUrl(siteUrl, email, env.EMAIL_WORKER_SECRET || ''),
           body.subject,
           body.htmlBody || '',
           body.textBody || '',
@@ -148,15 +137,16 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     cursor = list.list_complete ? undefined : list.cursor;
   } while (cursor);
 
+  // Every confirmed:<email> also has a sub:<email>, so pending = sub count - confirmed count.
+  // Counting keys avoids one KV read per subscriber.
+  let total = 0;
   cursor = undefined;
   do {
-    const list = await kv.list({ prefix: 'sub:', cursor, limit: 100 });
-    for (const key of list.keys) {
-      const data = await kv.get(key.name, { type: 'json' }) as any;
-      if (data && !data.confirmed) pending++;
-    }
+    const list = await kv.list({ prefix: 'sub:', cursor, limit: 1000 });
+    total += list.keys.length;
     cursor = list.list_complete ? undefined : list.cursor;
   } while (cursor);
+  pending = Math.max(0, total - confirmed);
 
   return json({ ok: true, confirmed, pending });
 };

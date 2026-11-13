@@ -165,8 +165,8 @@ function divider(): string {
 }
 
 // ── Unsubscribe footer block (CAN-SPAM / GDPR compliant) ────────
-function unsubscribeBlock(email: string): string {
-  const unsubUrl = `${BRAND.siteUrl}/api/unsubscribe?email=${encodeURIComponent(email)}`;
+// unsubUrl must be a signed link from unsubscribeUrl() in ./email.ts
+function unsubscribeBlock(unsubUrl: string): string {
   return `
   <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top:16px;">
     <tr>
@@ -229,7 +229,7 @@ ${BRAND.consultingUrl}`;
 // ══════════════════════════════════════════════════════════════════
 //  TEMPLATE 2: Welcome Email (sent after confirmation)
 // ══════════════════════════════════════════════════════════════════
-export function welcomeEmail(email: string): { html: string; text: string; subject: string } {
+export function welcomeEmail(unsubUrl: string): { html: string; text: string; subject: string } {
   const html = baseHtml(`
     <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:${C.textPrimary};font-family:'Nunito',sans-serif;letter-spacing:-0.02em;">
       You're In! Welcome Aboard.
@@ -275,7 +275,7 @@ export function welcomeEmail(email: string): { html: string; text: string; subje
       </tr>
     </table>
 
-    ${unsubscribeBlock(email)}
+    ${unsubscribeBlock(unsubUrl)}
   `, 'Welcome to TechAnV Blog!');
 
   const text = `TechAnV Blog — Welcome Aboard!
@@ -296,7 +296,7 @@ About ${BRAND.fullName}
 From open-source security with OpenArmor to intelligent AI platforms — we build technology that empowers businesses.
 ${BRAND.consultingUrl}
 
-Unsubscribe: ${BRAND.siteUrl}/api/unsubscribe?email=${encodeURIComponent(email)}`;
+Unsubscribe: ${unsubUrl}`;
 
   return { html, text, subject: 'Welcome to TechAnV Blog! 🎉' };
 }
@@ -306,7 +306,7 @@ Unsubscribe: ${BRAND.siteUrl}/api/unsubscribe?email=${encodeURIComponent(email)}
 //  TEMPLATE 3: Broadcast / New Post Notification
 // ══════════════════════════════════════════════════════════════════
 export function broadcastEmail(
-  email: string,
+  unsubUrl: string,
   subject: string,
   htmlBody: string,
   textBody: string,
@@ -338,7 +338,7 @@ export function broadcastEmail(
 
   const html = baseHtml(`
     ${content}
-    ${unsubscribeBlock(email)}
+    ${unsubscribeBlock(unsubUrl)}
   `, subject);
 
   const text = `${subject}
@@ -350,7 +350,7 @@ ${postUrl ? 'Read more: ' + postUrl + '\n\n' : ''}
 ${BRAND.fullName}
 ${BRAND.consultingUrl}
 
-Unsubscribe: ${BRAND.siteUrl}/api/unsubscribe?email=${encodeURIComponent(email)}`;
+Unsubscribe: ${unsubUrl}`;
 
   return { html, text, subject };
 }
@@ -439,6 +439,17 @@ export function confirmSuccessPage(siteUrl: string): string {
   );
 }
 
+export function invalidUnsubscribePage(siteUrl: string): string {
+  return brandedPage(
+    'Invalid Link',
+    '⚠️',
+    'Invalid Unsubscribe Link',
+    `<p>This unsubscribe link is invalid or outdated.</p><p class="muted">Use the link in a recent email, or reply to it and we'll remove you.</p>`,
+    '← Back to Blog',
+    siteUrl,
+  );
+}
+
 export function tokenExpiredPage(siteUrl: string): string {
   return brandedPage(
     'Link Expired',
@@ -451,11 +462,13 @@ export function tokenExpiredPage(siteUrl: string): string {
 }
 
 export function unsubscribedPage(siteUrl: string, email: string): string {
+  // email comes from the query string: escape it so the page can't be used for reflected XSS
+  const safe = email.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
   return brandedPage(
     'Unsubscribed',
     '👋',
     'Unsubscribed',
-    `<p><strong style="color:#1a1410;">${email}</strong> has been removed from our newsletter.</p><p class="muted">You can always resubscribe from the blog sidebar.</p>`,
+    `<p><strong style="color:#1a1410;">${safe}</strong> has been removed from our newsletter.</p><p class="muted">You can always resubscribe from the blog sidebar.</p>`,
     '← Back to Blog',
     siteUrl,
   );

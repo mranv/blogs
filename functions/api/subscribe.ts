@@ -83,7 +83,10 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       if (sub.confirmed) {
         return json({ ok: true, message: "You're already subscribed!" });
       }
-      // Resend confirmation
+      // Resend confirmation, and restart the 7-day expiry on the unconfirmed record
+      await env.SUBSCRIBERS_KV.put(`sub:${email}`, JSON.stringify(sub), { expirationTtl: 7 * 86400 }).catch((e) => {
+        console.error('[subscribe] KV put sub error:', e);
+      });
       const token = generateToken();
       await env.SUBSCRIBERS_KV.put(`token:${token}`, email, { expirationTtl: 86400 }).catch((e) => {
         console.error('[subscribe] KV put token error:', e);
@@ -93,14 +96,15 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       return json({ ok: true, message: 'Confirmation email resent! Check your inbox.' });
     }
 
-    // New subscriber
+    // New subscriber. Unconfirmed records expire after 7 days so abandoned signups clean themselves up;
+    // /api/confirm rewrites the record without a TTL.
     const token = generateToken();
     await env.SUBSCRIBERS_KV.put(`sub:${email}`, JSON.stringify({
       email,
       ref,
       subscribedAt: new Date().toISOString(),
       confirmed: false,
-    })).catch((e) => {
+    }), { expirationTtl: 7 * 86400 }).catch((e) => {
       console.error('[subscribe] KV put sub error:', e);
       throw e;
     });

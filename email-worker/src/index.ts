@@ -23,6 +23,14 @@ interface Env {
   EMAIL_WORKER_SECRET: string;
 }
 
+// Constant-time so response timing doesn't leak how much of the secret matched.
+function timingSafeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  let result = 0;
+  for (let i = 0; i < a.length; i++) result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return result === 0;
+}
+
 function json(data: object, status = 200): Response {
   return new Response(JSON.stringify(data), {
     status,
@@ -60,7 +68,7 @@ export default {
     // Auth check
     const authHeader = request.headers.get('Authorization');
     const token = authHeader?.replace('Bearer ', '');
-    if (!token || token !== env.EMAIL_WORKER_SECRET) {
+    if (!token || !timingSafeCompare(token, env.EMAIL_WORKER_SECRET || '')) {
       return json({ ok: false, error: 'Unauthorized.' }, 401);
     }
 

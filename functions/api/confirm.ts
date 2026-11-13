@@ -1,7 +1,7 @@
 // Cloudflare Pages Function — /api/confirm
 // Double opt-in: verifies token, marks subscriber as confirmed, sends welcome email
 
-import { sendEmail } from '../_lib/email';
+import { sendEmail, unsubscribeUrl } from '../_lib/email';
 import { tokenExpiredPage, confirmSuccessPage, welcomeEmail } from '../_lib/email-templates';
 
 interface Env {
@@ -55,7 +55,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
   }));
 
   // Send welcome email (fire-and-forget, don't block the page)
-  const welcome = welcomeEmail(email);
+  const welcome = welcomeEmail(await unsubscribeUrl(siteUrl, email, env.EMAIL_WORKER_SECRET || ''));
   context.waitUntil(sendEmail({ to: email, subject: welcome.subject, html: welcome.html, text: welcome.text }, env));
 
   return new Response(confirmSuccessPage(siteUrl), {
