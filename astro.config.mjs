@@ -1,4 +1,5 @@
 import sitemap from "@astrojs/sitemap";
+import react from "@astrojs/react";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
@@ -157,6 +158,8 @@ export default defineConfig({
 			}
 		}),
         svelte(),
+		// React only hosts the stateful effects in src/components/fx/*.tsx (Skiper UI / Animata ports).
+		react({ include: ["**/components/fx/**/*.tsx"] }),
 		sitemap({
 			// Drop root pagination pages (/2/, /3/ …) — low-value duplicates that
 			// waste crawl budget. Real content stays discoverable via links.
@@ -236,6 +239,8 @@ export default defineConfig({
 				output: {
 					manualChunks: (id) => {
 						if (id.includes('node_modules')) {
+							// Before the generic checks: 'motion' and 'react' would otherwise fall into 'vendor'.
+							if (/node_modules\/(\.pnpm\/)?(react|react-dom|scheduler|motion|motion-dom|motion-utils|framer-motion)[@/]/.test(id)) return 'vendor-react';
 							// Split vendor into meaningful chunks instead of one 3.2MB blob
 							if (id.includes('shiki') || id.includes('expressive-code')) return 'vendor-code';
 							if (id.includes('katex') || id.includes('remark') || id.includes('rehype') || id.includes('unified') || id.includes('micromark') || id.includes('mdast')) return 'vendor-markdown';

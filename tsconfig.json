@@ -4,6 +4,8 @@
     "baseUrl": ".",
     "strictNullChecks": true,
     "allowJs": false,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "declaration": true,
     "plugins": [
       {

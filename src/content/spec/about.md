@@ -1,125 +1,66 @@
-# Anubhav Gain
+# Hey, I'm Anubhav.
 
-**Security Software Engineer** · XDR/OXDR Architect · Rust & eBPF Specialist
+I build security software. Mostly the low-level kind: kernel drivers, eBPF probes, Rust agents that sit on a machine and watch what it does. I'm based in Ahmedabad, Gujarat, India.
 
-Security software engineer and entrepreneur building production-grade security infrastructure at the intersection of systems programming, kernel engineering, and cloud-native architecture. Based in **Ahmedabad, Gujarat, India**.
+By day I'm a Security Software Engineer at Infopercept, working on the Invinsense XDR/OXDR platform. I also run my own shop, TechAnv Consulting, which I started in December 2022. Somewhere along the way my research picked up 222+ citations, which still surprises me a little.
 
-Currently: **Security Software Engineer at Infopercept Consulting** (Invinsense XDR/OXDR platform) and **CEO & Founder at TechAnv Consulting**. 222+ academic research citations.
+## What I actually do
 
----
+At Infopercept I'm one of the core engineers on Invinsense. That means XDR deployments for single and multi-tenant setups, custom OpenSearch Dashboard plugins for threat visualization, and cross-platform Rust agents that collect telemetry and catch bad things. Plus the unglamorous parts: DevSecOps pipelines, Docker and Kubernetes, SIEM rules, ML anomaly detection, OCSF schemas.
 
-## Experience
+At TechAnv I help companies with XDR architecture, Windows kernel driver development, Kubernetes platform engineering, cloud security on AWS and Azure, and zero-trust networks. If that sounds like your problem, say hi at [techanv.com](https://www.techanv.com).
 
-### Security Software Engineer — Infopercept Consulting
-*Ahmedabad, Gujarat · July 2024 – Present*
+I'm also a DevSecOps Engineer at Atcults (security testing pipelines, Terraform, incident response automation, Kubernetes hardening). Before all that I was an IT Specialist at Parul University, wrangling Palo Alto firewalls, Red Hat and Windows servers, AWS, and Endpoint Configuration Manager.
 
-Core platform engineer on the **Invinsense XDR/OXDR** enterprise security platform:
+## Why I build this way
 
-- Single-tenant and multi-tenant XDR deployment architecture
-- Custom OpenSearch Dashboard plugins for threat visualization
-- Cross-platform Rust agents for telemetry collection and detection
-- DevSecOps pipelines with automated security testing and shift-left enforcement
-- Container orchestration with Docker and Kubernetes
-- SIEM rule authoring, ML anomaly detection, OCSF schema integration
+I write Rust wherever I can. My Windows kernel EDR has zero unsafe blocks, and I'd like to keep it that way. Security tooling that crashes the machine it's protecting isn't security tooling.
 
-### CEO & Founder — TechAnv Consulting
-*Vadodara, Gujarat · December 2022 – Present*
+I also don't like tools that make you fight them. If an SDK needs a JVM it shouldn't need, or a VM launcher makes you memorize twenty CLI flags, I'd rather build the one that doesn't.
 
-Enterprise security consulting — XDR/OXDR architecture, Windows kernel driver development, Kubernetes platform engineering, cloud security (AWS, Azure), and zero-trust network design.
+## Things I've made
 
-[techanv.com](https://www.techanv.com) · contact@techanv.com
+- **[Leviathan](https://github.com/anubhavg-icpl/leviathan)**\
+  A Windows kernel EDR/XDR framework in Rust. Ring 0, KMDF, five kernel callbacks, MITRE ATT&CK mapping, ELAM support, zero unsafe blocks.
+- **[Krustron](https://github.com/anubhavg-icpl/krustron)**\
+  An open-source Kubernetes platform. One place for multi-cluster management, CI/CD, observability and RBAC.
+- **[Agni](https://github.com/anubhavg-icpl/agni)**\
+  A terminal UI for Firecracker microVMs. Launch, configure, inspect and tear down without touching a CLI flag.
+- **[opensearch-rust-sdk](https://github.com/Infopercept/opensearch-rust-sdk)**\
+  An async-first, strongly-typed OpenSearch Extensions SDK. No JVM.
+- **[ebpf-file-monitor](https://github.com/mranv/ebpf-file-monitor)**\
+  File monitoring with inotify and eBPF, with timestamped audit logs.
 
-### DevSecOps Engineer — Atcults
-*November 2023 – Present*
+More on the [projects page](/projects/).
 
-Automated security testing pipelines, Terraform IaC, security monitoring and incident response automation, Kubernetes containerization and hardening.
+## What's in my toolbox
 
-### IT Specialist — Parul University
-*November 2022 – October 2023*
+Rust first (safe systems, no-std, kernel mode with windows-drivers-rs), then Go for TUIs, Kubernetes operators and APIs, plus C/C++, Python, Bash and PowerShell.
 
-Palo Alto Networks firewall management, Red Hat Linux and Windows Server administration, AWS infrastructure, Microsoft Endpoint Configuration Manager.
+On the security side: the Windows kernel (Ring 0, KMDF, SSDT/IDT/MSR), EDR/XDR internals, eBPF, MITRE ATT&CK, OCSF, Wazuh and YARA. For infrastructure: Kubernetes, Terraform, Ansible, Docker, AWS, Azure and Palo Alto. For data: OpenSearch (Extensions API, custom analyzers, ingest processors), Elasticsearch, tracing and metrics pipelines.
 
----
+## The paper trail
 
-## Core Projects
+I studied Cyber/Computer Forensics and Counterterrorism at Parul University (B.Tech, 2021–2025). Along the way I picked up:
 
-Brief summaries — full details on the [projects page](/projects).
+- Licentiate in Cybersecurity Management from Charles Sturt University (93/100, High Distinction), 2023
+- Licentiate in Ransomware Techniques from Charles Sturt University, 2023
+- C3SA Premium Edition, 2024
+- IBM Cybersecurity Analyst Professional Certificate, 2023
+- AWS Educate: Getting Started with Security, 2023
+- Open Source Software Development, Linux and Git Specialization, 2023
+- Harvard CS50
+- Cisco Networking Basics and Introduction to Cybersecurity
 
-| Project | Stack | Description |
-|---|---|---|
-| [Leviathan](https://github.com/anubhavg-icpl/leviathan) | Rust · Ring 0 · KMDF | Windows kernel EDR/XDR framework — zero unsafe blocks, 5 kernel callbacks, MITRE ATT&CK mapping, ELAM support |
-| [Krustron](https://github.com/anubhavg-icpl/krustron) | Go · K8s · GitOps | Open-source Kubernetes platform — unified multi-cluster management, CI/CD, observability, RBAC |
-| [Agni](https://github.com/anubhavg-icpl/agni) | Go · Bubble Tea · KVM | Firecracker microVM terminal UI — launch, configure, inspect, teardown without CLI flags |
-| [opensearch-rust-sdk](https://github.com/Infopercept/opensearch-rust-sdk) | Rust · Async | High-performance OpenSearch Extensions SDK — async-first, strongly-typed, no JVM |
-| [ebpf-file-monitor](https://github.com/mranv/ebpf-file-monitor) | Rust · eBPF | File monitoring via inotify API and eBPF with timestamped audit logs |
+I've also done industry engagements with **JPMorgan Chase & Co.** (payment fraud analysis), **PwC** (phishing simulation and information defense), **AIG** (zero-day and ransomware response) and **Clifford Chance** (ICO regulatory compliance and data-leak claims).
 
----
+My research covers EEG-based emotion recognition with LSTM networks, cybersecurity automation, kernel security and defense mechanisms. It's all on [Google Scholar](https://scholar.google.com/citations?user=yhcz3TkAAAAJ&hl=en).
 
-## Technical Stack
+## Say hi
 
-**Systems Programming**
-- Rust (primary — safe systems, no-std, kernel-mode with windows-drivers-rs)
-- Go (TUI, Kubernetes operators, REST APIs)
-- C/C++, Python, Bash, PowerShell
-
-**Security Engineering**
-- Windows kernel (Ring 0, KMDF, SSDT/IDT/MSR, 5 kernel callbacks)
-- EDR/XDR platform development
-- eBPF (Linux observability and security)
-- MITRE ATT&CK, OCSF, Wazuh SIEM, YARA
-
-**Platform & Infrastructure**
-- Kubernetes (multi-cluster, RBAC, GitOps), Terraform, Ansible, Docker
-- AWS (EC2, S3, IAM, CloudWatch), Azure, Palo Alto Networks
-
-**Data & Observability**
-- OpenSearch (Extensions API, custom analyzers, ingest processors)
-- Elasticsearch, distributed tracing, metrics pipelines
-
----
-
-## Education
-
-| Degree / Certification | Institution | Year |
-|---|---|---|
-| B.Tech Cyber/Computer Forensics and Counterterrorism | Parul University | 2021–2025 |
-| Licentiate Cybersecurity Management (93/100 — High Distinction) | Charles Sturt University | 2023 |
-| Licentiate Ransomware Techniques | Charles Sturt University | 2023 |
-| C3SA Premium Edition | — | 2024 |
-| IBM Cybersecurity Analyst Professional Certificate | IBM | 2023 |
-| AWS Educate — Getting Started with Security | AWS | 2023 |
-| Open Source Software Development, Linux and Git Specialization | — | 2023 |
-| Harvard CS50 | Harvard | — |
-| Cisco Networking Basics & Introduction to Cybersecurity | Cisco | — |
-
----
-
-## Industry Engagements
-
-| Organization | Engagement | Focus |
-|---|---|---|
-| **JPMorgan Chase & Co.** | Data Analyst — Fraud Detection | Financial payment fraud analysis, prevention strategy |
-| **PwC** | Cybersecurity | Phishing simulation, integrated information defense |
-| **AIG** | Zero-day Response | Ransomware bypass techniques and mitigation |
-| **Clifford Chance** | ICO Regulatory Compliance | Data leak damages claims, regulatory framework |
-
----
-
-## Research
-
-**222+ citations** on Google Scholar — EEG-based emotion recognition (LSTM networks), cybersecurity automation, kernel security, and defense mechanisms.
-
-[Google Scholar Profile](https://scholar.google.com/citations?user=yhcz3TkAAAAJ&hl=en)
-
----
-
-## Online
-
-- [GitHub (personal)](https://github.com/mranv)
+- [GitHub](https://github.com/mranv)
 - [GitHub (Infopercept)](https://github.com/anubhavg-icpl)
 - [LinkedIn](https://in.linkedin.com/in/anubhavgain)
 - [Email](mailto:contact@techanv.com)
 
----
-
-*Building robust, scalable defenses — one line of Rust at a time.*
+*Building robust, scalable defenses, one line of Rust at a time.*

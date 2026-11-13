@@ -4,8 +4,8 @@
   "description": "Security Software Engineer · XDR/OXDR Architect · Rust & eBPF · 222+ Research Citations",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a1a2e",
-  "theme_color": "#d97706",
+  "background_color": "#0e1014",
+  "theme_color": "#f08a3c",
   "icons": [
     {
       "src": "/favicon.ico",

@@ -9,6 +9,8 @@ rainbow-light = linear-gradient(to right, oklch(0.80 0.10 0), oklch(0.80 0.10 30
 rainbow-dark = linear-gradient(to right, oklch(0.70 0.10 0), oklch(0.70 0.10 30), oklch(0.70 0.10 60), oklch(0.70 0.10 90), oklch(0.70 0.10 120), oklch(0.70 0.10 150), oklch(0.70 0.10 180), oklch(0.70 0.10 210), oklch(0.70 0.10 240), oklch(0.70 0.10 270), oklch(0.70 0.10 300), oklch(0.70 0.10 330), oklch(0.70 0.10 360))
 
 :root
+  /* oklch hue for components that build colours as oklch(L C var(--hue)); 50 = copper */
+  --hue 50
   --radius-large 0.75rem
   --content-delay 150ms
   --font-sans "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
@@ -18,8 +20,9 @@ rainbow-dark = linear-gradient(to right, oklch(0.70 0.10 0), oklch(0.70 0.10 30)
   --font-heading "'Maple Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
 
 /* An util to define variables that vary with light and dark mode.
-   Each value is a [light, dark] pair. Light = Rosé-Pine-Dawn-on-warm-cream,
-   dark = crow.rip warm-plum. */
+   Each value is a [light, dark] pair. Palette "Obsidian Copper" (2026-11-13):
+   cool graphite/ink neutrals + copper accent (matches the copper circuit-butterfly banner)
+   + teal as the secondary glow. Deliberately no cream/terracotta, which read as Claude's look. */
 define(vars)
   :root
     for key, value in vars
@@ -30,58 +33,46 @@ define(vars)
         {key}: value[1]
 
 define({
-  /* ---- Primary accent (amber/gold glow signature) ---- */
-  --primary: #d97a1f #ea9d34
-  --title-active: #d97a1f #ea9d34
-
-  /* ---- Surfaces ---- */
-  --page-bg: #faf4ed #362b31           /* RP-Dawn cream / crow warm plum */
-  --card-bg: #fffaf3 #3d3239           /* floating card, slightly lifted */
-  --card-border: #e3dad0 #4a3e44
-  --deep-text: #4a3f38 #fdfbd4         /* body text color */
+  /* ---- Primary accent (copper glow signature) ---- */
+  --primary: #c2620f #f08a3c
+  --title-active: #a8530b #f5a05c
+  --page-bg: #f4f5f7 #0e1014
+  --card-bg: #ffffff #161a20
+  --card-border: #e2e5ea #252a33
+  --deep-text: #1c2028 #e6e8ec
 
   /* ---- Button content + regular button surfaces ---- */
-  --btn-content: #5c5248 #fdfbd4
+  --btn-content: #3a404b #e6e8ec
 
-  --btn-regular-bg: #efe6da #2C2328
-  --btn-regular-bg-hover: #e6dacb #4a3e44
-  --btn-regular-bg-active: #dccfbd #564650
+  --btn-regular-bg: #eef0f3 #1d222a
+  --btn-regular-bg-hover: #e3e6eb #262c36
+  --btn-regular-bg-active: #d6dae1 #2f3642
 
-  --btn-plain-bg-hover: #efe6da #4a3e44
-  --btn-plain-bg-active: #e6dacb #564650
+  --btn-plain-bg-hover: #eef0f3 #1d222a
+  --btn-plain-bg-active: #e3e6eb #262c36
 
-  --btn-card-bg-hover: #efe6da #4a3e44
-  --btn-card-bg-active: #e6dacb #564650
+  --btn-card-bg-hover: #f1f3f6 #1d222a
+  --btn-card-bg-active: #e3e6eb #262c36
 
   --enter-btn-bg: var(--btn-regular-bg)
   --enter-btn-bg-hover: var(--btn-regular-bg-hover)
   --enter-btn-bg-active: var(--btn-regular-bg-active)
 
   /* ---- Dividers / meta ---- */
-  --line-divider: #d8cfc2 #4a3e44
-  --line-color: #d8cfc2 #4a3e44
-  --meta-divider: #c9bfb0 #564650
-
-  /* ---- Inline code + selection ---- */
-  --inline-code-bg: #efe6da #2C2328
-  --inline-code-color: #b65a1e #ea9d34
-  --selection-bg: #f0d9b0 #564650
-  --codeblock-selection: #dccfbd #564650
-
-  /* ---- Code block surfaces ---- */
-  --codeblock-bg: #f0ebe4 #241c20
-  --codeblock-topbar-bg: #e8e2da #2C2328
-  --license-block-bg: black(0.03) #241c20
-
-  /* ---- Links ---- */
-  --link-underline: #c9bfb0 #564650
-  --link-hover: #d97a1f #ea9d34
-  --link-active: #b65a1e #f0b050
-
-  /* ---- Floating glass panels ---- */
-  --float-panel-bg: rgba(255,250,243,0.82) rgba(28,20,24,0.78)
-
-  /* ---- Scrollbars ---- */
+  --line-divider: #e2e5ea #252a33
+  --line-color: #e2e5ea #252a33
+  --meta-divider: #cdd2d9 #333a45
+  --inline-code-bg: #eef0f3 #1d222a
+  --inline-code-color: #b3540a #f5a05c
+  --selection-bg: #fbd9bd #5a3418
+  --codeblock-selection: #d6dae1 #2f3642
+  --codeblock-bg: #f0f2f5 #0b0d11
+  --codeblock-topbar-bg: #e6e9ee #13161c
+  --license-block-bg: black(0.03) #0b0d11
+  --link-underline: #cdd2d9 #333a45
+  --link-hover: #c2620f #f08a3c
+  --link-active: #a8530b #f5a05c
+  --float-panel-bg: rgba(255,255,255,0.84) rgba(14,16,20,0.80)
   --scrollbar-bg-light: black(0.4)
   --scrollbar-bg-hover-light: black(0.5)
   --scrollbar-bg-active-light: black(0.6)
@@ -100,43 +91,35 @@ define({
   --display-dark-icon: 0 1
 
   /* ---- Admonitions (crow-tinted) ---- */
-  --admonitions-color-tip: #467a5e #37d99e
-  --admonitions-color-note: #3b6ea5 #9ccfd8
-  --admonitions-color-important: #7a5a8c #c4a7e7
-  --admonitions-color-warning: #b88a2e #ea9d34
-  --admonitions-color-caution: #b04a3a #fd5e3a
-
-  /* ---- TOC ---- */
-  --toc-badge-bg: #efe6da #2C2328
-  --toc-btn-hover: #e6dacb #4a3e44
-  --toc-btn-active: #e6dacb #4a3e44
+  --admonitions-color-tip: #1f8a5b #3ddc97
+  --admonitions-color-note: #2563a8 #60a5fa
+  --admonitions-color-important: #6d4fc2 #a78bfa
+  --admonitions-color-warning: #b7791f #f5b942
+  --admonitions-color-caution: #c0392b #f87171
+  --toc-badge-bg: #eef0f3 #1d222a
+  --toc-btn-hover: #e3e6eb #262c36
+  --toc-btn-active: #e3e6eb #262c36
   --toc-width: calc((100vw - var(--page-width)) / 2 - 1rem)
-  --toc-item-active: #d97a1f #ea9d34
-
-  /* ---- NEON GLOW TOKENS (new) ---- */
-  --neon-amber: #d97a1f #ea9d34
-  --neon-cyan: #3b8ea5 #9ccfd8
-  --neon-purple: #907aa9 #c4a7e7
-  --neon-pink: #d685af #ebbcba
-  --neon-orange: #e8843b #ffb86c
+  --toc-item-active: #c2620f #f08a3c
+  --neon-amber: #c2620f #f08a3c
+  --neon-cyan: #0e9fb3 #38d4e8
+  --neon-purple: #6d5bd0 #9b8cff
+  --neon-pink: #c2477a #f472b6
+  --neon-orange: #d9741c #ffa45c
   --glow-color: var(--neon-amber)
 
   /* ---- crow-compatible color aliases (used by glow.css + CRT toggle) ---- */
-  --color-bg-primary: #faf4ed #362b31
-  --color-bg-secondary: #fffaf3 #3d3239
-  --color-bg-muted: #e3dad0 #4a3e44
-  --color-text-primary: #4a3f38 #fdfbd4
-  --color-text-muted: #6b5f54 #beae94
-  --color-red: #c85a50 #fd5e3a
-  --color-yellow: #b88a2e #ea9d34
-  --color-green: #467a5e #37d99e
-  --color-blue: #3b6ea5 #3e8fb0
-  --color-purple: #907aa9 #c4a7e7
-
-  /* ---- GLASS (frosted panels) ---- */
-  --glass-bg: rgba(255,250,243,0.80) rgba(28,20,24,0.72)
-  --glass-border: rgba(74,62,68,0.14) rgba(253,251,212,0.12)
-
-  /* ---- CRT power-on flash color ---- */
-  --crt-flash-bg: #fffaf3 #fdfbd4
+  --color-bg-primary: #f4f5f7 #0e1014
+  --color-bg-secondary: #ffffff #161a20
+  --color-bg-muted: #e2e5ea #252a33
+  --color-text-primary: #1c2028 #e6e8ec
+  --color-text-muted: #5b6270 #9aa3b2
+  --color-red: #c0392b #f87171
+  --color-yellow: #b7791f #f5b942
+  --color-green: #1f8a5b #3ddc97
+  --color-blue: #2563a8 #60a5fa
+  --color-purple: #6d5bd0 #9b8cff
+  --glass-bg: rgba(255,255,255,0.80) rgba(14,16,20,0.72)
+  --glass-border: rgba(28,32,40,0.10) rgba(230,232,236,0.10)
+  --crt-flash-bg: #ffffff #e6e8ec
 })

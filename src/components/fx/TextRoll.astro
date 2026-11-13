@@ -1,0 +1,22 @@
+---
+/**
+ * Text-roll hover effect (CSS only; styles in src/styles/fx.css, "TEXT ROLL").
+ * Port of Skiper UI "Skiper58" (free tier, attribution required: https://skiper-ui.com).
+ * Renders the text twice: the first copy rolls out, the second rolls in from below.
+ * Both copies are aria-hidden, so the parent link/button MUST carry an aria-label.
+ */
+interface Props {
+	text: string;
+	/** stagger per letter in ms; letters further from the centre start later */
+	stagger?: number;
+}
+const { text, stagger = 22 } = Astro.props;
+const chars = [...text];
+const mid = (chars.length - 1) / 2;
+const delays = chars.map((_, i) => `${Math.round(Math.abs(i - mid) * stagger)}ms`);
+const row = chars.map((c, i) => ({ c: c === " " ? " " : c, d: delays[i] }));
+---
+<span class="text-roll" aria-hidden="true"
+	><span>{row.map(({ c, d }) => <i style={`--d:${d}`}>{c}</i>)}</span
+	><span>{row.map(({ c, d }) => <i style={`--d:${d}`}>{c}</i>)}</span
+></span>
