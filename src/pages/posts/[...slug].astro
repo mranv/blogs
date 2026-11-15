@@ -12,57 +12,61 @@ import { licenseConfig } from "src/config";
 import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import CountUp from "../../components/reactbits/CountUp";
 import PostMetadata from "../../components/PostMeta.astro";
-import { profileConfig, siteConfig } from "../../config";
+import { siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 
 export async function getStaticPaths() {
 	const allPosts = await getSortedPosts();
+	// Posts imported twice under two slugs share a title. The shortest slug (ties: alphabetical)
+	// is the canonical one; the others point rel=canonical at it so search engines index a
+	// single copy. astro.config.mjs applies the same rule to drop the copies from the sitemap.
+	// ponytail: title equality is the whole duplicate test; compare bodies if it ever misfires.
+	const canonicalSlug = new Map<string, string>();
+	for (const { slug, data } of allPosts) {
+		const best = canonicalSlug.get(data.title);
+		if (!best || slug.length < best.length || (slug.length === best.length && slug < best)) canonicalSlug.set(data.title, slug);
+	}
 	return allPosts.map((post) => ({
 		params: { slug: post.slug },
-		props: { post },
+		props: { post, canonicalSlug: canonicalSlug.get(post.data.title) as string },
 	}));
 }
 
-const { post: entry } = Astro.props;
+const { post: entry, canonicalSlug } = Astro.props;
+const canonical = canonicalSlug === entry.slug ? undefined : new URL(`posts/${canonicalSlug}/`, Astro.site).href;
 const { Content, headings, remarkPluginFrontmatter } = await entry.render();
+
+// Meta description is always generated, never shared between posts: the frontmatter one when
+// it is long enough to fill a search snippet (70+ chars), else the post's opening paragraphs
+// (remark-excerpt plugin), else a sentence built from title, category and tags (posts that
+// open with code or a list have no paragraphs). Layout.astro clamps the length.
+const written = entry.data.description.trim();
+const excerpt = (remarkPluginFrontmatter.excerpt || "").trim();
+let description = written.length >= 70 || excerpt.length <= written.length ? written : excerpt;
+if (description.length < 70) {
+	const topics = [entry.data.category, ...(entry.data.tags || [])].filter(Boolean).slice(0, 4).join(", ");
+	description = `${entry.data.title}: ${description ? `${description.replace(/[.:]$/, "")}. ` : ""}${topics ? `Notes on ${topics} ` : "Notes "}by Anubhav Gain.`;
+}
+// Exactly one <h1> per post: the title is the h1 unless the markdown body brings its own `# `.
+const TitleTag = headings.some((h) => h.depth === 1) ? "div" : "h1";
+const personId = new URL("#person", Astro.site).href;
 
 const jsonLd = {
 	"@context": "https://schema.org",
 	"@type": "BlogPosting",
 	headline: entry.data.title,
-	description: entry.data.description || entry.data.title,
+	description,
 	keywords: entry.data.tags ? entry.data.tags.join(", ") : "",
-	author: {
-		"@type": "Person",
-		name: "Anubhav Gain",
-		url: Astro.site,
-		jobTitle: "Security Software Engineer & CEO",
-		worksFor: [
-			{
-				"@type": "Organization",
-				"name": "Infopercept Consulting"
-			},
-			{
-				"@type": "Organization",
-				"name": "TechAnv Consulting"
-			}
-		],
-		sameAs: [
-			"https://github.com/mranv",
-			"https://in.linkedin.com/in/anubhavgain",
-			"https://www.instagram.com/anubhavgain/"
-		]
-	},
-	publisher: {
-		"@type": "Person",
-		name: "Anubhav Gain"
-	},
+	// Full Person node lives in Layout.astro; this is a reference to it.
+	author: { "@type": "Person", "@id": personId, name: "Anubhav Gain", url: new URL("about/", Astro.site).href },
+	publisher: { "@id": personId },
 	datePublished: formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published || new Date()),
 	dateModified: entry.data.modDatetime ? formatDateToYYYYMMDD(entry.data.modDatetime) : formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published || new Date()),
 	inLanguage: entry.data.lang
 		? entry.data.lang.replace("_", "-")
 		: siteConfig.lang.replace("_", "-"),
-	image: entry.data.image ? `${Astro.site}${entry.data.image}` : `${Astro.site}${(profileConfig.avatar || "").startsWith('/') ? (profileConfig.avatar || "").slice(1) : profileConfig.avatar || ""}`,
+	// Same rule as Layout.astro: absolute cover, else the generated card (scripts/og/build.mjs).
+	image: /^https?:\/\//.test(entry.data.image) ? entry.data.image : new URL(`og/posts/${entry.slug}.png`, Astro.site).href,
 	mainEntityOfPage: {
 		"@type": "WebPage",
 		"@id": `${Astro.site}posts/${entry.slug}/`
@@ -77,7 +81,7 @@ const modifiedISO = entry.data.modDatetime
 	? formatDateToYYYYMMDD(entry.data.modDatetime)
 	: formatDateToYYYYMMDD(entry.data.pubDatetime || entry.data.published || new Date());
 ---
-<MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} image={entry.data.image} setOGTypeArticle={true} articleData={{ published: publishedISO, modified: modifiedISO, tags: entry.data.tags }} headings={headings}>
+<MainGridLayout banner={entry.data.image} title={entry.data.title} description={description} canonical={canonical} lang={entry.data.lang} image={entry.data.image} setOGTypeArticle={true} articleData={{ published: publishedISO, modified: modifiedISO, tags: entry.data.tags }} headings={headings}>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4">
         <div id="post-container" class:list={["card-base z-10 px-6 md:px-9 pt-6 pb-4 relative w-full ",
@@ -103,14 +107,11 @@ const modifiedISO = entry.data.modDatetime
 
             <!-- title -->
             <div class="relative onload-animation">
-                <div
+                <TitleTag
                     data-pagefind-body data-pagefind-weight="10" data-pagefind-meta="title"
-                    class="transition w-full block font-heading mb-3
-                    text-3xl md:text-[2.25rem]/[2.75rem]
-                    text-black/90 dark:text-white/90
-                ">
+                    class="transition w-full block font-heading mb-3 text-3xl md:text-[2.25rem]/[2.75rem] text-black/90 dark:text-white/90">
                     {entry.data.title}
-                </div>
+                </TitleTag>
             </div>
 
             <!-- metadata -->

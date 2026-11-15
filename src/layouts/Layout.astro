@@ -43,6 +43,7 @@ interface Props {
 	description?: string;
 	lang?: string;
 	image?: string;
+	canonical?: string;
 	setOGTypeArticle?: boolean;
 	articleData?: {
 		published?: string | Date;
@@ -51,7 +52,7 @@ interface Props {
 	};
 }
 
-let { title, banner, description, lang, image, setOGTypeArticle, articleData } = Astro.props;
+let { title, banner, description, lang, image, canonical, setOGTypeArticle, articleData } = Astro.props;
 
 // apply a class to the body element to decide the height of the banner, only used for initial page load
 // Swup can update the body for each page visit, but it's after the page transition, causing a delay for banner height change
@@ -71,7 +72,10 @@ const enableBanner = siteConfig.banner.enable;
 
 let pageTitle: string;
 if (title) {
-	pageTitle = `${title} - ${siteConfig.title}`;
+	// The site-name suffix is dropped when it would push the title past ~60 chars: search
+	// results cut there, and the post's own words are worth more than the brand.
+	const withSite = `${title} - ${siteConfig.title}`;
+	pageTitle = withSite.length <= 60 ? withSite : title;
 } else {
 	pageTitle = `${siteConfig.title} - ${siteConfig.subtitle}`;
 }
@@ -85,18 +89,17 @@ if (!lang) {
 }
 const siteLang = lang.replace("_", "-");
 
-// compute social preview image
-let socialImage: string;
-if (image && typeof image === 'string' && image.trim() !== '') {
-	// if the provided image is absolute path, prefix with site
-	if (image.startsWith('http://') || image.startsWith('https://')) {
-		socialImage = image;
-	} else {
-		socialImage = `${Astro.site}${image.startsWith('/') ? image.slice(1) : image}`;
-	}
-} else {
-	socialImage = `${Astro.site}${(profileConfig.avatar || "").startsWith('/') ? (profileConfig.avatar || "").slice(1) : (profileConfig.avatar || "")}`;
-}
+// Social preview image: every page gets its own generated card at /og/<path>.png. The file is
+// written after the Astro build by scripts/og/build.mjs, which reads this og:image tag to know
+// where to put it; scripts/seo-audit.mjs then fails the build if any card is missing.
+// (Never point og:image into src/assets: those files get content-hashed names, no stable URL.)
+// ponytail: only absolute post images are used; relative `image:` frontmatter (12 posts, all
+// pointing at files that do not exist) falls back to the card. Resolve them here if covers return.
+const ogPath = Astro.url.pathname.replace(/\.html$/, "").replace(/^\/|\/$/g, "") || "index";
+const defaultSocialImage = new URL(`og/${ogPath}.png`, Astro.site).href;
+const hasOwnImage = typeof image === "string" && /^https?:\/\//.test(image);
+const socialImage = hasOwnImage ? (image as string) : defaultSocialImage;
+const personId = new URL("#person", Astro.site).href;
 
 // compute article times if provided
 const publishedTime = articleData?.published
@@ -143,18 +146,19 @@ const bannerOffset =
 		<meta name="keywords" content={(articleData?.tags && articleData.tags.length > 0) ? articleData.tags.join(', ') : "Anubhav Gain, DevSecOps Expert, XDR Platform Architect, OXDR Security, Rust Programming, eBPF Development, Windows Kernel Security, EDR Platform, Leviathan Security Framework, Krustron Kubernetes, Agni Firecracker, Cloud Security, Kubernetes Security, Container Security, TechAnv Consulting, Infopercept Consulting, Security Software Engineer, MITRE ATT&CK, OpenSearch Rust SDK, Go Programming"}>
 
 		<!-- Canonical URL -->
-		<link rel="canonical" href={Astro.url} />
+		<link rel="canonical" href={canonical || Astro.url} />
 
 		<!-- Open Graph Tags -->
 		<meta property="og:site_name" content={siteConfig.title}>
-		<meta property="og:url" content={Astro.url}>
+		<meta property="og:url" content={canonical || Astro.url}>
 		<meta property="og:title" content={pageTitle}>
 		<meta property="og:description" content={metaDescription}>
 		<meta property="og:locale" content={siteLang}>
 		<meta property="og:image" content={socialImage}>
 		<meta property="og:image:alt" content={title ? `${title}` : "Anubhav Gain - Security Software Engineer & Security Expert"}>
-		<meta property="og:image:width" content="1200">
-		<meta property="og:image:height" content="630">
+		{!hasOwnImage && <meta property="og:image:width" content="1200">}
+		{!hasOwnImage && <meta property="og:image:height" content="630">}
+		{!hasOwnImage && <meta property="og:image:type" content="image/png">}
 			{setOGTypeArticle ? (
 	        <>
 	          <meta property="og:type" content="article" />
@@ -197,6 +201,9 @@ const bannerOffset =
 		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "Person",
+			// One @id for the author everywhere (WebSite, BlogPosting, ProfilePage reference it),
+			// so search engines merge them into a single entity instead of 1,600 look-alikes.
+			"@id": personId,
 			"name": "Anubhav Gain",
 			"alternateName": "mranv",
 			"jobTitle": "Security Software Engineer & CEO",
@@ -235,19 +242,11 @@ const bannerOffset =
 				"Network Security Tools",
 				"eBPF File Monitoring"
 			],
-			"alumniOf": {
-				"@type": "EducationalOrganization",
-				"name": "Professional Institution"
-			},
 			"url": Astro.site?.toString() || "https://mranv.pages.dev",
-			"image": `${Astro.site}${(profileConfig.avatar || "").startsWith('/') ? (profileConfig.avatar || "").slice(1) : (profileConfig.avatar || "")}`,
-			"sameAs": [
-				"https://github.com/mranv",
-				"https://github.com/anubhavg-icpl",
-				"https://in.linkedin.com/in/anubhavgain",
-				"https://www.instagram.com/anubhavgain/",
-				"https://mranv.pages.dev/"
-			],
+			"image": new URL("avatar.jpg", Astro.site).href,
+			// Generated from the profile links in src/config.ts: add a profile there and search
+			// engines learn it belongs to the same person. The site itself is `url`, not sameAs.
+			"sameAs": profileConfig.links.map((l) => l.url).filter((u) => !u.startsWith(Astro.site?.origin ?? "/")),
 			"nationality": {
 				"@type": "Country",
 				"name": "India"
@@ -264,14 +263,8 @@ const bannerOffset =
 			"alternateName": "Anubhav Gain Blog",
 			"url": Astro.site?.toString() || "https://mranv.pages.dev",
 			"description": siteConfig.subtitle,
-			"author": {
-				"@type": "Person",
-				"name": "Anubhav Gain"
-			},
-			"publisher": {
-				"@type": "Person",
-				"name": "Anubhav Gain"
-			},
+			"author": { "@id": personId },
+			"publisher": { "@id": personId },
 			"potentialAction": {
 				"@type": "SearchAction",
 				"target": {

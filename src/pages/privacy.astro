@@ -17,6 +17,9 @@ const pageDescription = "Privacy Policy for mranv.pages.dev — how we handle yo
 <MainGridLayout title={pageTitle} description={pageDescription} headings={headings}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
         <div class="card-base z-10 px-9 py-6 relative w-full">
+            <!-- The policy markdown has several top-level headings, which remarkSingleH1
+                 (astro.config.mjs) pushes down a level, so the page needs its own h1. -->
+            <h1 class="sr-only">Privacy Policy</h1>
             <Markdown class="mt-2">
                 <Content />
             </Markdown>

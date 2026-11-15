@@ -29,7 +29,9 @@ const len = page.data.length;
 const homePageDescription = "Anubhav Gain's technical blog covering DevSecOps, XDR/OXDR Platforms, Rust Programming, eBPF Development, Cloud-Native Security, Kubernetes, and Container Security. Security Software Engineer at Infopercept, CEO at TechAnv Consulting.";
 ---
 
-<MainGridLayout description={homePageDescription} art={page.currentPage !== 1}>
+<!-- Pages 2+ get their own title; untitled they all duplicated the home page's. -->
+<MainGridLayout title={page.currentPage > 1 ? `Posts, page ${page.currentPage}` : undefined} description={page.currentPage > 1 ? `Page ${page.currentPage} of ${page.lastPage} of every post by Anubhav Gain: security engineering, Rust, eBPF, XDR, DevSecOps and Kubernetes field notes.` : homePageDescription} art={page.currentPage !== 1}>
+    {page.currentPage > 1 && <h1 class="sr-only">Posts, page {page.currentPage}</h1>}
     {page.currentPage === 1 && (
         <!-- Home hero. Effects are vendored React Bits components (src/components/reactbits/README.md).
              LetterGlitch draws on WebGL and cannot read CSS variables, so its colours are literals

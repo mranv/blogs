@@ -37,7 +37,11 @@ const breadcrumbLD = {
   ]
 };
 
-// FAQ Schema for better search visibility
+// Pages that must stay out of the index (also dropped from the sitemap in astro.config.mjs).
+const noindex = /^\/(admin|404)/.test(Astro.url.pathname);
+const personId = new URL("#person", Astro.site).href;
+
+// FAQ Schema: Google retired FAQ rich results, kept because AI answer engines still read it.
 const faqLD = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -90,10 +94,7 @@ const serviceLD = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Anubhav Gain - Security Consulting Services",
-  "provider": {
-    "@type": "Person",
-    "name": "Anubhav Gain"
-  },
+  "provider": { "@id": personId },
   "areaServed": {
     "@type": "Country",
     "name": "India"
@@ -163,15 +164,18 @@ const serviceLD = {
   <script type="application/ld+json" set:html={JSON.stringify(faqLD)} />
 }
 
+<!-- ProfilePage: tells search engines /about/ is the page about the Person in Layout.astro -->
+{Astro.url.pathname === '/about/' &&
+  <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@type": "ProfilePage", "mainEntity": { "@id": personId } })} />
+}
+
 <!-- Professional Service Schema (only on home page) -->
 {Astro.url.pathname === '/' &&
   <script type="application/ld+json" set:html={JSON.stringify(serviceLD)} />
 }
 
 <!-- Additional SEO Meta Tags -->
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="googlebot" content="index, follow">
-<meta name="bingbot" content="index, follow">
+<meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}>
 
 <!-- Geographic Meta Tags -->
 <meta name="geo.region" content="IN-GJ">
@@ -205,10 +209,6 @@ const serviceLD = {
 <!-- <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE"> -->
 <!-- <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE"> -->
 <!-- <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE"> -->
-
-<!-- Preconnect to External Domains -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <!-- DNS Prefetch for Performance -->
 <link rel="dns-prefetch" href="https://github.com">

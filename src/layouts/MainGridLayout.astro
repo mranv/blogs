@@ -26,6 +26,8 @@ interface Props {
 	description?: string;
 	lang?: string;
 	image?: string;
+	/** Only for a page that is a copy of another one; defaults to the page's own URL. */
+	canonical?: string;
 	setOGTypeArticle?: boolean;
 	articleData?: {
 		published?: string | Date;
@@ -43,6 +45,7 @@ const {
 	description,
 	lang,
 	image,
+	canonical,
 	setOGTypeArticle,
 	articleData,
 	headings = [],
@@ -57,7 +60,7 @@ const mainPanelTop = siteConfig.banner.enable
 	: "5.5rem";
 ---
 
-<Layout title={title} banner={banner} description={description} lang={lang} image={image} setOGTypeArticle={setOGTypeArticle} articleData={articleData}>
+<Layout title={title} banner={banner} description={description} lang={lang} image={image} canonical={canonical} setOGTypeArticle={setOGTypeArticle} articleData={articleData}>
 
 <!-- Navbar -->
 <slot slot="head" name="head"></slot>

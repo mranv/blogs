@@ -36,15 +36,22 @@ export async function getSortedPosts() {
 }
 export type PostForList = {
 	slug: string;
-	data: CollectionEntry<"posts">["data"];
+	data: Pick<CollectionEntry<"posts">["data"], "title" | "tags" | "category" | "pubDatetime" | "published">;
 };
 export async function getSortedPostsList(): Promise<PostForList[]> {
 	const sortedFullPosts = await getRawSortedPosts();
 
-	// delete post.body
-	const sortedPostsList = sortedFullPosts.map((post) => ({
-		slug: post.slug,
-		data: post.data,
+	// Only the fields ArchivePanel.svelte reads. The list is serialised into /archive/ as island
+	// props; with the whole frontmatter the page was 2.6 MB, past the 2 MB of HTML Googlebot reads.
+	const sortedPostsList = sortedFullPosts.map(({ slug, data }) => ({
+		slug,
+		data: {
+			title: data.title,
+			tags: data.tags,
+			category: data.category,
+			pubDatetime: data.pubDatetime,
+			published: data.published,
+		},
 	}));
 
 	return sortedPostsList;

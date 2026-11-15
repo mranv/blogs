@@ -16,7 +16,8 @@ const categories = categoryList.map(cat => cat.name);
 const stats: [number, string][] = [[sortedPostsList.length, "posts"], [tags.length, "tags"], [categories.length, "categories"]];
 ---
 
-<MainGridLayout title={i18n(I18nKey.archive)}>
+<MainGridLayout title={i18n(I18nKey.archive)} description={`Every post on the blog: ${sortedPostsList.length} articles on Rust, eBPF, XDR, DevSecOps, Kubernetes and detection engineering, filterable by tag and category.`}>
+    <h1 class="sr-only">{i18n(I18nKey.archive)}</h1>
     <div class="card-base px-6 md:px-9 py-5 mb-4 flex flex-wrap items-baseline gap-x-10 gap-y-2 onload-animation">
         {stats.map(([n, label]) => (
             <div><span class="font-heading text-3xl text-90"><CountUp client:visible to={n} separator="," duration={1.5} /></span> <span class="eyebrow">{label}</span></div>
