@@ -59,7 +59,7 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/gainsaheb-suit.avif", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	avatar: "assets/images/gainsaheb.jpeg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "Anubhav Gain",
 	bio: "Security Software Engineer · XDR/OXDR Architect · Rust & eBPF · 222+ Research Citations",
 	links: [

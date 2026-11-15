@@ -206,6 +206,17 @@ input, textarea {
     color: var(--ink-muted);
 }
 
+/* === AVATAR ===
+   The profile photo is a colour office snapshot; untreated it is the only saturated block
+   on a monochrome page. Monochrome by default, tuned per theme (warm toned on bone paper,
+   dimmed on black so the white shirt does not glare), full colour on hover. */
+.avatar-ink img {
+    filter: grayscale(1) sepia(0.22) contrast(1.05);
+    transition: filter 0.3s ease;
+}
+.dark .avatar-ink img { filter: grayscale(1) contrast(1.1) brightness(0.82); }
+a:hover .avatar-ink img { filter: none; }
+
 /* === CODE === */
 .expressive-code .frame {
     border: 1px solid var(--line);
