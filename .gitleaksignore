@@ -1,0 +1,3 @@
+# IndexNow key: public by design. The protocol requires it to be served at
+# https://mranv.pages.dev/<key>.txt (public/814332a11d5826a9f2aa4798c4caceed.txt); it only proves site ownership.
+72ebd77d3baf8bab4a0d9c625500aa446c1d7180:.github/workflows/indexnow.yml:generic-api-key:28
