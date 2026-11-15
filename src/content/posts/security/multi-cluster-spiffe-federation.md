@@ -23,7 +23,7 @@ featured: true
 
 ## Introduction: Beyond Single-Cluster Identity
 
-In our [previous guides](/spiffe-spire-kubernetes-complete-guide), we've built robust SPIFFE/SPIRE deployments within single Kubernetes clusters. However, modern enterprises operate across multiple clusters, regions, and cloud providers. This creates the challenge of establishing trust relationships between workloads that span organizational boundaries while maintaining the cryptographic guarantees that make SPIFFE/SPIRE so powerful.
+In our [previous guides](/posts/spiffe-spire-kubernetes-complete-guide/), we've built robust SPIFFE/SPIRE deployments within single Kubernetes clusters. However, modern enterprises operate across multiple clusters, regions, and cloud providers. This creates the challenge of establishing trust relationships between workloads that span organizational boundaries while maintaining the cryptographic guarantees that make SPIFFE/SPIRE so powerful.
 
 This comprehensive guide explores SPIFFE federation—the mechanism that enables secure, verifiable communication between workloads across different trust domains without compromising on zero-trust principles or requiring complex credential management.
 

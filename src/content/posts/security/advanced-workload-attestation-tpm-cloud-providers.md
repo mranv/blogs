@@ -24,7 +24,7 @@ featured: true
 
 ## Introduction: Beyond Basic Kubernetes Attestation
 
-In our [previous guides](/spiffe-spire-kubernetes-complete-guide), we've focused primarily on Kubernetes PSAT (Projected Service Account Token) attestation—a solid foundation for most cloud-native workloads. However, enterprise environments often require more sophisticated attestation methods that leverage hardware security modules, cloud provider credentials, or multi-factor attestation strategies.
+In our [previous guides](/posts/spiffe-spire-kubernetes-complete-guide/), we've focused primarily on Kubernetes PSAT (Projected Service Account Token) attestation—a solid foundation for most cloud-native workloads. However, enterprise environments often require more sophisticated attestation methods that leverage hardware security modules, cloud provider credentials, or multi-factor attestation strategies.
 
 This comprehensive guide explores advanced workload attestation patterns using TPM (Trusted Platform Module) hardware, cloud provider instance identity documents, and hybrid attestation strategies that provide defense-in-depth for critical workloads.
 

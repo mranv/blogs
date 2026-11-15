@@ -1923,4 +1923,4 @@ The combination of eBPF's kernel-level visibility and Rust's safety guarantees p
 
 ---
 
-_Ready to implement secure authentication? Check out our next article on [Secure Authentication Systems in Rust](/blog/rust-security-series/secure-authentication-systems) where we'll build enterprise-grade auth with JWT, OAuth2, and MFA._
+_Ready to implement secure authentication? Check out our next article on [Secure Authentication Systems in Rust](/posts/secure-authentication-systems/) where we'll build enterprise-grade auth with JWT, OAuth2, and MFA._

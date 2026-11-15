@@ -22,7 +22,7 @@ featured: true
 
 ## Introduction: From VMs to Kubernetes-Native Zero Trust
 
-In my previous post on [building a secure service mesh without Kubernetes](/secure-service-mesh-without-kubernetes), I demonstrated how to implement SPIFFE/SPIRE on traditional VMs. Today, we're taking that knowledge to the cloud-native world with a comprehensive guide to deploying SPIFFE/SPIRE natively on Kubernetes.
+In my previous post on [building a secure service mesh without Kubernetes](/posts/secure-service-mesh-without-kubernetes/), I demonstrated how to implement SPIFFE/SPIRE on traditional VMs. Today, we're taking that knowledge to the cloud-native world with a comprehensive guide to deploying SPIFFE/SPIRE natively on Kubernetes.
 
 While the core concepts remain the same—cryptographic workload identities, attestation, and zero-trust networking—the Kubernetes implementation brings unique advantages: dynamic workload management, native integration with Kubernetes primitives, and seamless scaling. This guide bridges the gap between traditional infrastructure and cloud-native security.
 
@@ -837,7 +837,7 @@ kubectl exec -n spire-system spire-server-0 -c spire-server -- \
 
 ## Migration from VM-Based SPIRE
 
-If you're migrating from my [VM-based SPIFFE/SPIRE setup](/secure-service-mesh-without-kubernetes), here are the key differences:
+If you're migrating from my [VM-based SPIFFE/SPIRE setup](/posts/secure-service-mesh-without-kubernetes/), here are the key differences:
 
 1. **Node Attestation**: Use Kubernetes PSAT instead of join tokens
 2. **Workload Attestation**: Kubernetes selectors instead of Unix selectors
@@ -878,7 +878,7 @@ The journey from traditional PKI to cloud-native workload identity is complete. 
 - [Official SPIFFE Documentation](https://spiffe.io/docs/latest/)
 - [SPIRE Helm Charts](https://github.com/spiffe/helm-charts-hardened)
 - [SPIFFE Examples](https://github.com/spiffe/spire-examples)
-- [My VM-Based SPIFFE/SPIRE Guide](/secure-service-mesh-without-kubernetes)
+- [My VM-Based SPIFFE/SPIRE Guide](/posts/secure-service-mesh-without-kubernetes/)
 
 ---
 

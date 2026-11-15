@@ -56,7 +56,7 @@ graph LR
 
 ## Prerequisites and Setup
 
-Before implementing mTLS, ensure you have SPIFFE/SPIRE installed (covered in my [previous post](/security/spiffe-spire-kubernetes-complete-guide)). Additionally, we'll need:
+Before implementing mTLS, ensure you have SPIFFE/SPIRE installed (covered in my [previous post](/posts/spiffe-spire-kubernetes-complete-guide/)). Additionally, we'll need:
 
 ```bash
 # Verify SPIRE is running

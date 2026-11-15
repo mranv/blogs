@@ -23,7 +23,7 @@ featured: true
 
 ## Introduction: The Perfect Marriage of Identity and Mesh
 
-In our [previous posts on SPIFFE/SPIRE](/spiffe-spire-kubernetes-complete-guide), we've built a robust workload identity platform. Now it's time to integrate this foundation with Istio service mesh to create a comprehensive zero-trust networking solution that combines cryptographic workload identity with intelligent traffic management.
+In our [previous posts on SPIFFE/SPIRE](/posts/spiffe-spire-kubernetes-complete-guide/), we've built a robust workload identity platform. Now it's time to integrate this foundation with Istio service mesh to create a comprehensive zero-trust networking solution that combines cryptographic workload identity with intelligent traffic management.
 
 This integration represents the evolution from basic service-to-service communication to a sophisticated platform where every connection is authenticated, authorized, and encrypted based on workload identity rather than network location.
 

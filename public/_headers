@@ -21,7 +21,11 @@
 
 # Security headers for all pages
 /*
+  Strict-Transport-Security: max-age=31536000
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  # Baseline CSP: the directives that cannot break inline scripts (theme switch, JSON-LD,
+  # islands). script-src is deliberately absent: locking it needs nonces or hashes.
+  Content-Security-Policy: object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests

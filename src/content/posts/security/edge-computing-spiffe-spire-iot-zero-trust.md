@@ -23,7 +23,7 @@ featured: true
 
 ## Introduction: Zero-Trust at the Edge
 
-Throughout our [SPIFFE/SPIRE series](/spiffe-spire-kubernetes-complete-guide), we've built sophisticated identity infrastructure for cloud-native environments. However, the modern enterprise extends far beyond the data center—spanning edge locations, IoT devices, industrial systems, and constrained environments where traditional cloud-native patterns don't apply.
+Throughout our [SPIFFE/SPIRE series](/posts/spiffe-spire-kubernetes-complete-guide/), we've built sophisticated identity infrastructure for cloud-native environments. However, the modern enterprise extends far beyond the data center—spanning edge locations, IoT devices, industrial systems, and constrained environments where traditional cloud-native patterns don't apply.
 
 This final post in our series explores how to extend SPIFFE/SPIRE's zero-trust identity model to edge computing scenarios, addressing the unique challenges of resource-constrained devices, intermittent connectivity, and distributed edge architectures while maintaining the cryptographic guarantees that make SPIFFE/SPIRE so powerful.
 
@@ -1747,16 +1747,16 @@ This concludes our comprehensive 10-part series on SPIFFE/SPIRE, taking you from
 
 Throughout this series, we've covered:
 
-1. **[Basic SPIFFE/SPIRE on Kubernetes](/spiffe-spire-kubernetes-complete-guide)** - Foundation installation and configuration
-2. **[SPIRE Controller Manager Deep Dive](/spire-controller-manager-kubernetes-crds)** - Advanced CRD usage and automation
-3. **[Kubernetes Workload Identity with mTLS](/kubernetes-workload-identity-pod-to-pod-mtls)** - Pod-to-pod secure communication
-4. **[High Availability Production Patterns](/spiffe-spire-high-availability-production)** - Enterprise-grade deployment strategies
-5. **[Observability with Prometheus and Grafana](/spiffe-spire-observability-prometheus-grafana)** - Comprehensive monitoring and alerting
-6. **[Advanced Workload Attestation](/advanced-workload-attestation-tpm-cloud-providers)** - TPM and cloud provider security
-7. **[Service Mesh Integration with Istio](/service-mesh-integration-spiffe-spire-istio)** - Zero-trust networking with service mesh
-8. **[Multi-Cluster Federation](/multi-cluster-spiffe-federation)** - Cross-cloud identity management
-9. **[GitOps for SPIFFE/SPIRE](/gitops-spiffe-spire-infrastructure-as-code)** - Infrastructure-as-code practices
-10. **[Edge Computing and IoT](/edge-computing-spiffe-spire-iot-zero-trust)** - Zero-trust identity for edge environments
+1. **[Basic SPIFFE/SPIRE on Kubernetes](/posts/spiffe-spire-kubernetes-complete-guide/)** - Foundation installation and configuration
+2. **[SPIRE Controller Manager Deep Dive](/posts/spire-controller-manager-kubernetes-crds/)** - Advanced CRD usage and automation
+3. **[Kubernetes Workload Identity with mTLS](/posts/kubernetes-workload-identity-pod-to-pod-mtls/)** - Pod-to-pod secure communication
+4. **[High Availability Production Patterns](/posts/spiffe-spire-high-availability-production/)** - Enterprise-grade deployment strategies
+5. **[Observability with Prometheus and Grafana](/posts/spiffe-spire-observability-prometheus-grafana/)** - Comprehensive monitoring and alerting
+6. **[Advanced Workload Attestation](/posts/advanced-workload-attestation-tpm-cloud-providers/)** - TPM and cloud provider security
+7. **[Service Mesh Integration with Istio](/posts/service-mesh-integration-spiffe-spire-istio/)** - Zero-trust networking with service mesh
+8. **[Multi-Cluster Federation](/posts/multi-cluster-spiffe-federation/)** - Cross-cloud identity management
+9. **[GitOps for SPIFFE/SPIRE](/posts/gitops-spiffe-spire-infrastructure-as-code/)** - Infrastructure-as-code practices
+10. **[Edge Computing and IoT](/posts/edge-computing-spiffe-spire-iot-zero-trust/)** - Zero-trust identity for edge environments
 
 ## Additional Resources
 

@@ -34,6 +34,8 @@ const SITE_URL = "https://mranv.pages.dev/";
 // Build a URL -> lastmod map from post frontmatter so the sitemap carries
 // accurate <lastmod>, which helps search engines schedule re-crawls.
 // All posts use a flat frontmatter `slug`, so the URL is `${SITE}posts/<slug>/`.
+const postSlugs = new Set(); // every non-draft post slug, filled by buildLastmodMap
+const slugsByTitle = new Map(); // title -> slugs, to find posts that exist under two slugs
 function buildLastmodMap() {
 	const postsDir = fileURLToPath(new URL("./src/content/posts", import.meta.url));
 	const map = {};
@@ -54,6 +56,9 @@ function buildLastmodMap() {
 					if (get("draft") === "true") continue;
 					const slug = get("slug");
 					if (!slug) continue;
+					postSlugs.add(slug);
+					const title = get("title");
+					if (title) slugsByTitle.set(title, [...(slugsByTitle.get(title) || []), slug]);
 					const raw =
 						get("modDatetime") || get("modified") || get("updated") ||
 						get("pubDatetime") || get("published") || get("publishDate") || get("pubDate");
@@ -69,6 +74,63 @@ function buildLastmodMap() {
 	return map;
 }
 const lastmodMap = buildLastmodMap();
+// Duplicate posts: every slug except the canonical one (shortest, ties alphabetical: the same
+// rule as getStaticPaths in src/pages/posts/[...slug].astro) stays out of the sitemap.
+const duplicateUrls = new Set(
+	[...slugsByTitle.values()].flatMap((slugs) =>
+		slugs.sort((a, b) => a.length - b.length || (a < b ? -1 : 1)).slice(1).map((s) => `/posts/${s}/`),
+	),
+);
+
+// One <h1> per page: a post whose markdown has several `# ` headings gets every heading
+// pushed down a level, and the post title then becomes the only h1 (see [...slug].astro).
+function remarkSingleH1() {
+	return (tree) => {
+		const hs = tree.children.filter((n) => n.type === "heading");
+		if (hs.filter((n) => n.depth === 1).length > 1) for (const n of hs) n.depth = Math.min(6, n.depth + 1);
+	};
+}
+
+// Raw <img> tags written without alt get one generated from the file name ("ec2-arch.png" ->
+// "ec2 arch"), so no image ships without a text alternative.
+function rehypeImgAlt() {
+	const walk = (node) => {
+		if (node.tagName === "img" && node.properties && node.properties.alt === undefined) {
+			const name = decodeURIComponent(String(node.properties.src || "").split(/[?#]/)[0].split("/").pop() || "");
+			node.properties.alt = name.replace(/\.[a-z0-9]+$/i, "").replace(/[-_]+/g, " ").trim();
+		}
+		// Raw HTML inside markdown is still an unparsed string at this point.
+		if (node.type === "raw") {
+			node.value = node.value.replace(/<img\b(?![^>]*\balt=)([^>]*?)\bsrc="([^"]*)"/gi, (m, pre, src) =>
+				`<img alt="${decodeURIComponent(src.split(/[?#]/)[0].split("/").pop() || "").replace(/\.[a-z0-9]+$/i, "").replace(/[-_]+/g, " ").replace(/"/g, "").trim()}"${pre}src="${src}"`);
+		}
+		(node.children || []).forEach(walk);
+	};
+	return walk;
+}
+
+// Internal markdown links to pages that do not exist (posts never written, old URL schemes)
+// are turned back into plain text at build time, so the site never ships a link to a 404.
+// Links with a file extension are left alone (they point at files in public/).
+const knownPages = new Set(["/", "/about/", "/archive/", "/projects/", "/privacy/"]);
+function remarkUnlinkDeadInternalLinks() {
+	const alive = (url) => {
+		if (!url.startsWith("/") || url.startsWith("//")) return true;
+		let path = url.split(/[?#]/)[0];
+		if (/\.[a-z0-9]+$/i.test(path)) return true;
+		if (!path.endsWith("/")) path += "/";
+		const post = /^\/posts\/([^/]+)\/$/.exec(path);
+		try {
+			return post ? postSlugs.has(decodeURIComponent(post[1])) : knownPages.has(path);
+		} catch { return false; }
+	};
+	const walk = (node) => {
+		if (!node.children) return;
+		node.children = node.children.flatMap((c) => (c.type === "link" && !alive(c.url) ? c.children : [c]));
+		node.children.forEach(walk);
+	};
+	return walk;
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -169,7 +231,11 @@ export default defineConfig({
 		sitemap({
 			// Drop root pagination pages (/2/, /3/ …) — low-value duplicates that
 			// waste crawl budget. Real content stays discoverable via links.
-			filter: (page) => !/^\/\d+\/$/.test(new URL(page).pathname),
+			// /admin/ is noindex (SEOEnhanced.astro) and disallowed in robots.txt.
+			filter: (page) => {
+				const path = new URL(page).pathname;
+				return !/^\/(\d+|admin)\/$/.test(path) && !duplicateUrls.has(path);
+			},
 			serialize(item) {
 				const lm = lastmodMap[item.url];
 				if (lm) item.lastmod = lm;
@@ -179,6 +245,8 @@ export default defineConfig({
 	],
 	markdown: {
 		remarkPlugins: [
+			remarkUnlinkDeadInternalLinks,
+			remarkSingleH1,
 			remarkMermaid,
 			remarkMath,
 			remarkReadingTime,
@@ -189,6 +257,7 @@ export default defineConfig({
 			parseDirectiveNode,
 		],
 		rehypePlugins: [
+			rehypeImgAlt,
 			rehypeKatex,
 			rehypeSlug,
 			[

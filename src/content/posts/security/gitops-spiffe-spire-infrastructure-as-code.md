@@ -24,7 +24,7 @@ featured: true
 
 ## Introduction: Identity Management as Code
 
-In our [previous guides](/spiffe-spire-kubernetes-complete-guide), we've built sophisticated SPIFFE/SPIRE deployments with multi-cluster federation and advanced security patterns. However, managing these complex identity infrastructures manually becomes unsustainable at enterprise scale. This is where GitOps principles transform identity management from a manual, error-prone process into a declarative, automated, and auditable system.
+In our [previous guides](/posts/spiffe-spire-kubernetes-complete-guide/), we've built sophisticated SPIFFE/SPIRE deployments with multi-cluster federation and advanced security patterns. However, managing these complex identity infrastructures manually becomes unsustainable at enterprise scale. This is where GitOps principles transform identity management from a manual, error-prone process into a declarative, automated, and auditable system.
 
 This comprehensive guide explores how to implement GitOps patterns for SPIFFE/SPIRE, covering everything from basic deployment automation to advanced multi-environment identity governance with full audit trails and compliance reporting.
 
