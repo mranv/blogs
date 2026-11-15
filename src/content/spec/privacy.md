@@ -24,6 +24,10 @@ We use a **double opt-in** process — you must confirm your subscription via em
 
 We do not use third-party analytics services. Cloudflare (our hosting provider) may collect basic server logs (IP addresses, request timestamps) for security and operational purposes, as governed by [Cloudflare's Privacy Policy](https://www.cloudflare.com/privacypolicy/).
 
+#### Live Visitor Globe
+
+The globe on the home page shows where current visitors are. While the home page is open, your approximate location (latitude and longitude rounded to whole degrees, roughly 110 km, as estimated by Cloudflare from your connection) is kept in Cloudflare KV for up to 5 minutes. No IP address, cookie or identifier is stored with it.
+
 ### How We Use Your Information
 
 - To deliver newsletter content you requested
