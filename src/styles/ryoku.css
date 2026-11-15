@@ -206,6 +206,25 @@ input, textarea {
     color: var(--ink-muted);
 }
 
+/* === PLATFORM ===
+   Native-browser features picked from GoogleChrome/modern-web-guidance (guides: dark-mode,
+   browser-ui-theming, improve-text-layout-and-legibility, defer-rendering-heavy-content).
+   All are progressive enhancement: unsupported browsers ignore them. */
+/* The theme is a class on <html>, not the OS preference, so color-scheme follows the class:
+   form controls, the canvas and native scrollbars then match the page. */
+:root { color-scheme: light; accent-color: var(--signal); }
+:root.dark { color-scheme: dark; }
+/* Avoid one-word last lines in body copy (headings already use balance, see TYPE). */
+.custom-md :is(p, li, blockquote) { text-wrap: pretty; }
+/* Post list: skip layout/paint of cards below the fold. From the 4th card only, because
+   content-visibility on above-the-fold content delays first paint. 300px is the usual card
+   height; `auto` lets the browser remember the real one. Without the size, the scrollbar
+   jumps as cards render. */
+.post-card-enter:nth-child(n+4) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto none auto 300px;
+}
+
 /* === AVATAR ===
    The profile photo is a colour office snapshot; untreated it is the only saturated block
    on a monochrome page. Monochrome by default, tuned per theme (warm toned on bone paper,

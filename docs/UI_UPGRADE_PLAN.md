@@ -20,6 +20,7 @@ The whole site was restyled after the ryoku.dev design system: black paper, bone
 | ASCII art strip on every page, piece picked by URL hash at build time | `src/components/fx/AsciiArt.astro`, rendered by `MainGridLayout.astro` (`art={false}` opts out) |
 | Home hero globe (WebGL, `cobe@2.0.1`), follows the theme switch; live visitor dots polled from `functions/api/visitors.ts` (check: `node --experimental-strip-types scripts/check-visitors.mjs`) | `src/components/fx/Globe.tsx` |
 | Code blocks: `github-light` base theme, dark theme under `html.dark` | `astro.config.mjs` (`expressiveCode`) |
+| Native platform features from GoogleChrome/modern-web-guidance: `color-scheme` per theme, `accent-color`, `text-wrap: pretty` in prose, `content-visibility` on post cards, `text-scale` meta, `color-scheme`/`theme-color` metas synced to the theme switch. Found with `modern-web-guidance legacy-scan src` (0.0.203). Skipped on purpose: speculation rules and cross-document view transitions (Swup does client-side navigation), `scrollbar-color` (OverlayScrollbars owns scrollbars) | `src/styles/ryoku.css` (PLATFORM), `Layout.astro` head |
 | React Bits effects (14 components): click sparks, footer marquee, avatar glare (all pages); hero, post counters, archive totals, about/projects banners, fuzzy 404 | `src/components/reactbits/` (see its README) |
 
 Phase-1 effects still exist in markup but are visually disabled by the "EFFECTS OFF" section

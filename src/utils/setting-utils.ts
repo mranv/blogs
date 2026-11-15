@@ -24,6 +24,16 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 			break;
 	}
 
+	// Native UI (canvas, form controls, mobile address bar) follows the site theme, not the
+	// OS one. Literals are --paper from variables.styl; same lines in Layout.astro's head script.
+	const isDark = document.documentElement.classList.contains("dark");
+	document
+		.querySelector('meta[name="color-scheme"]')
+		?.setAttribute("content", isDark ? "dark" : "light");
+	document
+		.querySelector('meta[name="theme-color"]')
+		?.setAttribute("content", isDark ? "#000000" : "#ebe2d6");
+
 	// Set the theme for Expressive Code
 	document.documentElement.setAttribute(
 		"data-theme",

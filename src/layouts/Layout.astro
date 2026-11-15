@@ -183,6 +183,14 @@ const bannerOffset =
 		<meta name="twitter:image:alt" content={title ? `${title}` : "Anubhav Gain - Security Software Engineer & Security Expert"}>
 
 		<meta name="viewport" content="width=device-width" />
+		<!-- color-scheme: lets the browser paint a dark canvas before CSS loads (the theme class
+		     in ryoku.css narrows it afterwards). text-scale: opt in to the OS text-size setting
+		     on mobile; only safe while no stylesheet sets a font-size on html/:root. -->
+		<meta name="color-scheme" content="dark light" />
+		<!-- Paper colour of the default (dark) theme; the theme script below and
+		     applyThemeToDocument (src/utils/setting-utils.ts) keep both metas on the active theme. -->
+		<meta name="theme-color" content="#000000" />
+		<meta name="text-scale" content="scale" />
 		<meta name="generator" content={Astro.generator} />
 
 		<!-- JSON-LD Structured Data for Anubhav Gain -->
@@ -300,6 +308,11 @@ const bannerOffset =
 						document.documentElement.classList.remove('dark');
 					}
 			}
+			// Native UI (canvas, form controls, mobile address bar) follows the site theme, not the
+			// OS one. Literals are --paper from variables.styl; same lines in setting-utils.ts.
+			const isDark = document.documentElement.classList.contains('dark');
+			document.querySelector('meta[name="color-scheme"]').content = isDark ? 'dark' : 'light';
+			document.querySelector('meta[name="theme-color"]').content = isDark ? '#000000' : '#ebe2d6';
 
 
 			// calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
