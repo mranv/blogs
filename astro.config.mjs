@@ -106,7 +106,13 @@ export default defineConfig({
 			},
 		}),
 		expressiveCode({
-			themes: [expressiveCodeConfig.theme],
+			// github-light is the base theme; the dark theme applies under `html.dark` (the site's
+			// theme switch, src/utils/setting-utils.ts). Order matters: Expressive Code scopes an
+			// alternate theme as `:root<sel> .expressive-code, .expressive-code<sel>`, so a
+			// `:not(.dark)` selector for light would match every block and win in dark mode too.
+			themes: ["github-light", expressiveCodeConfig.theme],
+			useDarkModeMediaQuery: false,
+			themeCssSelector: (theme) => (theme.type === "dark" ? ".dark" : false),
 			langs: [
 				'dockerfile', 'pycon', 'html+jinja', 'html+django', 'jq',
 				'vcl', 'svg', 'powershell', 'javascript', 'bash', 'python',
