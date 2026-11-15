@@ -40,25 +40,10 @@ A comprehensive 8-part series on Microsoft App Control for Business (WDAC/AppLoc
 
 ## CTF & Security Writeups
 
-Over 280 writeup posts covering blue-team CTF challenges across multiple platforms.
+Writeup posts covering blue-team CTF challenges across multiple platforms.
 
 - [CyberDefenders Writeups](https://mranv.pages.dev/archive/): Cloud forensics, malware analysis, network forensics, threat hunting
 - [HackTheBox Writeups](https://mranv.pages.dev/archive/): Machine and challenge writeups
 - [TryHackMe Writeups](https://mranv.pages.dev/archive/): Blue team labs and SOC analyst paths
 - [LetsDefend Writeups](https://mranv.pages.dev/archive/): Incident response and SIEM analysis
 - [Security Blue Team (BTLO) Writeups](https://mranv.pages.dev/archive/): Investigation challenges
-
-## Technical Topics Covered
-
-- [Archive — All Posts](https://mranv.pages.dev/archive/): 1500+ posts across all topics
-
-Key topic areas: Rust security tools, eBPF, Windows kernel development, DevSecOps, XDR/OXDR platforms, Kubernetes (K8s), GitOps, Cloud security (AWS/Azure), SIEM, EDR, Wazuh, OpenSearch, Docker, Linux kernel, MITRE ATT&CK, OCSF, zero trust, network security, reverse engineering, digital forensics.
-
-## RSS & Discovery
-
-- [RSS Feed](https://mranv.pages.dev/rss.xml): Full blog RSS feed in XML format
-- [Sitemap](https://mranv.pages.dev/sitemap-index.xml): Full sitemap index
-
-## Optional
-
-- [Instagram](https://www.instagram.com/anubhavgain/): Personal updates

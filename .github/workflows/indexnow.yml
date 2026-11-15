@@ -1,0 +1,65 @@
+# IndexNow: after a push that changes posts, tell Bing/Yandex/Naver/Seznam which URLs changed
+# so they re-crawl in minutes instead of days. Google does not take part (it uses the sitemap).
+# Runs only after the Cloudflare Pages deploy for the commit succeeded: pinging a URL that is
+# not live yet wastes the submission. No third-party actions on purpose (supply chain): gh, jq
+# and curl ship on the runner. The key is public by design; its proof is public/<key>.txt.
+# See docs/SEO.md.
+name: IndexNow
+on:
+  push:
+    branches: [main]
+    paths: ["src/content/posts/**"]
+permissions:
+  contents: read
+  checks: read
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      BEFORE: ${{ github.event.before }}
+      AFTER: ${{ github.sha }}
+      HOST: mranv.pages.dev
+      KEY: 814332a11d5826a9f2aa4798c4caceed
+    steps:
+      - name: Wait for the Cloudflare Pages deploy of this commit
+        run: |
+          for i in $(seq 1 70); do
+            c=$(gh api "repos/$REPO/commits/$AFTER/check-runs" \
+              --jq '[.check_runs[] | select(.app.slug == "cloudflare-workers-and-pages")][0] | "\(.status) \(.conclusion)"' || true)
+            echo "attempt $i: $c"
+            case "$c" in
+              "completed success") exit 0 ;;
+              completed*) echo "deploy did not succeed, nothing to submit"; exit 1 ;;
+            esac
+            sleep 30
+          done
+          echo "deploy still not finished after 35 minutes"; exit 1
+      - name: Submit changed post URLs
+        run: |
+          # Post URL = /posts/<frontmatter slug>/ (same rule as buildLastmodMap in astro.config.mjs).
+          # Deleted posts are submitted too: IndexNow wants to hear about 404s. Compare lists at
+          # most 300 files; a bigger push is covered by the sitemap.
+          urls="https://$HOST/"
+          files=$(gh api "repos/$REPO/compare/$BEFORE...$AFTER" \
+            --jq '.files[] | select(.filename | test("^src/content/posts/.*\\.mdx?$")) | "\(.status)\t\(.filename)"')
+          while IFS=$'\t' read -r status file; do
+            [ -n "$file" ] || continue
+            ref=$AFTER; [ "$status" = removed ] && ref=$BEFORE
+            slug=$(gh api "repos/$REPO/contents/$(jq -rn --arg f "$file" '$f | split("/") | map(@uri) | join("/")')?ref=$ref" \
+              -H 'Accept: application/vnd.github.raw' | sed -n 's/^slug:[[:space:]]*//p' | head -1 | tr -d "\"'\r")
+            [ -n "$slug" ] && urls="$urls"$'\n'"https://$HOST/posts/$slug/"
+          done <<< "$files"
+          body=$(printf '%s\n' "$urls" | jq -Rn --arg h "$HOST" --arg k "$KEY" \
+            '{host: $h, key: $k, keyLocation: "https://\($h)/\($k).txt", urlList: [inputs | select(length > 0)]}')
+          echo "$body"
+          code=$(curl -sS -o /dev/stderr -w '%{http_code}' -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' -d "$body")
+          echo "IndexNow HTTP $code"
+          # 200 = accepted, 202 = accepted, key check pending. Anything else is a real failure.
+          [ "$code" = 200 ] || [ "$code" = 202 ]
