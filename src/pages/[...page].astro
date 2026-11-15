@@ -5,6 +5,7 @@ import PostPage from "../components/PostPage.astro";
 import { PAGE_SIZE } from "../constants/constants";
 import BlurText from "../components/reactbits/BlurText";
 import DecryptedText from "../components/reactbits/DecryptedText";
+import Globe from "../components/fx/Globe";
 import LetterGlitch from "../components/reactbits/LetterGlitch";
 import Magnet from "../components/reactbits/Magnet";
 import RotatingText from "../components/reactbits/RotatingText";
@@ -37,14 +38,19 @@ const homePageDescription = "Anubhav Gain's technical blog covering DevSecOps, X
             <div class="absolute inset-0 opacity-40 pointer-events-none" aria-hidden="true">
                 <LetterGlitch client:visible baseColor="#958f87" glitchColors={["#958f87", "#807a73", "#ce5e32"]} interactive={false} />
             </div>
+            <!-- Globe is lg+ only: below that the headline needs the full card width.
+                 Both hero buttons are h-11 so the filled and the outlined one line up. -->
+            <div class="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none">
+                <Globe client:visible />
+            </div>
             <div class="relative z-10">
                 <div class="eyebrow mb-5"><DecryptedText client:visible text={`Field notes · ${siteConfig.title}`} animateOn="view" sequential /></div>
                 <h1 class="text-4xl md:text-6xl leading-none mb-5 max-w-[14ch]"><BlurText client:load text="Security, written from the kernel up." delay={90} /></h1>
                 <p class="font-heading italic text-xl text-75 max-w-[34ch] mb-4">{siteConfig.subtitle}</p>
                 <div class="eyebrow flex items-center gap-2 mb-7">Notes on <RotatingText client:idle texts={["eBPF", "Rust", "XDR", "Kubernetes", "detection engineering"]} rotationInterval={2400} mainClassName="text-[var(--primary)] overflow-hidden" /></div>
-                <div class="flex flex-wrap gap-3">
-                    <Magnet client:idle padding={40}><a href={url("archive/")} class="glow-btn px-6 py-3 inline-block">Read the archive</a></Magnet>
-                    <StarBorder client:idle as="a" href={url("about/")} color="#ce5e32" radius={2} backgroundColor="transparent" textColor="inherit" borderColor="#807a73" className="!px-6 !py-3">About</StarBorder>
+                <div class="flex flex-wrap items-center gap-3">
+                    <Magnet client:idle padding={40}><a href={url("archive/")} class="glow-btn px-6 h-11 flex items-center">Read the archive</a></Magnet>
+                    <StarBorder client:idle as="a" href={url("about/")} color="#ce5e32" radius={2} backgroundColor="transparent" textColor="inherit" borderColor="#807a73" className="!px-6 !py-0 h-11 text-[0.6875rem] uppercase tracking-[0.12em] !leading-normal">About</StarBorder>
                 </div>
             </div>
         </section>

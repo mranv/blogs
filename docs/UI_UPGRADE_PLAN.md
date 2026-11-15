@@ -1,8 +1,8 @@
 # UI Upgrade Plan — React component libraries
 
-Status: **phase 1 built** (2026-11-13), not yet committed or deployed. Delete this file once it ships.
+Status: phases 1 and 2 shipped to main (b0b2dda, d971637); rows below are kept as the map of what lives where.
 
-## Phase 2 — "Paper & Ink" restyle (2026-11-15, not committed)
+## Phase 2 — "Paper & Ink" restyle (2026-11-15)
 
 The whole site was restyled after the ryoku.dev design system: black paper, bone ink,
 1px hairlines, 2px corners, no glow. This **supersedes the Obsidian Copper palette** below.
@@ -18,6 +18,8 @@ The whole site was restyled after the ryoku.dev design system: black paper, bone
 
 | Home hero (headline), dark theme as default | `src/pages/[...page].astro`, `src/constants/constants.ts` |
 | ASCII art strip on every page, piece picked by URL hash at build time | `src/components/fx/AsciiArt.astro`, rendered by `MainGridLayout.astro` (`art={false}` opts out) |
+| Home hero globe (WebGL, `cobe@2.0.1`), follows the theme switch; live visitor dots polled from `functions/api/visitors.ts` (check: `node --experimental-strip-types scripts/check-visitors.mjs`) | `src/components/fx/Globe.tsx` |
+| Code blocks: `github-light` base theme, dark theme under `html.dark` | `astro.config.mjs` (`expressiveCode`) |
 | React Bits effects (14 components): click sparks, footer marquee, avatar glare (all pages); hero, post counters, archive totals, about/projects banners, fuzzy 404 | `src/components/reactbits/` (see its README) |
 
 Phase-1 effects still exist in markup but are visually disabled by the "EFFECTS OFF" section
