@@ -48,10 +48,8 @@
         -webkit-box-decoration-break: clone;
     
         &:hover, &:active {
-            @apply decoration-transparent;
             background: var(--btn-plain-bg-hover);
-            border-bottom: 1px dashed var(--link-hover);
-            text-decoration: none;
+            text-decoration-color: var(--link-hover);
         }
     }
 

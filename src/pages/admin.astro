@@ -159,7 +159,8 @@ function initAdmin() {
     });
 
     secretInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") loginBtn!.click();
+        // isComposing: Enter that confirms an IME candidate must not submit
+        if (e.key === "Enter" && !e.isComposing) loginBtn!.click();
     });
 
     logoutBtn?.addEventListener("click", () => {
