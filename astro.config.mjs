@@ -264,6 +264,11 @@ export default defineConfig({
 			noExternal: ['sharp'],
 		},
 	},
+	// Memory guard, do not remove without measuring. Without it Astro pre-renders all 1,600+
+	// posts into one ~250 MB data store that Rollup bundles as a single module: peak RSS was
+	// 9.1 GB and the Cloudflare Pages builder got OOM-killed (exit 137). With it each post is
+	// its own module: 6.5 GB peak, same 1,687 pages. See docs/UI_UPGRADE_PLAN.md (Landmines).
+	legacy: { collections: true },
 	build: {
 		inlineStylesheets: "auto",
 		concurrency: 4,

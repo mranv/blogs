@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "build": "NODE_OPTIONS='--max-old-space-size=8192' astro build && pagefind --site dist",
+    "build": "NODE_OPTIONS='--max-old-space-size=6144' astro build && pagefind --site dist",
     "preview": "wrangler pages dev ./dist",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",

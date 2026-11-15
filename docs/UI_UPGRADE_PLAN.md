@@ -31,6 +31,11 @@ Landmines: `color-mix(in ...)` cannot go in a `.styl` file (Stylus parses `in` a
 Font stacks (`--font-*`) must be set in `ryoku.css`, not `variables.styl`: Stylus emits them as one
 quoted string, which is an invalid family and falls back to Times.
 `astro dev` runs out of heap on this repo (1,600+ posts, even at 8 GB); verify with `pnpm build`.
+Build memory: the Cloudflare Pages builder OOM-kills the build (log shows `Killed`, exit 137) when
+peak RSS gets too high, and a failed build leaves the previous deploy live with no other signal.
+`legacy: { collections: true }` in `astro.config.mjs` keeps the peak at ~6.5 GB (9.1 GB without);
+it also means the posts schema must not declare `slug`. Anything that grows rendered post HTML
+(e.g. another Expressive Code theme) raises the peak: measure before pushing.
 
 ## Shipped in phase 1
 

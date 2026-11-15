@@ -15,7 +15,8 @@ const postsCollection = defineCollection({
 		tags: z.array(z.string()).optional().default([]),
 		category: z.string().optional().nullable().default(""),
 		lang: z.string().optional().default(""),
-		slug: z.string().optional(),
+		// No `slug` here: with `legacy.collections` (astro.config.mjs) Astro reserves it, reads it
+		// from frontmatter itself and exposes it as `entry.slug`; listing it fails the build.
 
 		/* Aliases used by imported content — map to canonical fields */
 		publishDate: z.coerce.date().optional(),
