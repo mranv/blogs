@@ -12,7 +12,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "Security Engineer · DevSecOps · XDR Architect · Rust & eBPF · 222+ Citations",
 	lang: "en", // Language code, e.g. 'en', 'zh-CN', 'ja', etc.
 	banner: {
-		enable: true,
+		enable: false, // off for the Paper & Ink design (flat black page, no hero image)
 		src: "assets/images/banner.avif", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {

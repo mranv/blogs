@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import { profileConfig } from "../../config";
 import { url } from "../../utils/url-utils";
 import ImageWrapper from "../misc/ImageWrapper.astro";
-import AudioVisualizerAura from "../AudioVisualizerAura.svelte";
+import GlareHover from "../reactbits/GlareHover";
 
 const config = profileConfig;
 ---
@@ -17,23 +17,15 @@ const config = profileConfig;
                   class="transition opacity-0 scale-90 group-hover:scale-100 group-hover:opacity-100 text-white text-5xl">
             </Icon>
         </div>
-        <ImageWrapper src={config.avatar || ""} alt="Anubhav Gain" class="mx-auto lg:w-full h-full lg:mt-0 "></ImageWrapper>
+        <GlareHover client:visible width="100%" height="100%" borderRadius="2px" glareColor="#f4efe6" glareOpacity={0.35}>
+            <ImageWrapper src={config.avatar || ""} alt="Anubhav Gain" class="mx-auto lg:w-full h-full lg:mt-0 "></ImageWrapper>
+        </GlareHover>
     </a>
     </div>
     <div class="px-2">
-        <div class="font-bold text-xl text-center mb-1 dark:text-neutral-50 transition">{config.name}</div>
-        <div class="h-1 w-5 bg-[var(--primary)] mx-auto rounded-full mb-2 transition"></div>
+        <div class="font-heading text-2xl text-center mb-1 transition">{config.name}</div>
+        <div class="h-px w-5 bg-[var(--line-strong)] mx-auto mb-2 transition"></div>
         <div class="text-center text-sm text-neutral-400 mb-2.5 transition line-clamp-3 max-h-[4.5rem] overflow-hidden">{config.bio}</div>
-        <!-- Audio Aura Visualizer -->
-        <div class="flex justify-center mb-2 pointer-events-none">
-            <AudioVisualizerAura
-                client:idle
-                size={120}
-                color="#38d4e8"
-                colorShift={0.3}
-                state="idle"
-            />
-        </div>
         <div class="flex gap-2 flex-wrap justify-center mb-1">
             {config.links.length > 1 && config.links.map(item =>
                     <a rel="me" aria-label={item.name} href={item.url} target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90">

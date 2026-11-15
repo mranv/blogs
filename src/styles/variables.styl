@@ -9,20 +9,24 @@ rainbow-light = linear-gradient(to right, oklch(0.80 0.10 0), oklch(0.80 0.10 30
 rainbow-dark = linear-gradient(to right, oklch(0.70 0.10 0), oklch(0.70 0.10 30), oklch(0.70 0.10 60), oklch(0.70 0.10 90), oklch(0.70 0.10 120), oklch(0.70 0.10 150), oklch(0.70 0.10 180), oklch(0.70 0.10 210), oklch(0.70 0.10 240), oklch(0.70 0.10 270), oklch(0.70 0.10 300), oklch(0.70 0.10 330), oklch(0.70 0.10 360))
 
 :root
-  /* oklch hue for components that build colours as oklch(L C var(--hue)); 50 = copper */
-  --hue 50
-  --radius-large 0.75rem
+  /* oklch hue for components that build colours as oklch(L C var(--hue)); 45 = burnt orange signal */
+  --hue 45
+  /* 2px everywhere: the Ryoku look has no rounded corners (see tailwind.config.cjs borderRadius) */
+  --radius-large 2px
   --content-delay 150ms
-  --font-sans "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
-  --font-mono "'Maple Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
-  --font-serif "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif"
-  /* heading/UI font = Maple Mono (crow vibe); body prose keeps --font-sans */
-  --font-heading "'Maple Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
+  --font-sans "'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif"
+  --font-mono "'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
+  --font-serif "'Fraunces Variable', 'Fraunces', ui-serif, Georgia, serif"
+  /* headings = Fraunces display serif; UI labels = sans uppercase tracked (ryoku.css) */
+  --font-heading "'Fraunces Variable', 'Fraunces', ui-serif, Georgia, serif"
 
 /* An util to define variables that vary with light and dark mode.
-   Each value is a [light, dark] pair. Palette "Obsidian Copper" (2026-11-13):
-   cool graphite/ink neutrals + copper accent (matches the copper circuit-butterfly banner)
-   + teal as the secondary glow. Deliberately no cream/terracotta, which read as Claude's look. */
+   Each value is a [light, dark] pair. Palette "Paper & Ink" (2026-11-15): modelled on the
+   ryoku.dev design system — pure black paper, warm bone ink at four strengths, hairlines as
+   ink at 13/26/42% alpha, one burnt-orange signal used sparingly. Dark is the reference;
+   light is the same system inverted (bone paper, near-black ink) because this blog keeps a
+   theme switch. Every legacy token below is derived from the paper/ink set, so retheme by
+   editing that first block only. Component rules live in ryoku.css. */
 define(vars)
   :root
     for key, value in vars
@@ -33,93 +37,104 @@ define(vars)
         {key}: value[1]
 
 define({
-  /* ---- Primary accent (copper glow signature) ---- */
-  --primary: #c2620f #f08a3c
-  --title-active: #a8530b #f5a05c
-  --page-bg: #f4f5f7 #0e1014
-  --card-bg: #ffffff #161a20
-  --card-border: #e2e5ea #252a33
-  --deep-text: #1c2028 #e6e8ec
+  /* ---- Paper & ink (the only raw colours) ---- */
+  --paper: #ebe2d6 #000000
+  --paper-raised: #e4dacd #0a0a0a
+  --ink: #14110e #cdc4ba
+  --ink-dim: #37322c #b0a9a0
+  --ink-muted: #5a544c #958f87
+  --ink-faint: #736c63 #807a73
+  --signal: #a8431c #ce5e32
+  /* --line*, --tint* (ink at fixed alphas) are defined in ryoku.css: Stylus parses the
+     "in" of color-mix(in srgb, ...) as an operator and fails to compile it here. */
 
-  /* ---- Button content + regular button surfaces ---- */
-  --btn-content: #3a404b #e6e8ec
+  /* ---- Legacy tokens, all derived ---- */
+  --primary: var(--ink)
+  --title-active: var(--ink-muted)
+  --page-bg: var(--paper)
+  --card-bg: var(--paper)
+  --card-border: var(--line)
+  --deep-text: var(--ink-dim)
 
-  --btn-regular-bg: #eef0f3 #1d222a
-  --btn-regular-bg-hover: #e3e6eb #262c36
-  --btn-regular-bg-active: #d6dae1 #2f3642
+  --btn-content: var(--ink-dim)
 
-  --btn-plain-bg-hover: #eef0f3 #1d222a
-  --btn-plain-bg-active: #e3e6eb #262c36
+  --btn-regular-bg: var(--tint5)
+  --btn-regular-bg-hover: var(--tint10)
+  --btn-regular-bg-active: var(--tint16)
 
-  --btn-card-bg-hover: #f1f3f6 #1d222a
-  --btn-card-bg-active: #e3e6eb #262c36
+  --btn-plain-bg-hover: var(--tint5)
+  --btn-plain-bg-active: var(--tint10)
+
+  --btn-card-bg-hover: var(--tint5)
+  --btn-card-bg-active: var(--tint10)
 
   --enter-btn-bg: var(--btn-regular-bg)
   --enter-btn-bg-hover: var(--btn-regular-bg-hover)
   --enter-btn-bg-active: var(--btn-regular-bg-active)
 
   /* ---- Dividers / meta ---- */
-  --line-divider: #e2e5ea #252a33
-  --line-color: #e2e5ea #252a33
-  --meta-divider: #cdd2d9 #333a45
-  --inline-code-bg: #eef0f3 #1d222a
-  --inline-code-color: #b3540a #f5a05c
-  --selection-bg: #fbd9bd #5a3418
-  --codeblock-selection: #d6dae1 #2f3642
-  --codeblock-bg: #f0f2f5 #0b0d11
-  --codeblock-topbar-bg: #e6e9ee #13161c
-  --license-block-bg: black(0.03) #0b0d11
-  --link-underline: #cdd2d9 #333a45
-  --link-hover: #c2620f #f08a3c
-  --link-active: #a8530b #f5a05c
-  --float-panel-bg: rgba(255,255,255,0.84) rgba(14,16,20,0.80)
-  --scrollbar-bg-light: black(0.4)
-  --scrollbar-bg-hover-light: black(0.5)
-  --scrollbar-bg-active-light: black(0.6)
-
-  --scrollbar-bg-dark: white(0.4)
-  --scrollbar-bg-hover-dark: white(0.5)
-  --scrollbar-bg-active-dark: white(0.6)
-
-  --scrollbar-bg: var(--scrollbar-bg-light) var(--scrollbar-bg-dark)
-  --scrollbar-bg-hover: var(--scrollbar-bg-hover-light) var(--scrollbar-bg-hover-dark)
-  --scrollbar-bg-active: var(--scrollbar-bg-active-light) var(--scrollbar-bg-active-dark)
+  --line-divider: var(--line-soft)
+  --line-color: var(--line)
+  --meta-divider: var(--line-strong)
+  --inline-code-bg: var(--tint10)
+  --inline-code-color: var(--ink)
+  --selection-bg: var(--ink)
+  --codeblock-selection: var(--tint16)
+  --codeblock-bg: var(--paper)
+  --codeblock-topbar-bg: var(--paper)
+  --license-block-bg: var(--tint5)
+  --link-underline: var(--line-strong)
+  --link-hover: var(--signal)
+  --link-active: var(--signal)
+  --float-panel-bg: var(--paper-raised)
+  --scrollbar-bg: var(--line)
+  --scrollbar-bg-hover: var(--line-strong)
+  --scrollbar-bg-active: var(--ink-muted)
+  /* scrollbar.css still reads the per-mode names */
+  --scrollbar-bg-light: var(--line)
+  --scrollbar-bg-hover-light: var(--line-strong)
+  --scrollbar-bg-active-light: var(--ink-muted)
+  --scrollbar-bg-dark: var(--line)
+  --scrollbar-bg-hover-dark: var(--line-strong)
+  --scrollbar-bg-active-dark: var(--ink-muted)
 
   --color-selection-bar: rainbow-light rainbow-dark
 
   --display-light-icon: 1 0
   --display-dark-icon: 0 1
 
-  /* ---- Admonitions (crow-tinted) ---- */
-  --admonitions-color-tip: #1f8a5b #3ddc97
-  --admonitions-color-note: #2563a8 #60a5fa
-  --admonitions-color-important: #6d4fc2 #a78bfa
-  --admonitions-color-warning: #b7791f #f5b942
-  --admonitions-color-caution: #c0392b #f87171
-  --toc-badge-bg: #eef0f3 #1d222a
-  --toc-btn-hover: #e3e6eb #262c36
-  --toc-btn-active: #e3e6eb #262c36
+  /* ---- Admonitions: semantic hues kept (they carry meaning), desaturated to sit on paper ---- */
+  --admonitions-color-tip: #2f6b4d #6daf8c
+  --admonitions-color-note: #2f5f85 #6ea5cf
+  --admonitions-color-important: #4f5596 #9299d3
+  --admonitions-color-warning: #8a6420 #c9a05a
+  --admonitions-color-caution: var(--signal)
+  --toc-badge-bg: var(--tint10)
+  --toc-btn-hover: var(--tint5)
+  --toc-btn-active: var(--tint10)
   --toc-width: calc((100vw - var(--page-width)) / 2 - 1rem)
-  --toc-item-active: #c2620f #f08a3c
-  --neon-amber: #c2620f #f08a3c
-  --neon-cyan: #0e9fb3 #38d4e8
-  --neon-purple: #6d5bd0 #9b8cff
-  --neon-pink: #c2477a #f472b6
-  --neon-orange: #d9741c #ffa45c
-  --glow-color: var(--neon-amber)
+  --toc-item-active: var(--ink)
+  /* neon-* kept as names only: glow.css / fx.css / components still reference them.
+     All point at ink or signal so nothing glows in colour. */
+  --neon-amber: var(--ink)
+  --neon-cyan: var(--ink-muted)
+  --neon-purple: var(--ink-muted)
+  --neon-pink: var(--signal)
+  --neon-orange: var(--signal)
+  --glow-color: var(--ink)
 
   /* ---- crow-compatible color aliases (used by glow.css + CRT toggle) ---- */
-  --color-bg-primary: #f4f5f7 #0e1014
-  --color-bg-secondary: #ffffff #161a20
-  --color-bg-muted: #e2e5ea #252a33
-  --color-text-primary: #1c2028 #e6e8ec
-  --color-text-muted: #5b6270 #9aa3b2
-  --color-red: #c0392b #f87171
-  --color-yellow: #b7791f #f5b942
-  --color-green: #1f8a5b #3ddc97
-  --color-blue: #2563a8 #60a5fa
-  --color-purple: #6d5bd0 #9b8cff
-  --glass-bg: rgba(255,255,255,0.80) rgba(14,16,20,0.72)
-  --glass-border: rgba(28,32,40,0.10) rgba(230,232,236,0.10)
-  --crt-flash-bg: #ffffff #e6e8ec
+  --color-bg-primary: var(--paper)
+  --color-bg-secondary: var(--paper-raised)
+  --color-bg-muted: var(--tint10)
+  --color-text-primary: var(--ink)
+  --color-text-muted: var(--ink-muted)
+  --color-red: var(--signal)
+  --color-yellow: #8a6420 #c9a05a
+  --color-green: #2f6b4d #6daf8c
+  --color-blue: #2f5f85 #6ea5cf
+  --color-purple: #4f5596 #9299d3
+  --glass-bg: var(--paper-raised)
+  --glass-border: var(--line)
+  --crt-flash-bg: var(--ink)
 })

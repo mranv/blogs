@@ -2,7 +2,8 @@
 import { getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
-import AudioVisualizerGrid from "../components/AudioVisualizerGrid.svelte";
+import DotField from "../components/reactbits/DotField";
+import ShinyText from "../components/reactbits/ShinyText";
 
 const aboutPost = await getEntry("spec", "about");
 
@@ -15,21 +16,15 @@ const { Content, headings } = await render(aboutPost);
 const aboutPageTitle = "About Anubhav Gain - Security Software Engineer & Security Expert";
 const aboutPageDescription = "Learn about Anubhav Gain, Security Software Engineer at Infopercept, CEO at TechAnv Consulting, DevSecOps Expert, XDR/OXDR Platform Architect with 222+ Research Citations.";
 ---
-<MainGridLayout title={aboutPageTitle} description={aboutPageDescription} headings={headings}>
-    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
-        <!-- Grid Visualizer as background decoration -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30 overflow-hidden">
-            <AudioVisualizerGrid
-                client:idle
-                size={400}
-                color="#38d4e8"
-                colorShift={0.3}
-                rowCount={15}
-                columnCount={15}
-                radius={60}
-                state="idle"
-            />
+<MainGridLayout title={aboutPageTitle} description={aboutPageDescription} headings={headings} art={false}>
+    <!-- Page banner replaces the ASCII strip here. WebGL canvas: literal colours, see reactbits/README.md -->
+    <div class="card-base relative mb-4 h-40 overflow-hidden" aria-hidden="true">
+        <DotField client:visible gradientFrom="#958f87" gradientTo="#ce5e32" glowColor="#ce5e32" holdToZoom={false} />
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none font-heading italic text-5xl">
+            <ShinyText client:visible text="About" color="#958f87" shineColor="#ce5e32" speed={3} />
         </div>
+    </div>
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
         <div class="card-base z-10 px-9 py-6 relative w-full ">
             <Markdown class="mt-2">
                 <Content />

@@ -1,28 +1,37 @@
 ---
 
-import { profileConfig } from "../config";
+import { profileConfig, siteConfig } from "../config";
+import ScrollVelocity from "./reactbits/ScrollVelocity";
 import { url } from "../utils/url-utils";
 
 const currentYear = new Date().getFullYear();
+const cols: [string, [string, string, boolean?][]][] = [
+	["Read", [["Archive", url("archive/")], ["About", url("about/")], ["RSS", url("rss.xml")]]],
+	["Site", [["Sitemap", url("sitemap-index.xml")], ["Privacy", url("privacy/")], ["Source", "https://github.com/mranv/blogs", true]]],
+	// Skiper UI free tier requires attribution; see src/components/fx/ — do not remove.
+	["Built with", [["Astro", "https://astro.build", true], ["Skiper UI", "https://skiper-ui.com", true], ["Animata", "https://animata.design", true], ["Vengeance UI", "https://www.vengenceui.com", true], ["React Bits", "https://reactbits.dev", true]]],
+];
 ---
 
-<!--<div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">-->
-<div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-4 sm:mx-16 lg:mx-32"></div>
-<div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-4 sm:px-6">
-    <div class="transition text-50 text-sm text-center flex flex-col items-center gap-1 lg:flex-row lg:flex-wrap lg:justify-center lg:gap-x-1.5">
-        <span>&copy; <span id="copyright-year">{currentYear}</span> {profileConfig.name}. All Rights Reserved.</span>
-        <span class="hidden lg:inline">·</span>
-        <a class="transition link text-[var(--primary)] font-medium" href={url('rss.xml')}>RSS</a>
-        <span class="hidden lg:inline">·</span>
-        <a class="transition link text-[var(--primary)] font-medium" href={url('sitemap-index.xml')}>Sitemap</a>
-        <span class="hidden lg:inline">·</span>
-        <a class="transition link text-[var(--primary)] font-medium" href={url('privacy/')}>Privacy</a>
-        <span class="hidden lg:inline">·</span>
-        <span>Built with <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a></span>
-        <span class="hidden lg:inline">·</span>
-        <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/mranv/blogs">View Source</a>
-        <span class="hidden lg:inline">·</span>
-        <!-- Skiper UI free tier requires attribution; see src/components/fx/ -->
-        <span>UI bits from <a class="transition link text-[var(--primary)] font-medium" target="_blank" rel="noopener" href="https://skiper-ui.com">Skiper UI</a>, <a class="transition link text-[var(--primary)] font-medium" target="_blank" rel="noopener" href="https://animata.design">Animata</a> &amp; <a class="transition link text-[var(--primary)] font-medium" target="_blank" rel="noopener" href="https://www.vengenceui.com">Vengeance UI</a></span>
+<footer class="mt-10 mb-12 mx-4 border-t border-[var(--line)] pt-10">
+    <!-- Topic marquee (React Bits ScrollVelocity): speeds up with page scroll. Decorative. -->
+    <div class="mb-10 text-[var(--ink-faint)]" aria-hidden="true">
+        <ScrollVelocity client:visible texts={["Detection engineering · Rust · eBPF · Kernel · XDR ·"]} velocity={30} fontSize="1.5rem" fontWeight={400} scrollerClassName="!font-heading italic !drop-shadow-none" />
     </div>
-</div>
+    <div class="grid gap-8 sm:grid-cols-[1.4fr_repeat(3,1fr)]">
+        <p class="font-heading italic text-2xl leading-tight text-90 max-w-[16ch]">{siteConfig.title}. Notes on security, Rust and the kernel.</p>
+        {cols.map(([head, links]) => (
+            <div>
+                <div class="eyebrow mb-3">{head}</div>
+                <ul class="flex flex-col gap-1.5 text-sm">
+                    {links.map(([name, href, ext]) => (
+                        <li><a class="text-75 hover:text-[var(--ink)] underline-offset-4 hover:underline" href={href} target={ext ? "_blank" : null} rel={ext ? "noopener" : null}>{name}</a></li>
+                    ))}
+                </ul>
+            </div>
+        ))}
+    </div>
+    <div class="mt-10 pt-4 border-t border-[var(--line-soft)] font-mono text-[0.5625rem] tracking-[0.2em] uppercase text-50">
+        &copy; <span id="copyright-year">{currentYear}</span> {profileConfig.name} · All rights reserved
+    </div>
+</footer>

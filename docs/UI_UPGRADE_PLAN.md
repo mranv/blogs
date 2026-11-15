@@ -2,12 +2,39 @@
 
 Status: **phase 1 built** (2026-11-13), not yet committed or deployed. Delete this file once it ships.
 
+## Phase 2 — "Paper & Ink" restyle (2026-11-15, not committed)
+
+The whole site was restyled after the ryoku.dev design system: black paper, bone ink,
+1px hairlines, 2px corners, no glow. This **supersedes the Obsidian Copper palette** below.
+
+| What | Where |
+|---|---|
+| Palette tokens (paper / ink ×4 / signal); every legacy token derives from them | `src/styles/variables.styl` |
+| Hairline + tint tokens, component overrides, grain, effects switched off | `src/styles/ryoku.css` (imported last in `Layout.astro`) |
+| Fonts: Fraunces (headings), Space Grotesk (body), Space Mono (code) | `Layout.astro` imports, `tailwind.config.cjs` |
+| All `rounded-*` → 2px; `white` remapped to bone ink | `tailwind.config.cjs` |
+| Banner image off | `src/config.ts` (`banner.enable`) |
+| Footer rebuilt as tagline + link columns; widget titles are `.eyebrow` labels | `Footer.astro`, `widget/WidgetLayout.astro` |
+
+| Home hero (headline), dark theme as default | `src/pages/[...page].astro`, `src/constants/constants.ts` |
+| ASCII art strip on every page, piece picked by URL hash at build time | `src/components/fx/AsciiArt.astro`, rendered by `MainGridLayout.astro` (`art={false}` opts out) |
+| React Bits effects (14 components): click sparks, footer marquee, avatar glare (all pages); hero, post counters, archive totals, about/projects banners, fuzzy 404 | `src/components/reactbits/` (see its README) |
+
+Phase-1 effects still exist in markup but are visually disabled by the "EFFECTS OFF" section
+of `ryoku.css` (spotlight, holo sweep, border trail, neon text, rainbow badge). Text-roll,
+scramble text and the reading-progress ring still run. `glow.css` / `fx.css` can be pruned later.
+
+Landmines: `color-mix(in ...)` cannot go in a `.styl` file (Stylus parses `in` as an operator).
+Font stacks (`--font-*`) must be set in `ryoku.css`, not `variables.styl`: Stylus emits them as one
+quoted string, which is an invalid family and falls back to Times.
+`astro dev` runs out of heap on this repo (1,600+ posts, even at 8 GB); verify with `pnpm build`.
+
 ## Shipped in phase 1
 
 | Effect | Source | File | Tech |
 |---|---|---|---|
 | Reading-progress ring = back to top (post pages) | Skiper UI 89 | `src/components/fx/ReadingProgress.tsx` | React + motion |
-| Scramble headline (404) | Animata gibberish-text | `src/components/fx/ScrambleText.tsx` | React |
+| Scramble headline (404) | replaced 2026-11-15 by React Bits DecryptedText / FuzzyText | `src/components/reactbits/` | React |
 | Cursor spotlight border (post cards) | Vengeance glow-border-card | `fx.css` + `fx/SpotlightTracker.astro` | CSS + 1 listener |
 | Text-roll hover (navbar links) | Skiper UI 58 | `fx/TextRoll.astro` + `fx.css` | CSS |
 | Border trail (profile avatar) | Animata animated-border-trail | `fx.css` | CSS |

@@ -3,7 +3,8 @@
 import { getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
-import AudioVisualizerGrid from "../components/AudioVisualizerGrid.svelte";
+import ShapeGrid from "../components/reactbits/ShapeGrid";
+import ShinyText from "../components/reactbits/ShinyText";
 
 
 const projectsPost = await getEntry("spec", "projects");
@@ -17,21 +18,15 @@ const { Content, headings } = await render(projectsPost);
 const pageTitle = "Open-Source Projects — Anubhav Gain";
 const pageDescription = "Production-grade open-source projects by Anubhav Gain: Leviathan (Windows kernel EDR in Rust), Krustron (Kubernetes platform), Agni (Firecracker TUI), opensearch-rust-sdk, and more.";
 ---
-<MainGridLayout title={pageTitle} description={pageDescription} headings={headings}>
-    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
-        <!-- Grid Visualizer as background decoration -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30 overflow-hidden">
-            <AudioVisualizerGrid
-                client:idle
-                size={400}
-                color="#1FD5F9"
-                colorShift={0.3}
-                rowCount={15}
-                columnCount={15}
-                radius={60}
-                state="idle"
-            />
+<MainGridLayout title={pageTitle} description={pageDescription} headings={headings} art={false}>
+    <!-- Page banner replaces the ASCII strip here. WebGL canvas: literal colours, see reactbits/README.md -->
+    <div class="card-base relative mb-4 h-40 overflow-hidden" aria-hidden="true">
+        <ShapeGrid client:visible lineColor="#807a73" hoverColor="#ce5e32" clickCascade={false} />
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none font-heading italic text-5xl">
+            <ShinyText client:visible text="Projects" color="#958f87" shineColor="#ce5e32" speed={3} />
         </div>
+    </div>
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
         <div class="card-base z-10 px-9 py-6 relative w-full ">
             <Markdown class="mt-2">
                 <Content />

@@ -1,0 +1,33 @@
+---
+/**
+ * Per-page ASCII art strip, rendered by MainGridLayout above every page's content.
+ *
+ * "Random" = picked at build time by hashing the URL path: each page gets a different
+ * piece, but the same page always gets the same one (stable builds, no layout shift,
+ * no client JS, and it survives Swup navigation because it sits inside the swapped <main>).
+ *
+ * PIECES must each exist as public/ascii-magic-art/pieces/<slug>.js (vendored, see the
+ * README there). Only abstract full-field pieces are listed: the strip clips them to
+ * h-40, which would cut a scene (a globe, a city) in half.
+ * The <ascii-art> element is defined by the module script in Layout.astro <head>.
+ */
+const PIECES = [
+	"matrix-rain",
+	"circuit-trace",
+	"flow-field",
+	"starfield-warp",
+	"wave-interference",
+	"magnet-field-lines",
+	"boids-flock",
+	"game-of-life",
+	"hyperspace-jump",
+];
+// ponytail: 31-multiplier string hash, plenty for spreading 1,600 paths over 9 pieces
+let h = 0;
+for (const c of Astro.url.pathname) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+const piece = PIECES[h % PIECES.length];
+---
+<!-- Pieces are ~96 columns wide and clip on phones, so the strip is md+ only. -->
+<div class="card-base mb-4 hidden md:flex h-40 items-center justify-center overflow-hidden text-[var(--ink-muted)]" aria-hidden="true">
+    <ascii-art piece={piece} size="13" mono></ascii-art>
+</div>

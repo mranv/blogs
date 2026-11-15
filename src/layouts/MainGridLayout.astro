@@ -1,5 +1,7 @@
 ---
 import BackToTop from "@components/control/BackToTop.astro";
+import AsciiArt from "@components/fx/AsciiArt.astro";
+import ClickSpark from "@components/reactbits/ClickSpark";
 import ReadingProgress from "@components/fx/ReadingProgress";
 import SpotlightTracker from "@components/fx/SpotlightTracker.astro";
 import Footer from "@components/Footer.astro";
@@ -31,6 +33,8 @@ interface Props {
 		tags?: string[];
 	};
 	headings?: MarkdownHeading[];
+	/** false = no per-page ASCII strip (pages that already show their own piece) */
+	art?: boolean;
 }
 
 const {
@@ -42,6 +46,7 @@ const {
 	setOGTypeArticle,
 	articleData,
 	headings = [],
+	art = true,
 } = Astro.props;
 const hasBannerCredit =
 	siteConfig.banner.enable && siteConfig.banner.credit.enable;
@@ -97,7 +102,13 @@ const mainPanelTop = siteConfig.banner.enable
                 <div id="content-wrapper" class="onload-animation">
                     <!-- the overflow-hidden here prevent long text break the layout-->
                     <!-- make id different from windows.swup global property -->
-                    <slot></slot>
+                    <!-- Click sparks on page content (React Bits). Inside the Swup container on purpose:
+                         the island is re-created with each swapped page. Literal colour: canvas can't
+                         read CSS variables; signal orange reads in both themes. -->
+                    <ClickSpark client:idle sparkColor="#ce5e32">
+                        {art && <AsciiArt />}
+                        <slot></slot>
+                    </ClickSpark>
                     <!-- Mobile-only Newsletter widget (sidebar is hidden < lg) -->
                     <div class="block lg:hidden mt-4 onload-animation">
                         <Newsletter />

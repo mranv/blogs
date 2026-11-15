@@ -1,0 +1,252 @@
+/* Paper & Ink component layer — the look modelled on ryoku.dev's design system.
+ *
+ * Contract:
+ *  - Imported LAST in Layout.astro. It overrides main.css / glow.css / fx.css rather than
+ *    editing them, so the older effect layers can be deleted later without touching this file.
+ *  - Colours come only from the paper/ink tokens in variables.styl. No raw hex here.
+ *  - Rules of the look: flat (no shadows, glows, gradients), 2px corners, 1px ink hairlines,
+ *    Fraunces serif for headings, Space Grotesk for body, UI labels uppercase + tracked.
+ *  - Nothing here is copied from ryoku.dev assets (their grain.png, JP font and artwork are
+ *    theirs); the grain below is generated SVG noise.
+ *
+ * === SECTIONS ===  base · type · surfaces · buttons · nav · prose · code · effects-off
+ */
+
+/* === BASE === */
+/* Hairlines and hover tints: ink at fixed alphas, so they follow the theme automatically.
+   Here rather than variables.styl because Stylus cannot parse color-mix(in ...). */
+:root {
+    --line: color-mix(in srgb, var(--ink) 26%, transparent);
+    --line-soft: color-mix(in srgb, var(--ink) 13%, transparent);
+    --line-strong: color-mix(in srgb, var(--ink) 42%, transparent);
+    --tint5: color-mix(in srgb, var(--ink) 5%, transparent);
+    --tint10: color-mix(in srgb, var(--ink) 10%, transparent);
+    --tint16: color-mix(in srgb, var(--ink) 16%, transparent);
+    /* Font stacks redefined here on purpose: variables.styl emits them as one quoted string,
+       which CSS reads as a single (nonexistent) family and silently falls back to Times. */
+    --font-sans: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
+    --font-heading: "Fraunces Variable", "Fraunces", ui-serif, Georgia, serif;
+    --font-serif: var(--font-heading);
+    --font-mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+body {
+    background: var(--paper);
+    color: var(--ink-dim);
+    font-family: var(--font-sans);
+    line-height: 1.62;
+}
+/* Film grain. Reuses body::before, which glow.css used for coloured ambient glows —
+   same selectors on purpose so this replaces them. Above everything, click-through. */
+.dark body::before,
+body:not(.dark)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.055;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .8 0 0 0 0 .77 0 0 0 0 .73 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E") 0 0 / 256px 256px;
+}
+::selection {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+/* === TYPE === */
+h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-heading);
+    font-variation-settings: "opsz" 144;
+    font-weight: 400 !important; /* beats the font-bold utilities left on heading markup */
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-wrap: balance;
+}
+.text-90 { color: var(--ink) !important; }
+.text-75 { color: var(--ink-dim) !important; }
+.text-50 { color: var(--ink-muted) !important; }
+.text-30, .text-25 { color: var(--ink-faint) !important; }
+/* Eyebrow label: tiny uppercase tracked caps with a leading hairline */
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+}
+.eyebrow::before {
+    content: "";
+    width: 16px;
+    height: 1px;
+    background: var(--line-strong);
+}
+/* Section head variant: the hairline runs to the far edge after the label */
+.eyebrow.rule::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line-soft);
+}
+
+/* === SURFACES === */
+.card-base {
+    background: transparent;
+    border-color: var(--line);
+}
+.card-glow,
+.card-glow:hover,
+.card-glow:focus-within {
+    border: 1px solid var(--line);
+    box-shadow: none;
+    transform: none;
+    transition: background 0.17s, border-color 0.17s;
+}
+.card-glow:hover,
+.card-glow:focus-within {
+    background: var(--tint5);
+    border-color: var(--line-strong);
+}
+.card-shadow { filter: none; }
+.float-panel {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+.meta-icon {
+    background: transparent;
+    border: 1px solid var(--line-soft);
+    color: var(--ink-muted);
+}
+
+/* === BUTTONS === */
+.btn-regular,
+.btn-card {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.btn-regular:hover,
+.btn-card:hover {
+    background: var(--ink);
+    color: var(--paper);
+}
+.btn-regular svg,
+.btn-card svg { color: inherit; }
+/* Solid "bone" button: the one filled control per view (newsletter submit) */
+.glow-btn,
+.glow-btn:hover,
+.glow-btn:focus-visible {
+    background: var(--ink) !important;
+    color: var(--paper) !important;
+    border: 1px solid var(--ink);
+    box-shadow: none !important;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.glow-btn:hover { background: var(--ink-dim) !important; }
+.glow-btn::after { display: none; }
+input, textarea {
+    border-radius: 2px;
+}
+
+/* === NAV === */
+/* Opaque paper + bottom hairline only: the bar is sticky, so it cannot be a transparent card. */
+#navbar .card-base {
+    background: var(--paper);
+    border-width: 0 0 1px;
+}
+#navbar a.btn-plain,
+#nav-menu-panel a {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+}
+#navbar a.btn-plain:hover { color: var(--ink); }
+#navbar .expand-animation::before { display: none; }
+
+/* === PROSE === */
+.custom-md h1:hover, .custom-md h2:hover, .custom-md h3:hover,
+.custom-md h4:hover, .custom-md h5:hover, .custom-md h6:hover {
+    text-shadow: none;
+}
+.custom-md a:not(.no-styling) {
+    color: var(--ink);
+    text-decoration: underline solid var(--line-strong) 1px;
+    text-underline-offset: 0.25em;
+}
+.custom-md a:not(.no-styling):hover {
+    text-decoration-color: var(--signal);
+    background: none;
+}
+.custom-md blockquote {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.1em;
+    color: var(--ink);
+}
+.custom-md hr { border-color: var(--line-soft); border-style: solid; }
+.custom-md table th {
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+}
+
+/* === CODE === */
+.expressive-code .frame {
+    border: 1px solid var(--line);
+    border-radius: 2px;
+}
+
+/* === EFFECTS OFF ===
+   The neon/holo/spotlight layers from glow.css and fx.css contradict a flat design.
+   Switched off here instead of deleting their markup hooks across ~20 templates. */
+.neon-text, .neon-text-cyan, .neon-active,
+#toc a.visible, table-of-contents a.visible, .toc a.visible {
+    text-shadow: none !important;
+}
+.neon-border, .neon-hover:hover, .neon-hover:focus-within, #active-indicator {
+    box-shadow: none !important;
+}
+.holo-sweep::after,
+.spotlight-card::before,
+.border-trail::before {
+    display: none !important;
+}
+.rainbow-badge, .rainbow-badge:hover, .rainbow-badge:focus-visible {
+    animation: none !important;
+    box-shadow: none !important;
+}
+.rainbow-badge:hover, .rainbow-badge:focus-visible {
+    background: var(--ink);
+    color: var(--paper);
+}
+.border-trail {
+    padding: 1px;
+    border-radius: 2px;
+    background: var(--line);
+}
+.glass-panel {
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 1px solid var(--ink);
+    outline-offset: 2px;
+    box-shadow: none;
+}

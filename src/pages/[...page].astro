@@ -3,8 +3,16 @@ import type { GetStaticPaths } from "astro";
 import Pagination from "../components/control/Pagination.astro";
 import PostPage from "../components/PostPage.astro";
 import { PAGE_SIZE } from "../constants/constants";
+import BlurText from "../components/reactbits/BlurText";
+import DecryptedText from "../components/reactbits/DecryptedText";
+import LetterGlitch from "../components/reactbits/LetterGlitch";
+import Magnet from "../components/reactbits/Magnet";
+import RotatingText from "../components/reactbits/RotatingText";
+import StarBorder from "../components/reactbits/StarBorder";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { siteConfig } from "../config";
 import { getSortedPosts } from "../utils/content-utils";
+import { url } from "../utils/url-utils";
 
 
 export const getStaticPaths = (async ({ paginate }) => {
@@ -20,7 +28,27 @@ const len = page.data.length;
 const homePageDescription = "Anubhav Gain's technical blog covering DevSecOps, XDR/OXDR Platforms, Rust Programming, eBPF Development, Cloud-Native Security, Kubernetes, and Container Security. Security Software Engineer at Infopercept, CEO at TechAnv Consulting.";
 ---
 
-<MainGridLayout description={homePageDescription}>
+<MainGridLayout description={homePageDescription} art={page.currentPage !== 1}>
+    {page.currentPage === 1 && (
+        <!-- Home hero. Effects are vendored React Bits components (src/components/reactbits/README.md).
+             LetterGlitch draws on WebGL and cannot read CSS variables, so its colours are literals
+             chosen to read on both the black and the bone paper. -->
+        <section class="card-base relative overflow-hidden mb-4 px-6 md:px-9 py-10 onload-animation">
+            <div class="absolute inset-0 opacity-40 pointer-events-none" aria-hidden="true">
+                <LetterGlitch client:visible baseColor="#958f87" glitchColors={["#958f87", "#807a73", "#ce5e32"]} interactive={false} />
+            </div>
+            <div class="relative z-10">
+                <div class="eyebrow mb-5"><DecryptedText client:visible text={`Field notes · ${siteConfig.title}`} animateOn="view" sequential /></div>
+                <h1 class="text-4xl md:text-6xl leading-none mb-5 max-w-[14ch]"><BlurText client:load text="Security, written from the kernel up." delay={90} /></h1>
+                <p class="font-heading italic text-xl text-75 max-w-[34ch] mb-4">{siteConfig.subtitle}</p>
+                <div class="eyebrow flex items-center gap-2 mb-7">Notes on <RotatingText client:idle texts={["eBPF", "Rust", "XDR", "Kubernetes", "detection engineering"]} rotationInterval={2400} mainClassName="text-[var(--primary)] overflow-hidden" /></div>
+                <div class="flex flex-wrap gap-3">
+                    <Magnet client:idle padding={40}><a href={url("archive/")} class="glow-btn px-6 py-3 inline-block">Read the archive</a></Magnet>
+                    <StarBorder client:idle as="a" href={url("about/")} color="#ce5e32" radius={2} backgroundColor="transparent" textColor="inherit" borderColor="#807a73" className="!px-6 !py-3">About</StarBorder>
+                </div>
+            </div>
+        </section>
+    )}
     <PostPage page={page}></PostPage>
     <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
 </MainGridLayout>
