@@ -15,6 +15,9 @@ const pageDescription = "The page you're looking for doesn't exist.";
             <ascii-art piece="page-404" size="10" mono class="hidden md:inline-block text-[var(--primary)] mb-4"></ascii-art>
             <div class="md:hidden text-7xl font-heading text-[var(--primary)] mb-4"><FuzzyText client:load>404</FuzzyText></div>
             <div class="eyebrow mb-3"><DecryptedText client:load text="PAGE NOT FOUND" animateOn="view" sequential /></div>
+            <!-- Typed, held, taken back (public/ink-type.js). Server text = first phrase. -->
+            <div class="font-heading italic text-3xl text-90 h-10 mb-2" aria-hidden="true"
+                 data-ink-cycle={JSON.stringify(["lost", "not found", "withered", "gone to seed"])}>lost</div>
             <p class="text-75 max-w-md mb-8">
                 The page you're looking for doesn't exist or has been moved.
                 Try searching or head back home.
@@ -30,6 +33,13 @@ const pageDescription = "The page you're looking for doesn't exist.";
                     <div class="flex items-center gap-2">
                         <Icon name="material-symbols:list-alt-rounded" class="text-xl" />
                         <span>Browse Archive</span>
+                    </div>
+                </a>
+                <!-- the garden types "lost" in Sumi ink and lets it wither (public/type-garden, ?words=) -->
+                <a href="/type-garden/?words=lost,not%20found" target="_blank" rel="noopener" class="btn-regular rounded-lg px-6 py-3 font-bold active:scale-95 transition">
+                    <div class="flex items-center gap-2">
+                        <Icon name="material-symbols:local-florist-outline-rounded" class="text-xl" />
+                        <span>Grow it back</span>
                     </div>
                 </a>
             </div>
