@@ -6,7 +6,9 @@
 //  - a few ume (plum) petals drift across the home hero ([data-petals]) while it is on screen;
 //  - an ensō (zen brush circle) draws itself bottom-right while Swup fetches a page, and once per session;
 //  - [data-ink-cycle='["a","b"]'] types each phrase, holds, backspaces, types the next (About, Projects);
-//  - [data-ink-stamp] (footer seal) stamps down, and post blockquotes get their rule painted in, on view.
+//  - [data-ink-stamp] (footer seal) stamps down, post blockquotes get their rule painted in, post code
+//    blocks print line by line, and [data-ink-fin] (end of a post) brushes an ensō, all on view;
+//  - the hero's falling marks follow the season: ume, hotaru, momiji, snow.
 // Everything plays on its own: no hover or click needed, so every visitor sees it.
 //
 // Targets: anything marked [data-ink-type] (post title: ="seal", post-card titles) plus .custom-md h2/h3.
@@ -48,9 +50,13 @@
 .it-img{transition:clip-path 1.1s cubic-bezier(.25,.8,.25,1)}
 .it-enso{position:fixed;right:20px;bottom:20px;width:64px;height:64px;z-index:9999;pointer-events:none;color:var(--ink);opacity:.85;transition:opacity .35s,transform .35s}
 .it-enso.out{opacity:0;transform:scale(.85) rotate(20deg)}
-.it-enso circle{stroke-dasharray:239;animation:it-enso .9s cubic-bezier(.5,.1,.3,1) both}
+.it-fin{display:flex;justify-content:center;color:var(--ink-muted);min-height:56px}
+:is(.it-enso,.it-fin) circle{stroke-dasharray:239;animation:it-enso .9s cubic-bezier(.5,.1,.3,1) both}
 @keyframes it-enso{from{stroke-dashoffset:239}to{stroke-dashoffset:0}}
 .it-wait{opacity:0}
+.it-code .ec-line{opacity:0}
+.it-code.on .ec-line{opacity:1;animation:it-line .35s ease-out both;animation-delay:calc(min(var(--i),40) * 22ms)}
+@keyframes it-line{0%{opacity:0;transform:translateX(-.5em)}}
 .it-stamp{animation:it-stamp .5s cubic-bezier(.2,.9,.3,1.4) both}
 .custom-md blockquote.it-q:before{transform-origin:top;animation:it-q .9s cubic-bezier(.3,.7,.2,1) both}
 @keyframes it-q{0%{transform:scaleY(0);background:var(--signal)}60%{background:var(--signal)}}`;
@@ -145,6 +151,14 @@
 		}
 	}
 
+	// what falls over the hero follows the season (northern hemisphere, the visitor's clock):
+	// ume petals in spring, hotaru (fireflies) rising in summer, momiji (maple) in autumn, snow in winter.
+	// ?season=ume|hotaru|momiji|snow overrides it, for review.
+	const SEASON = (() => {
+		const q = new URLSearchParams(location.search).get('season');
+		if (/^(ume|hotaru|momiji|snow)$/.test(q || '')) return q;
+		return ['snow', 'snow', 'ume', 'ume', 'ume', 'hotaru', 'hotaru', 'hotaru', 'momiji', 'momiji', 'momiji', 'snow'][new Date().getMonth()];
+	})();
 	// petals: one fixed click-through canvas, alive only while the home hero is on screen or petals remain
 	let hero = null, heroOn = false, pcv = null, pg = null, praf = 0, plast = 0, pspawn = 0;
 	const petals = [];
@@ -167,20 +181,38 @@
 		if (live && petals.length < 8 && now > pspawn) {
 			const r = hero.getBoundingClientRect(), cs = getComputedStyle(root);
 			pspawn = now + 700 + Math.random() * 900;
-			petals.push({ x: r.left + Math.random() * r.width, y: Math.max(-16, r.top - 16), vy: 0.025 + Math.random() * 0.03, ph: Math.random() * 6, sw: 0.4 + Math.random() * 0.6,
-				rot: Math.random() * 6, vr: (Math.random() - 0.5) * 0.003, fl: Math.random() * 6, vf: 0.002 + Math.random() * 0.003, s: 5 + Math.random() * 4,
-				col: Math.random() < 0.7 ? cs.getPropertyValue('--signal').trim() : cs.getPropertyValue('--ink-faint').trim() });
+			const v = (n) => cs.getPropertyValue(n).trim(), up = SEASON === 'hotaru';
+			petals.push({ x: r.left + Math.random() * r.width, y: up ? r.top + r.height * (0.5 + Math.random() * 0.5) : Math.max(-16, r.top - 16),
+				vy: up ? -(0.008 + Math.random() * 0.012) : SEASON === 'snow' ? 0.02 + Math.random() * 0.025 : 0.025 + Math.random() * 0.03,
+				ph: Math.random() * 6, sw: 0.4 + Math.random() * 0.6, die: now + (up ? 4500 + Math.random() * 2500 : 1e9),
+				rot: Math.random() * 6, vr: (Math.random() - 0.5) * 0.003, fl: Math.random() * 6, vf: 0.002 + Math.random() * 0.003,
+				s: SEASON === 'snow' ? 1.5 + Math.random() * 2 : up ? 1.6 + Math.random() * 1.2 : 5 + Math.random() * 4,
+				col: SEASON === 'snow' ? v('--ink-dim') : up || Math.random() < 0.7 ? v('--signal') : v('--ink-faint') });
 		}
 		pg.setTransform(dpr, 0, 0, dpr, 0, 0); pg.clearRect(0, 0, innerWidth, innerHeight);
 		for (let i = petals.length - 1; i >= 0; i--) {
 			const p = petals[i];
 			p.y += p.vy * dt; p.x += Math.sin(now * 0.0011 + p.ph) * p.sw * dt * 0.03; p.rot += p.vr * dt; p.fl += p.vf * dt;
-			if (p.y > innerHeight + 20) { petals.splice(i, 1); continue; }
-			// a round ume petal with the small notch at its tip; scaleX by cos(fl) is the tumble
-			pg.save(); pg.translate(p.x, p.y); pg.rotate(p.rot); pg.scale(Math.cos(p.fl), 1);
-			pg.globalAlpha = 0.85; pg.fillStyle = p.col || '#ce5e32';
-			pg.beginPath(); pg.moveTo(0, p.s); pg.bezierCurveTo(-p.s * 1.2, p.s * 0.6, -p.s, -p.s, -p.s * 0.2, -p.s * 0.9);
-			pg.lineTo(0, -p.s * 0.6); pg.lineTo(p.s * 0.2, -p.s * 0.9); pg.bezierCurveTo(p.s, -p.s, p.s * 1.2, p.s * 0.6, 0, p.s); pg.fill(); pg.restore();
+			if (p.y > innerHeight + 20 || p.y < -20 || now > p.die) { petals.splice(i, 1); continue; }
+			pg.save(); pg.translate(p.x, p.y); pg.fillStyle = p.col || '#ce5e32'; pg.beginPath();
+			if (SEASON === 'snow' || SEASON === 'hotaru') {
+				// snow: a soft dot; hotaru: a dot that pulses and fades out at the end of its life
+				pg.globalAlpha = SEASON === 'snow' ? 0.7 : Math.min(1, (p.die - now) / 800) * (0.25 + 0.75 * Math.abs(Math.sin(now * 0.003 + p.ph)));
+				pg.arc(0, 0, p.s, 0, Math.PI * 2);
+			} else {
+				// scaleX by cos(fl) is the tumble
+				pg.rotate(p.rot); pg.scale(Math.cos(p.fl), 1); pg.globalAlpha = 0.85;
+				if (SEASON === 'momiji') {
+					// a maple leaf: five lobes, the middle one longest
+					for (let k = 0; k < 10; k++) { const a = -Math.PI / 2 + k * Math.PI / 5, rr = k % 2 ? p.s * 0.38 : p.s * (k === 0 ? 1.15 : 0.9); pg.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); }
+					pg.closePath();
+				} else {
+					// a round ume petal with the small notch at its tip
+					pg.moveTo(0, p.s); pg.bezierCurveTo(-p.s * 1.2, p.s * 0.6, -p.s, -p.s, -p.s * 0.2, -p.s * 0.9);
+					pg.lineTo(0, -p.s * 0.6); pg.lineTo(p.s * 0.2, -p.s * 0.9); pg.bezierCurveTo(p.s, -p.s, p.s * 1.2, p.s * 0.6, 0, p.s);
+				}
+			}
+			pg.fill(); pg.restore();
 		}
 		if (live || petals.length) praf = requestAnimationFrame(pstep);
 		else pg.clearRect(0, 0, innerWidth, innerHeight);
@@ -195,20 +227,23 @@
 	// === ENSŌ === a closed-loop brush circle, heavy where the brush lands and dry where it lifts, left
 	// open (330°) as ensō are. A filled shape revealed by a stroked mask circle growing along the same path.
 	let enso = null, ensoT = 0, ensoN = 0;
+	function ensoSvg(size) {
+		const a0 = -100 + Math.random() * 40, R = 36, out = [], inn = [], id = 'it-enso-' + ++ensoN;
+		for (let i = 0; i <= 60; i++) {
+			const u = i / 60, a = (a0 + u * 330) * Math.PI / 180, r = R + Math.sin(u * 9 + a0) * 0.8;
+			const hw = 7 * (0.18 + 0.82 * Math.pow(1 - u, 0.55) * Math.min(1, 0.45 + u * 9)) * (0.9 + 0.2 * Math.random());
+			out.push(`${(50 + Math.cos(a) * (r + hw)).toFixed(1)} ${(50 + Math.sin(a) * (r + hw)).toFixed(1)}`);
+			inn.unshift(`${(50 + Math.cos(a) * (r - hw)).toFixed(1)} ${(50 + Math.sin(a) * (r - hw)).toFixed(1)}`);
+		}
+		return `<svg viewBox="0 0 100 100" width="${size}" height="${size}"><mask id="${id}"><circle cx="50" cy="50" r="${R}" fill="none" stroke="#fff" stroke-width="22" transform="rotate(${a0} 50 50)"/></mask><path mask="url(#${id})" fill="currentColor" d="M${out.join('L')}L${inn.join('L')}Z"/></svg>`;
+	}
 	function ensoShow(delay) {
 		clearTimeout(ensoT);
 		ensoT = setTimeout(() => {
 			if (enso) return;
-			const a0 = -100 + Math.random() * 40, R = 36, out = [], inn = [], id = 'it-enso-' + ++ensoN;
-			for (let i = 0; i <= 60; i++) {
-				const u = i / 60, a = (a0 + u * 330) * Math.PI / 180, r = R + Math.sin(u * 9 + a0) * 0.8;
-				const hw = 7 * (0.18 + 0.82 * Math.pow(1 - u, 0.55) * Math.min(1, 0.45 + u * 9)) * (0.9 + 0.2 * Math.random());
-				out.push(`${(50 + Math.cos(a) * (r + hw)).toFixed(1)} ${(50 + Math.sin(a) * (r + hw)).toFixed(1)}`);
-				inn.unshift(`${(50 + Math.cos(a) * (r - hw)).toFixed(1)} ${(50 + Math.sin(a) * (r - hw)).toFixed(1)}`);
-			}
 			const box = document.createElement('div');
 			box.className = 'it-enso'; box.setAttribute('aria-hidden', 'true');
-			box.innerHTML = `<svg viewBox="0 0 100 100" width="64" height="64"><mask id="${id}"><circle cx="50" cy="50" r="${R}" fill="none" stroke="#fff" stroke-width="22" transform="rotate(${a0} 50 50)"/></mask><path mask="url(#${id})" fill="currentColor" d="M${out.join('L')}L${inn.join('L')}Z"/></svg>`;
+			box.innerHTML = ensoSvg(64);
 			document.body.append(box); enso = box;
 			ensoT = setTimeout(ensoHide, 8000); // failsafe: never strand it if a visit never ends
 		}, delay);
@@ -254,7 +289,10 @@
 	const vio = new IntersectionObserver((es) => {
 		for (const e of es) if (e.isIntersecting) {
 			const el = e.target; vio.unobserve(el);
-			if (el.tagName === 'BLOCKQUOTE') el.classList.add('it-q'); else { el.classList.remove('it-wait'); el.classList.add('it-stamp'); }
+			if (el.tagName === 'BLOCKQUOTE') el.classList.add('it-q');
+			else if (el.dataset.inkFin != null) el.innerHTML = ensoSvg(56);
+			else if (el.classList.contains('it-code')) el.classList.add('on');
+			else { el.classList.remove('it-wait'); el.classList.add('it-stamp'); }
 		}
 	}, { rootMargin: '0px 0px -8% 0px' });
 	function marks() {
@@ -262,11 +300,15 @@
 			if (el.dataset.inkDone != null) continue;
 			el.dataset.inkDone = ''; cycle(el);
 		}
-		for (const el of document.querySelectorAll('[data-ink-stamp], .custom-md blockquote:not(.admonition)')) {
+		for (const el of document.querySelectorAll('[data-ink-stamp], [data-ink-fin], .custom-md blockquote:not(.admonition), .custom-md .expressive-code')) {
 			if (el.dataset.inkDone != null) continue;
 			el.dataset.inkDone = '';
+			// the end mark is empty until seen, so it is drawn even when the post is short enough to be on screen
+			if (el.dataset.inkFin != null) { el.classList.add('it-fin'); vio.observe(el); continue; }
 			if (el.getBoundingClientRect().top < innerHeight) continue;
-			if (el.tagName !== 'BLOCKQUOTE') el.classList.add('it-wait');
+			// code prints line by line, the first 40 lines staggered (the rest arrive with line 40)
+			if (el.classList.contains('expressive-code')) { el.classList.add('it-code'); el.querySelectorAll('.ec-line').forEach((ln, i) => ln.style.setProperty('--i', i)); }
+			else if (el.tagName !== 'BLOCKQUOTE') el.classList.add('it-wait');
 			vio.observe(el);
 		}
 	}
