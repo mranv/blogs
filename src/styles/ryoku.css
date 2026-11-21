@@ -198,6 +198,14 @@ input, textarea {
     color: var(--ink);
 }
 .custom-md hr { border-color: var(--line-soft); border-style: solid; }
+
+/* Hanko seal (footer). Static here; public/ink-type.js only adds the stamp-down motion. */
+.ink-seal {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.6em; height: 1.6em; margin-left: .35em; vertical-align: .1em;
+    font: 700 .5em/1 var(--font-heading); font-style: normal; letter-spacing: .02em;
+    background: var(--signal); color: var(--paper); border-radius: 2px; transform: rotate(-4deg);
+}
 .custom-md table th {
     font-size: 0.66rem;
     font-weight: 500;

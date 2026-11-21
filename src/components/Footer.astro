@@ -19,7 +19,9 @@ const cols: [string, [string, string, boolean?][]][] = [
         <ScrollVelocity client:visible texts={["Detection engineering · Rust · eBPF · Kernel · XDR ·"]} velocity={30} fontSize="1.5rem" fontWeight={400} scrollerClassName="!font-heading italic !drop-shadow-none" />
     </div>
     <div class="grid gap-8 sm:grid-cols-[1.4fr_repeat(3,1fr)]">
-        <p class="font-heading italic text-2xl leading-tight text-90 max-w-[16ch]">{siteConfig.title}. Notes on security, Rust and the kernel.</p>
+        <p class="font-heading italic text-2xl leading-tight text-90 max-w-[16ch]">{siteConfig.title}. Notes on security, Rust and the kernel.
+            <!-- Hanko: the author's red seal, stamped down when the footer comes into view (public/ink-type.js) -->
+            <span class="ink-seal" data-ink-stamp aria-hidden="true">AG</span></p>
         {cols.map(([head, links]) => (
             <div>
                 <div class="eyebrow mb-3">{head}</div>
