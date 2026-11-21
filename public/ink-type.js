@@ -3,7 +3,10 @@
 // and a post title ends with the painter's red seal (hanko) carrying its first letter. Post h2s then get a
 // sumi brush stroke swept in underneath. Two more ink moments ride on the same observer:
 //  - post images below the fold open like ink spreading on paper (a circular clip-path reveal);
-//  - a few ume (plum) petals drift across the home hero ([data-petals]) while it is on screen.
+//  - a few ume (plum) petals drift across the home hero ([data-petals]) while it is on screen;
+//  - an ensō (zen brush circle) draws itself bottom-right while Swup fetches a page, and once per session;
+//  - [data-ink-cycle='["a","b"]'] types each phrase, holds, backspaces, types the next (About, Projects);
+//  - [data-ink-stamp] (footer seal) stamps down, and post blockquotes get their rule painted in, on view.
 // Everything plays on its own: no hover or click needed, so every visitor sees it.
 //
 // Targets: anything marked [data-ink-type] (post title: ="seal", post-card titles) plus .custom-md h2/h3.
@@ -42,7 +45,15 @@
 .it-brush{position:absolute;left:0;bottom:-.42em;width:min(5.5em,60%);height:.38em;color:var(--line-strong);pointer-events:none;
  animation:it-sweep .75s cubic-bezier(.3,.7,.2,1) both}
 @keyframes it-sweep{0%{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
-.it-img{transition:clip-path 1.1s cubic-bezier(.25,.8,.25,1)}`;
+.it-img{transition:clip-path 1.1s cubic-bezier(.25,.8,.25,1)}
+.it-enso{position:fixed;right:20px;bottom:20px;width:64px;height:64px;z-index:9999;pointer-events:none;color:var(--ink);opacity:.85;transition:opacity .35s,transform .35s}
+.it-enso.out{opacity:0;transform:scale(.85) rotate(20deg)}
+.it-enso circle{stroke-dasharray:239;animation:it-enso .9s cubic-bezier(.5,.1,.3,1) both}
+@keyframes it-enso{from{stroke-dashoffset:239}to{stroke-dashoffset:0}}
+.it-wait{opacity:0}
+.it-stamp{animation:it-stamp .5s cubic-bezier(.2,.9,.3,1.4) both}
+.custom-md blockquote.it-q:before{transform-origin:top;animation:it-q .9s cubic-bezier(.3,.7,.2,1) both}
+@keyframes it-q{0%{transform:scaleY(0);background:var(--signal)}60%{background:var(--signal)}}`;
 	document.head.append(style);
 
 	// split every text node into one span per letter; spaces stay plain text so lines still break between words
@@ -181,6 +192,85 @@
 		if (h) pio.observe(h);
 	}
 
+	// === ENSŌ === a closed-loop brush circle, heavy where the brush lands and dry where it lifts, left
+	// open (330°) as ensō are. A filled shape revealed by a stroked mask circle growing along the same path.
+	let enso = null, ensoT = 0, ensoN = 0;
+	function ensoShow(delay) {
+		clearTimeout(ensoT);
+		ensoT = setTimeout(() => {
+			if (enso) return;
+			const a0 = -100 + Math.random() * 40, R = 36, out = [], inn = [], id = 'it-enso-' + ++ensoN;
+			for (let i = 0; i <= 60; i++) {
+				const u = i / 60, a = (a0 + u * 330) * Math.PI / 180, r = R + Math.sin(u * 9 + a0) * 0.8;
+				const hw = 7 * (0.18 + 0.82 * Math.pow(1 - u, 0.55) * Math.min(1, 0.45 + u * 9)) * (0.9 + 0.2 * Math.random());
+				out.push(`${(50 + Math.cos(a) * (r + hw)).toFixed(1)} ${(50 + Math.sin(a) * (r + hw)).toFixed(1)}`);
+				inn.unshift(`${(50 + Math.cos(a) * (r - hw)).toFixed(1)} ${(50 + Math.sin(a) * (r - hw)).toFixed(1)}`);
+			}
+			const box = document.createElement('div');
+			box.className = 'it-enso'; box.setAttribute('aria-hidden', 'true');
+			box.innerHTML = `<svg viewBox="0 0 100 100" width="64" height="64"><mask id="${id}"><circle cx="50" cy="50" r="${R}" fill="none" stroke="#fff" stroke-width="22" transform="rotate(${a0} 50 50)"/></mask><path mask="url(#${id})" fill="currentColor" d="M${out.join('L')}L${inn.join('L')}Z"/></svg>`;
+			document.body.append(box); enso = box;
+			ensoT = setTimeout(ensoHide, 8000); // failsafe: never strand it if a visit never ends
+		}, delay);
+	}
+	function ensoHide() {
+		clearTimeout(ensoT);
+		const e = enso; enso = null;
+		if (e) { e.classList.add('out'); setTimeout(() => e.remove(), 400); }
+	}
+	// Swup boots after this deferred script; wait for it (about 10s at most), fast loads (<150ms) show nothing
+	(function hook(n) {
+		if (window.swup?.hooks) { window.swup.hooks.on('visit:start', () => ensoShow(150)); window.swup.hooks.on('visit:end', ensoHide); }
+		else if (n < 40) setTimeout(() => hook(n + 1), 250);
+	})(0);
+	try {
+		if (!sessionStorage.getItem('it-enso')) { sessionStorage.setItem('it-enso', '1'); ensoShow(200); setTimeout(ensoHide, 1900); }
+	} catch {}
+
+	// === CYCLE === type a phrase, hold it, take it back, type the next. The element's server text is the
+	// first phrase, which is what reduced-motion visitors and no-JS readers keep.
+	function cycle(el) {
+		let words; try { words = JSON.parse(el.dataset.inkCycle); } catch { return; }
+		if (!Array.isArray(words) || !words.length) return;
+		const t = document.createTextNode(''), caret = document.createElement('span');
+		caret.className = 'it-caret';
+		el.textContent = ''; el.append(t, caret);
+		const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+		(async () => {
+			for (let i = 0; el.isConnected; i++) {
+				const w = words[i % words.length];
+				caret.classList.remove('blink');
+				for (let k = 1; k <= w.length && el.isConnected; k++) { t.data = w.slice(0, k); await wait(45 + Math.random() * 70); }
+				caret.classList.add('blink'); await wait(2400);
+				caret.classList.remove('blink');
+				while (t.data && el.isConnected) { t.data = t.data.slice(0, -1); await wait(22); }
+				await wait(350);
+			}
+		})();
+	}
+
+	// === ON-VIEW MARKS === the footer seal and blockquote rules; only ones still below the fold are
+	// held back, so nothing already painted disappears
+	const vio = new IntersectionObserver((es) => {
+		for (const e of es) if (e.isIntersecting) {
+			const el = e.target; vio.unobserve(el);
+			if (el.tagName === 'BLOCKQUOTE') el.classList.add('it-q'); else { el.classList.remove('it-wait'); el.classList.add('it-stamp'); }
+		}
+	}, { rootMargin: '0px 0px -8% 0px' });
+	function marks() {
+		for (const el of document.querySelectorAll('[data-ink-cycle]')) {
+			if (el.dataset.inkDone != null) continue;
+			el.dataset.inkDone = ''; cycle(el);
+		}
+		for (const el of document.querySelectorAll('[data-ink-stamp], .custom-md blockquote:not(.admonition)')) {
+			if (el.dataset.inkDone != null) continue;
+			el.dataset.inkDone = '';
+			if (el.getBoundingClientRect().top < innerHeight) continue;
+			if (el.tagName !== 'BLOCKQUOTE') el.classList.add('it-wait');
+			vio.observe(el);
+		}
+	}
+
 	const io = new IntersectionObserver((es) => {
 		for (const e of es) if (e.isIntersecting) { io.unobserve(e.target); type(e.target); }
 	}, { rootMargin: '0px 0px -6% 0px' });
@@ -190,7 +280,7 @@
 			el.dataset.inkDone = '';
 			prep(el); io.observe(el);
 		}
-		images(); petalsScan();
+		images(); petalsScan(); marks();
 	}
 	scan(); done();
 	// MutationObserver callbacks run before the next paint, so swapped-in headings never flash
