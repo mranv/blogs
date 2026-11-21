@@ -137,6 +137,8 @@ const modifiedISO = entry.data.modDatetime
             <Markdown class="mb-6 markdown-content onload-animation">
                 <Content />
             </Markdown>
+            <!-- End mark: an ensō brushed in when the reader gets here (public/ink-type.js). Empty until seen. -->
+            <div data-ink-fin aria-hidden="true" class="mb-6"></div>
 
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.pubDatetime || entry.data.published || new Date()} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
