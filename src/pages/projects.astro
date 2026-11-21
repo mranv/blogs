@@ -22,8 +22,11 @@ const pageDescription = "Production-grade open-source projects by Anubhav Gain: 
     <!-- Page banner replaces the ASCII strip here. WebGL canvas: literal colours, see reactbits/README.md -->
     <div class="card-base relative mb-4 h-40 overflow-hidden" aria-hidden="true">
         <ShapeGrid client:visible lineColor="#807a73" hoverColor="#ce5e32" clickCascade={false} />
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none font-heading italic text-5xl">
+        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none font-heading italic text-5xl">
             <ShinyText client:visible text="Projects" color="#958f87" shineColor="#ce5e32" speed={3} />
+            <!-- Typed, held, taken back, next phrase (public/ink-type.js). Server text = first phrase. -->
+            <div class="mt-3 h-4 font-mono not-italic text-[0.6875rem] tracking-[0.18em] uppercase text-[var(--ink-muted)]"
+                 data-ink-cycle={JSON.stringify(["Leviathan · Windows kernel EDR in Rust", "Krustron · a Kubernetes platform", "Agni · a Firecracker TUI", "opensearch-rust-sdk"])}>Leviathan · Windows kernel EDR in Rust</div>
         </div>
     </div>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
