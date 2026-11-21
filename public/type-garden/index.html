@@ -39,6 +39,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>Type Garden</title>
 <meta name="description" content="Type to grow a garden: stems and roses grow out of the letters. After Type Garden by Akshat Agarwal.">
+<!-- share card: og.png is a 1200x630 capture of this page (Sumi look, "type garden"); recapture if the look changes -->
+<link rel="canonical" href="https://mranv.pages.dev/type-garden/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Type Garden">
+<meta property="og:description" content="Type and a garden grows out of the letters: sumi ink, kintsugi gold, sashiko stitches or roses.">
+<meta property="og:url" content="https://mranv.pages.dev/type-garden/">
+<meta property="og:image" content="https://mranv.pages.dev/type-garden/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The words type garden in ink, with brush strokes, plum blossom and red seals growing out of the letters">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Space+Mono&display=swap" rel="stylesheet">
@@ -66,8 +77,8 @@ html[data-touch] [data-tg="app"]{touch-action:none;top:var(--tg-top,0px)!importa
   [data-tg="hints"]{gap:12px;font-size:11px}
   [data-tg="ctrls"]{flex:1 1 100%;justify-content:space-between;gap:8px}
   [data-tg="pal"]{gap:4px}
-  /* 12 swatches + two buttons share the row */
-  [data-tg="sw"]{--sw:clamp(11px,calc((100vw - 183px) / 12),22px);width:var(--sw);height:var(--sw)}
+  /* 12 swatches + three buttons share the row */
+  [data-tg="sw"]{--sw:clamp(11px,calc((100vw - 250px) / 12),22px);width:var(--sw);height:var(--sw)}
   [data-tg="dot"]{width:calc(var(--sw) * .46);height:calc(var(--sw) * .46)}
   [data-tg="btn"]{padding:7px 11px}
 }
@@ -88,6 +99,7 @@ html[data-touch] [data-tg="app"]{touch-action:none;top:var(--tg-top,0px)!importa
     </div>
     <div data-tg="ctrls">
       <div data-tg="pal" id="pal"></div>
+      <button data-tg="btn" id="link">Link</button>
       <button data-tg="btn" id="png">PNG</button>
       <button data-tg="btn" id="svg">SVG</button>
     </div>
@@ -174,13 +186,18 @@ class Garden {
   // === INTRO === until the visitor types, the page types to itself: Japanese words in the English face,
   // each typed with a human cadence, cut (so it blooms and takes its seal), held, then withered away
   intro() {
-    // ?words=a,b replaces the intro words (the blog's 404 sends "lost"); at most 6, 24 characters each
-    const q = (new URLSearchParams(location.search).get('words') || '').split(',').map(w => w.trim().slice(0, 24)).filter(Boolean).slice(0, 6);
-    const words = q.length ? q : ['komorebi', 'wabi sabi', 'mono no aware', 'kintsugi', 'ikigai'];
+    // ?words=a,b (a shared link, or the blog's 404 sending "lost"): type those once and leave them growing.
+    // At most 8 words of 24 characters; share() builds the same format
+    const q = (new URLSearchParams(location.search).get('words') || '').split(',').map(w => w.trim().slice(0, 24)).filter(Boolean).slice(0, 8);
+    const words = ['komorebi', 'wabi sabi', 'mono no aware', 'kintsugi', 'ikigai'];
     const wait = ms => new Promise(r => { this._it = setTimeout(r, ms); });
     const live = () => this.letters.some(l => !l.dead);
     (async () => {
       await wait(700);
+      if (q.length) {
+        for (const ch of q.join(' ') + ' ') { if (this.touched) return; this.lastKey = performance.now(); this.add(ch, performance.now()); await wait(ch === ' ' ? 300 : 85 + Math.random() * 120); }
+        return;
+      }
       for (let i = 0; !this.touched; i++) {
         for (const ch of words[i % words.length] + ' ') {
           this.lastKey = performance.now(); this.add(ch, performance.now());
@@ -942,7 +959,24 @@ class Garden {
   }
 
   // === UI === (was renderVals + the JSX template)
+  // a link that reopens this garden: the typed words (comma-separated, as intro() reads them), look, palette.
+  // Phones get the share sheet; elsewhere it goes to the clipboard, or a prompt where that is blocked (file://)
+  share(btn) {
+    const ws = this.letters.filter(l => !l.dead).map(l => l.ch).join('').replace(/,/g, ' ').trim().split(/\s+/).filter(Boolean).slice(0, 8);
+    const u = new URL(location.href.split(/[?#]/)[0]);
+    if (ws.length) u.searchParams.set('words', ws.map(w => w.slice(0, 24)).join(','));
+    u.searchParams.set('look', this.state.mode); u.searchParams.set('pal', this.state.palette);
+    const url = u.toString(), done = t => { btn.textContent = t; setTimeout(() => { btn.textContent = 'Link'; }, 1400); };
+    if (this.touch && navigator.share) navigator.share({ title: 'Type Garden', url }).catch(() => {});
+    else if (navigator.clipboard && isSecureContext) navigator.clipboard.writeText(url).then(() => done('Copied'), () => prompt('Copy this link', url));
+    else prompt('Copy this link', url);
+  }
   ui() {
+    // look and palette: a shared link's ?look=&pal= wins, else what this browser picked last time
+    const qs = new URLSearchParams(location.search), mem = k => { try { return localStorage.getItem(k); } catch { return null; } };
+    const look = qs.get('look') || mem('tg-look'), pal = +(qs.get('pal') ?? mem('tg-pal'));
+    if (['ink', 'gold', 'stitch', 'garden'].includes(look)) this.state.mode = look;
+    if (Number.isInteger(pal) && pal >= 0 && pal < this.PAL.length) this.state.palette = pal;
     const bar = document.getElementById('bar');
     if (!SHOW_HINT) bar.style.display = 'none';
     this.sws = this.PAL.map((p, i) => {
@@ -959,6 +993,7 @@ class Garden {
       document.getElementById('modes').append(b);
       return b;
     });
+    document.getElementById('link').addEventListener('click', e => { this.share(e.currentTarget); this.refocus(); });
     document.getElementById('png').addEventListener('click', () => { this.savePNG(); this.refocus(); });
     document.getElementById('svg').addEventListener('click', () => { this.saveSVG(); this.refocus(); });
     this.app.addEventListener('pointerdown', ev => {
@@ -973,6 +1008,7 @@ class Garden {
   }
   sync() {
     const { bg, C } = this.pal(), s = this.state.palette;
+    try { localStorage.setItem('tg-look', this.state.mode); localStorage.setItem('tg-pal', s); } catch {}
     this.app.style.background = bg; document.body.style.background = bg;
     const bar = document.getElementById('bar'); bar.style.color = C.text;
     document.getElementById('pal').style.background = bg;
