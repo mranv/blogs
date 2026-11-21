@@ -329,6 +329,13 @@ const bannerOffset =
 		     Plain deferred script in <head> for the same Swup reason as above. -->
 		<script is:inline defer src="/ink-fx.js"></script>
 
+		<!-- Ink Type (public/ink-type.js) types headings in as they scroll into view. Until that deferred
+		     script has split them, untyped headings stay hidden; it fails open after 2.5s. The selector
+		     here must match SEL in ink-type.js. -->
+		<style is:inline>html.ink-type-wait :is([data-ink-type], .custom-md h2, .custom-md h3):not([data-ink-done]){visibility:hidden}</style>
+		<script is:inline>if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("ink-type-wait");setTimeout(()=>document.documentElement.classList.remove("ink-type-wait"),2500)}</script>
+		<script is:inline defer src="/ink-type.js"></script>
+
 		<slot name="head"></slot>
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
