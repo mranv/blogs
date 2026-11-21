@@ -20,10 +20,12 @@ const {
   buttonLabel = "Subscribe",
   class: className = "",
 } = Astro.props;
+// Rendered twice per page (sidebar + mobile-only), so ids need a per-copy suffix.
+const uid = Math.random().toString(36).slice(2, 8);
 ---
 
 <div
-  id="newsletter-widget"
+  id={`newsletter-widget-${uid}`} data-nl="widget"
   class:list={["newsletter-widget card-base p-4", className]}
   data-endpoint="/api/subscribe"
 >
@@ -40,17 +42,17 @@ const {
   <p class="text-xs text-50 mb-3 leading-relaxed">{description}</p>
 
   <!-- Form -->
-  <form id="newsletter-form" class="newsletter-form" novalidate>
+  <form id={`newsletter-form-${uid}`} data-nl="form" class="newsletter-form" novalidate>
     <div class="flex gap-2">
-      <label for="newsletter-email" class="sr-only">Email address</label>
+      <label for={`newsletter-email-${uid}`} class="sr-only">Email address</label>
       <input
-        id="newsletter-email"
+        id={`newsletter-email-${uid}`} data-nl="email"
         type="email"
         name="email"
         placeholder={placeholder}
         required
         autocomplete="email"
-        aria-describedby="newsletter-hint newsletter-error"
+        aria-describedby={`newsletter-hint-${uid} newsletter-error-${uid}`}
         class="newsletter-input flex-1 min-w-0 rounded-lg px-3 py-2 text-sm
                bg-[var(--btn-regular-bg)] text-90
                border border-transparent
@@ -60,12 +62,12 @@ const {
       />
       <button
         type="submit"
-        id="newsletter-submit"
+        id={`newsletter-submit-${uid}`} data-nl="submit"
         class="newsletter-submit glow-btn rounded-lg px-4 py-2 text-sm font-semibold
                whitespace-nowrap active:scale-95"
       >
-        <span id="newsletter-btn-text">{buttonLabel}</span>
-        <span id="newsletter-btn-spinner" class="hidden">
+        <span id={`newsletter-btn-text-${uid}`} data-nl="btn-text">{buttonLabel}</span>
+        <span id={`newsletter-btn-spinner-${uid}`} data-nl="btn-spinner" class="hidden">
           <svg class="animate-spin h-4 w-4 inline-block" viewBox="0 0 24 24" fill="none">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
@@ -75,14 +77,14 @@ const {
     </div>
 
     <!-- Privacy notice -->
-    <p id="newsletter-hint" class="text-[11px] text-30 mt-2 leading-snug">
+    <p id={`newsletter-hint-${uid}`} data-nl="hint" class="text-[11px] text-30 mt-2 leading-snug">
       By subscribing, you agree to receive email updates from TechAnV Consulting.
       Your email is never shared or sold. <a href="/privacy/" class="underline hover:text-[var(--primary)]">Privacy Policy</a>.
     </p>
   </form>
 
   <!-- Success state -->
-  <div id="newsletter-success" class="hidden">
+  <div id={`newsletter-success-${uid}`} data-nl="success" class="hidden">
     <div class="flex items-center gap-2 text-sm text-[var(--primary)] font-semibold">
       <Icon name="material-symbols:check-circle-outline-rounded" class="text-xl" />
       <span>You're almost there!</span>
@@ -93,10 +95,10 @@ const {
   </div>
 
   <!-- Error state -->
-  <div id="newsletter-error" class="hidden mt-2">
+  <div id={`newsletter-error-${uid}`} data-nl="error" class="hidden mt-2">
     <div class="flex items-start gap-2 text-sm text-[var(--signal)]">
       <Icon name="material-symbols:error-outline-rounded" class="text-lg shrink-0 mt-0.5" />
-      <span id="newsletter-error-text">Something went wrong. Please try again.</span>
+      <span id={`newsletter-error-text-${uid}`} data-nl="error-text">Something went wrong. Please try again.</span>
     </div>
   </div>
 </div>
@@ -108,17 +110,19 @@ function initNewsletter() {
   // Abort previous listeners to prevent duplicate submissions
   _newsletterAbort?.abort();
   _newsletterAbort = new AbortController();
-  const signal = _newsletterAbort.signal;
+  document.querySelectorAll<HTMLElement>('[data-nl="widget"]').forEach((w) => wireWidget(w, _newsletterAbort!.signal));
+}
 
-  const form = document.getElementById("newsletter-form") as HTMLFormElement | null;
-  const widget = document.getElementById("newsletter-widget");
-  const successEl = document.getElementById("newsletter-success");
-  const errorEl = document.getElementById("newsletter-error");
-  const errorText = document.getElementById("newsletter-error-text");
-  const btnText = document.getElementById("newsletter-btn-text");
-  const btnSpinner = document.getElementById("newsletter-btn-spinner");
-  const submitBtn = document.getElementById("newsletter-submit") as HTMLButtonElement | null;
-  const emailInput = document.getElementById("newsletter-email") as HTMLInputElement | null;
+function wireWidget(widget: HTMLElement, signal: AbortSignal) {
+  const q = <T extends HTMLElement>(role: string) => widget.querySelector<T>(`[data-nl="${role}"]`);
+  const form = q<HTMLFormElement>("form");
+  const successEl = q("success");
+  const errorEl = q("error");
+  const errorText = q("error-text");
+  const btnText = q("btn-text");
+  const btnSpinner = q("btn-spinner");
+  const submitBtn = q<HTMLButtonElement>("submit");
+  const emailInput = q<HTMLInputElement>("email");
 
   if (!form || !widget || !successEl || !errorEl || !errorText || !btnText || !btnSpinner || !submitBtn || !emailInput) return;
 
@@ -215,8 +219,8 @@ if (window.swup) {
     border-width: 0;
   }
   .newsletter-form,
-  #newsletter-success,
-  #newsletter-error {
+  [data-nl="success"],
+  [data-nl="error"] {
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
 </style>
