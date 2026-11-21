@@ -174,7 +174,9 @@ class Garden {
   // === INTRO === until the visitor types, the page types to itself: Japanese words in the English face,
   // each typed with a human cadence, cut (so it blooms and takes its seal), held, then withered away
   intro() {
-    const words = ['komorebi', 'wabi sabi', 'mono no aware', 'kintsugi', 'ikigai'];
+    // ?words=a,b replaces the intro words (the blog's 404 sends "lost"); at most 6, 24 characters each
+    const q = (new URLSearchParams(location.search).get('words') || '').split(',').map(w => w.trim().slice(0, 24)).filter(Boolean).slice(0, 6);
+    const words = q.length ? q : ['komorebi', 'wabi sabi', 'mono no aware', 'kintsugi', 'ikigai'];
     const wait = ms => new Promise(r => { this._it = setTimeout(r, ms); });
     const live = () => this.letters.some(l => !l.dead);
     (async () => {
