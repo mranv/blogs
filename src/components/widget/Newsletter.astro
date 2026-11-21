@@ -149,6 +149,7 @@ function initNewsletter() {
     errorEl!.classList.add("hidden");
     form!.classList.add("hidden");
     emailInput!.removeAttribute("aria-invalid");
+    (window as any).InkFX?.confirm(successEl!);
   }
 
   function hideError() {

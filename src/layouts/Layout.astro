@@ -325,6 +325,10 @@ const bannerOffset =
 		     navigation would otherwise show no art. -->
 		<script is:inline type="module" src="/ascii-magic-art/runtime/ascii.js"></script>
 
+		<!-- Press springs and drawn hit marks on the site's controls, in paper/ink/signal (public/ink-fx.js).
+		     Plain deferred script in <head> for the same Swup reason as above. -->
+		<script is:inline defer src="/ink-fx.js"></script>
+
 		<slot name="head"></slot>
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
