@@ -20,8 +20,9 @@
   Fonts: the blog's own, Fraunces 700 for the letters (the original's GT Ultra Fine is commercial) and
   Space Mono for the interface. Glyph widths are cached, so the cache is cleared once the web font loads.
 
-  Two modes over ONE garden: Sumi (default, this blog's addition, after sumi-e ink painting) and Garden
-  (the original roses). Growth is generated once; the mode only changes how render() draws it, so
+  Four looks over ONE garden: Sumi (default, after sumi-e ink painting), Kintsugi (gold seams and
+  pools), Sashiko (running-stitch embroidery) and Garden (the original roses); all but Garden are this
+  blog's additions. Growth is generated once; the mode only changes how render() draws it, so
   switching modes repaints the same words. In Sumi each word picks a style (wordParams().style):
   brush (bamboo strokes, joint ticks, plum blossom), blot (ink wash + splatter) or drip (ink runs down
   the letters). Space stamps a red seal after the word; on open, intro() types
@@ -30,7 +31,7 @@
 
   Section map: === CONFIG === · === APP === · === INTRO === · === BUTTERFLIES === · === MATH === · === LAYOUT ===
   · === INPUT === · === GROWTH === · === DRAWING === · === INK === · === RENDER === · === EXPORT ===
-  · === UI ===
+  · === UI ===  (Kintsugi and Sashiko sit between INK and RENDER)
 -->
 <html lang="en">
 <head>
@@ -99,6 +100,7 @@ const BOIL = true;      // hand-drawn line boil, redraws jitter every 120 ms
 const RECOIL = 20;      // px a cut tendril springs back
 const DENSITY = 1;      // 0.5 to 1.6, more stems, leaves and bridges between letters
 const SHOW_HINT = true;
+const GOLD = '#C9A14A', GOLD_HI = '#F6E3A8'; // Kintsugi lacquer gold and its gleam, fixed across palettes
 
 class Garden {
   F = '"Fraunces",Georgia,serif';
@@ -120,7 +122,7 @@ class Garden {
     ['Blush', '#FAD4D8', '#C8102E', '#274690', '#FFE3E6', '#1A1A1A'],
     ['Mono', '#000000', '#F2F2F2', '#6E6E6E', '#000000', '#FFFFFF']
   ];
-  state = { palette: 0, mode: 'ink' }; // mode: 'ink' (Sumi) | 'garden'
+  state = { palette: 0, mode: 'ink' }; // mode: 'ink' (Sumi) | 'gold' (Kintsugi) | 'stitch' (Sashiko) | 'garden'
 
   // === APP === (was componentDidMount)
   constructor() {
@@ -323,7 +325,7 @@ class Garden {
   backend(g) {
     return {
       fill: (p, col) => { g.beginPath(); this.path(g, p, true); g.fillStyle = col; g.fill(); },
-      stroke: (p, col, w) => { g.beginPath(); this.path(g, p, false); g.strokeStyle = col; g.lineWidth = w; g.lineCap = 'round'; g.lineJoin = 'round'; g.stroke(); },
+      stroke: (p, col, w, dash) => { g.beginPath(); this.path(g, p, false); g.strokeStyle = col; g.lineWidth = w; g.lineCap = 'round'; g.lineJoin = 'round'; if (dash) g.setLineDash(dash); g.stroke(); if (dash) g.setLineDash([]); },
       rect: (x, y, w, h, col) => { g.fillStyle = col; g.fillRect(x, y, w, h); },
       text: (ch, x, y, S, col) => { g.font = `700 ${S}px ${this.F}`; g.textAlign = 'center'; g.textBaseline = 'alphabetic'; g.fillStyle = col; g.fillText(ch, x, y); }
     };
@@ -586,19 +588,19 @@ class Garden {
   }
 
   // === DRAWING ===
-  strokeRange(B, P, a, b, col, w) {
+  strokeRange(B, P, a, b, col, w, dash) {
     const n = P.length - 1, ia = a * n, ib = b * n;
     const lerp = t => { const i = Math.min(n - 1, Math.floor(t)), f = t - i; return [P[i][0] + (P[i+1][0] - P[i][0]) * f, P[i][1] + (P[i+1][1] - P[i][1]) * f]; };
     const pts = [lerp(ia)];
     for (let i = Math.floor(ia) + 1; i < ib; i++) pts.push(P[i]);
     pts.push(lerp(ib));
-    if (pts.length >= 2) B.stroke(pts, col, w);
+    if (pts.length >= 2) B.stroke(pts, col, w, dash);
   }
   thorn(B, P, u, s, S) {
     const [p, a] = this.at(P, u), d = a + s * 2.3, L = S * 0.045;
     B.stroke([p, [p[0] + Math.cos(d) * L, p[1] + Math.sin(d) * L]], this.cc.blue, S * 0.022);
   }
-  leaf(B, bx, by, a, L, bend) {
+  leaf(B, bx, by, a, L, bend, sw, dash) {
     if (L < 0.5) return;
     const ca = Math.cos(a), sa = Math.sin(a), px = -sa, py = ca;
     const ax = u => { const b = Math.sin(Math.PI * u) * bend * 0.15 * L; return [bx + ca * u * L + px * b, by + sa * u * L + py * b]; };
@@ -606,6 +608,7 @@ class Garden {
     const N = 12, s1 = [], s2 = [];
     for (let i = 0; i <= N; i++) { const u = i / N, c = ax(u), w = hw(u); s1.push([c[0] + px * w, c[1] + py * w]); s2.push([c[0] - px * w, c[1] - py * w]); }
     const tip = ax(1), base = ax(0);
+    if (sw) { B.stroke([base, ...s1.slice(1, N), tip, ...s2.slice(1, N).reverse(), base], this.cc.blue, sw, dash); B.stroke([base, tip], this.cc.blue, sw, dash); return; }
     B.fill([base, ...s1.slice(1, N), tip, tip, ...s2.slice(1, N).reverse(), base], this.cc.blue);
     if (L > 6) { const v = []; for (let i = 0; i <= 8; i++) v.push(ax(0.08 + 0.72 * i / 8)); B.stroke(v, this.cc.vein, Math.max(0.8, L * 0.03)); }
   }
@@ -726,6 +729,61 @@ class Garden {
     B.text(l.seal.ch, x + z / 2, y + z * 0.76, z * 0.72, st.C.vein);
   }
 
+  // === KINTSUGI === (gold-mended pottery: the garden becomes the gold seams through and around the type)
+  // a crack: the stem path pushed off-line at every point into a jagged seam, gold with a pale highlight
+  crackRange(B, P, a, b, w, seed) {
+    const n = P.length - 1, i0 = Math.floor(a * n), i1 = Math.min(n, Math.ceil(b * n));
+    if (i1 - i0 < 1) return;
+    const pts = [];
+    // every 4th point only: straight runs between sharp kinks read as a fracture, not a vine
+    for (let i = i0; i <= i1; i += (i === i1 ? 1 : Math.min(4, i1 - i))) {
+      const q = P[i], pr = P[Math.max(0, i - 1)], nx = P[Math.min(n, i + 1)], dx = nx[0] - pr[0], dy = nx[1] - pr[1], d = Math.hypot(dx, dy) || 1;
+      const off = (this.h(seed * 0.71 + i * 1.93) - 0.5) * w * 3.2;
+      pts.push([q[0] - dy / d * off, q[1] + dx / d * off]);
+    }
+    // the path smoother rounds corners away; doubling each point keeps the seam angular
+    const sharp = pts.flatMap(q => [q, q]);
+    B.stroke(sharp, GOLD, w);
+    B.stroke(sharp, GOLD_HI, w * 0.35);
+  }
+  // a leaf becomes a gold shard: a jagged lens along the same axis
+  shard(B, bx, by, a, L, id) {
+    if (L < 0.5) return;
+    const ca = Math.cos(a), sa = Math.sin(a), px = -sa, py = ca, pts = [];
+    const sp = [[0, 0], [0.3, 0.22], [0.55, 0.12], [1, 0], [0.62, -0.16], [0.28, -0.2]];
+    for (const [u, v] of sp) { const k = 1 + (this.h(id + u * 7) - 0.5) * 0.4; pts.push([bx + ca * u * L + px * v * L * k, by + sa * u * L + py * v * L * k]); }
+    B.fill(pts.flatMap(q => [q, q]), GOLD);
+  }
+  // a bloom becomes a pool of gold filling a chip: angular rim, a pale gleam, hairline cracks running out
+  pool(B, cx, cy, R, e, a) {
+    const s = this.spr(a / 1000, 7, 12); if (s <= 0.001 || R < 0.5) return;
+    const r = R * 0.5 * s, rim = [];
+    for (let i = 0; i < 9; i++) { const th = i / 9 * Math.PI * 2 + e.ph1, k = 0.7 + 0.45 * this.h((e.id | 0) + i * 3.1); rim.push([cx + Math.cos(th) * r * k, cy + Math.sin(th) * r * k]); }
+    B.fill(rim.flatMap(q => [q, q]), GOLD);
+    B.fill(this.circ(cx - r * 0.22, cy - r * 0.25, r * 0.22, 10), GOLD_HI);
+    const fr = this.eo((a - 250) / 600);
+    if (fr > 0) for (let i = 0; i < 3; i++) {
+      const th = e.ph2 + i * 2.1, L = R * (0.9 + 0.6 * this.h((e.id | 0) + i)) * fr;
+      B.stroke([[cx + Math.cos(th) * r * 0.8, cy + Math.sin(th) * r * 0.8], [cx + Math.cos(th + 0.25) * (r + L * 0.5), cy + Math.sin(th + 0.25) * (r + L * 0.5)], [cx + Math.cos(th - 0.1) * (r + L), cy + Math.sin(th - 0.1) * (r + L)]], GOLD, Math.max(0.8, R * 0.05));
+    }
+  }
+
+  // === SASHIKO === (running-stitch embroidery: every line is dashes of thread, blooms are stitched crests)
+  // a kamon-like crest: two stitched rings and six petal loops in the flower colour, a knot at the centre
+  kamon(B, cx, cy, R, rot, e, a, C) {
+    const s = this.spr(a / 1000, 8, 14); if (s <= 0.001 || R < 0.5) return;
+    const r = R * 0.85 * s, w = Math.max(0.8, R * 0.06), dash = [Math.max(2, R * 0.16), Math.max(1.5, R * 0.11)];
+    const ring = (rad) => { const P = []; for (let i = 0; i <= 28; i++) { const t = i / 28 * Math.PI * 2 + rot; P.push([cx + Math.cos(t) * rad, cy + Math.sin(t) * rad]); } return P; };
+    B.stroke(ring(r), C.red, w, dash);
+    const fr = this.eo((a - 200) / 500);
+    if (fr > 0) for (let k = 0; k < 6; k++) {
+      const t = rot + k * Math.PI / 3, P = [];
+      for (let i = 0; i <= 12; i++) { const u = i / 12, th = t + (u - 0.5) * 1.1, rad = r * 0.62 * Math.sin(Math.PI * u) * fr; P.push([cx + Math.cos(th) * rad, cy + Math.sin(th) * rad]); }
+      B.stroke(P, C.red, w * 0.9, [dash[0] * 0.7, dash[1] * 0.7]);
+    }
+    B.fill(this.circ(cx, cy, Math.max(1, r * 0.09), 8), C.text);
+  }
+
   // === RENDER === (st hooks warp/rotw/textAll/perchOn were for the poster presets; kept so they port back cleanly)
   frame() {
     const now = performance.now(), dt = Math.min(64, now - (this.lt || now)); this.lt = now;
@@ -737,7 +795,13 @@ class Garden {
     this.paint(now, true);
   }
   pal() { const p = this.PAL[this.state.palette] || this.PAL[0]; return { bg: p[1], C: { red: p[2], blue: p[3], line: p[4], text: p[5], vein: p[1] } }; }
-  mainState() { const C = this.pal().C, ink = this.state.mode === 'ink'; return { letters: this.letters, S: this.Sd, C: ink ? { ...C, blue: C.text } : C, ink, boil: BOIL, recoil: RECOIL, speed: 1, wither: 260, face: true }; }
+  // st.look is the mode; st.ink stays the Sumi flag the ink code reads. Kintsugi paints the garden in gold
+  // whatever the palette (that is the point of it); Sumi and Sashiko paint it in the type's own colour.
+  mainState() {
+    const C = this.pal().C, look = this.state.mode, ink = look === 'ink';
+    const C2 = look === 'gold' ? { ...C, blue: GOLD } : ink || look === 'stitch' ? { ...C, blue: C.text } : C;
+    return { letters: this.letters, S: this.Sd, C: C2, look, ink, boil: BOIL, recoil: RECOIL, speed: 1, wither: 260, face: true };
+  }
   paint(now, caret) {
     const g = this.g, d = this.dpr;
     g.setTransform(d, 0, 0, d, 0, 0); g.fillStyle = this.pal().bg; g.fillRect(0, 0, this.W, this.H);
@@ -750,7 +814,7 @@ class Garden {
         const age = now - gf.t0, w = 1 - this.eo((age - (LIFE - 2200)) / 2200);
         g.globalAlpha = Math.max(0, w);
         const gx = gf.x * this.W, gy = gf.y * this.H + (1 - w) * this.Sd * 0.3, gR = this.Sd * 0.24 * (0.65 + 0.35 * w);
-        if (st.ink) this.blot(B, gx, gy, gR, gf.e, age, st.C); else this.rose(B, gx, gy, gR, gf.rot + (1 - w) * 0.6, gf.e, age, null);
+        if (st.ink) this.blot(B, gx, gy, gR, gf.e, age, st.C); else if (st.look === 'gold') this.pool(B, gx, gy, gR, gf.e, age); else if (st.look === 'stitch') this.kamon(B, gx, gy, gR, gf.rot, gf.e, age, st.C); else this.rose(B, gx, gy, gR, gf.rot + (1 - w) * 0.6, gf.e, age, null);
       }
       g.globalAlpha = 1;
     }
@@ -822,9 +886,11 @@ class Garden {
       if (sg.layer !== layer) continue;
       const b = Math.min(sg.u1, fr); if (b <= sg.u0) continue;
       if (st.ink) this.brushRange(B, P, sg.u0, b, st.C.blue, S * 0.06 * (e.w || 1), e.id);
+      else if (st.look === 'gold') this.crackRange(B, P, sg.u0, b, S * 0.016 * (e.w || 1), e.id);
+      else if (st.look === 'stitch') this.strokeRange(B, P, sg.u0, b, st.C.blue, S * 0.014 * (e.w || 1), [S * 0.055, S * 0.04]);
       else this.strokeRange(B, P, sg.u0, b, st.C.blue, S * 0.022 * (e.w || 1));
     }
-    if (st.ink && this.style(l) !== 'brush') return;
+    if ((st.ink && this.style(l) !== 'brush') || st.look === 'stitch') return;
     for (const th of e.thorns) if (fr > th.u && this.layerAt(e.segs, th.u) === layer) st.ink ? this.node(B, P, th.u, S) : this.thorn(B, P, th.u, th.s, S);
   }
   drawEl(B, e, l, age, kk, st, f, amp) {
@@ -832,12 +898,15 @@ class Garden {
     const rw = st.rotw ? st.rotw(e) : 0;
     if (e.t === 'leaf') {
       const sc = this.spr((age - e.d0) / 1000, 7, 15) * kk; if (sc <= 0) return;
-      const p = wx(e.x, e.y); this.leaf(B, p[0], p[1], e.a + j[2] + rw, e.L * S * sc, e.bend);
+      const p = wx(e.x, e.y), ang = e.a + j[2] + rw, L = e.L * S * sc;
+      if (st.look === 'gold') this.shard(B, p[0], p[1], ang, L, e.id); else if (st.look === 'stitch') this.leaf(B, p[0], p[1], ang, L, e.bend, S * 0.012, [S * 0.04, S * 0.03]); else this.leaf(B, p[0], p[1], ang, L, e.bend);
     } else if (e.t === 'rose') {
       const a = age - e.d0; if (a < 0) return;
       if (kk <= 0.001) return;
       const p = wx(e.x, e.y), tl = st.face ? this.faceTurn(e, p[0], p[1]) : null;
       if ((st.face || st.perchOn) && !l.dead && a > 700) this.perch.push({ id: e.id, x: p[0], y: p[1], R: e.R * S * kk });
+      if (st.look === 'gold') { this.pool(B, p[0], p[1], e.R * S * kk, e, a); return; }
+      if (st.look === 'stitch') { this.kamon(B, p[0], p[1], e.R * S * kk, e.rot + j[2] + rw, e, a, st.C); return; }
       if (st.ink) { if (this.style(l) === 'blot') this.blot(B, p[0], p[1], e.R * S * kk, e, a, st.C); else this.ume(B, p[0], p[1], e.R * S * kk, e.rot + j[2] + rw, e, a, st.C); return; }
       this.rose(B, p[0], p[1], e.R * S * kk, e.rot + j[2] + rw + (tl ? tl[0] * 0.22 : 0), e, a, tl);
     } else if (e.t === 'drip') {
@@ -861,7 +930,7 @@ class Garden {
     const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     const B = {
       fill: (p, col) => { const b = pb(); this.path(b, p, true); parts.push(`<path d="${b.d}" fill="${col}"/>`); },
-      stroke: (p, col, w) => { const b = pb(); this.path(b, p, false); parts.push(`<path d="${b.d}" fill="none" stroke="${col}" stroke-width="${n(w)}" stroke-linecap="round" stroke-linejoin="round"/>`); },
+      stroke: (p, col, w, dash) => { const b = pb(); this.path(b, p, false); parts.push(`<path d="${b.d}" fill="none" stroke="${col}" stroke-width="${n(w)}" stroke-linecap="round" stroke-linejoin="round"${dash ? ` stroke-dasharray="${dash.map(n).join(' ')}"` : ''}/>`); },
       rect: () => {},
       text: (ch, x, y, S, col) => parts.push(`<text x="${n(x)}" y="${n(y)}" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="${n(S)}" fill="${col}">${esc(ch)}</text>`)
     };
@@ -882,7 +951,7 @@ class Garden {
       document.getElementById('pal').append(b);
       return b;
     });
-    this.mbs = [['ink', 'Sumi'], ['garden', 'Garden']].map(([id, label]) => {
+    this.mbs = [['ink', 'Sumi'], ['gold', 'Kintsugi'], ['stitch', 'Sashiko'], ['garden', 'Garden']].map(([id, label]) => {
       const b = document.createElement('button'); b.textContent = label; b.dataset.mode = id;
       b.addEventListener('click', e => { e.stopPropagation(); this.state.mode = id; this.sync(); this.refocus(); });
       document.getElementById('modes').append(b);
