@@ -12,7 +12,8 @@
 	const TAU = Math.PI * 2;
 	const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 	const out = (t) => 1 - (1 - t) ** 3, inn = (t) => t * t * t, rnd = (a, b) => a + Math.random() * (b - a);
-	const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+	// reduce.matches is read at every use; html.ink-calm is the reader's own switch (window.inkCalm, Layout.astro)
+	const mq = matchMedia('(prefers-reduced-motion: reduce)'), reduce = { get matches() { return mq.matches || document.documentElement.classList.contains('ink-calm'); } };
 
 	// ---- colours ----
 	const C = { paper: '#000000', ink: '#cdc4ba', shade: '#2d2b28', signal: '#ce5e32' };

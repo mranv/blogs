@@ -13,9 +13,12 @@ import type { LIGHT_DARK_MODE } from "@/types/config.ts";
 
 const seq: LIGHT_DARK_MODE[] = [LIGHT_MODE, DARK_MODE, AUTO_MODE];
 let mode: LIGHT_DARK_MODE = $state(AUTO_MODE);
+// reader's "calm motion" switch; window.inkCalm is defined inline in Layout.astro's <head>
+let calm = $state(false);
 
 onMount(() => {
 	mode = getStoredTheme();
+	calm = (window as unknown as { inkCalm?: { get(): boolean } }).inkCalm?.get() ?? false;
 	const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
 	const changeThemeWhenSchemeChanged: Parameters<
 		typeof darkModePreference.addEventListener<"change">
@@ -44,6 +47,11 @@ function toggleScheme() {
 		}
 	}
 	switchScheme(seq[(i + 1) % seq.length]);
+}
+
+function toggleCalm() {
+	calm = !calm;
+	(window as unknown as { inkCalm?: { set(v: boolean): void } }).inkCalm?.set(calm);
 }
 
 function showPanel() {
@@ -93,6 +101,14 @@ function hidePanel() {
             >
                 <Icon icon="material-symbols:radio-button-partial-outline" class="text-[1.25rem] mr-3"></Icon>
                 {i18n(I18nKey.systemMode)}
+            </button>
+            <div class="h-px my-1 bg-[var(--line-soft)]"></div>
+            <button class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95"
+                    class:current-theme-btn={calm} aria-pressed={calm}
+                    onclick={toggleCalm}
+            >
+                <Icon icon="material-symbols:motion-photos-paused-outline-rounded" class="text-[1.25rem] mr-3"></Icon>
+                Calm motion
             </button>
         </div>
     </div>

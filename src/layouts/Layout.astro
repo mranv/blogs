@@ -332,8 +332,14 @@ const bannerOffset =
 		<!-- Ink Type (public/ink-type.js) types headings in as they scroll into view. Until that deferred
 		     script has split them, untyped headings stay hidden; it fails open after 2.5s. The selector
 		     here must match SEL in ink-type.js. -->
-		<style is:inline>html.ink-type-wait :is([data-ink-type], .custom-md h2, .custom-md h3):not([data-ink-done]){visibility:hidden}</style>
-		<script is:inline>if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("ink-type-wait");setTimeout(()=>document.documentElement.classList.remove("ink-type-wait"),2500)}</script>
+		<style is:inline>html.ink-type-wait :is([data-ink-type], .custom-md h2, .custom-md h3):not([data-ink-done]){visibility:hidden}
+			html:not(.ink-calm) .calm-on, html.ink-calm .calm-off{display:none}</style>
+		<!-- inkCalm: the reader's own "calm motion" switch (theme panel + footer), kept in localStorage.
+		     html.ink-calm stops ink-type.js and ink-fx.js; switching motion back on reloads so the
+		     effects start clean. Reduced-motion visitors never get the effects either way. -->
+		<script is:inline>window.inkCalm={get(){try{return localStorage.getItem("ink-calm")==="1"}catch{return false}},set(v){try{localStorage.setItem("ink-calm",v?"1":"0")}catch{}document.documentElement.classList.toggle("ink-calm",v);if(!v)location.reload()}};
+			if(inkCalm.get())document.documentElement.classList.add("ink-calm");
+			else if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("ink-type-wait");setTimeout(()=>document.documentElement.classList.remove("ink-type-wait"),2500)}</script>
 		<script is:inline defer src="/ink-type.js"></script>
 
 		<slot name="head"></slot>

@@ -28,7 +28,9 @@
 	const SEL = '[data-ink-type], .custom-md h2, .custom-md h3';
 	const root = document.documentElement;
 	const done = () => root.classList.remove('ink-type-wait');
-	if (matchMedia('(prefers-reduced-motion: reduce)').matches) return done();
+	// calm: the reader's switch (window.inkCalm, Layout.astro); checked again wherever motion keeps running
+	const calm = () => root.classList.contains('ink-calm');
+	if (matchMedia('(prefers-reduced-motion: reduce)').matches || calm()) return done();
 
 	const style = document.createElement('style');
 	style.textContent = `
@@ -59,7 +61,11 @@
 @keyframes it-line{0%{opacity:0;transform:translateX(-.5em)}}
 .it-stamp{animation:it-stamp .5s cubic-bezier(.2,.9,.3,1.4) both}
 .custom-md blockquote.it-q:before{transform-origin:top;animation:it-q .9s cubic-bezier(.3,.7,.2,1) both}
-@keyframes it-q{0%{transform:scaleY(0);background:var(--signal)}60%{background:var(--signal)}}`;
+@keyframes it-q{0%{transform:scaleY(0);background:var(--signal)}60%{background:var(--signal)}}
+html.ink-calm :is(.it-c,.it-seal,.it-brush,.it-stamp,.it-code .ec-line,blockquote.it-q:before,.it-enso circle,.it-fin circle){animation:none!important;opacity:1!important}
+html.ink-calm :is(.it-wait,.it-code .ec-line){opacity:1!important}
+html.ink-calm .it-img{clip-path:none!important}
+html.ink-calm :is(.it-enso,.it-caret){display:none!important}`;
 	document.head.append(style);
 
 	// split every text node into one span per letter; spaces stay plain text so lines still break between words
@@ -101,6 +107,7 @@
 			const now = performance.now() - t0;
 			while (i < chars.length && at[i] <= now) chars[i++].classList.add('on');
 			if (i) chars[i - 1].after(caret);
+			if (calm()) while (i < chars.length) chars[i++].classList.add('on');
 			if (i < chars.length) return requestAnimationFrame(next);
 			caret.classList.add('blink');
 			if (el.dataset.inkType === 'seal') {
@@ -164,7 +171,7 @@
 	const petals = [];
 	const pio = new IntersectionObserver((es) => { heroOn = es[es.length - 1].isIntersecting; if (heroOn) pkick(); });
 	function pkick() {
-		if (praf) return;
+		if (praf || calm()) return;
 		if (!pcv?.isConnected) {
 			pcv = document.createElement('canvas'); pcv.setAttribute('aria-hidden', 'true');
 			pcv.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:40';
@@ -214,7 +221,7 @@
 			}
 			pg.fill(); pg.restore();
 		}
-		if (live || petals.length) praf = requestAnimationFrame(pstep);
+		if ((live || petals.length) && !calm()) praf = requestAnimationFrame(pstep);
 		else pg.clearRect(0, 0, innerWidth, innerHeight);
 	}
 	function petalsScan() {
@@ -272,7 +279,7 @@
 		el.textContent = ''; el.append(t, caret);
 		const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 		(async () => {
-			for (let i = 0; el.isConnected; i++) {
+			for (let i = 0; el.isConnected && !calm(); i++) {
 				const w = words[i % words.length];
 				caret.classList.remove('blink');
 				for (let k = 1; k <= w.length && el.isConnected; k++) { t.data = w.slice(0, k); await wait(45 + Math.random() * 70); }

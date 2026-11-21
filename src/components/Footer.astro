@@ -35,5 +35,9 @@ const cols: [string, [string, string, boolean?][]][] = [
     </div>
     <div class="mt-10 pt-4 border-t border-[var(--line-soft)] font-mono text-[0.5625rem] tracking-[0.2em] uppercase text-50">
         &copy; <span id="copyright-year">{currentYear}</span> {profileConfig.name} · All rights reserved
+        <!-- the reader's motion switch, reachable on phones too (the theme panel is desktop-only);
+             the label shows the current state via html.ink-calm (Layout.astro) -->
+        · <button type="button" class="uppercase tracking-[0.2em] hover:text-[var(--ink)] underline-offset-4 hover:underline" onclick="inkCalm.set(!inkCalm.get())"
+                  aria-label="Toggle ink motion"><span class="calm-off">Motion: ink</span><span class="calm-on">Motion: calm</span></button>
     </div>
 </footer>
