@@ -36,7 +36,8 @@ const homePageDescription = "Anubhav Gain's technical blog covering DevSecOps, X
         <!-- Home hero. Effects are vendored React Bits components (src/components/reactbits/README.md).
              LetterGlitch draws on WebGL and cannot read CSS variables, so its colours are literals
              chosen to read on both the black and the bone paper. -->
-        <section class="card-base relative overflow-hidden mb-4 px-6 md:px-9 py-10 onload-animation">
+        <!-- data-petals: ume petals drift across this hero while it is on screen (public/ink-type.js) -->
+        <section data-petals class="card-base relative overflow-hidden mb-4 px-6 md:px-9 py-10 onload-animation">
             <div class="absolute inset-0 opacity-40 pointer-events-none" aria-hidden="true">
                 <LetterGlitch client:visible baseColor="#958f87" glitchColors={["#958f87", "#807a73", "#ce5e32"]} interactive={false} />
             </div>
