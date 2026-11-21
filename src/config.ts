@@ -46,6 +46,12 @@ export const navBarConfig: NavBarConfig = {
 			external: false,
 		},
 		{
+			// Full-screen standalone page (public/type-garden/index.html): external so Swup does not try to swap it in
+			name: "Garden",
+			url: "/type-garden/",
+			external: true,
+		},
+		{
 			name: "GitHub",
 			url: "https://github.com/mranv", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
