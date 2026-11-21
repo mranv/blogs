@@ -44,3 +44,5 @@ public/assets/images/
 public/assets/resources-writeups/
 src/assets/resources-writeups/
 .wrangler/
+# agent-tool memory dirs appear wherever a session runs; never ship them (public/ is deployed verbatim)
+.swarm/
