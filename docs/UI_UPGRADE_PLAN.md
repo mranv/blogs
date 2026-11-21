@@ -33,12 +33,17 @@ everything is off under `prefers-reduced-motion`.
 | Type Garden toy at `/type-garden/` (port of Akshat Agarwal's Type Garden): Sumi, Kintsugi, Sashiko, Garden looks; typewriter intro, `?words=a,b`; navbar "Garden" link is `external: true` so Swup never swaps it in | `public/type-garden/index.html` (one file on purpose, see its header) |
 | Ink Type: headings typed in on view (post title + hanko seal, card titles, post h2/h3, archive years), brush stroke under post h2s, ink-spread post images, printed code blocks, blockquote rules, end-of-post ensō, ensō loader during Swup visits, `[data-ink-cycle]` taglines (About, Projects, 404), footer seal, seasonal falling marks over the home hero (`?season=` to preview) | `public/ink-type.js` (what each part does: its header comment); hooks: `data-ink-type`, `data-ink-cycle`, `data-ink-stamp`, `data-ink-fin`, `data-petals` |
 
+| Reader switch "Calm motion": theme panel (desktop) + footer "Motion: ink/calm" (all screens); `html.ink-calm`, stored in localStorage, stops `ink-type.js` and `ink-fx.js` | `window.inkCalm` inline in `Layout.astro` head; `LightDarkSwitch.svelte`; `Footer.astro` |
+| Garden share: Link button (`?words=&look=&pal=`), remembers look + palette per browser, own share card `og.png` | `public/type-garden/index.html` |
+
 Landmine: the typed-heading selector lives twice, in `ink-type.js` (`SEL`) and in the
 `ink-type-wait` rule in `Layout.astro`'s `<head>`; change both together.
 
-Phase-1 effects still exist in markup but are visually disabled by the "EFFECTS OFF" section
-of `ryoku.css` (spotlight, holo sweep, border trail, neon text, rainbow badge). Text-roll,
-scramble text and the reading-progress ring still run. `glow.css` / `fx.css` can be pruned later.
+Phase-1 effect class names still exist in markup (spotlight-card, holo-sweep, rainbow-badge,
+border-trail), but their CSS is pruned: glow.css lost the neon/holo/rainbow/glass utilities,
+ambient body::before glows and all keyframes; fx.css lost spotlight-card and border-trail.
+`ryoku.css` "EFFECTS OFF" now holds only the flat replacements (tag focus fill, avatar hairline
+frame, focus ring). Text-roll, glow-btn, scramble text and the reading-progress ring still run.
 
 Landmines: `color-mix(in ...)` cannot go in a `.styl` file (Stylus parses `in` as an operator).
 Font stacks (`--font-*`) must be set in `ryoku.css`, not `variables.styl`: Stylus emits them as one
@@ -56,7 +61,7 @@ it also means the posts schema must not declare `slug`. Anything that grows rend
 |---|---|---|---|
 | Reading-progress ring = back to top (post pages) | Skiper UI 89 | `src/components/fx/ReadingProgress.tsx` | React + motion |
 | Scramble headline (404) | replaced 2026-11-15 by React Bits DecryptedText / FuzzyText | `src/components/reactbits/` | React |
-| Cursor spotlight border (post cards) | Vengeance glow-border-card | `fx.css` + `fx/SpotlightTracker.astro` | CSS + 1 listener |
+| ~~Cursor spotlight border (post cards)~~ removed 2026-11-22 (flat design hid it) | Vengeance glow-border-card | (deleted) | |
 | Text-roll hover (navbar links) | Skiper UI 58 | `fx/TextRoll.astro` + `fx.css` | CSS |
 | Border trail (profile avatar) | Animata animated-border-trail | `fx.css` | CSS |
 | Glow button (newsletter submit) | Vengeance radial-glow-button | `fx.css` | CSS |
