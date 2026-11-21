@@ -23,6 +23,19 @@ The whole site was restyled after the ryoku.dev design system: black paper, bone
 | Native platform features from GoogleChrome/modern-web-guidance: `color-scheme` per theme, `accent-color`, `text-wrap: pretty` in prose, `content-visibility` on post cards, `text-scale` meta, `color-scheme`/`theme-color` metas synced to the theme switch. Found with `modern-web-guidance legacy-scan src` (0.0.203). Skipped on purpose: speculation rules and cross-document view transitions (Swup does client-side navigation), `scrollbar-color` (OverlayScrollbars owns scrollbars) | `src/styles/ryoku.css` (PLATFORM), `Layout.astro` head |
 | React Bits effects (14 components): click sparks, footer marquee, avatar glare (all pages); hero, post counters, archive totals, about/projects banners, fuzzy 404 | `src/components/reactbits/` (see its README) |
 
+## Phase 3 — Ink layer (2026-11-22)
+
+Sumi-e motion that plays without interaction, so every visitor sees it. All in Paper & Ink tokens;
+everything is off under `prefers-reduced-motion`.
+
+| What | Where |
+|---|---|
+| Type Garden toy at `/type-garden/` (port of Akshat Agarwal's Type Garden): Sumi, Kintsugi, Sashiko, Garden looks; typewriter intro, `?words=a,b`; navbar "Garden" link is `external: true` so Swup never swaps it in | `public/type-garden/index.html` (one file on purpose, see its header) |
+| Ink Type: headings typed in on view (post title + hanko seal, card titles, post h2/h3, archive years), brush stroke under post h2s, ink-spread post images, printed code blocks, blockquote rules, end-of-post ensō, ensō loader during Swup visits, `[data-ink-cycle]` taglines (About, Projects, 404), footer seal, seasonal falling marks over the home hero (`?season=` to preview) | `public/ink-type.js` (what each part does: its header comment); hooks: `data-ink-type`, `data-ink-cycle`, `data-ink-stamp`, `data-ink-fin`, `data-petals` |
+
+Landmine: the typed-heading selector lives twice, in `ink-type.js` (`SEL`) and in the
+`ink-type-wait` rule in `Layout.astro`'s `<head>`; change both together.
+
 Phase-1 effects still exist in markup but are visually disabled by the "EFFECTS OFF" section
 of `ryoku.css` (spotlight, holo sweep, border trail, neon text, rainbow badge). Text-roll,
 scramble text and the reading-progress ring still run. `glow.css` / `fx.css` can be pruned later.
