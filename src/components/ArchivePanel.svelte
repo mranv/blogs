@@ -91,7 +91,8 @@ onMount(async () => {
     {#each groups as group}
         <div>
             <div class="flex flex-row w-full items-center h-[3.75rem]">
-                <div class="w-[20%] md:w-[10%] transition text-xl sm:text-2xl font-bold text-right text-75">
+                <!-- typed in as it scrolls into view (public/ink-type.js) -->
+                <div data-ink-type class="w-[20%] md:w-[10%] transition text-xl sm:text-2xl font-bold text-right text-75">
                     {group.year}
                 </div>
                 <div class="w-[15%] md:w-[10%]">
