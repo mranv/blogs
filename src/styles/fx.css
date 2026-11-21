@@ -1,87 +1,14 @@
 /*
- * fx.css — effects ported from Skiper UI, Animata and Vengeance UI, rebuilt on our
+ * fx.css — effects ported from Skiper UI and Vengeance UI, rebuilt on our
  * crow/neon tokens (variables.styl) so they follow light/dark mode.
+ * The spotlight-card and border-trail effects were pruned (ryoku.css had switched them off;
+ * .border-trail's flat hairline frame now lives in ryoku.css).
  *
  * Deliberately CSS, not React: these effects need no state, and as React islands they
  * would ship React + hydration to every one of the ~1.6k post pages for nothing.
  * Only genuinely stateful effects live in src/components/fx/*.tsx.
  * All motion is disabled under prefers-reduced-motion at the bottom of this file.
  */
-
-/* === SPOTLIGHT CARD ===========================================================
-   Cursor-following glow border + soft inner wash.
-   Idea: Vengeance UI "glow-border-card" (MIT) crossed with a mouse-follow spotlight.
-   --mx / --my are written by SpotlightTracker.astro (one delegated pointer listener);
-   default puts the light off-card so nothing shows before the first pointer move.
-   Uses ::before; PostCard's .holo-sweep already owns ::after. */
-.spotlight-card {
-    --mx: -500px;
-    --my: -500px;
-    background-image: radial-gradient(
-        420px circle at var(--mx) var(--my),
-        color-mix(in srgb, var(--neon-amber) 8%, transparent),
-        transparent 60%
-    );
-}
-.spotlight-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    border-radius: inherit;
-    padding: 1px;
-    pointer-events: none;
-    background: radial-gradient(
-        280px circle at var(--mx) var(--my),
-        var(--neon-amber),
-        color-mix(in srgb, var(--neon-cyan) 70%, transparent) 35%,
-        transparent 70%
-    );
-    /* show only the 1px ring: content-box minus border-box */
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-}
-.spotlight-card:hover::before,
-.spotlight-card:focus-within::before {
-    opacity: 1;
-}
-
-/* === BORDER TRAIL =============================================================
-   A comet of light orbiting a frame. From Animata "animated-border-trail" (MIT).
-   Needs @property so the angle can animate; browsers without it show a static arc. */
-@property --trail-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-@keyframes border-trail {
-    to { --trail-angle: 360deg; }
-}
-.border-trail {
-    position: relative;
-    padding: 2px;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    isolation: isolate;
-    background: var(--card-border);
-}
-.border-trail::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: conic-gradient(
-        from var(--trail-angle) at 50% 50%,
-        transparent 72%,
-        var(--neon-cyan) 82%,
-        var(--neon-amber) 92%,
-        transparent 100%
-    );
-    animation: border-trail 7s linear infinite;
-}
 
 /* === GLOW BUTTON ==============================================================
    Radial gradient that slides on hover + a light streak across the face.
@@ -172,9 +99,6 @@
 
 /* === REDUCED MOTION =========================================================== */
 @media (prefers-reduced-motion: reduce) {
-    .border-trail::before {
-        animation: none;
-    }
     .glow-btn,
     .glow-btn::after,
     .text-roll i {

@@ -2,7 +2,9 @@
  *
  * Contract:
  *  - Imported LAST in Layout.astro. It overrides main.css / glow.css / fx.css rather than
- *    editing them, so the older effect layers can be deleted later without touching this file.
+ *    editing them. The invisible neon/holo/spotlight/trail rules have already been pruned
+ *    from glow.css / fx.css; what remains there is still live (TOC active, focus ring for
+ *    inputs, text roll, glow-btn base, back-to-top hand-off).
  *  - Colours come only from the paper/ink tokens in variables.styl. No raw hex here.
  *  - Rules of the look: flat (no shadows, glows, gradients), 2px corners, 1px ink hairlines,
  *    Fraunces serif for headings, Space Grotesk for body, UI labels uppercase + tracked.
@@ -35,8 +37,8 @@ body {
     font-family: var(--font-sans);
     line-height: 1.62;
 }
-/* Film grain. Reuses body::before, which glow.css used for coloured ambient glows —
-   same selectors on purpose so this replaces them. Above everything, click-through. */
+/* Film grain on body::before (glow.css's old ambient glows on the same selectors are gone;
+   the selectors were kept as-is). Above everything, click-through. */
 .dark body::before,
 body:not(.dark)::before {
     content: "";
@@ -251,37 +253,24 @@ a:hover .avatar-ink img { filter: none; }
 }
 
 /* === EFFECTS OFF ===
-   The neon/holo/spotlight layers from glow.css and fx.css contradict a flat design.
-   Switched off here instead of deleting their markup hooks across ~20 templates. */
-.neon-text, .neon-text-cyan, .neon-active,
-#toc a.visible, table-of-contents a.visible, .toc a.visible {
-    text-shadow: none !important;
-}
-.neon-border, .neon-hover:hover, .neon-hover:focus-within, #active-indicator {
-    box-shadow: none !important;
-}
-.holo-sweep::after,
-.spotlight-card::before,
-.border-trail::before {
-    display: none !important;
-}
-.rainbow-badge, .rainbow-badge:hover, .rainbow-badge:focus-visible {
-    animation: none !important;
-    box-shadow: none !important;
-}
-.rainbow-badge:hover, .rainbow-badge:focus-visible {
+   The neon/holo/spotlight/rainbow/glass rules these used to override are pruned from
+   glow.css / fx.css. Left: the flat versions of hooks still in markup, plus the focus ring
+   override (glow.css's ring still applies to inputs). */
+/* Tag pills (ButtonTag.astro): .btn-regular:hover already inverts; keep the same fill on
+   keyboard focus, which the old rainbow-badge rule provided. */
+.rainbow-badge:focus-visible {
     background: var(--ink);
     color: var(--paper);
 }
+/* Profile avatar frame (Profile.astro): a 1px hairline. position/overflow/isolation are the
+   layout the old animated border-trail gave it; the avatar's absolute z-50 overlay relies on them. */
 .border-trail {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     padding: 1px;
     border-radius: 2px;
     background: var(--line);
-}
-.glass-panel {
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
 }
 a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
     outline: 1px solid var(--ink);
