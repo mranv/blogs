@@ -2,7 +2,7 @@
 
 I build security software. Mostly the low-level kind: kernel drivers, eBPF probes, Rust agents that sit on a machine and watch what it does. I'm based in Ahmedabad, Gujarat, India.
 
-By day I'm a Security Software Engineer at Infopercept, working on the Invinsense XDR/OXDR platform. I also run my own shop, TechAnv Consulting, which I started in December 2022. Somewhere along the way my research picked up 222+ citations, which still surprises me a little.
+By day I'm a Security Product Engineer at Infopercept, working on the Invinsense XDR/OXDR platform. I also run my own shop, TechAnv Consulting, which I started in December 2022.
 
 ## What I actually do
 
@@ -10,7 +10,7 @@ At Infopercept I'm one of the core engineers on Invinsense. That means XDR deplo
 
 At TechAnv I help companies with XDR architecture, Windows kernel driver development, Kubernetes platform engineering, cloud security on AWS and Azure, and zero-trust networks. If that sounds like your problem, say hi at [techanv.com](https://www.techanv.com).
 
-I'm also a DevSecOps Engineer at Atcults (security testing pipelines, Terraform, incident response automation, Kubernetes hardening). Before all that I was an IT Specialist at Parul University, wrangling Palo Alto firewalls, Red Hat and Windows servers, AWS, and Endpoint Configuration Manager.
+Before Infopercept I was a DevSecOps Engineer at Atcults (security testing pipelines, Terraform, incident response automation, Kubernetes hardening). Before all that I was an IT Specialist at Parul University, wrangling Palo Alto firewalls, Red Hat and Windows servers, AWS, and Endpoint Configuration Manager.
 
 ## Why I build this way
 
@@ -54,10 +54,9 @@ I studied Cyber/Computer Forensics and Counterterrorism at Parul University (B.T
 
 I've also done industry engagements with **JPMorgan Chase & Co.** (payment fraud analysis), **PwC** (phishing simulation and information defense), **AIG** (zero-day and ransomware response) and **Clifford Chance** (ICO regulatory compliance and data-leak claims).
 
-My research covers EEG-based emotion recognition with LSTM networks, cybersecurity automation, kernel security and defense mechanisms. It's all on [Google Scholar](https://scholar.google.com/citations?user=yhcz3TkAAAAJ&hl=en).
-
 ## Say hi
 
+- [Portfolio](https://mranv.github.io/)
 - [GitHub](https://github.com/mranv)
 - [GitHub (Infopercept)](https://github.com/anubhavg-icpl)
 - [LinkedIn](https://in.linkedin.com/in/anubhavgain)

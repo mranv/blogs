@@ -10,9 +10,8 @@
 **Name:** Anubhav Gain
 **Alias:** mranv
 **Location:** Ahmedabad, Gujarat, India
-**Roles:** Security Software Engineer at Infopercept Consulting | CEO & Founder at TechAnv Consulting
+**Roles:** Security Product Engineer at Infopercept Consulting | CEO & Founder at TechAnv Consulting
 **Expertise:** DevSecOps, XDR/OXDR Platform Architecture, Windows Kernel Security, Rust Programming, eBPF Development, Go Programming, Kubernetes Platform Engineering, Cloud-Native Security
-**Citations:** 222+ Research Citations
 **Contact:** contact@techanv.com | https://in.linkedin.com/in/anubhavgain
 
 ---
@@ -182,7 +181,7 @@ Investigation challenges: Aspen, Haunted, Masquerade, PikaBoo, Rotten Cloud, The
 
 ### Infopercept Consulting
 - URL: https://infopercept.com
-- Role: Security Software Engineer
+- Role: Security Product Engineer
 - Focus: XDR/OXDR platform development, enterprise security solutions, SIEM, EDR
 
 ### TechAnv Consulting

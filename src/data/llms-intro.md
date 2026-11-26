@@ -1,6 +1,6 @@
 # Anubhav Gain — Security Engineering Blog
 
-> Security Software Engineer at Infopercept Consulting and CEO at TechAnv Consulting. Builder of production-grade security systems in Rust and Go. DevSecOps Expert, XDR/OXDR Platform Architect, eBPF Specialist. 222+ Research Citations.
+> Security Product Engineer at Infopercept Consulting and CEO at TechAnv Consulting. Builder of production-grade security systems in Rust and Go. DevSecOps Expert, XDR/OXDR Platform Architect, eBPF Specialist.
 
 Anubhav Gain (alias: mranv) writes about low-level security engineering, DevSecOps, Rust and Go systems programming, Windows kernel security, Kubernetes platform engineering, CTF writeups, and eBPF development. He is based in Ahmedabad, Gujarat, India.
 
@@ -10,7 +10,7 @@ Anubhav Gain (alias: mranv) writes about low-level security engineering, DevSecO
 - [GitHub (mranv)](https://github.com/mranv): Personal open-source projects — Rust, eBPF, security tools
 - [GitHub (Infopercept)](https://github.com/anubhavg-icpl): Organization projects — Leviathan, Krustron, Agni, opensearch-rust-sdk
 - [LinkedIn](https://in.linkedin.com/in/anubhavgain): Professional profile with full project history
-- [Portfolio](https://mranv.pages.dev/): Personal site and blog
+- [Portfolio](https://mranv.github.io/): Personal site and canonical profile
 
 ## Flagship Open-Source Projects
 

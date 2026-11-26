@@ -9,7 +9,7 @@ import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
 	title: "Anubhav Gain",
-	subtitle: "Security Engineer · DevSecOps · XDR Architect · Rust & eBPF · 222+ Citations",
+	subtitle: "Security Engineer · DevSecOps · XDR Architect · Rust & eBPF",
 	lang: "en", // Language code, e.g. 'en', 'zh-CN', 'ja', etc.
 	banner: {
 		enable: false, // off for the Paper & Ink design (flat black page, no hero image)
@@ -67,7 +67,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/gainsaheb.jpeg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "Anubhav Gain",
-	bio: "Security Software Engineer · XDR/OXDR Architect · Rust & eBPF · 222+ Research Citations",
+	bio: "Security Product Engineer · XDR/OXDR Architect · Rust & eBPF",
 	links: [
 		{
 			name: "GitHub (mranv)",
@@ -87,7 +87,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "Portfolio",
 			icon: "fa6-solid:globe",
-			url: "https://mranv.pages.dev/",
+			url: "https://mranv.github.io/",
 		},
 		{
 			name: "Instagram",

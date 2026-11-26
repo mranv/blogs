@@ -4,17 +4,16 @@
 [![Powered by gainsaheb](https://img.shields.io/badge/Powered%20by-gainsaheb-blue.svg)](https://github.com/saicaca/gainsaheb)
 ![Security Focus](https://img.shields.io/badge/Focus-Cybersecurity-red.svg)
 ![Rust](https://img.shields.io/badge/Language-Rust-orange.svg)
-![Citations](https://img.shields.io/badge/Research%20Citations-222+-green.svg)
 
 Welcome to my technical blog where I share insights on cybersecurity, DevSecOps, and advanced threat detection technologies.
 
 ## About Me
 
-I'm **Anubhav Gain**, a distinguished cybersecurity professional and entrepreneur who has established himself as a leading figure in India's cybersecurity landscape. Currently serving as **Security Software Engineer at Infopercept Consulting** while operating as **CEO of TechAnv Consulting**.
+I'm **Anubhav Gain**, a distinguished cybersecurity professional and entrepreneur who has established himself as a leading figure in India's cybersecurity landscape. Currently serving as **Security Product Engineer at Infopercept Consulting** while operating as **CEO of TechAnv Consulting**.
 
 ### Current Roles
 
-- 🏢 **Security Software Engineer** at Infopercept Consulting (July 2024 - Present)
+- 🏢 **Security Product Engineer** at Infopercept Consulting (October 2026 - Present; Security Software Engineer from July 2024)
   - Lead architect of the **Invinsense XDR/OXDR cybersecurity platform**
   - Design single-tenant and multi-tenant security deployments
   - Develop custom OpenSearch Dashboard plugins
@@ -25,7 +24,7 @@ I'm **Anubhav Gain**, a distinguished cybersecurity professional and entrepreneu
   - Security architecture recommendations
   - Vulnerability assessments and threat analysis
 
-- 🔧 **DevSecOps Engineer** at Atcults (November 2023 - Present)
+- 🔧 **DevSecOps Engineer** at Atcults (November 2023 - July 2024)
   - Automated security testing pipelines
   - Infrastructure as Code with Terraform
   - Container orchestration with Docker and Kubernetes
@@ -66,11 +65,8 @@ I'm **Anubhav Gain**, a distinguished cybersecurity professional and entrepreneu
 - Cloud security architecture
 - Zero Trust implementation
 
-## Research & Publications
+## Open Source
 
-- **222+ Academic Citations** on Google Scholar
-- Co-authored research on **EEG-based emotion recognition using LSTM networks**
-- Multiple papers in cybersecurity, automation, and system administration
 - Active contributor to open source security projects
 
 ## Notable Projects
@@ -125,7 +121,6 @@ This blog covers cutting-edge security topics including:
 
 - 💼 **LinkedIn**: [in.linkedin.com/in/anubhavgain](https://in.linkedin.com/in/anubhavgain)
 - 🐙 **GitHub**: [@mranv](https://github.com/mranv) & [@anubhavg-icpl](https://github.com/anubhavg-icpl)
-- 📚 **Google Scholar**: [Research Profile](https://scholar.google.com/citations?user=yhcz3TkAAAAJ&hl=en)
 - 🌐 **Websites**:
   - [mranv.pages.dev](https://mranv.pages.dev)
   - [mranv.github.io](https://mranv.github.io)
